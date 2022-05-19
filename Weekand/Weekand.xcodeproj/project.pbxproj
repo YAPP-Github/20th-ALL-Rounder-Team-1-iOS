@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7D648FBC282367F600F5D0B5 /* .swiftlint.yml */; };
+		7DF8B7A928361FB100B224CA /* PretendardVariable.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DF8B7A828361FB100B224CA /* PretendardVariable.ttf */; };
 		E8BDADFB0F95046E8D0F4BE0 /* Pods_Weekand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */; };
 		F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0128235D500082AF30 /* AppDelegate.swift */; };
 		F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0328235D500082AF30 /* SceneDelegate.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		2F9EA8129964B7F5609AAF6E /* Pods-Weekand.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weekand.debug.xcconfig"; path = "Target Support Files/Pods-Weekand/Pods-Weekand.debug.xcconfig"; sourceTree = "<group>"; };
 		7D648FBC282367F600F5D0B5 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		7DF8B7A828361FB100B224CA /* PretendardVariable.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PretendardVariable.ttf; sourceTree = "<group>"; };
 		CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weekand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32ACBFE28235D500082AF30 /* Weekand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weekand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32ACC0128235D500082AF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -61,11 +63,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7DF8B7AA28361FB500B224CA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7DF8B7A828361FB100B224CA /* PretendardVariable.ttf */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		F32ACBF528235D500082AF30 = {
 			isa = PBXGroup;
 			children = (
 				7D648FBC282367F600F5D0B5 /* .swiftlint.yml */,
 				F32ACC0028235D500082AF30 /* Weekand */,
+				7DF8B7AA28361FB500B224CA /* Supporting Files */,
 				F32ACBFF28235D500082AF30 /* Products */,
 				0DF1D2DF7666D0B0F04D4CE2 /* Pods */,
 				555089E8C7A86EDE40DF8F0F /* Frameworks */,
@@ -155,6 +166,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DF8B7A928361FB100B224CA /* PretendardVariable.ttf in Resources */,
 				7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */,
 				F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */,
 				F32ACC0B28235D530082AF30 /* Assets.xcassets in Resources */,
