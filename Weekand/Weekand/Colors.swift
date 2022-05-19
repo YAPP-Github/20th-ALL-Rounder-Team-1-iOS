@@ -9,7 +9,7 @@ import UIKit
 
 extension UIColor {
     
-    //MARK: Custom System Colors
+    // MARK: Custom System Colors
     static let mainColor = UIColor(hex: "#5086FF")
     static let backgroundColor = UIColor.white
     
@@ -20,13 +20,19 @@ extension UIColor {
     
     
     
-    //MARK: UIColor with Hex
+    // MARK: UIColor with Hex
     public convenience init?(hex: String) {
+        
+        var safeHex = hex
+        if hex.count == 7 {
+            safeHex += "FF"
+        }
+        
         let r, g, b, a: CGFloat
 
-        if hex.hasPrefix("#") {
-            let start = hex.index(hex.startIndex, offsetBy: 1)
-            let hexColor = String(hex[start...])
+        if safeHex.hasPrefix("#") {
+            let start = safeHex.index(safeHex.startIndex, offsetBy: 1)
+            let hexColor = String(safeHex[start...])
 
             if hexColor.count == 8 {
                 let scanner = Scanner(string: hexColor)
@@ -47,5 +53,3 @@ extension UIColor {
         return nil
     }
 }
-
-
