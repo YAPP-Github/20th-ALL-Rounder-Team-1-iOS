@@ -24,7 +24,7 @@ class WTextField: UITextField {
     private func setupView() {
         
         // Shape
-        self.layer.cornerRadius = 10
+        self.layer.cornerRadius = 13
         self.backgroundColor = UIColor.lightGray
         
         // Main Text

@@ -26,6 +26,7 @@
 		F32ACC0928235D500082AF30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32ACC0728235D500082AF30 /* Main.storyboard */; };
 		F32ACC0B28235D530082AF30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F32ACC0A28235D530082AF30 /* Assets.xcassets */; };
 		F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32ACC0C28235D530082AF30 /* LaunchScreen.storyboard */; };
+		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		F32ACC0A28235D530082AF30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F32ACC0D28235D530082AF30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F32ACC0F28235D530082AF30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F77A7360107CB67CF89A6DEF /* Pods-Weekand.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weekand.release.xcconfig"; path = "Target Support Files/Pods-Weekand/Pods-Weekand.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,13 +101,6 @@
 				F32ACC0128235D500082AF30 /* AppDelegate.swift */,
 			);
 			path = Application;
-			sourceTree = "<group>";
-		};
-		7D3B1F5728363D5C0037504A /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Domain;
 			sourceTree = "<group>";
 		};
 		7D3B1F5828363D8A0037504A /* Presentation */ = {
@@ -218,6 +213,7 @@
 		7DF8B7AA28361FB500B224CA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F391B42C2837D4D0004E7B06 /* Preview.swift */,
 				7DF8B7A828361FB100B224CA /* PretendardVariable.ttf */,
 			);
 			path = "Supporting Files";
@@ -246,7 +242,6 @@
 		F32ACC0028235D500082AF30 /* Weekand */ = {
 			isa = PBXGroup;
 			children = (
-				7D3B1F5728363D5C0037504A /* Domain */,
 				7D3B1F5628363D2D0037504A /* Application */,
 				7D3B1F5528363CFB0037504A /* Base */,
 				7D3B1F5828363D8A0037504A /* Presentation */,
@@ -394,6 +389,7 @@
 				7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */,
 				7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */,
 				7DC166BC28371B0C00F1A8F1 /* ColorSet.swift in Sources */,
+				F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */,
 				F32ACC0628235D500082AF30 /* ViewController.swift in Sources */,
 				7DC166BE28371C4E00F1A8F1 /* WDefaultButton.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
