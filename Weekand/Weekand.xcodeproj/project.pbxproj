@@ -14,6 +14,7 @@
 		7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166B02837145200F1A8F1 /* SignUpViewModel.swift */; };
 		7DC166B42837148000F1A8F1 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166B32837148000F1A8F1 /* SignInViewModel.swift */; };
 		7DC166BC28371B0C00F1A8F1 /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166BB28371B0C00F1A8F1 /* ColorSet.swift */; };
+		7DC166BE28371C4E00F1A8F1 /* WDefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166BD28371C4E00F1A8F1 /* WDefaultButton.swift */; };
 		7DF8B7A928361FB100B224CA /* PretendardVariable.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DF8B7A828361FB100B224CA /* PretendardVariable.ttf */; };
 		7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF8B7AB2836250400B224CA /* UIColor+hex.swift */; };
 		E8BDADFB0F95046E8D0F4BE0 /* Pods_Weekand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */; };
@@ -34,6 +35,7 @@
 		7DC166B02837145200F1A8F1 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		7DC166B32837148000F1A8F1 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		7DC166BB28371B0C00F1A8F1 /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
+		7DC166BD28371C4E00F1A8F1 /* WDefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDefaultButton.swift; sourceTree = "<group>"; };
 		7DF8B7A828361FB100B224CA /* PretendardVariable.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PretendardVariable.ttf; sourceTree = "<group>"; };
 		7DF8B7AB2836250400B224CA /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
 		CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weekand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				7D3B1F53283630A50037504A /* WTextField.swift */,
+				7DC166BD28371C4E00F1A8F1 /* WDefaultButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */,
 				7DC166BC28371B0C00F1A8F1 /* ColorSet.swift in Sources */,
 				F32ACC0628235D500082AF30 /* ViewController.swift in Sources */,
+				7DC166BE28371C4E00F1A8F1 /* WDefaultButton.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
 				7DC166B42837148000F1A8F1 /* SignInViewModel.swift in Sources */,
 				7D3B1F54283630A50037504A /* WTextField.swift in Sources */,
