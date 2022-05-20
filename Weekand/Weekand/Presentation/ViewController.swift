@@ -19,29 +19,35 @@ class ViewController: UIViewController {
     lazy var button = WDefaultButton().then {
         $0.setTitle("확인", for: .normal)
     }
+    
+    lazy var buttonField = WButtonTextField().then {
+        $0.textField.placeholder = "이메일"
+        $0.button.setTitle("인증", for: .normal)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(#function)
-        
         self.view.addSubview(textField)
         textField.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().dividedBy(1.5)
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(1.2)
+        }
+        
+        self.view.addSubview(buttonField)
+        buttonField.snp.makeConstraints { make in
+            make.top.equalTo(textField.snp.bottom).offset(50)
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().dividedBy(1.2)
         }
         
         self.view.addSubview(button)
         button.snp.makeConstraints { make in
-            make.top.equalTo(textField.snp.bottom).offset(50)
+            make.top.equalTo(buttonField.snp.bottom).offset(50)
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().dividedBy(1.2)
         }
-        
-        print("done")
+
     }
-    
-
-
 }
