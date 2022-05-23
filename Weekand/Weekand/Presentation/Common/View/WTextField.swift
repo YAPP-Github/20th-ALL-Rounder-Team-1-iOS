@@ -9,7 +9,7 @@ import UIKit
 
 class WTextField: UITextField {
     
-    let inset = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+    let inset = UIEdgeInsets.defaultEdgeInset
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,11 +24,12 @@ class WTextField: UITextField {
     private func setupView() {
         
         // Shape
-        self.layer.cornerRadius = 13
+        self.layer.cornerRadius = defaultCornerRadius
         self.backgroundColor = UIColor.lightGray
         
         // Main Text
-        self.font = UIFont(name: "PretendardVariable", size: UIFont.labelFontSize)
+        self.font = UIFont(name: "PretendardVariable", size: defaultFontSize)
+        
         
         // Placeholder Text
         self.attributedPlaceholder = NSAttributedString(string: "Placeholder", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray!])

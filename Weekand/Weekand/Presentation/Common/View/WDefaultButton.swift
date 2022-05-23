@@ -22,19 +22,19 @@ class WDefaultButton: UIButton {
     private func setupView() {
         
         self.titleLabel?.adjustsFontForContentSizeCategory = true
+        self.titleLabel?.font = UIFont(name: "PretendardVariable", size: defaultFontSize)
         
         if #available(iOS 15.0, *) {
             var configuration = UIButton.Configuration.filled()
             configuration.background.backgroundColor = UIColor.mainColor
-            configuration.background.cornerRadius = 0
+            configuration.background.cornerRadius = defaultCornerRadius
             configuration.contentInsets = NSDirectionalEdgeInsets.defaultEdgeInset
             self.configuration = configuration
             
         } else {
             
-            self.layer.cornerRadius = 0
+            self.layer.cornerRadius = defaultCornerRadius
             self.backgroundColor = UIColor.mainColor
-            self.titleLabel?.font = UIFont(name: "PretendardVariable", size: UIFont.labelFontSize)
             self.setTitleColor(.white, for: .normal)
             self.titleEdgeInsets = UIEdgeInsets.defaultEdgeInset
         }
