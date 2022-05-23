@@ -26,13 +26,13 @@ class WDefaultButton: UIButton {
         if #available(iOS 15.0, *) {
             var configuration = UIButton.Configuration.filled()
             configuration.background.backgroundColor = UIColor.mainColor
-            configuration.background.cornerRadius = 10
+            configuration.background.cornerRadius = 0
             configuration.contentInsets = NSDirectionalEdgeInsets.defaultEdgeInset
             self.configuration = configuration
             
         } else {
             
-            self.layer.cornerRadius = 10
+            self.layer.cornerRadius = 0
             self.backgroundColor = UIColor.mainColor
             self.titleLabel?.font = UIFont(name: "PretendardVariable", size: UIFont.labelFontSize)
             self.setTitleColor(.white, for: .normal)
