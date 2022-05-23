@@ -10,6 +10,7 @@ import SwiftUI
 enum DeviceType {
     case iPhoneSE2
     case iPhone8
+    case iPhone12Mini
     case iPhone12Pro
     case iPhone12ProMax
 
@@ -19,6 +20,8 @@ enum DeviceType {
             return "iPhone SE"
         case .iPhone8:
             return "iPhone 8"
+        case .iPhone12Mini:
+            return "iPhone 12 Mini"
         case .iPhone12Pro:
             return "iPhone 12 Pro"
         case .iPhone12ProMax:

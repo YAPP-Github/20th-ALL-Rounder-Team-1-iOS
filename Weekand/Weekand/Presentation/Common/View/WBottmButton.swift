@@ -1,13 +1,13 @@
 //
-//  WDefaultButton.swift
+//  WBottmButton.swift
 //  Weekand
 //
-//  Created by Daegeon Choi on 2022/05/20.
+//  Created by Daegeon Choi on 2022/05/23.
 //
 
 import UIKit
 
-class WDefaultButton: UIButton {
+class WBottmButton: UIButton {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,20 +24,26 @@ class WDefaultButton: UIButton {
         self.titleLabel?.adjustsFontForContentSizeCategory = true
         self.titleLabel?.font = UIFont(name: "PretendardVariable", size: defaultFontSize)
         
+        self.contentVerticalAlignment = .top
+        
         if #available(iOS 15.0, *) {
             var configuration = UIButton.Configuration.filled()
             configuration.background.backgroundColor = UIColor.mainColor
-            configuration.background.cornerRadius = defaultCornerRadius
-            configuration.contentInsets = NSDirectionalEdgeInsets.defaultEdgeInset
+            configuration.background.cornerRadius = 0
+            configuration.contentInsets.top = NSDirectionalEdgeInsets.defaultInsetAmount
             self.configuration = configuration
             
         } else {
             
-            self.layer.cornerRadius = defaultCornerRadius
+            self.layer.cornerRadius = 0
             self.backgroundColor = UIColor.mainColor
             self.setTitleColor(.white, for: .normal)
-            self.titleEdgeInsets = UIEdgeInsets.defaultEdgeInset
+            self.contentEdgeInsets.top = UIEdgeInsets.defaultInsetAmount
         }
     }
+    
+}
 
+extension WBottmButton {
+    static let buttonOffset = 64
 }

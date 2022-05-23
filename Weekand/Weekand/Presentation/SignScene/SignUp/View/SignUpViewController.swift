@@ -12,7 +12,7 @@ import SwiftUI
 
 class SignUpViewController: UIViewController {
     
-    lazy var button = WDefaultButton().then {
+    lazy var button = WBottmButton().then {
         $0.setTitle("확인", for: .normal)
     }
     
@@ -41,7 +41,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+ 
         self.view.addSubview(emailTextField)
         self.view.addSubview(authenticationNumberTextField)
         self.view.addSubview(nickNameTextField)
@@ -52,46 +52,44 @@ class SignUpViewController: UIViewController {
     }
     
     func setUpConstraint() {
+
+        
         emailTextField.snp.makeConstraints { make in
             make.centerY.equalToSuperview().dividedBy(2.2)
             make.centerX.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(1.31)
-            make.height.equalTo(view.snp.width).multipliedBy(1/6.2)
+            make.width.equalToSuperview().dividedBy(defaultWidthDivider)
         }
         
         authenticationNumberTextField.snp.makeConstraints { make in
-            make.top.equalTo(emailTextField.snp.bottom).offset(28)
+            make.top.equalTo(emailTextField.snp.bottom).offset(defaultSpacing)
             make.centerX.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(1.31)
-            make.height.equalTo(view.snp.width).multipliedBy(1/6.2)
+            make.width.equalToSuperview().dividedBy(defaultWidthDivider)
+
         }
         
         nickNameTextField.snp.makeConstraints { make in
-            make.top.equalTo(authenticationNumberTextField.snp.bottom).offset(28)
+            make.top.equalTo(authenticationNumberTextField.snp.bottom).offset(defaultSpacing)
             make.centerX.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(1.31)
-            make.height.equalTo(view.snp.width).multipliedBy(1/6.2)
+            make.width.equalToSuperview().dividedBy(defaultWidthDivider)
         }
         
         passwordTextField.snp.makeConstraints { make in
-            make.top.equalTo(nickNameTextField.snp.bottom).offset(28)
+            make.top.equalTo(nickNameTextField.snp.bottom).offset(defaultSpacing)
             make.centerX.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(1.31)
-            make.height.equalTo(view.snp.width).multipliedBy(1/6.2)
+            make.width.equalToSuperview().dividedBy(defaultWidthDivider)
         }
         
         passwordCheckTextField.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextField.snp.bottom).offset(28)
+            make.top.equalTo(passwordTextField.snp.bottom).offset(defaultSpacing)
             make.centerX.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(1.31)
-            make.height.equalTo(view.snp.width).multipliedBy(1/6.2)
+            make.width.equalToSuperview().dividedBy(defaultWidthDivider)
         }
         
         button.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-WBottmButton.buttonOffset)
             make.bottom.equalToSuperview()
             make.centerX.equalToSuperview()
-            make.height.equalTo(view.snp.width).multipliedBy(1/4.4)
-            make.width.equalToSuperview()
+            make.width.equalTo(view)
         }
     }
 }
@@ -102,6 +100,7 @@ struct SignUpViewControllerPreview: PreviewProvider {
     static var previews: some View {
         Group {
             SignUpViewController().showPreview(.iPhone8)
+            SignUpViewController().showPreview(.iPhone12Mini)
         }
     }
 }

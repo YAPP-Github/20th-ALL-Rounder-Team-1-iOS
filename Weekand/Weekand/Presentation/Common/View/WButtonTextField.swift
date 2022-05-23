@@ -13,15 +13,12 @@ class WButtonTextField: UIView {
     let button = WDefaultButton().then {
         
         if #available(iOS 15.0, *) {
-            $0.configuration?.background.backgroundColor = .black
-            $0.configuration?.background.cornerRadius = 10
+            $0.configuration?.background.cornerRadius = defaultCornerRadius/2
             $0.configuration?.contentInsets = NSDirectionalEdgeInsets.internalEdgeInset
         } else {
-            $0.backgroundColor = UIColor.mainColor
-            $0.layer.cornerRadius = 10
+            $0.layer.cornerRadius = defaultCornerRadius/2
             $0.titleEdgeInsets = UIEdgeInsets.internalEdgeInset
         }
-
     }
 
     override init(frame: CGRect) {
@@ -47,7 +44,7 @@ class WButtonTextField: UIView {
             make.bottom.equalToSuperview().offset(-UIEdgeInsets.defaultInsetAmount/2)
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(-UIEdgeInsets.defaultInsetAmount/2)
-            make.width.equalTo(textField.snp.width).multipliedBy(1/3.5)
+            make.width.greaterThanOrEqualTo(textField.snp.width).multipliedBy(1/3.5)
         }
         
     }
