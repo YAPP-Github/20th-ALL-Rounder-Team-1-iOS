@@ -86,7 +86,7 @@ class SignUpViewController: UIViewController {
         }
         
         button.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-64)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-WBottmButton.buttonOffset)
             make.bottom.equalToSuperview()
             make.centerX.equalToSuperview()
             make.width.equalTo(view)
