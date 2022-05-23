@@ -10,7 +10,11 @@ import Then
 import SnapKit
 import SwiftUI
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: BaseViewController {
+    
+    lazy var welcomeLabel = WTitleLabel().then {
+        $0.text = "Weekand와\n함께 시작해요!"
+    }
     
     lazy var button = WBottmButton().then {
         $0.setTitle("확인", for: .normal)
@@ -42,47 +46,22 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
  
-        self.view.addSubview(emailTextField)
-        self.view.addSubview(authenticationNumberTextField)
-        self.view.addSubview(nickNameTextField)
-        self.view.addSubview(passwordTextField)
-        self.view.addSubview(passwordCheckTextField)
-        self.view.addSubview(button)
+        stackView.spacing = 30
+        stackView.addArrangedSubview(welcomeLabel)
+        stackView.addArrangedSubview(emailTextField)
+        stackView.addArrangedSubview(authenticationNumberTextField)
+        stackView.addArrangedSubview(nickNameTextField)
+        stackView.addArrangedSubview(passwordTextField)
+        stackView.addArrangedSubview(passwordCheckTextField)
+        view.addSubview(button)
         setUpConstraint()
     }
     
     func setUpConstraint() {
-
-        
-        emailTextField.snp.makeConstraints { make in
-            make.centerY.equalToSuperview().dividedBy(2.2)
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(defaultWidthDivider)
-        }
-        
-        authenticationNumberTextField.snp.makeConstraints { make in
-            make.top.equalTo(emailTextField.snp.bottom).offset(defaultSpacing)
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(defaultWidthDivider)
-
-        }
-        
-        nickNameTextField.snp.makeConstraints { make in
-            make.top.equalTo(authenticationNumberTextField.snp.bottom).offset(defaultSpacing)
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(defaultWidthDivider)
-        }
-        
-        passwordTextField.snp.makeConstraints { make in
-            make.top.equalTo(nickNameTextField.snp.bottom).offset(defaultSpacing)
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(defaultWidthDivider)
-        }
-        
-        passwordCheckTextField.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextField.snp.bottom).offset(defaultSpacing)
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(defaultWidthDivider)
+        stackView.snp.makeConstraints { make in
+            // TODO: top 임시값 세팅
+            make.top.equalToSuperview().inset(30)
+            make.right.left.equalToSuperview().inset(10)
         }
         
         button.snp.makeConstraints { make in
@@ -100,7 +79,6 @@ struct SignUpViewControllerPreview: PreviewProvider {
     static var previews: some View {
         Group {
             SignUpViewController().showPreview(.iPhone8)
-            SignUpViewController().showPreview(.iPhone12Mini)
         }
     }
 }
