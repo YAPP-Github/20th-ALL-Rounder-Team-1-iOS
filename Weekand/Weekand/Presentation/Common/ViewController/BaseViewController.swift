@@ -29,13 +29,12 @@ class BaseViewController: UIViewController {
 
     func setConstraints() {
         scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.leading.trailing.bottom.equalToSuperview()
         }
         
         contentView.snp.makeConstraints { make in
-            make.edges.equalTo(scrollView.contentLayoutGuide)
-            make.height.greaterThanOrEqualTo(view.snp.height).priority(.low)
-            make.width.equalTo(scrollView.snp.width)
+            make.leading.trailing.top.bottom.width.equalToSuperview()
         }
     }
 }

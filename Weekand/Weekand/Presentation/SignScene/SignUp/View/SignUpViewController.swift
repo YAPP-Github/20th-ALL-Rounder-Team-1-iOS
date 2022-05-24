@@ -68,7 +68,8 @@ class SignUpViewController: BaseViewController {
         stackView.snp.makeConstraints { make in
             // top 임시값 세팅
             make.top.equalToSuperview().offset(30)
-            make.right.left.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().offset(-WBottmButton.buttonOffset - 20)
+            make.trailing.leading.equalToSuperview().inset(20)
         }
         
         button.snp.makeConstraints { make in
