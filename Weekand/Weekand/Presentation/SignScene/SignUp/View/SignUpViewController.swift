@@ -13,55 +13,62 @@ import SwiftUI
 class SignUpViewController: BaseViewController {
     
     lazy var welcomeLabel = WTitleLabel().then {
-        $0.text = "Weekand와\n함께 시작해요!"
+        $0.setText(string: "Weekand와\n함께 시작해요!")
     }
     
     lazy var button = WBottmButton().then {
         $0.setTitle("확인", for: .normal)
     }
     
-    lazy var emailTextField = WButtonTextField().then {
-        $0.textField.placeholder = "이메일"
-        $0.button.setTitle("인증", for: .normal)
+    lazy var emailStackView = InputGroupStackView().then {
+        $0.setNameLabelText(string: "이메일")
+        $0.setInformlabelText(string: "올바른 형식으로 입력해주세요")
+        $0.setPlaceholderText(string: "이메일을 입력해주세요")
+        $0.setButtonText(string: "인증")
     }
     
-    lazy var authenticationNumberTextField = WButtonTextField().then {
-        $0.textField.placeholder = "인증번호"
-        $0.button.setTitle("확인", for: .normal)
+    lazy var authenticationNumberStackView = InputGroupStackView().then {
+        $0.setNameLabelText(string: "인증번호")
+        $0.setInformlabelText(string: "잘못된 인증번호입니다")
+        $0.setPlaceholderText(string: "인증번호를 입력해주세요")
+        $0.setButtonText(string: "확인")
     }
     
-    lazy var nickNameTextField = WButtonTextField().then {
-        $0.textField.placeholder = "닉네임"
-        $0.button.setTitle("중복확인", for: .normal)
+    lazy var nickNameStackView = InputGroupStackView().then {
+        $0.setNameLabelText(string: "닉네임")
+        $0.setInformlabelText(string: "중복된 닉네임입니다")
+        $0.setPlaceholderText(string: "닉네임을 입력해주세요")
+        $0.setButtonText(string: "중복확인")
     }
     
-    lazy var passwordTextField = WTextField().then {
-        $0.placeholder = "비밀번호"
+    lazy var passwordStackView = InputGroupStackView().then {
+        $0.setNameLabelText(string: "비밀번호")
+        $0.setInformlabelText(string: "숫자, 영어 조합 8자리 이상 입력해주세요")
+        $0.setPlaceholderText(string: "비밀번호를 입력해주세요")
+        $0.hideTextFieldButton()
     }
     
-    lazy var passwordCheckTextField = WTextField().then {
-        $0.placeholder = "비밀번호 확인"
+    lazy var passwordCheckStackView = InputGroupStackView().then {
+        $0.setNameLabelText(string: "비밀번호 확인")
+        $0.setInformlabelText(string: "비밀번호가 일치하지 않습니다")
+        $0.setPlaceholderText(string: "비밀번호를 확인해주세요")
+        $0.hideTextFieldButton()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
  
         stackView.spacing = 30
-        stackView.addArrangedSubview(welcomeLabel)
-        stackView.addArrangedSubview(emailTextField)
-        stackView.addArrangedSubview(authenticationNumberTextField)
-        stackView.addArrangedSubview(nickNameTextField)
-        stackView.addArrangedSubview(passwordTextField)
-        stackView.addArrangedSubview(passwordCheckTextField)
+        [welcomeLabel, emailStackView, authenticationNumberStackView, nickNameStackView, passwordStackView, passwordCheckStackView].forEach { stackView.addArrangedSubview($0) }
         view.addSubview(button)
         setUpConstraint()
     }
     
     func setUpConstraint() {
         stackView.snp.makeConstraints { make in
-            // TODO: top 임시값 세팅
-            make.top.equalToSuperview().inset(30)
-            make.right.left.equalToSuperview().inset(10)
+            // top 임시값 세팅
+            make.top.equalToSuperview().offset(30)
+            make.right.left.equalToSuperview().inset(20)
         }
         
         button.snp.makeConstraints { make in

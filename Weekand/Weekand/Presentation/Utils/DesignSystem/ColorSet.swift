@@ -16,4 +16,7 @@ extension UIColor {
     static let accentColor = UIColor(hex: "#17191C")
     static let lightGray = UIColor(hex: "#ECEFF2")
     static let darkGray = UIColor(hex: "#AAAEB6")
+    
+    static let wgray = UIColor(hex: "#32353A")
+    static let worange = UIColor(hex: "#FF8F3E")
 }
