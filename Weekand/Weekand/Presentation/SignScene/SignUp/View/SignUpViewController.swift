@@ -17,7 +17,8 @@ class SignUpViewController: BaseViewController {
     }
     
     lazy var button = WBottmButton().then {
-        $0.setTitle("확인", for: .normal)
+        $0.setTitle("다음", for: .normal)
+        $0.enable(string: "다음")
     }
     
     lazy var emailStackView = InputGroupStackView().then {
