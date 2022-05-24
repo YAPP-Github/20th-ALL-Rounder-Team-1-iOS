@@ -30,6 +30,8 @@
 		F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32ACC0C28235D530082AF30 /* LaunchScreen.storyboard */; };
 		F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */; };
 		F354C3DF283CECF5008929FD /* WTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DE283CECF5008929FD /* WTextLabel.swift */; };
+		F354C3E3283D3615008929FD /* AddInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3E2283D3615008929FD /* AddInformationViewController.swift */; };
+		F354C3E5283D3BF0008929FD /* InformationGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3E4283D3BF0008929FD /* InformationGroupStackView.swift */; };
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
@@ -62,6 +64,8 @@
 		F32ACC0F28235D530082AF30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputGroupStackView.swift; sourceTree = "<group>"; };
 		F354C3DE283CECF5008929FD /* WTextLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextLabel.swift; sourceTree = "<group>"; };
+		F354C3E2283D3615008929FD /* AddInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInformationViewController.swift; sourceTree = "<group>"; };
+		F354C3E4283D3BF0008929FD /* InformationGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationGroupStackView.swift; sourceTree = "<group>"; };
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
@@ -157,7 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				7DC166A82837140000F1A8F1 /* SignUpViewController.swift */,
-				F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */,
+				F354C3E2283D3615008929FD /* AddInformationViewController.swift */,
+				F354C3E6283D3EC8008929FD /* Views */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -274,6 +279,15 @@
 				7DC166B8283717FA00F1A8F1 /* Resources */,
 			);
 			path = Weekand;
+			sourceTree = "<group>";
+		};
+		F354C3E6283D3EC8008929FD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */,
+				F354C3E4283D3BF0008929FD /* InformationGroupStackView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		F391B432283BF0EC004E7B06 /* ViewController */ = {
@@ -431,6 +445,7 @@
 				F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */,
 				F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */,
 				7DC166BE28371C4E00F1A8F1 /* WDefaultButton.swift in Sources */,
+				F354C3E3283D3615008929FD /* AddInformationViewController.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
 				7DC166B42837148000F1A8F1 /* SignInViewModel.swift in Sources */,
 				7D3B1F54283630A50037504A /* WTextField.swift in Sources */,
@@ -438,6 +453,7 @@
 				7DC166C228372ACF00F1A8F1 /* Inset.swift in Sources */,
 				7DC166C02837234200F1A8F1 /* WButtonTextField.swift in Sources */,
 				F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */,
+				F354C3E5283D3BF0008929FD /* InformationGroupStackView.swift in Sources */,
 				F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

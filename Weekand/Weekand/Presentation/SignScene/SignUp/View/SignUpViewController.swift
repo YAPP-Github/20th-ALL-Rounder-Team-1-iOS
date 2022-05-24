@@ -16,7 +16,7 @@ class SignUpViewController: BaseViewController {
         $0.setText(string: "Weekand와\n함께 시작해요!")
     }
     
-    lazy var button = WBottmButton().then {
+    lazy var confirmButton = WBottmButton().then {
         $0.setTitle("다음", for: .normal)
         $0.enable(string: "다음")
     }
@@ -63,7 +63,7 @@ class SignUpViewController: BaseViewController {
  
         stackView.spacing = 30
         [welcomeLabel, emailStackView, authenticationNumberStackView, nickNameStackView, passwordStackView, passwordCheckStackView].forEach { stackView.addArrangedSubview($0) }
-        view.addSubview(button)
+        view.addSubview(confirmButton)
         setUpConstraint()
     }
     
@@ -75,7 +75,7 @@ class SignUpViewController: BaseViewController {
             make.trailing.leading.equalToSuperview().inset(20)
         }
         
-        button.snp.makeConstraints { make in
+        confirmButton.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-WBottmButton.buttonOffset)
             make.bottom.equalToSuperview()
             make.centerX.equalToSuperview()
