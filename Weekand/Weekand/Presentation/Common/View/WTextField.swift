@@ -28,7 +28,7 @@ class WTextField: UITextField {
         self.backgroundColor = UIColor.lightGray
         
         // Main Text
-        self.font = UIFont(name: "PretendardVariable-Regular", size: defaultFontSize)
+        self.font = UIFont(name: "PretendardVariable-Medium", size: defaultFontSize)
         
         
         // Placeholder Text
