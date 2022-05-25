@@ -10,6 +10,7 @@
 		7D3B1F54283630A50037504A /* WTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B1F53283630A50037504A /* WTextField.swift */; };
 		7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7D648FBC282367F600F5D0B5 /* .swiftlint.yml */; };
 		7D6E9972283BA18E006F5FC7 /* WBottmButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6E9971283BA18E006F5FC7 /* WBottmButton.swift */; };
+		7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80021A283DEAE7007874C6 /* WelcomeViewController.swift */; };
 		7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166A82837140000F1A8F1 /* SignUpViewController.swift */; };
 		7DC166AB2837140B00F1A8F1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166AA2837140B00F1A8F1 /* SignInViewController.swift */; };
 		7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166B02837145200F1A8F1 /* SignUpViewModel.swift */; };
@@ -36,6 +37,7 @@
 		7D3B1F53283630A50037504A /* WTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextField.swift; sourceTree = "<group>"; };
 		7D648FBC282367F600F5D0B5 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		7D6E9971283BA18E006F5FC7 /* WBottmButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBottmButton.swift; sourceTree = "<group>"; };
+		7D80021A283DEAE7007874C6 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		7DC166A82837140000F1A8F1 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7DC166AA2837140B00F1A8F1 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		7DC166B02837145200F1A8F1 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -118,9 +120,34 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
+		7D800217283DEAA5007874C6 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				7D800218283DEABA007874C6 /* ViewModel */,
+				7D800219283DEAC3007874C6 /* View */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		7D800218283DEABA007874C6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7D800219283DEAC3007874C6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D80021A283DEAE7007874C6 /* WelcomeViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7DC166A72837139300F1A8F1 /* SignScene */ = {
 			isa = PBXGroup;
 			children = (
+				7D800217283DEAA5007874C6 /* Welcome */,
 				7DC166AC2837141800F1A8F1 /* SignUp */,
 				7DC166AD2837141F00F1A8F1 /* SignIn */,
 			);
@@ -404,6 +431,7 @@
 				7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */,
 				7DC166BC28371B0C00F1A8F1 /* ColorSet.swift in Sources */,
 				F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */,
+				7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */,
 				F32ACC0628235D500082AF30 /* ViewController.swift in Sources */,
 				7D6E9972283BA18E006F5FC7 /* WBottmButton.swift in Sources */,
 				7DC166BE28371C4E00F1A8F1 /* WDefaultButton.swift in Sources */,
