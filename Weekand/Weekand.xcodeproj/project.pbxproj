@@ -32,6 +32,7 @@
 		F354C3DF283CECF5008929FD /* WTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DE283CECF5008929FD /* WTextLabel.swift */; };
 		F354C3E3283D3615008929FD /* AddInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3E2283D3615008929FD /* AddInformationViewController.swift */; };
 		F354C3E5283D3BF0008929FD /* InformationGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3E4283D3BF0008929FD /* InformationGroupStackView.swift */; };
+		F354C3E8283D4126008929FD /* SignUpTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3E7283D4126008929FD /* SignUpTermsViewController.swift */; };
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
@@ -66,6 +67,7 @@
 		F354C3DE283CECF5008929FD /* WTextLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextLabel.swift; sourceTree = "<group>"; };
 		F354C3E2283D3615008929FD /* AddInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInformationViewController.swift; sourceTree = "<group>"; };
 		F354C3E4283D3BF0008929FD /* InformationGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationGroupStackView.swift; sourceTree = "<group>"; };
+		F354C3E7283D4126008929FD /* SignUpTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTermsViewController.swift; sourceTree = "<group>"; };
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			children = (
 				7DC166A82837140000F1A8F1 /* SignUpViewController.swift */,
 				F354C3E2283D3615008929FD /* AddInformationViewController.swift */,
+				F354C3E7283D4126008929FD /* SignUpTermsViewController.swift */,
 				F354C3E6283D3EC8008929FD /* Views */,
 			);
 			path = View;
@@ -433,6 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F354C3E8283D4126008929FD /* SignUpTermsViewController.swift in Sources */,
 				7DC166AB2837140B00F1A8F1 /* SignInViewController.swift in Sources */,
 				7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */,
 				7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */,
