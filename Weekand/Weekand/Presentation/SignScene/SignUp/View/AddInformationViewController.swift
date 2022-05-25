@@ -33,12 +33,11 @@ class AddInformationViewController: BaseViewController {
         super.viewDidLoad()
         
         stackView.spacing = 30
-        [welcomeLabel, jobStackView, interestsStackView].forEach { stackView.addArrangedSubview($0) }
-        view.addSubview(confirmButton)
-        setUpConstraint()
+        configureUI()
     }
 
-    func setUpConstraint() {
+    func configureUI() {
+        [welcomeLabel, jobStackView, interestsStackView].forEach { stackView.addArrangedSubview($0) }
         stackView.snp.makeConstraints { make in
             // top 임시값 세팅
             make.top.equalToSuperview().offset(30)
@@ -46,6 +45,7 @@ class AddInformationViewController: BaseViewController {
             make.trailing.leading.equalToSuperview().inset(20)
         }
         
+        view.addSubview(confirmButton)
         confirmButton.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-WBottmButton.buttonOffset)
             make.bottom.equalToSuperview()
