@@ -37,9 +37,9 @@ class SignUpTermsViewController: UIViewController {
     }
     
     lazy var termsAgreeLabel = WTextLabel().then {
-        $0.font = UIFont(name: "PretendardVariable-SemiBold", size: defaultFontSize)
-        $0.textColor = .gray700
-        $0.text = "이용약관에 동의합니다."
+        $0.attributedText = NSMutableAttributedString()
+            .semiBold("이용약관", fontSize: defaultFontSize, fontColor: .wblue ?? .black)
+            .semiBold("에 동의합니다.", fontSize: defaultFontSize, fontColor: .gray700 ?? .black)
     }
     
     lazy var privacyAgreeCheckBoxButton = UIButton().then {
@@ -47,9 +47,9 @@ class SignUpTermsViewController: UIViewController {
     }
     
     lazy var privacyAgreeLabel = WTextLabel().then {
-        $0.font = UIFont(name: "PretendardVariable-SemiBold", size: defaultFontSize)
-        $0.textColor = .gray700
-        $0.text = "개인정보 취급방식에 동의합니다."
+        $0.attributedText = NSMutableAttributedString()
+            .semiBold("개인정보 취급방식", fontSize: defaultFontSize, fontColor: .wblue ?? .black)
+            .semiBold("에 동의합니다.", fontSize: defaultFontSize, fontColor: .gray700 ?? .black)
     }
     
     lazy var confirmButton = WBottmButton().then {
