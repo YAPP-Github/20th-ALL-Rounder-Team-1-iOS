@@ -30,7 +30,7 @@
 		F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32ACC0C28235D530082AF30 /* LaunchScreen.storyboard */; };
 		F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */; };
 		F354C3DF283CECF5008929FD /* WTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DE283CECF5008929FD /* WTextLabel.swift */; };
-		F354C3E3283D3615008929FD /* AddInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3E2283D3615008929FD /* AddInformationViewController.swift */; };
+		F354C3E3283D3615008929FD /* SignUpAddInfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3E2283D3615008929FD /* SignUpAddInfomationViewController.swift */; };
 		F354C3E5283D3BF0008929FD /* InformationGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3E4283D3BF0008929FD /* InformationGroupStackView.swift */; };
 		F354C3E8283D4126008929FD /* SignUpTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3E7283D4126008929FD /* SignUpTermsViewController.swift */; };
 		F354C3EA283E6946008929FD /* NSMutableAttributedString+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3E9283E6946008929FD /* NSMutableAttributedString+extension.swift */; };
@@ -66,7 +66,7 @@
 		F32ACC0F28235D530082AF30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputGroupStackView.swift; sourceTree = "<group>"; };
 		F354C3DE283CECF5008929FD /* WTextLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextLabel.swift; sourceTree = "<group>"; };
-		F354C3E2283D3615008929FD /* AddInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInformationViewController.swift; sourceTree = "<group>"; };
+		F354C3E2283D3615008929FD /* SignUpAddInfomationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAddInfomationViewController.swift; sourceTree = "<group>"; };
 		F354C3E4283D3BF0008929FD /* InformationGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationGroupStackView.swift; sourceTree = "<group>"; };
 		F354C3E7283D4126008929FD /* SignUpTermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTermsViewController.swift; sourceTree = "<group>"; };
 		F354C3E9283E6946008929FD /* NSMutableAttributedString+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+extension.swift"; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				7DC166A82837140000F1A8F1 /* SignUpViewController.swift */,
-				F354C3E2283D3615008929FD /* AddInformationViewController.swift */,
+				F354C3E2283D3615008929FD /* SignUpAddInfomationViewController.swift */,
 				F354C3E7283D4126008929FD /* SignUpTermsViewController.swift */,
 				F354C3E6283D3EC8008929FD /* Views */,
 			);
@@ -452,7 +452,7 @@
 				F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */,
 				F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */,
 				7DC166BE28371C4E00F1A8F1 /* WDefaultButton.swift in Sources */,
-				F354C3E3283D3615008929FD /* AddInformationViewController.swift in Sources */,
+				F354C3E3283D3615008929FD /* SignUpAddInfomationViewController.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
 				7DC166B42837148000F1A8F1 /* SignInViewModel.swift in Sources */,
 				7D3B1F54283630A50037504A /* WTextField.swift in Sources */,

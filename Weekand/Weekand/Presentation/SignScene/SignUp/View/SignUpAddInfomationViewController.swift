@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class AddInformationViewController: BaseViewController {
+class SignUpAddInfomationViewController: BaseViewController {
 
     lazy var welcomeLabel = WTitleLabel().then {
         $0.setText(string: "조금 더 알려주시겠어요?")
@@ -60,7 +60,7 @@ class AddInformationViewController: BaseViewController {
 struct AddInformationViewControllerPreview: PreviewProvider {
     static var previews: some View {
         Group {
-            AddInformationViewController().showPreview(.iPhone8)
+            SignUpAddInfomationViewController().showPreview(.iPhone8)
         }
     }
 }
