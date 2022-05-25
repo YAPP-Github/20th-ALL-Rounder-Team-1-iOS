@@ -34,6 +34,12 @@ class WTextField: UITextField {
         // Placeholder Text
         self.attributedPlaceholder = NSAttributedString(string: "Placeholder", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray!])
     }
+    
+    init(placeHolder: String) {
+        super.init(frame: CGRect.zero)
+        
+        self.attributedPlaceholder = NSAttributedString(string: placeHolder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray!])
+    }
 
 }
 

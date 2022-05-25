@@ -10,7 +10,7 @@ import UIKit
 extension UIColor {
     // MARK: Custom System Colors
     static let mainColor = UIColor(hex: "#5086FF")
-    static let subColor = UIColor(hex: "#5086FF")
+    static let subColor = UIColor(hex: "#5086FF0A")
     static let backgroundColor = UIColor.white
     
     static let accentColor = UIColor(hex: "#17191C")
