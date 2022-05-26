@@ -38,10 +38,8 @@ class WDefaultButton: UIButton {
     }
 
     private func setupView(style: WButtonStyle) {
-        
-        self.titleLabel?.adjustsFontForContentSizeCategory = true
-        self.titleLabel?.font = UIFont(name: "PretendardVariable-Medium", size: defaultFontSize)
 
+        self.titleLabel?.adjustsFontSizeToFitWidth = false
         self.setTitleColor(style.titleColor, for: .normal)
         
         if #available(iOS 15.0, *) {
@@ -54,7 +52,7 @@ class WDefaultButton: UIButton {
         } else {
             self.layer.cornerRadius = defaultCornerRadius
             self.backgroundColor = style.backGroundColor
-            self.titleEdgeInsets = UIEdgeInsets.defaultEdgeInset
+            self.contentEdgeInsets = UIEdgeInsets.defaultEdgeInset
         }
     }
     
@@ -62,11 +60,23 @@ class WDefaultButton: UIButton {
         super.init(frame: CGRect.zero)
         
         setupView(style: style)
-        self.setTitle(title, for: .normal)
+        setTitle(title, for: .normal)
     }
     
     convenience init(title: String) {
         self.init(title: title, style: .filled)
     }
 
+}
+
+extension WDefaultButton {
+    
+    override func setTitle(_ title: String?, for state: UIControl.State) {
+        super.setTitle(title, for: state)
+        
+        guard let text = title else { return }
+        let attribute = [NSAttributedString.Key.font: UIFont(name: "PretendardVariable-Medium", size: defaultFontSize)]
+        let attributedTitle = NSAttributedString(string: text, attributes: attribute as [NSAttributedString.Key: Any])
+        self.setAttributedTitle(attributedTitle, for: .normal)
+    }
 }

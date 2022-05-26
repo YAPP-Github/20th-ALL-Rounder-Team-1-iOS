@@ -13,7 +13,7 @@ class WelcomeViewController: UIViewController {
     
     
     lazy var logoView = UIImageView().then {
-        $0.backgroundColor = .mainColor     //TODO: Add real Weekand logo image
+        $0.backgroundColor = .mainColor     // TODO: Add real Weekand logo image
     }
     
     lazy var introLabel = UILabel().then {
@@ -81,4 +81,3 @@ struct WelcomeViewControllerPreview: PreviewProvider {
     }
 }
 #endif
-
