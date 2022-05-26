@@ -1,9 +1,9 @@
 ---
-name: "\x1Dbug-template"
+name: "\x1DBug-template"
 about: 해당 버그에 대한 간단한 설명
 title: ''
 labels: bug
-assignees: ChoiysApple, llghdud921
+assignees: ''
 
 ---
 
