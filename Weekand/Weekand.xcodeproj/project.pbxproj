@@ -7,7 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D3B1F54283630A50037504A /* WTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B1F53283630A50037504A /* WTextField.swift */; };
 		7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7D648FBC282367F600F5D0B5 /* .swiftlint.yml */; };
+		7D6E9972283BA18E006F5FC7 /* WBottmButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6E9971283BA18E006F5FC7 /* WBottmButton.swift */; };
+		7D7178EB283E1C9D00D7E5F2 /* WCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7178EA283E1C9D00D7E5F2 /* WCheckBox.swift */; };
+		7D7178ED283E1ED500D7E5F2 /* WTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7178EC283E1ED500D7E5F2 /* WTextButton.swift */; };
+		7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80021A283DEAE7007874C6 /* WelcomeViewController.swift */; };
+		7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166A82837140000F1A8F1 /* SignUpViewController.swift */; };
+		7DC166AB2837140B00F1A8F1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166AA2837140B00F1A8F1 /* SignInViewController.swift */; };
+		7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166B02837145200F1A8F1 /* SignUpViewModel.swift */; };
+		7DC166B42837148000F1A8F1 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166B32837148000F1A8F1 /* SignInViewModel.swift */; };
+		7DC166BC28371B0C00F1A8F1 /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166BB28371B0C00F1A8F1 /* ColorSet.swift */; };
+		7DC166BE28371C4E00F1A8F1 /* WDefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166BD28371C4E00F1A8F1 /* WDefaultButton.swift */; };
+		7DC166C02837234200F1A8F1 /* WButtonTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166BF2837234200F1A8F1 /* WButtonTextField.swift */; };
+		7DC166C228372ACF00F1A8F1 /* Inset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166C128372ACF00F1A8F1 /* Inset.swift */; };
+		7DF8B7A928361FB100B224CA /* PretendardVariable.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DF8B7A828361FB100B224CA /* PretendardVariable.ttf */; };
+		7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF8B7AB2836250400B224CA /* UIColor+hex.swift */; };
+		7DF949C8283B6F1F007F84C5 /* CommonShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF949C7283B6F1F007F84C5 /* CommonShape.swift */; };
 		E8BDADFB0F95046E8D0F4BE0 /* Pods_Weekand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */; };
 		F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0128235D500082AF30 /* AppDelegate.swift */; };
 		F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0328235D500082AF30 /* SceneDelegate.swift */; };
@@ -15,11 +31,28 @@
 		F32ACC0928235D500082AF30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32ACC0728235D500082AF30 /* Main.storyboard */; };
 		F32ACC0B28235D530082AF30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F32ACC0A28235D530082AF30 /* Assets.xcassets */; };
 		F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32ACC0C28235D530082AF30 /* LaunchScreen.storyboard */; };
+		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2F9EA8129964B7F5609AAF6E /* Pods-Weekand.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weekand.debug.xcconfig"; path = "Target Support Files/Pods-Weekand/Pods-Weekand.debug.xcconfig"; sourceTree = "<group>"; };
+		7D3B1F53283630A50037504A /* WTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextField.swift; sourceTree = "<group>"; };
 		7D648FBC282367F600F5D0B5 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		7D6E9971283BA18E006F5FC7 /* WBottmButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBottmButton.swift; sourceTree = "<group>"; };
+		7D7178EA283E1C9D00D7E5F2 /* WCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCheckBox.swift; sourceTree = "<group>"; };
+		7D7178EC283E1ED500D7E5F2 /* WTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextButton.swift; sourceTree = "<group>"; };
+		7D80021A283DEAE7007874C6 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		7DC166A82837140000F1A8F1 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		7DC166AA2837140B00F1A8F1 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		7DC166B02837145200F1A8F1 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		7DC166B32837148000F1A8F1 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		7DC166BB28371B0C00F1A8F1 /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
+		7DC166BD28371C4E00F1A8F1 /* WDefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDefaultButton.swift; sourceTree = "<group>"; };
+		7DC166BF2837234200F1A8F1 /* WButtonTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WButtonTextField.swift; sourceTree = "<group>"; };
+		7DC166C128372ACF00F1A8F1 /* Inset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inset.swift; sourceTree = "<group>"; };
+		7DF8B7A828361FB100B224CA /* PretendardVariable.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PretendardVariable.ttf; sourceTree = "<group>"; };
+		7DF8B7AB2836250400B224CA /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
+		7DF949C7283B6F1F007F84C5 /* CommonShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonShape.swift; sourceTree = "<group>"; };
 		CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weekand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32ACBFE28235D500082AF30 /* Weekand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weekand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32ACC0128235D500082AF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -29,6 +62,7 @@
 		F32ACC0A28235D530082AF30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F32ACC0D28235D530082AF30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F32ACC0F28235D530082AF30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F77A7360107CB67CF89A6DEF /* Pods-Weekand.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weekand.release.xcconfig"; path = "Target Support Files/Pods-Weekand/Pods-Weekand.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,11 +95,183 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7D3B1F5528363CFB0037504A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				F32ACC0728235D500082AF30 /* Main.storyboard */,
+				F32ACC0C28235D530082AF30 /* LaunchScreen.storyboard */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		7D3B1F5628363D2D0037504A /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				F32ACC0328235D500082AF30 /* SceneDelegate.swift */,
+				F32ACC0128235D500082AF30 /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		7D3B1F5828363D8A0037504A /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				F32ACC0528235D500082AF30 /* ViewController.swift */,
+				7DC166B6283714EE00F1A8F1 /* Common */,
+				7DC166A72837139300F1A8F1 /* SignScene */,
+				7DC166B72837157500F1A8F1 /* Utils */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		7D800217283DEAA5007874C6 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				7D800218283DEABA007874C6 /* ViewModel */,
+				7D800219283DEAC3007874C6 /* View */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		7D800218283DEABA007874C6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7D800219283DEAC3007874C6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D80021A283DEAE7007874C6 /* WelcomeViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7DC166A72837139300F1A8F1 /* SignScene */ = {
+			isa = PBXGroup;
+			children = (
+				7D800217283DEAA5007874C6 /* Welcome */,
+				7DC166AC2837141800F1A8F1 /* SignUp */,
+				7DC166AD2837141F00F1A8F1 /* SignIn */,
+			);
+			path = SignScene;
+			sourceTree = "<group>";
+		};
+		7DC166AC2837141800F1A8F1 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				7DC166AF2837144300F1A8F1 /* ViewModel */,
+				7DC166AE2837143700F1A8F1 /* View */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		7DC166AD2837141F00F1A8F1 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				7DC166B52837148700F1A8F1 /* ViewModel */,
+				7DC166B22837147500F1A8F1 /* View */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		7DC166AE2837143700F1A8F1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7DC166A82837140000F1A8F1 /* SignUpViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7DC166AF2837144300F1A8F1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7DC166B02837145200F1A8F1 /* SignUpViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7DC166B22837147500F1A8F1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7DC166AA2837140B00F1A8F1 /* SignInViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7DC166B52837148700F1A8F1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7DC166B32837148000F1A8F1 /* SignInViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7DC166B6283714EE00F1A8F1 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7DC166B928371AF100F1A8F1 /* View */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		7DC166B72837157500F1A8F1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7DF8B7AB2836250400B224CA /* UIColor+hex.swift */,
+				7DF949C6283B6D0A007F84C5 /* DesignSystem */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		7DC166B8283717FA00F1A8F1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F32ACC0F28235D530082AF30 /* Info.plist */,
+				F32ACC0A28235D530082AF30 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7DC166B928371AF100F1A8F1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7DC166BD28371C4E00F1A8F1 /* WDefaultButton.swift */,
+				7D6E9971283BA18E006F5FC7 /* WBottmButton.swift */,
+				7D3B1F53283630A50037504A /* WTextField.swift */,
+				7DC166BF2837234200F1A8F1 /* WButtonTextField.swift */,
+				7D7178EA283E1C9D00D7E5F2 /* WCheckBox.swift */,
+				7D7178EC283E1ED500D7E5F2 /* WTextButton.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7DF8B7AA28361FB500B224CA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F391B42C2837D4D0004E7B06 /* Preview.swift */,
+				7DF8B7A828361FB100B224CA /* PretendardVariable.ttf */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7DF949C6283B6D0A007F84C5 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				7DC166BB28371B0C00F1A8F1 /* ColorSet.swift */,
+				7DC166C128372ACF00F1A8F1 /* Inset.swift */,
+				7DF949C7283B6F1F007F84C5 /* CommonShape.swift */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
 		F32ACBF528235D500082AF30 = {
 			isa = PBXGroup;
 			children = (
 				7D648FBC282367F600F5D0B5 /* .swiftlint.yml */,
 				F32ACC0028235D500082AF30 /* Weekand */,
+				7DF8B7AA28361FB500B224CA /* Supporting Files */,
 				F32ACBFF28235D500082AF30 /* Products */,
 				0DF1D2DF7666D0B0F04D4CE2 /* Pods */,
 				555089E8C7A86EDE40DF8F0F /* Frameworks */,
@@ -83,13 +289,10 @@
 		F32ACC0028235D500082AF30 /* Weekand */ = {
 			isa = PBXGroup;
 			children = (
-				F32ACC0128235D500082AF30 /* AppDelegate.swift */,
-				F32ACC0328235D500082AF30 /* SceneDelegate.swift */,
-				F32ACC0528235D500082AF30 /* ViewController.swift */,
-				F32ACC0728235D500082AF30 /* Main.storyboard */,
-				F32ACC0A28235D530082AF30 /* Assets.xcassets */,
-				F32ACC0C28235D530082AF30 /* LaunchScreen.storyboard */,
-				F32ACC0F28235D530082AF30 /* Info.plist */,
+				7D3B1F5628363D2D0037504A /* Application */,
+				7D3B1F5528363CFB0037504A /* Base */,
+				7D3B1F5828363D8A0037504A /* Presentation */,
+				7DC166B8283717FA00F1A8F1 /* Resources */,
 			);
 			path = Weekand;
 			sourceTree = "<group>";
@@ -155,6 +358,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DF8B7A928361FB100B224CA /* PretendardVariable.ttf in Resources */,
 				7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */,
 				F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */,
 				F32ACC0B28235D530082AF30 /* Assets.xcassets in Resources */,
@@ -228,7 +432,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DC166AB2837140B00F1A8F1 /* SignInViewController.swift in Sources */,
+				7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */,
+				7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */,
+				7DC166BC28371B0C00F1A8F1 /* ColorSet.swift in Sources */,
+				F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */,
+				7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */,
 				F32ACC0628235D500082AF30 /* ViewController.swift in Sources */,
+				7D6E9972283BA18E006F5FC7 /* WBottmButton.swift in Sources */,
+				7DC166BE28371C4E00F1A8F1 /* WDefaultButton.swift in Sources */,
+				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
+				7D7178ED283E1ED500D7E5F2 /* WTextButton.swift in Sources */,
+				7DC166B42837148000F1A8F1 /* SignInViewModel.swift in Sources */,
+				7D3B1F54283630A50037504A /* WTextField.swift in Sources */,
+				7DF949C8283B6F1F007F84C5 /* CommonShape.swift in Sources */,
+				7DC166C228372ACF00F1A8F1 /* Inset.swift in Sources */,
+				7D7178EB283E1C9D00D7E5F2 /* WCheckBox.swift in Sources */,
+				7DC166C02837234200F1A8F1 /* WButtonTextField.swift in Sources */,
 				F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */,
 				F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */,
 			);
@@ -380,8 +600,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZW6466CHF4;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Weekand/Info.plist;
+				INFOPLIST_FILE = Weekand/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -409,8 +630,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZW6466CHF4;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Weekand/Info.plist;
+				INFOPLIST_FILE = Weekand/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

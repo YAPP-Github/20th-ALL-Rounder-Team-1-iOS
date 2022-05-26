@@ -13,3 +13,8 @@ disabled_rules:
 
 excluded:
 - Pods
+- Weekand/AppDelegate.swift
+- Weekand/SceneDelegate.swift
+
+included:
+- Weekand
