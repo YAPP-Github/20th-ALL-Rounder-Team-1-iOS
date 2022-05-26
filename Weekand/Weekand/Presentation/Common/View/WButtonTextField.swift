@@ -19,6 +19,7 @@ class WButtonTextField: UIView {
             $0.layer.cornerRadius = defaultCornerRadius/2
             $0.titleEdgeInsets = UIEdgeInsets.internalEdgeInset
         }
+        
     }
 
     override init(frame: CGRect) {
@@ -44,7 +45,6 @@ class WButtonTextField: UIView {
             make.bottom.equalToSuperview().offset(-UIEdgeInsets.defaultInsetAmount/2)
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(-UIEdgeInsets.defaultInsetAmount/2)
-            // 기존에 1/3.5 길어보여서 1/4로 변경
             make.width.greaterThanOrEqualTo(textField.snp.width).multipliedBy(1/4)
         }
         
@@ -54,6 +54,7 @@ class WButtonTextField: UIView {
         super.init(frame: CGRect.zero)
         
         self.textField.attributedPlaceholder = NSAttributedString(string: fieldPlaceholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray!])
+        
         self.button.setTitle(buttonTitle, for: .normal)
     }
 
