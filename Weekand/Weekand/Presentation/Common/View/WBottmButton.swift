@@ -58,6 +58,12 @@ class WBottmButton: UIButton {
         }
     }
     
+    init(title: String) {
+        super.init(frame: CGRect.zero)
+        
+        setupView()
+        self.setTitle(title, for: .normal)
+    }
 }
 
 extension WBottmButton {
