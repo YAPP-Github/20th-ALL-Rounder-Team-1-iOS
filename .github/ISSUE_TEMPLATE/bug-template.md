@@ -1,11 +1,13 @@
 ---
-name: "\x1DBug-template"
-about: 해당 버그에 대한 간단한 설명
+name: Bug template
+about: Create a report to help us improve
 title: ''
 labels: bug
 assignees: ''
 
 ---
+
+## 버그 설명
 
 ## 현재 동작
 
