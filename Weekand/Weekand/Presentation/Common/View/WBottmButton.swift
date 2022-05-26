@@ -20,21 +20,37 @@ class WBottmButton: UIButton {
     }
 
     private func setupView() {
-        
         self.titleLabel?.adjustsFontForContentSizeCategory = true
         self.titleLabel?.font = UIFont(name: "PretendardVariable-SemiBold", size: defaultFontSize)
         
         self.contentVerticalAlignment = .top
         
+        isEnabled = false
+        
+        if #available(iOS 15.0, *) {
+            var configuration = UIButton.Configuration.filled()
+            configuration.background.backgroundColor = UIColor.gray300
+            configuration.background.cornerRadius = 0
+            configuration.contentInsets.top = NSDirectionalEdgeInsets.defaultInsetAmount
+            self.configuration = configuration
+        } else {
+            self.layer.cornerRadius = 0
+            self.backgroundColor = UIColor.gray300
+            self.setTitleColor(.white, for: .normal)
+            self.contentEdgeInsets.top = UIEdgeInsets.defaultInsetAmount
+        }
+    }
+    
+    func enable(string: String) {
+        isEnabled = true
+        setTitle(string, for: .normal)
         if #available(iOS 15.0, *) {
             var configuration = UIButton.Configuration.filled()
             configuration.background.backgroundColor = UIColor.mainColor
             configuration.background.cornerRadius = 0
             configuration.contentInsets.top = NSDirectionalEdgeInsets.defaultInsetAmount
             self.configuration = configuration
-            
         } else {
-            
             self.layer.cornerRadius = 0
             self.backgroundColor = UIColor.mainColor
             self.setTitleColor(.white, for: .normal)

@@ -44,7 +44,8 @@ class WButtonTextField: UIView {
             make.bottom.equalToSuperview().offset(-UIEdgeInsets.defaultInsetAmount/2)
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(-UIEdgeInsets.defaultInsetAmount/2)
-            make.width.greaterThanOrEqualTo(textField.snp.width).multipliedBy(1/3.5)
+            // 기존에 1/3.5 길어보여서 1/4로 변경
+            make.width.greaterThanOrEqualTo(textField.snp.width).multipliedBy(1/4)
         }
         
     }

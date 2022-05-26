@@ -42,6 +42,7 @@ class WTextField: UITextField {
         setupView()
         
         self.attributedPlaceholder = NSAttributedString(string: placeHolder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray!])
+
     }
 
 }
