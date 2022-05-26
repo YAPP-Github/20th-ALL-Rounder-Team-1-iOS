@@ -40,6 +40,8 @@ class InformationGroupStackView: UIStackView {
         
         [namelabel, informlabel].forEach { informationStackView.addArrangedSubview($0) }
         [informationStackView].forEach { self.addArrangedSubview($0) }
+        
+        namelabel.setContentHuggingPriority(.init(rawValue: 251), for: .horizontal)
     }
     
     func setNameLabelText(string: String) {
