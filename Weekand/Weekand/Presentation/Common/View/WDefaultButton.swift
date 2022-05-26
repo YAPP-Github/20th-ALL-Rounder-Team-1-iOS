@@ -52,7 +52,7 @@ class WDefaultButton: UIButton {
         } else {
             self.layer.cornerRadius = defaultCornerRadius
             self.backgroundColor = style.backGroundColor
-            self.titleEdgeInsets = UIEdgeInsets.defaultEdgeInset
+            self.contentEdgeInsets = UIEdgeInsets.defaultEdgeInset
         }
     }
     

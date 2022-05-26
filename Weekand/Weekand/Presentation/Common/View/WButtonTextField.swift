@@ -17,7 +17,7 @@ class WButtonTextField: UIView {
             $0.configuration?.contentInsets = NSDirectionalEdgeInsets.internalEdgeInset
         } else {
             $0.layer.cornerRadius = defaultCornerRadius/2
-            $0.titleEdgeInsets = UIEdgeInsets.internalEdgeInset
+            $0.contentEdgeInsets = UIEdgeInsets.internalEdgeInset
         }
         
     }
