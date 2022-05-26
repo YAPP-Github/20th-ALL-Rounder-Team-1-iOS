@@ -28,11 +28,13 @@ class WTextField: UITextField {
         self.backgroundColor = UIColor.lightGray
         
         // Main Text
-        self.font = UIFont(name: "PretendardVariable", size: defaultFontSize)
+        self.font = UIFont(name: "PretendardVariable-SemiBold", size: defaultFontSize)
         
         
         // Placeholder Text
-        self.attributedPlaceholder = NSAttributedString(string: "Placeholder", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray!])
+        let placeHolderFont = UIFont(name: "PretendardVariable-Medium", size: defaultFontSize)
+        self.attributedPlaceholder = NSAttributedString(string: "Placeholder", attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray!, NSAttributedString.Key.font: placeHolderFont!])
+
     }
     
     init(placeHolder: String) {

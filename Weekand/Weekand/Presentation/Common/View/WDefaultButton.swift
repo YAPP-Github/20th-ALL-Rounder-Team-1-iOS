@@ -40,7 +40,7 @@ class WDefaultButton: UIButton {
     private func setupView(style: WButtonStyle) {
         
         self.titleLabel?.adjustsFontForContentSizeCategory = true
-        self.titleLabel?.font = UIFont(name: "PretendardVariable", size: defaultFontSize)
+        self.titleLabel?.font = UIFont(name: "PretendardVariable-Medium", size: defaultFontSize)
         self.setTitleColor(style.titleColor, for: .normal)
         
         if #available(iOS 15.0, *) {
