@@ -12,6 +12,9 @@
 		7D6E9972283BA18E006F5FC7 /* WBottmButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6E9971283BA18E006F5FC7 /* WBottmButton.swift */; };
 		7D7178EB283E1C9D00D7E5F2 /* WCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7178EA283E1C9D00D7E5F2 /* WCheckBox.swift */; };
 		7D7178ED283E1ED500D7E5F2 /* WTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7178EC283E1ED500D7E5F2 /* WTextButton.swift */; };
+		7D76AEB4284458C2001C668D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D76AEB3284458C2001C668D /* MainViewController.swift */; };
+		7D76AEB628445AA5001C668D /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D76AEB528445AA5001C668D /* MainTableViewCell.swift */; };
+		7D76AEB828448C79001C668D /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D76AEB728448C79001C668D /* Font.swift */; };
 		7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80021A283DEAE7007874C6 /* WelcomeViewController.swift */; };
 		7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166A82837140000F1A8F1 /* SignUpViewController.swift */; };
 		7DC166AB2837140B00F1A8F1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166AA2837140B00F1A8F1 /* SignInViewController.swift */; };
@@ -49,6 +52,9 @@
 		7D6E9971283BA18E006F5FC7 /* WBottmButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBottmButton.swift; sourceTree = "<group>"; };
 		7D7178EA283E1C9D00D7E5F2 /* WCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCheckBox.swift; sourceTree = "<group>"; };
 		7D7178EC283E1ED500D7E5F2 /* WTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextButton.swift; sourceTree = "<group>"; };
+		7D76AEB3284458C2001C668D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		7D76AEB528445AA5001C668D /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		7D76AEB728448C79001C668D /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		7D80021A283DEAE7007874C6 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		7DC166A82837140000F1A8F1 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7DC166AA2837140B00F1A8F1 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -135,9 +141,43 @@
 				F32ACC0528235D500082AF30 /* ViewController.swift */,
 				7DC166B6283714EE00F1A8F1 /* Common */,
 				7DC166A72837139300F1A8F1 /* SignScene */,
+				7D76AEAF28445878001C668D /* MainScene */,
 				7DC166B72837157500F1A8F1 /* Utils */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		7D76AEAF28445878001C668D /* MainScene */ = {
+			isa = PBXGroup;
+			children = (
+				7D76AEB02844588E001C668D /* Main */,
+			);
+			path = MainScene;
+			sourceTree = "<group>";
+		};
+		7D76AEB02844588E001C668D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				7D76AEB1284458A4001C668D /* ViewModel */,
+				7D76AEB2284458AC001C668D /* View */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		7D76AEB1284458A4001C668D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7D76AEB2284458AC001C668D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D76AEB3284458C2001C668D /* MainViewController.swift */,
+				7D76AEB528445AA5001C668D /* MainTableViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		7D800217283DEAA5007874C6 /* Welcome */ = {
@@ -285,6 +325,7 @@
 				7DC166BB28371B0C00F1A8F1 /* ColorSet.swift */,
 				7DC166C128372ACF00F1A8F1 /* Inset.swift */,
 				7DF949C7283B6F1F007F84C5 /* CommonShape.swift */,
+				7D76AEB728448C79001C668D /* Font.swift */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -474,11 +515,13 @@
 			files = (
 				F354C3E8283D4126008929FD /* SignUpTermsViewController.swift in Sources */,
 				7DC166AB2837140B00F1A8F1 /* SignInViewController.swift in Sources */,
+				7D76AEB828448C79001C668D /* Font.swift in Sources */,
 				7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */,
 				7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */,
 				F354C3DF283CECF5008929FD /* WTextLabel.swift in Sources */,
 				7DC166BC28371B0C00F1A8F1 /* ColorSet.swift in Sources */,
 				F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */,
+				7D76AEB4284458C2001C668D /* MainViewController.swift in Sources */,
 				7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */,
 				F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */,
 				F32ACC0628235D500082AF30 /* ViewController.swift in Sources */,
@@ -487,6 +530,7 @@
 				F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */,
 				7DC166BE28371C4E00F1A8F1 /* WDefaultButton.swift in Sources */,
 				F354C3E3283D3615008929FD /* SignUpAddInfomationViewController.swift in Sources */,
+				7D76AEB628445AA5001C668D /* MainTableViewCell.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
 				7D7178ED283E1ED500D7E5F2 /* WTextButton.swift in Sources */,
 				7DC166B42837148000F1A8F1 /* SignInViewModel.swift in Sources */,
