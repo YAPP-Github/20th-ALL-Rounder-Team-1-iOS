@@ -51,6 +51,7 @@ enum WFont: String {
     
     func body3() -> UIFont {
         return UIFont(name: WFont.medium.rawValue, size: 9)!
+
     }
     
 }
