@@ -8,22 +8,40 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    
+    lazy var tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
 
-        // Do any additional setup after loading the view.
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "id")
+        tableView.dataSource = self
+    }
+
+
+}
+
+// TODO: Refator to DiffableDataSource
+extension MainViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("cell")
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "id") as! UITableViewCell
+//        cell.configureCell(color: .red, title: "\(indexPath.row). Title", status: .completed, time: "00:00 - 00:00")
+//        cell.backgroundColor = .magenta
+        cell.textLabel!.text = "title"
+        return cell
     }
-    */
-
+    
+    
 }

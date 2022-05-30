@@ -34,19 +34,16 @@ class WIconLabel: UIView {
         $0.spacing = 3
     }
     
-    //initWithFrame to init view from code
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
 
-    //initWithCode to init view from xib or storyboard
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupView()
     }
 
-    //common func to init our view
     private func setupView() {
       self.addSubview(stack)
       
@@ -56,3 +53,18 @@ class WIconLabel: UIView {
     }
     
 }
+
+#if canImport(SwiftUI) && DEBUG
+import SwiftUI
+
+struct WIconLabelPreview: PreviewProvider {
+    static var previews: some View {
+        UIViewPreview {
+            let label = WIconLabel()
+            label.label.text = "This is Sample"
+            label.icon.image = UIImage(systemName: "checkmark")
+            return label
+        }.previewLayout(.sizeThatFits)
+    }
+}
+#endif
