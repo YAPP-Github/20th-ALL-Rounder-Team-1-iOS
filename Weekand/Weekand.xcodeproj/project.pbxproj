@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7D3B1F54283630A50037504A /* WTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B1F53283630A50037504A /* WTextField.swift */; };
 		7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7D648FBC282367F600F5D0B5 /* .swiftlint.yml */; };
+		7D6B911528449A760044E217 /* WIconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B911428449A760044E217 /* WIconLabel.swift */; };
 		7D6E9972283BA18E006F5FC7 /* WBottmButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6E9971283BA18E006F5FC7 /* WBottmButton.swift */; };
 		7D7178EB283E1C9D00D7E5F2 /* WCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7178EA283E1C9D00D7E5F2 /* WCheckBox.swift */; };
 		7D7178ED283E1ED500D7E5F2 /* WTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7178EC283E1ED500D7E5F2 /* WTextButton.swift */; };
@@ -49,6 +50,7 @@
 		2F9EA8129964B7F5609AAF6E /* Pods-Weekand.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weekand.debug.xcconfig"; path = "Target Support Files/Pods-Weekand/Pods-Weekand.debug.xcconfig"; sourceTree = "<group>"; };
 		7D3B1F53283630A50037504A /* WTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextField.swift; sourceTree = "<group>"; };
 		7D648FBC282367F600F5D0B5 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		7D6B911428449A760044E217 /* WIconLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WIconLabel.swift; sourceTree = "<group>"; };
 		7D6E9971283BA18E006F5FC7 /* WBottmButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBottmButton.swift; sourceTree = "<group>"; };
 		7D7178EA283E1C9D00D7E5F2 /* WCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCheckBox.swift; sourceTree = "<group>"; };
 		7D7178EC283E1ED500D7E5F2 /* WTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextButton.swift; sourceTree = "<group>"; };
@@ -147,6 +149,14 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
+		7D6B911328449A020044E217 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7D6B911428449A760044E217 /* WIconLabel.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 		7D76AEAF28445878001C668D /* MainScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +184,7 @@
 		7D76AEB2284458AC001C668D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7D6B911328449A020044E217 /* SubViews */,
 				7D76AEB3284458C2001C668D /* MainViewController.swift */,
 				7D76AEB528445AA5001C668D /* MainTableViewCell.swift */,
 			);
@@ -541,6 +552,7 @@
 				7DC166C02837234200F1A8F1 /* WButtonTextField.swift in Sources */,
 				F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */,
 				F354C3E5283D3BF0008929FD /* InformationGroupStackView.swift in Sources */,
+				7D6B911528449A760044E217 /* WIconLabel.swift in Sources */,
 				F354C3EA283E6946008929FD /* NSMutableAttributedString+extension.swift in Sources */,
 				F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */,
 			);
