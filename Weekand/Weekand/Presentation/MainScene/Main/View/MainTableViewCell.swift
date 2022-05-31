@@ -18,19 +18,40 @@ class MainTableViewCell: UITableViewCell {
     lazy var timeLineLabel = WStatusTimeLabel()
     
     // TODO: Create & Add Emoji View
+    lazy var emojiView = UIView().then {
+        $0.backgroundColor = .darkGray
+        $0.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        
+        $0.snp.makeConstraints { $0.width.equalTo(64) }     // TODO: Temporary Data
+    }
+    
+    lazy var bottomStack = UIStackView().then {
+        $0.addArrangedSubview(timeLineLabel)
+        $0.addArrangedSubview(emojiView)
+        
+        $0.axis = .horizontal
+        $0.distribution = .fill
+    }
     
     lazy var cellStack = UIStackView().then {
         
         $0.addArrangedSubview(nameLabel)
-        $0.addArrangedSubview(timeLineLabel)
+        $0.addArrangedSubview(bottomStack)
         
         $0.axis = .vertical
         $0.distribution = .fillEqually
         $0.spacing = 5.25
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        configureUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
         configureUI()
     }
     
@@ -39,9 +60,7 @@ class MainTableViewCell: UITableViewCell {
         self.addSubview(cellStack)
         
         cellStack.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(18)
-            make.right.equalToSuperview().offset(-18)
+            make.edges.equalToSuperview()
         }
         
     }
@@ -64,18 +83,3 @@ extension MainTableViewCell {
     }
 
 }
-
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-struct MainCellPreview: PreviewProvider {
-    static var previews: some View {
-        UIViewPreview {
-            let cell = MainTableViewCell()
-            cell.configureCell(color: .red, title: "This is Title", status: .completed, time: "00:00 - 00:00")
-            
-            return cell
-        }.previewLayout(.sizeThatFits)
-    }
-}
-#endif

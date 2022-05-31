@@ -24,13 +24,13 @@ class WIconLabel: UIView {
         $0.addArrangedSubview(label)
 
         icon.snp.makeConstraints { make in
-            make.height.equalTo(15)
+            make.height.lessThanOrEqualToSuperview()
             make.width.equalTo(icon.snp.height)
         }
         
         $0.axis = .horizontal
         $0.distribution = .fill
-        $0.alignment = .fill
+        $0.alignment = .center
         $0.spacing = 3
     }
     
