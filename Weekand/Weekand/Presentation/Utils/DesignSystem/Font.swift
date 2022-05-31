@@ -26,31 +26,31 @@ enum WFont: String {
     }
     
     static func head1() -> UIFont {
-        return UIFont(name: WFont.bold.rawValue, size: 15)!
+        return UIFont(name: WFont.bold.rawValue, size: 20)!
     }
     
     static func head2() -> UIFont {
-        return UIFont(name: WFont.bold.rawValue, size: 13.5)!
+        return UIFont(name: WFont.bold.rawValue, size: 18)!
     }
     
     static func subHead1() -> UIFont {
-        return UIFont(name: WFont.semiBold.rawValue, size: 13.5)!
+        return UIFont(name: WFont.semiBold.rawValue, size: 18)!
     }
     
     static func subHead2() -> UIFont {
-        return UIFont(name: WFont.semiBold.rawValue, size: 12)!
+        return UIFont(name: WFont.semiBold.rawValue, size: 16)!
     }
     
     static func body1() -> UIFont {
-        return UIFont(name: WFont.medium.rawValue, size: 12)!
+        return UIFont(name: WFont.medium.rawValue, size: 16)!
     }
     
     static func body2() -> UIFont {
-        return UIFont(name: WFont.medium.rawValue, size: 10.5)!
+        return UIFont(name: WFont.medium.rawValue, size: 14)!
     }
     
     static func body3() -> UIFont {
-        return UIFont(name: WFont.medium.rawValue, size: 9)!
+        return UIFont(name: WFont.medium.rawValue, size: 12)!
 
     }
     

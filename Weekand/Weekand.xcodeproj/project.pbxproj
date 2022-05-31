@@ -27,6 +27,8 @@
 		7DC166BE28371C4E00F1A8F1 /* WDefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166BD28371C4E00F1A8F1 /* WDefaultButton.swift */; };
 		7DC166C02837234200F1A8F1 /* WButtonTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166BF2837234200F1A8F1 /* WButtonTextField.swift */; };
 		7DC166C228372ACF00F1A8F1 /* Inset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166C128372ACF00F1A8F1 /* Inset.swift */; };
+		7DEA177A2845E7C500F6B990 /* WEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEA17792845E7C500F6B990 /* WEmojiView.swift */; };
+		7DEA177C2846006A00F6B990 /* WSquareImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEA177B2846006A00F6B990 /* WSquareImageView.swift */; };
 		7DF8B7A928361FB100B224CA /* PretendardVariable.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DF8B7A828361FB100B224CA /* PretendardVariable.ttf */; };
 		7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF8B7AB2836250400B224CA /* UIColor+hex.swift */; };
 		7DF949C8283B6F1F007F84C5 /* CommonShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF949C7283B6F1F007F84C5 /* CommonShape.swift */; };
@@ -70,6 +72,8 @@
 		7DC166BD28371C4E00F1A8F1 /* WDefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDefaultButton.swift; sourceTree = "<group>"; };
 		7DC166BF2837234200F1A8F1 /* WButtonTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WButtonTextField.swift; sourceTree = "<group>"; };
 		7DC166C128372ACF00F1A8F1 /* Inset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inset.swift; sourceTree = "<group>"; };
+		7DEA17792845E7C500F6B990 /* WEmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WEmojiView.swift; sourceTree = "<group>"; };
+		7DEA177B2846006A00F6B990 /* WSquareImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSquareImageView.swift; sourceTree = "<group>"; };
 		7DF8B7A828361FB100B224CA /* PretendardVariable.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PretendardVariable.ttf; sourceTree = "<group>"; };
 		7DF8B7AB2836250400B224CA /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
 		7DF949C7283B6F1F007F84C5 /* CommonShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonShape.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 				7D6B911428449A760044E217 /* WIconLabel.swift */,
 				7D6B911628449F610044E217 /* WCategoryTitleLabel.swift */,
 				7D6B91182844A8D50044E217 /* WStatusTimeLabel.swift */,
+				7DEA17792845E7C500F6B990 /* WEmojiView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 				7D7178EC283E1ED500D7E5F2 /* WTextButton.swift */,
 				F391B433283C119F004E7B06 /* WTitleLabel.swift */,
 				F354C3DE283CECF5008929FD /* WTextLabel.swift */,
+				7DEA177B2846006A00F6B990 /* WSquareImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -551,9 +557,11 @@
 				7D76AEB628445AA5001C668D /* MainTableViewCell.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
 				7D7178ED283E1ED500D7E5F2 /* WTextButton.swift in Sources */,
+				7DEA177A2845E7C500F6B990 /* WEmojiView.swift in Sources */,
 				7DC166B42837148000F1A8F1 /* SignInViewModel.swift in Sources */,
 				7D3B1F54283630A50037504A /* WTextField.swift in Sources */,
 				7DF949C8283B6F1F007F84C5 /* CommonShape.swift in Sources */,
+				7DEA177C2846006A00F6B990 /* WSquareImageView.swift in Sources */,
 				7D6B911728449F610044E217 /* WCategoryTitleLabel.swift in Sources */,
 				7DC166C228372ACF00F1A8F1 /* Inset.swift in Sources */,
 				7D7178EB283E1C9D00D7E5F2 /* WCheckBox.swift in Sources */,

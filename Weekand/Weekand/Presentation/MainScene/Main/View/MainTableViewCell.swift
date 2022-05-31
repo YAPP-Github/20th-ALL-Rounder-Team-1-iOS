@@ -16,14 +16,7 @@ class MainTableViewCell: UITableViewCell {
     
     // MARK: 하단 (아이콘 & 시작~종료 시간 + 이모지)
     lazy var timeLineLabel = WStatusTimeLabel()
-    
-    // TODO: Create & Add Emoji View
-    lazy var emojiView = UIView().then {
-        $0.backgroundColor = .darkGray
-        $0.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        
-        $0.snp.makeConstraints { $0.width.equalTo(64) }     // TODO: Temporary Data
-    }
+    lazy var emojiView = WEmojiView()
     
     lazy var bottomStack = UIStackView().then {
         $0.addArrangedSubview(timeLineLabel)
@@ -65,10 +58,12 @@ class MainTableViewCell: UITableViewCell {
         
     }
     
-    public func configureCell(color: UIColor, title: String, status: StatusIcon, time: String) {
+    public func configureCell(color: UIColor, title: String, status: StatusIcon, time: String, emojiNumber: Int, emojiOrder: [Emoji]) {
         
         self.nameLabel.editValue(color: color, title: title)
         self.timeLineLabel.editValue(status: status, title: time)
+        self.emojiView.numberLabel.text = String(emojiNumber)
+        self.emojiView.setEmoji(emojiOrder: emojiOrder)
     }
 
 }

@@ -37,7 +37,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "id") as! MainTableViewCell
-        cell.configureCell(color: .red, title: "\(indexPath.row). Title", status: .completed, time: "00:00 - 00:00")
+        cell.configureCell(color: .red, title: "\(indexPath.row). Title", status: .completed, time: "00:00 - 00:00", emojiNumber: 123, emojiOrder: [.good, .awesome, .cool, .support])
         return cell
     }
     
