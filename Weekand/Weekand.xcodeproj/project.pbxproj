@@ -105,7 +105,7 @@
 		F3DD022328466E0C00AD9240 /* SignInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCoordinator.swift; sourceTree = "<group>"; };
 		F3DD022628466E3300AD9240 /* SignUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCoordinator.swift; sourceTree = "<group>"; };
 		F3DD0228284670E900AD9240 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		F3DD022A284678CF00AD9240 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WelcomeViewModel.swift; path = Weekand/Presentation/Common/Coordinator/WelcomeViewModel.swift; sourceTree = SOURCE_ROOT; };
+		F3DD022A284678CF00AD9240 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WelcomeViewModel.swift; path = Weekand/Presentation/SignScene/Welcome/ViewModel/WelcomeViewModel.swift; sourceTree = SOURCE_ROOT; };
 		F3DD022D2846815300AD9240 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		F77A7360107CB67CF89A6DEF /* Pods-Weekand.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weekand.release.xcconfig"; path = "Target Support Files/Pods-Weekand/Pods-Weekand.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
