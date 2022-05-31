@@ -15,12 +15,13 @@ class WelcomeCoordinator: Coordinator {
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        navigationController.setNavigationBarHidden(true, animated: true)
         self.welcomeViewController = WelcomeViewController()
     }
     
     func start() {
         // 자동 로그인 구현
+        
+        self.welcomeViewController.viewModel = WelcomeViewModel(coordinator: self)
         self.navigationController.viewControllers = [self.welcomeViewController]
     }
     
@@ -31,6 +32,8 @@ class WelcomeCoordinator: Coordinator {
     }
     
     func showSignUpScene() {
-        
+        let signUpCoordinator = SignUpCoordinator(navigationController: self.navigationController)
+        signUpCoordinator.start()
+        childCoordinators.append(signUpCoordinator)
     }
 }

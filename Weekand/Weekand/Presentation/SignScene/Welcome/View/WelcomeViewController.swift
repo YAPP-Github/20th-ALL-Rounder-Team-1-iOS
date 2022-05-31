@@ -8,9 +8,13 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
 
 class WelcomeViewController: UIViewController {
     
+    private let disposeBag = DisposeBag()
+    var viewModel: WelcomeViewModel?
     
     lazy var logoView = UIImageView().then {
         $0.backgroundColor = .mainColor     // TODO: Add real Weekand logo image
@@ -47,6 +51,7 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
 
         configureUI()
+        bindViewModel()
     }
 
     private func configureUI() {
@@ -65,6 +70,15 @@ class WelcomeViewController: UIViewController {
             make.width.equalToSuperview().dividedBy(defaultWidthDivider)
             make.centerY.equalToSuperview().dividedBy(0.75)
         }
+    }
+    
+    private func bindViewModel() {
+        let input = WelcomeViewModel.Input(
+            didTapSignInButton: self.signInButton.rx.tap.asObservable(),
+            didTapSignUpButton: self.signUpButton.rx.tap.asObservable()
+        )
+        
+        let output = self.viewModel?.transform(input: input)
     }
 
 }

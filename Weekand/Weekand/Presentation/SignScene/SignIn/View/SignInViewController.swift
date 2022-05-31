@@ -57,7 +57,7 @@ class SignInViewController: UIViewController {
     }
     
     private func configureUI() {
-        
+        view.backgroundColor = .white
         self.view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()

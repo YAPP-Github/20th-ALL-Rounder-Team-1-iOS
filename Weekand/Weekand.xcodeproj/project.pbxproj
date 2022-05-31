@@ -52,6 +52,8 @@
 		F3DD022428466E0C00AD9240 /* SignInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD022328466E0C00AD9240 /* SignInCoordinator.swift */; };
 		F3DD022728466E3300AD9240 /* SignUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD022628466E3300AD9240 /* SignUpCoordinator.swift */; };
 		F3DD0229284670E900AD9240 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD0228284670E900AD9240 /* AppCoordinator.swift */; };
+		F3DD022B284678CF00AD9240 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD022A284678CF00AD9240 /* WelcomeViewModel.swift */; };
+		F3DD022E2846815300AD9240 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD022D2846815300AD9240 /* ViewModelType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +105,8 @@
 		F3DD022328466E0C00AD9240 /* SignInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCoordinator.swift; sourceTree = "<group>"; };
 		F3DD022628466E3300AD9240 /* SignUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCoordinator.swift; sourceTree = "<group>"; };
 		F3DD0228284670E900AD9240 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		F3DD022A284678CF00AD9240 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WelcomeViewModel.swift; path = Weekand/Presentation/Common/Coordinator/WelcomeViewModel.swift; sourceTree = SOURCE_ROOT; };
+		F3DD022D2846815300AD9240 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		F77A7360107CB67CF89A6DEF /* Pods-Weekand.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weekand.release.xcconfig"; path = "Target Support Files/Pods-Weekand/Pods-Weekand.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -222,6 +226,7 @@
 		7D800218283DEABA007874C6 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				F3DD022A284678CF00AD9240 /* WelcomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 		7DC166B6283714EE00F1A8F1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F3DD022C2846814400AD9240 /* ViewModel */,
 				F3DD0216284660D200AD9240 /* Coordinator */,
 				F391B432283BF0EC004E7B06 /* ViewController */,
 				7DC166B928371AF100F1A8F1 /* View */,
@@ -445,6 +451,14 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		F3DD022C2846814400AD9240 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F3DD022D2846815300AD9240 /* ViewModelType.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -580,6 +594,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F354C3E8283D4126008929FD /* SignUpTermsViewController.swift in Sources */,
+				F3DD022B284678CF00AD9240 /* WelcomeViewModel.swift in Sources */,
 				7D6B91192844A8D50044E217 /* WStatusTimeLabel.swift in Sources */,
 				7DC166AB2837140B00F1A8F1 /* SignInViewController.swift in Sources */,
 				7D76AEB828448C79001C668D /* Font.swift in Sources */,
@@ -598,6 +613,7 @@
 				F3DD021A2846629100AD9240 /* Coordinator.swift in Sources */,
 				F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */,
 				7DC166BE28371C4E00F1A8F1 /* WDefaultButton.swift in Sources */,
+				F3DD022E2846815300AD9240 /* ViewModelType.swift in Sources */,
 				F354C3E3283D3615008929FD /* SignUpAddInfomationViewController.swift in Sources */,
 				7D76AEB628445AA5001C668D /* MainTableViewCell.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
