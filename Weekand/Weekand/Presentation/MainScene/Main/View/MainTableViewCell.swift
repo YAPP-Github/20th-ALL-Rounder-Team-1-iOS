@@ -60,7 +60,7 @@ class MainTableViewCell: UITableViewCell {
         self.addSubview(cellStack)
         
         cellStack.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalTo(UIEdgeInsets.defaultEdgeInset)
         }
         
     }
