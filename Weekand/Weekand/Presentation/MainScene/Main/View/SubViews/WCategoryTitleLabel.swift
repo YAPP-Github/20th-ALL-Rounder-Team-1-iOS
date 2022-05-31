@@ -24,6 +24,8 @@ class WCategoryTitleLabel: WIconLabel {
         self.label.font = WFont.body1()
         self.label.textColor = .gray900
         
+        self.stack.spacing = 7
+        
         icon.snp.makeConstraints { make in
             make.height.equalTo(10)
             make.width.equalTo(icon.snp.height)

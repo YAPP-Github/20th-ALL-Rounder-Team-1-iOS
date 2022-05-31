@@ -33,7 +33,7 @@ class MainTableViewCell: UITableViewCell {
         
         $0.axis = .vertical
         $0.distribution = .fillEqually
-        $0.spacing = 5.25
+        $0.spacing = 6
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -53,7 +53,7 @@ class MainTableViewCell: UITableViewCell {
         self.addSubview(cellStack)
         
         cellStack.snp.makeConstraints { make in
-            make.edges.equalTo(UIEdgeInsets.defaultEdgeInset)
+            make.edges.equalTo(UIEdgeInsets(top: 12, left: 24, bottom: 19, right: 24))
         }
         
     }
@@ -74,7 +74,6 @@ extension MainTableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        
     }
 
 }

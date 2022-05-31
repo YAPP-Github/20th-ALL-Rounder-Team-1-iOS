@@ -18,6 +18,7 @@ class MainViewController: UIViewController {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        tableView.separatorStyle = .none
 
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: "id")
         tableView.dataSource = self
