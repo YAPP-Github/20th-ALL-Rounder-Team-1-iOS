@@ -78,7 +78,7 @@ class WelcomeViewController: UIViewController {
             didTapSignUpButton: self.signUpButton.rx.tap.asObservable()
         )
         
-        let output = self.viewModel?.transform(input: input)
+        self.viewModel?.transform(input: input)
     }
 
 }

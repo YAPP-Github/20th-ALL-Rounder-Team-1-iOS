@@ -8,8 +8,12 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
 
 class SignInViewController: UIViewController {
+    
+    private let disposeBag = DisposeBag()
+    var viewModel: SignInViewModel?
     
     lazy var titleLabel = UILabel().then {
         $0.text = """
@@ -54,6 +58,7 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
 
         configureUI()
+        bindViewModel()
     }
     
     private func configureUI() {
@@ -88,7 +93,39 @@ class SignInViewController: UIViewController {
         }
     }
     
-    
+    private func bindViewModel() {
+        guard let viewModel = self.viewModel else {
+            return
+        }
+
+        let input = SignInViewModel.Input(
+            emailTextFieldDidEditEvent: emailField.rx.text.orEmpty.asObservable(),
+            passwordTextFieldDidEditEvent: passwordField.rx.text.orEmpty.asObservable(),
+            autoSignButtonDidTapEvent: autoSignCheckBox.rx.tap.asObservable(),
+            nextButtonDidTapEvent: nextButton.rx.tap.asObservable()
+        )
+        
+        let output = viewModel.transform(input: input)
+        
+        output.nextButtonEnable.drive(onNext: { [weak self] state in
+            if state {
+                self?.nextButton.enable(string: "다음")
+            } else {
+                self?.nextButton.disable(string: "로그인")
+            }
+        }).disposed(by: disposeBag)
+        
+//        nextButton.rx.tap.bind(onNext: { [weak self] in
+//            output.checkEmailPassword.drive(onNext: { [weak self] checkEmailPassword in
+//                if checkEmailPassword {
+//                    print("다음")
+//                } else {
+//                    print("alert")
+//                }
+//            }).disposed(by: self?.disposeBag ?? DisposeBag())
+//        }).disposed(by: disposeBag)
+        
+    }
 }
 
 

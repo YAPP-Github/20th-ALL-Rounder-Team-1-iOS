@@ -20,6 +20,7 @@ class SignInCoordinator: Coordinator {
     
     func start() {
         // viewModel
+        self.signInViewController.viewModel = SignInViewModel(coordinator: self)
         self.navigationController.viewControllers = [self.signInViewController]
     }
     
