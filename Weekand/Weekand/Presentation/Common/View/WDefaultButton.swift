@@ -59,8 +59,8 @@ class WDefaultButton: UIButton {
     init(title: String, style: WButtonStyle) {
         super.init(frame: CGRect.zero)
         
-        setupView(style: style)
         setTitle(title, for: .normal)
+        setupView(style: style)
     }
     
     convenience init(title: String) {

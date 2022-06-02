@@ -50,6 +50,7 @@ class WelcomeViewController: UIViewController {
     }
 
     private func configureUI() {
+        view.backgroundColor = .white
         
         self.view.addSubview(titleStack)
         titleStack.snp.makeConstraints { make in

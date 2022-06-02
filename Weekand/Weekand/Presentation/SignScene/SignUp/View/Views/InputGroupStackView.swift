@@ -13,6 +13,8 @@ class InputGroupStackView: UIStackView {
 
     lazy var informationStackView = UIStackView().then {
         $0.axis = .horizontal
+        $0.distribution = .fill
+        $0.spacing = 5
     }
     
     lazy var namelabel = WTextLabel().then {
@@ -40,10 +42,11 @@ class InputGroupStackView: UIStackView {
     private func setupView() {
         axis = .vertical
         spacing = 10
-        informationStackView.spacing = 5
         
         [namelabel, informlabel].forEach { informationStackView.addArrangedSubview($0) }
         [informationStackView, buttonTextField].forEach { self.addArrangedSubview($0) }
+        
+        namelabel.setContentHuggingPriority(.init(rawValue: 251), for: .horizontal)
     }
     
     func setNameLabelText(string: String) {
