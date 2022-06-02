@@ -17,7 +17,7 @@ class WelcomeViewController: UIViewController {
     }
     
     lazy var introLabel = UILabel().then {
-        $0.text = "야! 너두 할수있어!"
+        $0.text = "We can do, Week and!"
         $0.font = UIFont(name: "PretendardVariable-Bold", size: defaultFontSize*1.5)
     }
     
