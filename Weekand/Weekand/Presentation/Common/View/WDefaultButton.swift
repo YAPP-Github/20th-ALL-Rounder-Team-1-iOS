@@ -40,11 +40,11 @@ class WDefaultButton: UIButton {
     private func setupView(style: WButtonStyle) {
 
         self.titleLabel?.adjustsFontSizeToFitWidth = false
-        self.setTitleColor(style.titleColor, for: .normal)
         
         if #available(iOS 15.0, *) {
             var configuration = UIButton.Configuration.filled()
             configuration.background.backgroundColor = style.backGroundColor
+            configuration.baseForegroundColor = style.titleColor
             configuration.background.cornerRadius = defaultCornerRadius
             configuration.contentInsets = NSDirectionalEdgeInsets.defaultEdgeInset
             self.configuration = configuration
@@ -52,8 +52,10 @@ class WDefaultButton: UIButton {
         } else {
             self.layer.cornerRadius = defaultCornerRadius
             self.backgroundColor = style.backGroundColor
+            self.setTitleColor(style.titleColor, for: .normal)
             self.contentEdgeInsets = UIEdgeInsets.defaultEdgeInset
         }
+        
     }
     
     init(title: String, style: WButtonStyle) {
@@ -69,14 +71,35 @@ class WDefaultButton: UIButton {
 
 }
 
+// MARK: Button Customization Methods
 extension WDefaultButton {
     
     override func setTitle(_ title: String?, for state: UIControl.State) {
         super.setTitle(title, for: state)
         
         guard let text = title else { return }
-        let attribute = [NSAttributedString.Key.font: UIFont(name: "PretendardVariable-Medium", size: defaultFontSize)]
+        let attribute = [NSAttributedString.Key.font: WFont.subHead1()]
         let attributedTitle = NSAttributedString(string: text, attributes: attribute as [NSAttributedString.Key: Any])
         self.setAttributedTitle(attributedTitle, for: .normal)
     }
+    
+    func setBackgroundColor(_ color: UIColor) {
+        
+        if #available(iOS 15.0, *) {
+            self.configuration?.background.backgroundColor = color
+                        
+        } else {
+            self.backgroundColor = color
+        }
+    }
+    
+    func setTitleColor(_ color: UIColor) {
+        if #available(iOS 15.0, *) {
+            self.configuration?.baseForegroundColor = color
+                        
+        } else {
+            self.self.setTitleColor(color, for: .normal)
+        }
+    }
+    
 }
