@@ -15,9 +15,6 @@ target 'Weekand' do
   # UIKit
   pod 'SnapKit'
   pod 'Then'
-
-  # Custom UI
-  pod 'Charts'
   
   # Cooperation
   pod 'SwiftLint'
