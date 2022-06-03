@@ -27,7 +27,14 @@ class SignUpCoordinator: Coordinator {
     
     func pushAddInformationViewController() {
         let signUpAddInformationViewController = SignUpAddInfomationViewController()
+        signUpAddInformationViewController.viewModel = SignUpAddInfomationViewModel(coordinator: self)
         self.navigationController.pushViewController(signUpAddInformationViewController, animated: true)
+    }
+    
+    func pushTermsViewController() {
+        let signUpTermsViewController  = SignUpTermsViewController()
+        signUpTermsViewController.viewModel = SignUpTermsViewModel(coordinator: self)
+        self.navigationController.pushViewController(signUpTermsViewController, animated: true)
     }
     
     func finish() {
