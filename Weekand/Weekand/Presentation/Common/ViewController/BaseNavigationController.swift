@@ -21,8 +21,8 @@ class BaseNavigationController: UINavigationController {
         navigationItem.backButtonDisplayMode = .minimal
         
         navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.gray700,
-            NSAttributedString.Key.font: UIFont(name: "PretendardVariable-Medium", size: 16)
+            NSAttributedString.Key.foregroundColor: UIColor.gray700 ?? UIColor.systemGray,
+            NSAttributedString.Key.font: UIFont(name: "PretendardVariable-Medium", size: 16) ?? UIFont()
         ]
     }
 }
