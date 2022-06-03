@@ -54,6 +54,7 @@
 		F3DD0229284670E900AD9240 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD0228284670E900AD9240 /* AppCoordinator.swift */; };
 		F3DD022B284678CF00AD9240 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD022A284678CF00AD9240 /* WelcomeViewModel.swift */; };
 		F3DD022E2846815300AD9240 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD022D2846815300AD9240 /* ViewModelType.swift */; };
+		F3DD0231284A36D300AD9240 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD0230284A36D300AD9240 /* BaseNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +108,7 @@
 		F3DD0228284670E900AD9240 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		F3DD022A284678CF00AD9240 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WelcomeViewModel.swift; path = Weekand/Presentation/SignScene/Welcome/ViewModel/WelcomeViewModel.swift; sourceTree = SOURCE_ROOT; };
 		F3DD022D2846815300AD9240 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		F3DD0230284A36D300AD9240 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		F77A7360107CB67CF89A6DEF /* Pods-Weekand.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weekand.release.xcconfig"; path = "Target Support Files/Pods-Weekand/Pods-Weekand.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -414,6 +416,7 @@
 			isa = PBXGroup;
 			children = (
 				F391B430283BE78B004E7B06 /* BaseViewController.swift */,
+				F3DD0230284A36D300AD9240 /* BaseNavigationController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				7D7178EB283E1C9D00D7E5F2 /* WCheckBox.swift in Sources */,
 				7DC166C02837234200F1A8F1 /* WButtonTextField.swift in Sources */,
 				F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */,
+				F3DD0231284A36D300AD9240 /* BaseNavigationController.swift in Sources */,
 				F354C3E5283D3BF0008929FD /* InformationGroupStackView.swift in Sources */,
 				F3DD022428466E0C00AD9240 /* SignInCoordinator.swift in Sources */,
 				7D6B911528449A760044E217 /* WIconLabel.swift in Sources */,

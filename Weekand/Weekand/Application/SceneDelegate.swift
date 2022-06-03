@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene) // SceneDelegate의 프로퍼티에 설정해줌
-        let navigationController = UINavigationController()
+        let navigationController = BaseNavigationController()
 
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()

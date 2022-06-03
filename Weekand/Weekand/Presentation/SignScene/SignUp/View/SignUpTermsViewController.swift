@@ -60,6 +60,7 @@ class SignUpTermsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "약관 동의"
         configureUI()
     }
     
