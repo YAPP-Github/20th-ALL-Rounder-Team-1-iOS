@@ -61,6 +61,7 @@ class SignUpViewController: BaseViewController {
         super.viewDidLoad()
  
         view.backgroundColor = .white
+        navigationItem.title = "회원가입"
         stackView.spacing = 30
         configureUI()
         bindViewModel()

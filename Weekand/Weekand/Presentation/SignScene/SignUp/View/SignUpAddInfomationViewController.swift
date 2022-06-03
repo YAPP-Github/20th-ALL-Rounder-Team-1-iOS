@@ -33,6 +33,7 @@ class SignUpAddInfomationViewController: BaseViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        navigationItem.title = "추가 정보"
         stackView.spacing = 30
         configureUI()
     }
