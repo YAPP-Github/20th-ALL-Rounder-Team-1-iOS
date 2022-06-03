@@ -37,7 +37,7 @@ class SignInViewController: UIViewController {
     }
     
     lazy var autoSignCheckBox = WCheckBox(title: "자동 로그인", isChecked: false)
-    lazy var signUpLink = WTextButton(title: "회원가입")
+    lazy var signUpLink = WTextButton(title: "비밀번호 찾기")
     lazy var optionView = UIView().then {
         $0.addSubview(autoSignCheckBox)
         $0.addSubview(signUpLink)
