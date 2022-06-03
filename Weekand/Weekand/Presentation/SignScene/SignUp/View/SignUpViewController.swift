@@ -105,7 +105,10 @@ class SignUpViewController: BaseViewController {
         )
         
         let output = viewModel.transform(input: input)
-        
+        bindOutput(output)
+    }
+    
+    func bindOutput(_ output: SignUpViewModel.Output) {
         output.vaildEmail.drive(onNext: { [weak self] isVaild in
             if isVaild {
                 // 임시
