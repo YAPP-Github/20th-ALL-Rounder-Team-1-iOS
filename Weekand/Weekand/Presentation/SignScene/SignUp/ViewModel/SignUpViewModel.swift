@@ -20,27 +20,26 @@ class SignUpViewModel: ViewModelType {
     
     struct Input {
         let emailTextFieldDidEditEvent: Observable<String>
-        let emailButtonDidTapEvent: Observable<Void>
-        let authenticationNumberTextFieldDidEditEvent: Observable<String>
-        let authenticationNumberButtonDidTapEvent: Observable<Void>
+        let authNumberTextFieldDidEditEvent: Observable<String>
         let nickNameTextFieldDidEditEvent: Observable<String>
-        let nickNameButtonDidTapEvent: Observable<Void>
         let passwordTextFieldDidEditEvent: Observable<String>
         let passwordCheckTextFieldDidEditEvent: Observable<String>
     }
     
     struct Output {
         var vaildEmail: Driver<Bool>
+        var checkAuthenticationNumber: Driver<Bool>
     }
     
     func transform(input: Input) -> Output {
         
         let vaildEmail = input.emailTextFieldDidEditEvent.map(vaildEmail).asDriver(onErrorJustReturn: false)
+        let checkAuthenticationNumber = input.authNumberTextFieldDidEditEvent.map(checkAuthenticationNumber).asDriver(onErrorJustReturn: false)
         
-        return Output(vaildEmail: vaildEmail)
+        return Output(vaildEmail: vaildEmail, checkAuthenticationNumber: checkAuthenticationNumber)
     }
     
-    func vaildEmail(email: String) -> Bool {
+    private func vaildEmail(email: String) -> Bool {
         guard let regex = try? NSRegularExpression(
             pattern: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}",
             options: [.caseInsensitive]
@@ -58,6 +57,13 @@ class SignUpViewModel: ViewModelType {
             )
         
         return regexFirstMatch != nil
+    }
+    
+    private func checkAuthenticationNumber(authNumber: String) -> Bool {
+        if authNumber == "1234" {
+            return true
+        }
+        return false
     }
     
 }

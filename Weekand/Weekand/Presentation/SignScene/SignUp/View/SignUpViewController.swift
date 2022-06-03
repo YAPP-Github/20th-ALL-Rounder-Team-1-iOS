@@ -36,7 +36,6 @@ class SignUpViewController: BaseViewController {
         $0.setNameLabelText(string: "인증번호")
         $0.setPlaceholderText(string: "인증번호를 입력해주세요")
         $0.setButtonText(string: "확인")
-        $0.informInvaildMessage(string: "잘못된 인증번호입니다")
     }
     
     lazy var nickNameStackView = InputGroupStackView().then {
@@ -96,11 +95,8 @@ class SignUpViewController: BaseViewController {
         
         let input = SignUpViewModel.Input(
             emailTextFieldDidEditEvent: emailStackView.buttonTextField.textField.rx.text.orEmpty.asObservable(),
-            emailButtonDidTapEvent: emailStackView.buttonTextField.button.rx.tap.asObservable(),
-            authenticationNumberTextFieldDidEditEvent: authenticationNumberStackView.buttonTextField.textField.rx.text.orEmpty.asObservable(),
-            authenticationNumberButtonDidTapEvent: authenticationNumberStackView.buttonTextField.button.rx.tap.asObservable(),
+            authNumberTextFieldDidEditEvent: authenticationNumberStackView.buttonTextField.textField.rx.text.orEmpty.asObservable(),
             nickNameTextFieldDidEditEvent: nickNameStackView.buttonTextField.textField.rx.text.orEmpty.asObservable(),
-            nickNameButtonDidTapEvent: nickNameStackView.buttonTextField.button.rx.tap.asObservable(),
             passwordTextFieldDidEditEvent: passwordStackView.buttonTextField.textField.rx.text.orEmpty.asObservable(),
             passwordCheckTextFieldDidEditEvent: passwordCheckStackView.buttonTextField.textField.rx.text.orEmpty.asObservable()
         )
@@ -110,12 +106,25 @@ class SignUpViewController: BaseViewController {
         emailStackView.buttonTextField.button.rx.tap.bind { [weak self] in
             output.vaildEmail.drive(onNext: { [weak self] isVaild in
                 if isVaild {
+                    // 임시
                     self?.emailStackView.informInvaildMessage(string: "")
                     // 버튼 비활성화 코드
                     self?.emailStackView.buttonTextField.button.isEnabled = false
                 } else {
-                    // 임시
                     self?.emailStackView.informInvaildMessage(string: "올바른 형식으로 입력해주세요")
+                }
+            }).dispose()
+        }.disposed(by: disposeBag)
+        
+        authenticationNumberStackView.buttonTextField.button.rx.tap.bind { [weak self] in
+            output.checkAuthenticationNumber.drive(onNext: { [weak self] isCheck in
+                if isCheck {
+                    // 임시
+                    self?.authenticationNumberStackView.informInvaildMessage(string: "")
+                    // 버튼 비활성화 코드
+                    self?.authenticationNumberStackView.buttonTextField.button.isEnabled = false
+                } else {
+                    self?.authenticationNumberStackView.informInvaildMessage(string: "잘못된 인증번호입니다")
                 }
             }).dispose()
         }.disposed(by: disposeBag)
