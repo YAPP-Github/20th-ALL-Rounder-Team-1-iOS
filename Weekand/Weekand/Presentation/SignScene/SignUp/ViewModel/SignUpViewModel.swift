@@ -103,7 +103,7 @@ class SignUpViewModel: ViewModelType {
     }
     
     private func checkNickName(_ nickName: String) -> Bool {
-        if nickName == "토게피" {
+        if nickName == "test" {
             return true
         }
         return false

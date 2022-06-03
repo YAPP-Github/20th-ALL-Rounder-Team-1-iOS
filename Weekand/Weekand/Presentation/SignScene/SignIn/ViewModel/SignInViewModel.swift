@@ -26,19 +26,10 @@ class SignInViewModel: ViewModelType {
     }
     
     struct Output {
-        var checkEmailPassword: Driver<Bool>
         var nextButtonEnable: Driver<Bool>
     }
     
     func transform(input: Input) -> Output {
-        
-        let checkEmailPassword = Observable
-                                    .combineLatest(
-                                        input.emailTextFieldDidEditEvent,
-                                        input.passwordTextFieldDidEditEvent
-                                    )
-                                    .map(checkEmailPassword)
-                                    .asDriver(onErrorJustReturn: false)
         
         let nextButtonEnable = Observable
                                     .combineLatest(
@@ -48,7 +39,22 @@ class SignInViewModel: ViewModelType {
                                     .map(vaildInput)
                                     .asDriver(onErrorJustReturn: false)
         
-        return Output(checkEmailPassword: checkEmailPassword, nextButtonEnable: nextButtonEnable)
+        let checkEmailPassword = Observable
+                                    .combineLatest(
+                                        input.emailTextFieldDidEditEvent,
+                                        input.passwordTextFieldDidEditEvent
+                                    )
+                                    .map(checkEmailPassword)
+        
+        input.nextButtonDidTapEvent.withLatestFrom(checkEmailPassword).subscribe(onNext: { [weak self] isCheck in
+            if isCheck {
+                print("다음")
+            } else {
+                print("alert")
+            }
+        }).disposed(by: disposeBag)
+        
+        return Output(nextButtonEnable: nextButtonEnable)
     }
     
     func checkEmailPassword(email: String, password: String) -> Bool {

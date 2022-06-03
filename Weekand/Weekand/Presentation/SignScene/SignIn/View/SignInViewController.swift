@@ -114,17 +114,6 @@ class SignInViewController: UIViewController {
                 self?.nextButton.disable(string: "로그인")
             }
         }).disposed(by: disposeBag)
-        
-        nextButton.rx.tap.bind(onNext: { [weak self] in
-            output.checkEmailPassword.drive(onNext: { [weak self] isCheck in
-                if isCheck {
-                    print("다음")
-                } else {
-                    print("alert")
-                }
-            }).dispose()
-        }).disposed(by: disposeBag)
-        
     }
 }
 
