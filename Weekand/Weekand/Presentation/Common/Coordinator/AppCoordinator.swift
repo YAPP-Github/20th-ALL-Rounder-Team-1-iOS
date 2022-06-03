@@ -9,12 +9,11 @@ import Foundation
 import UIKit
 
 class AppCoordinator: Coordinator {
-    var childCoordinators = [Coordinator]()
+    var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        navigationController.setNavigationBarHidden(true, animated: true)
     }
 
     func start() {

@@ -20,15 +20,14 @@ class WelcomeCoordinator: Coordinator {
     
     func start() {
         // 자동 로그인 구현
-        
         self.welcomeViewController.viewModel = WelcomeViewModel(coordinator: self)
-        self.navigationController.viewControllers = [self.welcomeViewController]
+        self.navigationController.pushViewController(self.welcomeViewController, animated: true)
     }
     
     func showSignInScene() {
         let signInCoordinator = SignInCoordinator(navigationController: self.navigationController)
-        signInCoordinator.start()
         childCoordinators.append(signInCoordinator)
+        signInCoordinator.start()
     }
     
     func showSignUpScene() {

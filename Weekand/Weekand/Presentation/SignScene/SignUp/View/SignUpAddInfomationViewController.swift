@@ -32,6 +32,7 @@ class SignUpAddInfomationViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
         stackView.spacing = 30
         configureUI()
     }

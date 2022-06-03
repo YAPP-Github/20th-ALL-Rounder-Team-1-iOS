@@ -20,7 +20,12 @@ class SignUpCoordinator: Coordinator {
     
     func start() {
         self.signUpViewController.viewModel = SignUpViewModel(coordinator: self)
-        self.navigationController.viewControllers = [self.signUpViewController]
+        self.navigationController.pushViewController(signUpViewController, animated: true)
+    }
+    
+    func pushAddInformationViewController() {
+        let signUpAddInformationViewController = SignUpAddInfomationViewController()
+        self.navigationController.pushViewController(signUpAddInformationViewController, animated: true)
     }
     
 }

@@ -99,7 +99,8 @@ class SignUpViewController: BaseViewController {
             passwordTextFieldDidEditEvent: passwordStackView.buttonTextField.textField.rx.text.orEmpty.asObservable(),
             passwordTextFieldDidEndEditEvent: passwordStackView.buttonTextField.textField.rx.controlEvent([.editingChanged]).asObservable(),
             passwordCheckTextFieldDidEditEvent: passwordCheckStackView.buttonTextField.textField.rx.text.orEmpty.asObservable(),
-            passwordCheckTextFieldDidEndEditEvent: passwordCheckStackView.buttonTextField.textField.rx.controlEvent([.editingChanged]).asObservable()
+            passwordCheckTextFieldDidEndEditEvent: passwordCheckStackView.buttonTextField.textField.rx.controlEvent([.editingChanged]).asObservable(),
+            nextButtonDidTapEvent: confirmButton.rx.tap.asObservable()
         )
         
         let output = viewModel.transform(input: input)

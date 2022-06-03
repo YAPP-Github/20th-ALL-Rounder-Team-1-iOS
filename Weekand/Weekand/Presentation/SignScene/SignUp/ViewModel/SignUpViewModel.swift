@@ -29,6 +29,7 @@ class SignUpViewModel: ViewModelType {
         let passwordTextFieldDidEndEditEvent: Observable<Void>
         let passwordCheckTextFieldDidEditEvent: Observable<String>
         let passwordCheckTextFieldDidEndEditEvent: Observable<Void>
+        let nextButtonDidTapEvent: Observable<Void>
     }
     
     struct Output {
@@ -57,6 +58,13 @@ class SignUpViewModel: ViewModelType {
         let accordPasswordWithEndEdit = input.passwordCheckTextFieldDidEndEditEvent.withLatestFrom(accordPassword).asDriver(onErrorJustReturn: false)
         
         let nextButtonEnable = Observable.combineLatest(vaildEmail, checkAuthenticationNumber, checkNickName, vaildPassword, accordPassword).map { $0 && $1 && $2 && $3 && $4 }.asDriver(onErrorJustReturn: false)
+        
+        input.nextButtonDidTapEvent.subscribe(onNext: {
+            self.coordinator?.pushAddInformationViewController()
+        }, onError: { _ in
+            
+        }).disposed(by: disposeBag)
+        
         return Output(
             vaildEmail: vaildEmailWithTap,
             checkAuthenticationNumber: checkAuthenticationNumberWithTap,
