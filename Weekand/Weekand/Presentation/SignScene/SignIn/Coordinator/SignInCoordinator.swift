@@ -9,9 +9,11 @@ import Foundation
 import UIKit
 
 class SignInCoordinator: Coordinator {
+    weak var finishDelegate: CoordinatorDidFinishDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
     var signInViewController: SignInViewController
+    var type: CoordinatorType = .signIn
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -19,9 +21,11 @@ class SignInCoordinator: Coordinator {
     }
     
     func start() {
-        // viewModel
         self.signInViewController.viewModel = SignInViewModel(coordinator: self)
         self.navigationController.pushViewController(signInViewController, animated: true)
     }
     
+    func finish() {
+        self.finishDelegate?.childDidFinish(self)
+    }
 }

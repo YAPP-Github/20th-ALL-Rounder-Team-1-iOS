@@ -9,9 +9,11 @@ import Foundation
 import UIKit
 
 class SignUpCoordinator: Coordinator {
+    weak var finishDelegate: CoordinatorDidFinishDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
     var signUpViewController: SignUpViewController
+    var type: CoordinatorType = .signUp
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -28,4 +30,7 @@ class SignUpCoordinator: Coordinator {
         self.navigationController.pushViewController(signUpAddInformationViewController, animated: true)
     }
     
+    func finish() {
+        self.finishDelegate?.childDidFinish(self)
+    }
 }

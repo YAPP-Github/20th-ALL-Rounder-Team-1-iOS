@@ -55,6 +55,7 @@
 		F3DD022B284678CF00AD9240 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD022A284678CF00AD9240 /* WelcomeViewModel.swift */; };
 		F3DD022E2846815300AD9240 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD022D2846815300AD9240 /* ViewModelType.swift */; };
 		F3DD0231284A36D300AD9240 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD0230284A36D300AD9240 /* BaseNavigationController.swift */; };
+		F3DD0233284A534C00AD9240 /* CoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD0232284A534C00AD9240 /* CoordinatorType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +110,7 @@
 		F3DD022A284678CF00AD9240 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WelcomeViewModel.swift; path = Weekand/Presentation/SignScene/Welcome/ViewModel/WelcomeViewModel.swift; sourceTree = SOURCE_ROOT; };
 		F3DD022D2846815300AD9240 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		F3DD0230284A36D300AD9240 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		F3DD0232284A534C00AD9240 /* CoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorType.swift; sourceTree = "<group>"; };
 		F77A7360107CB67CF89A6DEF /* Pods-Weekand.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weekand.release.xcconfig"; path = "Target Support Files/Pods-Weekand/Pods-Weekand.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -426,6 +428,7 @@
 			children = (
 				F3DD02192846629100AD9240 /* Coordinator.swift */,
 				F3DD0228284670E900AD9240 /* AppCoordinator.swift */,
+				F3DD0232284A534C00AD9240 /* CoordinatorType.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -614,6 +617,7 @@
 				7D6E9972283BA18E006F5FC7 /* WBottmButton.swift in Sources */,
 				F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */,
 				F3DD021A2846629100AD9240 /* Coordinator.swift in Sources */,
+				F3DD0233284A534C00AD9240 /* CoordinatorType.swift in Sources */,
 				F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */,
 				7DC166BE28371C4E00F1A8F1 /* WDefaultButton.swift in Sources */,
 				F3DD022E2846815300AD9240 /* ViewModelType.swift in Sources */,

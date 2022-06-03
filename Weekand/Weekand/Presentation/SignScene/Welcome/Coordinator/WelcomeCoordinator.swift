@@ -8,31 +8,43 @@
 import Foundation
 import UIKit
 
-class WelcomeCoordinator: Coordinator {
+class WelcomeCoordinator: NSObject, Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
-    var welcomeViewController: WelcomeViewController
+    var type: CoordinatorType = .welcome
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.welcomeViewController = WelcomeViewController()
     }
     
     func start() {
-        // 자동 로그인 구현
-        self.welcomeViewController.viewModel = WelcomeViewModel(coordinator: self)
-        self.navigationController.pushViewController(self.welcomeViewController, animated: true)
+        let welcomeViewController = WelcomeViewController()
+        welcomeViewController.viewModel = WelcomeViewModel(coordinator: self)
+        self.navigationController.pushViewController(welcomeViewController, animated: true)
     }
     
     func showSignInScene() {
         let signInCoordinator = SignInCoordinator(navigationController: self.navigationController)
+        signInCoordinator.finishDelegate = self
         childCoordinators.append(signInCoordinator)
         signInCoordinator.start()
     }
     
     func showSignUpScene() {
         let signUpCoordinator = SignUpCoordinator(navigationController: self.navigationController)
-        signUpCoordinator.start()
+        signUpCoordinator.finishDelegate = self
         childCoordinators.append(signUpCoordinator)
+        signUpCoordinator.start()
     }
+}
+
+extension WelcomeCoordinator: CoordinatorDidFinishDelegate {
+    func childDidFinish(_ child: Coordinator) {
+        self.childCoordinators = self.childCoordinators.filter({ $0.type != child.type })
+        navigationController.popToRootViewController(animated: true)
+    }
+}
+
+protocol CoordinatorDidFinishDelegate: AnyObject {
+    func childDidFinish(_ child: Coordinator)
 }

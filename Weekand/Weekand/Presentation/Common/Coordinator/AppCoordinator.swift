@@ -11,14 +11,20 @@ import UIKit
 class AppCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
+    var type: CoordinatorType = .app
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
 
     func start() {
+        // 자동 로그인 구현
+        showWelcomeScene()
+    }
+    
+    private func showWelcomeScene() {
         let welcomeCoordinator = WelcomeCoordinator(navigationController: self.navigationController)
-        welcomeCoordinator.start()
         childCoordinators.append(welcomeCoordinator)
+        welcomeCoordinator.start()
     }
 }
