@@ -24,7 +24,9 @@ class WBottmButton: UIButton {
         self.titleLabel?.font = UIFont(name: "PretendardVariable-SemiBold", size: defaultFontSize)
         
         self.contentVerticalAlignment = .top
-        
+    }
+    
+    private func setupDisableState() {
         isEnabled = false
         
         if #available(iOS 15.0, *) {
@@ -56,6 +58,11 @@ class WBottmButton: UIButton {
             self.setTitleColor(.white, for: .normal)
             self.contentEdgeInsets.top = UIEdgeInsets.defaultInsetAmount
         }
+    }
+    
+    func disable(string: String) {
+        setTitle(string, for: .normal)
+        setupDisableState()
     }
     
     init(title: String) {

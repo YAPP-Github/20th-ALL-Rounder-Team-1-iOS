@@ -7,9 +7,14 @@
 
 import UIKit
 import SwiftUI
+import RxSwift
+import RxCocoa
 
 class SignUpTermsViewController: UIViewController {
 
+    private let disposeBag = DisposeBag()
+    var viewModel: SignUpTermsViewModel?
+    
     lazy var wholeAgreeStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.spacing = 10
@@ -60,7 +65,10 @@ class SignUpTermsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
+        navigationItem.title = "약관 동의"
         configureUI()
+        bindViewModel()
     }
     
     func configureUI() {
@@ -122,6 +130,18 @@ class SignUpTermsViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.width.equalTo(view)
         }
+    }
+    
+    func bindViewModel() {
+        guard let viewModel = self.viewModel else {
+            return
+        }
+        
+        let input = SignUpTermsViewModel.Input(
+            nextButtonDidTapEvent: confirmButton.rx.tap.asObservable()
+        )
+        
+        let _ = viewModel.transform(input: input)
     }
 }
 

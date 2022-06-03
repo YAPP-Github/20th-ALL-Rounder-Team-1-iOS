@@ -7,9 +7,14 @@
 
 import UIKit
 import SwiftUI
+import RxSwift
+import RxCocoa
 
 class SignUpAddInfomationViewController: BaseViewController {
 
+    private let disposeBag = DisposeBag()
+    var viewModel: SignUpAddInfomationViewModel?
+    
     lazy var welcomeLabel = WTitleLabel().then {
         $0.setText(string: "조금 더 알려주시겠어요?")
     }
@@ -32,8 +37,11 @@ class SignUpAddInfomationViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
+        navigationItem.title = "추가 정보"
         stackView.spacing = 30
         configureUI()
+        bindViewModel()
     }
 
     func configureUI() {
@@ -41,7 +49,7 @@ class SignUpAddInfomationViewController: BaseViewController {
         stackView.snp.makeConstraints { make in
             // top 임시값 세팅
             make.top.equalToSuperview().offset(30)
-            make.bottom.equalToSuperview().offset(-WBottmButton.buttonOffset - 20)
+            make.bottom.equalToSuperview().offset(-WBottmButton.buttonOffset - 64)
             make.trailing.leading.equalToSuperview().inset(20)
         }
         
@@ -52,6 +60,18 @@ class SignUpAddInfomationViewController: BaseViewController {
             make.centerX.equalToSuperview()
             make.width.equalTo(view)
         }
+    }
+    
+    func bindViewModel() {
+        guard let viewModel = self.viewModel else {
+            return
+        }
+        
+        let input = SignUpAddInfomationViewModel.Input(
+            nextButtonDidTapEvent: confirmButton.rx.tap.asObservable()
+        )
+        
+        let _ = viewModel.transform(input: input)
     }
 }
 
