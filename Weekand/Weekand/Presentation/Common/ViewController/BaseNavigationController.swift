@@ -17,7 +17,6 @@ class BaseNavigationController: UINavigationController {
     }
     
     func setNavigationBarAppearance() {
-        navigationBar.barTintColor = .gray700
         navigationBar.tintColor = .gray400
         navigationItem.backButtonDisplayMode = .minimal
         
