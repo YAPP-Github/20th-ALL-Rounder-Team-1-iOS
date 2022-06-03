@@ -23,7 +23,7 @@ class SignUpViewController: BaseViewController {
     
     lazy var confirmButton = WBottmButton().then {
         $0.setTitle("다음", for: .normal)
-        $0.enable(string: "다음")
+        $0.disable(string: "다음")
     }
     
     lazy var emailStackView = InputGroupStackView().then {
@@ -153,6 +153,13 @@ class SignUpViewController: BaseViewController {
             }
         }).disposed(by: disposeBag)
         
+        output.nextButtonEnable.drive(onNext: { [weak self] state in
+            if state {
+                self?.confirmButton.enable(string: "다음")
+            } else {
+                self?.confirmButton.disable(string: "다음")
+            }
+        }).disposed(by: disposeBag)
     }
 }
 

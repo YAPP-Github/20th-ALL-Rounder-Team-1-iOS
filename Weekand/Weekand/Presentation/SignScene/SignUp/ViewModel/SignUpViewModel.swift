@@ -37,47 +37,33 @@ class SignUpViewModel: ViewModelType {
         var checkNickName: Driver<Bool>
         var vaildPassword: Driver<Bool>
         var accordPassword: Driver<Bool>
+        var nextButtonEnable: Driver<Bool>
     }
     
     func transform(input: Input) -> Output {
+        let vaildEmail = input.emailTextFieldDidEditEvent.map(vaildEmail).asObservable()
+        let vaildEmailWithTap = input.emailButtonDidTapEvent.withLatestFrom(vaildEmail).asDriver(onErrorJustReturn: false)
         
-        let vaildEmail = input.emailButtonDidTapEvent
-                                .withLatestFrom(
-                                    input.emailTextFieldDidEditEvent
-                                        .map(vaildEmail)
-                                ).asDriver(onErrorJustReturn: false)
+        let checkAuthenticationNumber = input.authNumberTextFieldDidEditEvent.map(checkAuthenticationNumber).asObservable()
+        let checkAuthenticationNumberWithTap = input.authNumberButtonDidTapEvent.withLatestFrom(checkAuthenticationNumber).asDriver(onErrorJustReturn: false)
         
-        let checkAuthenticationNumber = input.authNumberButtonDidTapEvent
-                                .withLatestFrom(
-                                    input.authNumberTextFieldDidEditEvent
-                                        .map(checkAuthenticationNumber)
-                                ).asDriver(onErrorJustReturn: false)
+        let checkNickName = input.nickNameTextFieldDidEditEvent.map(checkNickName).asObservable()
+        let checkNickNameWithTap = input.nickNameButtonDidTapEvent.withLatestFrom(checkNickName).asDriver(onErrorJustReturn: false)
         
-        let checkNickName = input.nickNameButtonDidTapEvent
-                                .withLatestFrom(
-                                    input.nickNameTextFieldDidEditEvent
-                                        .map(checkNickName)
-                                ).asDriver(onErrorJustReturn: false)
+        let vaildPassword = input.passwordTextFieldDidEditEvent.map(validPassword).asObservable()
+        let vaildPasswordWithEndEdit = input.passwordTextFieldDidEndEditEvent.withLatestFrom(vaildPassword).asDriver(onErrorJustReturn: false)
         
-        let vaildPassword = input.passwordTextFieldDidEndEditEvent
-                                    .withLatestFrom(
-                                        input.passwordTextFieldDidEditEvent
-                                            .map(validPassword)
-                                    ).asDriver(onErrorJustReturn: false)
+        let accordPassword = Observable.combineLatest(input.passwordTextFieldDidEditEvent, input.passwordCheckTextFieldDidEditEvent).map(accordPassword).asObservable()
+        let accordPasswordWithEndEdit = input.passwordCheckTextFieldDidEndEditEvent.withLatestFrom(accordPassword).asDriver(onErrorJustReturn: false)
         
-        let accordPassword = input.passwordCheckTextFieldDidEndEditEvent
-                                    .withLatestFrom(
-                                        Observable
-                                            .combineLatest(input.passwordTextFieldDidEditEvent, input.passwordCheckTextFieldDidEditEvent)
-                                            .map(accordPassword)
-                                    ).asDriver(onErrorJustReturn: false)
-        
+        let nextButtonEnable = Observable.combineLatest(vaildEmail, checkAuthenticationNumber, checkNickName, vaildPassword, accordPassword).map { $0 && $1 && $2 && $3 && $4 }.asDriver(onErrorJustReturn: false)
         return Output(
-            vaildEmail: vaildEmail,
-            checkAuthenticationNumber: checkAuthenticationNumber,
-            checkNickName: checkNickName,
-            vaildPassword: vaildPassword,
-            accordPassword: accordPassword
+            vaildEmail: vaildEmailWithTap,
+            checkAuthenticationNumber: checkAuthenticationNumberWithTap,
+            checkNickName: checkNickNameWithTap,
+            vaildPassword: vaildPasswordWithEndEdit,
+            accordPassword: accordPasswordWithEndEdit,
+            nextButtonEnable: nextButtonEnable
         )
     }
     
