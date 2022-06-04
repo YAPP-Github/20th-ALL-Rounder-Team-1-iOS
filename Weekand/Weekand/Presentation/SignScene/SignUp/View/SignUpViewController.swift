@@ -60,14 +60,18 @@ class SignUpViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
  
-        view.backgroundColor = .white
-        navigationItem.title = "회원가입"
-        stackView.spacing = 30
+        setupView()
         configureUI()
         bindViewModel()
     }
     
-    func configureUI() {
+    private func setupView() {
+        view.backgroundColor = .white
+        navigationItem.title = "회원가입"
+        stackView.spacing = 30
+    }
+    
+    private func configureUI() {
         [welcomeLabel, emailStackView, authenticationNumberStackView, nickNameStackView, passwordStackView, passwordCheckStackView].forEach { stackView.addArrangedSubview($0) }
         stackView.snp.makeConstraints { make in
             // top 임시값 세팅
@@ -85,7 +89,7 @@ class SignUpViewController: BaseViewController {
         }
     }
     
-    func bindViewModel() {
+    private func bindViewModel() {
         guard let viewModel = self.viewModel else {
             return
         }
@@ -108,7 +112,7 @@ class SignUpViewController: BaseViewController {
         bindOutput(output)
     }
     
-    func bindOutput(_ output: SignUpViewModel.Output) {
+    private func bindOutput(_ output: SignUpViewModel.Output) {
         output.vaildEmail.drive(onNext: { [weak self] isVaild in
             if isVaild {
                 // 임시

@@ -67,7 +67,7 @@ class SignInViewController: UIViewController {
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().dividedBy(defaultWidthDivider)
-            make.centerY.equalToSuperview().dividedBy(2)
+            make.centerY.equalToSuperview().dividedBy(1.6)
         }
         
         self.view.addSubview(textFieldStack)

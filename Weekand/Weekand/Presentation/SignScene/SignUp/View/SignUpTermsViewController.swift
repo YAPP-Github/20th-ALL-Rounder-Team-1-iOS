@@ -65,13 +65,16 @@ class SignUpTermsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
-        navigationItem.title = "약관 동의"
         configureUI()
         bindViewModel()
     }
     
-    func configureUI() {
+    private func setupView() {
+        view.backgroundColor = .white
+        navigationItem.title = "약관 동의"
+    }
+    
+    private func configureUI() {
         view.addSubview(wholeAgreeStackView)
         wholeAgreeStackView.addArrangedSubview(checkBoxButton)
         wholeAgreeStackView.addArrangedSubview(wholeAgreeLabel)
@@ -132,7 +135,7 @@ class SignUpTermsViewController: UIViewController {
         }
     }
     
-    func bindViewModel() {
+    private func bindViewModel() {
         guard let viewModel = self.viewModel else {
             return
         }
