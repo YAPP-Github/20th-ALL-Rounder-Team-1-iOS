@@ -74,5 +74,5 @@ class WBottmButton: UIButton {
 }
 
 extension WBottmButton {
-    static let buttonOffset = 64
+    static let buttonOffset = 50
 }
