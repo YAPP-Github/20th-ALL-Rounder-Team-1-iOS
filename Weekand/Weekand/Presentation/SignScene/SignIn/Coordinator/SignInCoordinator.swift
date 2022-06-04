@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class SignInCoordinator: Coordinator {
+    
     weak var finishDelegate: CoordinatorDidFinishDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
@@ -27,5 +28,20 @@ class SignInCoordinator: Coordinator {
     
     func finish() {
         self.finishDelegate?.childDidFinish(self)
+    }
+    
+    func showMainScene() {
+        let mainCoordinator = MainCoordinator(navigationController: self.navigationController)
+        mainCoordinator.finishDelegate = self
+        childCoordinators.append(mainCoordinator)
+        mainCoordinator.start()
+    }
+}
+
+extension SignInCoordinator: CoordinatorDidFinishDelegate {
+    
+    func childDidFinish(_ child: Coordinator) {
+        self.childCoordinators = self.childCoordinators.filter({ $0.type != child.type })
+        navigationController.popToRootViewController(animated: true)
     }
 }

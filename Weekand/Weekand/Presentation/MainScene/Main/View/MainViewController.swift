@@ -9,6 +9,8 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    var viewModel: MainViewModel?
+    
     lazy var tableView = UITableView()
 
     override func viewDidLoad() {
