@@ -94,11 +94,12 @@ extension WDefaultButton {
     }
     
     func setTitleColor(_ color: UIColor) {
+        
         if #available(iOS 15.0, *) {
             self.configuration?.baseForegroundColor = color
                         
         } else {
-            self.self.setTitleColor(color, for: .normal)
+            self.setTitleColor(color, for: .normal)
         }
     }
     
