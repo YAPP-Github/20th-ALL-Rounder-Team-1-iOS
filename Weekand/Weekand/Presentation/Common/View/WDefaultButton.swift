@@ -58,15 +58,15 @@ class WDefaultButton: UIButton {
         
     }
     
-    init(title: String, style: WButtonStyle) {
+    init(title: String, style: WButtonStyle, font: UIFont) {
         super.init(frame: CGRect.zero)
         
-        setTitle(title, for: .normal)
+        setTitle(title, for: .normal, font: font)
         setupView(style: style)
     }
     
-    convenience init(title: String) {
-        self.init(title: title, style: .filled)
+    convenience init(title: String, font: UIFont) {
+        self.init(title: title, style: .filled, font: font)
     }
 
 }
@@ -74,11 +74,11 @@ class WDefaultButton: UIButton {
 // MARK: Button Customization Methods
 extension WDefaultButton {
     
-    override func setTitle(_ title: String?, for state: UIControl.State) {
-        super.setTitle(title, for: state)
+    func setTitle(_ title: String?, for state: UIControl.State, font: UIFont) {
+        self.setTitle(title, for: state)
         
         guard let text = title else { return }
-        let attribute = [NSAttributedString.Key.font: WFont.subHead1()]
+        let attribute = [NSAttributedString.Key.font: font]
         let attributedTitle = NSAttributedString(string: text, attributes: attribute as [NSAttributedString.Key: Any])
         self.setAttributedTitle(attributedTitle, for: .normal)
     }
@@ -87,7 +87,6 @@ extension WDefaultButton {
         
         if #available(iOS 15.0, *) {
             self.configuration?.background.backgroundColor = color
-                        
         } else {
             self.backgroundColor = color
         }
@@ -96,9 +95,8 @@ extension WDefaultButton {
     func setTitleColor(_ color: UIColor) {
         if #available(iOS 15.0, *) {
             self.configuration?.baseForegroundColor = color
-                        
         } else {
-            self.self.setTitleColor(color, for: .normal)
+            self.setTitleColor(color, for: .normal)
         }
     }
     

@@ -10,7 +10,7 @@ import UIKit
 class WButtonTextField: UIView {
     
     let textField = WTextField()
-    let button = WDefaultButton(title: "", style: .filled).then {
+    let button = WDefaultButton(title: "", font: WFont.body2()).then {
         
         if #available(iOS 15.0, *) {
             $0.configuration?.background.cornerRadius = defaultCornerRadius/2

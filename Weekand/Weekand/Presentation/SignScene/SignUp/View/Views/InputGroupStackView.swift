@@ -63,7 +63,7 @@ class InputGroupStackView: UIStackView {
     }
     
     func setButtonText(string: String) {
-        buttonTextField.button.setTitle(string, for: .normal)
+        buttonTextField.button.setTitle(string, for: .normal, font: WFont.body2())
     }
     
     // 개선 필요
