@@ -47,13 +47,6 @@ extension MainViewController {
     
     private func configureDataSource() {
         
-//        let cellRegistration = UICollectionView.CellRegistration
-//        <LabelCell, MountainsController.Mountain> { (cell, indexPath, mountain) in
-//            // Populate the cell with our item description.
-//            cell.label.text = mountain.name
-//        }
-
-        
         dataSource = UITableViewDiffableDataSource<Section, ScheduleList>(tableView: tableView, cellProvider: { tableView, indexPath, list in
             let cell = tableView.dequeueReusableCell(withIdentifier: self.cellId, for: indexPath) as! MainTableViewCell
             cell.configureCell(color: .red, title: list.name, status: .completed, time: "00:00 - 00:00", emojiNumber: list.stickerCount, emojiOrder: [.awesome, .cool, .good, .support])

@@ -182,20 +182,10 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		7D6B911328449A020044E217 /* SubViews */ = {
-			isa = PBXGroup;
-			children = (
-				7D6B911428449A760044E217 /* WIconLabel.swift */,
-				7D6B911628449F610044E217 /* WCategoryTitleLabel.swift */,
-				7D6B91182844A8D50044E217 /* WStatusTimeLabel.swift */,
-				7DEA17792845E7C500F6B990 /* WEmojiView.swift */,
-			);
-			path = SubViews;
-			sourceTree = "<group>";
-		};
 		7D76AEAF28445878001C668D /* MainScene */ = {
 			isa = PBXGroup;
 			children = (
+				7DAA8620284BAF9500F21E35 /* Common */,
 				7D76AEB02844588E001C668D /* Main */,
 			);
 			path = MainScene;
@@ -222,7 +212,6 @@
 		7D76AEB2284458AC001C668D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7D6B911328449A020044E217 /* SubViews */,
 				7D76AEB528445AA5001C668D /* MainTableViewCell.swift */,
 				7D76AEB3284458C2001C668D /* MainViewController.swift */,
 			);
@@ -269,6 +258,25 @@
 				7DAA861E284B968000F21E35 /* ScheduleList.swift */,
 			);
 			name = Entities;
+			sourceTree = "<group>";
+		};
+		7DAA8620284BAF9500F21E35 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7DAA8621284BAFA000F21E35 /* View */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		7DAA8621284BAFA000F21E35 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D6B911428449A760044E217 /* WIconLabel.swift */,
+				7D6B911628449F610044E217 /* WCategoryTitleLabel.swift */,
+				7D6B91182844A8D50044E217 /* WStatusTimeLabel.swift */,
+				7DEA17792845E7C500F6B990 /* WEmojiView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		7DB5E13A284B4D9000DBB7EA /* Coordinator */ = {
