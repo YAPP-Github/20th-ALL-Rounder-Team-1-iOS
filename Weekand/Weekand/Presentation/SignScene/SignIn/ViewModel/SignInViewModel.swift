@@ -49,6 +49,7 @@ class SignInViewModel: ViewModelType {
         input.nextButtonDidTapEvent.withLatestFrom(checkEmailPassword).subscribe(onNext: { [weak self] isCheck in
             if isCheck {
                 print("다음")
+                self?.coordinator?.showMainScene()
             } else {
                 print("alert")
             }

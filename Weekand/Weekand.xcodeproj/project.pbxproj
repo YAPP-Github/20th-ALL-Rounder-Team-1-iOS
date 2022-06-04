@@ -19,6 +19,8 @@
 		7D76AEB628445AA5001C668D /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D76AEB528445AA5001C668D /* MainTableViewCell.swift */; };
 		7D76AEB828448C79001C668D /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D76AEB728448C79001C668D /* Font.swift */; };
 		7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80021A283DEAE7007874C6 /* WelcomeViewController.swift */; };
+		7DB5E13C284B4DA400DBB7EA /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB5E13B284B4DA400DBB7EA /* MainCoordinator.swift */; };
+		7DB5E13E284B4E3C00DBB7EA /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB5E13D284B4E3C00DBB7EA /* MainViewModel.swift */; };
 		7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166A82837140000F1A8F1 /* SignUpViewController.swift */; };
 		7DC166AB2837140B00F1A8F1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166AA2837140B00F1A8F1 /* SignInViewController.swift */; };
 		7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166B02837145200F1A8F1 /* SignUpViewModel.swift */; };
@@ -74,6 +76,8 @@
 		7D76AEB528445AA5001C668D /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		7D76AEB728448C79001C668D /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		7D80021A283DEAE7007874C6 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		7DB5E13B284B4DA400DBB7EA /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		7DB5E13D284B4E3C00DBB7EA /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		7DC166A82837140000F1A8F1 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7DC166AA2837140B00F1A8F1 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		7DC166B02837145200F1A8F1 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 		7D76AEB02844588E001C668D /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				7DB5E13A284B4D9000DBB7EA /* Coordinator */,
 				7D76AEB1284458A4001C668D /* ViewModel */,
 				7D76AEB2284458AC001C668D /* View */,
 			);
@@ -207,6 +212,7 @@
 		7D76AEB1284458A4001C668D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				7DB5E13D284B4E3C00DBB7EA /* MainViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -245,6 +251,14 @@
 				7D80021A283DEAE7007874C6 /* WelcomeViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7DB5E13A284B4D9000DBB7EA /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				7DB5E13B284B4DA400DBB7EA /* MainCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		7DC166A72837139300F1A8F1 /* SignScene */ = {
@@ -616,6 +630,7 @@
 				F354C3DF283CECF5008929FD /* WTextLabel.swift in Sources */,
 				7DC166BC28371B0C00F1A8F1 /* ColorSet.swift in Sources */,
 				F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */,
+				7DB5E13C284B4DA400DBB7EA /* MainCoordinator.swift in Sources */,
 				7D76AEB4284458C2001C668D /* MainViewController.swift in Sources */,
 				7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */,
 				F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */,
@@ -651,6 +666,7 @@
 				F354C3EA283E6946008929FD /* NSMutableAttributedString+extension.swift in Sources */,
 				F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */,
 				F3DD022728466E3300AD9240 /* SignUpCoordinator.swift in Sources */,
+				7DB5E13E284B4E3C00DBB7EA /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

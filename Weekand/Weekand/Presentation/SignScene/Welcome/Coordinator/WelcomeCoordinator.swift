@@ -45,6 +45,7 @@ extension WelcomeCoordinator: CoordinatorDidFinishDelegate {
     }
 }
 
+// TODO: 빼기
 protocol CoordinatorDidFinishDelegate: AnyObject {
     func childDidFinish(_ child: Coordinator)
 }
