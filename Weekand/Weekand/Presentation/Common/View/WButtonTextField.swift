@@ -45,7 +45,7 @@ class WButtonTextField: UIView {
             make.bottom.equalToSuperview().offset(-UIEdgeInsets.defaultInsetAmount/2)
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(-UIEdgeInsets.defaultInsetAmount/2)
-            make.width.greaterThanOrEqualTo(textField.snp.width).multipliedBy(1/4)
+            make.width.greaterThanOrEqualTo(textField.snp.width).multipliedBy(1/4.5)
         }
         
     }
