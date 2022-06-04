@@ -116,8 +116,7 @@ class SignUpViewController: BaseViewController {
             if isVaild {
                 // 임시
                 self?.emailStackView.informInvaildMessage(string: "")
-                // 버튼 비활성화 코드
-                self?.emailStackView.buttonTextField.button.isEnabled = false
+                self?.emailStackView.buttonTextField.button.disable()
             } else {
                 self?.emailStackView.informInvaildMessage(string: "올바른 형식으로 입력해주세요")
             }
@@ -127,8 +126,7 @@ class SignUpViewController: BaseViewController {
             if isCheck {
                 // 임시
                 self?.authenticationNumberStackView.informInvaildMessage(string: "")
-                // 버튼 비활성화 코드
-                self?.authenticationNumberStackView.buttonTextField.button.isEnabled = false
+                self?.authenticationNumberStackView.buttonTextField.button.disable()
             } else {
                 self?.authenticationNumberStackView.informInvaildMessage(string: "잘못된 인증번호입니다")
             }

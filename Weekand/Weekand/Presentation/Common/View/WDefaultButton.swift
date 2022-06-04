@@ -100,4 +100,10 @@ extension WDefaultButton {
         }
     }
     
+    func disable() {
+        isEnabled = false
+        self.setBackgroundColor((.gray300 ?? .systemGray))
+        self.setTitleColor(.white)
+    }
+    
 }
