@@ -73,7 +73,7 @@ class InputGroupStackView: UIStackView {
     
     func informInvaildMessage(string: String) {
         informlabel.isHidden = false
-        informlabel.textColor = .worange
+        informlabel.textColor = .wred
         informlabel.text = string
     }
     
