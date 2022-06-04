@@ -12,4 +12,5 @@ enum CoordinatorType {
     case welcome
     case signIn
     case signUp
+    case main
 }
