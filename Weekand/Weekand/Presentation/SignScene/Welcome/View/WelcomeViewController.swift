@@ -22,7 +22,7 @@ class WelcomeViewController: UIViewController {
     
     lazy var introLabel = UILabel().then {
         $0.text = "We can do, Week and!"
-        $0.font = UIFont(name: "PretendardVariable-Bold", size: defaultFontSize*1.5)
+        $0.font = WFont.head1()
     }
     
     lazy var titleStack = UIStackView().then {

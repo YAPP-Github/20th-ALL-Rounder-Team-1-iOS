@@ -18,12 +18,10 @@ class InputGroupStackView: UIStackView {
     }
     
     lazy var namelabel = WTextLabel().then {
-        $0.font = UIFont(name: "PretendardVariable-Medium", size: 12.5)
         $0.textColor = UIColor.gray800
     }
     
     lazy var informlabel = WTextLabel().then {
-        $0.font = UIFont(name: "PretendardVariable-Medium", size: 13)
         $0.textColor = UIColor.gray500
     }
     

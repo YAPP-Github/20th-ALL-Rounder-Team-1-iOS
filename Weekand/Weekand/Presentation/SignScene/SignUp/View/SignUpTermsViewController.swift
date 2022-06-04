@@ -79,7 +79,6 @@ class SignUpTermsViewController: UIViewController {
         wholeAgreeStackView.addArrangedSubview(checkBoxButton)
         wholeAgreeStackView.addArrangedSubview(wholeAgreeLabel)
         wholeAgreeStackView.snp.makeConstraints { make in
-            // top 임시값 세팅
             make.top.equalToSuperview().offset(80)
             make.trailing.leading.equalToSuperview().inset(30)
         }

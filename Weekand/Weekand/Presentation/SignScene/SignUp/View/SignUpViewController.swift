@@ -68,14 +68,13 @@ class SignUpViewController: BaseViewController {
     private func setupView() {
         view.backgroundColor = .white
         navigationItem.title = "회원가입"
-        stackView.spacing = 30
+        stackView.spacing = 25
     }
     
     private func configureUI() {
         [welcomeLabel, emailStackView, authenticationNumberStackView, nickNameStackView, passwordStackView, passwordCheckStackView].forEach { stackView.addArrangedSubview($0) }
         stackView.snp.makeConstraints { make in
-            // top 임시값 세팅
-            make.top.equalToSuperview().offset(30)
+            make.top.equalToSuperview().offset(25)
             make.bottom.equalToSuperview().offset(-WBottmButton.buttonOffset - 64)
             make.trailing.leading.equalToSuperview().inset(20)
         }

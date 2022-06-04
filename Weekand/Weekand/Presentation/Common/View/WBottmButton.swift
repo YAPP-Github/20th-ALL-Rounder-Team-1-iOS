@@ -21,7 +21,7 @@ class WBottmButton: UIButton {
 
     private func setupView() {
         self.titleLabel?.adjustsFontForContentSizeCategory = true
-        self.titleLabel?.font = UIFont(name: "PretendardVariable-SemiBold", size: defaultFontSize)
+        self.titleLabel?.font = WFont.subHead1()
         
         self.contentVerticalAlignment = .top
     }

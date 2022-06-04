@@ -26,7 +26,7 @@ class WCheckBox: UIButton {
         self.setTitleColor(.darkGray, for: .normal)
         self.setTitleColor(.darkGray, for: .selected)
         
-        self.titleLabel?.font = UIFont(name: "PretendardVariable-Medium", size: defaultFontSize)
+        self.titleLabel?.font = WFont.body2()
     }
     
     init(title: String, isChecked: Bool) {

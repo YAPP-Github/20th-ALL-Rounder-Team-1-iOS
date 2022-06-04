@@ -20,6 +20,6 @@ class WTextLabel: UILabel {
     }
 
     func setupView() {
-        font = UIFont(name: "PretendardVariable-Medium", size: defaultFontSize)
+        font = WFont.body2()
     }
 }

@@ -20,7 +20,7 @@ class SignInViewController: UIViewController {
                     반가워요!
                     함께 일정 관리해요 :)
                   """
-        $0.font = UIFont(name: "PretendardVariable-Bold", size: defaultFontSize*1.75)
+        $0.font = UIFont(name: "PretendardVariable-Bold", size: 24)
         $0.numberOfLines = 0
     }
     
