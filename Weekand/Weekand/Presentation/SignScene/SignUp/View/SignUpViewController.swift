@@ -116,7 +116,6 @@ class SignUpViewController: BaseViewController {
         output.vaildEmail.drive(onNext: { [weak self] isVaild in
             if isVaild {
                 self?.emailStackView.hideInformlabel()
-                self?.emailStackView.buttonTextField.button.disable()
             } else {
                 self?.emailStackView.setInformlabelText(string: "올바른 형식으로 입력해주세요", informType: .invaild)
             }
@@ -125,7 +124,9 @@ class SignUpViewController: BaseViewController {
         output.checkAuthenticationNumber.drive(onNext: { [weak self] isCheck in
             if isCheck {
                 self?.authenticationNumberStackView.hideInformlabel()
-                self?.authenticationNumberStackView.buttonTextField.button.disable()
+                self?.authenticationNumberStackView.disableButton(title: "확인완료", foregroundColor: .white, backgroundColor: .gray300 ?? .systemGray)
+                self?.emailStackView.disableButton(title: "인증완료", foregroundColor: .white, backgroundColor: .gray300 ?? .systemGray)
+                self?.emailStackView.disableTextField()
             } else {
                 self?.authenticationNumberStackView.setInformlabelText(string: "잘못된 인증번호입니다", informType: .invaild)
             }

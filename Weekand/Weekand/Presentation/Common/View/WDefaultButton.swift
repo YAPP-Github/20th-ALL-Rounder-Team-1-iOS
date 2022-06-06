@@ -83,28 +83,17 @@ extension WDefaultButton {
         self.setAttributedTitle(attributedTitle, for: .normal)
     }
     
-    func setBackgroundColor(_ color: UIColor) {
+    func disable(_ title: String, foregroundColor: UIColor, backgroundColor: UIColor) {
         
         if #available(iOS 15.0, *) {
-            self.configuration?.background.backgroundColor = color
+            self.configuration?.background.backgroundColor = backgroundColor
         } else {
-            self.backgroundColor = color
+            self.backgroundColor = backgroundColor
         }
-    }
-    
-    func setTitleColor(_ color: UIColor) {
-        
-        if #available(iOS 15.0, *) {
-            self.configuration?.baseForegroundColor = color
-        } else {
-            self.setTitleColor(color, for: .normal)
-        }
-    }
-    
-    func disable() {
-        isEnabled = false
-        self.setBackgroundColor((.gray300 ?? .systemGray))
-        self.setTitleColor(.white)
+        let attribute = [NSAttributedString.Key.foregroundColor: foregroundColor,
+                         NSAttributedString.Key.font: WFont.body2()]
+        let attributedTitle = NSAttributedString(string: title, attributes: attribute as [NSAttributedString.Key: Any])
+        self.setAttributedTitle(attributedTitle, for: .normal)
     }
     
 }
