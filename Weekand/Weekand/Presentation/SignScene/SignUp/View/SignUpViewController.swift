@@ -46,8 +46,9 @@ class SignUpViewController: BaseViewController {
     
     lazy var passwordStackView = InputGroupStackView().then {
         $0.setNameLabelText(string: "비밀번호")
-        $0.setInformlabelText(string: "숫자, 영어 조합 8자리 이상")
+        $0.setInformlabelText(string: "숫자, 영어 조합 8자리 이상", informType: .normal)
         $0.setPlaceholderText(string: "비밀번호를 입력해주세요")
+        $0.setSecureTextEntry()
         $0.hideTextFieldButton()
     }
     
@@ -114,48 +115,51 @@ class SignUpViewController: BaseViewController {
     private func bindOutput(_ output: SignUpViewModel.Output) {
         output.vaildEmail.drive(onNext: { [weak self] isVaild in
             if isVaild {
-                // 임시
-                self?.emailStackView.informInvaildMessage(string: "")
-                self?.emailStackView.buttonTextField.button.disable()
+                self?.emailStackView.hideInformlabel()
             } else {
-                self?.emailStackView.informInvaildMessage(string: "올바른 형식으로 입력해주세요")
+                self?.emailStackView.setInformlabelText(string: "올바른 형식으로 입력해주세요", informType: .invaild)
             }
         }).disposed(by: disposeBag)
         
         output.checkAuthenticationNumber.drive(onNext: { [weak self] isCheck in
             if isCheck {
-                // 임시
-                self?.authenticationNumberStackView.informInvaildMessage(string: "")
-                self?.authenticationNumberStackView.buttonTextField.button.disable()
+                self?.authenticationNumberStackView.hideInformlabel()
+                self?.authenticationNumberStackView.disableButton(title: "확인완료")
+                self?.emailStackView.disableButton(title: "인증완료")
+                self?.emailStackView.disableTextField()
+                self?.authenticationNumberStackView.disableTextField()
             } else {
-                self?.authenticationNumberStackView.informInvaildMessage(string: "잘못된 인증번호입니다")
+                self?.authenticationNumberStackView.setInformlabelText(string: "잘못된 인증번호입니다", informType: .invaild)
             }
         }).disposed(by: disposeBag)
         
         output.checkNickName.drive(onNext: { [weak self] isCheck in
             if isCheck {
-                // 임시
-                self?.nickNameStackView.informVaildMessage(string: "사용가능한 닉네임입니다")
+                self?.nickNameStackView.setInformlabelText(string: "사용가능한 닉네임입니다", informType: .vaild)
+                self?.nickNameStackView.disableButton(title: "중복확인")
             } else {
-                self?.nickNameStackView.informInvaildMessage(string: "중복된 닉네임입니다")
+                self?.nickNameStackView.setInformlabelText(string: "중복된 닉네임입니다", informType: .invaild)
             }
+        }).disposed(by: disposeBag)
+        
+        nickNameStackView.buttonTextField.textField.rx.controlEvent([.editingChanged]).subscribe(onNext: { [weak self] in
+            self?.nickNameStackView.enableButton(title: "중복확인")
+            self?.nickNameStackView.hideInformlabel()
         }).disposed(by: disposeBag)
         
         output.vaildPassword.drive(onNext: { [weak self] isVaild in
             if isVaild {
-                // default state
-                self?.passwordStackView.informInvaildMessage(string: "숫자, 영어 조합 8자리 이상")
+                self?.passwordStackView.setInformlabelText(string: "숫자, 영어 조합 8자리 이상", informType: .normal)
             } else {
-                self?.passwordStackView.informInvaildMessage(string: "숫자, 영어 조합 8자리 이상 입력해주세요")
+                self?.passwordStackView.setInformlabelText(string: "숫자, 영어 조합 8자리 이상 입력해주세요", informType: .invaild)
             }
         }).disposed(by: disposeBag)
         
         output.accordPassword.drive(onNext: { [weak self] isAccord in
             if isAccord {
-                // default state
-                self?.passwordCheckStackView.informInvaildMessage(string: "")
+                self?.passwordCheckStackView.hideInformlabel()
             } else {
-                self?.passwordCheckStackView.informInvaildMessage(string: "비밀번호가 일치하지 않습니다")
+                self?.passwordCheckStackView.setInformlabelText(string: "비밀번호가 일치하지 않습니다", informType: .invaild)
             }
         }).disposed(by: disposeBag)
         

@@ -10,6 +10,23 @@ import Then
 import SnapKit
 
 class InputGroupStackView: UIStackView {
+    
+    enum InformType {
+        case normal
+        case vaild
+        case invaild
+        
+        var textColor: UIColor {
+            switch self {
+            case .normal:
+                return .gray500 ?? .gray
+            case .vaild:
+                return .wblue ?? .systemBlue
+            case .invaild:
+                return .wred ?? .systemRed
+            }
+        }
+    }
 
     lazy var informationStackView = UIStackView().then {
         $0.axis = .horizontal
@@ -21,9 +38,7 @@ class InputGroupStackView: UIStackView {
         $0.textColor = UIColor.gray800
     }
     
-    lazy var informlabel = WTextLabel().then {
-        $0.textColor = UIColor.gray500
-    }
+    let informlabel = WTextLabel()
     
     let buttonTextField = WButtonTextField()
     
@@ -46,14 +61,18 @@ class InputGroupStackView: UIStackView {
         
         namelabel.setContentHuggingPriority(.init(rawValue: 251), for: .horizontal)
     }
-    
+
+}
+
+extension InputGroupStackView {
     func setNameLabelText(string: String) {
         namelabel.text = string
     }
     
-    func setInformlabelText(string: String) {
+    func setInformlabelText(string: String, informType: InformType) {
         informlabel.isHidden = false
         informlabel.text = string
+        informlabel.textColor = informType.textColor
     }
     
     func setPlaceholderText(string: String) {
@@ -64,20 +83,31 @@ class InputGroupStackView: UIStackView {
         buttonTextField.button.setTitle(string, for: .normal, font: WFont.body2())
     }
     
-    // 개선 필요
+    func disableButton(title: String) {
+        buttonTextField.button.isEnabled = false
+        buttonTextField.button.setButtonColor(title, foregroundColor: .white, backgroundColor: .gray300)
+    }
+    
+    func enableButton(title: String) {
+        buttonTextField.button.isEnabled = true
+        buttonTextField.button.setButtonColor(title, foregroundColor: .white, backgroundColor: .mainColor)
+    }
+    
+    func disableTextField() {
+        buttonTextField.textField.textColor = .gray500
+        buttonTextField.textField.isEnabled = false
+    }
+
     func hideTextFieldButton() {
         buttonTextField.button.isHidden = true
     }
     
-    func informInvaildMessage(string: String) {
-        informlabel.isHidden = false
-        informlabel.textColor = .wred
-        informlabel.text = string
+    func hideInformlabel() {
+        informlabel.isHidden = true
     }
     
-    func informVaildMessage(string: String) {
-        informlabel.isHidden = false
-        informlabel.textColor = .wblue
-        informlabel.text = string
+    func setSecureTextEntry() {
+        buttonTextField.textField.isSecureTextEntry = true
     }
+    
 }

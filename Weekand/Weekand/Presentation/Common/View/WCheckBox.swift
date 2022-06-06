@@ -21,7 +21,7 @@ class WCheckBox: UIButton {
 
     private func setupView() {
         self.setImage(UIImage(systemName: "checkmark.square.fill")!.withTintColor(.lightGray!), for: .normal)
-        self.setImage(UIImage(systemName: "checkmark.square.fill")!.withTintColor(.mainColor!), for: .selected)
+        self.setImage(UIImage(systemName: "checkmark.square.fill")!.withTintColor(.mainColor), for: .selected)
         
         self.setTitleColor(.darkGray, for: .normal)
         self.setTitleColor(.darkGray, for: .selected)

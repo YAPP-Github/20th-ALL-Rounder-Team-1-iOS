@@ -42,6 +42,9 @@ class InformationGroupStackView: UIStackView {
         namelabel.setContentHuggingPriority(.init(rawValue: 251), for: .horizontal)
     }
     
+}
+
+extension InformationGroupStackView {
     func setNameLabelText(string: String) {
         namelabel.text = string
     }
