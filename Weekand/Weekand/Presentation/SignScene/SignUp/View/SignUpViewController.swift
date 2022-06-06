@@ -60,18 +60,21 @@ class SignUpViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
  
-        view.backgroundColor = .white
-        navigationItem.title = "회원가입"
-        stackView.spacing = 30
+        setupView()
         configureUI()
         bindViewModel()
     }
     
-    func configureUI() {
+    private func setupView() {
+        view.backgroundColor = .white
+        navigationItem.title = "회원가입"
+        stackView.spacing = 25
+    }
+    
+    private func configureUI() {
         [welcomeLabel, emailStackView, authenticationNumberStackView, nickNameStackView, passwordStackView, passwordCheckStackView].forEach { stackView.addArrangedSubview($0) }
         stackView.snp.makeConstraints { make in
-            // top 임시값 세팅
-            make.top.equalToSuperview().offset(30)
+            make.top.equalToSuperview().offset(25)
             make.bottom.equalToSuperview().offset(-WBottmButton.buttonOffset - 64)
             make.trailing.leading.equalToSuperview().inset(20)
         }
@@ -85,7 +88,7 @@ class SignUpViewController: BaseViewController {
         }
     }
     
-    func bindViewModel() {
+    private func bindViewModel() {
         guard let viewModel = self.viewModel else {
             return
         }
@@ -108,13 +111,12 @@ class SignUpViewController: BaseViewController {
         bindOutput(output)
     }
     
-    func bindOutput(_ output: SignUpViewModel.Output) {
+    private func bindOutput(_ output: SignUpViewModel.Output) {
         output.vaildEmail.drive(onNext: { [weak self] isVaild in
             if isVaild {
                 // 임시
                 self?.emailStackView.informInvaildMessage(string: "")
-                // 버튼 비활성화 코드
-                self?.emailStackView.buttonTextField.button.isEnabled = false
+                self?.emailStackView.buttonTextField.button.disable()
             } else {
                 self?.emailStackView.informInvaildMessage(string: "올바른 형식으로 입력해주세요")
             }
@@ -124,8 +126,7 @@ class SignUpViewController: BaseViewController {
             if isCheck {
                 // 임시
                 self?.authenticationNumberStackView.informInvaildMessage(string: "")
-                // 버튼 비활성화 코드
-                self?.authenticationNumberStackView.buttonTextField.button.isEnabled = false
+                self?.authenticationNumberStackView.buttonTextField.button.disable()
             } else {
                 self?.authenticationNumberStackView.informInvaildMessage(string: "잘못된 인증번호입니다")
             }

@@ -18,12 +18,10 @@ class InputGroupStackView: UIStackView {
     }
     
     lazy var namelabel = WTextLabel().then {
-        $0.font = UIFont(name: "PretendardVariable-Medium", size: 12.5)
         $0.textColor = UIColor.gray800
     }
     
     lazy var informlabel = WTextLabel().then {
-        $0.font = UIFont(name: "PretendardVariable-Medium", size: 13)
         $0.textColor = UIColor.gray500
     }
     
@@ -63,7 +61,7 @@ class InputGroupStackView: UIStackView {
     }
     
     func setButtonText(string: String) {
-        buttonTextField.button.setTitle(string, for: .normal)
+        buttonTextField.button.setTitle(string, for: .normal, font: WFont.body2())
     }
     
     // 개선 필요
@@ -73,7 +71,7 @@ class InputGroupStackView: UIStackView {
     
     func informInvaildMessage(string: String) {
         informlabel.isHidden = false
-        informlabel.textColor = .worange
+        informlabel.textColor = .wred
         informlabel.text = string
     }
     

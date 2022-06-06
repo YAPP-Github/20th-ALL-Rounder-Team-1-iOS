@@ -22,7 +22,7 @@ class WelcomeViewController: UIViewController {
     
     lazy var introLabel = UILabel().then {
         $0.text = "We can do, Week and!"
-        $0.font = UIFont(name: "PretendardVariable-Bold", size: defaultFontSize*1.5)
+        $0.font = WFont.head1()
     }
     
     lazy var titleStack = UIStackView().then {
@@ -34,8 +34,8 @@ class WelcomeViewController: UIViewController {
         $0.alignment = .fill
     }
     
-    lazy var signInButton = WDefaultButton(title: "로그인", style: .filled)
-    lazy var signUpButton = WDefaultButton(title: "회원가입", style: .tint)
+    lazy var signInButton = WDefaultButton(title: "로그인", style: .filled, font: WFont.subHead1())
+    lazy var signUpButton = WDefaultButton(title: "회원가입", style: .tint, font: WFont.subHead1())
     
     lazy var buttonStack = UIStackView().then {
         $0.addArrangedSubview(signInButton)
