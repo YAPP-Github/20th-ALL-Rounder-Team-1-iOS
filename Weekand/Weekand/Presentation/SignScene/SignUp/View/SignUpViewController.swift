@@ -127,6 +127,7 @@ class SignUpViewController: BaseViewController {
                 self?.authenticationNumberStackView.disableButton(title: "확인완료")
                 self?.emailStackView.disableButton(title: "인증완료")
                 self?.emailStackView.disableTextField()
+                self?.authenticationNumberStackView.disableTextField()
             } else {
                 self?.authenticationNumberStackView.setInformlabelText(string: "잘못된 인증번호입니다", informType: .invaild)
             }
@@ -141,9 +142,10 @@ class SignUpViewController: BaseViewController {
             }
         }).disposed(by: disposeBag)
         
-        nickNameStackView.buttonTextField.textField.rx.controlEvent([.allEditingEvents]).subscribe(onNext: { [weak self] in
+        nickNameStackView.buttonTextField.textField.rx.controlEvent([.editingChanged]).subscribe(onNext: { [weak self] in
             self?.nickNameStackView.enableButton(title: "중복확인")
-        })
+            self?.nickNameStackView.hideInformlabel()
+        }).disposed(by: disposeBag)
         
         output.vaildPassword.drive(onNext: { [weak self] isVaild in
             if isVaild {
