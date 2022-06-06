@@ -19,7 +19,7 @@
 		7D76AEB628445AA5001C668D /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D76AEB528445AA5001C668D /* MainTableViewCell.swift */; };
 		7D76AEB828448C79001C668D /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D76AEB728448C79001C668D /* Font.swift */; };
 		7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80021A283DEAE7007874C6 /* WelcomeViewController.swift */; };
-		7DAA861F284B968000F21E35 /* ScheduleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAA861E284B968000F21E35 /* ScheduleList.swift */; };
+		7DAA861F284B968000F21E35 /* ScehduleMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAA861E284B968000F21E35 /* ScehduleMain.swift */; };
 		7DB5E13C284B4DA400DBB7EA /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB5E13B284B4DA400DBB7EA /* MainCoordinator.swift */; };
 		7DB5E13E284B4E3C00DBB7EA /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB5E13D284B4E3C00DBB7EA /* MainViewModel.swift */; };
 		7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166A82837140000F1A8F1 /* SignUpViewController.swift */; };
@@ -35,6 +35,7 @@
 		7DF8B7A928361FB100B224CA /* PretendardVariable.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DF8B7A828361FB100B224CA /* PretendardVariable.ttf */; };
 		7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF8B7AB2836250400B224CA /* UIColor+hex.swift */; };
 		7DF949C8283B6F1F007F84C5 /* CommonShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF949C7283B6F1F007F84C5 /* CommonShape.swift */; };
+		7DF9688A284DF2EB00CE077E /* MainTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF96889284DF2EB00CE077E /* MainTableViewHeader.swift */; };
 		E8BDADFB0F95046E8D0F4BE0 /* Pods_Weekand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */; };
 		F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0128235D500082AF30 /* AppDelegate.swift */; };
 		F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0328235D500082AF30 /* SceneDelegate.swift */; };
@@ -77,7 +78,7 @@
 		7D76AEB528445AA5001C668D /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		7D76AEB728448C79001C668D /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		7D80021A283DEAE7007874C6 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
-		7DAA861E284B968000F21E35 /* ScheduleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleList.swift; sourceTree = "<group>"; };
+		7DAA861E284B968000F21E35 /* ScehduleMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScehduleMain.swift; sourceTree = "<group>"; };
 		7DB5E13B284B4DA400DBB7EA /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		7DB5E13D284B4E3C00DBB7EA /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		7DC166A82837140000F1A8F1 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +94,7 @@
 		7DF8B7A828361FB100B224CA /* PretendardVariable.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PretendardVariable.ttf; sourceTree = "<group>"; };
 		7DF8B7AB2836250400B224CA /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
 		7DF949C7283B6F1F007F84C5 /* CommonShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonShape.swift; sourceTree = "<group>"; };
+		7DF96889284DF2EB00CE077E /* MainTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewHeader.swift; sourceTree = "<group>"; };
 		CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weekand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32ACBFE28235D500082AF30 /* Weekand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weekand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32ACC0128235D500082AF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			children = (
 				7D76AEB528445AA5001C668D /* MainTableViewCell.swift */,
 				7D76AEB3284458C2001C668D /* MainViewController.swift */,
+				7DF96889284DF2EB00CE077E /* MainTableViewHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -255,7 +258,7 @@
 		7DAA861D284B964800F21E35 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				7DAA861E284B968000F21E35 /* ScheduleList.swift */,
+				7DAA861E284B968000F21E35 /* ScehduleMain.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -668,13 +671,14 @@
 				F3DD021A2846629100AD9240 /* Coordinator.swift in Sources */,
 				F3DD0233284A534C00AD9240 /* CoordinatorType.swift in Sources */,
 				F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */,
-				7DAA861F284B968000F21E35 /* ScheduleList.swift in Sources */,
+				7DAA861F284B968000F21E35 /* ScehduleMain.swift in Sources */,
 				7DC166BE28371C4E00F1A8F1 /* WDefaultButton.swift in Sources */,
 				F3DD022E2846815300AD9240 /* ViewModelType.swift in Sources */,
 				F354C3E3283D3615008929FD /* SignUpAddInfomationViewController.swift in Sources */,
 				7D76AEB628445AA5001C668D /* MainTableViewCell.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
 				7D7178ED283E1ED500D7E5F2 /* WTextButton.swift in Sources */,
+				7DF9688A284DF2EB00CE077E /* MainTableViewHeader.swift in Sources */,
 				7DEA177A2845E7C500F6B990 /* WEmojiView.swift in Sources */,
 				7DC166B42837148000F1A8F1 /* SignInViewModel.swift in Sources */,
 				7D3B1F54283630A50037504A /* WTextField.swift in Sources */,
