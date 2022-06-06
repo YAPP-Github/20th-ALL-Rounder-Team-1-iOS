@@ -124,8 +124,8 @@ class SignUpViewController: BaseViewController {
         output.checkAuthenticationNumber.drive(onNext: { [weak self] isCheck in
             if isCheck {
                 self?.authenticationNumberStackView.hideInformlabel()
-                self?.authenticationNumberStackView.disableButton(title: "확인완료", foregroundColor: .white, backgroundColor: .gray300 ?? .systemGray)
-                self?.emailStackView.disableButton(title: "인증완료", foregroundColor: .white, backgroundColor: .gray300 ?? .systemGray)
+                self?.authenticationNumberStackView.disableButton(title: "확인완료")
+                self?.emailStackView.disableButton(title: "인증완료")
                 self?.emailStackView.disableTextField()
             } else {
                 self?.authenticationNumberStackView.setInformlabelText(string: "잘못된 인증번호입니다", informType: .invaild)
@@ -135,10 +135,15 @@ class SignUpViewController: BaseViewController {
         output.checkNickName.drive(onNext: { [weak self] isCheck in
             if isCheck {
                 self?.nickNameStackView.setInformlabelText(string: "사용가능한 닉네임입니다", informType: .vaild)
+                self?.nickNameStackView.disableButton(title: "중복확인")
             } else {
                 self?.nickNameStackView.setInformlabelText(string: "중복된 닉네임입니다", informType: .invaild)
             }
         }).disposed(by: disposeBag)
+        
+        nickNameStackView.buttonTextField.textField.rx.controlEvent([.allEditingEvents]).subscribe(onNext: { [weak self] in
+            self?.nickNameStackView.enableButton(title: "중복확인")
+        })
         
         output.vaildPassword.drive(onNext: { [weak self] isVaild in
             if isVaild {

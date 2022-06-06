@@ -43,21 +43,21 @@ class SignUpViewModel: ViewModelType {
     
     func transform(input: Input) -> Output {
         let vaildEmail = input.emailTextFieldDidEditEvent.map(vaildEmail).asObservable()
-        let vaildEmailWithTap = input.emailButtonDidTapEvent.withLatestFrom(vaildEmail).asDriver(onErrorJustReturn: false)
+        let vaildEmailWithTap = input.emailButtonDidTapEvent.withLatestFrom(vaildEmail)
         
         let checkAuthenticationNumber = input.authNumberTextFieldDidEditEvent.map(checkAuthenticationNumber).asObservable()
-        let checkAuthenticationNumberWithTap = input.authNumberButtonDidTapEvent.withLatestFrom(checkAuthenticationNumber).asDriver(onErrorJustReturn: false)
+        let checkAuthenticationNumberWithTap = input.authNumberButtonDidTapEvent.withLatestFrom(checkAuthenticationNumber)
         
         let checkNickName = input.nickNameTextFieldDidEditEvent.map(checkNickName).asObservable()
-        let checkNickNameWithTap = input.nickNameButtonDidTapEvent.withLatestFrom(checkNickName).asDriver(onErrorJustReturn: false)
+        let checkNickNameWithTap = input.nickNameButtonDidTapEvent.withLatestFrom(checkNickName).asObservable()
         
         let vaildPassword = input.passwordTextFieldDidEditEvent.map(validPassword).asObservable()
-        let vaildPasswordWithEndEdit = input.passwordTextFieldDidEndEditEvent.withLatestFrom(vaildPassword).asDriver(onErrorJustReturn: false)
+        let vaildPasswordWithEndEdit = input.passwordTextFieldDidEndEditEvent.withLatestFrom(vaildPassword)
         
         let accordPassword = Observable.combineLatest(input.passwordTextFieldDidEditEvent, input.passwordCheckTextFieldDidEditEvent).map(accordPassword).asObservable()
-        let accordPasswordWithEndEdit = input.passwordCheckTextFieldDidEndEditEvent.withLatestFrom(accordPassword).asDriver(onErrorJustReturn: false)
+        let accordPasswordWithEndEdit = input.passwordCheckTextFieldDidEndEditEvent.withLatestFrom(accordPassword)
         
-        let nextButtonEnable = Observable.combineLatest(vaildEmail, checkAuthenticationNumber, checkNickName, vaildPassword, accordPassword).map { $0 && $1 && $2 && $3 && $4 }.asDriver(onErrorJustReturn: false)
+        let nextButtonEnable = Observable.combineLatest(vaildEmail, checkAuthenticationNumber, checkNickName, checkNickNameWithTap, vaildPassword, accordPassword).map { $0 && $1 && $2 && $3 && $4 && $5 }
         
         input.nextButtonDidTapEvent.subscribe(onNext: {
             self.coordinator?.pushAddInformationViewController()
@@ -66,12 +66,12 @@ class SignUpViewModel: ViewModelType {
         }).disposed(by: disposeBag)
         
         return Output(
-            vaildEmail: vaildEmailWithTap,
-            checkAuthenticationNumber: checkAuthenticationNumberWithTap,
-            checkNickName: checkNickNameWithTap,
-            vaildPassword: vaildPasswordWithEndEdit,
-            accordPassword: accordPasswordWithEndEdit,
-            nextButtonEnable: nextButtonEnable
+            vaildEmail: vaildEmailWithTap.asDriver(onErrorJustReturn: false),
+            checkAuthenticationNumber: checkAuthenticationNumberWithTap.asDriver(onErrorJustReturn: false),
+            checkNickName: checkNickNameWithTap.asDriver(onErrorJustReturn: false),
+            vaildPassword: vaildPasswordWithEndEdit.asDriver(onErrorJustReturn: false),
+            accordPassword: accordPasswordWithEndEdit.asDriver(onErrorJustReturn: false),
+            nextButtonEnable: nextButtonEnable.asDriver(onErrorJustReturn: false)
         )
     }
     

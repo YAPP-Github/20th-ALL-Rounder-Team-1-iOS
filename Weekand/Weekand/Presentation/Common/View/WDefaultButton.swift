@@ -12,7 +12,7 @@ enum WButtonStyle {
     
     var backGroundColor: UIColor {
         switch self {
-        case .filled: return .mainColor!
+        case .filled: return .mainColor
         case .tint: return .subColor!
         }
     }
@@ -20,7 +20,7 @@ enum WButtonStyle {
     var titleColor: UIColor {
         switch self {
         case .filled: return .white
-        case .tint: return .mainColor!
+        case .tint: return .mainColor
         }
     }
 }
@@ -83,7 +83,7 @@ extension WDefaultButton {
         self.setAttributedTitle(attributedTitle, for: .normal)
     }
     
-    func disable(_ title: String, foregroundColor: UIColor, backgroundColor: UIColor) {
+    func setButtonColor(_ title: String, foregroundColor: UIColor, backgroundColor: UIColor) {
         
         if #available(iOS 15.0, *) {
             self.configuration?.background.backgroundColor = backgroundColor

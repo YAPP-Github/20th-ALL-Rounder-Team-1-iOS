@@ -83,9 +83,14 @@ extension InputGroupStackView {
         buttonTextField.button.setTitle(string, for: .normal, font: WFont.body2())
     }
     
-    func disableButton(title: String, foregroundColor: UIColor, backgroundColor: UIColor) {
+    func disableButton(title: String) {
         buttonTextField.button.isEnabled = false
-        buttonTextField.button.disable(title, foregroundColor: foregroundColor, backgroundColor: backgroundColor)
+        buttonTextField.button.setButtonColor(title, foregroundColor: .white, backgroundColor: .gray300)
+    }
+    
+    func enableButton(title: String) {
+        buttonTextField.button.isEnabled = true
+        buttonTextField.button.setButtonColor(title, foregroundColor: .white, backgroundColor: .mainColor)
     }
     
     func disableTextField() {
