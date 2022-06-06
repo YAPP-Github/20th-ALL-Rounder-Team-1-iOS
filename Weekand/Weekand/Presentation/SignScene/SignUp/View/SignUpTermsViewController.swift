@@ -67,6 +67,7 @@ class SignUpTermsViewController: UIViewController {
         
         configureUI()
         bindViewModel()
+        setupView()
     }
     
     private func setupView() {

@@ -39,6 +39,7 @@ class SignUpAddInfomationViewController: BaseViewController {
         
         configureUI()
         bindViewModel()
+        setupView()
     }
     
     private func setupView() {
