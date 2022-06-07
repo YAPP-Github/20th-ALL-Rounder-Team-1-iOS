@@ -50,6 +50,8 @@
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
+		F392A1C7284F51B100512A42 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1C6284F51B100512A42 /* CategoryViewController.swift */; };
+		F392A1C9284F53A300512A42 /* CategoryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1C8284F53A300512A42 /* CategoryListTableViewCell.swift */; };
 		F3DD0218284661F900AD9240 /* WelcomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD0217284661F900AD9240 /* WelcomeCoordinator.swift */; };
 		F3DD021A2846629100AD9240 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD02192846629100AD9240 /* Coordinator.swift */; };
 		F3DD022428466E0C00AD9240 /* SignInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD022328466E0C00AD9240 /* SignInCoordinator.swift */; };
@@ -110,6 +112,8 @@
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
+		F392A1C6284F51B100512A42 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		F392A1C8284F53A300512A42 /* CategoryListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListTableViewCell.swift; sourceTree = "<group>"; };
 		F3DD0217284661F900AD9240 /* WelcomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeCoordinator.swift; sourceTree = "<group>"; };
 		F3DD02192846629100AD9240 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		F3DD022328466E0C00AD9240 /* SignInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCoordinator.swift; sourceTree = "<group>"; };
@@ -185,6 +189,7 @@
 		7D76AEAF28445878001C668D /* MainScene */ = {
 			isa = PBXGroup;
 			children = (
+				F392A1C2284F508600512A42 /* Category */,
 				7DAA8620284BAF9500F21E35 /* Common */,
 				7D76AEB02844588E001C668D /* Main */,
 			);
@@ -470,6 +475,39 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		F392A1C2284F508600512A42 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				F392A1C5284F50A100512A42 /* ViewModel */,
+				F392A1C4284F509C00512A42 /* View */,
+				F392A1C3284F509300512A42 /* Coordinator */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		F392A1C3284F509300512A42 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		F392A1C4284F509C00512A42 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F392A1C6284F51B100512A42 /* CategoryViewController.swift */,
+				F392A1C8284F53A300512A42 /* CategoryListTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F392A1C5284F50A100512A42 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		F3DD0216284660D200AD9240 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -666,6 +704,7 @@
 				7D6E9972283BA18E006F5FC7 /* WBottmButton.swift in Sources */,
 				F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */,
 				F3DD021A2846629100AD9240 /* Coordinator.swift in Sources */,
+				F392A1C7284F51B100512A42 /* CategoryViewController.swift in Sources */,
 				F3DD0233284A534C00AD9240 /* CoordinatorType.swift in Sources */,
 				F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */,
 				7DAA861F284B968000F21E35 /* ScheduleList.swift in Sources */,
@@ -674,6 +713,7 @@
 				F354C3E3283D3615008929FD /* SignUpAddInfomationViewController.swift in Sources */,
 				7D76AEB628445AA5001C668D /* MainTableViewCell.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
+				F392A1C9284F53A300512A42 /* CategoryListTableViewCell.swift in Sources */,
 				7D7178ED283E1ED500D7E5F2 /* WTextButton.swift in Sources */,
 				7DEA177A2845E7C500F6B990 /* WEmojiView.swift in Sources */,
 				7DC166B42837148000F1A8F1 /* SignInViewModel.swift in Sources */,
