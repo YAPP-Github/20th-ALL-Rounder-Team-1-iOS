@@ -7,8 +7,9 @@
 
 import UIKit
 import SnapKit
+import Then
 
-class CategoryViewController: UIViewController {
+class CategoryViewController: BaseViewController {
     
     enum Section {
       case main
@@ -29,7 +30,23 @@ class CategoryViewController: UIViewController {
     
     var dataSource: UITableViewDiffableDataSource<Section, Category>!
     
-    lazy var tableView = UITableView()
+    lazy var headerStackView = UIStackView().then {
+        $0.axis = .horizontal
+        $0.distribution = .fill
+        $0.spacing = 6
+    }
+    
+    lazy var addCategoryButton = UIButton().then {
+        // 임시
+        $0.backgroundColor = .gray300
+        $0.layer.cornerRadius = 8
+        let buttonImage = UIImage(named: "addCategory")
+        $0.setImage(buttonImage, for: .normal)
+    }
+    
+    lazy var tableView = UITableView().then {
+        $0.isScrollEnabled = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
