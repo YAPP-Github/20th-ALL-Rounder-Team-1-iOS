@@ -42,7 +42,7 @@ class MainTableViewHeader: UITableViewHeaderFooterView {
         }
         
         calanderView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(14)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(dividerLine.snp.top)
             make.height.equalTo(calanderView.snp.height)
