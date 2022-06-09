@@ -40,6 +40,10 @@ class MainViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: cellId)
         tableView.register(MainTableViewHeader.self, forHeaderFooterViewReuseIdentifier: headerId)
+        
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
     }
 
     private func configureUI() {
@@ -91,6 +95,14 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         return MainTableViewHeader()
+    }
+    
+//    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+//        return 200
+//    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 100
     }
 }
 

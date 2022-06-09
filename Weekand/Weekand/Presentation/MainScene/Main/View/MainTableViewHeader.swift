@@ -9,7 +9,11 @@ import UIKit
 
 class MainTableViewHeader: UITableViewHeaderFooterView {
     
-//    lazy var button = WDefaultButton(title: "Header", style: .filled)
+    lazy var calanderView = MainCalanderView()
+    
+    lazy var dividerLine = UIView().then {
+        $0.backgroundColor = .gray100
+    }
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -24,17 +28,26 @@ class MainTableViewHeader: UITableViewHeaderFooterView {
     
     
     private func setUpView() {
-        self.backgroundColor = .brown
+        self.backgroundColor = .backgroundColor
     }
     
     private func configureUI() {
         
-//        self.addSubview(button)
-//        button.snp.makeConstraints { make in
-//            make.width.equalToSuperview().dividedBy(defaultWidthDivider)
-//            make.center.equalToSuperview()
-//            make.bottom.greaterThanOrEqualToSuperview().inset(50)
-//        }
+        [ calanderView, dividerLine ].forEach { self.addSubview($0) }
+        
+        dividerLine.snp.makeConstraints { make in
+            make.height.equalTo(10)
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview().inset(18)
+        }
+        
+        calanderView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(dividerLine.snp.top)
+            make.height.equalTo(calanderView.snp.height)
+        }
+        
     }
     
     
