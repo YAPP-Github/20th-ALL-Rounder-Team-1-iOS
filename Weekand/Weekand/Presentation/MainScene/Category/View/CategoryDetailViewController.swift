@@ -38,10 +38,10 @@ class CategoryDetailViewController: UIViewController {
     }
     
     private func setupView() {
-//        tableView.delegate = self
+        tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.register(CategoryDetailTableViewCell.self, forCellReuseIdentifier: CategoryDetailTableViewCell.cellIdentifier)
-//        tableView.register(CategoryListHeaderView.self, forHeaderFooterViewReuseIdentifier: CategoryListHeaderView.cellIdentifier)
+        tableView.register(CategoryDetailHeaderView.self, forHeaderFooterViewReuseIdentifier: CategoryDetailHeaderView.cellIdentifier)
     }
     
     private func configureUI() {
@@ -80,6 +80,37 @@ extension CategoryDetailViewController {
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
     
+}
+
+extension CategoryDetailViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        return CategoryDetailHeaderView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 120
+    }
+}
+
+extension CategoryDetailViewController {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let update = UIContextualAction(style: .normal, title: "수정") { _, _, _ in
+            print("수정 클릭 됨")
+        }
+        update.backgroundColor = .mainColor
+        
+        
+        let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, _ in
+            self.showActionSheet(titles: "삭제", message: "카테고리를 삭제하시겠어요?") { _ in
+                print("삭제~~")
+            }
+        }
+        delete.backgroundColor = .wred
+        
+        return UISwipeActionsConfiguration(actions: [delete, update])
+    }
 }
 
 import SwiftUI

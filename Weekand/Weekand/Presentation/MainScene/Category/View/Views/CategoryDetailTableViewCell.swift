@@ -10,7 +10,7 @@ import Then
 
 class CategoryDetailTableViewCell: UITableViewCell {
 
-    static let cellIdentifier = "CategoryCell"
+    static let cellIdentifier = "CategoryDetailCell"
     
     lazy var scheduelNameLabel = WCategoryTitleLabel()
     

@@ -43,6 +43,7 @@
 		F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32ACC0C28235D530082AF30 /* LaunchScreen.storyboard */; };
 		F32F72502853AEE00056B189 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F724F2853AEE00056B189 /* CategoryDetailViewController.swift */; };
 		F32F72522853B0930056B189 /* CategoryDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F72512853B0930056B189 /* CategoryDetailTableViewCell.swift */; };
+		F32F72542853C2200056B189 /* CategoryDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F72532853C2200056B189 /* CategoryDetailHeaderView.swift */; };
 		F33C6EAC28533D0A005B493A /* WFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAB28533D0A005B493A /* WFilterButton.swift */; };
 		F33C6EAE28535021005B493A /* UIVIewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAD28535021005B493A /* UIVIewController+extension.swift */; };
 		F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */; };
@@ -111,6 +112,7 @@
 		F32ACC0F28235D530082AF30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F32F724F2853AEE00056B189 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 		F32F72512853B0930056B189 /* CategoryDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailTableViewCell.swift; sourceTree = "<group>"; };
+		F32F72532853C2200056B189 /* CategoryDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailHeaderView.swift; sourceTree = "<group>"; };
 		F33C6EAB28533D0A005B493A /* WFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WFilterButton.swift; sourceTree = "<group>"; };
 		F33C6EAD28535021005B493A /* UIVIewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+extension.swift"; sourceTree = "<group>"; };
 		F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputGroupStackView.swift; sourceTree = "<group>"; };
@@ -478,6 +480,7 @@
 				F392A1C8284F53A300512A42 /* CategoryListTableViewCell.swift */,
 				F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */,
 				F32F72512853B0930056B189 /* CategoryDetailTableViewCell.swift */,
+				F32F72532853C2200056B189 /* CategoryDetailHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -730,6 +733,7 @@
 				F32ACC0628235D500082AF30 /* ViewController.swift in Sources */,
 				7D6E9972283BA18E006F5FC7 /* WBottmButton.swift in Sources */,
 				F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */,
+				F32F72542853C2200056B189 /* CategoryDetailHeaderView.swift in Sources */,
 				F3DD021A2846629100AD9240 /* Coordinator.swift in Sources */,
 				F392A1C7284F51B100512A42 /* CategoryViewController.swift in Sources */,
 				F3DD0233284A534C00AD9240 /* CoordinatorType.swift in Sources */,

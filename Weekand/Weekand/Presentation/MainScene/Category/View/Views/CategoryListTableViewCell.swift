@@ -9,7 +9,7 @@ import UIKit
 
 class CategoryListTableViewCell: UITableViewCell {
 
-    static let cellIdentifier = "CategoryCell"
+    static let cellIdentifier = "CategoryListCell"
     
     lazy var cellStack = UIStackView().then {
         $0.axis = .horizontal

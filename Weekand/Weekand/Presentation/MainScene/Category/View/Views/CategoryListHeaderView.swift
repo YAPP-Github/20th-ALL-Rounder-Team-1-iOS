@@ -9,7 +9,7 @@ import UIKit
 
 class CategoryListHeaderView: UITableViewHeaderFooterView {
 
-    static let cellIdentifier = "CategoryCell"
+    static let cellIdentifier = "CategoryListHeaderCell"
     
     lazy var addCategoryButton = UIButton().then {
         $0.backgroundColor = .subColor
