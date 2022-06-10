@@ -44,6 +44,7 @@
 		F32F72502853AEE00056B189 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F724F2853AEE00056B189 /* CategoryDetailViewController.swift */; };
 		F32F72522853B0930056B189 /* CategoryDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F72512853B0930056B189 /* CategoryDetailTableViewCell.swift */; };
 		F32F72542853C2200056B189 /* CategoryDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F72532853C2200056B189 /* CategoryDetailHeaderView.swift */; };
+		F32F72562853D1E40056B189 /* CategoryDetailFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F72552853D1E40056B189 /* CategoryDetailFooterView.swift */; };
 		F33C6EAC28533D0A005B493A /* WFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAB28533D0A005B493A /* WFilterButton.swift */; };
 		F33C6EAE28535021005B493A /* UIVIewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAD28535021005B493A /* UIVIewController+extension.swift */; };
 		F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */; };
@@ -113,6 +114,7 @@
 		F32F724F2853AEE00056B189 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 		F32F72512853B0930056B189 /* CategoryDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailTableViewCell.swift; sourceTree = "<group>"; };
 		F32F72532853C2200056B189 /* CategoryDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailHeaderView.swift; sourceTree = "<group>"; };
+		F32F72552853D1E40056B189 /* CategoryDetailFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailFooterView.swift; sourceTree = "<group>"; };
 		F33C6EAB28533D0A005B493A /* WFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WFilterButton.swift; sourceTree = "<group>"; };
 		F33C6EAD28535021005B493A /* UIVIewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+extension.swift"; sourceTree = "<group>"; };
 		F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputGroupStackView.swift; sourceTree = "<group>"; };
@@ -481,6 +483,7 @@
 				F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */,
 				F32F72512853B0930056B189 /* CategoryDetailTableViewCell.swift */,
 				F32F72532853C2200056B189 /* CategoryDetailHeaderView.swift */,
+				F32F72552853D1E40056B189 /* CategoryDetailFooterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -714,6 +717,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F354C3E8283D4126008929FD /* SignUpTermsViewController.swift in Sources */,
+				F32F72562853D1E40056B189 /* CategoryDetailFooterView.swift in Sources */,
 				F3DD022B284678CF00AD9240 /* WelcomeViewModel.swift in Sources */,
 				7D6B91192844A8D50044E217 /* WStatusTimeLabel.swift in Sources */,
 				F3DD0235284A6AA600AD9240 /* SignUpAddInformationViewModel.swift in Sources */,

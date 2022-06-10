@@ -42,6 +42,7 @@ class CategoryDetailViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.register(CategoryDetailTableViewCell.self, forCellReuseIdentifier: CategoryDetailTableViewCell.cellIdentifier)
         tableView.register(CategoryDetailHeaderView.self, forHeaderFooterViewReuseIdentifier: CategoryDetailHeaderView.cellIdentifier)
+        tableView.register(CategoryDetailFooterView.self, forHeaderFooterViewReuseIdentifier: CategoryDetailFooterView.cellIdentifier)
     }
     
     private func configureUI() {
@@ -90,6 +91,14 @@ extension CategoryDetailViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 120
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return CategoryDetailFooterView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 70
     }
 }
 

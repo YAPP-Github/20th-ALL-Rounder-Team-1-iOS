@@ -13,6 +13,7 @@ class CategoryDetailHeaderView: UITableViewHeaderFooterView {
     
     lazy var searchBar = UISearchBar().then {
         $0.searchBarStyle = .minimal
+        $0.placeholder = "일정을 검색해보세요"
     }
     
     lazy var filterButton = WFilterButton().then {
