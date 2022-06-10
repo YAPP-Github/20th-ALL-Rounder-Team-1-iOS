@@ -55,7 +55,7 @@
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
-		F392A1C7284F51B100512A42 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1C6284F51B100512A42 /* CategoryViewController.swift */; };
+		F392A1C7284F51B100512A42 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1C6284F51B100512A42 /* CategoryListViewController.swift */; };
 		F392A1C9284F53A300512A42 /* CategoryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1C8284F53A300512A42 /* CategoryListTableViewCell.swift */; };
 		F392A1CB284F5AB400512A42 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1CA284F5AB400512A42 /* Category.swift */; };
 		F392A1EF28531FC600512A42 /* CategoryListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */; };
@@ -124,7 +124,7 @@
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
-		F392A1C6284F51B100512A42 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		F392A1C6284F51B100512A42 /* CategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewController.swift; sourceTree = "<group>"; };
 		F392A1C8284F53A300512A42 /* CategoryListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListTableViewCell.swift; sourceTree = "<group>"; };
 		F392A1CA284F5AB400512A42 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListHeaderView.swift; sourceTree = "<group>"; };
@@ -523,7 +523,7 @@
 		F392A1C4284F509C00512A42 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F392A1C6284F51B100512A42 /* CategoryViewController.swift */,
+				F392A1C6284F51B100512A42 /* CategoryListViewController.swift */,
 				F32F724F2853AEE00056B189 /* CategoryDetailViewController.swift */,
 				F33C6EAF2853530B005B493A /* Views */,
 			);
@@ -735,7 +735,7 @@
 				F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */,
 				F32F72542853C2200056B189 /* CategoryDetailHeaderView.swift in Sources */,
 				F3DD021A2846629100AD9240 /* Coordinator.swift in Sources */,
-				F392A1C7284F51B100512A42 /* CategoryViewController.swift in Sources */,
+				F392A1C7284F51B100512A42 /* CategoryListViewController.swift in Sources */,
 				F3DD0233284A534C00AD9240 /* CoordinatorType.swift in Sources */,
 				F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */,
 				7DAA861F284B968000F21E35 /* ScheduleList.swift in Sources */,

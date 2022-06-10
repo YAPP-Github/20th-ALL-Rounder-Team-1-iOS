@@ -1,5 +1,5 @@
 //
-//  CategoryViewController.swift
+//  CategoryListViewController.swift
 //  Weekand
 //
 //  Created by 이호영 on 2022/06/07.
@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class CategoryViewController: UIViewController {
+class CategoryListViewController: UIViewController {
     
     enum Section {
       case main
@@ -58,7 +58,7 @@ class CategoryViewController: UIViewController {
 }
 
 // MARK: TableView
-extension CategoryViewController {
+extension CategoryListViewController {
     
     private func configureDataSource() {
         
@@ -82,7 +82,7 @@ extension CategoryViewController {
     
 }
 
-extension CategoryViewController: UITableViewDelegate {
+extension CategoryListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         return CategoryListHeaderView()
@@ -93,7 +93,7 @@ extension CategoryViewController: UITableViewDelegate {
     }
 }
 
-extension CategoryViewController {
+extension CategoryListViewController {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let update = UIContextualAction(style: .normal, title: "수정") { _, _, _ in
@@ -116,10 +116,10 @@ extension CategoryViewController {
 import SwiftUI
 #if canImport(SwiftUI) && DEBUG
 
-struct CategoryViewControllerPreview: PreviewProvider {
+struct CategoryListViewControllerPreview: PreviewProvider {
     static var previews: some View {
         Group {
-            CategoryViewController().showPreview(.iPhone11Pro)
+            CategoryListViewController().showPreview(.iPhone11Pro)
         }
     }
 }
