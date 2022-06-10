@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class CategoryViewController: BaseViewController {
+class CategoryViewController: UIViewController {
     
     enum Section {
       case main
@@ -30,23 +30,7 @@ class CategoryViewController: BaseViewController {
     
     var dataSource: UITableViewDiffableDataSource<Section, Category>!
     
-    lazy var headerStackView = UIStackView().then {
-        $0.axis = .horizontal
-        $0.distribution = .fill
-        $0.spacing = 6
-    }
-    
-    lazy var addCategoryButton = UIButton().then {
-        // 임시
-        $0.backgroundColor = .gray300
-        $0.layer.cornerRadius = 8
-        let buttonImage = UIImage(named: "addCategory")
-        $0.setImage(buttonImage, for: .normal)
-    }
-    
-    lazy var tableView = UITableView().then {
-        $0.isScrollEnabled = false
-    }
+    let tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,8 +43,10 @@ class CategoryViewController: BaseViewController {
     }
     
     private func setupView() {
+        tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.register(CategoryListTableViewCell.self, forCellReuseIdentifier: CategoryListTableViewCell.cellIdentifier)
+        tableView.register(CategoryListHeaderView.self, forHeaderFooterViewReuseIdentifier: CategoryListHeaderView.cellIdentifier)
     }
     
     private func configureUI() {
@@ -99,6 +85,17 @@ extension CategoryViewController {
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
     
+}
+
+extension CategoryViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        return CategoryListHeaderView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60
+    }
 }
 
 import SwiftUI

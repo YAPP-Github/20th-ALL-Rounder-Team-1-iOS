@@ -69,12 +69,12 @@ class CategoryListTableViewCell: UITableViewCell {
         
         cellStack.snp.makeConstraints { make in
             make.edges.equalTo(UIEdgeInsets(top: 12, left: 24, bottom: 12, right: 14))
-            make.height.equalTo(cellStack.snp.width).multipliedBy(1/5.4)
+            make.height.equalTo(cellStack.snp.width).multipliedBy(1/7.5)
         }
         
         colorView.snp.makeConstraints { make in
-            make.width.height.equalTo(contentView.snp.width).multipliedBy(1/10.4)
-            make.centerY.equalTo(contentView.snp.centerY)
+            make.width.height.equalTo(self.snp.width).multipliedBy(1/10.4)
+            make.centerY.equalTo(self.snp.centerY)
         }
         
         contentStack.addArrangedSubview(openTypeLabel)
