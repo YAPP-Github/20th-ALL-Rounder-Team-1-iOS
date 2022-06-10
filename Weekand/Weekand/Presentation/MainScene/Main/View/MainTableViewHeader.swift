@@ -9,7 +9,7 @@ import UIKit
 
 class MainTableViewHeader: UITableViewHeaderFooterView {
     
-    lazy var calanderView = MainCalanderView()
+    lazy var calendarView = MainCalendarView()
     
     lazy var dividerLine = UIView().then {
         $0.backgroundColor = .gray100
@@ -33,19 +33,18 @@ class MainTableViewHeader: UITableViewHeaderFooterView {
     
     private func configureUI() {
         
-        [ calanderView, dividerLine ].forEach { self.addSubview($0) }
+        [ calendarView, dividerLine ].forEach { self.addSubview($0) }
+        
+        calendarView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(14)
+            make.left.right.equalToSuperview()
+        }
         
         dividerLine.snp.makeConstraints { make in
             make.height.equalTo(10)
+            make.top.equalTo(calendarView.snp.bottom).offset(24)
             make.left.right.equalToSuperview()
-            make.bottom.equalToSuperview().inset(18)
-        }
-        
-        calanderView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(14)
-            make.left.right.equalToSuperview()
-            make.bottom.equalTo(dividerLine.snp.top)
-            make.height.equalTo(calanderView.snp.height)
+            make.bottom.equalToSuperview().inset(12)
         }
         
     }

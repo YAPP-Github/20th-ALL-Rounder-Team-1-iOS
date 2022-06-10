@@ -10,12 +10,13 @@ import SnapKit
 import Then
 import FSCalendar
 
-class MainCalanderView: UIView {
+class MainCalendarView: UIView {
     
-    lazy var calander = FSCalendar().then {
+    // MARK: UI Properties
+    lazy var calendar = FSCalendar().then {
         
         // Base
-        $0.scope = .week
+        $0.scope = .month
         $0.locale = Locale(identifier: "ko_KR")
         $0.scrollEnabled = true
         $0.scrollDirection = .horizontal
@@ -41,6 +42,11 @@ class MainCalanderView: UIView {
         $0.calendarWeekdayView.setContentCompressionResistancePriority(.required, for: .vertical)
         $0.contentView.setContentCompressionResistancePriority(.required, for: .vertical)
         
+//        $0.calendarWeekdayView.backgroundColor = .red
+//        $0.contentView.backgroundColor = .blue
+//
+//        $0.backgroundColor = .subColor
+        
     }
     
     lazy var titleLabel = UILabel().then {
@@ -58,7 +64,7 @@ class MainCalanderView: UIView {
         $0.tintColor = .gray500
     }
 
-    // TODO: 수정된 WDefaultButton pull 받고 수정
+    // TODO: 수정된 WDefaultButton pull 받고 수정 (setTitle 부분)
     lazy var todayButton = WDefaultButton(title: "", style: .tint).then {
         
         if #available(iOS 15.0, *) {
@@ -79,7 +85,7 @@ class MainCalanderView: UIView {
     }
     
     lazy var headerView = UIView()
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -94,12 +100,12 @@ class MainCalanderView: UIView {
     
     
     private func setupView() {
-        calander.delegate = self
-        calander.dataSource = self
+        calendar.delegate = self
     }
     
     private func configureUI() {
         
+        // Constraints
         [ titleLabel, rightButton, leftButton, todayButton, editButton ].forEach { headerView.addSubview($0) }
         titleLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -121,22 +127,49 @@ class MainCalanderView: UIView {
             make.right.equalToSuperview().offset(-18)
         }
         
-        [ headerView, calander ].forEach { addSubview($0) }
+        [ headerView, calendar ].forEach { addSubview($0) }
         headerView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.left.right.equalToSuperview()
         }
-        calander.snp.makeConstraints { make in
+        calendar.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom).offset(14)
             make.left.equalToSuperview().offset(18)
             make.right.equalToSuperview().offset(-18)
             make.bottom.equalToSuperview()
-            make.height.greaterThanOrEqualTo(headerView.snp.height)
+            make.height.equalTo(300)
         }
+        calendar.setScope(.week, animated: false)
+        
+        // Buttons
+        leftButton.addTarget(self, action: #selector(prevWeek), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(nextWeek), for: .touchUpInside)
+        todayButton.addTarget(self, action: #selector(moveToday), for: .touchUpInside)
+        editButton.addTarget(self, action: #selector(showEditPage), for: .touchUpInside)
     }
     
 }
 
-extension MainCalanderView: FSCalendarDelegate, FSCalendarDataSource {
+// MARK: Button Events
+extension MainCalendarView {
     
+    @objc func prevWeek() {
+        print(#function)
+    }
+    
+    @objc func nextWeek() {
+        print(#function)
+    }
+    
+    @objc func moveToday() {
+        print(#function)
+    }
+    
+    @objc func showEditPage() {
+        print(#function)
+    }
+}
+
+extension MainCalendarView: FSCalendarDelegate {
+
 }
