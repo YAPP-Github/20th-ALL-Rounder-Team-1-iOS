@@ -13,41 +13,7 @@ import FSCalendar
 class MainCalendarView: UIView {
     
     // MARK: UI Properties
-    lazy var calendar = FSCalendar().then {
-        
-        // Base
-        $0.scope = .month
-        $0.locale = Locale(identifier: "ko_KR")
-        $0.scrollEnabled = true
-        $0.scrollDirection = .horizontal
-        
-        // Header Title
-        $0.headerHeight = 0
-        
-        // 일 월 화 수 목 금 토
-        $0.appearance.weekdayFont = WFont.body3()
-        $0.appearance.weekdayTextColor = .gray400
-        
-        // 날짜
-        $0.appearance.titleFont = WFont.body2()
-        $0.appearance.todayColor = .backgroundColor
-        $0.appearance.titleTodayColor = .mainColor
-        
-        
-        // Selection
-        $0.allowsSelection = true
-        $0.allowsMultipleSelection = false
-        $0.appearance.borderRadius = 20
-        
-        $0.calendarWeekdayView.setContentCompressionResistancePriority(.required, for: .vertical)
-        $0.contentView.setContentCompressionResistancePriority(.required, for: .vertical)
-        
-//        $0.calendarWeekdayView.backgroundColor = .red
-//        $0.contentView.backgroundColor = .blue
-//
-//        $0.backgroundColor = .subColor
-        
-    }
+    fileprivate weak var calendar: FSCalendar!
     
     lazy var titleLabel = UILabel().then {
         $0.font = WFont.body1()
@@ -86,29 +52,45 @@ class MainCalendarView: UIView {
     
     lazy var headerView = UIView()
         
+    // MARK: Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        setUpCalendar()
         configureUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupView()
+        setUpCalendar()
         configureUI()
     }
     
     
+    // MARK: setupView
     private func setupView() {
+        
+        let calendar = FSCalendar()
+        calendar.dataSource = self
         calendar.delegate = self
+        
+        self.addSubview(calendar)
+        self.calendar = calendar
     }
     
+    // MARK: configureUI
     private func configureUI() {
         
         // Constraints
-        [ titleLabel, rightButton, leftButton, todayButton, editButton ].forEach { headerView.addSubview($0) }
+        [ titleLabel, rightButton, leftButton, todayButton, editButton ].forEach {
+            headerView.addSubview($0)
+            $0.backgroundColor = .gray
+        }
+        titleLabel.setContentHuggingPriority(.required, for: .vertical)
         titleLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
+            make.top.bottom.equalToSuperview().inset(20)
         }
         leftButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
@@ -128,10 +110,13 @@ class MainCalendarView: UIView {
         }
         
         [ headerView, calendar ].forEach { addSubview($0) }
+        headerView.setContentHuggingPriority(.required, for: .vertical)
+        headerView.backgroundColor = .cyan
         headerView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.left.right.equalToSuperview()
         }
+        
         calendar.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom).offset(14)
             make.left.equalToSuperview().offset(18)
@@ -149,6 +134,49 @@ class MainCalendarView: UIView {
     }
     
 }
+
+extension MainCalendarView: FSCalendarDelegate, FSCalendarDataSource {
+    
+    private func setUpCalendar() {
+        // Base
+        calendar.scope = .month
+        calendar.locale = Locale(identifier: "ko_KR")
+        calendar.scrollEnabled = true
+        calendar.scrollDirection = .horizontal
+
+        // Header Title
+        calendar.headerHeight = 0
+
+        // 일 월 화 수 목 금 토
+        calendar.appearance.weekdayFont = WFont.body3()
+        calendar.appearance.weekdayTextColor = .gray400
+
+        // 날짜
+        calendar.appearance.titleFont = WFont.body2()
+        calendar.appearance.todayColor = .backgroundColor
+        calendar.appearance.titleTodayColor = .mainColor
+
+
+        // Selection
+        calendar.allowsSelection = true
+        calendar.allowsMultipleSelection = false
+        calendar.appearance.borderRadius = 20
+        
+        // 오늘 날짜 Select
+        calendar.select(Date())
+    }
+    
+    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+        calendar.snp.updateConstraints { (make) in
+            make.height.equalTo(bounds.height)
+        }
+        
+        self.layoutIfNeeded()
+    }
+
+
+}
+
 
 // MARK: Button Events
 extension MainCalendarView {
@@ -170,6 +198,3 @@ extension MainCalendarView {
     }
 }
 
-extension MainCalendarView: FSCalendarDelegate {
-
-}
