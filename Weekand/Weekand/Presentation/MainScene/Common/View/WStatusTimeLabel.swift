@@ -14,6 +14,9 @@ enum StatusIcon: String {
     case proceeding = "arrowshape.turn.up.left"
     case completed = "checkmark"
     case skipped = "xmark"
+    
+    case start = "startDate"
+    case end = "endDate"
 }
 
 class WStatusTimeLabel: WIconLabel {
@@ -49,6 +52,15 @@ extension WStatusTimeLabel {
         
         self.icon.image = UIImage(systemName: status.rawValue)!
         self.icon.tintColor = .gray400  // TODO: 해당 코드 ICON으로 교체되면 삭제 예정
+        self.label.text = title
+    }
+}
+
+extension WStatusTimeLabel {
+    
+    // 임시
+    public func configureValue(status: StatusIcon, title: String) {
+        self.icon.image = UIImage(named: status.rawValue)!.withTintColor(.gray400)
         self.label.text = title
     }
 }
