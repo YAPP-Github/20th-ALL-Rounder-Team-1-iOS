@@ -14,7 +14,7 @@ extension UIViewController {
         deleteHandler: @escaping (UIAlertAction) -> Void
     ) {
         let deleteAction = UIAlertAction(title: titles, style: .destructive, handler: deleteHandler)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)

@@ -383,9 +383,9 @@
 			isa = PBXGroup;
 			children = (
 				7DF8B7AB2836250400B224CA /* UIColor+hex.swift */,
+				F33C6EAD28535021005B493A /* UIVIewController+extension.swift */,
 				F354C3E9283E6946008929FD /* NSMutableAttributedString+extension.swift */,
 				7DF949C6283B6D0A007F84C5 /* DesignSystem */,
-				F33C6EAD28535021005B493A /* UIVIewController+extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -468,6 +468,15 @@
 			path = Weekand;
 			sourceTree = "<group>";
 		};
+		F33C6EAF2853530B005B493A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F392A1C8284F53A300512A42 /* CategoryListTableViewCell.swift */,
+				F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		F354C3E6283D3EC8008929FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -506,9 +515,8 @@
 		F392A1C4284F509C00512A42 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F33C6EAF2853530B005B493A /* Views */,
 				F392A1C6284F51B100512A42 /* CategoryViewController.swift */,
-				F392A1C8284F53A300512A42 /* CategoryListTableViewCell.swift */,
-				F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
