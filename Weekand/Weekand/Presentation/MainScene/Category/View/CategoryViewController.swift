@@ -16,16 +16,11 @@ class CategoryViewController: UIViewController {
     }
     
     let sample: [Category] = [
-        Category(color: "red", name: "카테고리1", openType: .allOpen),
-        Category(color: "red", name: "카테고리2", openType: .closed),
-        Category(color: "red", name: "카테고리3", openType: .followerOpen),
-        Category(color: "red", name: "카테고리4", openType: .closed),
-        Category(color: "red", name: "카테고리5", openType: .allOpen),
-        Category(color: "red", name: "카테고리6", openType: .allOpen),
-        Category(color: "red", name: "카테고리7", openType: .closed),
-        Category(color: "red", name: "카테고리8", openType: .followerOpen),
-        Category(color: "red", name: "카테고리9", openType: .closed),
-        Category(color: "red", name: "카테고리10", openType: .allOpen)
+        Category(color: "red", name: "공부", openType: .allOpen),
+        Category(color: "red", name: "자기계발", openType: .closed),
+        Category(color: "red", name: "취미생활", openType: .followerOpen),
+        Category(color: "red", name: "업무", openType: .closed),
+        Category(color: "red", name: "to do", openType: .allOpen)
     ]
     
     var dataSource: UITableViewDiffableDataSource<Section, Category>!
@@ -95,6 +90,26 @@ extension CategoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 60
+    }
+}
+
+extension CategoryViewController {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let update = UIContextualAction(style: .normal, title: "수정") { _, _, _ in
+            print("수정 클릭 됨")
+        }
+        update.backgroundColor = .mainColor
+        
+        
+        let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, _ in
+            self.showActionSheet(titles: "삭제", message: "카테고리를 삭제하기겠어요?") { _ in
+                print("삭제~~")
+            }
+        }
+        delete.backgroundColor = .wred
+        
+        return UISwipeActionsConfiguration(actions: [delete, update])
     }
 }
 
