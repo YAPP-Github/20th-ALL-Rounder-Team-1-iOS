@@ -77,7 +77,7 @@ class SignUpViewController: BaseViewController {
         stackView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(25)
             make.bottom.equalToSuperview().offset(-WBottmButton.buttonOffset - 64)
-            make.trailing.leading.equalToSuperview().inset(20)
+            make.trailing.leading.equalToSuperview().inset(22)
         }
         
         view.addSubview(confirmButton)
