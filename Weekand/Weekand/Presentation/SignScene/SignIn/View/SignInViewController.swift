@@ -36,7 +36,7 @@ class SignInViewController: UIViewController {
         $0.spacing = 10
     }
     
-    lazy var autoSignCheckBox = WCheckBox(title: "자동 로그인", isChecked: false)
+    lazy var autoSignCheckBox = WCheckBox(title: "자동로그인", isChecked: false)
     lazy var signUpLink = WTextButton(title: "비밀번호 찾기")
     lazy var optionView = UIView().then {
         $0.addSubview(autoSignCheckBox)
@@ -104,6 +104,10 @@ class SignInViewController: UIViewController {
             autoSignButtonDidTapEvent: autoSignCheckBox.rx.tap.asObservable(),
             nextButtonDidTapEvent: nextButton.rx.tap.asObservable()
         )
+        
+        autoSignCheckBox.rx.tap.subscribe(onNext: {
+            self.autoSignCheckBox.tap()
+        })
         
         let output = viewModel.transform(input: input)
         
