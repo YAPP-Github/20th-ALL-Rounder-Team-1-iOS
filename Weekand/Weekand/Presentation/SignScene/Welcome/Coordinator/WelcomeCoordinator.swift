@@ -42,7 +42,7 @@ class WelcomeCoordinator: NSObject, Coordinator {
 extension WelcomeCoordinator: CoordinatorDidFinishDelegate {
     func childDidFinish(_ child: Coordinator) {
         self.childCoordinators = self.childCoordinators.filter({ $0.type != child.type })
-        navigationController.popToRootViewController(animated: true)
+        navigationController.dismiss(animated: true, completion: nil)
     }
 }
 

@@ -18,6 +18,7 @@ class SignUpCoordinator: Coordinator {
     required init() {
         self.signUpViewController = SignUpViewController()
         self.navigationController = UINavigationController(rootViewController: signUpViewController)
+        self.navigationController.modalPresentationStyle = .fullScreen
     }
     
     func start() {
