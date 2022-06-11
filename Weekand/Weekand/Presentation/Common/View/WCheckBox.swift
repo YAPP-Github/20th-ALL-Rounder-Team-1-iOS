@@ -32,18 +32,14 @@ class WCheckBox: UIButton {
         
     }
     
-    init(title: String, isChecked: Bool) {
+    init(isChecked: Bool) {
         super.init(frame: CGRect.zero)
         
-        
-        self.setTitle(title, for: .normal)
         setUpView(isChecked: isChecked)
     }
     
     private func setUpView(isChecked: Bool) {
         self.isChecked = isChecked
-        self.setTitleColor(.gray900, for: .normal)
-        self.titleLabel?.font = WFont.body2()
     }
     
     func tap() {
