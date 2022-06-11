@@ -15,14 +15,13 @@ class SignUpCoordinator: Coordinator {
     var signUpViewController: SignUpViewController
     var type: CoordinatorType = .signUp
     
-    required init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    required init() {
         self.signUpViewController = SignUpViewController()
+        self.navigationController = UINavigationController(rootViewController: signUpViewController)
     }
     
     func start() {
         self.signUpViewController.viewModel = SignUpViewModel(coordinator: self)
-        self.navigationController.pushViewController(signUpViewController, animated: true)
     }
     
     func pushAddInformationViewController() {

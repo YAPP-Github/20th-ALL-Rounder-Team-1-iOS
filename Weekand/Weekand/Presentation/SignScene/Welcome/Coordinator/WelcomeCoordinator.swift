@@ -31,9 +31,10 @@ class WelcomeCoordinator: NSObject, Coordinator {
     }
     
     func showSignUpScene() {
-        let signUpCoordinator = SignUpCoordinator(navigationController: self.navigationController)
+        let signUpCoordinator = SignUpCoordinator()
         signUpCoordinator.finishDelegate = self
         childCoordinators.append(signUpCoordinator)
+        navigationController.present(signUpCoordinator.navigationController, animated: true, completion: nil)
         signUpCoordinator.start()
     }
 }
