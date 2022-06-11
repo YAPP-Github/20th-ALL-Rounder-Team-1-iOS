@@ -59,6 +59,7 @@ class SignUpViewController: BaseViewController {
     lazy var passwordCheckStackView = InputGroupStackView().then {
         $0.setNameLabelText(string: "비밀번호 확인")
         $0.setPlaceholderText(string: "비밀번호를 확인해주세요")
+        $0.setSecureTextEntry()
         $0.hideTextFieldButton()
     }
     
