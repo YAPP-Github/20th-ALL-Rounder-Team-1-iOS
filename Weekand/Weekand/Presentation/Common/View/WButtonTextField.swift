@@ -56,7 +56,8 @@ class WButtonTextField: UIView {
         backgroundView.addSubview(stackView)
         
         stackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.bottom.leading.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-7.5)
         }
         
         stackView.addArrangedSubview(textField)
@@ -64,7 +65,6 @@ class WButtonTextField: UIView {
         button.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(6)
             make.bottom.equalToSuperview().offset(-6)
-            make.trailing.equalTo(backgroundView.snp.trailing).offset(-7.5)
             make.width.equalTo(backgroundView.snp.width).multipliedBy(1/4.2)
         }
         
