@@ -1,4 +1,5 @@
 PODS:
+  - AlignedCollectionViewFlowLayout (1.1.2)
   - Differentiator (5.0.0)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
@@ -15,6 +16,7 @@ PODS:
   - Then (3.0.0)
 
 DEPENDENCIES:
+  - AlignedCollectionViewFlowLayout
   - RxCocoa
   - RxDataSources
   - RxSwift
@@ -24,6 +26,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AlignedCollectionViewFlowLayout
     - Differentiator
     - RxCocoa
     - RxDataSources
@@ -34,6 +37,7 @@ SPEC REPOS:
     - Then
 
 SPEC CHECKSUMS:
+  AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
@@ -43,6 +47,6 @@ SPEC CHECKSUMS:
   SwiftLint: f80f1be7fa96d30e0aa68e58d45d4ea1ccaac519
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: fe63e21567f31e9eb0d012c779438fd247563e0b
+PODFILE CHECKSUM: fdfa00e73f1de87f30366ddb74378beaff37dc8d
 
 COCOAPODS: 1.11.3

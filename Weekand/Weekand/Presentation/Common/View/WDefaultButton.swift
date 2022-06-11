@@ -8,7 +8,7 @@
 import UIKit
 
 enum WButtonStyle {
-    case filled, tint, type, typePressed
+    case filled, tint, type, typePressed, tag, tagPressed
     
     var backGroundColor: UIColor {
         switch self {
@@ -16,6 +16,8 @@ enum WButtonStyle {
         case .tint: return .subColor!
         case .type: return .gray100!
         case .typePressed: return .subColor!
+        case .tag: return .gray100!
+        case .tagPressed: return .subColor!
         }
     }
     
@@ -25,6 +27,8 @@ enum WButtonStyle {
         case .tint: return .mainColor
         case .type: return .gray400
         case .typePressed: return .mainColor
+        case .tag: return .gray400
+        case .tagPressed: return .mainColor
         }
     }
     
@@ -34,6 +38,8 @@ enum WButtonStyle {
         case .tint: return 12
         case .type: return 10
         case .typePressed: return 10
+        case .tag: return 108
+        case .tagPressed: return 108
         }
     }
 }

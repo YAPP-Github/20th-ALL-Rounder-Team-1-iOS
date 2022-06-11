@@ -11,6 +11,7 @@ target 'Weekand' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxDataSources'
+  pod 'AlignedCollectionViewFlowLayout'
 
   # UIKit
   pod 'SnapKit'
