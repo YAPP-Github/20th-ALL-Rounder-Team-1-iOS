@@ -36,14 +36,24 @@ class SignInViewController: UIViewController {
         $0.spacing = 10
     }
     
-    lazy var autoSignCheckBox = WCheckBox(title: "자동 로그인", isChecked: false)
+    lazy var autoSignCheckBox = WCheckBox(isChecked: false)
+    lazy var autoSignLabel = WTextLabel().then {
+        $0.textColor = .gray900
+        $0.text = "자동로그인"
+    }
     lazy var signUpLink = WTextButton(title: "비밀번호 찾기")
     lazy var optionView = UIView().then {
         $0.addSubview(autoSignCheckBox)
+        $0.addSubview(autoSignLabel)
         $0.addSubview(signUpLink)
 
         autoSignCheckBox.snp.makeConstraints { make in
             make.left.top.bottom.equalToSuperview()
+        }
+        
+        autoSignLabel.snp.makeConstraints { make in
+            make.leading.equalTo(autoSignCheckBox.snp.trailing).offset(8)
+            make.top.bottom.equalToSuperview()
         }
 
         signUpLink.snp.makeConstraints { make in
@@ -104,6 +114,10 @@ class SignInViewController: UIViewController {
             autoSignButtonDidTapEvent: autoSignCheckBox.rx.tap.asObservable(),
             nextButtonDidTapEvent: nextButton.rx.tap.asObservable()
         )
+        
+        autoSignCheckBox.rx.tap.subscribe(onNext: {
+            self.autoSignCheckBox.tap()
+        })
         
         let output = viewModel.transform(input: input)
         

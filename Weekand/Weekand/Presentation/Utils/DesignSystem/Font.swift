@@ -41,6 +41,10 @@ enum WFont: String {
         return UIFont(name: WFont.semiBold.rawValue, size: 16)!
     }
     
+    static func subHead3() -> UIFont {
+        return UIFont(name: WFont.semiBold.rawValue, size: 14)!
+    }
+    
     static func body1() -> UIFont {
         return UIFont(name: WFont.medium.rawValue, size: 16)!
     }

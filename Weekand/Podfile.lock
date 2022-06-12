@@ -1,4 +1,5 @@
 PODS:
+  - AlignedCollectionViewFlowLayout (1.1.2)
   - Differentiator (5.0.0)
   - FSCalendar (2.8.4)
   - RxCocoa (6.5.0):
@@ -26,6 +27,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AlignedCollectionViewFlowLayout
     - Differentiator
     - FSCalendar
     - RxCocoa
@@ -37,6 +39,7 @@ SPEC REPOS:
     - Then
 
 SPEC CHECKSUMS:
+  AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b

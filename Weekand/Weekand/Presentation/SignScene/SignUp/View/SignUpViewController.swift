@@ -17,6 +17,10 @@ class SignUpViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     var viewModel: SignUpViewModel?
     
+    lazy var cancelButton = UIBarButtonItem(title: "취소", style: .done, target: nil, action: nil).then {
+        $0.tintColor = .gray700
+    }
+    
     lazy var welcomeLabel = WTitleLabel().then {
         $0.setText(string: "Weekand와\n함께 시작해요!")
     }
@@ -55,6 +59,7 @@ class SignUpViewController: BaseViewController {
     lazy var passwordCheckStackView = InputGroupStackView().then {
         $0.setNameLabelText(string: "비밀번호 확인")
         $0.setPlaceholderText(string: "비밀번호를 확인해주세요")
+        $0.setSecureTextEntry()
         $0.hideTextFieldButton()
     }
     
@@ -69,6 +74,7 @@ class SignUpViewController: BaseViewController {
     private func setupView() {
         view.backgroundColor = .white
         navigationItem.title = "회원가입"
+        navigationItem.leftBarButtonItem = cancelButton
         stackView.spacing = 25
     }
     
@@ -77,7 +83,7 @@ class SignUpViewController: BaseViewController {
         stackView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(25)
             make.bottom.equalToSuperview().offset(-WBottmButton.buttonOffset - 64)
-            make.trailing.leading.equalToSuperview().inset(20)
+            make.trailing.leading.equalToSuperview().inset(22)
         }
         
         view.addSubview(confirmButton)
@@ -105,7 +111,8 @@ class SignUpViewController: BaseViewController {
             passwordTextFieldDidEndEditEvent: passwordStackView.buttonTextField.textField.rx.controlEvent([.editingChanged]).asObservable(),
             passwordCheckTextFieldDidEditEvent: passwordCheckStackView.buttonTextField.textField.rx.text.orEmpty.asObservable(),
             passwordCheckTextFieldDidEndEditEvent: passwordCheckStackView.buttonTextField.textField.rx.controlEvent([.editingChanged]).asObservable(),
-            nextButtonDidTapEvent: confirmButton.rx.tap.asObservable()
+            nextButtonDidTapEvent: confirmButton.rx.tap.asObservable(),
+            cancelButtonDidTapEvent: cancelButton.rx.tap.asObservable()
         )
         
         let output = viewModel.transform(input: input)

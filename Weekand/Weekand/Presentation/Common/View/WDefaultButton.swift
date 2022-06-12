@@ -8,12 +8,16 @@
 import UIKit
 
 enum WButtonStyle {
-    case filled, tint
+    case filled, tint, type, typePressed, tag, tagPressed
     
     var backGroundColor: UIColor {
         switch self {
         case .filled: return .mainColor
         case .tint: return .subColor!
+        case .type: return .gray100!
+        case .typePressed: return .subColor!
+        case .tag: return .gray100!
+        case .tagPressed: return .subColor!
         }
     }
     
@@ -21,6 +25,21 @@ enum WButtonStyle {
         switch self {
         case .filled: return .white
         case .tint: return .mainColor
+        case .type: return .gray400
+        case .typePressed: return .mainColor
+        case .tag: return .gray400
+        case .tagPressed: return .mainColor
+        }
+    }
+    
+    var cornerRadius: CGFloat {
+        switch self {
+        case .filled: return 12
+        case .tint: return 12
+        case .type: return 10
+        case .typePressed: return 10
+        case .tag: return 108
+        case .tagPressed: return 108
         }
     }
 }
@@ -45,12 +64,12 @@ class WDefaultButton: UIButton {
             var configuration = UIButton.Configuration.filled()
             configuration.background.backgroundColor = style.backGroundColor
             configuration.baseForegroundColor = style.titleColor
-            configuration.background.cornerRadius = defaultCornerRadius
+            configuration.background.cornerRadius = style.cornerRadius
             configuration.contentInsets = NSDirectionalEdgeInsets.defaultEdgeInset
             self.configuration = configuration
             
         } else {
-            self.layer.cornerRadius = defaultCornerRadius
+            self.layer.cornerRadius = style.cornerRadius
             self.backgroundColor = style.backGroundColor
             self.setTitleColor(style.titleColor, for: .normal)
             self.contentEdgeInsets = UIEdgeInsets.defaultEdgeInset

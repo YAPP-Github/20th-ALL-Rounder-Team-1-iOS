@@ -43,6 +43,17 @@
 		F32ACC0628235D500082AF30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0528235D500082AF30 /* ViewController.swift */; };
 		F32ACC0B28235D530082AF30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F32ACC0A28235D530082AF30 /* Assets.xcassets */; };
 		F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32ACC0C28235D530082AF30 /* LaunchScreen.storyboard */; };
+		F32F72502853AEE00056B189 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F724F2853AEE00056B189 /* CategoryDetailViewController.swift */; };
+		F32F72522853B0930056B189 /* CategoryDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F72512853B0930056B189 /* CategoryDetailTableViewCell.swift */; };
+		F32F72542853C2200056B189 /* CategoryDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F72532853C2200056B189 /* CategoryDetailHeaderView.swift */; };
+		F32F72562853D1E40056B189 /* CategoryDetailFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F72552853D1E40056B189 /* CategoryDetailFooterView.swift */; };
+		F32F725A28549A5D0056B189 /* CategoryEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F725928549A5D0056B189 /* CategoryEditViewController.swift */; };
+		F32F725C28549B650056B189 /* WTextFieldStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F725B28549B650056B189 /* WTextFieldStackView.swift */; };
+		F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F725D2854ADFA0056B189 /* OpenTypeStackView.swift */; };
+		F32F72602854BB730056B189 /* ColorStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F725F2854BB730056B189 /* ColorStackView.swift */; };
+		F32F72642854EC890056B189 /* InformationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F72632854EC890056B189 /* InformationCollectionViewCell.swift */; };
+		F33C6EAC28533D0A005B493A /* WFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAB28533D0A005B493A /* WFilterButton.swift */; };
+		F33C6EAE28535021005B493A /* UIVIewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAD28535021005B493A /* UIVIewController+extension.swift */; };
 		F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */; };
 		F354C3DF283CECF5008929FD /* WTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DE283CECF5008929FD /* WTextLabel.swift */; };
 		F354C3E3283D3615008929FD /* SignUpAddInfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3E2283D3615008929FD /* SignUpAddInfomationViewController.swift */; };
@@ -52,6 +63,10 @@
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
+		F392A1C7284F51B100512A42 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1C6284F51B100512A42 /* CategoryListViewController.swift */; };
+		F392A1C9284F53A300512A42 /* CategoryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1C8284F53A300512A42 /* CategoryListTableViewCell.swift */; };
+		F392A1CB284F5AB400512A42 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1CA284F5AB400512A42 /* Category.swift */; };
+		F392A1EF28531FC600512A42 /* CategoryListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */; };
 		F3DD0218284661F900AD9240 /* WelcomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD0217284661F900AD9240 /* WelcomeCoordinator.swift */; };
 		F3DD021A2846629100AD9240 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD02192846629100AD9240 /* Coordinator.swift */; };
 		F3DD022428466E0C00AD9240 /* SignInCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD022328466E0C00AD9240 /* SignInCoordinator.swift */; };
@@ -105,6 +120,17 @@
 		F32ACC0A28235D530082AF30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F32ACC0D28235D530082AF30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F32ACC0F28235D530082AF30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F32F724F2853AEE00056B189 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
+		F32F72512853B0930056B189 /* CategoryDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailTableViewCell.swift; sourceTree = "<group>"; };
+		F32F72532853C2200056B189 /* CategoryDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailHeaderView.swift; sourceTree = "<group>"; };
+		F32F72552853D1E40056B189 /* CategoryDetailFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailFooterView.swift; sourceTree = "<group>"; };
+		F32F725928549A5D0056B189 /* CategoryEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEditViewController.swift; sourceTree = "<group>"; };
+		F32F725B28549B650056B189 /* WTextFieldStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextFieldStackView.swift; sourceTree = "<group>"; };
+		F32F725D2854ADFA0056B189 /* OpenTypeStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTypeStackView.swift; sourceTree = "<group>"; };
+		F32F725F2854BB730056B189 /* ColorStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStackView.swift; sourceTree = "<group>"; };
+		F32F72632854EC890056B189 /* InformationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCollectionViewCell.swift; sourceTree = "<group>"; };
+		F33C6EAB28533D0A005B493A /* WFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WFilterButton.swift; sourceTree = "<group>"; };
+		F33C6EAD28535021005B493A /* UIVIewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+extension.swift"; sourceTree = "<group>"; };
 		F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputGroupStackView.swift; sourceTree = "<group>"; };
 		F354C3DE283CECF5008929FD /* WTextLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextLabel.swift; sourceTree = "<group>"; };
 		F354C3E2283D3615008929FD /* SignUpAddInfomationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAddInfomationViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +140,10 @@
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
+		F392A1C6284F51B100512A42 /* CategoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewController.swift; sourceTree = "<group>"; };
+		F392A1C8284F53A300512A42 /* CategoryListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListTableViewCell.swift; sourceTree = "<group>"; };
+		F392A1CA284F5AB400512A42 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListHeaderView.swift; sourceTree = "<group>"; };
 		F3DD0217284661F900AD9240 /* WelcomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeCoordinator.swift; sourceTree = "<group>"; };
 		F3DD02192846629100AD9240 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		F3DD022328466E0C00AD9240 /* SignInCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCoordinator.swift; sourceTree = "<group>"; };
@@ -189,6 +219,7 @@
 		7D76AEAF28445878001C668D /* MainScene */ = {
 			isa = PBXGroup;
 			children = (
+				F392A1C2284F508600512A42 /* Category */,
 				7DAA8620284BAF9500F21E35 /* Common */,
 				7D76AEB02844588E001C668D /* Main */,
 			);
@@ -375,6 +406,7 @@
 			isa = PBXGroup;
 			children = (
 				7DF8B7AB2836250400B224CA /* UIColor+hex.swift */,
+				F33C6EAD28535021005B493A /* UIVIewController+extension.swift */,
 				F354C3E9283E6946008929FD /* NSMutableAttributedString+extension.swift */,
 				7DF949C6283B6D0A007F84C5 /* DesignSystem */,
 			);
@@ -402,6 +434,8 @@
 				F391B433283C119F004E7B06 /* WTitleLabel.swift */,
 				F354C3DE283CECF5008929FD /* WTextLabel.swift */,
 				7DEA177B2846006A00F6B990 /* WSquareImageView.swift */,
+				F33C6EAB28533D0A005B493A /* WFilterButton.swift */,
+				F32F725B28549B650056B189 /* WTextFieldStackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -458,11 +492,26 @@
 			path = Weekand;
 			sourceTree = "<group>";
 		};
+		F33C6EAF2853530B005B493A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F392A1C8284F53A300512A42 /* CategoryListTableViewCell.swift */,
+				F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */,
+				F32F72512853B0930056B189 /* CategoryDetailTableViewCell.swift */,
+				F32F72532853C2200056B189 /* CategoryDetailHeaderView.swift */,
+				F32F72552853D1E40056B189 /* CategoryDetailFooterView.swift */,
+				F32F725D2854ADFA0056B189 /* OpenTypeStackView.swift */,
+				F32F725F2854BB730056B189 /* ColorStackView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		F354C3E6283D3EC8008929FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */,
 				F354C3E4283D3BF0008929FD /* InformationGroupStackView.swift */,
+				F32F72632854EC890056B189 /* InformationCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -474,6 +523,41 @@
 				F3DD0230284A36D300AD9240 /* BaseNavigationController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		F392A1C2284F508600512A42 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				F392A1C5284F50A100512A42 /* ViewModel */,
+				F392A1C4284F509C00512A42 /* View */,
+				F392A1C3284F509300512A42 /* Coordinator */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		F392A1C3284F509300512A42 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		F392A1C4284F509C00512A42 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F392A1C6284F51B100512A42 /* CategoryListViewController.swift */,
+				F32F724F2853AEE00056B189 /* CategoryDetailViewController.swift */,
+				F32F725928549A5D0056B189 /* CategoryEditViewController.swift */,
+				F33C6EAF2853530B005B493A /* Views */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F392A1C5284F50A100512A42 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		F3DD0216284660D200AD9240 /* Coordinator */ = {
@@ -653,12 +737,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				F354C3E8283D4126008929FD /* SignUpTermsViewController.swift in Sources */,
+				F32F72562853D1E40056B189 /* CategoryDetailFooterView.swift in Sources */,
 				F3DD022B284678CF00AD9240 /* WelcomeViewModel.swift in Sources */,
 				7D6B91192844A8D50044E217 /* WStatusTimeLabel.swift in Sources */,
+				F32F725A28549A5D0056B189 /* CategoryEditViewController.swift in Sources */,
 				F3DD0235284A6AA600AD9240 /* SignUpAddInformationViewModel.swift in Sources */,
 				7DC166AB2837140B00F1A8F1 /* SignInViewController.swift in Sources */,
+				F33C6EAE28535021005B493A /* UIVIewController+extension.swift in Sources */,
 				7D76AEB828448C79001C668D /* Font.swift in Sources */,
 				7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */,
+				F32F72642854EC890056B189 /* InformationCollectionViewCell.swift in Sources */,
 				7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */,
 				F354C3DF283CECF5008929FD /* WTextLabel.swift in Sources */,
 				7DC166BC28371B0C00F1A8F1 /* ColorSet.swift in Sources */,
@@ -671,29 +759,40 @@
 				F32ACC0628235D500082AF30 /* ViewController.swift in Sources */,
 				7D6E9972283BA18E006F5FC7 /* WBottmButton.swift in Sources */,
 				F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */,
+				F32F72542853C2200056B189 /* CategoryDetailHeaderView.swift in Sources */,
 				F3DD021A2846629100AD9240 /* Coordinator.swift in Sources */,
+				F392A1C7284F51B100512A42 /* CategoryListViewController.swift in Sources */,
 				F3DD0233284A534C00AD9240 /* CoordinatorType.swift in Sources */,
 				F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */,
 				7DAA861F284B968000F21E35 /* ScehduleMain.swift in Sources */,
 				7DC166BE28371C4E00F1A8F1 /* WDefaultButton.swift in Sources */,
 				F3DD022E2846815300AD9240 /* ViewModelType.swift in Sources */,
+				F32F72522853B0930056B189 /* CategoryDetailTableViewCell.swift in Sources */,
 				F354C3E3283D3615008929FD /* SignUpAddInfomationViewController.swift in Sources */,
 				7DF9688C284E019A00CE077E /* MainCalendarView.swift in Sources */,
 				7D76AEB628445AA5001C668D /* MainTableViewCell.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
+				F33C6EAC28533D0A005B493A /* WFilterButton.swift in Sources */,
+				F392A1C9284F53A300512A42 /* CategoryListTableViewCell.swift in Sources */,
 				7D7178ED283E1ED500D7E5F2 /* WTextButton.swift in Sources */,
 				7DF9688A284DF2EB00CE077E /* MainTableViewHeader.swift in Sources */,
 				7DEA177A2845E7C500F6B990 /* WEmojiView.swift in Sources */,
 				7DC166B42837148000F1A8F1 /* SignInViewModel.swift in Sources */,
 				7D3B1F54283630A50037504A /* WTextField.swift in Sources */,
 				F3DD0218284661F900AD9240 /* WelcomeCoordinator.swift in Sources */,
+				F392A1CB284F5AB400512A42 /* Category.swift in Sources */,
+				F392A1EF28531FC600512A42 /* CategoryListHeaderView.swift in Sources */,
 				7DF949C8283B6F1F007F84C5 /* CommonShape.swift in Sources */,
 				7DEA177C2846006A00F6B990 /* WSquareImageView.swift in Sources */,
+				F32F72502853AEE00056B189 /* CategoryDetailViewController.swift in Sources */,
 				7D6B911728449F610044E217 /* WCategoryTitleLabel.swift in Sources */,
 				7DC166C228372ACF00F1A8F1 /* Inset.swift in Sources */,
 				7D7178EB283E1C9D00D7E5F2 /* WCheckBox.swift in Sources */,
+				F32F72602854BB730056B189 /* ColorStackView.swift in Sources */,
 				F3DD0237284A6BEC00AD9240 /* SignUpTermsViewModel.swift in Sources */,
 				7DC166C02837234200F1A8F1 /* WButtonTextField.swift in Sources */,
+				F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */,
+				F32F725C28549B650056B189 /* WTextFieldStackView.swift in Sources */,
 				F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */,
 				F3DD0231284A36D300AD9240 /* BaseNavigationController.swift in Sources */,
 				F354C3E5283D3BF0008929FD /* InformationGroupStackView.swift in Sources */,
