@@ -85,7 +85,7 @@ class MainCalendarView: UIView {
         // Constraints
         [ titleLabel, rightButton, leftButton, todayButton, editButton ].forEach {
             headerView.addSubview($0)
-            $0.backgroundColor = .gray
+//            $0.backgroundColor = .gray
         }
         titleLabel.setContentHuggingPriority(.required, for: .vertical)
         titleLabel.snp.makeConstraints { make in
@@ -111,7 +111,7 @@ class MainCalendarView: UIView {
         
         [ headerView, calendar ].forEach { addSubview($0) }
         headerView.setContentHuggingPriority(.required, for: .vertical)
-        headerView.backgroundColor = .cyan
+//        headerView.backgroundColor = .cyan
         headerView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.left.right.equalToSuperview()

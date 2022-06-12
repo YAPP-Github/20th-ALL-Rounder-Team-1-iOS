@@ -102,17 +102,3 @@ extension MainViewController: UITableViewDelegate {
     }
     
 }
-
-
-import SwiftUI
-#if canImport(SwiftUI) && DEBUG
-
-struct MainViewControllerPreview: PreviewProvider {
-    static var previews: some View {
-        Group {
-            MainViewController().showPreview(.iPhone8)
-            MainViewController().showPreview(.iPhone12Mini)
-        }
-    }
-}
-#endif
