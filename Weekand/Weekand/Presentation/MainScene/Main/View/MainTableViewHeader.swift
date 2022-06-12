@@ -28,7 +28,7 @@ class MainTableViewHeader: UITableViewHeaderFooterView {
     
     
     private func setUpView() {
-        self.backgroundColor = .backgroundColor
+        
     }
     
     private func configureUI() {
@@ -47,7 +47,13 @@ class MainTableViewHeader: UITableViewHeaderFooterView {
             make.bottom.equalToSuperview().inset(12)
         }
         
+        self.layoutIfNeeded()
     }
     
-    
+}
+
+extension MainTableViewHeader {
+    override func layoutSubviews() {
+        
+    }
 }

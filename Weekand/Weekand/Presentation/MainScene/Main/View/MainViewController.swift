@@ -17,6 +17,7 @@ class MainViewController: UIViewController {
     
     var viewModel: MainViewModel?
     var dataSource: UITableViewDiffableDataSource<Section, ScehduleMain>!
+    var headerView: MainTableViewHeader!
     
     // TODO: 하드코딩된 identifier들 삭제
     let cellId = "cell-id"
@@ -40,6 +41,8 @@ class MainViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: cellId)
         tableView.register(MainTableViewHeader.self, forHeaderFooterViewReuseIdentifier: headerId)
+        
+        headerView = MainTableViewHeader()
         
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
@@ -94,7 +97,7 @@ extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        return MainTableViewHeader()
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
