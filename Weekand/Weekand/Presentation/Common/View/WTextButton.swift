@@ -22,7 +22,7 @@ class WTextButton: UIButton {
     init(title: String) {
         super.init(frame: CGRect.zero)
         
-        let titleString = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray!, NSAttributedString.Key.font: UIFont(name: "PretendardVariable-Bold", size: defaultFontSize)!])
+        let titleString = NSAttributedString(string: title, attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray!, NSAttributedString.Key.font: WFont.body2()])
         self.setAttributedTitle(titleString, for: .normal)
     }
     

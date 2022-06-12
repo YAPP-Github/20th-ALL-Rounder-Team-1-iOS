@@ -21,12 +21,12 @@ class WCheckBox: UIButton {
 
     private func setupView() {
         self.setImage(UIImage(systemName: "checkmark.square.fill")!.withTintColor(.lightGray!), for: .normal)
-        self.setImage(UIImage(systemName: "checkmark.square.fill")!.withTintColor(.mainColor!), for: .selected)
+        self.setImage(UIImage(systemName: "checkmark.square.fill")!.withTintColor(.mainColor), for: .selected)
         
         self.setTitleColor(.darkGray, for: .normal)
         self.setTitleColor(.darkGray, for: .selected)
         
-        self.titleLabel?.font = UIFont(name: "PretendardVariable-Medium", size: defaultFontSize)
+        self.titleLabel?.font = WFont.body2()
     }
     
     init(title: String, isChecked: Bool) {

@@ -12,7 +12,7 @@ enum WButtonStyle {
     
     var backGroundColor: UIColor {
         switch self {
-        case .filled: return .mainColor!
+        case .filled: return .mainColor
         case .tint: return .subColor!
         }
     }
@@ -20,7 +20,7 @@ enum WButtonStyle {
     var titleColor: UIColor {
         switch self {
         case .filled: return .white
-        case .tint: return .mainColor!
+        case .tint: return .mainColor
         }
     }
 }
@@ -58,15 +58,15 @@ class WDefaultButton: UIButton {
         
     }
     
-    init(title: String, style: WButtonStyle) {
+    init(title: String, style: WButtonStyle, font: UIFont) {
         super.init(frame: CGRect.zero)
         
-        setTitle(title, for: .normal)
+        setTitle(title, for: .normal, font: font)
         setupView(style: style)
     }
     
-    convenience init(title: String) {
-        self.init(title: title, style: .filled)
+    convenience init(title: String, font: UIFont) {
+        self.init(title: title, style: .filled, font: font)
     }
 
 }
@@ -74,33 +74,26 @@ class WDefaultButton: UIButton {
 // MARK: Button Customization Methods
 extension WDefaultButton {
     
-    override func setTitle(_ title: String?, for state: UIControl.State) {
-        super.setTitle(title, for: state)
+    func setTitle(_ title: String?, for state: UIControl.State, font: UIFont) {
+        self.setTitle(title, for: state)
         
         guard let text = title else { return }
-        let attribute = [NSAttributedString.Key.font: WFont.subHead1()]
+        let attribute = [NSAttributedString.Key.font: font]
         let attributedTitle = NSAttributedString(string: text, attributes: attribute as [NSAttributedString.Key: Any])
         self.setAttributedTitle(attributedTitle, for: .normal)
     }
     
-    func setBackgroundColor(_ color: UIColor) {
+    func setButtonColor(_ title: String, foregroundColor: UIColor, backgroundColor: UIColor) {
         
         if #available(iOS 15.0, *) {
-            self.configuration?.background.backgroundColor = color
-                        
+            self.configuration?.background.backgroundColor = backgroundColor
         } else {
-            self.backgroundColor = color
+            self.backgroundColor = backgroundColor
         }
-    }
-    
-    func setTitleColor(_ color: UIColor) {
-        
-        if #available(iOS 15.0, *) {
-            self.configuration?.baseForegroundColor = color
-                        
-        } else {
-            self.setTitleColor(color, for: .normal)
-        }
+        let attribute = [NSAttributedString.Key.foregroundColor: foregroundColor,
+                         NSAttributedString.Key.font: WFont.body2()]
+        let attributedTitle = NSAttributedString(string: title, attributes: attribute as [NSAttributedString.Key: Any])
+        self.setAttributedTitle(attributedTitle, for: .normal)
     }
     
 }

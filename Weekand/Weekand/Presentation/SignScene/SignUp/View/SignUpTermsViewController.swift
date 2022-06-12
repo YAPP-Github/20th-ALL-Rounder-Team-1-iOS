@@ -65,18 +65,21 @@ class SignUpTermsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
-        navigationItem.title = "약관 동의"
         configureUI()
         bindViewModel()
+        setupView()
     }
     
-    func configureUI() {
+    private func setupView() {
+        view.backgroundColor = .white
+        navigationItem.title = "약관 동의"
+    }
+    
+    private func configureUI() {
         view.addSubview(wholeAgreeStackView)
         wholeAgreeStackView.addArrangedSubview(checkBoxButton)
         wholeAgreeStackView.addArrangedSubview(wholeAgreeLabel)
         wholeAgreeStackView.snp.makeConstraints { make in
-            // top 임시값 세팅
             make.top.equalToSuperview().offset(80)
             make.trailing.leading.equalToSuperview().inset(30)
         }
@@ -132,7 +135,7 @@ class SignUpTermsViewController: UIViewController {
         }
     }
     
-    func bindViewModel() {
+    private func bindViewModel() {
         guard let viewModel = self.viewModel else {
             return
         }

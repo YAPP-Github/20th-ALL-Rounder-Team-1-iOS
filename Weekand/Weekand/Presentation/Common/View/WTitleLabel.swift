@@ -20,7 +20,7 @@ class WTitleLabel: UILabel {
     }
 
     func setupView() {
-        font = UIFont(name: "PretendardVariable-Bold", size: 22)
+        font = UIFont(name: "PretendardVariable-Bold", size: 24)
         numberOfLines = 0
     }
     

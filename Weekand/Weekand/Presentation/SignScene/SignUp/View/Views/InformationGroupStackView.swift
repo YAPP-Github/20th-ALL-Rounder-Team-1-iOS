@@ -14,12 +14,10 @@ class InformationGroupStackView: UIStackView {
     }
     
     lazy var namelabel = WTextLabel().then {
-        $0.font = UIFont(name: "PretendardVariable-Medium", size: 15)
         $0.textColor = UIColor.gray800
     }
     
     lazy var informlabel = WTextLabel().then {
-        $0.font = UIFont(name: "PretendardVariable-Medium", size: 13)
         $0.textColor = UIColor.gray500
     }
     
@@ -44,6 +42,9 @@ class InformationGroupStackView: UIStackView {
         namelabel.setContentHuggingPriority(.init(rawValue: 251), for: .horizontal)
     }
     
+}
+
+extension InformationGroupStackView {
     func setNameLabelText(string: String) {
         namelabel.text = string
     }

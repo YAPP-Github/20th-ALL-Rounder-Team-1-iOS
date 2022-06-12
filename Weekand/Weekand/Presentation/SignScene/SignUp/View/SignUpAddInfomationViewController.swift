@@ -37,18 +37,22 @@ class SignUpAddInfomationViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureUI()
+        bindViewModel()
+        setupView()
+    }
+    
+    private func setupView() {
         view.backgroundColor = .white
         navigationItem.title = "추가 정보"
         stackView.spacing = 30
-        configureUI()
-        bindViewModel()
     }
 
-    func configureUI() {
+    private func configureUI() {
         [welcomeLabel, jobStackView, interestsStackView].forEach { stackView.addArrangedSubview($0) }
         stackView.snp.makeConstraints { make in
             // top 임시값 세팅
-            make.top.equalToSuperview().offset(30)
+            make.top.equalToSuperview().offset(25)
             make.bottom.equalToSuperview().offset(-WBottmButton.buttonOffset - 64)
             make.trailing.leading.equalToSuperview().inset(20)
         }
@@ -62,7 +66,7 @@ class SignUpAddInfomationViewController: BaseViewController {
         }
     }
     
-    func bindViewModel() {
+    private func bindViewModel() {
         guard let viewModel = self.viewModel else {
             return
         }
