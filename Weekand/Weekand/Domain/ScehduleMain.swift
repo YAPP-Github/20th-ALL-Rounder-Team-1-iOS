@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct ScheduleList: Hashable {
+struct ScehduleMain: Hashable {
     
-    static func == (lhs: ScheduleList, rhs: ScheduleList) -> Bool {
+    static func == (lhs: ScehduleMain, rhs: ScehduleMain) -> Bool {
       lhs.id == rhs.id
     }
     

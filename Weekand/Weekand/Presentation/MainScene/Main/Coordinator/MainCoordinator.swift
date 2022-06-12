@@ -17,6 +17,7 @@ class MainCoordinator: Coordinator {
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        self.navigationController.setNavigationBarHidden(true, animated: false)
         self.mainViewController = MainViewController()
     }
     

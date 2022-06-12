@@ -57,13 +57,23 @@ class MainTableViewCell: UITableViewCell {
         }
         
     }
+
+}
+
+// MARK: Data Injection
+extension MainTableViewCell {
     
-    public func configureCell(color: UIColor, title: String, status: StatusIcon, time: String, emojiNumber: Int, emojiOrder: [Emoji]) {
+    public func setUpCell(color: UIColor, title: String, status: StatusIcon, time: String, emojiNumber: Int, emojiOrder: [Emoji]) {
         
         self.nameLabel.editValue(color: color, title: title)
         self.timeLineLabel.editValue(status: status, title: time)
         self.emojiView.numberLabel.text = String(emojiNumber)
         self.emojiView.setEmoji(emojiOrder: emojiOrder)
+    }
+    
+    // TODO: API 확정되면 개발
+    public func setUpCell(_ model: ScehduleMain) {
+        
     }
 
 }
