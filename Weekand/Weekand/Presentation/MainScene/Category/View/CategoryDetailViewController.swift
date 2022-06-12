@@ -13,17 +13,17 @@ class CategoryDetailViewController: UIViewController {
       case main
     }
     
-    let sample: [ScheduleList] = [
-        ScheduleList(scheduleId: 0, color: "red", name: "일정 제목1", dateStart: Date(), dataEnd: Date(), stickerCount: 134, stickerNameList: []),
-        ScheduleList(scheduleId: 0, color: "red", name: "일정 제목2", dateStart: Date(), dataEnd: Date(), stickerCount: 313, stickerNameList: []),
-        ScheduleList(scheduleId: 0, color: "red", name: "일정 제목3", dateStart: Date(), dataEnd: Date(), stickerCount: 54, stickerNameList: []),
-        ScheduleList(scheduleId: 0, color: "red", name: "일정 제목4", dateStart: Date(), dataEnd: Date(), stickerCount: 431, stickerNameList: []),
-        ScheduleList(scheduleId: 0, color: "red", name: "일정 제목5", dateStart: Date(), dataEnd: Date(), stickerCount: 64, stickerNameList: []),
-        ScheduleList(scheduleId: 0, color: "red", name: "일정 제목6", dateStart: Date(), dataEnd: Date(), stickerCount: 3, stickerNameList: []),
-        ScheduleList(scheduleId: 0, color: "red", name: "일정 제목7", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: [])
+    let sample: [ScehduleMain] = [
+        ScehduleMain(scheduleId: 0, color: "red", name: "일정 제목1", dateStart: Date(), dataEnd: Date(), stickerCount: 134, stickerNameList: []),
+        ScehduleMain(scheduleId: 0, color: "red", name: "일정 제목2", dateStart: Date(), dataEnd: Date(), stickerCount: 313, stickerNameList: []),
+        ScehduleMain(scheduleId: 0, color: "red", name: "일정 제목3", dateStart: Date(), dataEnd: Date(), stickerCount: 54, stickerNameList: []),
+        ScehduleMain(scheduleId: 0, color: "red", name: "일정 제목4", dateStart: Date(), dataEnd: Date(), stickerCount: 431, stickerNameList: []),
+        ScehduleMain(scheduleId: 0, color: "red", name: "일정 제목5", dateStart: Date(), dataEnd: Date(), stickerCount: 64, stickerNameList: []),
+        ScehduleMain(scheduleId: 0, color: "red", name: "일정 제목6", dateStart: Date(), dataEnd: Date(), stickerCount: 3, stickerNameList: []),
+        ScehduleMain(scheduleId: 0, color: "red", name: "일정 제목7", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: [])
     ]
     
-    var dataSource: UITableViewDiffableDataSource<Section, ScheduleList>!
+    var dataSource: UITableViewDiffableDataSource<Section, ScehduleMain>!
     
     let tableView = UITableView()
     
@@ -64,7 +64,7 @@ extension CategoryDetailViewController {
     
     private func configureDataSource() {
         
-        dataSource = UITableViewDiffableDataSource<Section, ScheduleList>(tableView: tableView, cellProvider: { tableView, indexPath, list in
+        dataSource = UITableViewDiffableDataSource<Section, ScehduleMain>(tableView: tableView, cellProvider: { tableView, indexPath, list in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryDetailTableViewCell.cellIdentifier, for: indexPath) as? CategoryDetailTableViewCell else {
                 return UITableViewCell()
             }
@@ -75,7 +75,7 @@ extension CategoryDetailViewController {
     
     private func configureSnapshot(animatingDifferences: Bool = true) {
 
-        var snapshot = NSDiffableDataSourceSnapshot<Section, ScheduleList>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, ScehduleMain>()
         snapshot.appendSections([.main])
         snapshot.appendItems(sample, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
