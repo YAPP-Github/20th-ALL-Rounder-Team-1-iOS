@@ -34,10 +34,11 @@ class MainViewController: UIViewController {
         configureSnapshot()
         
     }
-    
+        
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
+        viewDidLayoutSubviews()
     }
     
     override func viewDidLayoutSubviews() {
