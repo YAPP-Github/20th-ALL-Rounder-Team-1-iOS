@@ -9,9 +9,18 @@ import UIKit
 import SwiftUI
 import RxSwift
 import RxCocoa
+import AlignedCollectionViewFlowLayout
 
 class SignUpAddInfomationViewController: BaseViewController {
 
+    let jobDataSource = [["학생", "취준생", "직장인", "프리랜서"],
+                         ["경영", "사무", "마케팅", "IT", "디자인"],
+                         ["무역", "유통", "영업", "서비스", "연구원"],
+                         ["제조", "관광", "교육", "건설", "의료"],
+                         ["연예", "미디어", "전문직", "특수직"],
+                         ["사업", "주부"]]
+
+    
     private let disposeBag = DisposeBag()
     var viewModel: SignUpAddInfomationViewModel?
     
@@ -46,6 +55,10 @@ class SignUpAddInfomationViewController: BaseViewController {
         view.backgroundColor = .white
         navigationItem.title = "추가 정보"
         stackView.spacing = 30
+        stackView.distribution = .fill
+        
+        jobStackView.collectionView.dataSource = self
+        jobStackView.collectionView.register(InformationCollectionViewCell.self, forCellWithReuseIdentifier: InformationCollectionViewCell.cellIdentifier)
     }
 
     private func configureUI() {
@@ -77,6 +90,27 @@ class SignUpAddInfomationViewController: BaseViewController {
         
         let _ = viewModel.transform(input: input)
     }
+}
+
+extension SignUpAddInfomationViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return jobDataSource.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return jobDataSource[section].count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = jobStackView.collectionView.dequeueReusableCell(withReuseIdentifier: InformationCollectionViewCell.cellIdentifier, for: indexPath) as? InformationCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.configure(text: jobDataSource[indexPath.section][indexPath.item])
+        return cell
+    }
+    
+    
 }
 
 #if canImport(SwiftUI) && DEBUG

@@ -17,7 +17,7 @@ class WelcomeViewController: UIViewController {
     var viewModel: WelcomeViewModel?
     
     lazy var logoView = UIImageView().then {
-        $0.backgroundColor = .mainColor     // TODO: Add real Weekand logo image
+        $0.image = UIImage(named: "Welcome")
     }
     
     lazy var introLabel = UILabel().then {
@@ -31,7 +31,7 @@ class WelcomeViewController: UIViewController {
         
         $0.axis = .vertical
         $0.distribution = .fillEqually
-        $0.alignment = .fill
+        $0.alignment = .leading
     }
     
     lazy var signInButton = WDefaultButton(title: "로그인", style: .filled, font: WFont.subHead1())
@@ -60,6 +60,11 @@ class WelcomeViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().dividedBy(defaultWidthDivider)
             make.centerY.equalToSuperview().dividedBy(2)
+        }
+        
+        logoView.snp.makeConstraints { make in
+            make.width.equalTo(148)
+            make.height.equalTo(40)
         }
         
         self.view.addSubview(buttonStack)

@@ -8,7 +8,20 @@
 import UIKit
 
 class WCheckBox: UIButton {
+    
+    let checkedImage = UIImage(named: "CheckBox")!.withTintColor(.gray300)
+    let uncheckedImage = UIImage(named: "CheckBox")!.withTintColor(.mainColor)
 
+    var isChecked: Bool = false {
+        didSet {
+            if isChecked == true {
+                self.setImage(checkedImage, for: .normal)
+            } else {
+                self.setImage(uncheckedImage, for: .normal)
+            }
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -18,28 +31,19 @@ class WCheckBox: UIButton {
         super.init(coder: aDecoder)
         
     }
-
-    private func setupView() {
-        self.setImage(UIImage(systemName: "checkmark.square.fill")!.withTintColor(.lightGray!), for: .normal)
-        self.setImage(UIImage(systemName: "checkmark.square.fill")!.withTintColor(.mainColor), for: .selected)
-        
-        self.setTitleColor(.darkGray, for: .normal)
-        self.setTitleColor(.darkGray, for: .selected)
-        
-        self.titleLabel?.font = WFont.body2()
-    }
     
-    init(title: String, isChecked: Bool) {
+    init(isChecked: Bool) {
         super.init(frame: CGRect.zero)
         
-        setupView()
-        
-        self.isSelected = isChecked
-        
-        
-        
-        self.setTitle(title, for: .normal)
-        self.setTitle(title, for: .selected)
+        setUpView(isChecked: isChecked)
+    }
+    
+    private func setUpView(isChecked: Bool) {
+        self.isChecked = isChecked
+    }
+    
+    func tap() {
+        isChecked = !isChecked
     }
 
 }

@@ -30,6 +30,7 @@ class SignUpViewModel: ViewModelType {
         let passwordCheckTextFieldDidEditEvent: Observable<String>
         let passwordCheckTextFieldDidEndEditEvent: Observable<Void>
         let nextButtonDidTapEvent: Observable<Void>
+        let cancelButtonDidTapEvent: Observable<Void>
     }
     
     struct Output {
@@ -64,6 +65,10 @@ class SignUpViewModel: ViewModelType {
         }, onError: { _ in
             
         }).disposed(by: disposeBag)
+        
+        input.cancelButtonDidTapEvent.subscribe(onNext: {
+            self.coordinator?.finish()
+        })
         
         return Output(
             vaildEmail: vaildEmailWithTap.asDriver(onErrorJustReturn: false),

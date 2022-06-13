@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AlignedCollectionViewFlowLayout
 
 class InformationGroupStackView: UIStackView {
 
@@ -20,6 +21,15 @@ class InformationGroupStackView: UIStackView {
     lazy var informlabel = WTextLabel().then {
         $0.textColor = UIColor.gray500
     }
+    
+    lazy var collectionViewFlowLayout = AlignedCollectionViewFlowLayout(horizontalAlignment: .left, verticalAlignment: .top).then {
+        $0.scrollDirection = .vertical
+        $0.minimumInteritemSpacing = 3
+        $0.estimatedItemSize = CGSize(width: 40, height: 15)
+        $0.sectionInset = UIEdgeInsets(top: 2, left: 0, bottom: 2, right: 0)
+    }
+    
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,7 +47,12 @@ class InformationGroupStackView: UIStackView {
         informationStackView.spacing = 5
         
         [namelabel, informlabel].forEach { informationStackView.addArrangedSubview($0) }
-        [informationStackView].forEach { self.addArrangedSubview($0) }
+        [informationStackView, collectionView].forEach { self.addArrangedSubview($0) }
+        
+        collectionView.snp.makeConstraints { make in
+            make.width.equalTo(300)
+            make.height.equalTo(310)
+        }
         
         namelabel.setContentHuggingPriority(.init(rawValue: 251), for: .horizontal)
     }
