@@ -17,12 +17,12 @@ class MainViewController: UIViewController {
     
     var viewModel: MainViewModel?
     var dataSource: UITableViewDiffableDataSource<Section, ScehduleMain>!
-    var headerView: MainTableViewHeader!
     
     // TODO: 하드코딩된 identifier들 삭제
     let cellId = "cell-id"
     let headerId = "header-id"
     
+    lazy var headerView = MainTableViewHeader()
     lazy var tableView = UITableView()
 
     override func viewDidLoad() {
@@ -32,38 +32,10 @@ class MainViewController: UIViewController {
         configureUI()
         configureDataSource()
         configureSnapshot()
-        
-    }
-        
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        viewDidLayoutSubviews()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-        if let headerView = tableView.tableHeaderView {
-
-            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
-            var headerFrame = headerView.frame
-
-            if height != headerFrame.size.height {
-                headerFrame.size.height = height
-                headerView.frame = headerFrame
-                tableView.tableHeaderView = headerView
-            }
-        }
     }
     
     private func setUpView() {
         
-        headerView = MainTableViewHeader()
-    
-        tableView.tableHeaderView = headerView
-        tableView.tableHeaderView?.frame.size.height = headerView.frame.size.height
-        tableView.tableHeaderView?.frame.size.width = UIScreen.main.bounds.width
         tableView.separatorStyle = .none
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: cellId)
         
@@ -74,9 +46,15 @@ class MainViewController: UIViewController {
 
     private func configureUI() {
         
-        self.view.addSubview(tableView)
+        [ headerView, tableView ].forEach { self.view.addSubview($0) }
+        headerView.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.left.right.equalToSuperview()
+        }
         tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(headerView.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
     }
 
@@ -113,4 +91,15 @@ extension MainViewController {
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
       }
 
+}
+
+extension MainViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 16
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        64
+    }
 }
