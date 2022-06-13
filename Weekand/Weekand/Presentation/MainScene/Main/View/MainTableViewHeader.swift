@@ -15,6 +15,14 @@ class MainTableViewHeader: UIView {
         $0.backgroundColor = .gray100
     }
     
+    lazy var stack = UIStackView().then {
+        $0.axis = .vertical
+        $0.distribution = .fill
+        $0.spacing = 14
+        
+        $0.backgroundColor = .backgroundColor
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -32,22 +40,19 @@ class MainTableViewHeader: UIView {
     
     private func configureUI() {
         
-        [ calendarView, dividerLine ].forEach { self.addSubview($0) }
-        
-        calendarView.setContentCompressionResistancePriority(.required, for: .vertical)
-        calendarView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(14)
-            make.left.right.equalToSuperview()
-        }
-        
+        [ calendarView, dividerLine ].forEach { stack.addArrangedSubview($0) }
         dividerLine.snp.makeConstraints { make in
             make.height.equalTo(10)
-            make.top.equalTo(calendarView.snp.bottom)
+        }
+
+        self.addSubview(stack)
+        stack.snp.makeConstraints { make in
+            make.top.equalToSuperview()
             make.left.right.equalToSuperview()
-            make.bottom.equalToSuperview().inset(12)
+            make.bottom.equalToSuperview().inset(16)
         }
         
-//        self.layoutSubviews()
+        self.layoutSubviews()
     }
     
 }

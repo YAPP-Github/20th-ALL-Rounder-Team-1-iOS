@@ -62,6 +62,7 @@ class MainViewController: UIViewController {
     
         tableView.tableHeaderView = headerView
         tableView.tableHeaderView?.frame.size.height = headerView.frame.size.height
+        tableView.tableHeaderView?.frame.size.width = UIScreen.main.bounds.width
         tableView.separatorStyle = .none
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: cellId)
         

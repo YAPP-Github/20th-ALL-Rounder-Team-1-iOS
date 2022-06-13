@@ -47,6 +47,12 @@ class MainCalendarView: UIView {
     }
     
     lazy var headerView = UIView()
+    
+    lazy var stack = UIStackView().then {
+        $0.axis = .vertical
+        $0.distribution = .fill
+        $0.spacing = 10
+    }
         
     // MARK: Initializer
     override init(frame: CGRect) {
@@ -73,14 +79,12 @@ class MainCalendarView: UIView {
         
         self.addSubview(calendar)
         self.calendar = calendar
-        
-        self.backgroundColor = .backgroundColor
     }
     
     // MARK: configureUI
     private func configureUI() {
         
-        // Constraints
+        // Inside Title Header
         [ titleLabel, rightButton, leftButton, todayButton, editButton ].forEach {
             headerView.addSubview($0)
         }
@@ -106,21 +110,23 @@ class MainCalendarView: UIView {
             make.right.equalToSuperview().offset(-18)
         }
         
-        [ headerView, calendar ].forEach { addSubview($0) }
+        // Inside Stack View
+        [ headerView, calendar ].forEach { stack.addArrangedSubview($0) }
         headerView.setContentHuggingPriority(.required, for: .vertical)
         headerView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
             make.left.right.equalToSuperview()
         }
         
         calendar.setContentCompressionResistancePriority(.required, for: .vertical)
         calendar.snp.makeConstraints { make in
-            make.top.equalTo(headerView.snp.bottom).offset(14)
-            make.left.equalToSuperview().offset(18)
-            make.right.equalToSuperview().offset(-18)
-            make.bottom.equalToSuperview()
             make.height.equalTo(300)
         }
+        
+        self.addSubview(stack)
+        stack.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
         
         // Buttons
         leftButton.addTarget(self, action: #selector(prevWeek), for: .touchUpInside)
