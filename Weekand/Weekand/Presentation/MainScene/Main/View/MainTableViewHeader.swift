@@ -49,7 +49,7 @@ class MainTableViewHeader: UIView {
         stack.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.left.right.equalToSuperview()
-            make.bottom.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview()
         }
         
         self.layoutSubviews()

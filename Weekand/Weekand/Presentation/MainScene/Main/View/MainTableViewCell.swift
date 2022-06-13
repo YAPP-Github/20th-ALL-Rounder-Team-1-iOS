@@ -53,7 +53,7 @@ class MainTableViewCell: UITableViewCell {
         self.addSubview(cellStack)
         
         cellStack.snp.makeConstraints { make in
-            make.edges.equalTo(UIEdgeInsets(top: 12, left: 24, bottom: 19, right: 24))
+            make.edges.equalTo(UIEdgeInsets(top: 12, left: 31, bottom: 15, right: 24))
         }
         
     }
