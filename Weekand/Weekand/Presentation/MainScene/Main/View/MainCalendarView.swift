@@ -121,7 +121,6 @@ class MainCalendarView: UIView {
             make.bottom.equalToSuperview()
             make.height.equalTo(300)
         }
-        calendar.setScope(.week, animated: false)
         
         // Buttons
         leftButton.addTarget(self, action: #selector(prevWeek), for: .touchUpInside)
@@ -135,8 +134,9 @@ class MainCalendarView: UIView {
 extension MainCalendarView: FSCalendarDelegate, FSCalendarDataSource {
     
     private func setUpCalendar() {
+        
         // Base
-        calendar.scope = .month
+        calendar.scope = .week
         calendar.locale = Locale(identifier: "ko_KR")
         calendar.scrollEnabled = true
         calendar.scrollDirection = .horizontal
@@ -153,7 +153,6 @@ extension MainCalendarView: FSCalendarDelegate, FSCalendarDataSource {
         calendar.appearance.todayColor = .backgroundColor
         calendar.appearance.titleTodayColor = .mainColor
 
-
         // Selection
         calendar.allowsSelection = true
         calendar.allowsMultipleSelection = false
@@ -168,7 +167,7 @@ extension MainCalendarView: FSCalendarDelegate, FSCalendarDataSource {
             make.height.equalTo(bounds.height)
         }
         
-        self.layoutIfNeeded()
+        self.layoutSubviews()
     }
 
 

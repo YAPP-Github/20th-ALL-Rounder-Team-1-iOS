@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainTableViewHeader: UITableViewHeaderFooterView {
+class MainTableViewHeader: UIView {
     
     lazy var calendarView = MainCalendarView()
     
@@ -15,13 +15,12 @@ class MainTableViewHeader: UITableViewHeaderFooterView {
         $0.backgroundColor = .gray100
     }
     
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         setUpView()
         configureUI()
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -35,6 +34,7 @@ class MainTableViewHeader: UITableViewHeaderFooterView {
         
         [ calendarView, dividerLine ].forEach { self.addSubview($0) }
         
+        calendarView.setContentCompressionResistancePriority(.required, for: .vertical)
         calendarView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(14)
             make.left.right.equalToSuperview()
@@ -47,13 +47,7 @@ class MainTableViewHeader: UITableViewHeaderFooterView {
             make.bottom.equalToSuperview().inset(12)
         }
         
-        self.layoutIfNeeded()
+//        self.layoutSubviews()
     }
     
-}
-
-extension MainTableViewHeader {
-    override func layoutSubviews() {
-        
-    }
 }

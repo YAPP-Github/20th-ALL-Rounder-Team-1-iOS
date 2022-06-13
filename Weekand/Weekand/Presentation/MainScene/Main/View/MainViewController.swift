@@ -35,14 +35,35 @@ class MainViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if let headerView = tableView.tableHeaderView {
+
+            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+            var headerFrame = headerView.frame
+
+            if height != headerFrame.size.height {
+                headerFrame.size.height = height
+                headerView.frame = headerFrame
+                tableView.tableHeaderView = headerView
+            }
+        }
+    }
+    
     private func setUpView() {
         
-        tableView.delegate = self
+        headerView = MainTableViewHeader()
+    
+        tableView.tableHeaderView = headerView
+        tableView.tableHeaderView?.frame.size.height = headerView.frame.size.height
         tableView.separatorStyle = .none
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: cellId)
-        tableView.register(MainTableViewHeader.self, forHeaderFooterViewReuseIdentifier: headerId)
-        
-        headerView = MainTableViewHeader()
         
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
@@ -90,18 +111,4 @@ extension MainViewController {
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
       }
 
-}
-
-// MARK: Delegate
-extension MainViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        return headerView
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        return 80
-    }
-    
 }
