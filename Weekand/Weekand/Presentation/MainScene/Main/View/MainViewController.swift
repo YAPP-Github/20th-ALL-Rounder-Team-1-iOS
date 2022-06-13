@@ -22,6 +22,8 @@ class MainViewController: UIViewController {
     let cellId = "cell-id"
     let headerId = "header-id"
     
+    // MARK: UI Properties
+    lazy var headerView = MainTableViewHeader()
     lazy var tableView = UITableView()
 
     override func viewDidLoad() {
@@ -31,16 +33,17 @@ class MainViewController: UIViewController {
         configureUI()
         configureDataSource()
         configureSnapshot()
-        
     }
     
     private func setUpView() {
         
-        tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: cellId)
-        tableView.register(MainTableViewHeader.self, forHeaderFooterViewReuseIdentifier: headerId)
         
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 16))
+//        tableView.tableHeaderView?.frame.size.height = 16
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 64))
+//        tableView.tableFooterView?.frame.size.height = 64
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
         }
@@ -48,9 +51,15 @@ class MainViewController: UIViewController {
 
     private func configureUI() {
         
-        self.view.addSubview(tableView)
+        [ headerView, tableView ].forEach { self.view.addSubview($0) }
+        headerView.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.left.right.equalToSuperview()
+        }
         tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(headerView.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
     }
 
@@ -78,6 +87,13 @@ extension MainViewController {
             ScehduleMain(scheduleId: 0, color: "red", name: "Steve", dateStart: Date(), dataEnd: Date(), stickerCount: 431, stickerNameList: []),
             ScehduleMain(scheduleId: 0, color: "red", name: "Stwie", dateStart: Date(), dataEnd: Date(), stickerCount: 64, stickerNameList: []),
             ScehduleMain(scheduleId: 0, color: "red", name: "Proro", dateStart: Date(), dataEnd: Date(), stickerCount: 3, stickerNameList: []),
+            ScehduleMain(scheduleId: 0, color: "red", name: "Pack", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: []),
+            ScehduleMain(scheduleId: 0, color: "red", name: "Alfted", dateStart: Date(), dataEnd: Date(), stickerCount: 134, stickerNameList: []),
+            ScehduleMain(scheduleId: 0, color: "red", name: "Timothy", dateStart: Date(), dataEnd: Date(), stickerCount: 313, stickerNameList: []),
+            ScehduleMain(scheduleId: 0, color: "red", name: "Cook", dateStart: Date(), dataEnd: Date(), stickerCount: 54, stickerNameList: []),
+            ScehduleMain(scheduleId: 0, color: "red", name: "Steve", dateStart: Date(), dataEnd: Date(), stickerCount: 431, stickerNameList: []),
+            ScehduleMain(scheduleId: 0, color: "red", name: "Stwie", dateStart: Date(), dataEnd: Date(), stickerCount: 64, stickerNameList: []),
+            ScehduleMain(scheduleId: 0, color: "red", name: "Proro", dateStart: Date(), dataEnd: Date(), stickerCount: 3, stickerNameList: []),
             ScehduleMain(scheduleId: 0, color: "red", name: "Pack", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: [])
         ]
         
@@ -87,18 +103,4 @@ extension MainViewController {
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
       }
 
-}
-
-// MARK: Delegate
-extension MainViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        return MainTableViewHeader()
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        return 80
-    }
-    
 }

@@ -31,7 +31,8 @@ class MainCalendarView: UIView {
     }
 
     // TODO: 수정된 WDefaultButton pull 받고 수정 (setTitle 부분)
-    lazy var todayButton = WDefaultButton(title: "", style: .tint, font: WFont.body2()).then {
+
+    lazy var todayButton = WDefaultButton(title: "오늘", style: .tint, font: WFont.body3()).then {
         
         if #available(iOS 15.0, *) {
             $0.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 6, leading: 12, bottom: 6, trailing: 12)
@@ -39,10 +40,6 @@ class MainCalendarView: UIView {
         } else {
             $0.contentEdgeInsets = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12)
         }
-        
-        let attribute = [NSAttributedString.Key.font: WFont.body3()]
-        let attributedTitle = NSAttributedString(string: "오늘", attributes: attribute as [NSAttributedString.Key: Any])
-        $0.setAttributedTitle(attributedTitle, for: .normal)
     }
     
     lazy var editButton = UIButton().then {
@@ -51,6 +48,12 @@ class MainCalendarView: UIView {
     }
     
     lazy var headerView = UIView()
+    
+    lazy var stack = UIStackView().then {
+        $0.axis = .vertical
+        $0.distribution = .fill
+        $0.spacing = 10
+    }
         
     // MARK: Initializer
     override init(frame: CGRect) {
@@ -82,10 +85,9 @@ class MainCalendarView: UIView {
     // MARK: configureUI
     private func configureUI() {
         
-        // Constraints
+        // Inside Title Header
         [ titleLabel, rightButton, leftButton, todayButton, editButton ].forEach {
             headerView.addSubview($0)
-//            $0.backgroundColor = .gray
         }
         titleLabel.setContentHuggingPriority(.required, for: .vertical)
         titleLabel.snp.makeConstraints { make in
@@ -109,22 +111,23 @@ class MainCalendarView: UIView {
             make.right.equalToSuperview().offset(-18)
         }
         
-        [ headerView, calendar ].forEach { addSubview($0) }
+        // Inside Stack View
+        [ headerView, calendar ].forEach { stack.addArrangedSubview($0) }
         headerView.setContentHuggingPriority(.required, for: .vertical)
-//        headerView.backgroundColor = .cyan
         headerView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
             make.left.right.equalToSuperview()
         }
         
+        calendar.setContentCompressionResistancePriority(.required, for: .vertical)
         calendar.snp.makeConstraints { make in
-            make.top.equalTo(headerView.snp.bottom).offset(14)
-            make.left.equalToSuperview().offset(18)
-            make.right.equalToSuperview().offset(-18)
-            make.bottom.equalToSuperview()
             make.height.equalTo(300)
         }
-        calendar.setScope(.week, animated: false)
+        
+        self.addSubview(stack)
+        stack.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
         
         // Buttons
         leftButton.addTarget(self, action: #selector(prevWeek), for: .touchUpInside)
@@ -138,8 +141,9 @@ class MainCalendarView: UIView {
 extension MainCalendarView: FSCalendarDelegate, FSCalendarDataSource {
     
     private func setUpCalendar() {
+        
         // Base
-        calendar.scope = .month
+        calendar.scope = .week
         calendar.locale = Locale(identifier: "ko_KR")
         calendar.scrollEnabled = true
         calendar.scrollDirection = .horizontal
@@ -156,7 +160,6 @@ extension MainCalendarView: FSCalendarDelegate, FSCalendarDataSource {
         calendar.appearance.todayColor = .backgroundColor
         calendar.appearance.titleTodayColor = .mainColor
 
-
         // Selection
         calendar.allowsSelection = true
         calendar.allowsMultipleSelection = false
@@ -171,7 +174,7 @@ extension MainCalendarView: FSCalendarDelegate, FSCalendarDataSource {
             make.height.equalTo(bounds.height)
         }
         
-        self.layoutIfNeeded()
+        self.layoutSubviews()
     }
 
 
@@ -197,4 +200,3 @@ extension MainCalendarView {
         print(#function)
     }
 }
-
