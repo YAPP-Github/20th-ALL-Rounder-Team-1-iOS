@@ -31,7 +31,7 @@ class MainCalendarView: UIView {
     }
 
     // TODO: 수정된 WDefaultButton pull 받고 수정 (setTitle 부분)
-    lazy var todayButton = WDefaultButton(title: "", style: .tint).then {
+    lazy var todayButton = WDefaultButton(title: "", style: .tint, font: WFont.body2()).then {
         
         if #available(iOS 15.0, *) {
             $0.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 6, leading: 12, bottom: 6, trailing: 12)

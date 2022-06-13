@@ -17,6 +17,7 @@ PODS:
   - Then (3.0.0)
 
 DEPENDENCIES:
+  - AlignedCollectionViewFlowLayout
   - FSCalendar
   - RxCocoa
   - RxDataSources
@@ -50,6 +51,6 @@ SPEC CHECKSUMS:
   SwiftLint: f80f1be7fa96d30e0aa68e58d45d4ea1ccaac519
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: 5f1914af356e5351b323fd88b2d2a4d5a3fe4f60
+PODFILE CHECKSUM: ba95d55551a3d87608412673c6db871a0aa37df4
 
 COCOAPODS: 1.11.3
