@@ -53,18 +53,3 @@ class WIconLabel: UIView {
     }
     
 }
-
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-struct WIconLabelPreview: PreviewProvider {
-    static var previews: some View {
-        UIViewPreview {
-            let label = WIconLabel()
-            label.label.text = "This is Sample"
-            label.icon.image = UIImage(systemName: "checkmark")
-            return label
-        }.previewLayout(.sizeThatFits)
-    }
-}
-#endif

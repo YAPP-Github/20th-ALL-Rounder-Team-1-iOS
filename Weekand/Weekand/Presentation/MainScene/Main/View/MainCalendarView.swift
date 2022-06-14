@@ -21,12 +21,12 @@ class MainCalendarView: UIView {
     }
     
     lazy var leftButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "arrowtriangle.left.fill")!, for: .normal)
+        $0.setImage(UIImage(named: "arrow.left") ?? UIImage(systemName: "arrowtriangle.left.fill"), for: .normal)
         $0.tintColor = .gray500
     }
     
     lazy var rightButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "arrowtriangle.right.fill")!, for: .normal)
+        $0.setImage(UIImage(named: "arrow.right") ?? UIImage(systemName: "arrowtriangle.right.fill")!, for: .normal)
         $0.tintColor = .gray500
     }
 
@@ -43,7 +43,7 @@ class MainCalendarView: UIView {
     }
     
     lazy var editButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "square.and.pencil")?.withTintColor(.gray600!), for: .normal)
+        $0.setImage(UIImage(named: "edit")?.withTintColor(.gray600!), for: .normal)
         $0.tintColor = .gray600
     }
     
