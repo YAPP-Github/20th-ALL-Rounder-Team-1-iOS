@@ -14,7 +14,7 @@ class CategoryListHeaderView: UITableViewHeaderFooterView {
     lazy var addCategoryButton = UIButton().then {
         $0.backgroundColor = .subColor
         $0.layer.cornerRadius = 8
-        let buttonImage = UIImage(named: "addCategory")
+        let buttonImage = UIImage(named: "folder.plus")?.withTintColor(.mainColor)
         $0.setImage(buttonImage, for: .normal)
     }
     

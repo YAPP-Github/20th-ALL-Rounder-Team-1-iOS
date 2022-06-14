@@ -128,12 +128,6 @@ class MainCalendarView: UIView {
             make.edges.equalToSuperview()
         }
         
-        
-        // Buttons
-        leftButton.addTarget(self, action: #selector(prevWeek), for: .touchUpInside)
-        rightButton.addTarget(self, action: #selector(nextWeek), for: .touchUpInside)
-        todayButton.addTarget(self, action: #selector(moveToday), for: .touchUpInside)
-        editButton.addTarget(self, action: #selector(showEditPage), for: .touchUpInside)
     }
     
 }

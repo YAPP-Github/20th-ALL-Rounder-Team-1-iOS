@@ -33,7 +33,7 @@ class MainTableViewCell: UITableViewCell {
         
         $0.axis = .vertical
         $0.distribution = .fillEqually
-        $0.spacing = 6
+        $0.spacing = 9
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -66,7 +66,7 @@ extension MainTableViewCell {
     public func setUpCell(color: UIColor, title: String, status: StatusIcon, time: String, emojiNumber: Int, emojiOrder: [Emoji]) {
         
         self.nameLabel.editValue(color: color, title: title)
-        self.timeLineLabel.editValue(status: status, title: time)
+        self.timeLineLabel.configureValue(status: status, title: time)
         self.emojiView.numberLabel.text = String(emojiNumber)
         self.emojiView.setEmoji(emojiOrder: emojiOrder)
     }

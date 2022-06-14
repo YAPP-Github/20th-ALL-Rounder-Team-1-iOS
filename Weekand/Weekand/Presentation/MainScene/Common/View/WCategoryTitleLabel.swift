@@ -20,7 +20,7 @@ class WCategoryTitleLabel: WIconLabel {
     }
     
     private func setupView() {
-        self.icon.layer.cornerRadius = 5
+        self.icon.layer.cornerRadius = 3
         self.label.font = WFont.body1()
         self.label.textColor = .gray900
         
@@ -51,17 +51,3 @@ extension WCategoryTitleLabel {
         self.label.text = title
     }
 }
-
-
-
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-struct WCategoryTitleLabelPreview: PreviewProvider {
-    static var previews: some View {
-        UIViewPreview {
-            return WCategoryTitleLabel(color: .blue, title: "blahblahblah")
-        }.previewLayout(.sizeThatFits)
-    }
-}
-#endif

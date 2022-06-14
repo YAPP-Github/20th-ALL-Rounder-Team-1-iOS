@@ -9,8 +9,8 @@ import UIKit
 
 class WCheckBox: UIButton {
     
-    let checkedImage = UIImage(named: "CheckBox")!.withTintColor(.gray300)
-    let uncheckedImage = UIImage(named: "CheckBox")!.withTintColor(.mainColor)
+    let checkedImage = UIImage(named: "checkmark.fill")!.withTintColor(.gray300)
+    let uncheckedImage = UIImage(named: "checkmark.fill")!.withTintColor(.mainColor)
 
     var isChecked: Bool = false {
         didSet {
