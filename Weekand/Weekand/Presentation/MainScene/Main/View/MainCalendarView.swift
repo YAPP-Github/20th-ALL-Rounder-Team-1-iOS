@@ -179,24 +179,3 @@ extension MainCalendarView: FSCalendarDelegate, FSCalendarDataSource {
 
 
 }
-
-
-// MARK: Button Events
-extension MainCalendarView {
-    
-    @objc func prevWeek() {
-        print(#function)
-    }
-    
-    @objc func nextWeek() {
-        print(#function)
-    }
-    
-    @objc func moveToday() {
-        print(#function)
-    }
-    
-    @objc func showEditPage() {
-        print(#function)
-    }
-}
