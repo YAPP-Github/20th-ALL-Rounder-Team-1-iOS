@@ -14,9 +14,11 @@ class WIconLabel: UIView {
     
     lazy var icon = UIImageView().then {
         $0.setContentHuggingPriority(.required, for: .vertical)
+        $0.contentMode = .scaleAspectFit
     }
     lazy var label = UILabel().then {
         $0.textAlignment = .left
+        $0.setContentHuggingPriority(.required, for: .vertical)
     }
     lazy var stack = UIStackView().then {
         
@@ -24,7 +26,7 @@ class WIconLabel: UIView {
         $0.addArrangedSubview(label)
 
         icon.snp.makeConstraints { make in
-            make.height.lessThanOrEqualToSuperview()
+            make.height.lessThanOrEqualTo(label.snp.height)
             make.width.equalTo(icon.snp.height)
         }
         
@@ -53,18 +55,3 @@ class WIconLabel: UIView {
     }
     
 }
-
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-struct WIconLabelPreview: PreviewProvider {
-    static var previews: some View {
-        UIViewPreview {
-            let label = WIconLabel()
-            label.label.text = "This is Sample"
-            label.icon.image = UIImage(systemName: "checkmark")
-            return label
-        }.previewLayout(.sizeThatFits)
-    }
-}
-#endif

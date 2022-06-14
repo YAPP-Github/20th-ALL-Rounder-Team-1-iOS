@@ -23,6 +23,7 @@ class CategoryListViewController: UIViewController {
         Category(color: "red", name: "to do", openType: .allOpen)
     ]
     
+    var viewModel: CategoryListViewModel?
     var dataSource: UITableViewDiffableDataSource<Section, Category>!
     
     let tableView = UITableView()

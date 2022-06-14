@@ -9,14 +9,14 @@ import UIKit
 
 enum StatusIcon: String {
     
-    // TODO: 현재 임시로 SF Symbol 사용 -> ICON 완성되면 교체
-    case upcoming = "sum"
-    case proceeding = "arrowshape.turn.up.left"
-    case completed = "checkmark"
-    case skipped = "xmark"
+    // TODO: String 대신 tintColor로 랜더링된 UIImage를 받을 수 있도록 리팩토링
+    case upcoming = "state.upcomming"
+    case proceeding = "state.proceeding"
+    case completed = "state.completed"
+    case skipped = "state.start"
     
-    case start = "startDate"
-    case end = "endDate"
+    case start = "date.start"
+    case end = "date.end"
 }
 
 class WStatusTimeLabel: WIconLabel {
@@ -41,43 +41,16 @@ class WStatusTimeLabel: WIconLabel {
         super.init(frame: CGRect.zero)
         
         setupView()
-        editValue(status: status, title: title)
+        configureValue(status: status, title: title)
     }
         
 }
 
 extension WStatusTimeLabel {
     
-    public func editValue(status: StatusIcon, title: String) {
-        
-        self.icon.image = UIImage(systemName: status.rawValue)!
-        self.icon.tintColor = .gray400  // TODO: 해당 코드 ICON으로 교체되면 삭제 예정
-        self.label.text = title
-    }
-}
-
-extension WStatusTimeLabel {
-    
-    // 임시
     public func configureValue(status: StatusIcon, title: String) {
+        
         self.icon.image = UIImage(named: status.rawValue)!.withTintColor(.gray400)
         self.label.text = title
     }
 }
-
-
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-
-struct WStatusTimeLabelPreview: PreviewProvider {
-    static var previews: some View {
-        if #available(iOS 15.0, *) {
-            UIViewPreview {
-                return WStatusTimeLabel(status: .completed, title: "00:00 - 00:00")
-            }.previewLayout(.sizeThatFits).previewInterfaceOrientation(.landscapeLeft)
-        } else {
-            // Fallback on earlier versions
-        }
-    }
-}
-#endif

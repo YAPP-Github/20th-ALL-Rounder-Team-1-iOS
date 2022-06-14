@@ -20,7 +20,7 @@ class CategoryDetailFooterView: UITableViewHeaderFooterView {
     lazy var updateCategoryButton = UIButton().then {
         $0.backgroundColor = .subColor
         $0.layer.cornerRadius = 8
-        let buttonImage = UIImage(named: "updateCategory")
+        let buttonImage = UIImage(named: "category.update")?.withTintColor(.mainColor)
         $0.setImage(buttonImage, for: .normal)
     }
     

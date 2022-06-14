@@ -49,7 +49,7 @@ class WFilterButton: UIButton {
         mutableAttributedString.append(attributedTitle)
         
         let imageAttachment = NSTextAttachment()
-        imageAttachment.image = UIImage(named: "DownArrow")
+        imageAttachment.image = UIImage(named: "arrow.down")
         imageAttachment.bounds = CGRect(x: 1, y: -6, width: 20, height: 20)
         let attachmentString = NSAttributedString(attachment: imageAttachment)
         

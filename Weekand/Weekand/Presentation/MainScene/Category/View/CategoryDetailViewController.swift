@@ -23,6 +23,7 @@ class CategoryDetailViewController: UIViewController {
         ScehduleMain(scheduleId: 0, color: "red", name: "일정 제목7", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: [])
     ]
     
+    var viewModel: CategoryDetailViewModel?
     var dataSource: UITableViewDiffableDataSource<Section, ScehduleMain>!
     
     let tableView = UITableView()

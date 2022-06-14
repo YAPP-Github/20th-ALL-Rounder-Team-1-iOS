@@ -26,5 +26,22 @@ class MainCoordinator: Coordinator {
         self.navigationController.pushViewController(mainViewController, animated: true)
     }
     
+    func finish() {
+        self.finishDelegate?.childDidFinish(self)
+    }
     
+    func showCategoryScene() {
+        let categoryCoordinator = CategoryCoordinator(navigationController: self.navigationController)
+        categoryCoordinator.finishDelegate = self
+        childCoordinators.append(categoryCoordinator)
+        categoryCoordinator.start()
+    }
+}
+
+extension MainCoordinator: CoordinatorDidFinishDelegate {
+    
+    func childDidFinish(_ child: Coordinator) {
+        self.childCoordinators = self.childCoordinators.filter({ $0.type != child.type })
+        navigationController.popToRootViewController(animated: true)
+    }
 }
