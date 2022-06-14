@@ -24,6 +24,7 @@ class CategoryCoordinator: Coordinator {
     func start() {
         self.categoryListViewController.viewModel = CategoryListViewModel(coordinator: self)
         self.navigationController.pushViewController(categoryListViewController, animated: true)
+        self.pushCategoryDetailViewController()
     }
     
     func pushCategoryDetailViewController() {
