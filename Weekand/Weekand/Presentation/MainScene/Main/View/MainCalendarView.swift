@@ -17,34 +17,36 @@ class MainCalendarView: UIView {
     
     lazy var titleLabel = UILabel().then {
         $0.font = WFont.body1()
-        $0.text = "5월 1주"   // TODO: This is Sample
+        $0.text = "5월 1주차"   // TODO: This is Sample
     }
     
     lazy var leftButton = UIButton().then {
         $0.setImage(UIImage(named: "arrow.left") ?? UIImage(systemName: "arrowtriangle.left.fill"), for: .normal)
         $0.tintColor = .gray500
+        $0.imageView?.contentMode = .scaleAspectFit
     }
     
     lazy var rightButton = UIButton().then {
         $0.setImage(UIImage(named: "arrow.right") ?? UIImage(systemName: "arrowtriangle.right.fill")!, for: .normal)
         $0.tintColor = .gray500
+        $0.imageView?.contentMode = .scaleAspectFit
     }
-
-    // TODO: 수정된 WDefaultButton pull 받고 수정 (setTitle 부분)
 
     lazy var todayButton = WDefaultButton(title: "오늘", style: .tint, font: WFont.body3()).then {
         
         if #available(iOS 15.0, *) {
             $0.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 6, leading: 12, bottom: 6, trailing: 12)
-            
+            $0.configuration?.background.cornerRadius = 8
         } else {
             $0.contentEdgeInsets = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12)
+            $0.layer.cornerRadius = 8
         }
     }
     
     lazy var editButton = UIButton().then {
         $0.setImage(UIImage(named: "edit")?.withTintColor(.gray600!), for: .normal)
         $0.tintColor = .gray600
+        $0.imageView?.contentMode = .scaleAspectFit
     }
     
     lazy var headerView = UIView()
@@ -88,27 +90,35 @@ class MainCalendarView: UIView {
         // Inside Title Header
         [ titleLabel, rightButton, leftButton, todayButton, editButton ].forEach {
             headerView.addSubview($0)
+            $0.setContentHuggingPriority(.required, for: .horizontal)
         }
+        
         titleLabel.setContentHuggingPriority(.required, for: .vertical)
         titleLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.top.bottom.equalToSuperview().inset(20)
+            make.top.bottom.equalToSuperview().inset(9)
         }
         leftButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.right.equalTo(titleLabel.snp.left).offset(-15)
+            make.height.equalToSuperview()
+            make.width.equalTo(leftButton.snp.height).dividedBy(2)
         }
         rightButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.left.equalTo(titleLabel.snp.right).offset(15)
+            make.height.equalToSuperview()
+            make.width.equalTo(leftButton.snp.height).dividedBy(2)
         }
         todayButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(18)
+            make.left.equalToSuperview()
         }
         editButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.right.equalToSuperview().offset(-18)
+            make.right.equalToSuperview()
+            make.height.equalTo(titleLabel.snp.height)
+            make.width.equalTo(leftButton.snp.height)
         }
         
         // Inside Stack View
@@ -121,6 +131,7 @@ class MainCalendarView: UIView {
         calendar.setContentCompressionResistancePriority(.required, for: .vertical)
         calendar.snp.makeConstraints { make in
             make.height.equalTo(300)
+            make.left.right.equalToSuperview()
         }
         
         self.addSubview(stack)

@@ -40,18 +40,22 @@ class MainTableViewHeader: UIView {
     
     private func configureUI() {
         
-        [ calendarView, dividerLine ].forEach { stack.addArrangedSubview($0) }
-        dividerLine.snp.makeConstraints { make in
-            make.height.equalTo(10)
-        }
+        [ calendarView ].forEach { stack.addArrangedSubview($0) }
 
-        self.addSubview(stack)
+        [ stack, dividerLine ].forEach { self.addSubview($0)}
         stack.snp.makeConstraints { make in
             make.top.equalToSuperview()
+            make.left.right.equalToSuperview().inset(24)
+            
+        }
+        
+        dividerLine.snp.makeConstraints { make in
+            make.height.equalTo(10)
+            make.top.equalTo(stack.snp.bottom)
             make.left.right.equalToSuperview()
             make.bottom.equalToSuperview()
         }
-        
+
         self.layoutSubviews()
     }
     
