@@ -17,7 +17,7 @@ class WelcomeViewController: UIViewController {
     var viewModel: WelcomeViewModel?
     
     lazy var logoView = UIImageView().then {
-        $0.image = UIImage(named: "Welcome")
+        $0.image = UIImage(named: "Logo")
     }
     
     lazy var introLabel = UILabel().then {
@@ -26,8 +26,6 @@ class WelcomeViewController: UIViewController {
     }
     
     lazy var titleStack = UIStackView().then {
-        $0.addArrangedSubview(logoView)
-        $0.addArrangedSubview(introLabel)
         
         $0.axis = .vertical
         $0.distribution = .fillEqually
@@ -38,14 +36,10 @@ class WelcomeViewController: UIViewController {
     lazy var signUpButton = WDefaultButton(title: "회원가입", style: .tint, font: WFont.subHead1())
     
     lazy var buttonStack = UIStackView().then {
-        $0.addArrangedSubview(signInButton)
-        $0.addArrangedSubview(signUpButton)
-        
         $0.axis = .vertical
         $0.spacing = 10
         $0.distribution = .fillEqually
     }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,19 +49,21 @@ class WelcomeViewController: UIViewController {
     }
 
     private func configureUI() {
-        self.view.addSubview(titleStack)
-        titleStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(defaultWidthDivider)
-            make.centerY.equalToSuperview().dividedBy(2)
-        }
-        
+        [ logoView, introLabel ].forEach { titleStack.addArrangedSubview($0) }
         logoView.snp.makeConstraints { make in
             make.width.equalTo(148)
             make.height.equalTo(40)
         }
         
-        self.view.addSubview(buttonStack)
+        [ signInButton, signUpButton ].forEach { buttonStack.addArrangedSubview($0) }
+        
+        [ titleStack, buttonStack ].forEach { self.view.addSubview($0)}
+        titleStack.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview().dividedBy(defaultWidthDivider)
+            make.centerY.equalToSuperview().dividedBy(2)
+        }
+                
         buttonStack.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().dividedBy(defaultWidthDivider)
