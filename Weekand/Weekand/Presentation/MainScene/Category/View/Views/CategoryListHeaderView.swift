@@ -16,6 +16,7 @@ class CategoryListHeaderView: UITableViewHeaderFooterView {
         $0.layer.cornerRadius = 8
         let buttonImage = UIImage(named: "folder.plus")?.withTintColor(.mainColor)
         $0.setImage(buttonImage, for: .normal)
+        $0.imageView?.contentMode = .scaleAspectFit
     }
     
     lazy var filterButton = WFilterButton().then {

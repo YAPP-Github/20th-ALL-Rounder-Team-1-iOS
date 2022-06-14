@@ -23,6 +23,7 @@
 		7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */; };
 		7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */; };
 		7DA4AB7828586FA7009E91FB /* CategoryEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7728586FA7009E91FB /* CategoryEditViewModel.swift */; };
+		7DA4AB7A285871E0009E91FB /* UIButton+setImageInset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB79285871E0009E91FB /* UIButton+setImageInset.swift */; };
 		7DAA861F284B968000F21E35 /* ScehduleMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAA861E284B968000F21E35 /* ScehduleMain.swift */; };
 		7DB5E13C284B4DA400DBB7EA /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB5E13B284B4DA400DBB7EA /* MainCoordinator.swift */; };
 		7DB5E13E284B4E3C00DBB7EA /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB5E13D284B4E3C00DBB7EA /* MainViewModel.swift */; };
@@ -102,6 +103,7 @@
 		7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCoordinator.swift; sourceTree = "<group>"; };
 		7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB7728586FA7009E91FB /* CategoryEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEditViewModel.swift; sourceTree = "<group>"; };
+		7DA4AB79285871E0009E91FB /* UIButton+setImageInset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+setImageInset.swift"; sourceTree = "<group>"; };
 		7DAA861E284B968000F21E35 /* ScehduleMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScehduleMain.swift; sourceTree = "<group>"; };
 		7DB5E13B284B4DA400DBB7EA /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		7DB5E13D284B4E3C00DBB7EA /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -441,6 +443,7 @@
 		7DC166B72837157500F1A8F1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7DA4AB79285871E0009E91FB /* UIButton+setImageInset.swift */,
 				7DF8B7AB2836250400B224CA /* UIColor+hex.swift */,
 				F33C6EAD28535021005B493A /* UIVIewController+extension.swift */,
 				F354C3E9283E6946008929FD /* NSMutableAttributedString+extension.swift */,
@@ -781,6 +784,7 @@
 				7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */,
 				7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */,
 				F354C3DF283CECF5008929FD /* WTextLabel.swift in Sources */,
+				7DA4AB7A285871E0009E91FB /* UIButton+setImageInset.swift in Sources */,
 				7DC166BC28371B0C00F1A8F1 /* ColorSet.swift in Sources */,
 				F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */,
 				7DB5E13C284B4DA400DBB7EA /* MainCoordinator.swift in Sources */,
