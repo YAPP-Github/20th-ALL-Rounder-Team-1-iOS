@@ -9,6 +9,8 @@ import UIKit
 import Then
 
 class CategoryEditViewController: BaseViewController {
+    
+    var viewModel: CategoryEditViewModel?
 
     let categoryTextFieldStackView = WTextFieldStackView(fieldPlaceholder: "카테고리명", nameText: "카테고리")
     

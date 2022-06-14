@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoryListCoordinator: Coordinator {
+class CategoryCoordinator: Coordinator {
     
     weak var finishDelegate: CoordinatorDidFinishDelegate?
     var navigationController: UINavigationController
@@ -24,7 +24,23 @@ class CategoryListCoordinator: Coordinator {
     func start() {
         self.categoryListViewController.viewModel = CategoryListViewModel(coordinator: self)
         self.navigationController.pushViewController(categoryListViewController, animated: true)
+        
+        self.pushCategoryDetailViewController()
     }
     
+    func pushCategoryDetailViewController() {
+        let categoryDetailViewController = CategoryDetailViewController()
+        categoryDetailViewController.viewModel = CategoryDetailViewModel(coordinator: self)
+        self.navigationController.pushViewController(categoryDetailViewController, animated: true)
+    }
+    
+    func pushCategoryEditViewController() {
+        let categoryEditViewController = CategoryEditViewController()
+        categoryEditViewController.viewModel = CategoryEditViewModel(coordinator: self)
+        self.navigationController.pushViewController(categoryEditViewController, animated: true)    }
+    
+    func finish() {
+        self.finishDelegate?.childDidFinish(self)
+    }
     
 }

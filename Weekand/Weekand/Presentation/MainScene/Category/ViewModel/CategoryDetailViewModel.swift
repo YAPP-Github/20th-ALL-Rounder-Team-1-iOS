@@ -1,5 +1,5 @@
 //
-//  CategoryListViewModel.swift
+//  CategoryDetailViewModel.swift
 //  Weekand
 //
 //  Created by Daegeon Choi on 2022/06/14.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CategoryListViewModel {
+class CategoryDetailViewModel {
     
     weak var coordinator: CategoryCoordinator?
     
