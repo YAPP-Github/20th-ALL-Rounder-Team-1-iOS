@@ -8,6 +8,8 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
 
 class MainViewController: UIViewController {
     
@@ -32,6 +34,7 @@ class MainViewController: UIViewController {
         configureUI()
         configureDataSource()
         configureSnapshot()
+        bindViewModel()
     }
     
     private func setUpView() {
@@ -59,6 +62,17 @@ class MainViewController: UIViewController {
             make.left.right.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+    }
+    
+    private func bindViewModel() {
+        let input = MainViewModel.Input(
+            didTapTodayButtom: self.headerView.calendarView.todayButton.rx.tap.asObservable(),
+            didTapNextWeekButton: self.headerView.calendarView.rightButton.rx.tap.asObservable(),
+            didTapPrevWeekButton: self.headerView.calendarView.leftButton.rx.tap.asObservable(),
+            didTapEditButton: self.headerView.calendarView.editButton.rx.tap.asObservable()
+        )
+        
+        self.viewModel?.transform(input: input)
     }
 
 }
