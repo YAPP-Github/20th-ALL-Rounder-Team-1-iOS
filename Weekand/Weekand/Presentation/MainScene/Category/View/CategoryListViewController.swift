@@ -8,6 +8,8 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
 
 class CategoryListViewController: UIViewController {
     
@@ -25,6 +27,7 @@ class CategoryListViewController: UIViewController {
     
     var viewModel: CategoryListViewModel?
     var dataSource: UITableViewDiffableDataSource<Section, Category>!
+    var headerView = CategoryListHeaderView()
     
     let tableView = UITableView()
     
@@ -33,9 +36,9 @@ class CategoryListViewController: UIViewController {
         
         setupView()
         configureUI()
-        bindViewModel()
         configureDataSource()
         configureSnapshot()
+        bindViewModel()
     }
     
     private func setupView() {
@@ -55,6 +58,12 @@ class CategoryListViewController: UIViewController {
     
     private func bindViewModel() {
         
+        let input = CategoryListViewModel.Input(
+            didTapAddCategoryButton: self.headerView.addCategoryButton.rx.tap.asObservable(),
+            didCategoryCellSelected: self.tableView.rx.itemSelected.asObservable()
+        )
+        
+        self.viewModel?.transform(input: input)
     }
 }
 
@@ -86,7 +95,7 @@ extension CategoryListViewController {
 extension CategoryListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        return CategoryListHeaderView()
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

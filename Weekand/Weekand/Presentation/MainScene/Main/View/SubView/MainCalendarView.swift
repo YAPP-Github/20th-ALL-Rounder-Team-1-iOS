@@ -17,7 +17,7 @@ class MainCalendarView: UIView {
     
     lazy var titleLabel = UILabel().then {
         $0.font = WFont.body1()
-        $0.text = "5월 1주차"   // TODO: This is Sample
+        $0.text = "5월 1주차"   // TODO: This is Sample - 함수 만들어서 Date 대응
     }
     
     lazy var leftButton = UIButton().then {
@@ -49,7 +49,7 @@ class MainCalendarView: UIView {
         $0.imageView?.contentMode = .scaleAspectFit
     }
     
-    lazy var headerView = UIView()
+    lazy var titleBar = UIView()
     
     lazy var stack = UIStackView().then {
         $0.axis = .vertical
@@ -89,7 +89,7 @@ class MainCalendarView: UIView {
         
         // Inside Title Header
         [ titleLabel, rightButton, leftButton, todayButton, editButton ].forEach {
-            headerView.addSubview($0)
+            titleBar.addSubview($0)
             $0.setContentHuggingPriority(.required, for: .horizontal)
         }
         
@@ -122,9 +122,9 @@ class MainCalendarView: UIView {
         }
         
         // Inside Stack View
-        [ headerView, calendar ].forEach { stack.addArrangedSubview($0) }
-        headerView.setContentHuggingPriority(.required, for: .vertical)
-        headerView.snp.makeConstraints { make in
+        [ titleBar, calendar ].forEach { stack.addArrangedSubview($0) }
+        titleBar.setContentHuggingPriority(.required, for: .vertical)
+        titleBar.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
         }
         

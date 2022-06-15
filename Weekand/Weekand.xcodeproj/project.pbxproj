@@ -258,8 +258,8 @@
 		7D76AEB2284458AC001C668D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7DA4AB742858669E009E91FB /* SubViews */,
 				7D76AEB3284458C2001C668D /* MainViewController.swift */,
+				7DA4AB742858669E009E91FB /* SubView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -308,14 +308,14 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
-		7DA4AB742858669E009E91FB /* SubViews */ = {
+		7DA4AB742858669E009E91FB /* SubView */ = {
 			isa = PBXGroup;
 			children = (
 				7D76AEB528445AA5001C668D /* MainTableViewCell.swift */,
 				7DF96889284DF2EB00CE077E /* MainTableViewHeader.swift */,
 				7DF9688B284E019A00CE077E /* MainCalendarView.swift */,
 			);
-			path = SubViews;
+			path = SubView;
 			sourceTree = "<group>";
 		};
 		7DAA861C284B962B00F21E35 /* Domain */ = {
@@ -532,7 +532,7 @@
 			path = Weekand;
 			sourceTree = "<group>";
 		};
-		F33C6EAF2853530B005B493A /* Views */ = {
+		F33C6EAF2853530B005B493A /* SubView */ = {
 			isa = PBXGroup;
 			children = (
 				F392A1C8284F53A300512A42 /* CategoryListTableViewCell.swift */,
@@ -543,7 +543,7 @@
 				F32F725D2854ADFA0056B189 /* OpenTypeStackView.swift */,
 				F32F725F2854BB730056B189 /* ColorStackView.swift */,
 			);
-			path = Views;
+			path = SubView;
 			sourceTree = "<group>";
 		};
 		F354C3E6283D3EC8008929FD /* Views */ = {
@@ -589,7 +589,7 @@
 				F392A1C6284F51B100512A42 /* CategoryListViewController.swift */,
 				F32F724F2853AEE00056B189 /* CategoryDetailViewController.swift */,
 				F32F725928549A5D0056B189 /* CategoryEditViewController.swift */,
-				F33C6EAF2853530B005B493A /* Views */,
+				F33C6EAF2853530B005B493A /* SubView */,
 			);
 			path = View;
 			sourceTree = "<group>";
