@@ -37,6 +37,13 @@ class MainViewController: UIViewController {
         bindViewModel()
     }
     
+    // TODO: Coordinator로 옮김
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     private func setUpView() {
         
         tableView.separatorStyle = .none

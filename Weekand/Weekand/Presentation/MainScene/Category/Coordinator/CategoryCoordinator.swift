@@ -17,7 +17,7 @@ class CategoryCoordinator: Coordinator {
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.navigationController.setNavigationBarHidden(true, animated: false)
+        self.navigationController.setNavigationBarHidden(false, animated: true)
         self.categoryListViewController = CategoryListViewController()
     }
     
