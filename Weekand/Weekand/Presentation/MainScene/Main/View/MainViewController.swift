@@ -20,41 +20,34 @@ class MainViewController: UIViewController {
     var viewModel: MainViewModel?
     var dataSource: UITableViewDiffableDataSource<Section, ScehduleMain>!
     
-    // TODO: 하드코딩된 identifier들 삭제
-    let cellId = "cell-id"
-    
-    // MARK: UI Properties
-    lazy var headerView = MainTableViewHeader()
-    lazy var tableView = UITableView()
+    // MARK: UI Properties    
+    lazy var collectionView = UICollectionView()
+    lazy var headerView = MainViewHeader()
+    lazy var tableView = UITableView().then {
+        $0.separatorStyle = .none
+        $0.register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.identifier)
+        
+        $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 16))
+        $0.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 64))
+        
+        if #available(iOS 15.0, *) {
+            $0.sectionHeaderTopPadding = 0
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpView()
         configureUI()
-        configureDataSource()
-        configureSnapshot()
+        configureTableView()
         bindViewModel()
-    }
-    
-    // TODO: Coordinator로 옮김
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     private func setUpView() {
         
-        tableView.separatorStyle = .none
-        tableView.register(MainTableViewCell.self, forCellReuseIdentifier: cellId)
-        
-        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 16))
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 64))
-        
-        if #available(iOS 15.0, *) {
-            tableView.sectionHeaderTopPadding = 0
-        }
+        // TODO: 삭제
+        headerView.profileView.setUpView(name: "이건두", state: "We can do, Week and!", profileImagePath: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80")
     }
 
     private func configureUI() {
@@ -78,25 +71,39 @@ class MainViewController: UIViewController {
             didTapPrevWeekButton: self.headerView.calendarView.leftButton.rx.tap.asObservable(),
             didTapEditButton: self.headerView.calendarView.editButton.rx.tap.asObservable()
         )
-        
         self.viewModel?.transform(input: input)
     }
 
 }
 
-// MARK: DataSource
+// MARK: CollectionView DataSource
 extension MainViewController {
     
-    private func configureDataSource() {
+    private func configureCollectionView() {
+        
+    }
+    
+    
+}
+
+// MARK: TableView DataSource
+extension MainViewController {
+    
+    private func configureTableView() {
+        configureTableViewDataSource()
+        configureTableViewSnapshot()
+    }
+    
+    private func configureTableViewDataSource() {
         
         dataSource = UITableViewDiffableDataSource<Section, ScehduleMain>(tableView: tableView, cellProvider: { tableView, indexPath, list in
-            let cell = tableView.dequeueReusableCell(withIdentifier: self.cellId, for: indexPath) as! MainTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier:MainTableViewCell.identifier, for: indexPath) as! MainTableViewCell
             cell.setUpCell(color: .red, title: list.name, status: .completed, time: "00:00 - 00:00", emojiNumber: list.stickerCount, emojiOrder: [.awesome, .cool, .good, .support])
             return cell
         })
     }
     
-    private func configureSnapshot(animatingDifferences: Bool = true) {
+    private func configureTableViewSnapshot(animatingDifferences: Bool = true) {
         
         // TODO: 샘플 데이터 정리 & 테스트 코드로 이동
         // TODO: Rx로 리팩토링
