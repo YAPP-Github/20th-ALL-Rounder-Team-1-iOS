@@ -9,7 +9,10 @@ import UIKit
 import SnapKit
 import Then
 
+/// 메인화면 일정 리스트 TableView에 쓰이는 Cell
 class MainTableViewCell: UITableViewCell {
+    
+    static let identifier = "MainTableViewCell"
     
     // MARK: 상단 (카테고리 색상 원 + 일정 이름)
     lazy var nameLabel = WCategoryTitleLabel()

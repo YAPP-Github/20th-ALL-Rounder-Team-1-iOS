@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// 메인 화면 프로필 부분 (이름, 한줄목표, 프로필 사진)
 class MainProfileView: UIView {
     
     lazy var nameLabel = UILabel().then {

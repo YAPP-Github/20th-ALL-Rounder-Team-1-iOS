@@ -7,7 +7,8 @@
 
 import UIKit
 
-class MainTableViewHeader: UIView {
+/// 메인화면 위쪽 (프로필, 캘린더) 부분
+class MainViewHeader: UIView {
     
     lazy var profileView = MainProfileView()
     
