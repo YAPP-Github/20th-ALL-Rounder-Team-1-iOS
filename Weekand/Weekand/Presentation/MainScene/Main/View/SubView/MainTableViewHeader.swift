@@ -9,6 +9,8 @@ import UIKit
 
 class MainTableViewHeader: UIView {
     
+    lazy var profileView = MainProfileView()
+    
     lazy var calendarView = MainCalendarView()
     
     lazy var dividerLine = UIView().then {
@@ -40,7 +42,7 @@ class MainTableViewHeader: UIView {
     
     private func configureUI() {
         
-        [ calendarView ].forEach { stack.addArrangedSubview($0) }
+        [ profileView, calendarView ].forEach { stack.addArrangedSubview($0) }
 
         [ stack, dividerLine ].forEach { self.addSubview($0)}
         stack.snp.makeConstraints { make in
