@@ -6,14 +6,30 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
-class CategoryEditViewModel {
+class CategoryEditViewModel: ViewModelType {
     
-    weak var coordinator: CategoryCoordinator?
+    weak var coordinator: CategoryEidtCoordinator?
     
-    init(coordinator: CategoryCoordinator) {
+    init(coordinator: CategoryEidtCoordinator) {
         
         self.coordinator = coordinator
+    }
+    
+    struct Input {
+        let closeButtonDidTapEvent: Observable<Void>
+    }
+    
+    struct Output { }
+    
+    func transform(input: Input) -> Output {
+        input.closeButtonDidTapEvent.subscribe(onNext: {
+            self.coordinator?.dismiss()
+        })
+        
+        return Output()
     }
 
 }

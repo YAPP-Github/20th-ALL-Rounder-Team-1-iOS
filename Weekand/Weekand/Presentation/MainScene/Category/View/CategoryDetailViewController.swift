@@ -41,9 +41,14 @@ class CategoryDetailViewController: UIViewController {
     private func setupView() {
         tableView.delegate = self
         tableView.separatorStyle = .none
+        tableView.bounces = false
         tableView.register(CategoryDetailTableViewCell.self, forCellReuseIdentifier: CategoryDetailTableViewCell.cellIdentifier)
         tableView.register(CategoryDetailHeaderView.self, forHeaderFooterViewReuseIdentifier: CategoryDetailHeaderView.cellIdentifier)
         tableView.register(CategoryDetailFooterView.self, forHeaderFooterViewReuseIdentifier: CategoryDetailFooterView.cellIdentifier)
+        
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
     }
     
     private func configureUI() {
@@ -99,7 +104,7 @@ extension CategoryDetailViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 70
+        return 58
     }
 }
 

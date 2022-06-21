@@ -18,6 +18,7 @@ class CategoryDetailHeaderView: UITableViewHeaderFooterView {
     
     lazy var filterButton = WFilterButton().then {
         $0.setTitle("내림차순")
+        $0.backgroundColor = .gray300
     }
     
     override init(reuseIdentifier: String?) {
@@ -32,6 +33,7 @@ class CategoryDetailHeaderView: UITableViewHeaderFooterView {
     }
     
     func setupView() {
+        self.contentView.backgroundColor = .white
     }
     
     func configureUI() {
@@ -40,14 +42,14 @@ class CategoryDetailHeaderView: UITableViewHeaderFooterView {
         
         searchBar.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(12)
-            make.top.equalToSuperview().offset(15)
+            make.top.equalToSuperview().offset(12)
         }
 
         filterButton.snp.makeConstraints { make in
-            make.bottom.equalTo(-10)
-            make.trailing.equalTo(-12)
-            make.width.equalTo(86)
-            make.height.equalTo(41)
+            make.bottom.equalToSuperview().offset(-5)
+            make.trailing.equalToSuperview().offset(-12)
+            make.width.equalTo(100)
+            make.height.equalTo(42)
         }
     }
 

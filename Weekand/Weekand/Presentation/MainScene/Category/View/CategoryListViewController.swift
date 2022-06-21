@@ -44,6 +44,7 @@ class CategoryListViewController: UIViewController {
     private func setupView() {
         tableView.delegate = self
         tableView.separatorStyle = .none
+        tableView.bounces = false
         tableView.register(CategoryListTableViewCell.self, forCellReuseIdentifier: CategoryListTableViewCell.cellIdentifier)
         tableView.register(CategoryListHeaderView.self, forHeaderFooterViewReuseIdentifier: CategoryListHeaderView.cellIdentifier)
     }

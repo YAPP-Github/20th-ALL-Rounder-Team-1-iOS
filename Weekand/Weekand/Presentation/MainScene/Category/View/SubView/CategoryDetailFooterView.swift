@@ -35,7 +35,9 @@ class CategoryDetailFooterView: UITableViewHeaderFooterView {
         super.init(coder: coder)
     }
     
-    func setupView() { }
+    func setupView() {
+        self.contentView.backgroundColor = .white
+    }
     
     func configureUI() {
         self.contentView.addSubview(scheduleCountLabel)
@@ -43,7 +45,7 @@ class CategoryDetailFooterView: UITableViewHeaderFooterView {
         
         scheduleCountLabel.snp.makeConstraints { make in
             make.centerX.equalTo(self.snp.centerX)
-            make.top.equalToSuperview().offset(18)
+            make.top.equalToSuperview().offset(25)
         }
         
         updateCategoryButton.snp.makeConstraints { make in

@@ -25,6 +25,11 @@ class CategoryEditViewController: BaseViewController {
         $0.disable(string: "다음")
     }
     
+    lazy var closeButton = UIBarButtonItem().then {
+        $0.image = UIImage(named: "close")
+        $0.tintColor = .gray700 ?? .systemGray
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,7 +40,7 @@ class CategoryEditViewController: BaseViewController {
     
     private func setupView() {
         view.backgroundColor = .white
-        navigationItem.title = "카테고리 수정"
+        navigationItem.leftBarButtonItem = closeButton
         stackView.spacing = 25
     }
 
@@ -57,7 +62,14 @@ class CategoryEditViewController: BaseViewController {
         }
     }
     
-    private func bindViewModel() { }
+    private func bindViewModel() {
+        let input = CategoryEditViewModel.Input(
+            closeButtonDidTapEvent: closeButton.rx.tap.asObservable()
+        )
+        
+        self.viewModel?.transform(input: input)
+        
+    }
 
 }
 
