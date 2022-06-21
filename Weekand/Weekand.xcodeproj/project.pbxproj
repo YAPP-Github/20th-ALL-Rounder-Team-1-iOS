@@ -22,7 +22,7 @@
 		7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */; };
 		7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */; };
 		7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */; };
-		7DA4AB7828586FA7009E91FB /* CategoryEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7728586FA7009E91FB /* CategoryEditViewModel.swift */; };
+		7DA4AB7828586FA7009E91FB /* CategoryAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7728586FA7009E91FB /* CategoryAddViewModel.swift */; };
 		7DA4AB7A285871E0009E91FB /* UIButton+setImageInset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB79285871E0009E91FB /* UIButton+setImageInset.swift */; };
 		7DAA861F284B968000F21E35 /* ScehduleMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAA861E284B968000F21E35 /* ScehduleMain.swift */; };
 		7DB5E13C284B4DA400DBB7EA /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB5E13B284B4DA400DBB7EA /* MainCoordinator.swift */; };
@@ -67,7 +67,7 @@
 		F354C3EA283E6946008929FD /* NSMutableAttributedString+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3E9283E6946008929FD /* NSMutableAttributedString+extension.swift */; };
 		F378684F285619F000BEEC81 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F378684E285619F000BEEC81 /* Category.swift */; };
 		F3786851285D98F500BEEC81 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3786850285D98F500BEEC81 /* Constants.swift */; };
-		F37868532861D28C00BEEC81 /* CategoryEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37868522861D28C00BEEC81 /* CategoryEditCoordinator.swift */; };
+		F37868532861D28C00BEEC81 /* CategoryAddCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37868522861D28C00BEEC81 /* CategoryAddCoordinator.swift */; };
 		F37868552861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37868542861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift */; };
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
@@ -105,7 +105,7 @@
 		7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCoordinator.swift; sourceTree = "<group>"; };
 		7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewModel.swift; sourceTree = "<group>"; };
-		7DA4AB7728586FA7009E91FB /* CategoryEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEditViewModel.swift; sourceTree = "<group>"; };
+		7DA4AB7728586FA7009E91FB /* CategoryAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAddViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB79285871E0009E91FB /* UIButton+setImageInset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+setImageInset.swift"; sourceTree = "<group>"; };
 		7DAA861E284B968000F21E35 /* ScehduleMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScehduleMain.swift; sourceTree = "<group>"; };
 		7DB5E13B284B4DA400DBB7EA /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
@@ -152,7 +152,7 @@
 		F354C3E9283E6946008929FD /* NSMutableAttributedString+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+extension.swift"; sourceTree = "<group>"; };
 		F378684E285619F000BEEC81 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		F3786850285D98F500BEEC81 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		F37868522861D28C00BEEC81 /* CategoryEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEditCoordinator.swift; sourceTree = "<group>"; };
+		F37868522861D28C00BEEC81 /* CategoryAddCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAddCoordinator.swift; sourceTree = "<group>"; };
 		F37868542861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorDidFinishDelegate.swift; sourceTree = "<group>"; };
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -301,7 +301,7 @@
 			children = (
 				7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */,
 				7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */,
-				7DA4AB7728586FA7009E91FB /* CategoryEditViewModel.swift */,
+				7DA4AB7728586FA7009E91FB /* CategoryAddViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -310,7 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */,
-				F37868522861D28C00BEEC81 /* CategoryEditCoordinator.swift */,
+				F37868522861D28C00BEEC81 /* CategoryAddCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -825,7 +825,7 @@
 				7DF9688A284DF2EB00CE077E /* MainTableViewHeader.swift in Sources */,
 				7DEA177A2845E7C500F6B990 /* WEmojiView.swift in Sources */,
 				F378684F285619F000BEEC81 /* Category.swift in Sources */,
-				7DA4AB7828586FA7009E91FB /* CategoryEditViewModel.swift in Sources */,
+				7DA4AB7828586FA7009E91FB /* CategoryAddViewModel.swift in Sources */,
 				7DC166B42837148000F1A8F1 /* SignInViewModel.swift in Sources */,
 				7D3B1F54283630A50037504A /* WTextField.swift in Sources */,
 				F3DD0218284661F900AD9240 /* WelcomeCoordinator.swift in Sources */,
@@ -847,7 +847,7 @@
 				F354C3E5283D3BF0008929FD /* InformationGroupStackView.swift in Sources */,
 				F3DD022428466E0C00AD9240 /* SignInCoordinator.swift in Sources */,
 				7D6B911528449A760044E217 /* WIconLabel.swift in Sources */,
-				F37868532861D28C00BEEC81 /* CategoryEditCoordinator.swift in Sources */,
+				F37868532861D28C00BEEC81 /* CategoryAddCoordinator.swift in Sources */,
 				F354C3EA283E6946008929FD /* NSMutableAttributedString+extension.swift in Sources */,
 				F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */,
 				F3DD022728466E3300AD9240 /* SignUpCoordinator.swift in Sources */,

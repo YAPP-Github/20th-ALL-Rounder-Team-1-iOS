@@ -33,7 +33,7 @@ class CategoryCoordinator: Coordinator {
     }
     
     func showCategoryEditScene() {
-        let categoryEditCoordinator = CategoryEidtCoordinator()
+        let categoryEditCoordinator = CategoryAddCoordinator()
         categoryEditCoordinator.finishDelegate = self
         childCoordinators.append(categoryEditCoordinator)
         navigationController.present(categoryEditCoordinator.navigationController, animated: true, completion: nil)

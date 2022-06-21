@@ -7,23 +7,23 @@
 
 import UIKit
 
-class CategoryEidtCoordinator: Coordinator {
+class CategoryAddCoordinator: Coordinator {
     
     weak var finishDelegate: CoordinatorDidFinishDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
     var type: CoordinatorType = .category
-    var categoryEditViewController: CategoryEditViewController
+    var categoryAddViewController: CategoryEditViewController
     
     required init() {
-        self.categoryEditViewController = CategoryEditViewController()
-        self.categoryEditViewController.title = "카테고리 추가"
-        self.navigationController = UINavigationController(rootViewController: categoryEditViewController)
+        self.categoryAddViewController = CategoryEditViewController()
+        self.categoryAddViewController.title = "카테고리 추가"
+        self.navigationController = UINavigationController(rootViewController: categoryAddViewController)
         self.navigationController.modalPresentationStyle = .fullScreen
     }
     
     func start() {
-        self.categoryEditViewController.viewModel = CategoryEditViewModel(coordinator: self)
+        self.categoryAddViewController.viewModel = CategoryAddViewModel(coordinator: self)
     }
     
     func dismiss() {
