@@ -68,6 +68,7 @@
 		F378684F285619F000BEEC81 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F378684E285619F000BEEC81 /* Category.swift */; };
 		F3786851285D98F500BEEC81 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3786850285D98F500BEEC81 /* Constants.swift */; };
 		F37868532861D28C00BEEC81 /* CategoryEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37868522861D28C00BEEC81 /* CategoryEditCoordinator.swift */; };
+		F37868552861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37868542861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift */; };
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
@@ -152,6 +153,7 @@
 		F378684E285619F000BEEC81 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		F3786850285D98F500BEEC81 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F37868522861D28C00BEEC81 /* CategoryEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEditCoordinator.swift; sourceTree = "<group>"; };
+		F37868542861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorDidFinishDelegate.swift; sourceTree = "<group>"; };
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
@@ -606,6 +608,7 @@
 				F3DD02192846629100AD9240 /* Coordinator.swift */,
 				F3DD0228284670E900AD9240 /* AppCoordinator.swift */,
 				F3DD0232284A534C00AD9240 /* CoordinatorType.swift */,
+				F37868542861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -800,6 +803,7 @@
 				F3DD0229284670E900AD9240 /* AppCoordinator.swift in Sources */,
 				F32ACC0628235D500082AF30 /* ViewController.swift in Sources */,
 				7D6E9972283BA18E006F5FC7 /* WBottmButton.swift in Sources */,
+				F37868552861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift in Sources */,
 				F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */,
 				F32F72542853C2200056B189 /* CategoryDetailHeaderView.swift in Sources */,
 				F3DD021A2846629100AD9240 /* Coordinator.swift in Sources */,

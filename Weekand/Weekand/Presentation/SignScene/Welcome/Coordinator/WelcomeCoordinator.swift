@@ -45,8 +45,3 @@ extension WelcomeCoordinator: CoordinatorDidFinishDelegate {
         navigationController.dismiss(animated: true, completion: nil)
     }
 }
-
-// TODO: 빼기
-protocol CoordinatorDidFinishDelegate: AnyObject {
-    func childDidFinish(_ child: Coordinator)
-}
