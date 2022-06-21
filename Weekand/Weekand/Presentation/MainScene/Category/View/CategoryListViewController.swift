@@ -84,6 +84,7 @@ extension CategoryListViewController {
                 return UITableViewCell()
             }
             cell.accessoryType = .disclosureIndicator
+            cell.selectionStyle = .none
             cell.configure(color: UIColor(hex: "#FFC8C8") ?? .red, openType: list.openType, name: list.name)
             return cell
         })
