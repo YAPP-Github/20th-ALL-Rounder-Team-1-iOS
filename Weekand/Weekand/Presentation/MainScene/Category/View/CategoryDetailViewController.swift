@@ -39,6 +39,8 @@ class CategoryDetailViewController: UIViewController {
     }
     
     private func setupView() {
+        view.backgroundColor = .white
+        
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.bounces = false
