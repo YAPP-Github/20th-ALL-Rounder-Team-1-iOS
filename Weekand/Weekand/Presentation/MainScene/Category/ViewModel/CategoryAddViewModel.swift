@@ -9,11 +9,11 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class CategoryEditViewModel: ViewModelType {
+class CategoryAddViewModel: ViewModelType {
     
-    weak var coordinator: CategoryEidtCoordinator?
+    weak var coordinator: CategoryAddCoordinator?
     
-    init(coordinator: CategoryEidtCoordinator) {
+    init(coordinator: CategoryAddCoordinator) {
         
         self.coordinator = coordinator
     }

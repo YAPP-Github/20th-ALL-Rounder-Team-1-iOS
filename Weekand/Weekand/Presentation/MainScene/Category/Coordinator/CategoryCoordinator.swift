@@ -32,12 +32,12 @@ class CategoryCoordinator: Coordinator {
         self.navigationController.pushViewController(categoryDetailViewController, animated: true)
     }
     
-    func showCategoryEditScene() {
-        let categoryEditCoordinator = CategoryAddCoordinator()
-        categoryEditCoordinator.finishDelegate = self
-        childCoordinators.append(categoryEditCoordinator)
-        navigationController.present(categoryEditCoordinator.navigationController, animated: true, completion: nil)
-        categoryEditCoordinator.start()
+    func showCategoryAddScene() {
+        let categoryAddCoordinator = CategoryAddCoordinator()
+        categoryAddCoordinator.finishDelegate = self
+        childCoordinators.append(categoryAddCoordinator)
+        navigationController.present(categoryAddCoordinator.navigationController, animated: true, completion: nil)
+        categoryAddCoordinator.start()
     }
     
     func finish() {
