@@ -51,6 +51,9 @@ class SignUpAddInfomationViewController: BaseViewController {
         
         jobStackView.collectionView.dataSource = self
         jobStackView.collectionView.register(InformationCollectionViewCell.self, forCellWithReuseIdentifier: InformationCollectionViewCell.cellIdentifier)
+        
+        interestsStackView.collectionView.dataSource = self
+        interestsStackView.collectionView.register(InformationCollectionViewCell.self, forCellWithReuseIdentifier: InformationCollectionViewCell.cellIdentifier)
     }
 
     private func configureUI() {
@@ -87,19 +90,37 @@ class SignUpAddInfomationViewController: BaseViewController {
 extension SignUpAddInfomationViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return Constants.jobDataSource.count
+        if collectionView == jobStackView.collectionView {
+            return Constants.jobDataSource.count
+        } else {
+            return Constants.interestsDataSource.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Constants.jobDataSource[section].count
+        
+        if collectionView == jobStackView.collectionView {
+            return Constants.jobDataSource[section].count
+        } else {
+            return Constants.interestsDataSource[section].count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = jobStackView.collectionView.dequeueReusableCell(withReuseIdentifier: InformationCollectionViewCell.cellIdentifier, for: indexPath) as? InformationCollectionViewCell else {
-            return UICollectionViewCell()
+        
+        if collectionView == jobStackView.collectionView {
+            guard let cell = jobStackView.collectionView.dequeueReusableCell(withReuseIdentifier: InformationCollectionViewCell.cellIdentifier, for: indexPath) as? InformationCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            cell.configure(text: Constants.jobDataSource[indexPath.section][indexPath.item])
+            return cell
+        } else {
+            guard let cell = interestsStackView.collectionView.dequeueReusableCell(withReuseIdentifier: InformationCollectionViewCell.cellIdentifier, for: indexPath) as? InformationCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            cell.configure(text: Constants.interestsDataSource[indexPath.section][indexPath.item])
+            return cell
         }
-        cell.configure(text: Constants.jobDataSource[indexPath.section][indexPath.item])
-        return cell
     }
 }
 
