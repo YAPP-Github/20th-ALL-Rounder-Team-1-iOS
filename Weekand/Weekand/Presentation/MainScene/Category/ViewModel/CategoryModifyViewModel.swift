@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class CategoryModifyViewModel: CategoryEditViewModelType, ViewModelType {
+class CategoryModifyViewModel: CategoryEditViewModelType {
     
     weak var coordinator: CategoryModifyCoordinator?
     

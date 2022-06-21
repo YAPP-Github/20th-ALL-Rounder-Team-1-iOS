@@ -7,4 +7,4 @@
 
 import Foundation
 
-protocol CategoryEditViewModelType: AnyObject { }
+protocol CategoryEditViewModelType: AnyObject, ViewModelType { }

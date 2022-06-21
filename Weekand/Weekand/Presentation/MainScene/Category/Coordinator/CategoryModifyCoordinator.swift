@@ -12,11 +12,11 @@ class CategoryModifyCoordinator: Coordinator {
     weak var finishDelegate: CoordinatorDidFinishDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
-    var type: CoordinatorType = .category
-    var categoryModifyViewController: CategoryEditViewController
+    var type: CoordinatorType = .categoryModify
+    var categoryModifyViewController: CategoryEditViewController<CategoryModifyViewModel>
     
     required init() {
-        self.categoryModifyViewController = CategoryEditViewController()
+        self.categoryModifyViewController = CategoryEditViewController<CategoryModifyViewModel>()
         self.categoryModifyViewController.title = "카테고리 추가"
         self.navigationController = UINavigationController(rootViewController: categoryModifyViewController)
         self.navigationController.modalPresentationStyle = .fullScreen

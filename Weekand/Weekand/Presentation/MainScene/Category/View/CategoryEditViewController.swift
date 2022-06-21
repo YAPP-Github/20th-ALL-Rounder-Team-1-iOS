@@ -8,9 +8,9 @@
 import UIKit
 import Then
 
-class CategoryEditViewController: BaseViewController {
+class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewController {
     
-    var viewModel: CategoryEditViewModelType?
+    var viewModel: T?
 
     let categoryTextFieldStackView = WTextFieldStackView(fieldPlaceholder: "카테고리명", nameText: "카테고리")
     
@@ -67,6 +67,7 @@ class CategoryEditViewController: BaseViewController {
             closeButtonDidTapEvent: closeButton.rx.tap.asObservable()
         )
         
+        let output = viewModel?.transform(input: input as! T.Input)
     }
 
 }
@@ -77,7 +78,6 @@ import SwiftUI
 struct CategoryEditViewControllerPreview: PreviewProvider {
     static var previews: some View {
         Group {
-            CategoryEditViewController().showPreview(.iPhone11Pro)
         }
     }
 }
