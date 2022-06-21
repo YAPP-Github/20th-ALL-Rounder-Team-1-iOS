@@ -27,7 +27,7 @@ class CategoryEditViewController: BaseViewController {
     
     lazy var closeButton = UIBarButtonItem().then {
         $0.image = UIImage(named: "close")
-        $0.tintColor = .gray700 ?? .systemGray
+        $0.tintColor = .gray400
     }
     
     override func viewDidLoad() {
