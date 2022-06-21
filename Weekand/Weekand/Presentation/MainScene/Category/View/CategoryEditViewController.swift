@@ -10,7 +10,7 @@ import Then
 
 class CategoryEditViewController: BaseViewController {
     
-    var viewModel: CategoryAddViewModel?
+    var viewModel: CategoryEditViewModelType?
 
     let categoryTextFieldStackView = WTextFieldStackView(fieldPlaceholder: "카테고리명", nameText: "카테고리")
     
@@ -66,8 +66,6 @@ class CategoryEditViewController: BaseViewController {
         let input = CategoryAddViewModel.Input(
             closeButtonDidTapEvent: closeButton.rx.tap.asObservable()
         )
-        
-        self.viewModel?.transform(input: input)
         
     }
 

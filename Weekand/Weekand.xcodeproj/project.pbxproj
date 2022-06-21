@@ -69,6 +69,9 @@
 		F3786851285D98F500BEEC81 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3786850285D98F500BEEC81 /* Constants.swift */; };
 		F37868532861D28C00BEEC81 /* CategoryAddCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37868522861D28C00BEEC81 /* CategoryAddCoordinator.swift */; };
 		F37868552861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37868542861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift */; };
+		F378685728621BD200BEEC81 /* CategoryModifyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F378685628621BD200BEEC81 /* CategoryModifyCoordinator.swift */; };
+		F378685928621C2C00BEEC81 /* CategoryModifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F378685828621C2C00BEEC81 /* CategoryModifyViewModel.swift */; };
+		F378685B28621C8F00BEEC81 /* CategoryEditViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F378685A28621C8F00BEEC81 /* CategoryEditViewModelType.swift */; };
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
@@ -154,6 +157,9 @@
 		F3786850285D98F500BEEC81 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F37868522861D28C00BEEC81 /* CategoryAddCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAddCoordinator.swift; sourceTree = "<group>"; };
 		F37868542861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorDidFinishDelegate.swift; sourceTree = "<group>"; };
+		F378685628621BD200BEEC81 /* CategoryModifyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModifyCoordinator.swift; sourceTree = "<group>"; };
+		F378685828621C2C00BEEC81 /* CategoryModifyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModifyViewModel.swift; sourceTree = "<group>"; };
+		F378685A28621C8F00BEEC81 /* CategoryEditViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEditViewModelType.swift; sourceTree = "<group>"; };
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
@@ -302,6 +308,8 @@
 				7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */,
 				7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */,
 				7DA4AB7728586FA7009E91FB /* CategoryAddViewModel.swift */,
+				F378685828621C2C00BEEC81 /* CategoryModifyViewModel.swift */,
+				F378685A28621C8F00BEEC81 /* CategoryEditViewModelType.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -311,6 +319,7 @@
 			children = (
 				7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */,
 				F37868522861D28C00BEEC81 /* CategoryAddCoordinator.swift */,
+				F378685628621BD200BEEC81 /* CategoryModifyCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -825,6 +834,7 @@
 				7DF9688A284DF2EB00CE077E /* MainTableViewHeader.swift in Sources */,
 				7DEA177A2845E7C500F6B990 /* WEmojiView.swift in Sources */,
 				F378684F285619F000BEEC81 /* Category.swift in Sources */,
+				F378685928621C2C00BEEC81 /* CategoryModifyViewModel.swift in Sources */,
 				7DA4AB7828586FA7009E91FB /* CategoryAddViewModel.swift in Sources */,
 				7DC166B42837148000F1A8F1 /* SignInViewModel.swift in Sources */,
 				7D3B1F54283630A50037504A /* WTextField.swift in Sources */,
@@ -836,12 +846,14 @@
 				F32F72502853AEE00056B189 /* CategoryDetailViewController.swift in Sources */,
 				7D6B911728449F610044E217 /* WCategoryTitleLabel.swift in Sources */,
 				7DC166C228372ACF00F1A8F1 /* Inset.swift in Sources */,
+				F378685728621BD200BEEC81 /* CategoryModifyCoordinator.swift in Sources */,
 				7D7178EB283E1C9D00D7E5F2 /* WCheckBox.swift in Sources */,
 				F32F72602854BB730056B189 /* ColorStackView.swift in Sources */,
 				F3DD0237284A6BEC00AD9240 /* SignUpTermsViewModel.swift in Sources */,
 				7DC166C02837234200F1A8F1 /* WButtonTextField.swift in Sources */,
 				F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */,
 				F32F725C28549B650056B189 /* WTextFieldStackView.swift in Sources */,
+				F378685B28621C8F00BEEC81 /* CategoryEditViewModelType.swift in Sources */,
 				F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */,
 				F3DD0231284A36D300AD9240 /* BaseNavigationController.swift in Sources */,
 				F354C3E5283D3BF0008929FD /* InformationGroupStackView.swift in Sources */,

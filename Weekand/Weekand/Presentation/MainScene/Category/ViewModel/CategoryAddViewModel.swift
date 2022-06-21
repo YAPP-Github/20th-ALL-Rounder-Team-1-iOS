@@ -9,8 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class CategoryAddViewModel: ViewModelType {
-    
+class CategoryAddViewModel: CategoryEditViewModelType, ViewModelType {
     weak var coordinator: CategoryAddCoordinator?
     
     init(coordinator: CategoryAddCoordinator) {
@@ -25,10 +24,6 @@ class CategoryAddViewModel: ViewModelType {
     struct Output { }
     
     func transform(input: Input) -> Output {
-        input.closeButtonDidTapEvent.subscribe(onNext: {
-            self.coordinator?.dismiss()
-        })
-        
         return Output()
     }
 
