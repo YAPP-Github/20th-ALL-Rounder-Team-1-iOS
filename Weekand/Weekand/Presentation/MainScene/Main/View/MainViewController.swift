@@ -47,9 +47,11 @@ class MainViewController: UIViewController {
         
         [ collectionView, headerView, tableView ].forEach { self.view.addSubview($0) }
         collectionView.setContentHuggingPriority(.required, for: .vertical)
+        collectionView.setContentCompressionResistancePriority(.required, for: .vertical)
         collectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.left.right.equalToSuperview()
+            make.height.lessThanOrEqualTo(80)
         }
         headerView.snp.makeConstraints { make in
             make.top.equalTo(collectionView.snp.bottom)
@@ -81,6 +83,8 @@ extension MainViewController {
         setUpCollectionView()
         configureCollectionViewDataSource()
         configureCollectionViewSnapShot()
+        
+        collectionView.layoutSubviews()
     }
     
     private func setUpCollectionView() {
@@ -92,15 +96,16 @@ extension MainViewController {
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(14), top: nil, trailing: .fixed(14), bottom: nil)
             
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .estimated(0), heightDimension: .fractionalHeight(1.0)), subitems: [item])
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .estimated(0), heightDimension: .absolute(60)), subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
             section.orthogonalScrollingBehavior = .continuous
-            section.contentInsets = .init(top: 12, leading: 10, bottom: 12, trailing: 10)
+            section.contentInsets = .init(top: 12, leading: 10, bottom: 12, trailing: 24)
 
             return section
         }
         
-        collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 88), collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 0), collectionViewLayout: layout)
+        collectionView.isScrollEnabled = false
         collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
     }
     
