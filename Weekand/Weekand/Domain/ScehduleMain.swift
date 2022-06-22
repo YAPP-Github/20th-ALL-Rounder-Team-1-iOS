@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// 메인 일정 리스트의 일정 정보
 struct ScehduleMain: Hashable {
     
     static func == (lhs: ScehduleMain, rhs: ScehduleMain) -> Bool {

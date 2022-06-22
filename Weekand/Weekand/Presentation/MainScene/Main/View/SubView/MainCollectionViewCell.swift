@@ -28,6 +28,7 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        configureUI()
     }
     
     required init?(coder: NSCoder) {
@@ -37,9 +38,10 @@ class MainCollectionViewCell: UICollectionViewCell {
     private func configureUI() {
         
         [ profileImageView, nameLabel ].forEach { self.addSubview($0) }
+        profileImageView.setContentHuggingPriority(.required, for: .horizontal)
         profileImageView.snp.makeConstraints { make in
             make.width.equalTo(40)
-            make.height.equalTo(profileImageView.snp.height)
+            make.height.equalTo(profileImageView.snp.width)
             make.top.left.right.equalToSuperview()
         }
         
@@ -53,6 +55,25 @@ class MainCollectionViewCell: UICollectionViewCell {
 }
 
 extension MainCollectionViewCell {
+    
+    func setUpCell(name: String, imagePath: String?) {
+        
+        nameLabel.text = name
+        
+        if let imagePath = imagePath {
+            DispatchQueue.global().async {
+                guard let imageURL = URL(string: imagePath) else { return }
+                guard let imageData = try? Data(contentsOf: imageURL) else { return }
+                
+                DispatchQueue.main.async {
+                    self.profileImageView.image = UIImage(data: imageData)
+                }
+            }
+        } else {
+            
+            profileImageView.backgroundColor = .mainColor
+        }
+    }
     
     /// 선택 여부에 따라 프로필 이미지 테두리 On/Off
     func processSelected(isSelected: Bool) {

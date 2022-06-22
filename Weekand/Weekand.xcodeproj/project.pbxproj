@@ -338,8 +338,8 @@
 			isa = PBXGroup;
 			children = (
 				7DAA861E284B968000F21E35 /* ScehduleMain.swift */,
-				F378684E285619F000BEEC81 /* Category.swift */,
 				7D8033D7286057A20039F73E /* FollwingUser.swift */,
+				F378684E285619F000BEEC81 /* Category.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";

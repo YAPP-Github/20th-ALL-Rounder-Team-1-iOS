@@ -18,43 +18,41 @@ class MainViewController: UIViewController {
     }
     
     var viewModel: MainViewModel?
-    var dataSource: UITableViewDiffableDataSource<Section, ScehduleMain>!
+    var collectionViewDataSource: UICollectionViewDiffableDataSource<Section, FollowingUser>!
+    var tableViewDataSource: UITableViewDiffableDataSource<Section, ScehduleMain>!
     
-    // MARK: UI Properties    
-    lazy var collectionView = UICollectionView()
-    lazy var headerView = MainViewHeader()
-    lazy var tableView = UITableView().then {
-        $0.separatorStyle = .none
-        $0.register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.identifier)
-        
-        $0.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 16))
-        $0.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 64))
-        
-        if #available(iOS 15.0, *) {
-            $0.sectionHeaderTopPadding = 0
-        }
-    }
-
+    // MARK: UI Properties
+    var collectionView: UICollectionView!
+    var headerView = MainViewHeader()
+    var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpView()
         configureUI()
-        configureTableView()
         bindViewModel()
     }
     
     private func setUpView() {
         
-        // TODO: 삭제
-        headerView.profileView.setUpView(name: "이건두", state: "We can do, Week and!", profileImagePath: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80")
+        configureCollectionView()
+        configureTableView()
+        
+        // TODO: Sample Data 삭제
+        headerView.profileView.setUpView(name: "이건두", state: "We can do, Week and!", imagePath: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80")
     }
 
     private func configureUI() {
         
-        [ headerView, tableView ].forEach { self.view.addSubview($0) }
+        [ collectionView, headerView, tableView ].forEach { self.view.addSubview($0) }
+        collectionView.setContentHuggingPriority(.required, for: .vertical)
+        collectionView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.left.right.equalToSuperview()
+        }
         headerView.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(collectionView.snp.bottom)
             make.left.right.equalToSuperview()
         }
         tableView.snp.makeConstraints { make in
@@ -80,9 +78,65 @@ class MainViewController: UIViewController {
 extension MainViewController {
     
     private func configureCollectionView() {
-        
+        setUpCollectionView()
+        configureCollectionViewDataSource()
+        configureCollectionViewSnapShot()
     }
     
+    private func setUpCollectionView() {
+                
+        let layout = UICollectionViewCompositionalLayout { (_: Int,
+            _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
+                        
+            let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(40), heightDimension: .absolute(60))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(14), top: nil, trailing: .fixed(14), bottom: nil)
+            
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .estimated(0), heightDimension: .fractionalHeight(1.0)), subitems: [item])
+            let section = NSCollectionLayoutSection(group: group)
+            section.orthogonalScrollingBehavior = .continuous
+            section.contentInsets = .init(top: 12, leading: 10, bottom: 12, trailing: 10)
+
+            return section
+        }
+        
+        collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 88), collectionViewLayout: layout)
+        collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
+    }
+    
+    private func configureCollectionViewDataSource() {
+        
+        collectionViewDataSource = UICollectionViewDiffableDataSource<Section, FollowingUser>(collectionView: collectionView, cellProvider: { collectionView, indexPath, list in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
+            cell.setUpCell(name: list.name, imagePath: list.imagePath)
+            return cell
+        })
+    }
+    
+    private func configureCollectionViewSnapShot(animatingDifferences: Bool = false) {
+        
+        let sample = [
+            FollowingUser(userId: 0, name: "Sam", imagePath: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60"),
+            FollowingUser(userId: 0, name: "Lisa", imagePath: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60"),
+            FollowingUser(userId: 0, name: "James", imagePath: "https://images.unsplash.com/photo-1466112928291-0903b80a9466?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60"),
+            FollowingUser(userId: 0, name: "Susan", imagePath: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60"),
+            FollowingUser(userId: 0, name: "Tom", imagePath: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTl8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60"),
+            FollowingUser(userId: 0, name: "김수자", imagePath: "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80"),
+            FollowingUser(userId: 0, name: "여긴어디 난누구", imagePath: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTV8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60"),
+            FollowingUser(userId: 0, name: "Sam", imagePath: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60"),
+            FollowingUser(userId: 0, name: "Lisa", imagePath: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60"),
+            FollowingUser(userId: 0, name: "James", imagePath: "https://images.unsplash.com/photo-1466112928291-0903b80a9466?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60"),
+            FollowingUser(userId: 0, name: "Susan", imagePath: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60"),
+            FollowingUser(userId: 0, name: "Tom", imagePath: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTl8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60"),
+            FollowingUser(userId: 0, name: "김수자", imagePath: "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80"),
+            FollowingUser(userId: 0, name: "여긴어디 난누구", imagePath: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTV8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60")
+        ]
+        
+        var snapshot = NSDiffableDataSourceSnapshot<Section, FollowingUser>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(sample, toSection: .main)
+        collectionViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+    }
     
 }
 
@@ -90,14 +144,31 @@ extension MainViewController {
 extension MainViewController {
     
     private func configureTableView() {
+        setUpTableView()
         configureTableViewDataSource()
         configureTableViewSnapshot()
     }
     
+    private func setUpTableView() {
+        
+        tableView = UITableView()
+        
+        tableView.separatorStyle = .none
+        tableView.register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.identifier)
+        
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 16))
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 64))
+        
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
+
+    }
+    
     private func configureTableViewDataSource() {
         
-        dataSource = UITableViewDiffableDataSource<Section, ScehduleMain>(tableView: tableView, cellProvider: { tableView, indexPath, list in
-            let cell = tableView.dequeueReusableCell(withIdentifier:MainTableViewCell.identifier, for: indexPath) as! MainTableViewCell
+        tableViewDataSource = UITableViewDiffableDataSource<Section, ScehduleMain>(tableView: tableView, cellProvider: { tableView, indexPath, list in
+            let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as! MainTableViewCell
             cell.setUpCell(color: .red, title: list.name, status: .completed, time: "00:00 - 00:00", emojiNumber: list.stickerCount, emojiOrder: [.awesome, .cool, .good, .support])
             return cell
         })
@@ -127,7 +198,7 @@ extension MainViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Section, ScehduleMain>()
         snapshot.appendSections([.main])
         snapshot.appendItems(sample, toSection: .main)
-        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+        tableViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
       }
 
 }

@@ -71,12 +71,12 @@ class MainProfileView: UIView {
         }
     }
 
-    func setUpView(name: String, state: String, profileImagePath: String?) {
+    func setUpView(name: String, state: String, imagePath: String?) {
         
         nameLabel.text = name
         stateLabel.text = state
         
-        if let imagePath = profileImagePath {
+        if let imagePath = imagePath {
             DispatchQueue.global().async {
                 guard let imageURL = URL(string: imagePath) else { return }
                 guard let imageData = try? Data(contentsOf: imageURL) else { return }
