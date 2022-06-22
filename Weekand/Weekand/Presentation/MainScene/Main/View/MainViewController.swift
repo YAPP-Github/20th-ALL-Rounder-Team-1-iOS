@@ -45,6 +45,15 @@ class MainViewController: UIViewController {
 
     private func configureUI() {
         
+        // Navigation Bar
+        let foldButton = UIBarButtonItem(image: UIImage(named: "chevron.down") ?? UIImage(systemName: "chevron.down"), style: .plain, target: self, action: nil)
+        let searchButton = UIBarButtonItem(image: UIImage(named: "search") ?? UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: nil)
+        let alarmButton = UIBarButtonItem(image: UIImage(named: "alarm") ?? UIImage(systemName: "bell"), style: .plain, target: self, action: nil)
+        
+        navigationItem.leftBarButtonItem = foldButton
+        navigationItem.rightBarButtonItems = [ searchButton, alarmButton]
+        
+        // Content View
         [ collectionView, headerView, tableView ].forEach { self.view.addSubview($0) }
         collectionView.setContentHuggingPriority(.required, for: .vertical)
         collectionView.setContentCompressionResistancePriority(.required, for: .vertical)
@@ -83,8 +92,6 @@ extension MainViewController {
         setUpCollectionView()
         configureCollectionViewDataSource()
         configureCollectionViewSnapShot()
-        
-        collectionView.layoutSubviews()
     }
     
     private func setUpCollectionView() {
