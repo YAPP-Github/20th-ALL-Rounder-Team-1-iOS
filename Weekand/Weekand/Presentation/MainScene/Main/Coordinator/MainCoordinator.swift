@@ -35,6 +35,16 @@ class MainCoordinator: Coordinator {
         childCoordinators.append(categoryCoordinator)
         categoryCoordinator.start()
     }
+    
+    // TODO: 알람 화면 구현 후 개발
+    func showAlarmScene() {
+        print(#function)
+    }
+    
+    // TODO: 검색 화면 구현 후 개발
+    func showSearchScene() {
+        print(#function)
+    }
 }
 
 extension MainCoordinator: CoordinatorDidFinishDelegate {

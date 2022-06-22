@@ -12,6 +12,10 @@ import RxSwift
 class MainViewModel {
     
     weak var coordinator: MainCoordinator?
+    
+//    var collectionViewDataSource: UICollectionViewDiffableDataSource<Section, FollowingUser>!
+//    var tableViewDataSource: UITableViewDiffableDataSource<Section, ScehduleMain>!
+    
     private let disposeBag = DisposeBag()
     
     init(coordinator: MainCoordinator) {
@@ -24,8 +28,14 @@ class MainViewModel {
 extension MainViewModel {
     
     struct Input {
+        
+        // Navigation Item
+        let didFoldBarButton: Observable<Void>
+        let didAlarmBarButton: Observable<Void>
+        let didsearchBarButton: Observable<Void>
+        
         // CalendarView
-        let didTapTodayButtom: Observable<Void>
+        let didTapTodayButton: Observable<Void>
         let didTapNextWeekButton: Observable<Void>
         let didTapPrevWeekButton: Observable<Void>
         let didTapEditButton: Observable<Void>
@@ -37,11 +47,25 @@ extension MainViewModel {
     func transform(input: Input) -> Output {
         let output = Output()
         
+        // Navigation Items
+        input.didFoldBarButton.subscribe(onNext: { _ in
+            print("fold")
+        }).disposed(by: disposeBag)
+        
+        input.didAlarmBarButton.subscribe(onNext: { [weak self] _ in
+            self?.coordinator?.showAlarmScene()
+        }).disposed(by: disposeBag)
+        
+        input.didsearchBarButton.subscribe(onNext: { [weak self] _ in
+            self?.coordinator?.showSearchScene()
+        }).disposed(by: disposeBag)
+        
+        // Calander Buttons
         input.didTapEditButton.subscribe(onNext: { [weak self] _ in
             self?.coordinator?.showCategoryScene()
         }).disposed(by: disposeBag)
         
-        input.didTapTodayButtom.subscribe(onNext: { _ in
+        input.didTapTodayButton.subscribe(onNext: { _ in
             print("today")
         }).disposed(by: disposeBag)
         

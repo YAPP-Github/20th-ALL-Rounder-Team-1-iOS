@@ -75,7 +75,14 @@ class MainViewController: UIViewController {
     
     private func bindViewModel() {
         let input = MainViewModel.Input(
-            didTapTodayButtom: self.headerView.calendarView.todayButton.rx.tap.asObservable(),
+            
+            // Navigation Button
+            didFoldBarButton: self.navigationItem.leftBarButtonItem?.rx.tap.asObservable() ?? Observable<Void>.empty(),
+            didAlarmBarButton: self.navigationItem.rightBarButtonItems?[0].rx.tap.asObservable() ?? Observable<Void>.empty(),
+            didsearchBarButton: self.navigationItem.rightBarButtonItems?[1].rx.tap.asObservable() ?? Observable<Void>.empty(),
+            
+            // Calendar Button
+            didTapTodayButton: self.headerView.calendarView.todayButton.rx.tap.asObservable(),
             didTapNextWeekButton: self.headerView.calendarView.rightButton.rx.tap.asObservable(),
             didTapPrevWeekButton: self.headerView.calendarView.leftButton.rx.tap.asObservable(),
             didTapEditButton: self.headerView.calendarView.editButton.rx.tap.asObservable()

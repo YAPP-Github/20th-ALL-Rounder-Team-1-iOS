@@ -182,6 +182,4 @@ extension MainCalendarView: FSCalendarDelegate, FSCalendarDataSource {
         
         self.layoutSubviews()
     }
-
-
 }
