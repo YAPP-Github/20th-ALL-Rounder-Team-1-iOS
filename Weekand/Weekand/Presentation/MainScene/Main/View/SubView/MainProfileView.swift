@@ -73,6 +73,8 @@ class MainProfileView: UIView {
 
     func setUpView(name: String, state: String, imagePath: String?) {
         
+        profileImageView.image = UIImage(named: "default.person")
+        
         nameLabel.text = name
         stateLabel.text = state
         
@@ -85,9 +87,6 @@ class MainProfileView: UIView {
                     self.profileImageView.image = UIImage(data: imageData)
                 }
             }
-        } else {
-            
-            profileImageView.backgroundColor = .mainColor
         }
         
     }

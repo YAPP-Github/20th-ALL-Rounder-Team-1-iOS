@@ -56,9 +56,12 @@ class MainCollectionViewCell: UICollectionViewCell {
 
 extension MainCollectionViewCell {
     
+    /// Cell에 필요한 정보 입력
     func setUpCell(name: String, imagePath: String?) {
         
         nameLabel.text = name
+        
+        profileImageView.image = UIImage(named: "default.person")
         
         if let imagePath = imagePath {
             DispatchQueue.global().async {
