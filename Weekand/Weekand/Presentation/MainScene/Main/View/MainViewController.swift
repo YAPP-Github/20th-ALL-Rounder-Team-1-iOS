@@ -83,7 +83,7 @@ class MainViewController: UIViewController {
         
         viewModel?.userSummary.subscribe(onNext: { data in
             self.headerView.profileView.setUpView(data)
-        })
+        }).dispose()
     }
 
 }

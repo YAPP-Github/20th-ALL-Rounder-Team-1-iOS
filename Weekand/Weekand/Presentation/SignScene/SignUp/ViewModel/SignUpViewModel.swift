@@ -68,7 +68,7 @@ class SignUpViewModel: ViewModelType {
         
         input.cancelButtonDidTapEvent.subscribe(onNext: {
             self.coordinator?.finish()
-        })
+        }).disposed(by: disposeBag)
         
         return Output(
             vaildEmail: vaildEmailWithTap.asDriver(onErrorJustReturn: false),

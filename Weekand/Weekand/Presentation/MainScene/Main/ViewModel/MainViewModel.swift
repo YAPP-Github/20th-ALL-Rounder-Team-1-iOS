@@ -66,9 +66,9 @@ class MainViewModel {
         self.coordinator = coordinator
         
         // TODO: Service 구현 후 데이터 받는 부분 이동
-        PublishRelay<UserSummary>.just(sampleUserSummary).bind(to: userSummary)
-        PublishRelay<[FollowingUser]>.just(sampleUserFollowingList).bind(to: userFollowingList)
-        PublishRelay<[ScehduleMain]>.just(sampleScheduleList).bind(to: scheduleList)
+        PublishRelay<UserSummary>.just(sampleUserSummary).bind(to: userSummary).disposed(by: disposeBag)
+        PublishRelay<[FollowingUser]>.just(sampleUserFollowingList).bind(to: userFollowingList).disposed(by: disposeBag)
+        PublishRelay<[ScehduleMain]>.just(sampleScheduleList).bind(to: scheduleList).disposed(by: disposeBag)
     }
     
 }
@@ -141,7 +141,7 @@ extension MainViewModel {
             snapshot.appendSections([.main])
             snapshot.appendItems(data, toSection: .main)
             self.collectionViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
-        })
+        }).disposed(by: disposeBag)
         
     }
     
@@ -153,7 +153,7 @@ extension MainViewModel {
             snapshot.appendSections([.main])
             snapshot.appendItems(data, toSection: .main)
             self.tableViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
-        })
+        }).disposed(by: disposeBag)
     }
 
     
