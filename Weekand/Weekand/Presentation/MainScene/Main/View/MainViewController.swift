@@ -122,7 +122,7 @@ extension MainViewController {
         
         viewModel?.collectionViewDataSource = UICollectionViewDiffableDataSource<MainSection, FollowingUser>(collectionView: collectionView, cellProvider: { collectionView, indexPath, list in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
-            cell.setUpCell(name: list.name, imagePath: list.imagePath)
+            cell.setUpCell(list)
             return cell
         })
         

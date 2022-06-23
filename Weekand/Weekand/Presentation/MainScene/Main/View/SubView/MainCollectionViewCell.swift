@@ -78,6 +78,11 @@ extension MainCollectionViewCell {
         }
     }
     
+    /// Model을 이용한 setUP
+    func setUpCell(_ data: FollowingUser) {
+        setUpCell(name: data.name, imagePath: data.imagePath)
+    }
+    
     /// 선택 여부에 따라 프로필 이미지 테두리 On/Off
     func processSelected(isSelected: Bool) {
         

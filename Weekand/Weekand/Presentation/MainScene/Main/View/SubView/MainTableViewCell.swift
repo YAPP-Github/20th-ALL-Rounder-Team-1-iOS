@@ -74,7 +74,7 @@ extension MainTableViewCell {
         self.emojiView.setEmoji(emojiOrder: emojiOrder)
     }
     
-    // TODO: API 확정되면 개발
+    // TODO: API 확정되면 수정
     public func setUpCell(_ model: ScehduleMain) {
         
     }

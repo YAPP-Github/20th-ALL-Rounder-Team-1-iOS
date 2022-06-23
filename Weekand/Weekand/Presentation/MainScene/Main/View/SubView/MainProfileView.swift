@@ -71,6 +71,7 @@ class MainProfileView: UIView {
         }
     }
 
+    /// raw data를 이용한 SetUp
     func setUpView(name: String, state: String, imagePath: String?) {
         
         profileImageView.image = UIImage(named: "default.person")
@@ -91,6 +92,7 @@ class MainProfileView: UIView {
         
     }
     
+    /// Model을 이용한 setUp
     func setUpView(_ data: UserSummary) {
         setUpView(name: data.name, state: data.state, imagePath: data.imagePath)
     }

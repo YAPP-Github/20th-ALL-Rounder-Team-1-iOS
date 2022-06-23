@@ -62,8 +62,6 @@ class MainViewModel {
     private var userFollowingList = BehaviorRelay<[FollowingUser]>(value: [])
     private var scheduleList = BehaviorRelay<[ScehduleMain]>(value: [])
     
-    private var MyProfile: UserSummary?
-    
     init(coordinator: MainCoordinator) {
         self.coordinator = coordinator
         
