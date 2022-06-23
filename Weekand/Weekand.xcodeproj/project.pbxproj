@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D29E346286422FC0047C805 /* UserSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D29E345286422FC0047C805 /* UserSummary.swift */; };
 		7D3B1F54283630A50037504A /* WTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B1F53283630A50037504A /* WTextField.swift */; };
 		7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7D648FBC282367F600F5D0B5 /* .swiftlint.yml */; };
 		7D6B911528449A760044E217 /* WIconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B911428449A760044E217 /* WIconLabel.swift */; };
@@ -90,6 +91,7 @@
 
 /* Begin PBXFileReference section */
 		2F9EA8129964B7F5609AAF6E /* Pods-Weekand.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weekand.debug.xcconfig"; path = "Target Support Files/Pods-Weekand/Pods-Weekand.debug.xcconfig"; sourceTree = "<group>"; };
+		7D29E345286422FC0047C805 /* UserSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSummary.swift; sourceTree = "<group>"; };
 		7D3B1F53283630A50037504A /* WTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextField.swift; sourceTree = "<group>"; };
 		7D648FBC282367F600F5D0B5 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		7D6B911428449A760044E217 /* WIconLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WIconLabel.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 			children = (
 				7DAA861E284B968000F21E35 /* ScehduleMain.swift */,
 				7D8033D7286057A20039F73E /* FollwingUser.swift */,
+				7D29E345286422FC0047C805 /* UserSummary.swift */,
 				F378684E285619F000BEEC81 /* Category.swift */,
 			);
 			name = Entities;
@@ -798,6 +801,7 @@
 				7DC166BC28371B0C00F1A8F1 /* ColorSet.swift in Sources */,
 				F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */,
 				7DB5E13C284B4DA400DBB7EA /* MainCoordinator.swift in Sources */,
+				7D29E346286422FC0047C805 /* UserSummary.swift in Sources */,
 				7D76AEB4284458C2001C668D /* MainViewController.swift in Sources */,
 				7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */,
 				F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */,
