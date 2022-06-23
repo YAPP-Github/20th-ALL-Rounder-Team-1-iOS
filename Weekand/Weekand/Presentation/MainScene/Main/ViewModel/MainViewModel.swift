@@ -16,7 +16,7 @@ enum MainSection {
 class MainViewModel {
     
     // TODO: Service 구현 후 삭제 or 이동
-    let sampleUserSummary = UserSummary(name: "이건두", state: "We can do, Week and!", imagePath: "https://images.unsplash.com/photo-1494790108377-?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80")
+    let sampleUserSummary = UserSummary(name: "주호민", state: "콘텐츠어워드 만화부분 대통령상 미만 훈수 금지", imagePath: "https://pbs.twimg.com/profile_images/1119172481653149696/hUzsqa_X_400x400.png")
     let sampleUserFollowingList = [
         FollowingUser(userId: 0, name: "Sam", imagePath: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60"),
         FollowingUser(userId: 0, name: "Lisa", imagePath: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60"),
@@ -53,17 +53,21 @@ class MainViewModel {
     weak var coordinator: MainCoordinator?
     private let disposeBag = DisposeBag()
     
+    // Diffable Data Source
     var collectionViewDataSource: UICollectionViewDiffableDataSource<MainSection, FollowingUser>!
     var tableViewDataSource: UITableViewDiffableDataSource<MainSection, ScehduleMain>!
     
-    private var userSummary = BehaviorRelay<UserSummary>(value: UserSummary.defaultData)
+    // View와 바인딩되는 Observables
+    public var userSummary = BehaviorRelay<UserSummary>(value: UserSummary.defaultData)
     private var userFollowingList = BehaviorRelay<[FollowingUser]>(value: [])
     private var scheduleList = BehaviorRelay<[ScehduleMain]>(value: [])
+    
+    private var MyProfile: UserSummary?
     
     init(coordinator: MainCoordinator) {
         self.coordinator = coordinator
         
-        // TODO: Service 구현 후 이동
+        // TODO: Service 구현 후 데이터 받는 부분 이동
         PublishRelay<UserSummary>.just(sampleUserSummary).bind(to: userSummary)
         PublishRelay<[FollowingUser]>.just(sampleUserFollowingList).bind(to: userFollowingList)
         PublishRelay<[ScehduleMain]>.just(sampleScheduleList).bind(to: scheduleList)

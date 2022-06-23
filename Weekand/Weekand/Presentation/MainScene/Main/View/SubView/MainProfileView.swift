@@ -91,4 +91,8 @@ class MainProfileView: UIView {
         
     }
     
+    func setUpView(_ data: UserSummary) {
+        setUpView(name: data.name, state: data.state, imagePath: data.imagePath)
+    }
+    
 }

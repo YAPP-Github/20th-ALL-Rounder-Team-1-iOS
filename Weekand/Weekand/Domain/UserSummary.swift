@@ -10,7 +10,7 @@ import Foundation
 /// 기본 유저 정보 (이름, 한줄평, 프로필 사진)
 struct UserSummary {
     
-    static let defaultData = UserSummary(name: "", state: "", imagePath: "")
+    static let defaultData = UserSummary(name: "", state: "We can do, Weekand!", imagePath: "")
     
     let name: String        // 유저 이름
     let state: String       // 한줄 목표
