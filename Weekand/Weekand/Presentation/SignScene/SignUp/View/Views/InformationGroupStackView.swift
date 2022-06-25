@@ -43,7 +43,7 @@ class InformationGroupStackView: UIStackView {
     
     private func setupView() {
         axis = .vertical
-        spacing = 10
+        spacing = 15
         informationStackView.spacing = 5
         
         [namelabel, informlabel].forEach { informationStackView.addArrangedSubview($0) }
