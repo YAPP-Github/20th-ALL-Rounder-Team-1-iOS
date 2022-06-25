@@ -15,9 +15,9 @@ class OpenTypeStackView: UIStackView {
     
     let buttonsContainerView = UIView()
     
-    let allOpenButton = WTypeToggleButton(title: "전체 공개", font: WFont.subHead3())
-    let followerOpenButton = WTypeToggleButton(title: "친구 공개", font: WFont.subHead3())
-    let closedButton = WTypeToggleButton(title: "비공개", font: WFont.subHead3())
+    let allOpenButton = WTypeToggleButton(title: "전체 공개", style: .checked, font: WFont.subHead3())
+    let followerOpenButton = WTypeToggleButton(title: "친구 공개", style: .unchecked, font: WFont.subHead3())
+    let closedButton = WTypeToggleButton(title: "비공개", style: .unchecked, font: WFont.subHead3())
     
     override init(frame: CGRect) {
         super.init(frame: frame)

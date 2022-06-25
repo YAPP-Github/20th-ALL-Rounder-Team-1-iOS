@@ -21,6 +21,7 @@ class CategoryAddViewModel: CategoryEditViewModelType {
     struct Input {
         let closeButtonDidTapEvent: Observable<Void>
         let colorButtonDidTapEvent: Observable<Void>
+        let selectedOpenType: BehaviorSubject<String>
     }
     
     struct Output { }
@@ -32,6 +33,10 @@ class CategoryAddViewModel: CategoryEditViewModelType {
         
         input.colorButtonDidTapEvent.subscribe(onNext: {
             self.coordinator?.pushColorBottonSheet()
+        })
+
+        input.selectedOpenType.subscribe(onNext: { type in
+            print(OpenType.init(rawValue: type))
         })
         
         return Output()

@@ -12,17 +12,17 @@ class WTypeToggleButton: UIButton, WToggleButtonType {
     enum Status {
         case checked, unchecked
         
-        var backGroundColor: UIColor {
+        var titleColor: UIColor {
             switch self {
-            case .checked: return .gray100!
-            case .unchecked: return .subColor!
+            case .checked: return .mainColor
+            case .unchecked: return .gray400
             }
         }
         
-        var titleColor: UIColor {
+        var backGroundColor: UIColor {
             switch self {
-            case .checked: return .gray400
-            case .unchecked: return .mainColor
+            case .checked: return .subColor!
+            case .unchecked: return .gray100!
             }
         }
     }
@@ -31,12 +31,17 @@ class WTypeToggleButton: UIButton, WToggleButtonType {
     let edgeInset: UIEdgeInsets = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16)
     let contentInsets: NSDirectionalEdgeInsets = NSDirectionalEdgeInsets(top: 10, leading: 16, bottom: 10, trailing: 16)
     
+    var title: String = ""
+    var font: UIFont = WFont.body1()
+    
     var isChecked: Bool = false {
         didSet {
             if isChecked == true {
                 self.setupView(style: .checked)
+                self.setTitle(title, for: .normal, font: font)
             } else {
                 self.setupView(style: .unchecked)
+                self.setTitle(title, for: .normal, font: font)
             }
         }
     }
@@ -75,12 +80,10 @@ class WTypeToggleButton: UIButton, WToggleButtonType {
     init(title: String, style: Status, font: UIFont) {
         super.init(frame: CGRect.zero)
         
+        self.title = title
+        self.font = font
         setTitle(title, for: .normal, font: font)
         setupView(style: style)
-    }
-    
-    convenience init(title: String, font: UIFont) {
-        self.init(title: title, style: .unchecked, font: font)
     }
 }
 

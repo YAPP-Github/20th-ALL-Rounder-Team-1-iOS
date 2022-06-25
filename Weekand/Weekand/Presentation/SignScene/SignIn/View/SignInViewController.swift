@@ -117,7 +117,7 @@ class SignInViewController: UIViewController {
         
         autoSignCheckBox.rx.tap.subscribe(onNext: {
             self.autoSignCheckBox.tap()
-        })
+        }).disposed(by: disposeBag)
         
         let output = viewModel.transform(input: input)
         
