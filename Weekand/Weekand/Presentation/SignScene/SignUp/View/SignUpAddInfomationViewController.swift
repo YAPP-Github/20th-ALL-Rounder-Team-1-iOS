@@ -59,7 +59,6 @@ class SignUpAddInfomationViewController: BaseViewController {
     private func configureUI() {
         [welcomeLabel, jobStackView, interestsStackView].forEach { stackView.addArrangedSubview($0) }
         stackView.snp.makeConstraints { make in
-            // top 임시값 세팅
             make.top.equalToSuperview().offset(25)
             make.bottom.equalToSuperview().offset(-WBottmButton.buttonOffset - 64)
             make.trailing.leading.equalToSuperview().inset(20)

@@ -22,22 +22,22 @@ class WTagToggleButton: UIButton, WToggleButtonType {
         
         var backGroundColor: UIColor {
             switch self {
-            case .checked: return .gray100!
-            case .unchecked: return .subColor!
+            case .checked: return .subColor!
+            case .unchecked: return .gray100!
             }
         }
         
         var titleColor: UIColor {
             switch self {
-            case .checked: return .gray400
-            case .unchecked: return .mainColor
+            case .checked: return .mainColor
+            case .unchecked: return .gray400
             }
         }
     }
     
     let cornerRadius: CGFloat = 108
-    let edgeInset: UIEdgeInsets = UIEdgeInsets(top: 8, left: 14, bottom: 8, right: 14)
-    let contentInsets: NSDirectionalEdgeInsets = NSDirectionalEdgeInsets(top: 8, leading: 14, bottom: 8, trailing: 14)
+    let edgeInset: UIEdgeInsets = UIEdgeInsets(top: 10, left: 14, bottom: 10, right: 14)
+    let contentInsets: NSDirectionalEdgeInsets = NSDirectionalEdgeInsets(top: 10, leading: 14, bottom: 10, trailing: 14)
     
     var isChecked: Bool = false {
         didSet {

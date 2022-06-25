@@ -24,9 +24,9 @@ class InformationGroupStackView: UIStackView {
     
     lazy var collectionViewFlowLayout = AlignedCollectionViewFlowLayout(horizontalAlignment: .left, verticalAlignment: .top).then {
         $0.scrollDirection = .vertical
-        $0.minimumInteritemSpacing = 3
-        $0.estimatedItemSize = CGSize(width: 40, height: 15)
-        $0.sectionInset = UIEdgeInsets(top: 2, left: 0, bottom: 2, right: 0)
+        $0.minimumInteritemSpacing = 7
+        $0.estimatedItemSize = CGSize(width: 53, height: 38)
+        $0.sectionInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
     }
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
@@ -51,7 +51,7 @@ class InformationGroupStackView: UIStackView {
         
         collectionView.snp.makeConstraints { make in
             make.width.equalTo(300)
-            make.height.equalTo(310)
+            make.height.equalTo(290)
         }
         
         namelabel.setContentHuggingPriority(.init(rawValue: 251), for: .horizontal)
