@@ -26,6 +26,12 @@ class CategoryAddCoordinator: Coordinator {
         self.categoryAddViewController.viewModel = CategoryAddViewModel(coordinator: self)
     }
     
+    func pushColorBottonSheet() {
+        let colorBottomSheetViewController = BottomSheetViewController<ColorBottomSheetViewModel>()
+        colorBottomSheetViewController.viewModel = ColorBottomSheetViewModel(coordinator: self)
+        self.navigationController.present(colorBottomSheetViewController, animated: true, completion: nil)
+    }
+    
     func dismiss() {
         self.finishDelegate?.childDidFinish(self)
     }

@@ -64,7 +64,8 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
     
     private func bindViewModel() {
         let input = CategoryAddViewModel.Input(
-            closeButtonDidTapEvent: closeButton.rx.tap.asObservable()
+            closeButtonDidTapEvent: closeButton.rx.tap.asObservable(),
+            colorButtonDidTapEvent: colorStackView.colorView.rx.tap.asObservable()
         )
         
         let output = viewModel?.transform(input: input as! T.Input)
