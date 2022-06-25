@@ -9,9 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class BottomSheetViewController<T: ViewModelType>: UIViewController {
-
-    var viewModel: T?
+class BottomSheetViewController: UIViewController {
     
     private var bottomSheetViewTopConstraint: NSLayoutConstraint!
     var bottomSheetHeight: CGFloat = 300
@@ -21,9 +19,10 @@ class BottomSheetViewController<T: ViewModelType>: UIViewController {
     }
 
     lazy var bottomSheetView = UIView().then {
-        $0.backgroundColor = .red
+        $0.backgroundColor = .white
         
-        view.layer.cornerRadius = 27
+        $0.layer.cornerRadius = 27
+        $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
     override func viewDidLoad() {

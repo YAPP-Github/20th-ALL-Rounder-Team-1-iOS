@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class ColorBottomSheetViewModel: ViewModelType {
+class ColorSheetViewModel: ViewModelType {
     
     weak var coordinator: CategoryAddCoordinator?
     
