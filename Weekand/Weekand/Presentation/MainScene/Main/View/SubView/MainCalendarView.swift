@@ -13,6 +13,9 @@ import FSCalendar
 /// 메인 화면 주간 캘린더 + 위쪽 버튼
 class MainCalendarView: UIView {
     
+    public var today = DateComponents()
+    public var currentDate = Date()
+    
     // MARK: UI Properties
     fileprivate weak var calendar: FSCalendar!
     
@@ -144,6 +147,7 @@ class MainCalendarView: UIView {
     
 }
 
+// MARK: Calander
 extension MainCalendarView: FSCalendarDelegate, FSCalendarDataSource {
     
     private func setUpCalendar() {
@@ -181,5 +185,35 @@ extension MainCalendarView: FSCalendarDelegate, FSCalendarDataSource {
         }
         
         self.layoutSubviews()
+    }
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        
+        let dateFormatter: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy/MM/dd"
+            return formatter
+        }()
+
+        print("did select date \(dateFormatter.string(from: date))")
+        let selectedDates = calendar.selectedDates.map({dateFormatter.string(from: $0)})
+        print("selected dates is \(selectedDates)")
+    }
+    
+}
+
+extension MainCalendarView {
+    
+    private func scrollWeek(weekOffset: Int) {
+        
+        
+    }
+    
+    public func nextWeek() {
+        scrollWeek(weekOffset: +1)
+    }
+    
+    public func prevWeek() {
+        scrollWeek(weekOffset: -1)
     }
 }
