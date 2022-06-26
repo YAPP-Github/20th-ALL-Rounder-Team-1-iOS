@@ -38,6 +38,10 @@ class WCheckBox: UIButton {
         setUpView(isChecked: isChecked)
     }
     
+    convenience init() {
+        self.init(isChecked: false)
+    }
+    
     private func setUpView(isChecked: Bool) {
         self.isChecked = isChecked
     }

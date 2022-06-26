@@ -34,7 +34,7 @@ extension CategoryListViewModel {
         let output = Output()
         
         input.didTapAddCategoryButton.subscribe(onNext: { [weak self] _ in
-            self?.coordinator?.pushCategoryEditViewController()
+            self?.coordinator?.showCategoryAddScene()
         }).disposed(by: disposeBag)
         
         input.didCategoryCellSelected.subscribe(onNext: { [weak self] _ in

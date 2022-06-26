@@ -19,4 +19,6 @@ enum CoordinatorType {
     // Main Scene
     case main
     case category
+    case categoryAdd
+    case categoryModify
 }

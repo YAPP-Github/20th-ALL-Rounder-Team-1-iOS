@@ -24,10 +24,10 @@ struct Category: Hashable {
     let openType: OpenType
 }
 
-enum OpenType {
-    case allOpen
-    case followerOpen
-    case closed
+enum OpenType: String {
+    case allOpen = "allOpen"
+    case followerOpen = "followerOpen"
+    case closed = "closed"
     
     var description: String {
         switch self {

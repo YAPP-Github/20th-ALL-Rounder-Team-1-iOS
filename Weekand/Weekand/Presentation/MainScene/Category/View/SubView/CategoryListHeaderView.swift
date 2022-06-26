@@ -51,7 +51,7 @@ class CategoryListHeaderView: UITableViewHeaderFooterView {
             make.trailing.equalTo(-12)
             make.width.equalTo(86)
             make.height.equalTo(41)
-            make.centerY.equalTo(self.snp.centerY)
+            make.bottom.equalToSuperview().offset(-10)
         }
     }
 
