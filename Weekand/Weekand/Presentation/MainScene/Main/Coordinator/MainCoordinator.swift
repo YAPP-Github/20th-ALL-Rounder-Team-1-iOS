@@ -17,7 +17,6 @@ class MainCoordinator: Coordinator {
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.navigationController.setNavigationBarHidden(true, animated: false)
         self.mainViewController = MainViewController()
     }
     
@@ -35,6 +34,16 @@ class MainCoordinator: Coordinator {
         categoryCoordinator.finishDelegate = self
         childCoordinators.append(categoryCoordinator)
         categoryCoordinator.start()
+    }
+    
+    // TODO: 알람 화면 구현 후 개발
+    func showAlarmScene() {
+        print(#function)
+    }
+    
+    // TODO: 검색 화면 구현 후 개발
+    func showSearchScene() {
+        print(#function)
     }
 }
 

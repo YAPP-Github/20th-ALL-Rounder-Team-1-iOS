@@ -7,7 +7,10 @@
 
 import UIKit
 
-class MainTableViewHeader: UIView {
+/// 메인화면 위쪽 (프로필, 캘린더) 부분
+class MainViewHeader: UIView {
+    
+    lazy var profileView = MainProfileView()
     
     lazy var calendarView = MainCalendarView()
     
@@ -40,7 +43,7 @@ class MainTableViewHeader: UIView {
     
     private func configureUI() {
         
-        [ calendarView ].forEach { stack.addArrangedSubview($0) }
+        [ profileView, calendarView ].forEach { stack.addArrangedSubview($0) }
 
         [ stack, dividerLine ].forEach { self.addSubview($0)}
         stack.snp.makeConstraints { make in

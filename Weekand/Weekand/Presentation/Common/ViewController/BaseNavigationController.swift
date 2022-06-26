@@ -22,7 +22,7 @@ class BaseNavigationController: UINavigationController {
         
         navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.gray700 ?? UIColor.systemGray,
-            NSAttributedString.Key.font: WFont.body1() ?? UIFont()
+            NSAttributedString.Key.font: WFont.body1() 
         ]
     }
 }
