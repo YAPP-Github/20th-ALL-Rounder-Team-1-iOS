@@ -13,19 +13,29 @@ import RxDataSources
 
 class ColorSheetViewController: BottomSheetViewController, UICollectionViewDelegate {
     
+    // CollectionView
+    
     enum Section {
       case first, second, third
     }
     
-    private let disposeBag = DisposeBag()
+    var colorsCollectionView: UICollectionView!
+    var dataSource: UICollectionViewDiffableDataSource<Section, Color>!
     
+    // ViewMoel
+    
+    private let disposeBag = DisposeBag()
     var viewModel: ColorSheetViewModel?
+    
+    // SheetHeight
     
     override var bottomSheetHeight: CGFloat {
         get {
             return 330
         }
     }
+    
+    // Views
     
     lazy var sheetTitle = WTextLabel().then {
         $0.font = WFont.body1()
@@ -35,9 +45,9 @@ class ColorSheetViewController: BottomSheetViewController, UICollectionViewDeleg
     
     lazy var confirmButton = WDefaultButton(title: "확인", style: .filled, font: WFont.subHead1())
     
-    var colorsCollectionView: UICollectionView!
+    // stored property
     
-    var dataSource: UICollectionViewDiffableDataSource<Section, Color>!
+    var selectedColor: Color = Constants.colors[0][0]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +61,7 @@ class ColorSheetViewController: BottomSheetViewController, UICollectionViewDeleg
     
     private func setupView() {
         let layout = UICollectionViewCompositionalLayout { (_: Int,
-            _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
+            _ : NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
                         
             let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(36), heightDimension: .absolute(36))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -66,9 +76,9 @@ class ColorSheetViewController: BottomSheetViewController, UICollectionViewDeleg
         }
         
         self.colorsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        colorsCollectionView.delegate = self
+        self.colorsCollectionView.delegate = self
         self.colorsCollectionView.isScrollEnabled = false
-        self.colorsCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.colorsCollectionView.allowsMultipleSelection = false
         self.colorsCollectionView.register(ColorsCollectionViewCell.self, forCellWithReuseIdentifier: ColorsCollectionViewCell.cellIdentifier)
     }
     
@@ -101,21 +111,28 @@ class ColorSheetViewController: BottomSheetViewController, UICollectionViewDeleg
             didTapConfirmButton: self.confirmButton.rx.tap.asObservable()
         )
         
+        self.confirmButton.rx.tap
+            .subscribe(onNext: { _ in
+                self.dismiss(animated: true, completion: nil)
+            }).disposed(by: disposeBag)
+        
         self.viewModel?.transform(input: input)
     }
 
 }
 
-// MARK: TableView
+// MARK: CollectionView
 extension ColorSheetViewController {
     
     private func configureDataSource() {
+        let selectedIndexPath = NSIndexPath(item: selectedColor.id % 7 - 1, section: (selectedColor.id / 7) % 3)
         
         dataSource = UICollectionViewDiffableDataSource(collectionView: self.colorsCollectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorsCollectionViewCell.cellIdentifier, for: indexPath) as? ColorsCollectionViewCell else {
                 return UICollectionViewCell()
             }
             cell.configure(colorCode: itemIdentifier.hexCode)
+            self.colorsCollectionView.selectItem(at: selectedIndexPath as IndexPath, animated: false, scrollPosition: .centeredHorizontally)
             return cell
         })
     }
@@ -123,11 +140,11 @@ extension ColorSheetViewController {
     private func configureSnapshot(animatingDifferences: Bool = true) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Color>()
         snapshot.appendSections([.first])
-        snapshot.appendItems((viewModel?.colors[0])!, toSection: .first)
+        snapshot.appendItems((Constants.colors[0]), toSection: .first)
         snapshot.appendSections([.second])
-        snapshot.appendItems((viewModel?.colors[1])!, toSection: .second)
+        snapshot.appendItems((Constants.colors[1]), toSection: .second)
         snapshot.appendSections([.third])
-        snapshot.appendItems((viewModel?.colors[2])!, toSection: .third)
+        snapshot.appendItems((Constants.colors[2]), toSection: .third)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }

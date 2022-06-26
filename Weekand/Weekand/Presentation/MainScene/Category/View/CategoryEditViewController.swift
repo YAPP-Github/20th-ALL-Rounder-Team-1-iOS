@@ -18,7 +18,7 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
     let openTypeStackView = OpenTypeStackView(nameText: "공개")
     
     lazy var colorStackView = ColorStackView(nameText: "색상").then {
-        $0.setColor(.wred)
+        $0.setColor(UIColor(hex: selectedColor.hexCode) ?? .red)
     }
     
     lazy var confirmButton = WBottmButton().then {
@@ -32,6 +32,12 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
     }
     
     let selectedOpenType: BehaviorSubject<String> = BehaviorSubject(value: "allOpen")
+    
+    var selectedColor: Color = Constants.colors[0][0] {
+        didSet {
+            self.colorStackView.colorView.backgroundColor = UIColor(hex: selectedColor.hexCode)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
