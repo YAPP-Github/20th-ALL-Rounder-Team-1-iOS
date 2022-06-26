@@ -10,6 +10,17 @@ import UIKit
 class ColorsCollectionViewCell: UICollectionViewCell {
     static let cellIdentifier = "ColorsCell"
     
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                colorButton.layer.borderWidth = 2
+                colorButton.layer.borderColor = UIColor.mainColor.cgColor
+            } else {
+                colorButton.layer.borderWidth = 0
+            }
+        }
+    }
+    
     lazy var colorButton = UIButton().then {
         $0.layer.cornerRadius = 5
     }

@@ -13,6 +13,8 @@ import RxDataSources
 
 class ColorSheetViewController: BottomSheetViewController {
     
+    private let disposeBag = DisposeBag()
+    
     var viewModel: ColorSheetViewModel?
     
     override var bottomSheetHeight: CGFloat {
@@ -37,7 +39,6 @@ class ColorSheetViewController: BottomSheetViewController {
         return collectionView
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,6 +50,7 @@ class ColorSheetViewController: BottomSheetViewController {
     private func setupView() {
         self.colorsCollectionView.dataSource = self
         self.colorsCollectionView.delegate = self
+
         self.colorsCollectionView.register(ColorsCollectionViewCell.self, forCellWithReuseIdentifier: ColorsCollectionViewCell.cellIdentifier)
     }
     
@@ -76,7 +78,6 @@ class ColorSheetViewController: BottomSheetViewController {
     }
     
     private func bindViewModel() {
-        
     }
 
 }
@@ -95,7 +96,6 @@ extension ColorSheetViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorsCollectionViewCell.cellIdentifier, for: indexPath) as? ColorsCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
         cell.configure(color: UIColor.categoryColors[indexPath.section][indexPath.item]!)
         
         return cell
