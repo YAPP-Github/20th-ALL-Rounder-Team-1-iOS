@@ -15,6 +15,12 @@ class ColorSheetViewController: BottomSheetViewController {
     
     var viewModel: ColorSheetViewModel?
     
+    override var bottomSheetHeight: CGFloat {
+        get {
+            return 330
+        }
+    }
+    
     lazy var sheetTitle = WTextLabel().then {
         $0.font = WFont.body1()
         $0.textColor = .gray900
@@ -55,7 +61,7 @@ class ColorSheetViewController: BottomSheetViewController {
         
         bottomSheetView.addSubview(colorsCollectionView)
         colorsCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(sheetTitle.snp.bottom).offset(10)
+            make.top.equalTo(sheetTitle.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(24)
             make.trailing.equalToSuperview().offset(-24)
             make.height.equalTo(200)

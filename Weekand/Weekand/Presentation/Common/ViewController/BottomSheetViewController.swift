@@ -12,7 +12,11 @@ import Then
 class BottomSheetViewController: UIViewController {
     
     private var bottomSheetViewTopConstraint: NSLayoutConstraint!
-    var bottomSheetHeight: CGFloat = 300
+    var bottomSheetHeight: CGFloat {
+        get {
+            return 300
+        }
+    }
     
     lazy var dimmedBackView = UIView().then {
         $0.backgroundColor?.withAlphaComponent(0.5)
