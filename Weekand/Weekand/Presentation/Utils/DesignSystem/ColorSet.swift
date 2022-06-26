@@ -31,10 +31,3 @@ extension UIColor {
     static let wblue = UIColor(hex: "#5086FF")
 
 }
-
-extension UIColor {
-    static let categoryColors =
-    [[UIColor(hex: "#FF9292"), UIColor(hex: "#FFB27A"), UIColor(hex: "#FFE600"), UIColor(hex: "#94EB9C"), UIColor(hex: "#67DBFF"), UIColor(hex: "#83A5FF"), UIColor(hex: "#C081FF")],
-     [UIColor(hex: "#FFA6A6"), UIColor(hex: "#FFC59B"), UIColor(hex: "#FFF278"), UIColor(hex: "#B6EEBC"), UIColor(hex: "#A6EAFF"), UIColor(hex: "#B1C7FF"), UIColor(hex: "#D4AAFF")],
-     [UIColor(hex: "#FFC8C8"), UIColor(hex: "#FFDEC7"), UIColor(hex: "#FFF7AC"), UIColor(hex: "#D8F5DB"), UIColor(hex: "#CFF3FF"), UIColor(hex: "#D8E3FF"), UIColor(hex: "#E9D3FF")]]
-}

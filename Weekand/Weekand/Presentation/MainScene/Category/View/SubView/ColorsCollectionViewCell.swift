@@ -13,7 +13,7 @@ class ColorsCollectionViewCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if isSelected {
-                colorButton.layer.borderWidth = 2
+                colorButton.layer.borderWidth = 3
                 colorButton.layer.borderColor = UIColor.mainColor.cgColor
             } else {
                 colorButton.layer.borderWidth = 0
@@ -21,7 +21,7 @@ class ColorsCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    lazy var colorButton = UIButton().then {
+    lazy var colorButton = UIView().then {
         $0.layer.cornerRadius = 5
     }
     
@@ -47,9 +47,11 @@ class ColorsCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private func setupView() { }
+    private func setupView() {
+        
+    }
 
-    public func configure(color: UIColor) {
-        self.colorButton.backgroundColor = color
+    public func configure(colorCode: String) {
+        self.colorButton.backgroundColor = UIColor(hex: colorCode) ?? UIColor.white
     }
 }

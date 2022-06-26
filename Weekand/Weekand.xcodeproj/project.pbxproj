@@ -99,6 +99,7 @@
 		F3DD0237284A6BEC00AD9240 /* SignUpTermsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD0236284A6BEC00AD9240 /* SignUpTermsViewModel.swift */; };
 		F3F731D328672AF500C8B778 /* WTypeToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731D228672AF500C8B778 /* WTypeToggleButton.swift */; };
 		F3F731D928677A2000C8B778 /* ColorsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731D828677A2000C8B778 /* ColorsCollectionViewCell.swift */; };
+		F3F731DB2868966700C8B778 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731DA2868966700C8B778 /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -198,6 +199,7 @@
 		F3DD0236284A6BEC00AD9240 /* SignUpTermsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTermsViewModel.swift; sourceTree = "<group>"; };
 		F3F731D228672AF500C8B778 /* WTypeToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTypeToggleButton.swift; sourceTree = "<group>"; };
 		F3F731D828677A2000C8B778 /* ColorsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsCollectionViewCell.swift; sourceTree = "<group>"; };
+		F3F731DA2868966700C8B778 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		F77A7360107CB67CF89A6DEF /* Pods-Weekand.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weekand.release.xcconfig"; path = "Target Support Files/Pods-Weekand/Pods-Weekand.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -372,6 +374,7 @@
 				7D8033D7286057A20039F73E /* FollwingUser.swift */,
 				7D29E345286422FC0047C805 /* UserSummary.swift */,
 				F378684E285619F000BEEC81 /* Category.swift */,
+				F3F731DA2868966700C8B778 /* Color.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -831,6 +834,7 @@
 				7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */,
 				F32F72642854EC890056B189 /* InformationCollectionViewCell.swift in Sources */,
 				7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */,
+				F3F731DB2868966700C8B778 /* Color.swift in Sources */,
 				7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */,
 				F354C3DF283CECF5008929FD /* WTextLabel.swift in Sources */,
 				7DA4AB7A285871E0009E91FB /* UIButton+setImageInset.swift in Sources */,
