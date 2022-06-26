@@ -8,6 +8,8 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
+import RxDataSources
 
 class ColorSheetViewController: BottomSheetViewController {
     
@@ -21,6 +23,15 @@ class ColorSheetViewController: BottomSheetViewController {
     
     lazy var confirmButton = WDefaultButton(title: "확인", style: .filled, font: WFont.subHead1())
     
+    let colorsCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 5, left: 2, bottom: 5, right: 2)
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        return collectionView
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,10 +41,24 @@ class ColorSheetViewController: BottomSheetViewController {
     }
     
     private func setupView() {
+        self.colorsCollectionView.dataSource = self
+        self.colorsCollectionView.delegate = self
+        self.colorsCollectionView.register(ColorsCollectionViewCell.self, forCellWithReuseIdentifier: ColorsCollectionViewCell.cellIdentifier)
+    }
+    
+    private func configureUI() {
         bottomSheetView.addSubview(sheetTitle)
         sheetTitle.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(32)
             make.leading.equalToSuperview().offset(24)
+        }
+        
+        bottomSheetView.addSubview(colorsCollectionView)
+        colorsCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(sheetTitle.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(24)
+            make.trailing.equalToSuperview().offset(-24)
+            make.height.equalTo(200)
         }
         
         bottomSheetView.addSubview(confirmButton)
@@ -44,13 +69,37 @@ class ColorSheetViewController: BottomSheetViewController {
         }
     }
     
-    private func configureUI() {
-    }
-    
     private func bindViewModel() {
         
     }
 
+}
+
+extension ColorSheetViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return UIColor.categoryColors.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return UIColor.categoryColors[section].count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorsCollectionViewCell.cellIdentifier, for: indexPath) as? ColorsCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        cell.configure(color: UIColor.categoryColors[indexPath.section][indexPath.item]!)
+        
+        return cell
+    }
+}
+
+extension ColorSheetViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 36, height: 36)
+    }
 }
 
 import SwiftUI
