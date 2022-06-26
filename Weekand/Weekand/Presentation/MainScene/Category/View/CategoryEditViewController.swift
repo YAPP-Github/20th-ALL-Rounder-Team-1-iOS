@@ -22,8 +22,8 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
     }
     
     lazy var confirmButton = WBottmButton().then {
-        $0.setTitle("다음", for: .normal)
-        $0.disable(string: "다음")
+        $0.setTitle("완료", for: .normal)
+        $0.disable(string: "완료")
     }
     
     lazy var closeButton = UIBarButtonItem().then {
@@ -31,8 +31,7 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
         $0.tintColor = .gray400
     }
     
-    let selectedOpenType: BehaviorSubject<String> = BehaviorSubject(value: "allOpen")
-    
+    var selectedOpenType: OpenType = .allOpen
     var selectedColor: Color = Constants.colors[0][0] {
         didSet {
             self.colorStackView.colorView.backgroundColor = UIColor(hex: selectedColor.hexCode)
@@ -74,7 +73,10 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
         let input = CategoryAddViewModel.Input(
             closeButtonDidTapEvent: closeButton.rx.tap.asObservable(),
             colorButtonDidTapEvent: colorStackView.colorView.rx.tap.asObservable(),
-            selectedOpenType: selectedOpenType
+            categoryNameTextFieldDidEditEvent: categoryTextFieldStackView.textField.rx.text.orEmpty.asObservable(),
+            confirmButtonDidTapEvent: confirmButton.rx.tap.asObservable(),
+            selectedOpenType: selectedOpenType,
+            selectedColor: selectedColor
         )
         
         openTypeStackView.allOpenButton.rx.tap.subscribe { _ in
@@ -82,7 +84,7 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
                 self.openTypeStackView.allOpenButton.isChecked = true
                 self.openTypeStackView.followerOpenButton.isChecked = false
                 self.openTypeStackView.closedButton.isChecked = false
-                self.selectedOpenType.onNext("allOpen")
+                self.selectedOpenType = .allOpen
             }
         }.disposed(by: disposeBag)
         
@@ -91,7 +93,7 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
                 self.openTypeStackView.allOpenButton.isChecked = false
                 self.openTypeStackView.followerOpenButton.isChecked = true
                 self.openTypeStackView.closedButton.isChecked = false
-                self.selectedOpenType.onNext("followerOpen")
+                self.selectedOpenType = .followerOpen
             }
         }.disposed(by: disposeBag)
         
@@ -100,11 +102,25 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
                 self.openTypeStackView.allOpenButton.isChecked = false
                 self.openTypeStackView.followerOpenButton.isChecked = false
                 self.openTypeStackView.closedButton.isChecked = true
-                self.selectedOpenType.onNext("closed")
+                self.selectedOpenType = .closed
             }
         }.disposed(by: disposeBag)
         
-        let output = viewModel?.transform(input: input as! T.Input)
+        _ = viewModel?.transform(input: input as! T.Input)
+        
+        categoryTextFieldStackView.textField.rx.text.orEmpty
+            .map(checkEmptyValue)
+            .subscribe(onNext: { [weak self] isVaild in
+                if isVaild {
+                    self?.confirmButton.enable(string: "완료")
+                } else {
+                    self?.confirmButton.disable(string: "완료")
+                }
+            }).disposed(by: disposeBag)
+    }
+    
+    private func checkEmptyValue(text: String) -> Bool {
+        return text.trimmingCharacters(in: [" "]) != ""
     }
 
 }
