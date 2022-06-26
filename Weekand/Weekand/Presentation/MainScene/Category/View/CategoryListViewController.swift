@@ -27,9 +27,11 @@ class CategoryListViewController: UIViewController {
     
     var viewModel: CategoryListViewModel?
     var dataSource: UITableViewDiffableDataSource<Section, Category>!
-    var headerView = CategoryListHeaderView()
     
+    var headerView = CategoryListHeaderView()
     let tableView = UITableView()
+    
+    var selectedFilter: Filter = .nameCreateDESC
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +69,7 @@ class CategoryListViewController: UIViewController {
         
         let input = CategoryListViewModel.Input(
             didTapAddCategoryButton: self.headerView.addCategoryButton.rx.tap.asObservable(),
+            didTapFilterButton: self.headerView.filterButton.rx.tap.asObservable(),
             didCategoryCellSelected: self.tableView.rx.itemSelected.asObservable()
         )
         
@@ -102,7 +105,7 @@ extension CategoryListViewController {
 
 extension CategoryListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
+        headerView.filterButton.setTitle(selectedFilter.description)
         return headerView
     }
     

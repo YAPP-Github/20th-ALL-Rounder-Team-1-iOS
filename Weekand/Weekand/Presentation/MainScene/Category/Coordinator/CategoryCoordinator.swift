@@ -31,6 +31,13 @@ class CategoryCoordinator: Coordinator {
         self.navigationController.pushViewController(categoryDetailViewController, animated: true)
     }
     
+    func presenfilterBottonmSheet() {
+        let categoryListFilterViewController = CategoryListFilterViewController()
+        categoryListFilterViewController.viewModel = CategoryListFilterViewModel(coordinator: self)
+        categoryListFilterViewController.selectedFilter = categoryListViewController.selectedFilter
+        self.navigationController.present(categoryListFilterViewController, animated: true, completion: nil)
+    }
+    
     func showCategoryAddScene() {
         let categoryAddCoordinator = CategoryAddCoordinator()
         categoryAddCoordinator.finishDelegate = self
