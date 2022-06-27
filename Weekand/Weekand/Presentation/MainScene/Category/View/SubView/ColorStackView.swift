@@ -13,7 +13,7 @@ class ColorStackView: UIStackView {
         $0.textColor = UIColor.gray800
     }
     
-    lazy var colorView = UIView().then {
+    lazy var colorView = UIButton().then {
         $0.layer.cornerRadius = 5
     }
     

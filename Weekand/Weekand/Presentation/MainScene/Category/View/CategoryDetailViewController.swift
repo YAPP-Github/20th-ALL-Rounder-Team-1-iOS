@@ -39,11 +39,18 @@ class CategoryDetailViewController: UIViewController {
     }
     
     private func setupView() {
+        view.backgroundColor = .white
+        
         tableView.delegate = self
         tableView.separatorStyle = .none
+        tableView.bounces = false
         tableView.register(CategoryDetailTableViewCell.self, forCellReuseIdentifier: CategoryDetailTableViewCell.cellIdentifier)
         tableView.register(CategoryDetailHeaderView.self, forHeaderFooterViewReuseIdentifier: CategoryDetailHeaderView.cellIdentifier)
         tableView.register(CategoryDetailFooterView.self, forHeaderFooterViewReuseIdentifier: CategoryDetailFooterView.cellIdentifier)
+        
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
     }
     
     private func configureUI() {
@@ -69,6 +76,7 @@ extension CategoryDetailViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryDetailTableViewCell.cellIdentifier, for: indexPath) as? CategoryDetailTableViewCell else {
                 return UITableViewCell()
             }
+            cell.selectionStyle = .none
             cell.configure(color: .wred, title: list.name, startDate: "2022.05.21 06:00", endDate: "2022.05.28 08:00", repeatText: "매주 화요일 반복")
             return cell
         })
@@ -99,7 +107,7 @@ extension CategoryDetailViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 70
+        return 58
     }
 }
 

@@ -42,10 +42,17 @@ class CategoryListViewController: UIViewController {
     }
     
     private func setupView() {
+        view.backgroundColor = .white
+        
         tableView.delegate = self
         tableView.separatorStyle = .none
+        tableView.bounces = false
         tableView.register(CategoryListTableViewCell.self, forCellReuseIdentifier: CategoryListTableViewCell.cellIdentifier)
         tableView.register(CategoryListHeaderView.self, forHeaderFooterViewReuseIdentifier: CategoryListHeaderView.cellIdentifier)
+        
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
     }
     
     private func configureUI() {
@@ -77,6 +84,7 @@ extension CategoryListViewController {
                 return UITableViewCell()
             }
             cell.accessoryType = .disclosureIndicator
+            cell.selectionStyle = .none
             cell.configure(color: UIColor(hex: "#FFC8C8") ?? .red, openType: list.openType, name: list.name)
             return cell
         })
@@ -99,7 +107,7 @@ extension CategoryListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
+        return 65
     }
 }
 

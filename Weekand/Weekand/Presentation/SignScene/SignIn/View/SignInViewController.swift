@@ -36,7 +36,7 @@ class SignInViewController: UIViewController {
         $0.spacing = 10
     }
     
-    lazy var autoSignCheckBox = WCheckBox(isChecked: false)
+    lazy var autoSignCheckBox = WCheckBox()
     lazy var autoSignLabel = WTextLabel().then {
         $0.textColor = .gray900
         $0.text = "자동로그인"

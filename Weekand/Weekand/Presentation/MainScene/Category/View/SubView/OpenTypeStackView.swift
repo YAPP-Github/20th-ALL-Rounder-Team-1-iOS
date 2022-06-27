@@ -15,9 +15,9 @@ class OpenTypeStackView: UIStackView {
     
     let buttonsContainerView = UIView()
     
-    let allOpenButton = WDefaultButton(title: "전체공개", style: .typePressed, font: WFont.subHead3())
-    let followerOpenButton = WDefaultButton(title: "친구 공개", style: .type, font: WFont.subHead3())
-    let closedButton = WDefaultButton(title: "비공개", style: .type, font: WFont.subHead3())
+    let allOpenButton = WTypeToggleButton(title: "전체 공개", style: .checked, font: WFont.subHead3())
+    let followerOpenButton = WTypeToggleButton(title: "친구 공개", style: .unchecked, font: WFont.subHead3())
+    let closedButton = WTypeToggleButton(title: "비공개", style: .unchecked, font: WFont.subHead3())
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,16 +40,19 @@ class OpenTypeStackView: UIStackView {
         
         allOpenButton.snp.makeConstraints { make in
             make.leading.top.bottom.equalToSuperview()
+            make.height.equalTo(42)
         }
         
         followerOpenButton.snp.makeConstraints { make in
             make.leading.equalTo(allOpenButton.snp.trailing).offset(12)
             make.top.equalTo(allOpenButton.snp.top)
+            make.height.equalTo(42)
         }
         
         closedButton.snp.makeConstraints { make in
             make.leading.equalTo(followerOpenButton.snp.trailing).offset(12)
             make.top.equalTo(allOpenButton.snp.top)
+            make.height.equalTo(42)
         }
         
     }

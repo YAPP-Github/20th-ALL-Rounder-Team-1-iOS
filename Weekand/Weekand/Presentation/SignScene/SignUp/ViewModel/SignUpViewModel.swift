@@ -30,7 +30,7 @@ class SignUpViewModel: ViewModelType {
         let passwordCheckTextFieldDidEditEvent: Observable<String>
         let passwordCheckTextFieldDidEndEditEvent: Observable<Void>
         let nextButtonDidTapEvent: Observable<Void>
-        let cancelButtonDidTapEvent: Observable<Void>
+        let closeButtonDidTapEvent: Observable<Void>
     }
     
     struct Output {
@@ -66,7 +66,7 @@ class SignUpViewModel: ViewModelType {
             
         }).disposed(by: disposeBag)
         
-        input.cancelButtonDidTapEvent.subscribe(onNext: {
+        input.closeButtonDidTapEvent.subscribe(onNext: {
             self.coordinator?.finish()
         }).disposed(by: disposeBag)
         

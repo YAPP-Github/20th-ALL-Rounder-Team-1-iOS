@@ -12,7 +12,7 @@ class InformationCollectionViewCell: UICollectionViewCell {
 
     static let cellIdentifier = "InformationCell"
     
-    lazy var button = WDefaultButton(title: "설마마", style: .tag, font: WFont.body2())
+    lazy var button = WTagToggleButton(title: "", font: WFont.body2())
     
     override init(frame: CGRect) {
         super.init(frame: frame)

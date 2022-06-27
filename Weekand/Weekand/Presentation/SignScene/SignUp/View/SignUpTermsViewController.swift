@@ -20,12 +20,11 @@ class SignUpTermsViewController: UIViewController {
         $0.spacing = 10
     }
     
-    lazy var checkBoxButton = UIButton().then {
-        $0.backgroundColor = .gray300
-    }
+    lazy var checkBoxButton = WCheckBox()
     
     lazy var wholeAgreeLabel = WTitleLabel().then {
         $0.setText(string: "전체 동의")
+        $0.font = WFont.head2()
     }
     
     lazy var wholeAgreeInformLabel = WTextLabel().then {
@@ -33,13 +32,11 @@ class SignUpTermsViewController: UIViewController {
         $0.text = "약관 비동의 시 서비스 이용이 불가합니다."
     }
     
-    lazy var dividingLineView = UIView().then {
+    lazy var dividerLine = UIView().then {
         $0.backgroundColor = .gray200
     }
     
-    lazy var termsAgreeCheckBoxButton = UIButton().then {
-        $0.backgroundColor = .gray300
-    }
+    let termsAgreeCheckBoxButton = WCheckBox()
     
     lazy var termsAgreeLabel = WTextLabel().then {
         $0.attributedText = NSMutableAttributedString()
@@ -47,9 +44,7 @@ class SignUpTermsViewController: UIViewController {
             .semiBold("에 동의합니다.", fontSize: defaultFontSize, fontColor: .gray700 ?? .black)
     }
     
-    lazy var privacyAgreeCheckBoxButton = UIButton().then {
-        $0.backgroundColor = .gray300
-    }
+    lazy var privacyAgreeCheckBoxButton = WCheckBox()
     
     lazy var privacyAgreeLabel = WTextLabel().then {
         $0.attributedText = NSMutableAttributedString()
@@ -58,8 +53,8 @@ class SignUpTermsViewController: UIViewController {
     }
     
     lazy var confirmButton = WBottmButton().then {
-        $0.setTitle("완료", for: .normal)
-        $0.enable(string: "완료")
+        $0.setTitle("로그인 하러가기", for: .normal)
+        $0.enable(string: "로그인 하러가기")
     }
     
     override func viewDidLoad() {
@@ -80,31 +75,26 @@ class SignUpTermsViewController: UIViewController {
         wholeAgreeStackView.addArrangedSubview(checkBoxButton)
         wholeAgreeStackView.addArrangedSubview(wholeAgreeLabel)
         wholeAgreeStackView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(80)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(50)
+            make.leading.equalToSuperview().offset(30)
+        }
+        
+        view.addSubview(wholeAgreeInformLabel)
+        wholeAgreeInformLabel.snp.makeConstraints { make in
+            make.top.equalTo(wholeAgreeStackView.snp.bottom).offset(10)
+            make.leading.equalTo(wholeAgreeLabel.snp.leading)
+        }
+        
+        view.addSubview(dividerLine)
+        dividerLine.snp.makeConstraints { make in
+            make.top.equalTo(wholeAgreeInformLabel.snp.bottom).offset(20)
             make.trailing.leading.equalToSuperview().inset(30)
-        }
-        
-        view.addSubview(wholeAgreeInformLabel)
-        wholeAgreeInformLabel.snp.makeConstraints { make in
-            make.top.equalTo(wholeAgreeStackView.snp.bottom).offset(10)
-            make.leading.equalTo(wholeAgreeLabel.snp.leading)
-        }
-        
-        view.addSubview(dividingLineView)
-        dividingLineView.snp.makeConstraints { make in
-            make.top.equalTo(wholeAgreeInformLabel.snp.bottom).offset(10)
-            make.width.equalToSuperview()
-        }
-        
-        view.addSubview(wholeAgreeInformLabel)
-        wholeAgreeInformLabel.snp.makeConstraints { make in
-            make.top.equalTo(wholeAgreeStackView.snp.bottom).offset(10)
-            make.leading.equalTo(wholeAgreeLabel.snp.leading)
+            make.height.equalTo(1)
         }
         
         view.addSubview(termsAgreeCheckBoxButton)
         termsAgreeCheckBoxButton.snp.makeConstraints { make in
-            make.top.equalTo(wholeAgreeInformLabel.snp.bottom).offset(30)
+            make.top.equalTo(dividerLine.snp.bottom).offset(30)
             make.leading.equalTo(checkBoxButton.snp.leading)
         }
         

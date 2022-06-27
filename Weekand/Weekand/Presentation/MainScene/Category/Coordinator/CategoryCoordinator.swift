@@ -31,13 +31,24 @@ class CategoryCoordinator: Coordinator {
         self.navigationController.pushViewController(categoryDetailViewController, animated: true)
     }
     
-    func pushCategoryEditViewController() {
-        let categoryEditViewController = CategoryEditViewController()
-        categoryEditViewController.viewModel = CategoryEditViewModel(coordinator: self)
-        self.navigationController.pushViewController(categoryEditViewController, animated: true)    }
+    func showCategoryAddScene() {
+        let categoryAddCoordinator = CategoryAddCoordinator()
+        categoryAddCoordinator.finishDelegate = self
+        childCoordinators.append(categoryAddCoordinator)
+        navigationController.present(categoryAddCoordinator.navigationController, animated: true, completion: nil)
+        categoryAddCoordinator.start()
+    }
     
     func finish() {
         self.finishDelegate?.childDidFinish(self)
     }
     
+}
+
+extension CategoryCoordinator: CoordinatorDidFinishDelegate {
+    
+    func childDidFinish(_ child: Coordinator) {
+        self.childCoordinators = self.childCoordinators.filter({ $0.type != child.type })
+        navigationController.dismiss(animated: true, completion: nil)
+    }
 }

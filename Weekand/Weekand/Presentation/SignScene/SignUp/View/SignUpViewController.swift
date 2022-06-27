@@ -17,8 +17,9 @@ class SignUpViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     var viewModel: SignUpViewModel?
     
-    lazy var cancelButton = UIBarButtonItem(title: "취소", style: .done, target: nil, action: nil).then {
-        $0.tintColor = .gray700
+    lazy var closeButton = UIBarButtonItem().then {
+        $0.image = UIImage(named: "close")
+        $0.tintColor = .gray400
     }
     
     lazy var welcomeLabel = WTitleLabel().then {
@@ -74,7 +75,7 @@ class SignUpViewController: BaseViewController {
     private func setupView() {
         view.backgroundColor = .white
         navigationItem.title = "회원가입"
-        navigationItem.leftBarButtonItem = cancelButton
+        navigationItem.leftBarButtonItem = closeButton
         stackView.spacing = 25
     }
     
@@ -112,7 +113,7 @@ class SignUpViewController: BaseViewController {
             passwordCheckTextFieldDidEditEvent: passwordCheckStackView.buttonTextField.textField.rx.text.orEmpty.asObservable(),
             passwordCheckTextFieldDidEndEditEvent: passwordCheckStackView.buttonTextField.textField.rx.controlEvent([.editingChanged]).asObservable(),
             nextButtonDidTapEvent: confirmButton.rx.tap.asObservable(),
-            cancelButtonDidTapEvent: cancelButton.rx.tap.asObservable()
+            closeButtonDidTapEvent: closeButton.rx.tap.asObservable()
         )
         
         let output = viewModel.transform(input: input)
