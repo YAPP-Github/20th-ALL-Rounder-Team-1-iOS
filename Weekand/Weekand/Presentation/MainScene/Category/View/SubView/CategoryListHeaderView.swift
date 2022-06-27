@@ -33,6 +33,7 @@ class CategoryListHeaderView: UITableViewHeaderFooterView {
     }
     
     func setupView() {
+        filterButton.showsMenuAsPrimaryAction = true
     }
     
     func configureUI() {

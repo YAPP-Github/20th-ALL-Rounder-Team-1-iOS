@@ -39,7 +39,7 @@ extension CategoryListViewModel {
         }).disposed(by: disposeBag)
         
         input.didTapFilterButton.subscribe(onNext: { [weak self] _ in
-            self?.coordinator?.presenfilterBottonmSheet()
+            // self?.coordinator?.presenfilterBottonmSheet()
         }).disposed(by: disposeBag)
         
         input.didCategoryCellSelected.subscribe(onNext: { [weak self] _ in

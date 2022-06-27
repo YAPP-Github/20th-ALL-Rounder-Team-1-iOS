@@ -106,6 +106,16 @@ extension CategoryListViewController {
 extension CategoryListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         headerView.filterButton.setTitle(selectedFilter.description)
+        let dateCreatedAscAction = UIAction(title: "최신순") { _ in print("최신순") }
+        let dateCreateDesxAction = UIAction(title: "오래된순") { _ in print("오래된순") }
+        let nameCreatedAscAction = UIAction(title: "오름차순") { _ in print("오름차순") }
+        let nameCreateDescAction = UIAction(title: "내림차순") { _ in print("내림차순") }
+        let menu = UIMenu(title: "",
+                          image: nil,
+                          identifier: nil,
+                          options: .displayInline,
+                          children: [dateCreatedAscAction, dateCreateDesxAction, nameCreatedAscAction, nameCreateDescAction])
+        headerView.filterButton.menu = menu
         return headerView
     }
     
