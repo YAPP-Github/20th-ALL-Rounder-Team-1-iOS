@@ -36,12 +36,20 @@ class SignInCoordinator: Coordinator {
         childCoordinators.append(mainCoordinator)
         mainCoordinator.start()
     }
+    
+    func presentPasswordFindScene() {
+        let passwordFindCoordinator = PasswordFindCoordinator()
+        passwordFindCoordinator.finishDelegate = self
+        childCoordinators.append(passwordFindCoordinator)
+        navigationController.present(passwordFindCoordinator.navigationController, animated: true, completion: nil)
+        passwordFindCoordinator.start()
+    }
 }
 
 extension SignInCoordinator: CoordinatorDidFinishDelegate {
     
     func childDidFinish(_ child: Coordinator) {
         self.childCoordinators = self.childCoordinators.filter({ $0.type != child.type })
-        navigationController.popToRootViewController(animated: true)
+        navigationController.dismiss(animated: true, completion: nil)
     }
 }

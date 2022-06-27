@@ -13,7 +13,12 @@ import RxSwift
 class PasswordFindViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
-    //var viewModel: SignInViewModel?
+    var viewModel: PasswordFindViewModel?
+    
+    lazy var closeButton = UIBarButtonItem().then {
+        $0.image = UIImage(named: "close")
+        $0.tintColor = .gray400
+    }
     
     lazy var titleLabel = WTextLabel().then {
         $0.text = "비밀번호를\n잊으셨나요?"
@@ -50,6 +55,7 @@ class PasswordFindViewController: UIViewController {
     
     private func setupView() {
         view.backgroundColor = .white
+        navigationItem.leftBarButtonItem = closeButton
     }
     
     private func configureUI() {
@@ -74,6 +80,11 @@ class PasswordFindViewController: UIViewController {
     }
     
     private func bindViewModel() {
+        let input = PasswordFindViewModel.Input(
+            closeButtonDidTapEvent: closeButton.rx.tap.asObservable()
+        )
+        
+        let output = viewModel?.transform(input: input)
     }
 
 }

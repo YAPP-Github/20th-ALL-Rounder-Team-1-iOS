@@ -112,6 +112,7 @@ class SignInViewController: UIViewController {
             emailTextFieldDidEditEvent: emailField.rx.text.orEmpty.asObservable(),
             passwordTextFieldDidEditEvent: passwordField.rx.text.orEmpty.asObservable(),
             autoSignButtonDidTapEvent: autoSignCheckBox.rx.tap.asObservable(),
+            passwordFindButtonDidTapEvent: signUpLink.rx.tap.asObservable(),
             nextButtonDidTapEvent: nextButton.rx.tap.asObservable()
         )
         
