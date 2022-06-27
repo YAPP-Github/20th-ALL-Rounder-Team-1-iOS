@@ -31,7 +31,7 @@ class CategoryListFilterViewController: BottomSheetViewController {
     
     override var bottomSheetHeight: CGFloat {
         get {
-            return 330
+            return 270
         }
     }
     
@@ -52,14 +52,17 @@ class CategoryListFilterViewController: BottomSheetViewController {
     private func setupView() {
         self.tableView.isScrollEnabled = false
         self.tableView.allowsMultipleSelection = false
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableView.separatorStyle = .none
+        self.tableView.register(FilterTableViewCell.self, forCellReuseIdentifier: FilterTableViewCell.cellIdentifier)
     }
     
     private func configureUI() {
         
         bottomSheetView.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalToSuperview().offset(20)
+            make.trailing.leading.equalToSuperview()
+            make.bottom.equalToSuperview().offset(30)
         }
     }
     
@@ -77,11 +80,10 @@ extension CategoryListFilterViewController {
     private func configureDataSource() {
         
         dataSource = UITableViewDiffableDataSource<Section, Filter>(tableView: tableView, cellProvider: { tableView, indexPath, list in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            var content = cell.defaultContentConfiguration()
-            content.text = list.description
-            cell.contentConfiguration = content
-            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: FilterTableViewCell.cellIdentifier, for: indexPath) as? FilterTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.configure(text: list.description)
             return cell
         })
     }

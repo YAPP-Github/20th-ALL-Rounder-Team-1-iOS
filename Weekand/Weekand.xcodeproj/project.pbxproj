@@ -103,6 +103,7 @@
 		F3F731DD2868DD5300C8B778 /* CategoryListFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731DC2868DD5300C8B778 /* CategoryListFilterViewController.swift */; };
 		F3F731DF2868DE0000C8B778 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731DE2868DE0000C8B778 /* Filter.swift */; };
 		F3F731E12868E02C00C8B778 /* CategoryListFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731E02868E02C00C8B778 /* CategoryListFilterViewModel.swift */; };
+		F3F731E32869918E00C8B778 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731E22869918E00C8B778 /* FilterTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -206,6 +207,7 @@
 		F3F731DC2868DD5300C8B778 /* CategoryListFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListFilterViewController.swift; sourceTree = "<group>"; };
 		F3F731DE2868DE0000C8B778 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		F3F731E02868E02C00C8B778 /* CategoryListFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListFilterViewModel.swift; sourceTree = "<group>"; };
+		F3F731E22869918E00C8B778 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		F77A7360107CB67CF89A6DEF /* Pods-Weekand.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weekand.release.xcconfig"; path = "Target Support Files/Pods-Weekand/Pods-Weekand.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -598,6 +600,7 @@
 				F32F725D2854ADFA0056B189 /* OpenTypeStackView.swift */,
 				F32F725F2854BB730056B189 /* ColorStackView.swift */,
 				F3F731D828677A2000C8B778 /* ColorsCollectionViewCell.swift */,
+				F3F731E22869918E00C8B778 /* FilterTableViewCell.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -912,6 +915,7 @@
 				F3CC76B42867264200A3FBBE /* WTagToggleButton.swift in Sources */,
 				F3DD0231284A36D300AD9240 /* BaseNavigationController.swift in Sources */,
 				F354C3E5283D3BF0008929FD /* InformationGroupStackView.swift in Sources */,
+				F3F731E32869918E00C8B778 /* FilterTableViewCell.swift in Sources */,
 				F3DD022428466E0C00AD9240 /* SignInCoordinator.swift in Sources */,
 				7D8033D6286034BB0039F73E /* MainCollectionViewCell.swift in Sources */,
 				7D6B911528449A760044E217 /* WIconLabel.swift in Sources */,
