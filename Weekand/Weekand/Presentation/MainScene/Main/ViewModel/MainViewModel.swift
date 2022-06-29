@@ -88,6 +88,9 @@ extension MainViewModel {
         let didTapNextWeekButton: Observable<Void>
         let didTapPrevWeekButton: Observable<Void>
         let didTapEditButton: Observable<Void>
+        
+        // Floating Button
+        let didTapFloatingButton: Observable<Void>
     }
     
     struct Output { }
@@ -125,6 +128,9 @@ extension MainViewModel {
             print("prev week")
         }).disposed(by: disposeBag)
         
+        input.didTapFloatingButton.subscribe(onNext: { _ in
+            print("floating button")
+        })
         return Output()
     }
 

@@ -20,6 +20,13 @@ class MainViewController: UIViewController {
     var headerView = MainViewHeader()
     var tableView: UITableView!
     
+    lazy var floatingButton = UIButton().then {
+        $0.backgroundColor = .mainColor
+        $0.layer.cornerRadius = 28
+        $0.setImage(UIImage(named: "category.update")?.withTintColor(.white), for: .normal)
+        $0.imageView?.contentMode = .scaleAspectFit
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,6 +69,14 @@ class MainViewController: UIViewController {
             make.left.right.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+        
+        // floating Button
+        self.view.addSubview(floatingButton)
+        floatingButton.snp.makeConstraints { make in
+            make.width.height.equalTo(56)
+            make.right.equalToSuperview().inset(24)
+            make.bottom.equalToSuperview().inset(73)
+        }
     }
     
     private func bindViewModel() {
@@ -77,7 +92,10 @@ class MainViewController: UIViewController {
             didTapTodayButton: self.headerView.calendarView.todayButton.rx.tap.asObservable(),
             didTapNextWeekButton: self.headerView.calendarView.rightButton.rx.tap.asObservable(),
             didTapPrevWeekButton: self.headerView.calendarView.leftButton.rx.tap.asObservable(),
-            didTapEditButton: self.headerView.calendarView.editButton.rx.tap.asObservable()
+            didTapEditButton: self.headerView.calendarView.editButton.rx.tap.asObservable(),
+            
+            // Floating Button
+            didTapFloatingButton: self.floatingButton.rx.tap.asObservable()
         )
         self.viewModel?.transform(input: input)
         
