@@ -20,6 +20,13 @@ class MainViewController: UIViewController {
     var headerView = MainViewHeader()
     var tableView: UITableView!
     
+    lazy var floatingButton = UIButton().then {
+        $0.backgroundColor = .mainColor
+        $0.layer.cornerRadius = 28
+        $0.setImage(UIImage(named: "category.update")?.withTintColor(.white), for: .normal)
+        $0.imageView?.contentMode = .scaleAspectFit
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,6 +68,14 @@ class MainViewController: UIViewController {
             make.top.equalTo(headerView.snp.bottom)
             make.left.right.equalToSuperview()
             make.bottom.equalToSuperview()
+        }
+        
+        // floating Button
+        self.view.addSubview(floatingButton)
+        floatingButton.snp.makeConstraints { make in
+            make.width.height.equalTo(56)
+            make.right.equalToSuperview().inset(24)
+            make.bottom.equalToSuperview().inset(73)
         }
     }
     
