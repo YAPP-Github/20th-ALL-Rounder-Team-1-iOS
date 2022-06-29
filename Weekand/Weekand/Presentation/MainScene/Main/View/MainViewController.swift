@@ -206,6 +206,7 @@ extension MainViewController {
     
 }
 
+// MARK: UI Animation
 extension MainViewController {
     
     /// CollectionView를 접고 펴는 함수

@@ -36,11 +36,12 @@ class MainCoordinator: Coordinator {
         categoryCoordinator.start()
     }
     
-    // TODO: 알람 화면 구현 후 개발
-    func showAlarmScene() {
-        print(#function)
+    func pushAlarmViewController() {
+        let alarmViewController = AlarmViewController()
+        alarmViewController.viewModel = AlarmViewModel()
+        self.navigationController.pushViewController(alarmViewController, animated: true)
     }
-    
+        
     // TODO: 검색 화면 구현 후 개발
     func showSearchScene() {
         print(#function)

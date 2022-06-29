@@ -116,7 +116,7 @@ extension MainViewModel {
         }).disposed(by: disposeBag)
         
         input.didAlarmBarButton.subscribe(onNext: { [weak self] _ in
-            self?.coordinator?.showAlarmScene()
+            self?.coordinator?.pushAlarmViewController()
         }).disposed(by: disposeBag)
         
         input.didsearchBarButton.subscribe(onNext: { [weak self] _ in
