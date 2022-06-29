@@ -72,10 +72,8 @@ extension MainCollectionViewCell {
                     self.profileImageView.image = UIImage(data: imageData)
                 }
             }
-        } else {
-            
-            profileImageView.backgroundColor = .mainColor
         }
+        
     }
     
     /// Model을 이용한 setUp

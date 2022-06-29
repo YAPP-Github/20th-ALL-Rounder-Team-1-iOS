@@ -21,6 +21,11 @@ class MainViewController: UIViewController {
     var headerView = MainViewHeader()
     var tableView: UITableView!
     
+    lazy var foldButton = UIBarButtonItem(image: nil, style: .plain, target: self, action: nil)
+    lazy var searchButton = UIBarButtonItem(image: UIImage(named: "search") ?? UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: nil)
+    lazy var alarmButton = UIBarButtonItem(image: UIImage(named: "alarm") ?? UIImage(systemName: "bell"), style: .plain, target: self, action: nil)
+
+    
     lazy var floatingButton = UIButton().then {
         $0.backgroundColor = .mainColor
         $0.layer.cornerRadius = 28
@@ -45,10 +50,8 @@ class MainViewController: UIViewController {
     private func configureUI() {
         
         // Navigation Bar
-        let foldButton = UIBarButtonItem(image: UIImage(named: "chevron.down") ?? UIImage(systemName: "chevron.down"), style: .plain, target: self, action: nil)
-        let searchButton = UIBarButtonItem(image: UIImage(named: "search") ?? UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: nil)
-        let alarmButton = UIBarButtonItem(image: UIImage(named: "alarm") ?? UIImage(systemName: "bell"), style: .plain, target: self, action: nil)
-        
+        let foldButtonImage = UIImage(named: "chevron.down") ?? UIImage(systemName: "chevron.down")
+        foldButton.setBackgroundImage(foldButtonImage?.withTintColor(.gray900), for: .normal, barMetrics: .default)
         navigationItem.leftBarButtonItem = foldButton
         navigationItem.rightBarButtonItems = [ searchButton, alarmButton]
         
@@ -80,14 +83,15 @@ class MainViewController: UIViewController {
         }
     }
     
+    // MARK: Bind View Model
     private func bindViewModel() {
         
         let input = MainViewModel.Input(
             
             // Navigation Button
-            didFoldBarButton: self.navigationItem.leftBarButtonItem?.rx.tap.asObservable() ?? Observable<Void>.empty(),
-            didAlarmBarButton: self.navigationItem.rightBarButtonItems?[0].rx.tap.asObservable() ?? Observable<Void>.empty(),
-            didsearchBarButton: self.navigationItem.rightBarButtonItems?[1].rx.tap.asObservable() ?? Observable<Void>.empty(),
+            didFoldBarButton: self.foldButton.rx.tap.asObservable() ,
+            didAlarmBarButton: self.alarmButton.rx.tap.asObservable() ,
+            didsearchBarButton: self.searchButton.rx.tap.asObservable() ,
             
             // Calendar Button
             didTapTodayButton: self.headerView.calendarView.todayButton.rx.tap.asObservable(),
@@ -98,6 +102,8 @@ class MainViewController: UIViewController {
             // Floating Button
             didTapFloatingButton: self.floatingButton.rx.tap.asObservable()
         )
+        
+        
         let output = self.viewModel?.transform(input: input)
         
         output?.calendarDate.subscribe(onNext: { data in
@@ -106,6 +112,10 @@ class MainViewController: UIViewController {
         
         output?.scrollWeek.subscribe(onNext: { data in
             self.headerView.calendarView.scrollWeek(isNext: data)
+        }).disposed(by: disposeBag)
+        
+        output?.foldCollection.subscribe(onNext: { _ in
+            self.foldCollectionView()
         }).disposed(by: disposeBag)
         
         viewModel?.userSummary.subscribe(onNext: { data in
@@ -194,4 +204,29 @@ extension MainViewController {
         viewModel?.configureTableViewSnapshot()
     }
     
+}
+
+extension MainViewController {
+    
+    /// CollectionView를 접고 펴는 함수
+    private func foldCollectionView() {
+        
+        let isFolded = collectionView.frame.height == 0 ? true : false
+        let viewHeight: CGFloat = isFolded ? 80 : 0
+        let buttonImage = isFolded ? UIImage(named: "chevron.down") ?? UIImage(systemName: "chevron.down") : UIImage(named: "chevron.up") ?? UIImage(systemName: "chevron.up")
+        
+        collectionView.snp.updateConstraints { make in
+            make.height.lessThanOrEqualTo(viewHeight)
+        }
+        
+        if let safeImage = buttonImage {
+            navigationItem.leftBarButtonItem?.setBackgroundImage(safeImage.withTintColor(.gray900), for: .normal, barMetrics: .default)
+        }
+        
+        
+        UIView.animate(withDuration: 0.25) {
+            self.view.layoutIfNeeded()
+       }
+        
+    }
 }

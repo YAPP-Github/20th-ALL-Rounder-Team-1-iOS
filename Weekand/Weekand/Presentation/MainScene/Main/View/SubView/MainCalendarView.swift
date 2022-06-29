@@ -217,6 +217,8 @@ extension MainCalendarView {
         var dateComponents = DateComponents()
         dateComponents.day = isNext ? +7 : -7
         
+        currentPage = calendar.currentPage
+        
         self.currentPage = Calendar.current.date(byAdding: dateComponents, to: self.currentPage ?? Date())
         self.calendar.setCurrentPage(self.currentPage!, animated: true)
     }

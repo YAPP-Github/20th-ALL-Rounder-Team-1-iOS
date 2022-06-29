@@ -66,8 +66,9 @@ class MainViewModel {
     private var scheduleList = BehaviorRelay<[ScehduleMain]>(value: [])
     
     // Calendar 버튼 관련 Obsrvables
-    public var calendarDate = BehaviorRelay<Date>(value: Date())
-    public var scrollWeek = PublishRelay<Bool>()
+    private let calendarDate = BehaviorRelay<Date>(value: Date())
+    private let scrollWeek = PublishRelay<Bool>()
+    private let foldCollection = PublishRelay<Void>()
     
     init(coordinator: MainCoordinator) {
         self.coordinator = coordinator
@@ -103,6 +104,7 @@ extension MainViewModel {
     struct Output {
         let calendarDate: Observable<Date>
         let scrollWeek: Observable<Bool>
+        let foldCollection: Observable<Void>
     }
     
     @discardableResult
@@ -110,7 +112,7 @@ extension MainViewModel {
         
         // Navigation Items
         input.didFoldBarButton.subscribe(onNext: { _ in
-            print("fold")
+            PublishRelay<Void>.just(Void()).bind(to: self.foldCollection).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
         
         input.didAlarmBarButton.subscribe(onNext: { [weak self] _ in
@@ -141,12 +143,13 @@ extension MainViewModel {
         }).disposed(by: disposeBag)
         
         input.didTapFloatingButton.subscribe(onNext: { _ in
-            print("floating button")
+            print("Floating Button")
         }).disposed(by: disposeBag)
         
         return Output(
             calendarDate: calendarDate.asObservable(),
-            scrollWeek: scrollWeek.asObservable()
+            scrollWeek: scrollWeek.asObservable(),
+            foldCollection: foldCollection.asObservable()
         )
     }
 
