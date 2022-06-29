@@ -39,6 +39,9 @@
 		7DC166BE28371C4E00F1A8F1 /* WDefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166BD28371C4E00F1A8F1 /* WDefaultButton.swift */; };
 		7DC166C02837234200F1A8F1 /* WButtonTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166BF2837234200F1A8F1 /* WButtonTextField.swift */; };
 		7DC166C228372ACF00F1A8F1 /* Inset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166C128372ACF00F1A8F1 /* Inset.swift */; };
+		7DD71A80286C8E88002D1DCF /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD71A7F286C8E88002D1DCF /* AlarmViewController.swift */; };
+		7DD71A82286C8E91002D1DCF /* AlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD71A81286C8E91002D1DCF /* AlarmViewModel.swift */; };
+		7DD71A84286C8EB6002D1DCF /* AlarmCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD71A83286C8EB6002D1DCF /* AlarmCoordinator.swift */; };
 		7DEA177A2845E7C500F6B990 /* WEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEA17792845E7C500F6B990 /* WEmojiView.swift */; };
 		7DEA177C2846006A00F6B990 /* WSquareImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEA177B2846006A00F6B990 /* WSquareImageView.swift */; };
 		7DF8B7A928361FB100B224CA /* PretendardVariable.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DF8B7A828361FB100B224CA /* PretendardVariable.ttf */; };
@@ -135,6 +138,9 @@
 		7DC166BD28371C4E00F1A8F1 /* WDefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDefaultButton.swift; sourceTree = "<group>"; };
 		7DC166BF2837234200F1A8F1 /* WButtonTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WButtonTextField.swift; sourceTree = "<group>"; };
 		7DC166C128372ACF00F1A8F1 /* Inset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inset.swift; sourceTree = "<group>"; };
+		7DD71A7F286C8E88002D1DCF /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
+		7DD71A81286C8E91002D1DCF /* AlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewModel.swift; sourceTree = "<group>"; };
+		7DD71A83286C8EB6002D1DCF /* AlarmCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCoordinator.swift; sourceTree = "<group>"; };
 		7DEA17792845E7C500F6B990 /* WEmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WEmojiView.swift; sourceTree = "<group>"; };
 		7DEA177B2846006A00F6B990 /* WSquareImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSquareImageView.swift; sourceTree = "<group>"; };
 		7DF8B7A828361FB100B224CA /* PretendardVariable.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PretendardVariable.ttf; sourceTree = "<group>"; };
@@ -283,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				7DB5E13D284B4E3C00DBB7EA /* MainViewModel.swift */,
+				7DD71A81286C8E91002D1DCF /* AlarmViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -291,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				7D76AEB3284458C2001C668D /* MainViewController.swift */,
+				7DD71A7F286C8E88002D1DCF /* AlarmViewController.swift */,
 				7DA4AB742858669E009E91FB /* SubView */,
 			);
 			path = View;
@@ -399,6 +407,7 @@
 			isa = PBXGroup;
 			children = (
 				7DB5E13B284B4DA400DBB7EA /* MainCoordinator.swift */,
+				7DD71A83286C8EB6002D1DCF /* AlarmCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -818,6 +827,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DD71A80286C8E88002D1DCF /* AlarmViewController.swift in Sources */,
 				F354C3E8283D4126008929FD /* SignUpTermsViewController.swift in Sources */,
 				F32F72562853D1E40056B189 /* CategoryDetailFooterView.swift in Sources */,
 				F3DD022B284678CF00AD9240 /* WelcomeViewModel.swift in Sources */,
@@ -871,6 +881,7 @@
 				F378684F285619F000BEEC81 /* Category.swift in Sources */,
 				F378685928621C2C00BEEC81 /* CategoryModifyViewModel.swift in Sources */,
 				7DA4AB7828586FA7009E91FB /* CategoryAddViewModel.swift in Sources */,
+				7DD71A84286C8EB6002D1DCF /* AlarmCoordinator.swift in Sources */,
 				7DC166B42837148000F1A8F1 /* SignInViewModel.swift in Sources */,
 				7D3B1F54283630A50037504A /* WTextField.swift in Sources */,
 				F3DD0218284661F900AD9240 /* WelcomeCoordinator.swift in Sources */,
@@ -889,6 +900,7 @@
 				F3DD0237284A6BEC00AD9240 /* SignUpTermsViewModel.swift in Sources */,
 				F3CC76B22867130100A3FBBE /* ColorSheetViewController.swift in Sources */,
 				7DC166C02837234200F1A8F1 /* WButtonTextField.swift in Sources */,
+				7DD71A82286C8E91002D1DCF /* AlarmViewModel.swift in Sources */,
 				F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */,
 				F32F725C28549B650056B189 /* WTextFieldStackView.swift in Sources */,
 				F378685B28621C8F00BEEC81 /* CategoryEditViewModelType.swift in Sources */,
