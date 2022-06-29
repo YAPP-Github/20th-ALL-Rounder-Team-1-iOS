@@ -13,8 +13,7 @@ import FSCalendar
 /// 메인 화면 주간 캘린더 + 위쪽 버튼
 class MainCalendarView: UIView {
     
-    public var today = DateComponents()
-    public var currentDate = Date()
+    private var currentPage: Date?
     
     // MARK: UI Properties
     fileprivate weak var calendar: FSCalendar!
@@ -198,22 +197,28 @@ extension MainCalendarView: FSCalendarDelegate, FSCalendarDataSource {
         print("did select date \(dateFormatter.string(from: date))")
         let selectedDates = calendar.selectedDates.map({dateFormatter.string(from: $0)})
         print("selected dates is \(selectedDates)")
+        
+        self.calendar.setCurrentPage(date, animated: true)
     }
     
 }
 
+// 날짜 설정
 extension MainCalendarView {
     
-    private func scrollWeek(weekOffset: Int) {
-        
-        
+    /// 오늘 날짜로 이동
+    public func selectDate(date: Date) {
+        self.calendar.setCurrentPage(date, animated: true)
+        self.calendar.select(date)
     }
     
-    public func nextWeek() {
-        scrollWeek(weekOffset: +1)
+    public func scrollWeek(isNext: Bool) {
+        
+        var dateComponents = DateComponents()
+        dateComponents.day = isNext ? +7 : -7
+        
+        self.currentPage = Calendar.current.date(byAdding: dateComponents, to: self.currentPage ?? Date())
+        self.calendar.setCurrentPage(self.currentPage!, animated: true)
     }
     
-    public func prevWeek() {
-        scrollWeek(weekOffset: -1)
-    }
 }

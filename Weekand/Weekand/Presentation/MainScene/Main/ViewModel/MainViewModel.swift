@@ -50,6 +50,9 @@ class MainViewModel {
         ScehduleMain(scheduleId: 0, color: "red", name: "Pack", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: [])
     ]
     
+    
+    
+    
     weak var coordinator: MainCoordinator?
     private let disposeBag = DisposeBag()
     
@@ -61,6 +64,10 @@ class MainViewModel {
     public var userSummary = BehaviorRelay<UserSummary>(value: UserSummary.defaultData)
     private var userFollowingList = BehaviorRelay<[FollowingUser]>(value: [])
     private var scheduleList = BehaviorRelay<[ScehduleMain]>(value: [])
+    
+    // Calendar 버튼 관련 Obsrvables
+    public var calendarDate = BehaviorRelay<Date>(value: Date())
+    public var scrollWeek = PublishRelay<Bool>()
     
     init(coordinator: MainCoordinator) {
         self.coordinator = coordinator
@@ -93,7 +100,10 @@ extension MainViewModel {
         let didTapFloatingButton: Observable<Void>
     }
     
-    struct Output { }
+    struct Output {
+        let calendarDate: Observable<Date>
+        let scrollWeek: Observable<Bool>
+    }
     
     @discardableResult
     func transform(input: Input) -> Output {
@@ -117,21 +127,27 @@ extension MainViewModel {
         }).disposed(by: disposeBag)
         
         input.didTapTodayButton.subscribe(onNext: { _ in
-            print("today")
+            BehaviorRelay<Date>.just(Date()).bind(to: self.calendarDate).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
         
         input.didTapNextWeekButton.subscribe(onNext: { _ in
-            print("next week")
+            PublishRelay<Bool>.just(true).bind(to: self.scrollWeek).disposed(by: self.disposeBag)
+
         }).disposed(by: disposeBag)
         
         input.didTapPrevWeekButton.subscribe(onNext: { _ in
-            print("prev week")
+            PublishRelay<Bool>.just(false).bind(to: self.scrollWeek).disposed(by: self.disposeBag)
+
         }).disposed(by: disposeBag)
         
         input.didTapFloatingButton.subscribe(onNext: { _ in
             print("floating button")
-        })
-        return Output()
+        }).disposed(by: disposeBag)
+        
+        return Output(
+            calendarDate: calendarDate.asObservable(),
+            scrollWeek: scrollWeek.asObservable()
+        )
     }
 
 }
@@ -162,5 +178,4 @@ extension MainViewModel {
         }).disposed(by: disposeBag)
     }
 
-    
 }

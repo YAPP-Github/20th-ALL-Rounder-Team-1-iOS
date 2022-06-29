@@ -78,7 +78,7 @@ extension MainCollectionViewCell {
         }
     }
     
-    /// Model을 이용한 setUP
+    /// Model을 이용한 setUp
     func setUpCell(_ data: FollowingUser) {
         setUpCell(name: data.name, imagePath: data.imagePath)
     }
@@ -91,6 +91,6 @@ extension MainCollectionViewCell {
         } else {
             profileImageView.layer.borderWidth = 0
         }
-        
     }
+    
 }

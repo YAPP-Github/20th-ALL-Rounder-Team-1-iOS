@@ -14,6 +14,7 @@ import RxCocoa
 class MainViewController: UIViewController {
         
     var viewModel: MainViewModel?
+    let disposeBag = DisposeBag()
     
     // MARK: UI Properties
     var collectionView: UICollectionView!
@@ -97,11 +98,20 @@ class MainViewController: UIViewController {
             // Floating Button
             didTapFloatingButton: self.floatingButton.rx.tap.asObservable()
         )
-        self.viewModel?.transform(input: input)
+        let output = self.viewModel?.transform(input: input)
+        
+        output?.calendarDate.subscribe(onNext: { data in
+            self.headerView.calendarView.selectDate(date: data)
+        }).disposed(by: disposeBag)
+        
+        output?.scrollWeek.subscribe(onNext: { data in
+            self.headerView.calendarView.scrollWeek(isNext: data)
+        }).disposed(by: disposeBag)
         
         viewModel?.userSummary.subscribe(onNext: { data in
             self.headerView.profileView.setUpView(data)
-        }).dispose()
+        }).disposed(by: disposeBag)
+        
     }
 
 }
@@ -116,8 +126,8 @@ extension MainViewController {
     
     private func setUpCollectionView() {
                 
-        let layout = UICollectionViewCompositionalLayout { (_: Int,
-            _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
+        let layout = UICollectionViewCompositionalLayout {
+            (_: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
                         
             let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(40), heightDimension: .absolute(60))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
