@@ -92,7 +92,10 @@ class MainViewController: UIViewController {
             didTapTodayButton: self.headerView.calendarView.todayButton.rx.tap.asObservable(),
             didTapNextWeekButton: self.headerView.calendarView.rightButton.rx.tap.asObservable(),
             didTapPrevWeekButton: self.headerView.calendarView.leftButton.rx.tap.asObservable(),
-            didTapEditButton: self.headerView.calendarView.editButton.rx.tap.asObservable()
+            didTapEditButton: self.headerView.calendarView.editButton.rx.tap.asObservable(),
+            
+            // Floating Button
+            didTapFloatingButton: self.floatingButton.rx.tap.asObservable()
         )
         self.viewModel?.transform(input: input)
         
