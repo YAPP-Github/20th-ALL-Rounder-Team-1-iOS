@@ -84,6 +84,9 @@
 		F392A1EF28531FC600512A42 /* CategoryListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */; };
 		F3AA9E1B2869FEFC00F71559 /* PasswordFindViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA9E1A2869FEFC00F71559 /* PasswordFindViewModel.swift */; };
 		F3AA9E1D2869FF1E00F71559 /* PasswordFindCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA9E1C2869FF1E00F71559 /* PasswordFindCoordinator.swift */; };
+		F3C8E079286DAE0000B0916A /* helloTest.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F3C8E078286DAE0000B0916A /* helloTest.graphql */; };
+		F3C8E07D286DAE8700B0916A /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = F3C8E07C286DAE8700B0916A /* schema.json */; };
+		F3C8E085286DAFC900B0916A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E084286DAFC900B0916A /* API.swift */; };
 		F3CC76AE2866CD1200A3FBBE /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC76AD2866CD1200A3FBBE /* BottomSheetViewController.swift */; };
 		F3CC76B028670BA200A3FBBE /* ColorSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC76AF28670BA200A3FBBE /* ColorSheetViewModel.swift */; };
 		F3CC76B22867130100A3FBBE /* ColorSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC76B12867130100A3FBBE /* ColorSheetViewController.swift */; };
@@ -191,6 +194,9 @@
 		F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListHeaderView.swift; sourceTree = "<group>"; };
 		F3AA9E1A2869FEFC00F71559 /* PasswordFindViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindViewModel.swift; sourceTree = "<group>"; };
 		F3AA9E1C2869FF1E00F71559 /* PasswordFindCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindCoordinator.swift; sourceTree = "<group>"; };
+		F3C8E078286DAE0000B0916A /* helloTest.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = helloTest.graphql; sourceTree = "<group>"; };
+		F3C8E07C286DAE8700B0916A /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		F3C8E084286DAFC900B0916A /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		F3CC76AD2866CD1200A3FBBE /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		F3CC76AF28670BA200A3FBBE /* ColorSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSheetViewModel.swift; sourceTree = "<group>"; };
 		F3CC76B12867130100A3FBBE /* ColorSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSheetViewController.swift; sourceTree = "<group>"; };
@@ -588,6 +594,7 @@
 		F32ACC0028235D500082AF30 /* Weekand */ = {
 			isa = PBXGroup;
 			children = (
+				F3C8E083286DAF9B00B0916A /* Networking */,
 				7D3B1F5628363D2D0037504A /* Application */,
 				7D3B1F5528363CFB0037504A /* Base */,
 				7D3B1F5828363D8A0037504A /* Presentation */,
@@ -664,6 +671,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		F3C8E083286DAF9B00B0916A /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				F3C8E084286DAFC900B0916A /* API.swift */,
+				F3C8E07C286DAE8700B0916A /* schema.json */,
+				F3C8E078286DAE0000B0916A /* helloTest.graphql */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		F3DD0216284660D200AD9240 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -716,6 +733,7 @@
 			buildConfigurationList = F32ACC1228235D530082AF30 /* Build configuration list for PBXNativeTarget "Weekand" */;
 			buildPhases = (
 				398E91202B3E986D951DD299 /* [CP] Check Pods Manifest.lock */,
+				F3C8E077286DADAB00B0916A /* Apollo */,
 				F32ACBFA28235D500082AF30 /* Sources */,
 				F32ACBFB28235D500082AF30 /* Frameworks */,
 				F32ACBFC28235D500082AF30 /* Resources */,
@@ -769,9 +787,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3C8E079286DAE0000B0916A /* helloTest.graphql in Resources */,
 				7DF8B7A928361FB100B224CA /* PretendardVariable.ttf in Resources */,
 				7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */,
 				F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */,
+				F3C8E07D286DAE8700B0916A /* schema.json in Resources */,
 				F32ACC0B28235D530082AF30 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -834,6 +854,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Weekand/Pods-Weekand-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		F3C8E077286DADAB00B0916A /* Apollo */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Apollo;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Don't run this during index builds\n# if [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\n# SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\n# cd \"${SRCROOT}/${TARGET_NAME}\"\n# \"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API.swift\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -936,6 +974,7 @@
 				F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */,
 				F3DD022728466E3300AD9240 /* SignUpCoordinator.swift in Sources */,
 				7DB5E13E284B4E3C00DBB7EA /* MainViewModel.swift in Sources */,
+				F3C8E085286DAFC900B0916A /* API.swift in Sources */,
 				F3786851285D98F500BEEC81 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

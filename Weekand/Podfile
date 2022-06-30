@@ -23,4 +23,7 @@ target 'Weekand' do
   # Calander
   pod 'FSCalendar'
 
+  # Apollo
+  pod 'Apollo'
+
 end

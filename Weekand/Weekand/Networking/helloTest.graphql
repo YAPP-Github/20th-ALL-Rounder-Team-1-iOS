@@ -1,0 +1,5 @@
+query weekand {
+  weekand(customField: "test") {
+    hello
+  }
+}
