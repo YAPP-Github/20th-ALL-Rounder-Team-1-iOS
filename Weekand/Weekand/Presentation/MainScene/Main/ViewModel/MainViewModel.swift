@@ -50,6 +50,9 @@ class MainViewModel {
         ScehduleMain(scheduleId: 0, color: "red", name: "Pack", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: [])
     ]
     
+    
+    
+    
     weak var coordinator: MainCoordinator?
     private let disposeBag = DisposeBag()
     
@@ -61,6 +64,11 @@ class MainViewModel {
     public var userSummary = BehaviorRelay<UserSummary>(value: UserSummary.defaultData)
     private var userFollowingList = BehaviorRelay<[FollowingUser]>(value: [])
     private var scheduleList = BehaviorRelay<[ScehduleMain]>(value: [])
+    
+    // Calendar 버튼 관련 Obsrvables
+    private let calendarDate = BehaviorRelay<Date>(value: Date())
+    private let scrollWeek = PublishRelay<Bool>()
+    private let foldCollection = PublishRelay<Void>()
     
     init(coordinator: MainCoordinator) {
         self.coordinator = coordinator
@@ -93,18 +101,22 @@ extension MainViewModel {
         let didTapFloatingButton: Observable<Void>
     }
     
-    struct Output { }
+    struct Output {
+        let calendarDate: Observable<Date>
+        let scrollWeek: Observable<Bool>
+        let foldCollection: Observable<Void>
+    }
     
     @discardableResult
     func transform(input: Input) -> Output {
         
         // Navigation Items
         input.didFoldBarButton.subscribe(onNext: { _ in
-            print("fold")
+            PublishRelay<Void>.just(Void()).bind(to: self.foldCollection).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
         
         input.didAlarmBarButton.subscribe(onNext: { [weak self] _ in
-            self?.coordinator?.showAlarmScene()
+            self?.coordinator?.pushAlarmViewController()
         }).disposed(by: disposeBag)
         
         input.didsearchBarButton.subscribe(onNext: { [weak self] _ in
@@ -117,21 +129,28 @@ extension MainViewModel {
         }).disposed(by: disposeBag)
         
         input.didTapTodayButton.subscribe(onNext: { _ in
-            print("today")
+            BehaviorRelay<Date>.just(Date()).bind(to: self.calendarDate).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
         
         input.didTapNextWeekButton.subscribe(onNext: { _ in
-            print("next week")
+            PublishRelay<Bool>.just(true).bind(to: self.scrollWeek).disposed(by: self.disposeBag)
+
         }).disposed(by: disposeBag)
         
         input.didTapPrevWeekButton.subscribe(onNext: { _ in
-            print("prev week")
+            PublishRelay<Bool>.just(false).bind(to: self.scrollWeek).disposed(by: self.disposeBag)
+
         }).disposed(by: disposeBag)
         
         input.didTapFloatingButton.subscribe(onNext: { _ in
-            print("floating button")
-        })
-        return Output()
+            print("Floating Button")
+        }).disposed(by: disposeBag)
+        
+        return Output(
+            calendarDate: calendarDate.asObservable(),
+            scrollWeek: scrollWeek.asObservable(),
+            foldCollection: foldCollection.asObservable()
+        )
     }
 
 }
@@ -162,5 +181,4 @@ extension MainViewModel {
         }).disposed(by: disposeBag)
     }
 
-    
 }

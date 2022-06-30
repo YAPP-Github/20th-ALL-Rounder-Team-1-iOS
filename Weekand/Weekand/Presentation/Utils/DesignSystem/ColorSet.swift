@@ -17,7 +17,7 @@ extension UIColor {
     static let lightGray = UIColor(hex: "#ECEFF2")
     static let darkGray = UIColor(hex: "#AAAEB6")
     
-    static let gray900 = UIColor(hex: "#17191C")
+    static let gray900 = UIColor(hex: "#17191C") ?? .black
     static let gray800 = UIColor(hex: "#32353A")
     static let gray700 = UIColor(hex: "#515459")
     static let gray600 = UIColor(hex: "#747880")
