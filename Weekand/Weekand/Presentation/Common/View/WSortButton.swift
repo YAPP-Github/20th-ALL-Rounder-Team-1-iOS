@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WFilterButton: UIButton {
+class WSortButton: UIButton {
 
     override init(frame: CGRect) {
         super.init(frame: frame)

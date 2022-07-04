@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene) // SceneDelegate의 프로퍼티에 설정해줌
         let navigationController = BaseNavigationController()
 
-        window?.rootViewController = navigationController
+        window?.rootViewController = ScheduleEditViewController()
         window?.makeKeyAndVisible()
         window?.overrideUserInterfaceStyle = .light
         

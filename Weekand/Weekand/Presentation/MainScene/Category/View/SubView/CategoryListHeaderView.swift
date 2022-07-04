@@ -19,7 +19,7 @@ class CategoryListHeaderView: UITableViewHeaderFooterView {
         $0.imageView?.contentMode = .scaleAspectFit
     }
     
-    let filterButton = WFilterButton()
+    let sortButton = WSortButton()
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -33,12 +33,12 @@ class CategoryListHeaderView: UITableViewHeaderFooterView {
     }
     
     func setupView() {
-        filterButton.showsMenuAsPrimaryAction = true
+        sortButton.showsMenuAsPrimaryAction = true
     }
     
     func configureUI() {
         self.contentView.addSubview(addCategoryButton)
-        self.contentView.addSubview(filterButton)
+        self.contentView.addSubview(sortButton)
         
         addCategoryButton.snp.makeConstraints { make in
             make.height.width.equalTo(40)
@@ -46,7 +46,7 @@ class CategoryListHeaderView: UITableViewHeaderFooterView {
             make.centerY.equalTo(self.snp.centerY)
         }
         
-        filterButton.snp.makeConstraints { make in
+        sortButton.snp.makeConstraints { make in
             make.trailing.equalTo(-12)
             make.width.equalTo(86)
             make.height.equalTo(41)

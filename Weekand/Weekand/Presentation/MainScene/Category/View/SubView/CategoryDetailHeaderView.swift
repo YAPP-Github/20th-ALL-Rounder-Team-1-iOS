@@ -16,7 +16,7 @@ class CategoryDetailHeaderView: UITableViewHeaderFooterView {
         $0.placeholder = "일정을 검색해보세요"
     }
     
-    lazy var filterButton = WFilterButton().then {
+    lazy var sortButton = WSortButton().then {
         $0.setTitle("내림차순")
         $0.backgroundColor = .gray300
     }
@@ -38,14 +38,14 @@ class CategoryDetailHeaderView: UITableViewHeaderFooterView {
     
     func configureUI() {
         self.contentView.addSubview(searchBar)
-        self.contentView.addSubview(filterButton)
+        self.contentView.addSubview(sortButton)
         
         searchBar.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(12)
             make.top.equalToSuperview().offset(12)
         }
 
-        filterButton.snp.makeConstraints { make in
+        sortButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-5)
             make.trailing.equalToSuperview().offset(-12)
             make.width.equalTo(100)

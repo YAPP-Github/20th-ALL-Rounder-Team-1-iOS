@@ -69,7 +69,7 @@ class CategoryListViewController: UIViewController {
         
         let input = CategoryListViewModel.Input(
             didTapAddCategoryButton: self.headerView.addCategoryButton.rx.tap.asObservable(),
-            didTapFilterButton: self.headerView.filterButton.rx.tap.asObservable(),
+            didTapFilterButton: self.headerView.sortButton.rx.tap.asObservable(),
             didCategoryCellSelected: self.tableView.rx.itemSelected.asObservable()
         )
         
@@ -105,7 +105,7 @@ extension CategoryListViewController {
 
 extension CategoryListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        headerView.filterButton.setTitle(selectedFilter.description)
+        headerView.sortButton.setTitle(selectedFilter.description)
         let dateCreatedAscAction = UIAction(title: "최신순") { _ in print("최신순") }
         let dateCreateDesxAction = UIAction(title: "오래된순") { _ in print("오래된순") }
         let nameCreatedAscAction = UIAction(title: "오름차순") { _ in print("오름차순") }
@@ -115,7 +115,7 @@ extension CategoryListViewController: UITableViewDelegate {
                           identifier: nil,
                           options: .displayInline,
                           children: [dateCreatedAscAction, dateCreateDesxAction, nameCreatedAscAction, nameCreateDescAction])
-        headerView.filterButton.menu = menu
+        headerView.sortButton.menu = menu
         return headerView
     }
     
