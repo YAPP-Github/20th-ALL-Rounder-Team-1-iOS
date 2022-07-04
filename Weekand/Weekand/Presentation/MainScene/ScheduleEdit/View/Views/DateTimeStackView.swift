@@ -7,9 +7,17 @@
 
 import UIKit
 import FSCalendar
+import Then
 
-class DateTimeStackView: UIStackView {
+class DateTimeStackView: UIView {
 
+    lazy var mainStackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.distribution = .fill
+        $0.alignment = .fill
+        $0.spacing = 10
+    }
+    
     lazy var namelabel = WTextLabel().then {
         $0.textColor = UIColor.gray800
     }
@@ -38,20 +46,22 @@ class DateTimeStackView: UIStackView {
         setupView()
     }
 
-    required init(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupView()
     }
     
     private func setupView() {
-        self.axis = .vertical
-        self.distribution = .fill
-        self.alignment = .fill
-        self.spacing = 10
+        
 //        self.calendar.isHidden = true
         self.timePicker.isHidden = true
         
-        [namelabel, stackView, calendar, timePicker].forEach { self.addArrangedSubview($0) }
+        self.addSubview(mainStackView)
+        [namelabel, stackView, calendar, timePicker].forEach { mainStackView.addArrangedSubview($0) }
+        
+        mainStackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
         [dateButton, timeButton].forEach { stackView.addArrangedSubview($0) }
     }

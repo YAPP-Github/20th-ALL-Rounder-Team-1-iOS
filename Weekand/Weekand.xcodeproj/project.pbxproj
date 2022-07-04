@@ -101,6 +101,8 @@
 		F3C8E0B028731E4900B0916A /* CategoryDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0AE28731E4900B0916A /* CategoryDropDownCell.swift */; };
 		F3C8E0B128731E4900B0916A /* CategoryDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3C8E0AF28731E4900B0916A /* CategoryDropDownCell.xib */; };
 		F3C8E0B32873500900B0916A /* AddInformationContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0B22873500900B0916A /* AddInformationContainerView.swift */; };
+		F3C8E0B52873578300B0916A /* WTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0B42873578300B0916A /* WTextView.swift */; };
+		F3C8E0B72873598A00B0916A /* MemoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0B62873598A00B0916A /* MemoStackView.swift */; };
 		F3CC76AE2866CD1200A3FBBE /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC76AD2866CD1200A3FBBE /* BottomSheetViewController.swift */; };
 		F3CC76B028670BA200A3FBBE /* ColorSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC76AF28670BA200A3FBBE /* ColorSheetViewModel.swift */; };
 		F3CC76B22867130100A3FBBE /* ColorSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC76B12867130100A3FBBE /* ColorSheetViewController.swift */; };
@@ -225,6 +227,8 @@
 		F3C8E0AE28731E4900B0916A /* CategoryDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDropDownCell.swift; sourceTree = "<group>"; };
 		F3C8E0AF28731E4900B0916A /* CategoryDropDownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryDropDownCell.xib; sourceTree = "<group>"; };
 		F3C8E0B22873500900B0916A /* AddInformationContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInformationContainerView.swift; sourceTree = "<group>"; };
+		F3C8E0B42873578300B0916A /* WTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextView.swift; sourceTree = "<group>"; };
+		F3C8E0B62873598A00B0916A /* MemoStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoStackView.swift; sourceTree = "<group>"; };
 		F3CC76AD2866CD1200A3FBBE /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		F3CC76AF28670BA200A3FBBE /* ColorSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSheetViewModel.swift; sourceTree = "<group>"; };
 		F3CC76B12867130100A3FBBE /* ColorSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSheetViewController.swift; sourceTree = "<group>"; };
@@ -581,6 +585,7 @@
 				F3F731D228672AF500C8B778 /* WTypeToggleButton.swift */,
 				F3C8E0A22872F29000B0916A /* WArrowButton.swift */,
 				F3C8E0A62873028B00B0916A /* WFilledGrayButton.swift */,
+				F3C8E0B42873578300B0916A /* WTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -765,6 +770,7 @@
 				F3C8E0A02872EFF400B0916A /* DropDownStackView.swift */,
 				F3C8E0A42872FD2300B0916A /* DateTimeStackView.swift */,
 				F3C8E0B22873500900B0916A /* AddInformationContainerView.swift */,
+				F3C8E0B62873598A00B0916A /* MemoStackView.swift */,
 				F3C8E0AE28731E4900B0916A /* CategoryDropDownCell.swift */,
 				F3C8E0AF28731E4900B0916A /* CategoryDropDownCell.xib */,
 			);
@@ -1007,7 +1013,9 @@
 				F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */,
 				F3DD0229284670E900AD9240 /* AppCoordinator.swift in Sources */,
 				F32ACC0628235D500082AF30 /* ViewController.swift in Sources */,
+				F3C8E0B52873578300B0916A /* WTextView.swift in Sources */,
 				7D6E9972283BA18E006F5FC7 /* WBottmButton.swift in Sources */,
+				F3C8E0B72873598A00B0916A /* MemoStackView.swift in Sources */,
 				F37868552861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift in Sources */,
 				F3CC76AE2866CD1200A3FBBE /* BottomSheetViewController.swift in Sources */,
 				F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */,

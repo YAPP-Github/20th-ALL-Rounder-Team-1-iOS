@@ -35,7 +35,9 @@ class ScheduleEditViewController: BaseViewController {
     lazy var startDateTimeStackView = DateTimeStackView(nameText: "시작", dateText: "2022.05.22.", timeText: "16:00")
     lazy var endDateTimeStackView = DateTimeStackView(nameText: "종료", dateText: "2022.05.22.", timeText: "20:00")
     
-    lazy var addInformationStackView = AddInformationContainerView()
+    lazy var addInformationContainerView = AddInformationContainerView()
+    
+    lazy var memoStackView = MemoStackView(placeholder: "메모를 입력해주세요", nameText: "메모")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +53,9 @@ class ScheduleEditViewController: BaseViewController {
         navigationItem.leftBarButtonItem = closeButton
         stackView.spacing = 25
         
+        memoStackView.isHidden = true
+        memoStackView.textView.delegate = self
+        
         startDateTimeStackView.calendar.delegate = self
         startDateTimeStackView.calendar.dataSource = self
         
@@ -65,7 +70,8 @@ class ScheduleEditViewController: BaseViewController {
     }
     
     private func configureUI() {
-        [nameStackView, dropDownStackView, startDateTimeStackView, endDateTimeStackView, addInformationStackView].forEach { stackView.addArrangedSubview($0) }
+        [nameStackView, dropDownStackView, startDateTimeStackView, endDateTimeStackView, memoStackView,  addInformationContainerView].forEach { stackView.addArrangedSubview($0) }
+        
         stackView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(25)
             make.bottom.equalToSuperview().offset(-WBottmButton.buttonOffset - 64)
@@ -88,40 +94,69 @@ class ScheduleEditViewController: BaseViewController {
         }).disposed(by: disposeBag)
         
         startDateTimeStackView.timeButton.rx.tap
-            .scan(false) { lastState, newState in !lastState }
+            .scan(false) { lastState, _ in !lastState }
             .subscribe(onNext: { [weak self] isSelect in
                 
-                UIView.animate(withDuration: 0.4, delay: 0.0, options: .transitionCrossDissolve) {
+                UIView.animate(withDuration: 0.3, delay: 0.0, options: .transitionCrossDissolve) {
                     if isSelect {
+                        self?.startDateTimeStackView.timePicker.alpha = 1
                         self?.startDateTimeStackView.timePicker.isHidden = false
+                    } else {
+                        self?.startDateTimeStackView.timePicker.alpha = 0
+                    }
+                    self?.startDateTimeStackView.layoutIfNeeded()
+                } completion: { _ in
+                    if isSelect {
                     } else {
                         self?.startDateTimeStackView.timePicker.isHidden = true
                     }
-                } completion: { _ in
-                    //
                 }
 
             }).disposed(by: disposeBag)
         
         endDateTimeStackView.timeButton.rx.tap
-            .scan(false) { lastState, newState in !lastState }
+            .scan(false) { lastState, _ in !lastState }
             .subscribe(onNext: { [weak self] isSelect in
                 
-                UIView.animate(withDuration: 0.4, delay: 0.0, options: .transitionCrossDissolve) {
+                UIView.animate(withDuration: 0.3, delay: 0.0, options: .transitionCrossDissolve) {
                     if isSelect {
+                        self?.endDateTimeStackView.timePicker.alpha = 1
                         self?.endDateTimeStackView.timePicker.isHidden = false
+                    } else {
+                        self?.endDateTimeStackView.timePicker.alpha = 0
+                    }
+                    self?.endDateTimeStackView.layoutIfNeeded()
+                } completion: { _ in
+                    if isSelect {
                     } else {
                         self?.endDateTimeStackView.timePicker.isHidden = true
                     }
-                } completion: { _ in
-                    //
                 }
-
             }).disposed(by: disposeBag)
         
+        addInformationContainerView.memoButton.rx.tap.subscribe(onNext: {
+            self.memoStackView.isHidden = false
+            self.addInformationContainerView.memoButton.isHidden = true
+        }).disposed(by: disposeBag)
     }
 }
 
 extension ScheduleEditViewController: FSCalendarDelegate, FSCalendarDataSource {
     
+}
+
+extension ScheduleEditViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == memoStackView.textView.placeHolder {
+            textView.text = nil
+            textView.textColor = .gray900
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            textView.text = memoStackView.textView.placeHolder
+            textView.textColor = .gray400
+        }
+    }
 }
