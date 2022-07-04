@@ -153,6 +153,7 @@ extension MainViewController {
         
         collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 0), collectionViewLayout: layout)
         collectionView.isScrollEnabled = false
+        collectionView.allowsMultipleSelection = false
         collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
     }
     
@@ -161,6 +162,11 @@ extension MainViewController {
         viewModel?.collectionViewDataSource = UICollectionViewDiffableDataSource<MainSection, FollowingUser>(collectionView: collectionView, cellProvider: { collectionView, indexPath, list in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
             cell.setUpCell(list)
+            
+            if indexPath.item == 0 {
+                self.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+            }
+            
             return cell
         })
         

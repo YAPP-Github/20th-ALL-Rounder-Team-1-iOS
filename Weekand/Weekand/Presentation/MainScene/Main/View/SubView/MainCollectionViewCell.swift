@@ -26,6 +26,17 @@ class MainCollectionViewCell: UICollectionViewCell {
         $0.textAlignment = .center
     }
     
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                processSelected(isSelected: true)
+            } else {
+                processSelected(isSelected: false)
+            }
+        }
+    }
+
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
