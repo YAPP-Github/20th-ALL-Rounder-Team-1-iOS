@@ -35,11 +35,11 @@ class DropDownStackView: UIStackView {
     
     lazy var dropDown = DropDown(anchorView: arrowButton).then {
         
-        $0.bottomOffset = CGPoint(x: -300, y: 55)
+        $0.bottomOffset = CGPoint(x: -(UIScreen.main.bounds.size.width * 0.75), y: 55)
         $0.backgroundColor = .white
         $0.selectionBackgroundColor = .gray100
         $0.cornerRadius = 10
-        $0.width = 350
+        $0.width = UIScreen.main.bounds.size.width * 0.88
         $0.cellHeight = 46
         $0.shadowOpacity = 0.1
         $0.layer.borderColor = UIColor.gray200.cgColor
