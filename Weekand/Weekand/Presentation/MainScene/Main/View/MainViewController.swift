@@ -50,10 +50,10 @@ class MainViewController: UIViewController {
     private func configureUI() {
         
         // Navigation Bar
-        let foldButtonImage = UIImage(named: "chevron.down") ?? UIImage(systemName: "chevron.down")
+        let foldButtonImage = UIImage(named: "chevron.up") ?? UIImage(systemName: "chevron.up")
         foldButton.setBackgroundImage(foldButtonImage?.withTintColor(.gray900), for: .normal, barMetrics: .default)
         navigationItem.leftBarButtonItem = foldButton
-        navigationItem.rightBarButtonItems = [ searchButton, alarmButton]
+        navigationItem.rightBarButtonItems = [alarmButton, searchButton]
         
         // Content View
         [ collectionView, headerView, tableView ].forEach { self.view.addSubview($0) }
@@ -220,7 +220,7 @@ extension MainViewController {
         
         let isFolded = collectionView.frame.height == 0 ? true : false
         let viewHeight: CGFloat = isFolded ? 80 : 0
-        let buttonImage = isFolded ? UIImage(named: "chevron.down") ?? UIImage(systemName: "chevron.down") : UIImage(named: "chevron.up") ?? UIImage(systemName: "chevron.up")
+        let buttonImage = isFolded ? UIImage(named: "chevron.up") ?? UIImage(systemName: "chevron.up") : UIImage(named: "chevron.down") ?? UIImage(systemName: "chevron.down")
         
         collectionView.snp.updateConstraints { make in
             make.height.lessThanOrEqualTo(viewHeight)

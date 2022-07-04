@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         window?.overrideUserInterfaceStyle = .light
         
-        self.coordinator = MainCoordinator(navigationController: navigationController)
+        self.coordinator = AppCoordinator(navigationController: navigationController)
         self.coordinator?.start()
     }
 
