@@ -36,6 +36,14 @@ class MainCoordinator: Coordinator {
         categoryCoordinator.start()
     }
     
+    func showEditScene() {
+        let scheduleEditCoordinator = ScheduleEditCoordinator()
+        scheduleEditCoordinator.finishDelegate = self
+        childCoordinators.append(scheduleEditCoordinator)
+        navigationController.present(scheduleEditCoordinator.navigationController, animated: true, completion: nil)
+        scheduleEditCoordinator.start()
+    }
+    
     func pushAlarmViewController() {
         let alarmViewController = AlarmViewController()
         alarmViewController.viewModel = AlarmViewModel()

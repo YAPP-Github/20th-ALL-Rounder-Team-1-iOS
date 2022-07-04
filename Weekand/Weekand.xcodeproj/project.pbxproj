@@ -103,6 +103,8 @@
 		F3C8E0B32873500900B0916A /* AddInformationContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0B22873500900B0916A /* AddInformationContainerView.swift */; };
 		F3C8E0B52873578300B0916A /* WTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0B42873578300B0916A /* WTextView.swift */; };
 		F3C8E0B72873598A00B0916A /* MemoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0B62873598A00B0916A /* MemoStackView.swift */; };
+		F3C8E0B928736F0500B0916A /* ScheduleEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0B828736F0500B0916A /* ScheduleEditViewModel.swift */; };
+		F3C8E0BB28736F2A00B0916A /* ScheduleEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0BA28736F2A00B0916A /* ScheduleEditCoordinator.swift */; };
 		F3CC76AE2866CD1200A3FBBE /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC76AD2866CD1200A3FBBE /* BottomSheetViewController.swift */; };
 		F3CC76B028670BA200A3FBBE /* ColorSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC76AF28670BA200A3FBBE /* ColorSheetViewModel.swift */; };
 		F3CC76B22867130100A3FBBE /* ColorSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC76B12867130100A3FBBE /* ColorSheetViewController.swift */; };
@@ -229,6 +231,8 @@
 		F3C8E0B22873500900B0916A /* AddInformationContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInformationContainerView.swift; sourceTree = "<group>"; };
 		F3C8E0B42873578300B0916A /* WTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextView.swift; sourceTree = "<group>"; };
 		F3C8E0B62873598A00B0916A /* MemoStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoStackView.swift; sourceTree = "<group>"; };
+		F3C8E0B828736F0500B0916A /* ScheduleEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditViewModel.swift; sourceTree = "<group>"; };
+		F3C8E0BA28736F2A00B0916A /* ScheduleEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditCoordinator.swift; sourceTree = "<group>"; };
 		F3CC76AD2866CD1200A3FBBE /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		F3CC76AF28670BA200A3FBBE /* ColorSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSheetViewModel.swift; sourceTree = "<group>"; };
 		F3CC76B12867130100A3FBBE /* ColorSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSheetViewController.swift; sourceTree = "<group>"; };
@@ -744,6 +748,7 @@
 		F3C8E0982872E11A00B0916A /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				F3C8E0BA28736F2A00B0916A /* ScheduleEditCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -751,6 +756,7 @@
 		F3C8E0992872E12700B0916A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				F3C8E0B828736F0500B0916A /* ScheduleEditViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1011,6 +1017,7 @@
 				7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */,
 				F3CC76B028670BA200A3FBBE /* ColorSheetViewModel.swift in Sources */,
 				F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */,
+				F3C8E0BB28736F2A00B0916A /* ScheduleEditCoordinator.swift in Sources */,
 				F3DD0229284670E900AD9240 /* AppCoordinator.swift in Sources */,
 				F32ACC0628235D500082AF30 /* ViewController.swift in Sources */,
 				F3C8E0B52873578300B0916A /* WTextView.swift in Sources */,
@@ -1047,6 +1054,7 @@
 				F378685928621C2C00BEEC81 /* CategoryModifyViewModel.swift in Sources */,
 				7DA4AB7828586FA7009E91FB /* CategoryAddViewModel.swift in Sources */,
 				7DC166B42837148000F1A8F1 /* SignInViewModel.swift in Sources */,
+				F3C8E0B928736F0500B0916A /* ScheduleEditViewModel.swift in Sources */,
 				7D3B1F54283630A50037504A /* WTextField.swift in Sources */,
 				F3DD0218284661F900AD9240 /* WelcomeCoordinator.swift in Sources */,
 				F3F731D928677A2000C8B778 /* ColorsCollectionViewCell.swift in Sources */,

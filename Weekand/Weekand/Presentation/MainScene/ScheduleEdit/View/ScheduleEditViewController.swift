@@ -16,27 +16,21 @@ import FSCalendar
 class ScheduleEditViewController: BaseViewController {
 
     private let disposeBag = DisposeBag()
-    var viewModel: SignUpViewModel?
+    var viewModel: ScheduleEditViewModel?
     
     lazy var closeButton = UIBarButtonItem().then {
         $0.image = UIImage(named: "close")
         $0.tintColor = .gray400
     }
-    
     lazy var confirmButton = WBottmButton().then {
         $0.setTitle("완료", for: .normal)
         $0.disable(string: "완료")
     }
-    
     lazy var nameStackView = WTextFieldStackView(fieldPlaceholder: "일정명을 입력해주세요.", nameText: "일정")
-    
     lazy var dropDownStackView = DropDownStackView()
-    
     lazy var startDateTimeStackView = DateTimeStackView(nameText: "시작", dateText: "2022.05.22.", timeText: "16:00")
     lazy var endDateTimeStackView = DateTimeStackView(nameText: "종료", dateText: "2022.05.22.", timeText: "20:00")
-    
     lazy var addInformationContainerView = AddInformationContainerView()
-    
     lazy var memoStackView = MemoStackView(placeholder: "메모를 입력해주세요", nameText: "메모")
     
     override func viewDidLoad() {
@@ -49,7 +43,7 @@ class ScheduleEditViewController: BaseViewController {
     
     private func setupView() {
         view.backgroundColor = .white
-        navigationItem.title = "회원가입"
+        navigationItem.title = "일정 추가"
         navigationItem.leftBarButtonItem = closeButton
         stackView.spacing = 25
         
@@ -70,7 +64,14 @@ class ScheduleEditViewController: BaseViewController {
     }
     
     private func configureUI() {
-        [nameStackView, dropDownStackView, startDateTimeStackView, endDateTimeStackView, memoStackView,  addInformationContainerView].forEach { stackView.addArrangedSubview($0) }
+        [
+            nameStackView,
+            dropDownStackView,
+            startDateTimeStackView,
+            endDateTimeStackView,
+            memoStackView,
+            addInformationContainerView
+        ].forEach { stackView.addArrangedSubview($0) }
         
         stackView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(25)
@@ -88,6 +89,12 @@ class ScheduleEditViewController: BaseViewController {
     }
     
     private func bindViewModel() {
+        let input = ScheduleEditViewModel.Input(
+            closeButtonDidTapEvent: closeButton.rx.tap.asObservable()
+        )
+        
+        self.viewModel?.transform(input: input)
+        
         
         dropDownStackView.arrowButton.rx.tap.subscribe(onNext: {
             self.dropDownStackView.dropDown.show()
