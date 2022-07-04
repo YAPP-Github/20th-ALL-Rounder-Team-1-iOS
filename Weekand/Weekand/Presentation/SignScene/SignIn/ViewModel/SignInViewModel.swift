@@ -21,7 +21,7 @@ class SignInViewModel: ViewModelType {
         let emailTextFieldDidEditEvent: Observable<String>
         let passwordTextFieldDidEditEvent: Observable<String>
         let autoSignButtonDidTapEvent: Observable<Void>
-        // let passwordFindButtonDidTapEvent: Observable<Void>
+        let passwordFindButtonDidTapEvent: Observable<Void>
         let nextButtonDidTapEvent: Observable<Void>
     }
     
@@ -45,6 +45,10 @@ class SignInViewModel: ViewModelType {
                                         input.passwordTextFieldDidEditEvent
                                     )
                                     .map(checkEmailPassword)
+        
+        input.passwordFindButtonDidTapEvent.subscribe(onNext: {
+            self.coordinator?.presentPasswordFindScene()
+        }).disposed(by: disposeBag)
         
         input.nextButtonDidTapEvent.withLatestFrom(checkEmailPassword).subscribe(onNext: { [weak self] isCheck in
             if isCheck {

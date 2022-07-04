@@ -29,7 +29,12 @@ class CategoryAddCoordinator: Coordinator {
     func pushColorBottonSheet() {
         let colorSheetViewController = ColorSheetViewController()
         colorSheetViewController.viewModel = ColorSheetViewModel(coordinator: self)
+        colorSheetViewController.selectedColor = categoryAddViewController.selectedColor
         self.navigationController.present(colorSheetViewController, animated: true, completion: nil)
+    }
+    
+    func sendColorFromSheet(color: Color) {
+        categoryAddViewController.selectedColor = color
     }
     
     func dismiss() {

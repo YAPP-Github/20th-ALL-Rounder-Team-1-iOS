@@ -18,9 +18,11 @@ class BottomSheetViewController: UIViewController {
         }
     }
     
-    lazy var dimmedBackView = UIView().then {
-        $0.backgroundColor?.withAlphaComponent(0.5)
-    }
+    let dimmedBackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.darkGray?.withAlphaComponent(0.5)
+        return view
+    }()
 
     lazy var bottomSheetView = UIView().then {
         $0.backgroundColor = .white
@@ -69,9 +71,9 @@ class BottomSheetViewController: UIViewController {
         
         bottomSheetViewTopConstraint.constant = (safeAreaHeight + bottomPadding) - bottomSheetHeight
         
+        self.view.layoutIfNeeded()
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn, animations: {
             self.dimmedBackView.alpha = 0.5
-            self.view.layoutIfNeeded()
         }, completion: nil)
 
     }

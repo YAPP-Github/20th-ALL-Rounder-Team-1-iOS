@@ -11,6 +11,7 @@ disabled_rules:
 - vertical_whitespace
 - unused_optional_binding
 - force_cast
+- identifier_name
 
 excluded:
 - Pods

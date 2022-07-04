@@ -11,6 +11,7 @@ import RxCocoa
 
 class CategoryAddViewModel: CategoryEditViewModelType {
     
+    private let disposeBag = DisposeBag()
     weak var coordinator: CategoryAddCoordinator?
     
     init(coordinator: CategoryAddCoordinator) {
@@ -21,7 +22,10 @@ class CategoryAddViewModel: CategoryEditViewModelType {
     struct Input {
         let closeButtonDidTapEvent: Observable<Void>
         let colorButtonDidTapEvent: Observable<Void>
-        let selectedOpenType: BehaviorSubject<String>
+        let categoryNameTextFieldDidEditEvent: Observable<String>
+        let confirmButtonDidTapEvent: Observable<Void>
+        let selectedOpenType: OpenType
+        let selectedColor: Color
     }
     
     struct Output { }
@@ -29,17 +33,27 @@ class CategoryAddViewModel: CategoryEditViewModelType {
     func transform(input: Input) -> Output {
         input.closeButtonDidTapEvent.subscribe(onNext: {
             self.coordinator?.dismiss()
-        })
+        }).disposed(by: disposeBag)
         
         input.colorButtonDidTapEvent.subscribe(onNext: {
             self.coordinator?.pushColorBottonSheet()
-        })
-
-        input.selectedOpenType.subscribe(onNext: { type in
-            print(OpenType.init(rawValue: type))
-        })
+        }).disposed(by: disposeBag)
+        
+        input.confirmButtonDidTapEvent
+            .withLatestFrom(input.categoryNameTextFieldDidEditEvent.map(trimmigText))
+            .subscribe(onNext: { [weak self] text in
+                // server
+                print(text)
+                print(input.selectedOpenType)
+                print(input.selectedColor)
+                self?.coordinator?.dismiss()
+            }).disposed(by: disposeBag)
         
         return Output()
+    }
+    
+    private func trimmigText(text: String) -> String {
+        return text.trimmingCharacters(in: [" "])
     }
 
 }

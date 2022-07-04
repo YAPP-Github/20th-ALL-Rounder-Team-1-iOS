@@ -19,9 +19,7 @@ class CategoryListHeaderView: UITableViewHeaderFooterView {
         $0.imageView?.contentMode = .scaleAspectFit
     }
     
-    lazy var filterButton = WFilterButton().then {
-        $0.setTitle("내림차순")
-    }
+    let filterButton = WFilterButton()
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -35,6 +33,7 @@ class CategoryListHeaderView: UITableViewHeaderFooterView {
     }
     
     func setupView() {
+        filterButton.showsMenuAsPrimaryAction = true
     }
     
     func configureUI() {
