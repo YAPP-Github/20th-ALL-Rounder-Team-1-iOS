@@ -40,16 +40,16 @@ class SignUpTermsViewController: UIViewController {
     
     lazy var termsAgreeLabel = WTextLabel().then {
         $0.attributedText = NSMutableAttributedString()
-            .semiBold("이용약관", fontSize: defaultFontSize, fontColor: .wblue ?? .black)
-            .semiBold("에 동의합니다.", fontSize: defaultFontSize, fontColor: .gray700 ?? .black)
+            .semiBold("이용약관", fontSize: defaultFontSize, fontColor: .wblue)
+            .semiBold("에 동의합니다.", fontSize: defaultFontSize, fontColor: .gray700)
     }
     
     lazy var privacyAgreeCheckBoxButton = WCheckBox()
     
     lazy var privacyAgreeLabel = WTextLabel().then {
         $0.attributedText = NSMutableAttributedString()
-            .semiBold("개인정보 취급방식", fontSize: defaultFontSize, fontColor: .wblue ?? .black)
-            .semiBold("에 동의합니다.", fontSize: defaultFontSize, fontColor: .gray700 ?? .black)
+            .semiBold("개인정보 취급방식", fontSize: defaultFontSize, fontColor: .wblue)
+            .semiBold("에 동의합니다.", fontSize: defaultFontSize, fontColor: .gray700)
     }
     
     lazy var confirmButton = WBottmButton().then {

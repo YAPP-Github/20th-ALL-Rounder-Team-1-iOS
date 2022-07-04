@@ -19,11 +19,11 @@ class InputGroupStackView: UIStackView {
         var textColor: UIColor {
             switch self {
             case .normal:
-                return .gray500 ?? .gray
+                return .gray500
             case .vaild:
-                return .wblue ?? .systemBlue
+                return .wblue
             case .invaild:
-                return .wred ?? .systemRed
+                return .wred 
             }
         }
     }

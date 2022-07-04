@@ -69,7 +69,7 @@ class CategoryListViewController: UIViewController {
         
         let input = CategoryListViewModel.Input(
             didTapAddCategoryButton: self.headerView.addCategoryButton.rx.tap.asObservable(),
-            didTapFilterButton: self.headerView.sortButton.rx.tap.asObservable(),
+            didTapSortButton: self.headerView.sortButton.rx.tap.asObservable(),
             didCategoryCellSelected: self.tableView.rx.itemSelected.asObservable()
         )
         

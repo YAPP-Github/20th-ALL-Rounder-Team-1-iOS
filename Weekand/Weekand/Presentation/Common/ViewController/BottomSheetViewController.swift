@@ -83,10 +83,10 @@ class BottomSheetViewController: UIViewController {
         let bottomPadding: CGFloat = view.safeAreaInsets.bottom
         
         bottomSheetViewTopConstraint.constant = safeAreaHeight + bottomPadding
-        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn) {
             self.dimmedBackView.alpha = 0.0
             self.view.layoutIfNeeded()
-        }) { _ in
+        } completion: { _ in
             self.dismiss(animated: true, completion: nil)
         }
     }
