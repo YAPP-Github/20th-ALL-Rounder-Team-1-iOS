@@ -41,14 +41,18 @@ class MainTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        setUp()
         configureUI()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
+        setUp()
         configureUI()
+    }
+    
+    private func setUp() {
+        self.selectionStyle = .none
     }
     
     private func configureUI() {
