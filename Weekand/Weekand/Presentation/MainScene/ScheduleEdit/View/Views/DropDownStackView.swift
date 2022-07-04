@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DropDown
 
 class DropDownStackView: UIStackView {
 
@@ -30,7 +31,20 @@ class DropDownStackView: UIStackView {
         $0.text = "todo"
     }
     
-    let button = WArrowButton()
+    let arrowButton = WArrowButton()
+    
+    lazy var dropDown = DropDown(anchorView: arrowButton).then {
+        
+        $0.bottomOffset = CGPoint(x: -300, y: 55)
+        $0.backgroundColor = .white
+        $0.selectionBackgroundColor = .gray100
+        $0.cornerRadius = 10
+        $0.width = 350
+        $0.cellHeight = 46
+        $0.shadowOpacity = 0.1
+        $0.layer.borderColor = UIColor.gray200.cgColor
+        $0.layer.borderWidth = 1
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,8 +74,8 @@ class DropDownStackView: UIStackView {
         }
         
         stackView.addArrangedSubview(label)
-        stackView.addArrangedSubview(button)
-        button.snp.makeConstraints { make in
+        stackView.addArrangedSubview(arrowButton)
+        arrowButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(6)
             make.bottom.equalToSuperview().offset(-6)
             make.width.equalTo(backgroundView.snp.width).multipliedBy(1/7.4)

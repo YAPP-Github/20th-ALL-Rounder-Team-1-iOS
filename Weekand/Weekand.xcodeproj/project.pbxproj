@@ -98,6 +98,8 @@
 		F3C8E0A32872F29000B0916A /* WArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0A22872F29000B0916A /* WArrowButton.swift */; };
 		F3C8E0A52872FD2300B0916A /* DateTimeStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0A42872FD2300B0916A /* DateTimeStackView.swift */; };
 		F3C8E0A72873028B00B0916A /* WFilledGrayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0A62873028B00B0916A /* WFilledGrayButton.swift */; };
+		F3C8E0B028731E4900B0916A /* CategoryDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0AE28731E4900B0916A /* CategoryDropDownCell.swift */; };
+		F3C8E0B128731E4900B0916A /* CategoryDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3C8E0AF28731E4900B0916A /* CategoryDropDownCell.xib */; };
 		F3CC76AE2866CD1200A3FBBE /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC76AD2866CD1200A3FBBE /* BottomSheetViewController.swift */; };
 		F3CC76B028670BA200A3FBBE /* ColorSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC76AF28670BA200A3FBBE /* ColorSheetViewModel.swift */; };
 		F3CC76B22867130100A3FBBE /* ColorSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC76B12867130100A3FBBE /* ColorSheetViewController.swift */; };
@@ -219,6 +221,8 @@
 		F3C8E0A22872F29000B0916A /* WArrowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WArrowButton.swift; sourceTree = "<group>"; };
 		F3C8E0A42872FD2300B0916A /* DateTimeStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeStackView.swift; sourceTree = "<group>"; };
 		F3C8E0A62873028B00B0916A /* WFilledGrayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WFilledGrayButton.swift; sourceTree = "<group>"; };
+		F3C8E0AE28731E4900B0916A /* CategoryDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDropDownCell.swift; sourceTree = "<group>"; };
+		F3C8E0AF28731E4900B0916A /* CategoryDropDownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryDropDownCell.xib; sourceTree = "<group>"; };
 		F3CC76AD2866CD1200A3FBBE /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		F3CC76AF28670BA200A3FBBE /* ColorSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSheetViewModel.swift; sourceTree = "<group>"; };
 		F3CC76B12867130100A3FBBE /* ColorSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSheetViewController.swift; sourceTree = "<group>"; };
@@ -758,6 +762,8 @@
 			children = (
 				F3C8E0A02872EFF400B0916A /* DropDownStackView.swift */,
 				F3C8E0A42872FD2300B0916A /* DateTimeStackView.swift */,
+				F3C8E0AE28731E4900B0916A /* CategoryDropDownCell.swift */,
+				F3C8E0AF28731E4900B0916A /* CategoryDropDownCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -873,6 +879,7 @@
 				F3C8E090286F571600B0916A /* schema.json in Resources */,
 				7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */,
 				F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */,
+				F3C8E0B128731E4900B0916A /* CategoryDropDownCell.xib in Resources */,
 				F32ACC0B28235D530082AF30 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1034,6 +1041,7 @@
 				7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */,
 				F3F731D328672AF500C8B778 /* WTypeToggleButton.swift in Sources */,
 				F3F731DF2868DE0000C8B778 /* Filter.swift in Sources */,
+				F3C8E0B028731E4900B0916A /* CategoryDropDownCell.swift in Sources */,
 				F392A1EF28531FC600512A42 /* CategoryListHeaderView.swift in Sources */,
 				7DF949C8283B6F1F007F84C5 /* CommonShape.swift in Sources */,
 				7DEA177C2846006A00F6B990 /* WSquareImageView.swift in Sources */,

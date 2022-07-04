@@ -11,6 +11,7 @@ import SnapKit
 import SwiftUI
 import RxSwift
 import RxCocoa
+import DropDown
 
 class ScheduleEditViewController: BaseViewController {
 
@@ -62,6 +63,15 @@ class ScheduleEditViewController: BaseViewController {
         navigationItem.title = "회원가입"
         navigationItem.leftBarButtonItem = closeButton
         stackView.spacing = 25
+        
+        dropDownStackView.dropDown.cellNib = UINib(nibName: "CategoryDropDownCell", bundle: nil)
+        dropDownStackView.dropDown.dataSource = ["공부", "자기 계발", "업무"]
+        let colorList: [Color] = [Color(id: 1, hexCode: "#FF9292"), Color(id: 2, hexCode: "#FFB27A"), Color(id: 3, hexCode: "#FFE600")]
+        dropDownStackView.dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
+            guard let cell = cell as? CategoryDropDownCell else { return }
+            
+            cell.colorView.backgroundColor = UIColor(hex: colorList[index].hexCode)
+        }
     }
     
     private func configureUI() {
@@ -82,8 +92,10 @@ class ScheduleEditViewController: BaseViewController {
     }
     
     private func bindViewModel() {
-        guard let viewModel = self.viewModel else {
-            return
-        }
+        
+        dropDownStackView.arrowButton.rx.tap.subscribe(onNext: {
+            self.dropDownStackView.dropDown.show()
+        }).disposed(by: disposeBag)
+        
     }
 }
