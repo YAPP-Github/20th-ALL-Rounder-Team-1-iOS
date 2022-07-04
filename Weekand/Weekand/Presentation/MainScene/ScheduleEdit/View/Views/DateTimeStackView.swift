@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FSCalendar
 
 class DateTimeStackView: UIStackView {
 
@@ -15,6 +16,15 @@ class DateTimeStackView: UIStackView {
     
     lazy var dateButton = WFilledGrayButton(title: "", font: WFont.body1())
     lazy var timeButton = WFilledGrayButton(title: "", font: WFont.body1())
+    
+    lazy var timePicker = UIDatePicker().then {
+        $0.preferredDatePickerStyle = .wheels
+        $0.datePickerMode = .time
+    }
+    
+    lazy var calendar = FSCalendar().then {
+        $0.scope = .month
+    }
     
     lazy var stackView = UIStackView().then {
         $0.axis = .horizontal
@@ -38,8 +48,10 @@ class DateTimeStackView: UIStackView {
         self.distribution = .fill
         self.alignment = .fill
         self.spacing = 10
+//        self.calendar.isHidden = true
+        self.timePicker.isHidden = true
         
-        [namelabel, stackView].forEach { self.addArrangedSubview($0) }
+        [namelabel, stackView, calendar, timePicker].forEach { self.addArrangedSubview($0) }
         
         [dateButton, timeButton].forEach { stackView.addArrangedSubview($0) }
     }

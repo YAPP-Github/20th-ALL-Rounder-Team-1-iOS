@@ -8,10 +8,10 @@
 import UIKit
 import Then
 import SnapKit
-import SwiftUI
 import RxSwift
 import RxCocoa
 import DropDown
+import FSCalendar
 
 class ScheduleEditViewController: BaseViewController {
 
@@ -35,24 +35,9 @@ class ScheduleEditViewController: BaseViewController {
     lazy var startDateTimeStackView = DateTimeStackView(nameText: "시작", dateText: "2022.05.22.", timeText: "16:00")
     lazy var endDateTimeStackView = DateTimeStackView(nameText: "종료", dateText: "2022.05.22.", timeText: "20:00")
     
-    lazy var passwordStackView = InputGroupStackView().then {
-        $0.setNameLabelText(string: "비밀번호")
-        $0.setInformlabelText(string: "숫자, 영어 조합 8자리 이상", informType: .normal)
-        $0.setPlaceholderText(string: "비밀번호를 입력해주세요")
-        $0.setSecureTextEntry()
-        $0.hideTextFieldButton()
-    }
-    
-    lazy var passwordCheckStackView = InputGroupStackView().then {
-        $0.setNameLabelText(string: "비밀번호 확인")
-        $0.setPlaceholderText(string: "비밀번호를 확인해주세요")
-        $0.setSecureTextEntry()
-        $0.hideTextFieldButton()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
- 
+
         setupView()
         configureUI()
         bindViewModel()
@@ -63,6 +48,9 @@ class ScheduleEditViewController: BaseViewController {
         navigationItem.title = "회원가입"
         navigationItem.leftBarButtonItem = closeButton
         stackView.spacing = 25
+        
+        startDateTimeStackView.calendar.delegate = self
+        startDateTimeStackView.calendar.dataSource = self
         
         dropDownStackView.dropDown.cellNib = UINib(nibName: "CategoryDropDownCell", bundle: nil)
         dropDownStackView.dropDown.dataSource = ["공부", "자기 계발", "업무"]
@@ -97,5 +85,41 @@ class ScheduleEditViewController: BaseViewController {
             self.dropDownStackView.dropDown.show()
         }).disposed(by: disposeBag)
         
+        startDateTimeStackView.timeButton.rx.tap
+            .scan(false) { lastState, newState in !lastState }
+            .subscribe(onNext: { [weak self] isSelect in
+                
+                UIView.animate(withDuration: 0.4, delay: 0.0, options: .transitionCrossDissolve) {
+                    if isSelect {
+                        self?.startDateTimeStackView.timePicker.isHidden = false
+                    } else {
+                        self?.startDateTimeStackView.timePicker.isHidden = true
+                    }
+                } completion: { _ in
+                    //
+                }
+
+            }).disposed(by: disposeBag)
+        
+        endDateTimeStackView.timeButton.rx.tap
+            .scan(false) { lastState, newState in !lastState }
+            .subscribe(onNext: { [weak self] isSelect in
+                
+                UIView.animate(withDuration: 0.4, delay: 0.0, options: .transitionCrossDissolve) {
+                    if isSelect {
+                        self?.endDateTimeStackView.timePicker.isHidden = false
+                    } else {
+                        self?.endDateTimeStackView.timePicker.isHidden = true
+                    }
+                } completion: { _ in
+                    //
+                }
+
+            }).disposed(by: disposeBag)
+        
     }
+}
+
+extension ScheduleEditViewController: FSCalendarDelegate, FSCalendarDataSource {
+    
 }
