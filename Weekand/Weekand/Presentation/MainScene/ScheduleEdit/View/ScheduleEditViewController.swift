@@ -35,6 +35,8 @@ class ScheduleEditViewController: BaseViewController {
     lazy var startDateTimeStackView = DateTimeStackView(nameText: "시작", dateText: "2022.05.22.", timeText: "16:00")
     lazy var endDateTimeStackView = DateTimeStackView(nameText: "종료", dateText: "2022.05.22.", timeText: "20:00")
     
+    lazy var addInformationStackView = AddInformationContainerView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -63,7 +65,7 @@ class ScheduleEditViewController: BaseViewController {
     }
     
     private func configureUI() {
-        [nameStackView, dropDownStackView, startDateTimeStackView, endDateTimeStackView].forEach { stackView.addArrangedSubview($0) }
+        [nameStackView, dropDownStackView, startDateTimeStackView, endDateTimeStackView, addInformationStackView].forEach { stackView.addArrangedSubview($0) }
         stackView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(25)
             make.bottom.equalToSuperview().offset(-WBottmButton.buttonOffset - 64)
