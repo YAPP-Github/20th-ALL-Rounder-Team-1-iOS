@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 import Then
 import RxSwift
-import RxDataSources
 
 class ColorSheetViewController: BottomSheetViewController {
     

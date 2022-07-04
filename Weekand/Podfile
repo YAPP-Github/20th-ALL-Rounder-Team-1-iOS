@@ -10,7 +10,7 @@ target 'Weekand' do
   # Rx
   pod 'RxSwift'
   pod 'RxCocoa'
-  pod 'RxDataSources'
+  pod 'RxGesture'
   pod 'AlignedCollectionViewFlowLayout'
 
   # UIKit
