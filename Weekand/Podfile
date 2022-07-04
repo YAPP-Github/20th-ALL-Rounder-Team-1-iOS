@@ -10,7 +10,7 @@ target 'Weekand' do
   # Rx
   pod 'RxSwift'
   pod 'RxCocoa'
-  pod 'RxDataSources'
+  pod 'RxGesture'
   pod 'AlignedCollectionViewFlowLayout'
 
   # UIKit
@@ -20,10 +20,13 @@ target 'Weekand' do
   # Cooperation
   pod 'SwiftLint'
 
-  # Calander
+  # Calender
   pod 'FSCalendar'
 
   # Apollo
   pod 'Apollo'
+
+  # DropDown
+  pod 'DropDown', '2.3.13'
 
 end
