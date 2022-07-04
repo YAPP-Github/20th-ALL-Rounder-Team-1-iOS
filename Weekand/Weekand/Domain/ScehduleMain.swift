@@ -20,7 +20,7 @@ struct ScehduleMain: Hashable {
     
     let id = UUID()
     
-    let scheduleId: Int
+    let scheduleId: String
     let color: String
     let name: String
     let dateStart: Date

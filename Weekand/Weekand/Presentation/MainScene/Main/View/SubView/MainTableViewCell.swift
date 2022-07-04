@@ -14,6 +14,8 @@ class MainTableViewCell: UITableViewCell {
     
     static let identifier = "MainTableViewCell"
     
+    var dataId: String?
+    
     // MARK: 상단 (카테고리 색상 원 + 일정 이름)
     lazy var nameLabel = WCategoryTitleLabel()
     
@@ -70,7 +72,9 @@ class MainTableViewCell: UITableViewCell {
 // MARK: Data Injection
 extension MainTableViewCell {
     
-    public func setUpCell(color: UIColor, title: String, status: StatusIcon, time: String, emojiNumber: Int, emojiOrder: [Emoji]) {
+    public func setUpCell(id: String, color: UIColor, title: String, status: StatusIcon, time: String, emojiNumber: Int, emojiOrder: [Emoji]) {
+        
+        self.dataId = id
         
         self.nameLabel.editValue(color: color, title: title)
         self.timeLineLabel.configureValue(status: status, title: time)
