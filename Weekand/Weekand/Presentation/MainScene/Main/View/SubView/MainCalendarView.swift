@@ -85,6 +85,7 @@ class MainCalendarView: UIView {
         
         self.addSubview(calendar)
         self.calendar = calendar
+        self.changeTitle(date: Date())
     }
     
     // MARK: configureUI
@@ -201,6 +202,11 @@ extension MainCalendarView: FSCalendarDelegate, FSCalendarDataSource {
         self.calendar.setCurrentPage(date, animated: true)
     }
     
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        let page = calendar.currentPage
+        changeTitle(date: page)
+    }
+    
 }
 
 // 날짜 설정
@@ -221,6 +227,19 @@ extension MainCalendarView {
         
         self.currentPage = Calendar.current.date(byAdding: dateComponents, to: self.currentPage ?? Date())
         self.calendar.setCurrentPage(self.currentPage!, animated: true)
+    }
+    
+    /// 캘린더 타이틀(월 표시) 변경
+    private func changeTitle(date: Date) {
+        
+        let dateFormatter: DateFormatter = {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "M"
+            
+            return dateFormatter
+        }()
+        
+        titleLabel.text = "\(dateFormatter.string(from: date))월"
     }
     
 }
