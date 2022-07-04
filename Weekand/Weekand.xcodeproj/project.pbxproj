@@ -84,9 +84,12 @@
 		F392A1EF28531FC600512A42 /* CategoryListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */; };
 		F3AA9E1B2869FEFC00F71559 /* PasswordFindViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA9E1A2869FEFC00F71559 /* PasswordFindViewModel.swift */; };
 		F3AA9E1D2869FF1E00F71559 /* PasswordFindCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA9E1C2869FF1E00F71559 /* PasswordFindCoordinator.swift */; };
-		F3C8E079286DAE0000B0916A /* helloTest.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F3C8E078286DAE0000B0916A /* helloTest.graphql */; };
-		F3C8E07D286DAE8700B0916A /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = F3C8E07C286DAE8700B0916A /* schema.json */; };
-		F3C8E085286DAFC900B0916A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E084286DAFC900B0916A /* API.swift */; };
+		F3C8E087286DC71300B0916A /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E086286DC71300B0916A /* APIService.swift */; };
+		F3C8E08E286F570900B0916A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E08D286F570900B0916A /* API.swift */; };
+		F3C8E090286F571600B0916A /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = F3C8E08F286F571600B0916A /* schema.json */; };
+		F3C8E092286F571F00B0916A /* helloTest.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F3C8E091286F571F00B0916A /* helloTest.graphql */; };
+		F3C8E094286F598600B0916A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E093286F598600B0916A /* Network.swift */; };
+		F3C8E0962872AA5F00B0916A /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0952872AA5F00B0916A /* Key.swift */; };
 		F3CC76AE2866CD1200A3FBBE /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC76AD2866CD1200A3FBBE /* BottomSheetViewController.swift */; };
 		F3CC76B028670BA200A3FBBE /* ColorSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC76AF28670BA200A3FBBE /* ColorSheetViewModel.swift */; };
 		F3CC76B22867130100A3FBBE /* ColorSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC76B12867130100A3FBBE /* ColorSheetViewController.swift */; };
@@ -194,9 +197,12 @@
 		F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListHeaderView.swift; sourceTree = "<group>"; };
 		F3AA9E1A2869FEFC00F71559 /* PasswordFindViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindViewModel.swift; sourceTree = "<group>"; };
 		F3AA9E1C2869FF1E00F71559 /* PasswordFindCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindCoordinator.swift; sourceTree = "<group>"; };
-		F3C8E078286DAE0000B0916A /* helloTest.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = helloTest.graphql; sourceTree = "<group>"; };
-		F3C8E07C286DAE8700B0916A /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
-		F3C8E084286DAFC900B0916A /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		F3C8E086286DC71300B0916A /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		F3C8E08D286F570900B0916A /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		F3C8E08F286F571600B0916A /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		F3C8E091286F571F00B0916A /* helloTest.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = helloTest.graphql; sourceTree = "<group>"; };
+		F3C8E093286F598600B0916A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		F3C8E0952872AA5F00B0916A /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		F3CC76AD2866CD1200A3FBBE /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		F3CC76AF28670BA200A3FBBE /* ColorSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSheetViewModel.swift; sourceTree = "<group>"; };
 		F3CC76B12867130100A3FBBE /* ColorSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSheetViewController.swift; sourceTree = "<group>"; };
@@ -526,6 +532,7 @@
 				F32ACC0F28235D530082AF30 /* Info.plist */,
 				F32ACC0A28235D530082AF30 /* Assets.xcassets */,
 				F3786850285D98F500BEEC81 /* Constants.swift */,
+				F3C8E0952872AA5F00B0916A /* Key.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -594,6 +601,7 @@
 		F32ACC0028235D500082AF30 /* Weekand */ = {
 			isa = PBXGroup;
 			children = (
+				F3C8E08D286F570900B0916A /* API.swift */,
 				F3C8E083286DAF9B00B0916A /* Networking */,
 				7D3B1F5628363D2D0037504A /* Application */,
 				7D3B1F5528363CFB0037504A /* Base */,
@@ -674,11 +682,20 @@
 		F3C8E083286DAF9B00B0916A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				F3C8E084286DAFC900B0916A /* API.swift */,
-				F3C8E07C286DAE8700B0916A /* schema.json */,
-				F3C8E078286DAE0000B0916A /* helloTest.graphql */,
+				F3C8E08A286F4D8F00B0916A /* Query */,
+				F3C8E086286DC71300B0916A /* APIService.swift */,
+				F3C8E08F286F571600B0916A /* schema.json */,
+				F3C8E093286F598600B0916A /* Network.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		F3C8E08A286F4D8F00B0916A /* Query */ = {
+			isa = PBXGroup;
+			children = (
+				F3C8E091286F571F00B0916A /* helloTest.graphql */,
+			);
+			path = Query;
 			sourceTree = "<group>";
 		};
 		F3DD0216284660D200AD9240 /* Coordinator */ = {
@@ -787,11 +804,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3C8E079286DAE0000B0916A /* helloTest.graphql in Resources */,
+				F3C8E092286F571F00B0916A /* helloTest.graphql in Resources */,
 				7DF8B7A928361FB100B224CA /* PretendardVariable.ttf in Resources */,
+				F3C8E090286F571600B0916A /* schema.json in Resources */,
 				7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */,
 				F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */,
-				F3C8E07D286DAE8700B0916A /* schema.json in Resources */,
 				F32ACC0B28235D530082AF30 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -863,6 +880,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/Networking/Query/*.graphql",
 			);
 			name = Apollo;
 			outputFileListPaths = (
@@ -871,7 +889,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Don't run this during index builds\n# if [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\n# SCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\n# cd \"${SRCROOT}/${TARGET_NAME}\"\n# \"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API.swift\n";
+			shellScript = "# Don't run this during index builds\n# if [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\nSCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\necho \"${SRCROOT}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"Networking/schema.json\" API.swift\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -882,6 +900,7 @@
 			files = (
 				F354C3E8283D4126008929FD /* SignUpTermsViewController.swift in Sources */,
 				F32F72562853D1E40056B189 /* CategoryDetailFooterView.swift in Sources */,
+				F3C8E0962872AA5F00B0916A /* Key.swift in Sources */,
 				F3DD022B284678CF00AD9240 /* WelcomeViewModel.swift in Sources */,
 				7D6B91192844A8D50044E217 /* WStatusTimeLabel.swift in Sources */,
 				F32F725A28549A5D0056B189 /* CategoryEditViewController.swift in Sources */,
@@ -892,6 +911,7 @@
 				7D76AEB828448C79001C668D /* Font.swift in Sources */,
 				7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */,
 				F32F72642854EC890056B189 /* InformationCollectionViewCell.swift in Sources */,
+				F3C8E094286F598600B0916A /* Network.swift in Sources */,
 				7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */,
 				F3F731DB2868966700C8B778 /* Color.swift in Sources */,
 				7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */,
@@ -928,6 +948,7 @@
 				7D76AEB628445AA5001C668D /* MainTableViewCell.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
 				F33C6EAC28533D0A005B493A /* WFilterButton.swift in Sources */,
+				F3C8E08E286F570900B0916A /* API.swift in Sources */,
 				F3F731E92869E5EC00C8B778 /* PasswordFindViewController.swift in Sources */,
 				F392A1C9284F53A300512A42 /* CategoryListTableViewCell.swift in Sources */,
 				7D8033D4286001B70039F73E /* MainProfileView.swift in Sources */,
@@ -954,6 +975,7 @@
 				F3AA9E1D2869FF1E00F71559 /* PasswordFindCoordinator.swift in Sources */,
 				F378685728621BD200BEEC81 /* CategoryModifyCoordinator.swift in Sources */,
 				7D7178EB283E1C9D00D7E5F2 /* WCheckBox.swift in Sources */,
+				F3C8E087286DC71300B0916A /* APIService.swift in Sources */,
 				F32F72602854BB730056B189 /* ColorStackView.swift in Sources */,
 				F3DD0237284A6BEC00AD9240 /* SignUpTermsViewModel.swift in Sources */,
 				F3CC76B22867130100A3FBBE /* ColorSheetViewController.swift in Sources */,
@@ -974,7 +996,6 @@
 				F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */,
 				F3DD022728466E3300AD9240 /* SignUpCoordinator.swift in Sources */,
 				7DB5E13E284B4E3C00DBB7EA /* MainViewModel.swift in Sources */,
-				F3C8E085286DAFC900B0916A /* API.swift in Sources */,
 				F3786851285D98F500BEEC81 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

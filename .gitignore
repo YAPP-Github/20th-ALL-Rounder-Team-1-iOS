@@ -141,3 +141,4 @@ iOSInjectionProject/
 # End of https://www.toptal.com/developers/gitignore/api/macos,swift,xcode,cocoapods
 Weekand/Weekand/Networking/API.swift
 Weekand/Weekand/Networking/schema.json
+Weekand/Weekand/Resources/key.swift
