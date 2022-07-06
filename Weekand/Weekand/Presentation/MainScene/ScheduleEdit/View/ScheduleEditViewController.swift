@@ -22,16 +22,22 @@ class ScheduleEditViewController: BaseViewController {
         $0.image = UIImage(named: "close")
         $0.tintColor = .gray400
     }
+    
     lazy var confirmButton = WBottmButton().then {
         $0.setTitle("완료", for: .normal)
         $0.disable(string: "완료")
     }
     lazy var nameStackView = WTextFieldStackView(fieldPlaceholder: "일정명을 입력해주세요.", nameText: "일정")
     lazy var dropDownStackView = DropDownStackView()
-    lazy var startDateTimeStackView = DateTimeStackView(nameText: "시작", dateText: "2022.05.22.", timeText: "16:00")
-    lazy var endDateTimeStackView = DateTimeStackView(nameText: "종료", dateText: "2022.05.22.", timeText: "20:00")
+    lazy var startDateTimeStackView = DateTimeStackView(nameText: "시작", dateText: dateFormatter.string(from: Date()), timeText: "16:00")
+    lazy var endDateTimeStackView = DateTimeStackView(nameText: "종료", dateText: dateFormatter.string(from: Date()), timeText: "20:00")
     lazy var addInformationContainerView = AddInformationContainerView()
     lazy var memoStackView = MemoStackView(placeholder: "메모를 입력해주세요", nameText: "메모")
+    
+    lazy var dateFormatter = DateFormatter().then {
+        $0.dateFormat = "YYYY.MM.dd."
+        $0.locale = Locale(identifier: "Ko_KR")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,9 +55,6 @@ class ScheduleEditViewController: BaseViewController {
         
         memoStackView.isHidden = true
         memoStackView.textView.delegate = self
-        
-        startDateTimeStackView.calendarView.calendar.delegate = self
-        startDateTimeStackView.calendarView.calendar.dataSource = self
         
         dropDownStackView.dropDown.cellNib = UINib(nibName: "CategoryDropDownCell", bundle: nil)
         dropDownStackView.dropDown.dataSource = ["공부", "자기 계발", "업무"]
@@ -120,11 +123,21 @@ class ScheduleEditViewController: BaseViewController {
             startTimeButtonDidTapEvent: startDateTimeStackView.timeButton.rx.tap.asObservable(),
             endDateButtonDidTapEvent: endDateTimeStackView.dateButton.rx.tap.asObservable(),
             endTimeButtonDidTapEvent: endDateTimeStackView.timeButton.rx.tap.asObservable(),
-            calendarDidSelectEvent: startDateTimeStackView.calendarView.calendar.rx.didSelect.asObservable()
+            startDateDidSelectEvent: startDateTimeStackView.calendarView.calendar.rx.didSelect.asObservable(),
+            endDateDidSelectEvent: endDateTimeStackView.calendarView.calendar.rx.didSelect.asObservable()
         )
         
-        self.viewModel?.transform(input: input)
+        let output = viewModel?.transform(input: input)
         
+        output?.startDateDidSelectEvent.drive(onNext: { date in
+            let dateString = self.dateFormatter.string(from: date)
+            self.startDateTimeStackView.dateButton.setTitle(dateString, for: .normal, font: WFont.body1())
+        }).disposed(by: disposeBag)
+        
+        output?.endDateDidSelectEvent.drive(onNext: { date in
+            let dateString = self.dateFormatter.string(from: date)
+            self.endDateTimeStackView.dateButton.setTitle(dateString, for: .normal, font: WFont.body1())
+        }).disposed(by: disposeBag)
         
         dropDownStackView.arrowButton.rx.tap.subscribe(onNext: {
             self.dropDownStackView.dropDown.show()
@@ -191,10 +204,6 @@ class ScheduleEditViewController: BaseViewController {
             self.addInformationContainerView.memoButton.isHidden = true
         }).disposed(by: disposeBag)
     }
-}
-
-extension ScheduleEditViewController: FSCalendarDelegate, FSCalendarDataSource {
-
 }
 
 extension ScheduleEditViewController: UITextViewDelegate {

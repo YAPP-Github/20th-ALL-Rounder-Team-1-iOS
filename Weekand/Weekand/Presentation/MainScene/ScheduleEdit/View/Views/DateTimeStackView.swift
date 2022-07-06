@@ -90,8 +90,8 @@ class DateTimeStackView: UIStackView {
         super.init(frame: CGRect.zero)
         
         self.namelabel.text = nameText
-        self.dateButton.setTitle(dateText, for: .normal, font: WFont.body2())
-        self.timeButton.setTitle(timeText, for: .normal, font: WFont.body2())
+        self.dateButton.setTitle(dateText, for: .normal, font: WFont.body1())
+        self.timeButton.setTitle(timeText, for: .normal, font: WFont.body1())
         setupView()
     }
     

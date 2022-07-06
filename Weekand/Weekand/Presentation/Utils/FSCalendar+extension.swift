@@ -15,10 +15,10 @@ extension Reactive where Base: FSCalendar {
         return RxFSCalendarDelegateProxy.proxy(for: self.base)
     }
     
-    var didSelect: Observable<String> {
+    var didSelect: Observable<Date> {
         return delegate.methodInvoked(#selector(FSCalendarDelegate.calendar(_:didSelect:at:)))
             .map { parameter in
-                return parameter[2] as? String ?? Date().description
+                return parameter[1] as? Date ?? Date()
             }
     }
 }

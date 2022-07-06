@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Apollo
 
 class ScheduleEditViewModel: ViewModelType {
     
@@ -32,10 +33,14 @@ class ScheduleEditViewModel: ViewModelType {
         let startTimeButtonDidTapEvent: Observable<Void>
         let endDateButtonDidTapEvent: Observable<Void>
         let endTimeButtonDidTapEvent: Observable<Void>
-        let calendarDidSelectEvent: Observable<String>
+        let startDateDidSelectEvent: Observable<Date>
+        let endDateDidSelectEvent: Observable<Date>
     }
     
-    struct Output { }
+    struct Output {
+        var startDateDidSelectEvent: Driver<Date>
+        var endDateDidSelectEvent: Driver<Date>
+    }
     
     func transform(input: Input) -> Output {
         input.startDateButtonDidTapEvent
@@ -93,6 +98,9 @@ class ScheduleEditViewModel: ViewModelType {
         })
         .disposed(by: disposeBag)
         
-        return Output()
+        return Output(
+            startDateDidSelectEvent: input.startDateDidSelectEvent.asDriver(onErrorJustReturn: Date()),
+            endDateDidSelectEvent: input.endDateDidSelectEvent.asDriver(onErrorJustReturn: Date())
+        )
     }
 }
