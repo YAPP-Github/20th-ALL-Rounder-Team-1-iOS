@@ -119,7 +119,8 @@ class ScheduleEditViewController: BaseViewController {
             startDateButtonDidTapEvent: startDateTimeStackView.dateButton.rx.tap.asObservable(),
             startTimeButtonDidTapEvent: startDateTimeStackView.timeButton.rx.tap.asObservable(),
             endDateButtonDidTapEvent: endDateTimeStackView.dateButton.rx.tap.asObservable(),
-            endTimeButtonDidTapEvent: endDateTimeStackView.timeButton.rx.tap.asObservable()
+            endTimeButtonDidTapEvent: endDateTimeStackView.timeButton.rx.tap.asObservable(),
+            calendarDidSelectEvent: startDateTimeStackView.calendarView.calendar.rx.didSelect.asObservable()
         )
         
         self.viewModel?.transform(input: input)
@@ -193,11 +194,7 @@ class ScheduleEditViewController: BaseViewController {
 }
 
 extension ScheduleEditViewController: FSCalendarDelegate, FSCalendarDataSource {
-//    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
-//        calendar.snp.updateConstraints { make in
-//            make.height.equalTo(bounds.height)
-//        }
-//    }
+
 }
 
 extension ScheduleEditViewController: UITextViewDelegate {

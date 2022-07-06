@@ -32,6 +32,7 @@ class ScheduleEditViewModel: ViewModelType {
         let startTimeButtonDidTapEvent: Observable<Void>
         let endDateButtonDidTapEvent: Observable<Void>
         let endTimeButtonDidTapEvent: Observable<Void>
+        let calendarDidSelectEvent: Observable<String>
     }
     
     struct Output { }
