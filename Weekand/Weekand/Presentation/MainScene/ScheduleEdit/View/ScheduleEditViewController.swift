@@ -89,9 +89,37 @@ class ScheduleEditViewController: BaseViewController {
     }
     
     private func bindViewModel() {
+        let isSelectedStartDate = BehaviorRelay(value: false)
+        let isSelectedStartTime = BehaviorRelay(value: false)
+        let isSelectedEndDate = BehaviorRelay(value: false)
+        let isSelectedEndTime = BehaviorRelay(value: false)
+        
+        isSelectedStartDate.asObservable()
+            .bind(to: startDateTimeStackView.dateButton.rx.isSelected)
+            .disposed(by: disposeBag)
+        
+        isSelectedStartTime.asObservable()
+            .bind(to: startDateTimeStackView.timeButton.rx.isSelected)
+            .disposed(by: disposeBag)
+        
+        isSelectedEndDate.asObservable()
+            .bind(to: endDateTimeStackView.dateButton.rx.isSelected)
+            .disposed(by: disposeBag)
+        
+        isSelectedEndTime.asObservable()
+            .bind(to: endDateTimeStackView.timeButton.rx.isSelected)
+            .disposed(by: disposeBag)
+        
         let input = ScheduleEditViewModel.Input(
             closeButtonDidTapEvent: closeButton.rx.tap.asObservable(),
-            startDateButionDidTapEvent: startDateTimeStackView.dateButton.rx.tap.asObservable()
+            isSelectedStartDate: isSelectedStartDate,
+            isSelectedStartTime: isSelectedStartTime,
+            isSelectedEndDate: isSelectedEndDate,
+            isSelectedEndTime: isSelectedEndTime,
+            startDateButtonDidTapEvent: startDateTimeStackView.dateButton.rx.tap.asObservable(),
+            startTimeButtonDidTapEvent: startDateTimeStackView.timeButton.rx.tap.asObservable(),
+            endDateButtonDidTapEvent: endDateTimeStackView.dateButton.rx.tap.asObservable(),
+            endTimeButtonDidTapEvent: endDateTimeStackView.timeButton.rx.tap.asObservable()
         )
         
         self.viewModel?.transform(input: input)
@@ -101,43 +129,61 @@ class ScheduleEditViewController: BaseViewController {
             self.dropDownStackView.dropDown.show()
         }).disposed(by: disposeBag)
         
-        startDateTimeStackView.dateButton.rx.tap
-            .scan(false) { lastState, _ in !lastState }
-            .subscribe(onNext: { [weak self] isSelect in
-
-                UIView.transition(with: self?.startDateTimeStackView.datePickerContainerView ?? UIButton(), duration: 0.3, options: .transitionCrossDissolve) {
-                    if isSelect {
-                        self?.startDateTimeStackView.datePickerContainerView.alpha = 1
-                        self?.startDateTimeStackView.datePickerContainerView.isHidden = false
-                    } else {
-                        self?.startDateTimeStackView.datePickerContainerView.alpha = 0
-                        self?.startDateTimeStackView.datePickerContainerView.isHidden = true
-                    }
-                    self?.startDateTimeStackView.datePickerContainerView.layoutIfNeeded()
-                } completion: { _ in
-                    
+        isSelectedStartDate.subscribe(onNext: { isSelected in
+            UIView.transition(with: self.startDateTimeStackView.dateButton ?? UIButton(), duration: 0.3, options: .transitionCrossDissolve) {
+                if isSelected {
+                    self.startDateTimeStackView.datePickerContainerView.alpha = 1
+                    self.startDateTimeStackView.datePickerContainerView.isHidden = false
+                } else {
+                    self.startDateTimeStackView.datePickerContainerView.alpha = 0
+                    self.startDateTimeStackView.datePickerContainerView.isHidden = true
                 }
-
-            }).disposed(by: disposeBag)
+            } completion: { _ in
+                
+            }
+        }).disposed(by: disposeBag)
         
-        startDateTimeStackView.timeButton.rx.tap
-            .scan(false) { lastState, _ in !lastState }
-            .subscribe(onNext: { [weak self] isSelect in
-
-                UIView.transition(with: self?.startDateTimeStackView.timePickerContainerView ?? UIButton(), duration: 0.3, options: .transitionCrossDissolve) {
-                    if isSelect {
-                        self?.startDateTimeStackView.timePickerContainerView.alpha = 1
-                        self?.startDateTimeStackView.timePickerContainerView.isHidden = false
-                    } else {
-                        self?.startDateTimeStackView.timePickerContainerView.alpha = 0
-                        self?.startDateTimeStackView.timePickerContainerView.isHidden = true
-                    }
-                    self?.startDateTimeStackView.timePickerContainerView.layoutIfNeeded()
-                } completion: { _ in
-                    
+        isSelectedStartTime.subscribe(onNext: { isSelected in
+            UIView.transition(with: self.startDateTimeStackView.timeButton ?? UIButton(), duration: 0.3, options: .transitionCrossDissolve) {
+                if isSelected {
+                    self.startDateTimeStackView.timePickerContainerView.alpha = 1
+                    self.startDateTimeStackView.timePickerContainerView.isHidden = false
+                } else {
+                    self.startDateTimeStackView.timePickerContainerView.alpha = 0
+                    self.startDateTimeStackView.timePickerContainerView.isHidden = true
                 }
-
-            }).disposed(by: disposeBag)
+            } completion: { _ in
+                
+            }
+        }).disposed(by: disposeBag)
+        
+        isSelectedEndDate.subscribe(onNext: { isSelected in
+            UIView.transition(with: self.endDateTimeStackView.dateButton ?? UIButton(), duration: 0.3, options: .transitionCrossDissolve) {
+                if isSelected {
+                    self.endDateTimeStackView.datePickerContainerView.alpha = 1
+                    self.endDateTimeStackView.datePickerContainerView.isHidden = false
+                } else {
+                    self.endDateTimeStackView.datePickerContainerView.alpha = 0
+                    self.endDateTimeStackView.datePickerContainerView.isHidden = true
+                }
+            } completion: { _ in
+                
+            }
+        }).disposed(by: disposeBag)
+        
+        isSelectedEndTime.subscribe(onNext: { isSelected in
+            UIView.transition(with: self.endDateTimeStackView.timeButton ?? UIButton(), duration: 0.3, options: .transitionCrossDissolve) {
+                if isSelected {
+                    self.endDateTimeStackView.timePickerContainerView.alpha = 1
+                    self.endDateTimeStackView.timePickerContainerView.isHidden = false
+                } else {
+                    self.endDateTimeStackView.timePickerContainerView.alpha = 0
+                    self.endDateTimeStackView.timePickerContainerView.isHidden = true
+                }
+            } completion: { _ in
+                
+            }
+        }).disposed(by: disposeBag)
         
         addInformationContainerView.memoButton.rx.tap.subscribe(onNext: {
             self.memoStackView.isHidden = false
