@@ -20,6 +20,7 @@ class ScheduleEditViewModel: ViewModelType {
     
     struct Input {
         let closeButtonDidTapEvent: Observable<Void>
+        let startDateButionDidTapEvent: Observable<Void>
     }
     
     struct Output { }
@@ -28,6 +29,10 @@ class ScheduleEditViewModel: ViewModelType {
         input.closeButtonDidTapEvent.subscribe(onNext: {
             self.coordinator?.finish()
         }).disposed(by: disposeBag)
+        
+        let buttonsEvent = [input.startDateButionDidTapEvent]
+        
+        let selectedButtons = input.startDateButionDidTapEvent.scan(false) { lastState, _ in !lastState }
         
         return Output()
     }
