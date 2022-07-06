@@ -50,8 +50,8 @@ class ScheduleEditViewController: BaseViewController {
         memoStackView.isHidden = true
         memoStackView.textView.delegate = self
         
-        startDateTimeStackView.calendar.delegate = self
-        startDateTimeStackView.calendar.dataSource = self
+        startDateTimeStackView.calendarView.calendar.delegate = self
+        startDateTimeStackView.calendarView.calendar.dataSource = self
         
         dropDownStackView.dropDown.cellNib = UINib(nibName: "CategoryDropDownCell", bundle: nil)
         dropDownStackView.dropDown.dataSource = ["공부", "자기 계발", "업무"]
@@ -193,7 +193,11 @@ class ScheduleEditViewController: BaseViewController {
 }
 
 extension ScheduleEditViewController: FSCalendarDelegate, FSCalendarDataSource {
-    
+//    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+//        calendar.snp.updateConstraints { make in
+//            make.height.equalTo(bounds.height)
+//        }
+//    }
 }
 
 extension ScheduleEditViewController: UITextViewDelegate {

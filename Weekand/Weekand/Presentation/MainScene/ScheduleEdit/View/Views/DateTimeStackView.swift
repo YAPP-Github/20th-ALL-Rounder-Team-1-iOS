@@ -36,9 +36,7 @@ class DateTimeStackView: UIStackView {
         $0.datePickerMode = .date
     }
     
-    lazy var calendar = FSCalendar().then {
-        $0.scope = .month
-    }
+    lazy var calendarView = WCalendarView()
     
     lazy var stackView = UIStackView().then {
         $0.axis = .horizontal
@@ -70,12 +68,16 @@ class DateTimeStackView: UIStackView {
         
         [dateButton, timeButton].forEach { stackView.addArrangedSubview($0) }
         
-        [datePicker].forEach { datePickerContainerView.addSubview($0) }
-        [timePicker].forEach { timePickerContainerView.addSubview($0) }
+        datePickerContainerView.addSubview(calendarView)
+        timePickerContainerView.addSubview(timePicker) 
         
         datePickerContainerView.snp.makeConstraints { make in
             make.trailing.leading.equalToSuperview()
-            make.height.equalTo(300)
+            make.height.equalTo(350)
+        }
+        
+        calendarView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
         timePickerContainerView.snp.makeConstraints { make in
