@@ -19,7 +19,7 @@ class CategoryListFilterViewController: BottomSheetViewController {
     }
     
     let tableView = UITableView()
-    var dataSource: UITableViewDiffableDataSource<Section, Filter>!
+    var dataSource: UITableViewDiffableDataSource<Section, Sort>!
     
     // ViewMoel
     
@@ -36,7 +36,7 @@ class CategoryListFilterViewController: BottomSheetViewController {
     
     // stored property
     
-    var selectedFilter: Filter = .dateCreatedASC
+    var selectedSort: Sort = .dateCreatedASC
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +78,7 @@ extension CategoryListFilterViewController {
     
     private func configureDataSource() {
         
-        dataSource = UITableViewDiffableDataSource<Section, Filter>(tableView: tableView, cellProvider: { tableView, indexPath, list in
+        dataSource = UITableViewDiffableDataSource<Section, Sort>(tableView: tableView, cellProvider: { tableView, indexPath, list in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: FilterTableViewCell.cellIdentifier, for: indexPath) as? FilterTableViewCell else {
                 return UITableViewCell()
             }
@@ -88,9 +88,9 @@ extension CategoryListFilterViewController {
     }
     
     private func configureSnapshot(animatingDifferences: Bool = true) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Filter>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Sort>()
         snapshot.appendSections([.main])
-        snapshot.appendItems((Filter.allCases), toSection: .main)
+        snapshot.appendItems((Sort.allCases), toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }

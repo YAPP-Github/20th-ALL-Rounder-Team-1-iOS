@@ -52,6 +52,8 @@
 		E8BDADFB0F95046E8D0F4BE0 /* Pods_Weekand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */; };
 		F323FEE92875FC3D00DFD8FD /* WCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */; };
 		F323FEEB28760E3A00DFD8FD /* FSCalendar+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */; };
+		F323FEF0287636B500DFD8FD /* SortDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEEE287636B500DFD8FD /* SortDropDownCell.swift */; };
+		F323FEF1287636B500DFD8FD /* SortDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F323FEEF287636B500DFD8FD /* SortDropDownCell.xib */; };
 		F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0128235D500082AF30 /* AppDelegate.swift */; };
 		F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0328235D500082AF30 /* SceneDelegate.swift */; };
 		F32ACC0628235D500082AF30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0528235D500082AF30 /* ViewController.swift */; };
@@ -126,7 +128,7 @@
 		F3F731D928677A2000C8B778 /* ColorsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731D828677A2000C8B778 /* ColorsCollectionViewCell.swift */; };
 		F3F731DB2868966700C8B778 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731DA2868966700C8B778 /* Color.swift */; };
 		F3F731DD2868DD5300C8B778 /* CategoryListFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731DC2868DD5300C8B778 /* CategoryListFilterViewController.swift */; };
-		F3F731DF2868DE0000C8B778 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731DE2868DE0000C8B778 /* Filter.swift */; };
+		F3F731DF2868DE0000C8B778 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731DE2868DE0000C8B778 /* Sort.swift */; };
 		F3F731E12868E02C00C8B778 /* CategoryListFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731E02868E02C00C8B778 /* CategoryListFilterViewModel.swift */; };
 		F3F731E32869918E00C8B778 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731E22869918E00C8B778 /* FilterTableViewCell.swift */; };
 		F3F731E92869E5EC00C8B778 /* PasswordFindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731E82869E5EC00C8B778 /* PasswordFindViewController.swift */; };
@@ -179,6 +181,8 @@
 		CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weekand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCalendarView.swift; sourceTree = "<group>"; };
 		F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FSCalendar+extension.swift"; sourceTree = "<group>"; };
+		F323FEEE287636B500DFD8FD /* SortDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDropDownCell.swift; sourceTree = "<group>"; };
+		F323FEEF287636B500DFD8FD /* SortDropDownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SortDropDownCell.xib; sourceTree = "<group>"; };
 		F32ACBFE28235D500082AF30 /* Weekand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weekand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32ACC0128235D500082AF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F32ACC0328235D500082AF30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -256,7 +260,7 @@
 		F3F731D828677A2000C8B778 /* ColorsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsCollectionViewCell.swift; sourceTree = "<group>"; };
 		F3F731DA2868966700C8B778 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		F3F731DC2868DD5300C8B778 /* CategoryListFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListFilterViewController.swift; sourceTree = "<group>"; };
-		F3F731DE2868DE0000C8B778 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		F3F731DE2868DE0000C8B778 /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		F3F731E02868E02C00C8B778 /* CategoryListFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListFilterViewModel.swift; sourceTree = "<group>"; };
 		F3F731E22869918E00C8B778 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		F3F731E82869E5EC00C8B778 /* PasswordFindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindViewController.swift; sourceTree = "<group>"; };
@@ -440,7 +444,7 @@
 				7D29E345286422FC0047C805 /* UserSummary.swift */,
 				F378684E285619F000BEEC81 /* Category.swift */,
 				F3F731DA2868966700C8B778 /* Color.swift */,
-				F3F731DE2868DE0000C8B778 /* Filter.swift */,
+				F3F731DE2868DE0000C8B778 /* Sort.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -667,6 +671,8 @@
 				F32F725F2854BB730056B189 /* ColorStackView.swift */,
 				F3F731D828677A2000C8B778 /* ColorsCollectionViewCell.swift */,
 				F3F731E22869918E00C8B778 /* FilterTableViewCell.swift */,
+				F323FEEE287636B500DFD8FD /* SortDropDownCell.swift */,
+				F323FEEF287636B500DFD8FD /* SortDropDownCell.xib */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -897,6 +903,7 @@
 			files = (
 				F3C8E092286F571F00B0916A /* helloTest.graphql in Resources */,
 				7DF8B7A928361FB100B224CA /* PretendardVariable.ttf in Resources */,
+				F323FEF1287636B500DFD8FD /* SortDropDownCell.xib in Resources */,
 				F3C8E090286F571600B0916A /* schema.json in Resources */,
 				7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */,
 				F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */,
@@ -1028,6 +1035,7 @@
 				F3DD0229284670E900AD9240 /* AppCoordinator.swift in Sources */,
 				F32ACC0628235D500082AF30 /* ViewController.swift in Sources */,
 				F3C8E0B52873578300B0916A /* WTextView.swift in Sources */,
+				F323FEF0287636B500DFD8FD /* SortDropDownCell.swift in Sources */,
 				7D6E9972283BA18E006F5FC7 /* WBottmButton.swift in Sources */,
 				F3C8E0B72873598A00B0916A /* MemoStackView.swift in Sources */,
 				F37868552861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift in Sources */,
@@ -1068,7 +1076,7 @@
 				F3F731D928677A2000C8B778 /* ColorsCollectionViewCell.swift in Sources */,
 				7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */,
 				F3F731D328672AF500C8B778 /* WTypeToggleButton.swift in Sources */,
-				F3F731DF2868DE0000C8B778 /* Filter.swift in Sources */,
+				F3F731DF2868DE0000C8B778 /* Sort.swift in Sources */,
 				F3C8E0B028731E4900B0916A /* CategoryDropDownCell.swift in Sources */,
 				F392A1EF28531FC600512A42 /* CategoryListHeaderView.swift in Sources */,
 				7DF949C8283B6F1F007F84C5 /* CommonShape.swift in Sources */,

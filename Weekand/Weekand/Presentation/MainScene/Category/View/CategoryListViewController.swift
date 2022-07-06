@@ -10,6 +10,7 @@ import SnapKit
 import Then
 import RxSwift
 import RxCocoa
+import DropDown
 
 class CategoryListViewController: UIViewController {
     
@@ -25,13 +26,14 @@ class CategoryListViewController: UIViewController {
         Category(color: "red", name: "to do", openType: .allOpen)
     ]
     
+    private let disposeBag = DisposeBag()
     var viewModel: CategoryListViewModel?
     var dataSource: UITableViewDiffableDataSource<Section, Category>!
     
     var headerView = CategoryListHeaderView()
     let tableView = UITableView()
     
-    var selectedFilter: Filter = .nameCreateDESC
+    var selectedSort: Sort = .nameCreateDESC
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +57,13 @@ class CategoryListViewController: UIViewController {
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
         }
+        
+        headerView.dropDown.cellNib = UINib(nibName: "SortDropDownCell", bundle: nil)
+        headerView.dropDown.dataSource = Sort.allCases.map { $0.description }
+        headerView.dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
+            guard let cell = cell as? SortDropDownCell else { return }
+            
+        }
     }
     
     private func configureUI() {
@@ -69,9 +78,12 @@ class CategoryListViewController: UIViewController {
         
         let input = CategoryListViewModel.Input(
             didTapAddCategoryButton: self.headerView.addCategoryButton.rx.tap.asObservable(),
-            didTapSortButton: self.headerView.sortButton.rx.tap.asObservable(),
             didCategoryCellSelected: self.tableView.rx.itemSelected.asObservable()
         )
+        
+        self.headerView.sortButton.rx.tap.subscribe(onNext: {
+            self.headerView.dropDown.show()
+        }).disposed(by: disposeBag)
         
         self.viewModel?.transform(input: input)
     }
@@ -105,17 +117,17 @@ extension CategoryListViewController {
 
 extension CategoryListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        headerView.sortButton.setTitle(selectedFilter.description)
-        let dateCreatedAscAction = UIAction(title: "최신순") { _ in print("최신순") }
-        let dateCreateDesxAction = UIAction(title: "오래된순") { _ in print("오래된순") }
-        let nameCreatedAscAction = UIAction(title: "오름차순") { _ in print("오름차순") }
-        let nameCreateDescAction = UIAction(title: "내림차순") { _ in print("내림차순") }
-        let menu = UIMenu(title: "",
-                          image: nil,
-                          identifier: nil,
-                          options: .displayInline,
-                          children: [dateCreatedAscAction, dateCreateDesxAction, nameCreatedAscAction, nameCreateDescAction])
-        headerView.sortButton.menu = menu
+        headerView.sortButton.setTitle(selectedSort.description)
+//        let dateCreatedAscAction = UIAction(title: "최신순") { _ in print("최신순") }
+//        let dateCreateDesxAction = UIAction(title: "오래된순") { _ in print("오래된순") }
+//        let nameCreatedAscAction = UIAction(title: "오름차순") { _ in print("오름차순") }
+//        let nameCreateDescAction = UIAction(title: "내림차순") { _ in print("내림차순") }
+//        let menu = UIMenu(title: "",
+//                          image: nil,
+//                          identifier: nil,
+//                          options: .displayInline,
+//                          children: [dateCreatedAscAction, dateCreateDesxAction, nameCreatedAscAction, nameCreateDescAction])
+//        headerView.sortButton.menu = menu
         return headerView
     }
     

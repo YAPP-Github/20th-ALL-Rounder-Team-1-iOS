@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DropDown
 
 class CategoryListHeaderView: UITableViewHeaderFooterView {
 
@@ -20,6 +21,20 @@ class CategoryListHeaderView: UITableViewHeaderFooterView {
     }
     
     let sortButton = WSortButton()
+    
+    lazy var dropDown = DropDown(anchorView: sortButton).then {
+        
+        $0.bottomOffset = CGPoint(x: -35, y: 40)
+        $0.backgroundColor = .white
+        $0.textFont = WFont.body1()
+        $0.selectionBackgroundColor = .gray100
+        $0.cornerRadius = 10
+        $0.width = 118
+        $0.cellHeight = 46
+        $0.shadowOpacity = 0.1
+        $0.layer.borderColor = UIColor.gray200.cgColor
+        $0.layer.borderWidth = 1
+    }
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)

@@ -24,7 +24,6 @@ extension CategoryListViewModel {
     
     struct Input {
         let didTapAddCategoryButton: Observable<Void>
-        let didTapSortButton: Observable<Void>
         let didCategoryCellSelected: Observable<IndexPath>   // TODO: Cell의 Category-ID를 받아오도록 수정 (모델 구현 이후 진행)
     }
     
@@ -36,10 +35,6 @@ extension CategoryListViewModel {
         
         input.didTapAddCategoryButton.subscribe(onNext: { [weak self] _ in
             self?.coordinator?.showCategoryAddScene()
-        }).disposed(by: disposeBag)
-        
-        input.didTapSortButton.subscribe(onNext: { [weak self] _ in
-            // self?.coordinator?.presenfilterBottonmSheet()
         }).disposed(by: disposeBag)
         
         input.didCategoryCellSelected.subscribe(onNext: { [weak self] _ in

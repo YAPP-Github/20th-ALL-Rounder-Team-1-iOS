@@ -34,7 +34,7 @@ class CategoryCoordinator: Coordinator {
     func presenfilterBottonmSheet() {
         let categoryListFilterViewController = CategoryListFilterViewController()
         categoryListFilterViewController.viewModel = CategoryListFilterViewModel(coordinator: self)
-        categoryListFilterViewController.selectedFilter = categoryListViewController.selectedFilter
+        categoryListFilterViewController.selectedSort = categoryListViewController.selectedSort
         categoryListFilterViewController.modalPresentationStyle = .overFullScreen
         self.navigationController.present(categoryListFilterViewController, animated: true, completion: nil)
     }
