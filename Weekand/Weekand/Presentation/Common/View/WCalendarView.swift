@@ -26,7 +26,7 @@ class WCalendarView: UIStackView {
     
     lazy var titleLabel = UILabel().then {
         $0.font = WFont.subHead1()
-        $0.text = "2022년 5월"
+        $0.text = dateFormatter.string(from: Date())
     }
     
     lazy var leftButton = UIButton().then {
@@ -46,10 +46,7 @@ class WCalendarView: UIStackView {
         
         $0.scrollEnabled = false
         $0.scrollDirection = .horizontal
-        
-        $0.appearance.headerTitleFont = WFont.subHead1()
-        $0.appearance.headerDateFormat = "YYYY년 MM월"
-        $0.appearance.headerTitleColor = .gray900
+    
         $0.appearance.headerTitleAlignment = .center
         $0.headerHeight = 0
         
@@ -68,6 +65,11 @@ class WCalendarView: UIStackView {
         $0.select(Date())
     }
     
+    lazy var dateFormatter = DateFormatter().then {
+        $0.dateFormat = "YYYY년 M월"
+        $0.locale = Locale(identifier: "Ko_KR")
+    }
+    
     private func setupView() {
         self.axis = .vertical
         self.distribution = .fill
@@ -75,6 +77,9 @@ class WCalendarView: UIStackView {
         
         self.addArrangedSubview(headerStackView)
         self.addArrangedSubview(calendar)
+        
+        self.leftButton.addTarget(self, action: #selector(tapLastMonth), for: .touchUpInside)
+        self.rightButton.addTarget(self, action: #selector(tapNextMonth), for: .touchUpInside)
         
         [titleLabel, leftButton, rightButton].forEach { headerStackView.addArrangedSubview($0) }
         
@@ -95,5 +100,28 @@ class WCalendarView: UIStackView {
             make.trailing.leading.equalToSuperview()
             make.height.equalTo(300)
         }
+    }
+}
+
+extension WCalendarView {
+    
+    @objc func tapNextMonth() {
+        self.scrollCurrentPage(isNext: false)
+    }
+    
+    @objc func tapLastMonth() {
+        self.scrollCurrentPage(isNext: true)
+    }
+    
+    private func scrollCurrentPage(isNext: Bool) {
+        var dateComponents = DateComponents()
+        dateComponents.month = isNext ? -1 : 1
+        
+        let date = Calendar.current.date(byAdding: dateComponents, to: calendar.currentPage) ?? Date()
+            
+        calendar.currentPage = date
+        calendar.setCurrentPage(calendar.currentPage, animated: true)
+        
+        titleLabel.text = dateFormatter.string(from: date)
     }
 }
