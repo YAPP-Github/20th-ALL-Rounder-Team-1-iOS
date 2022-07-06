@@ -24,18 +24,11 @@ class MainTableViewCell: UITableViewCell {
     lazy var emojiView = WEmojiView()
     
     lazy var bottomStack = UIStackView().then {
-        $0.addArrangedSubview(timeLineLabel)
-        $0.addArrangedSubview(emojiView)
-        
         $0.axis = .horizontal
         $0.distribution = .fill
     }
     
     lazy var cellStack = UIStackView().then {
-        
-        $0.addArrangedSubview(nameLabel)
-        $0.addArrangedSubview(bottomStack)
-        
         $0.axis = .vertical
         $0.distribution = .fillEqually
         $0.spacing = 9
@@ -59,6 +52,9 @@ class MainTableViewCell: UITableViewCell {
     
     private func configureUI() {
         
+        [timeLineLabel, emojiView].forEach { bottomStack.addArrangedSubview($0) }
+        [nameLabel, bottomStack].forEach { cellStack.addArrangedSubview($0) }
+
         self.addSubview(cellStack)
         
         cellStack.snp.makeConstraints { make in

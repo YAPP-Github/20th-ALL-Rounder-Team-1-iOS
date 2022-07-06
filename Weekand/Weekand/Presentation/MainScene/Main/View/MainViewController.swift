@@ -219,14 +219,7 @@ extension MainViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as! MainTableViewCell
             
             cell.setUpCell(id: "id: \(indexPath.row)", color: .red, title: list.name, status: .completed, time: "00:00 - 00:00", emojiNumber: list.stickerCount, emojiOrder: [.awesome, .cool, .good, .support])
-            
-            cell.cellSelectionAction = { id in
-                print("Cell: \(String(describing: id))")
-            }
-            cell.emojiSelectionAction = { id in
-                print("emoji: \(String(describing: id))")
-            }
-            
+                        
             return cell
         })
         
