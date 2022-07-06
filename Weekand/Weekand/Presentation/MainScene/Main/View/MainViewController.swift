@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 import RxSwift
-import RxCocoa
+import RxGesture
 
 class MainViewController: UIViewController {
         
@@ -50,10 +50,10 @@ class MainViewController: UIViewController {
     private func configureUI() {
         
         // Navigation Bar
-        let foldButtonImage = UIImage(named: "chevron.down") ?? UIImage(systemName: "chevron.down")
+        let foldButtonImage = UIImage(named: "chevron.up") ?? UIImage(systemName: "chevron.up")
         foldButton.setBackgroundImage(foldButtonImage?.withTintColor(.gray900), for: .normal, barMetrics: .default)
         navigationItem.leftBarButtonItem = foldButton
-        navigationItem.rightBarButtonItems = [ searchButton, alarmButton]
+        navigationItem.rightBarButtonItems = [alarmButton, searchButton]
         
         // Content View
         [ collectionView, headerView, tableView ].forEach { self.view.addSubview($0) }
@@ -81,6 +81,20 @@ class MainViewController: UIViewController {
             make.right.equalToSuperview().inset(24)
             make.bottom.equalToSuperview().inset(73)
         }
+        
+        // MARK: Gesture
+        self.headerView.calendarView.titleLabel.rx.tapGesture()
+            .when(.recognized)
+            .bind { _ in
+                print("title Tap")
+            }.disposed(by: disposeBag)
+        
+        self.headerView.profileView.rx.tapGesture()
+            .when(.recognized)
+            .bind { _ in
+                print("Profile")
+            }.disposed(by: disposeBag)
+        
     }
     
     // MARK: Bind View Model
@@ -153,6 +167,7 @@ extension MainViewController {
         
         collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 0), collectionViewLayout: layout)
         collectionView.isScrollEnabled = false
+        collectionView.allowsMultipleSelection = false
         collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
     }
     
@@ -161,6 +176,11 @@ extension MainViewController {
         viewModel?.collectionViewDataSource = UICollectionViewDiffableDataSource<MainSection, FollowingUser>(collectionView: collectionView, cellProvider: { collectionView, indexPath, list in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
             cell.setUpCell(list)
+            
+            if indexPath.item == 0 {
+                self.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+            }
+            
             return cell
         })
         
@@ -182,6 +202,7 @@ extension MainViewController {
         tableView = UITableView()
         
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.identifier)
         
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 16))
@@ -197,13 +218,31 @@ extension MainViewController {
         
         viewModel?.tableViewDataSource = UITableViewDiffableDataSource<MainSection, ScehduleMain>(tableView: tableView, cellProvider: { tableView, indexPath, list in
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as! MainTableViewCell
-            cell.setUpCell(color: .red, title: list.name, status: .completed, time: "00:00 - 00:00", emojiNumber: list.stickerCount, emojiOrder: [.awesome, .cool, .good, .support])
+            
+            cell.switchStickerButtonAppearance(userId: "123456")    // TODO: 로그인 구현 후 수정
+            cell.setUpCell(id: "id: \(indexPath.row)", color: .red, title: list.name, status: .completed, time: "00:00 - 00:00", emojiNumber: list.stickerCount, emojiOrder: [.awesome, .cool, .good, .support])
+            cell.delegate = self
+            
             return cell
         })
         
         viewModel?.configureTableViewSnapshot()
     }
     
+}
+
+extension MainViewController: MainTableViewCellDelegate {
+    func cellTapped(id: String?) {
+        print("\(#function), id: \(id)")
+    }
+    
+    func emojiViewTapped(id: String?) {
+        print("\(#function), id: \(id)")
+    }
+    
+    func stickerButtonTapped(id: String?) {
+        print("\(#function), id: \(id)")
+    }
 }
 
 // MARK: UI Animation
@@ -214,7 +253,7 @@ extension MainViewController {
         
         let isFolded = collectionView.frame.height == 0 ? true : false
         let viewHeight: CGFloat = isFolded ? 80 : 0
-        let buttonImage = isFolded ? UIImage(named: "chevron.down") ?? UIImage(systemName: "chevron.down") : UIImage(named: "chevron.up") ?? UIImage(systemName: "chevron.up")
+        let buttonImage = isFolded ? UIImage(named: "chevron.up") ?? UIImage(systemName: "chevron.up") : UIImage(named: "chevron.down") ?? UIImage(systemName: "chevron.down")
         
         collectionView.snp.updateConstraints { make in
             make.height.lessThanOrEqualTo(viewHeight)
@@ -223,7 +262,6 @@ extension MainViewController {
         if let safeImage = buttonImage {
             navigationItem.leftBarButtonItem?.setBackgroundImage(safeImage.withTintColor(.gray900), for: .normal, barMetrics: .default)
         }
-        
         
         UIView.animate(withDuration: 0.25) {
             self.view.layoutIfNeeded()

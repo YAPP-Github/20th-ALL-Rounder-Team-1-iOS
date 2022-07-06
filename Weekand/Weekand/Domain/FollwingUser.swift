@@ -20,7 +20,7 @@ struct FollowingUser: Hashable {
     
     let id = UUID()
     
-    let userId: Int
+    let userId: String
     let name: String
     let imagePath: String
 }

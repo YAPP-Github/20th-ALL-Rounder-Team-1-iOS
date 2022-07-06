@@ -14,13 +14,13 @@ class CategoryDetailViewController: UIViewController {
     }
     
     let sample: [ScehduleMain] = [
-        ScehduleMain(scheduleId: 0, color: "red", name: "일정 제목1", dateStart: Date(), dataEnd: Date(), stickerCount: 134, stickerNameList: []),
-        ScehduleMain(scheduleId: 0, color: "red", name: "일정 제목2", dateStart: Date(), dataEnd: Date(), stickerCount: 313, stickerNameList: []),
-        ScehduleMain(scheduleId: 0, color: "red", name: "일정 제목3", dateStart: Date(), dataEnd: Date(), stickerCount: 54, stickerNameList: []),
-        ScehduleMain(scheduleId: 0, color: "red", name: "일정 제목4", dateStart: Date(), dataEnd: Date(), stickerCount: 431, stickerNameList: []),
-        ScehduleMain(scheduleId: 0, color: "red", name: "일정 제목5", dateStart: Date(), dataEnd: Date(), stickerCount: 64, stickerNameList: []),
-        ScehduleMain(scheduleId: 0, color: "red", name: "일정 제목6", dateStart: Date(), dataEnd: Date(), stickerCount: 3, stickerNameList: []),
-        ScehduleMain(scheduleId: 0, color: "red", name: "일정 제목7", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: [])
+        ScehduleMain(scheduleId: "0", color: "red", name: "일정 제목1", dateStart: Date(), dataEnd: Date(), stickerCount: 134, stickerNameList: []),
+        ScehduleMain(scheduleId: "0", color: "red", name: "일정 제목2", dateStart: Date(), dataEnd: Date(), stickerCount: 313, stickerNameList: []),
+        ScehduleMain(scheduleId: "0", color: "red", name: "일정 제목3", dateStart: Date(), dataEnd: Date(), stickerCount: 54, stickerNameList: []),
+        ScehduleMain(scheduleId: "0", color: "red", name: "일정 제목4", dateStart: Date(), dataEnd: Date(), stickerCount: 431, stickerNameList: []),
+        ScehduleMain(scheduleId: "0", color: "red", name: "일정 제목5", dateStart: Date(), dataEnd: Date(), stickerCount: 64, stickerNameList: []),
+        ScehduleMain(scheduleId: "0", color: "red", name: "일정 제목6", dateStart: Date(), dataEnd: Date(), stickerCount: 3, stickerNameList: []),
+        ScehduleMain(scheduleId: "0", color: "red", name: "일정 제목7", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: [])
     ]
     
     var viewModel: CategoryDetailViewModel?

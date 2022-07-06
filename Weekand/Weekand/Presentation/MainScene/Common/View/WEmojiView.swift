@@ -90,7 +90,7 @@ class WEmojiView: UIView {
 // MARK: EmojiStack
 extension WEmojiView {
     
-    // Emoji를 배열로 받아 순서대로 표시해준다.
+    /// Emoji를 배열로 받아 순서대로 표시해준다.
     // API가 [emojiName: emojiNumber] 형태로 전달해주면 추후에 emojiOrder 생성하는 함수 구현
     func setEmoji(emojiOrder: [Emoji]) {
         

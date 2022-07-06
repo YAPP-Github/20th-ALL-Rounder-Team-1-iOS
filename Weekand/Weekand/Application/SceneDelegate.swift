@@ -22,6 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         window?.overrideUserInterfaceStyle = .light
         
+        // TODO: 유저 로그인 구현 후 삭제
+        UserDataStorage.shared.userID = "12345"
+        
         self.coordinator = MainCoordinator(navigationController: navigationController)
         self.coordinator?.start()
     }

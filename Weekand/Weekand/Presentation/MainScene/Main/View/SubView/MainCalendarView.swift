@@ -20,7 +20,7 @@ class MainCalendarView: UIView {
     
     lazy var titleLabel = UILabel().then {
         $0.font = WFont.body1()
-        $0.text = "5월 1주차"   // TODO: This is Sample - 함수 만들어서 Date 대응
+        $0.isUserInteractionEnabled = true
     }
     
     lazy var leftButton = UIButton().then {
@@ -85,6 +85,7 @@ class MainCalendarView: UIView {
         
         self.addSubview(calendar)
         self.calendar = calendar
+        self.changeTitle(date: Date())
     }
     
     // MARK: configureUI
@@ -190,7 +191,7 @@ extension MainCalendarView: FSCalendarDelegate, FSCalendarDataSource {
         
         let dateFormatter: DateFormatter = {
             let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy/MM/dd"
+            formatter.dateFormat = "yyyy/MM/dd" 
             return formatter
         }()
 
@@ -199,6 +200,11 @@ extension MainCalendarView: FSCalendarDelegate, FSCalendarDataSource {
         print("selected dates is \(selectedDates)")
         
         self.calendar.setCurrentPage(date, animated: true)
+    }
+    
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        let page = calendar.currentPage
+        changeTitle(date: page)
     }
     
 }
@@ -221,6 +227,19 @@ extension MainCalendarView {
         
         self.currentPage = Calendar.current.date(byAdding: dateComponents, to: self.currentPage ?? Date())
         self.calendar.setCurrentPage(self.currentPage!, animated: true)
+    }
+    
+    /// 캘린더 타이틀(월 표시) 변경
+    private func changeTitle(date: Date) {
+        
+        let dateFormatter: DateFormatter = {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "M"
+            
+            return dateFormatter
+        }()
+        
+        titleLabel.text = "\(dateFormatter.string(from: date))월"
     }
     
 }

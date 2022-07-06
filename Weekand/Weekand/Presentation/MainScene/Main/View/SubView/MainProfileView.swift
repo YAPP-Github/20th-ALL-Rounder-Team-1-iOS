@@ -52,6 +52,7 @@ class MainProfileView: UIView {
         
         self.backgroundColor = .gray100
         self.layer.cornerRadius = 10
+        self.isUserInteractionEnabled = true
     }
     
     private func configureUI() {
