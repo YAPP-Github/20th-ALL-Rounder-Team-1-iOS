@@ -18,6 +18,7 @@ class MainTableViewCell: UITableViewCell {
     
     var dataId: String?
     let disposeBag = DisposeBag()
+    var isFirendPage: Bool?
     
     // MARK: 상단 (카테고리 색상 원 + 일정 이름)
     lazy var nameLabel = WCategoryTitleLabel()
@@ -25,6 +26,13 @@ class MainTableViewCell: UITableViewCell {
     // MARK: 하단 (아이콘 & 시작~종료 시간 + 이모지)
     lazy var timeLineLabel = WStatusTimeLabel()
     lazy var emojiView = WEmojiView()
+    lazy var stickerButton = UIButton().then {
+        let image = UIImage(named: "sticker.button") ?? UIImage(systemName: "hand.thumbsup.circle")?.withTintColor(.mainColor)
+        $0.setImage(image, for: .normal)
+        $0.isHidden = true
+        
+        $0.imageView?.contentMode = .scaleAspectFit
+    }
     
     lazy var bottomStack = UIStackView().then {
         $0.axis = .horizontal
@@ -54,7 +62,11 @@ class MainTableViewCell: UITableViewCell {
     
     private func configureUI() {
         
-        [timeLineLabel, emojiView].forEach { bottomStack.addArrangedSubview($0) }
+        [timeLineLabel, emojiView, stickerButton].forEach { bottomStack.addArrangedSubview($0) }
+        stickerButton.snp.makeConstraints { make in
+            make.width.equalTo(stickerButton.snp.height)
+        }
+        
         [nameLabel, bottomStack].forEach { cellStack.addArrangedSubview($0) }
 
         self.contentView.addSubview(cellStack)
@@ -63,6 +75,8 @@ class MainTableViewCell: UITableViewCell {
         }
         
     }
+    
+    // MARK: Gesture Binding
     private func bindGesture() {
         
         cellStack.rx.tapGesture(configuration: { recognizer, _ in
@@ -81,6 +95,11 @@ class MainTableViewCell: UITableViewCell {
             print("emoji tap")
         })
         .disposed(by: disposeBag)
+        
+        stickerButton.rx.tap.subscribe(onNext: { _ in
+            print("sticker tap")
+        })
+        .disposed(by: disposeBag)
     }
 
 }
@@ -96,21 +115,13 @@ extension MainTableViewCell {
         self.timeLineLabel.configureValue(status: status, title: time)
         self.emojiView.numberLabel.text = String(emojiNumber)
         self.emojiView.setEmoji(emojiOrder: emojiOrder)
+        
+        stickerButton.isHidden = (id == UserDataStorage.shared.userID) ? true : false
     }
     
     // TODO: API 확정되면 수정
     public func setUpCell(_ model: ScehduleMain) {
         
-    }
-
-}
-
-// MARK: Touch Event
-extension MainTableViewCell {
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
     }
 
 }
