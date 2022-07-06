@@ -127,9 +127,7 @@
 		F3F731D328672AF500C8B778 /* WTypeToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731D228672AF500C8B778 /* WTypeToggleButton.swift */; };
 		F3F731D928677A2000C8B778 /* ColorsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731D828677A2000C8B778 /* ColorsCollectionViewCell.swift */; };
 		F3F731DB2868966700C8B778 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731DA2868966700C8B778 /* Color.swift */; };
-		F3F731DD2868DD5300C8B778 /* CategoryListFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731DC2868DD5300C8B778 /* CategoryListFilterViewController.swift */; };
 		F3F731DF2868DE0000C8B778 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731DE2868DE0000C8B778 /* Sort.swift */; };
-		F3F731E12868E02C00C8B778 /* CategoryListFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731E02868E02C00C8B778 /* CategoryListFilterViewModel.swift */; };
 		F3F731E32869918E00C8B778 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731E22869918E00C8B778 /* FilterTableViewCell.swift */; };
 		F3F731E92869E5EC00C8B778 /* PasswordFindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731E82869E5EC00C8B778 /* PasswordFindViewController.swift */; };
 /* End PBXBuildFile section */
@@ -259,9 +257,7 @@
 		F3F731D228672AF500C8B778 /* WTypeToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTypeToggleButton.swift; sourceTree = "<group>"; };
 		F3F731D828677A2000C8B778 /* ColorsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsCollectionViewCell.swift; sourceTree = "<group>"; };
 		F3F731DA2868966700C8B778 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		F3F731DC2868DD5300C8B778 /* CategoryListFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListFilterViewController.swift; sourceTree = "<group>"; };
 		F3F731DE2868DE0000C8B778 /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
-		F3F731E02868E02C00C8B778 /* CategoryListFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListFilterViewModel.swift; sourceTree = "<group>"; };
 		F3F731E22869918E00C8B778 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		F3F731E82869E5EC00C8B778 /* PasswordFindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindViewController.swift; sourceTree = "<group>"; };
 		F77A7360107CB67CF89A6DEF /* Pods-Weekand.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weekand.release.xcconfig"; path = "Target Support Files/Pods-Weekand/Pods-Weekand.release.xcconfig"; sourceTree = "<group>"; };
@@ -400,7 +396,6 @@
 				F378685828621C2C00BEEC81 /* CategoryModifyViewModel.swift */,
 				F378685A28621C8F00BEEC81 /* CategoryEditViewModelType.swift */,
 				F3CC76AF28670BA200A3FBBE /* ColorSheetViewModel.swift */,
-				F3F731E02868E02C00C8B778 /* CategoryListFilterViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -719,7 +714,6 @@
 			isa = PBXGroup;
 			children = (
 				F392A1C6284F51B100512A42 /* CategoryListViewController.swift */,
-				F3F731DC2868DD5300C8B778 /* CategoryListFilterViewController.swift */,
 				F32F724F2853AEE00056B189 /* CategoryDetailViewController.swift */,
 				F32F725928549A5D0056B189 /* CategoryEditViewController.swift */,
 				F3CC76B12867130100A3FBBE /* ColorSheetViewController.swift */,
@@ -1023,7 +1017,6 @@
 				7DA4AB7A285871E0009E91FB /* UIButton+setImageInset.swift in Sources */,
 				7DC166BC28371B0C00F1A8F1 /* ColorSet.swift in Sources */,
 				F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */,
-				F3F731DD2868DD5300C8B778 /* CategoryListFilterViewController.swift in Sources */,
 				7DB5E13C284B4DA400DBB7EA /* MainCoordinator.swift in Sources */,
 				7D29E346286422FC0047C805 /* UserSummary.swift in Sources */,
 				7D76AEB4284458C2001C668D /* MainViewController.swift in Sources */,
@@ -1044,7 +1037,6 @@
 				F32F72542853C2200056B189 /* CategoryDetailHeaderView.swift in Sources */,
 				F3DD021A2846629100AD9240 /* Coordinator.swift in Sources */,
 				F392A1C7284F51B100512A42 /* CategoryListViewController.swift in Sources */,
-				F3F731E12868E02C00C8B778 /* CategoryListFilterViewModel.swift in Sources */,
 				F3DD0233284A534C00AD9240 /* CoordinatorType.swift in Sources */,
 				F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */,
 				7DAA861F284B968000F21E35 /* ScehduleMain.swift in Sources */,
