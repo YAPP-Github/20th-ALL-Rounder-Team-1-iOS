@@ -8,6 +8,8 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
+import RxGesture
 
 /// 메인화면 일정 리스트 TableView에 쓰이는 Cell
 class MainTableViewCell: UITableViewCell {
@@ -15,6 +17,7 @@ class MainTableViewCell: UITableViewCell {
     static let identifier = "MainTableViewCell"
     
     var dataId: String?
+    let disposeBag = DisposeBag()
     
     // MARK: 상단 (카테고리 색상 원 + 일정 이름)
     lazy var nameLabel = WCategoryTitleLabel()
@@ -38,12 +41,11 @@ class MainTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUp()
         configureUI()
+        bindGesture()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setUp()
-        configureUI()
     }
     
     private func setUp() {
@@ -55,12 +57,30 @@ class MainTableViewCell: UITableViewCell {
         [timeLineLabel, emojiView].forEach { bottomStack.addArrangedSubview($0) }
         [nameLabel, bottomStack].forEach { cellStack.addArrangedSubview($0) }
 
-        self.addSubview(cellStack)
-        
+        self.contentView.addSubview(cellStack)
         cellStack.snp.makeConstraints { make in
             make.edges.equalTo(UIEdgeInsets(top: 12, left: 31, bottom: 15, right: 24))
         }
         
+    }
+    private func bindGesture() {
+        
+        cellStack.rx.tapGesture(configuration: { recognizer, _ in
+            recognizer.delegate = self
+        })
+        .when(.recognized)
+        .subscribe(onNext: { _ in
+            print("Cell tap")
+        }).disposed(by: disposeBag)
+        
+        emojiView.rx.tapGesture(configuration: { recognizer, _ in
+            recognizer.delegate = self
+        })
+        .when(.recognized)
+        .subscribe(onNext: { _ in
+            print("emoji tap")
+        })
+        .disposed(by: disposeBag)
     }
 
 }

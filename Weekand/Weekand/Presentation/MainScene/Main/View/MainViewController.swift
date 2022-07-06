@@ -202,6 +202,7 @@ extension MainViewController {
         tableView = UITableView()
         
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.identifier)
         
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 16))
@@ -219,7 +220,7 @@ extension MainViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as! MainTableViewCell
             
             cell.setUpCell(id: "id: \(indexPath.row)", color: .red, title: list.name, status: .completed, time: "00:00 - 00:00", emojiNumber: list.stickerCount, emojiOrder: [.awesome, .cool, .good, .support])
-                        
+            
             return cell
         })
         
