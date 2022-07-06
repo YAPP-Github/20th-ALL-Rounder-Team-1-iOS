@@ -28,6 +28,7 @@ class DropDownStackView: UIStackView {
     
     lazy var label = WTextLabel().then {
         $0.backgroundColor?.withAlphaComponent(0)
+        $0.font = WFont.body1()
         $0.text = "todo"
     }
     
