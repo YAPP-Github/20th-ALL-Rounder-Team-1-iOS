@@ -29,8 +29,15 @@ class ScheduleEditViewController: BaseViewController {
     }
     lazy var nameStackView = WTextFieldStackView(fieldPlaceholder: "일정명을 입력해주세요.", nameText: "일정")
     lazy var dropDownStackView = DropDownStackView()
-    lazy var startDateTimeStackView = DateTimeStackView(nameText: "시작", dateText: dateFormatter.string(from: Date()), timeText: "16:00")
-    lazy var endDateTimeStackView = DateTimeStackView(nameText: "종료", dateText: dateFormatter.string(from: Date()), timeText: "20:00")
+    lazy var startDateTimeStackView = DateTimeStackView(
+        nameText: "시작",
+        dateText: dateFormatter.string(from: Date()),
+        timeText: timeFormatter.string(from: defaultStartTime)
+    )
+    lazy var endDateTimeStackView = DateTimeStackView(
+        nameText: "종료",
+        dateText: dateFormatter.string(from: Date()),
+        timeText: timeFormatter.string(from: defaultEndTime))
     lazy var addInformationContainerView = AddInformationContainerView()
     lazy var memoStackView = MemoStackView(placeholder: "메모를 입력해주세요", nameText: "메모")
     
@@ -38,6 +45,25 @@ class ScheduleEditViewController: BaseViewController {
         $0.dateFormat = "YYYY.MM.dd."
         $0.locale = Locale(identifier: "Ko_KR")
     }
+    
+    lazy var timeFormatter = DateFormatter().then {
+        $0.dateFormat = "HH:mm"
+        $0.locale = Locale(identifier: "Ko_KR")
+    }
+    
+    var defaultStartTime: Date {
+        let currentTime = Date()
+        return currentTime
+    }
+    
+    var defaultEndTime: Date {
+        let currentTime = Date()
+        let addedTime = Calendar.current.date(byAdding: .hour, value: 1, to: currentTime) ?? currentTime
+        return addedTime
+    }
+    
+    let didselectStartDate = PublishSubject<Date>()
+    let didselectEndDate = PublishSubject<Date>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +90,11 @@ class ScheduleEditViewController: BaseViewController {
             
             cell.colorView.backgroundColor = UIColor(hex: colorList[index].hexCode)
         }
+        
+        startDateTimeStackView.timePicker.setDate(defaultStartTime, animated: false)
+        startDateTimeStackView.timePicker.addTarget(self, action: #selector(startTimePickerValueDidChange(_:)), for: .valueChanged)
+        endDateTimeStackView.timePicker.setDate(defaultEndTime, animated: false)
+        endDateTimeStackView.timePicker.addTarget(self, action: #selector(endTimePickerValueDidChange(_:)), for: .valueChanged)
     }
     
     private func configureUI() {
@@ -203,6 +234,20 @@ class ScheduleEditViewController: BaseViewController {
             self.memoStackView.isHidden = false
             self.addInformationContainerView.memoButton.isHidden = true
         }).disposed(by: disposeBag)
+    }
+}
+
+extension ScheduleEditViewController {
+    @objc private func startTimePickerValueDidChange(_ datePicker: UIDatePicker) {
+        let selectedTime = timeFormatter.string(from: datePicker.date)
+        self.startDateTimeStackView.timeButton.setTitle(selectedTime, for: .normal, font: WFont.body1())
+        self.didselectStartDate.onNext(datePicker.date)
+    }
+    
+    @objc private func endTimePickerValueDidChange(_ datePicker: UIDatePicker) {
+        let selectedTime = timeFormatter.string(from: datePicker.date)
+        self.endDateTimeStackView.timeButton.setTitle(selectedTime, for: .normal, font: WFont.body1())
+        self.didselectEndDate.onNext(datePicker.date)
     }
 }
 
