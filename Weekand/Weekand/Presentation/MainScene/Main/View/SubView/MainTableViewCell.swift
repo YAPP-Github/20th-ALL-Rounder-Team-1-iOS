@@ -11,6 +11,12 @@ import Then
 import RxSwift
 import RxGesture
 
+protocol MainTableViewCellDelegate: AnyObject {
+    func cellTapped(id: String?)
+    func emojiViewTapped(id: String?)
+    func stickerButtonTapped(id: String?)
+}
+
 /// 메인화면 일정 리스트 TableView에 쓰이는 Cell
 class MainTableViewCell: UITableViewCell {
     
@@ -18,7 +24,8 @@ class MainTableViewCell: UITableViewCell {
     
     var dataId: String?
     let disposeBag = DisposeBag()
-    var isFirendPage: Bool?
+    var delegate: MainTableViewCellDelegate?
+    
     
     // MARK: 상단 (카테고리 색상 원 + 일정 이름)
     lazy var nameLabel = WCategoryTitleLabel()
@@ -84,7 +91,7 @@ class MainTableViewCell: UITableViewCell {
         })
         .when(.recognized)
         .subscribe(onNext: { _ in
-            print("Cell tap")
+            self.delegate?.cellTapped(id: self.dataId)
         }).disposed(by: disposeBag)
         
         emojiView.rx.tapGesture(configuration: { recognizer, _ in
@@ -92,12 +99,12 @@ class MainTableViewCell: UITableViewCell {
         })
         .when(.recognized)
         .subscribe(onNext: { _ in
-            print("emoji tap")
+            self.delegate?.emojiViewTapped(id: self.dataId)
         })
         .disposed(by: disposeBag)
         
         stickerButton.rx.tap.subscribe(onNext: { _ in
-            print("sticker tap")
+            self.delegate?.stickerButtonTapped(id: self.dataId)
         })
         .disposed(by: disposeBag)
     }
@@ -116,7 +123,11 @@ extension MainTableViewCell {
         self.emojiView.numberLabel.text = String(emojiNumber)
         self.emojiView.setEmoji(emojiOrder: emojiOrder)
         
-        stickerButton.isHidden = (id == UserDataStorage.shared.userID) ? true : false
+    }
+    
+    /// 일정 주인의 userID를 받아 로그인한 유저 본인이 아니라면 스티커 추가 버튼을 보여준다
+    public func switchStickerButtonAppearance(userId: String) {
+        stickerButton.isHidden = (userId == UserDataStorage.shared.userID) ? true : false
     }
     
     // TODO: API 확정되면 수정

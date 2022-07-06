@@ -219,7 +219,9 @@ extension MainViewController {
         viewModel?.tableViewDataSource = UITableViewDiffableDataSource<MainSection, ScehduleMain>(tableView: tableView, cellProvider: { tableView, indexPath, list in
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as! MainTableViewCell
             
+            cell.switchStickerButtonAppearance(userId: "123456")    // TODO: 로그인 구현 후 수정
             cell.setUpCell(id: "id: \(indexPath.row)", color: .red, title: list.name, status: .completed, time: "00:00 - 00:00", emojiNumber: list.stickerCount, emojiOrder: [.awesome, .cool, .good, .support])
+            cell.delegate = self
             
             return cell
         })
@@ -227,6 +229,20 @@ extension MainViewController {
         viewModel?.configureTableViewSnapshot()
     }
     
+}
+
+extension MainViewController: MainTableViewCellDelegate {
+    func cellTapped(id: String?) {
+        print("\(#function), id: \(id)")
+    }
+    
+    func emojiViewTapped(id: String?) {
+        print("\(#function), id: \(id)")
+    }
+    
+    func stickerButtonTapped(id: String?) {
+        print("\(#function), id: \(id)")
+    }
 }
 
 // MARK: UI Animation
