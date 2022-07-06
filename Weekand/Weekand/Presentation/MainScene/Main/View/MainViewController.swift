@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 import RxSwift
-import RxCocoa
+import RxGesture
 
 class MainViewController: UIViewController {
         
@@ -81,6 +81,20 @@ class MainViewController: UIViewController {
             make.right.equalToSuperview().inset(24)
             make.bottom.equalToSuperview().inset(73)
         }
+        
+        // MARK: Gesture
+        self.headerView.calendarView.titleLabel.rx.tapGesture()
+            .when(.recognized)
+            .bind { _ in
+                print("title Tap")
+            }.disposed(by: disposeBag)
+        
+        self.headerView.profileView.rx.tapGesture()
+            .when(.recognized)
+            .bind { _ in
+                print("Profile")
+            }.disposed(by: disposeBag)
+        
     }
     
     // MARK: Bind View Model
@@ -203,7 +217,16 @@ extension MainViewController {
         
         viewModel?.tableViewDataSource = UITableViewDiffableDataSource<MainSection, ScehduleMain>(tableView: tableView, cellProvider: { tableView, indexPath, list in
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as! MainTableViewCell
+            
             cell.setUpCell(id: "id: \(indexPath.row)", color: .red, title: list.name, status: .completed, time: "00:00 - 00:00", emojiNumber: list.stickerCount, emojiOrder: [.awesome, .cool, .good, .support])
+            
+            cell.cellSelectionAction = { id in
+                print("Cell: \(String(describing: id))")
+            }
+            cell.emojiSelectionAction = { id in
+                print("emoji: \(String(describing: id))")
+            }
+            
             return cell
         })
         

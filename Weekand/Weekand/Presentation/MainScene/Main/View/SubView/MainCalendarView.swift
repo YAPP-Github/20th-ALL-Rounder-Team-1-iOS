@@ -20,6 +20,7 @@ class MainCalendarView: UIView {
     
     lazy var titleLabel = UILabel().then {
         $0.font = WFont.body1()
+        $0.isUserInteractionEnabled = true
     }
     
     lazy var leftButton = UIButton().then {
@@ -190,7 +191,7 @@ extension MainCalendarView: FSCalendarDelegate, FSCalendarDataSource {
         
         let dateFormatter: DateFormatter = {
             let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy/MM/dd"
+            formatter.dateFormat = "yyyy/MM/dd" 
             return formatter
         }()
 
