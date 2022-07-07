@@ -9,22 +9,6 @@ import UIKit
 import SnapKit
 import Then
 
-enum Emoji {
-    case good       // 좋아요
-    case awesome    // 대단해요
-    case cool       // 멋져요
-    case support    // 응원해요
-    
-    var imageName: String {
-        switch self {
-        case .good:     return "SmileEmoji"
-        case .awesome:  return "GoodEmoji"
-        case .cool:     return "CoolEmoji"
-        case .support:  return "CongratsEmoji"
-        }
-    }
-}
-
 class WEmojiView: UIView {
     
     // MARK: 받은 Emoji 개수 label
