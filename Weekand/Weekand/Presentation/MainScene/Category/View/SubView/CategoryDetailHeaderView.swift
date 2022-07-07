@@ -18,7 +18,7 @@ class CategoryDetailHeaderView: UITableViewHeaderFooterView {
     
     lazy var sortButton = WSortButton().then {
         $0.setTitle("내림차순")
-        $0.backgroundColor = .gray300
+        $0.backgroundColor = .white
     }
     
     override init(reuseIdentifier: String?) {

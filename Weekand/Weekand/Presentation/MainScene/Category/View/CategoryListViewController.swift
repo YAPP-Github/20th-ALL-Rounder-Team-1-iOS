@@ -83,7 +83,7 @@ class CategoryListViewController: UIViewController {
             dropDownDidSelectEvent: dropDownDidSelectEvent
         )
         
-        self.headerView.dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+        self.headerView.dropDown.selectionAction = { [unowned self] (_ : Int, item: String) in
             guard let selectedSort = Sort.allCases.filter { $0.description == item }.first else {
                 return
             }
