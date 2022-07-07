@@ -455,6 +455,8 @@
 		7DAA8621284BAFA000F21E35 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F323FEEF287636B500DFD8FD /* SortDropDownCell.xib */,
+				F323FEEE287636B500DFD8FD /* SortDropDownCell.swift */,
 				7D6B911428449A760044E217 /* WIconLabel.swift */,
 				7D6B911628449F610044E217 /* WCategoryTitleLabel.swift */,
 				7D6B91182844A8D50044E217 /* WStatusTimeLabel.swift */,
@@ -666,8 +668,6 @@
 				F32F725F2854BB730056B189 /* ColorStackView.swift */,
 				F3F731D828677A2000C8B778 /* ColorsCollectionViewCell.swift */,
 				F3F731E22869918E00C8B778 /* FilterTableViewCell.swift */,
-				F323FEEE287636B500DFD8FD /* SortDropDownCell.swift */,
-				F323FEEF287636B500DFD8FD /* SortDropDownCell.xib */,
 			);
 			path = SubView;
 			sourceTree = "<group>";

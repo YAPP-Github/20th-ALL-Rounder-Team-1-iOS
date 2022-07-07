@@ -23,7 +23,6 @@ class CategoryListHeaderView: UITableViewHeaderFooterView {
     let sortButton = WSortButton()
     
     lazy var dropDown = DropDown(anchorView: sortButton).then {
-        
         $0.bottomOffset = CGPoint(x: -35, y: 40)
         $0.backgroundColor = .white
         $0.textFont = WFont.body1()

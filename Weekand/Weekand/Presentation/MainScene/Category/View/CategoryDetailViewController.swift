@@ -6,6 +6,11 @@
 //
 
 import UIKit
+import SnapKit
+import Then
+import RxSwift
+import RxCocoa
+import DropDown
 
 class CategoryDetailViewController: UIViewController {
 
@@ -23,10 +28,14 @@ class CategoryDetailViewController: UIViewController {
         ScehduleMain(scheduleId: 0, color: "red", name: "일정 제목7", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: [])
     ]
     
+    private let disposeBag = DisposeBag()
     var viewModel: CategoryDetailViewModel?
     var dataSource: UITableViewDiffableDataSource<Section, ScehduleMain>!
     
     let tableView = UITableView()
+    var headerView = CategoryDetailHeaderView()
+    
+    var selectedSort: Sort = .nameCreateDESC
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +60,13 @@ class CategoryDetailViewController: UIViewController {
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
         }
+        
+        headerView.dropDown.cellNib = UINib(nibName: "SortDropDownCell", bundle: nil)
+        headerView.dropDown.dataSource = Sort.allCases.map { $0.description }
+        headerView.dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
+            guard let cell = cell as? SortDropDownCell else { return }
+            
+        }
     }
     
     private func configureUI() {
@@ -62,7 +78,24 @@ class CategoryDetailViewController: UIViewController {
     }
     
     private func bindViewModel() {
+        let dropDownDidSelectEvent = BehaviorRelay(value: Sort.nameCreateDESC)
         
+        let input = CategoryDetailViewModel.Input(
+            dropDownDidSelectEvent: dropDownDidSelectEvent
+        )
+        
+        self.headerView.dropDown.selectionAction = { [unowned self] (_ : Int, item: String) in
+            guard let selectedSort = Sort.allCases.filter { $0.description == item }.first else {
+                return
+            }
+            
+            dropDownDidSelectEvent.accept(selectedSort)
+            self.headerView.sortButton.setTitle(selectedSort.description)
+        }
+        
+        self.headerView.sortButton.rx.tap.subscribe(onNext: {
+            self.headerView.dropDown.show()
+        }).disposed(by: disposeBag)
     }
 
 }
@@ -94,8 +127,9 @@ extension CategoryDetailViewController {
 
 extension CategoryDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        return CategoryDetailHeaderView()
+        headerView.sortButton.setTitle(selectedSort.description)
+
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
