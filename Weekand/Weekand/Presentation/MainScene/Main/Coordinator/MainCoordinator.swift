@@ -57,6 +57,7 @@ class MainCoordinator: Coordinator {
     /// 스티커 추가 Sheet
     func pushStickerAddSheet() {
         let stickerAddViewController = StickerAddSheetViewController()
+        stickerAddViewController.viewModel = StickerAddSheetViewModel()
         self.navigationController.present(stickerAddViewController, animated: true, completion: nil)
     }
     
