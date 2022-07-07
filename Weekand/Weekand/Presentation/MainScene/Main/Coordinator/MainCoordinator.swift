@@ -41,6 +41,27 @@ class MainCoordinator: Coordinator {
         alarmViewController.viewModel = AlarmViewModel()
         self.navigationController.pushViewController(alarmViewController, animated: true)
     }
+    
+    /// 월간 달력으로 날짜 선택 Sheet
+    func pushMonthlyCalendarSheet() {
+        let monthlyCalendarViewController = MonthlyCalendarSheetViewController()
+        self.navigationController.present(monthlyCalendarViewController, animated: true, completion: nil)
+    }
+    
+    /// 받은 스티커 현황 Sheet
+    func pushEmojiSheet() {
+        let emojiViewController = EmojiSheetViewController()
+        self.navigationController.present(emojiViewController, animated: true, completion: nil)
+    }
+    
+    /// 스티커 추가 Sheet
+    func pushStickerAddSheet() {
+        let stickerAddViewController = StickerAddSheetViewController()
+        self.navigationController.present(stickerAddViewController, animated: true, completion: nil)
+    }
+    
+
+
         
     // TODO: 검색 화면 구현 후 개발
     func showSearchScene() {

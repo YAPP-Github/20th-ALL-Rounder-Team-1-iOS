@@ -32,6 +32,9 @@
 		7DB5E13C284B4DA400DBB7EA /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB5E13B284B4DA400DBB7EA /* MainCoordinator.swift */; };
 		7DB5E13E284B4E3C00DBB7EA /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB5E13D284B4E3C00DBB7EA /* MainViewModel.swift */; };
 		7DBC38AE2875A92400EFE704 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC38AD2875A92400EFE704 /* Key.swift */; };
+		7DBC4C59287697F900F0AC86 /* EmojiSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C58287697F900F0AC86 /* EmojiSheetViewController.swift */; };
+		7DBC4C5B28769C2600F0AC86 /* StickerAddSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C5A28769C2600F0AC86 /* StickerAddSheet.swift */; };
+		7DBC4C5D28769C3900F0AC86 /* MonthlyCalendarSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C5C28769C3900F0AC86 /* MonthlyCalendarSheet.swift */; };
 		7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166A82837140000F1A8F1 /* SignUpViewController.swift */; };
 		7DC166AB2837140B00F1A8F1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166AA2837140B00F1A8F1 /* SignInViewController.swift */; };
 		7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166B02837145200F1A8F1 /* SignUpViewModel.swift */; };
@@ -146,6 +149,9 @@
 		7DB5E13B284B4DA400DBB7EA /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		7DB5E13D284B4E3C00DBB7EA /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		7DBC38AD2875A92400EFE704 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
+		7DBC4C58287697F900F0AC86 /* EmojiSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiSheetViewController.swift; sourceTree = "<group>"; };
+		7DBC4C5A28769C2600F0AC86 /* StickerAddSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerAddSheet.swift; sourceTree = "<group>"; };
+		7DBC4C5C28769C3900F0AC86 /* MonthlyCalendarSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyCalendarSheet.swift; sourceTree = "<group>"; };
 		7DC166A82837140000F1A8F1 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7DC166AA2837140B00F1A8F1 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		7DC166B02837145200F1A8F1 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -329,6 +335,9 @@
 			children = (
 				7D76AEB3284458C2001C668D /* MainViewController.swift */,
 				7DD71A7F286C8E88002D1DCF /* AlarmViewController.swift */,
+				7DBC4C58287697F900F0AC86 /* EmojiSheetViewController.swift */,
+				7DBC4C5A28769C2600F0AC86 /* StickerAddSheet.swift */,
+				7DBC4C5C28769C3900F0AC86 /* MonthlyCalendarSheet.swift */,
 				7DA4AB742858669E009E91FB /* SubView */,
 			);
 			path = View;
@@ -935,6 +944,7 @@
 				F3C8E094286F598600B0916A /* Network.swift in Sources */,
 				7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */,
 				F3F731DB2868966700C8B778 /* Color.swift in Sources */,
+				7DBC4C5B28769C2600F0AC86 /* StickerAddSheet.swift in Sources */,
 				7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */,
 				F354C3DF283CECF5008929FD /* WTextLabel.swift in Sources */,
 				7DA4AB7A285871E0009E91FB /* UIButton+setImageInset.swift in Sources */,
@@ -972,6 +982,7 @@
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
 				F33C6EAC28533D0A005B493A /* WFilterButton.swift in Sources */,
 				F3C8E08E286F570900B0916A /* API.swift in Sources */,
+				7DBC4C59287697F900F0AC86 /* EmojiSheetViewController.swift in Sources */,
 				F3F731E92869E5EC00C8B778 /* PasswordFindViewController.swift in Sources */,
 				F392A1C9284F53A300512A42 /* CategoryListTableViewCell.swift in Sources */,
 				7D8033D4286001B70039F73E /* MainProfileView.swift in Sources */,
@@ -1008,6 +1019,7 @@
 				F32F725C28549B650056B189 /* WTextFieldStackView.swift in Sources */,
 				F378685B28621C8F00BEEC81 /* CategoryEditViewModelType.swift in Sources */,
 				F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */,
+				7DBC4C5D28769C3900F0AC86 /* MonthlyCalendarSheet.swift in Sources */,
 				F3CC76B42867264200A3FBBE /* WTagToggleButton.swift in Sources */,
 				F3DD0231284A36D300AD9240 /* BaseNavigationController.swift in Sources */,
 				F354C3E5283D3BF0008929FD /* InformationGroupStackView.swift in Sources */,

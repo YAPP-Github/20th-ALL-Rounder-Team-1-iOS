@@ -86,7 +86,7 @@ class MainViewController: UIViewController {
         self.headerView.calendarView.titleLabel.rx.tapGesture()
             .when(.recognized)
             .bind { _ in
-                print("title Tap")
+                self.viewModel?.coordinator?.pushMonthlyCalendarSheet()
             }.disposed(by: disposeBag)
         
         self.headerView.profileView.rx.tapGesture()
@@ -231,6 +231,7 @@ extension MainViewController {
     
 }
 
+// MARK: Cell Tap Gesture
 extension MainViewController: MainTableViewCellDelegate {
     func cellTapped(id: String?) {
         print("\(#function), id: \(String(describing: id))")
@@ -238,10 +239,12 @@ extension MainViewController: MainTableViewCellDelegate {
     
     func emojiViewTapped(id: String?) {
         print("\(#function), id: \(String(describing: id))")
+        self.viewModel?.coordinator?.pushEmojiSheet()
     }
     
     func stickerButtonTapped(id: String?) {
         print("\(#function), id: \(String(describing: id))")
+        self.viewModel?.coordinator?.pushStickerAddSheet()
     }
 }
 
