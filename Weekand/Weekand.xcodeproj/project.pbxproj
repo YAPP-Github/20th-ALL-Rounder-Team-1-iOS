@@ -106,7 +106,6 @@
 		F3C8E090286F571600B0916A /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = F3C8E08F286F571600B0916A /* schema.json */; };
 		F3C8E092286F571F00B0916A /* helloTest.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F3C8E091286F571F00B0916A /* helloTest.graphql */; };
 		F3C8E094286F598600B0916A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E093286F598600B0916A /* Network.swift */; };
-		F3C8E0962872AA5F00B0916A /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0952872AA5F00B0916A /* Key.swift */; };
 		F3C8E09C2872E17D00B0916A /* ScheduleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E09B2872E17D00B0916A /* ScheduleEditViewController.swift */; };
 		F3C8E0A12872EFF400B0916A /* DropDownStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0A02872EFF400B0916A /* DropDownStackView.swift */; };
 		F3C8E0A32872F29000B0916A /* WArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0A22872F29000B0916A /* WArrowButton.swift */; };
@@ -246,7 +245,6 @@
 		F3C8E08F286F571600B0916A /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		F3C8E091286F571F00B0916A /* helloTest.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = helloTest.graphql; sourceTree = "<group>"; };
 		F3C8E093286F598600B0916A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
-		F3C8E0952872AA5F00B0916A /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		F3C8E09B2872E17D00B0916A /* ScheduleEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditViewController.swift; sourceTree = "<group>"; };
 		F3C8E0A02872EFF400B0916A /* DropDownStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownStackView.swift; sourceTree = "<group>"; };
 		F3C8E0A22872F29000B0916A /* WArrowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WArrowButton.swift; sourceTree = "<group>"; };
@@ -459,7 +457,6 @@
 				F378684E285619F000BEEC81 /* Category.swift */,
 				F3F731DA2868966700C8B778 /* Color.swift */,
 				F3F731DE2868DE0000C8B778 /* Sort.swift */,
-				F3F731DE2868DE0000C8B778 /* Filter.swift */,
 				7DBC4C642876B59500F0AC86 /* Emoji.swift */,
 			);
 			name = Entities;
