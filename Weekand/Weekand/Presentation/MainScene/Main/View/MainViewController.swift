@@ -233,15 +233,15 @@ extension MainViewController {
 
 extension MainViewController: MainTableViewCellDelegate {
     func cellTapped(id: String?) {
-        print("\(#function), id: \(id)")
+        print("\(#function), id: \(String(describing: id))")
     }
     
     func emojiViewTapped(id: String?) {
-        print("\(#function), id: \(id)")
+        print("\(#function), id: \(String(describing: id))")
     }
     
     func stickerButtonTapped(id: String?) {
-        print("\(#function), id: \(id)")
+        print("\(#function), id: \(String(describing: id))")
     }
 }
 
