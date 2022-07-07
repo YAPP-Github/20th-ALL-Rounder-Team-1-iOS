@@ -75,17 +75,28 @@ class CategoryListViewController: UIViewController {
     }
     
     private func bindViewModel() {
+        let dropDownDidSelectEvent = BehaviorRelay(value: Sort.nameCreateDESC)
         
         let input = CategoryListViewModel.Input(
             didTapAddCategoryButton: self.headerView.addCategoryButton.rx.tap.asObservable(),
-            didCategoryCellSelected: self.tableView.rx.itemSelected.asObservable()
+            didCategoryCellSelected: self.tableView.rx.itemSelected.asObservable(),
+            dropDownDidSelectEvent: dropDownDidSelectEvent
         )
+        
+        self.headerView.dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            guard let selectedSort = Sort.allCases.filter { $0.description == item }.first else {
+                return
+            }
+            
+            dropDownDidSelectEvent.accept(selectedSort)
+            self.headerView.sortButton.setTitle(selectedSort.description)
+        }
         
         self.headerView.sortButton.rx.tap.subscribe(onNext: {
             self.headerView.dropDown.show()
         }).disposed(by: disposeBag)
         
-        self.viewModel?.transform(input: input)
+        let output = viewModel?.transform(input: input)
     }
 }
 
