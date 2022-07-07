@@ -47,7 +47,7 @@ class MainCalendarView: UIView {
     }
     
     lazy var editButton = UIButton().then {
-        $0.setImage(UIImage(named: "edit")?.withTintColor(.gray600!), for: .normal)
+        $0.setImage(UIImage(named: "edit")?.withTintColor(.gray600), for: .normal)
         $0.tintColor = .gray600
         $0.imageView?.contentMode = .scaleAspectFit
     }

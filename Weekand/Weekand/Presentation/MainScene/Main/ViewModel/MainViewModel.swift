@@ -143,7 +143,7 @@ extension MainViewModel {
         }).disposed(by: disposeBag)
         
         input.didTapFloatingButton.subscribe(onNext: { _ in
-            print("Floating Button")
+            self.coordinator?.showEditScene()
         }).disposed(by: disposeBag)
         
         return Output(

@@ -14,9 +14,9 @@ enum WButtonStyle {
         switch self {
         case .filled: return .mainColor
         case .tint: return .subColor!
-        case .type: return .gray100!
+        case .type: return .gray100
         case .typePressed: return .subColor!
-        case .tag: return .gray100!
+        case .tag: return .gray100
         case .tagPressed: return .subColor!
         }
     }

@@ -20,10 +20,13 @@ target 'Weekand' do
   # Cooperation
   pod 'SwiftLint'
 
-  # Calander
+  # Calender
   pod 'FSCalendar'
 
   # Apollo
   pod 'Apollo'
+
+  # DropDown
+  pod 'DropDown', '2.3.13'
 
 end

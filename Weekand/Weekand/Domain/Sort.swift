@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Filter: CaseIterable {
+enum Sort: CaseIterable {
     case dateCreatedASC
     case dateCreateDESC
     case nameCreatedASC

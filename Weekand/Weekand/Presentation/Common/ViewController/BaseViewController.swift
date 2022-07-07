@@ -16,7 +16,7 @@ class BaseViewController: UIViewController {
     
     lazy var stackView = UIStackView().then {
         $0.axis = .vertical
-        $0.distribution = .equalCentering
+        $0.distribution = .fill
     }
     
     override func viewDidLoad() {

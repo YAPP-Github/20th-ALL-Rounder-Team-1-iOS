@@ -3,7 +3,7 @@ PODS:
   - Apollo (0.51.2):
     - Apollo/Core (= 0.51.2)
   - Apollo/Core (0.51.2)
-  - Differentiator (5.0.0)
+  - DropDown (2.3.13)
   - FSCalendar (2.8.4)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
@@ -21,6 +21,7 @@ PODS:
 DEPENDENCIES:
   - AlignedCollectionViewFlowLayout
   - Apollo
+  - DropDown (= 2.3.13)
   - FSCalendar
   - RxCocoa
   - RxGesture
@@ -33,7 +34,7 @@ SPEC REPOS:
   trunk:
     - AlignedCollectionViewFlowLayout
     - Apollo
-    - Differentiator
+    - DropDown
     - FSCalendar
     - RxCocoa
     - RxGesture
@@ -46,7 +47,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
   Apollo: e5bc805c3f3556c18edc4eae4e2ea4723cea2318
-  Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
@@ -56,6 +57,6 @@ SPEC CHECKSUMS:
   SwiftLint: f80f1be7fa96d30e0aa68e58d45d4ea1ccaac519
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: 0fae39fb11f9ac602dc60bdc70d707c055d15968
+PODFILE CHECKSUM: 4c594fede74472c69e8ad9cb3dd5d8ea2627888d
 
 COCOAPODS: 1.11.3

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DropDown
 
 class CategoryDetailHeaderView: UITableViewHeaderFooterView {
 
@@ -16,9 +17,22 @@ class CategoryDetailHeaderView: UITableViewHeaderFooterView {
         $0.placeholder = "일정을 검색해보세요"
     }
     
-    lazy var filterButton = WFilterButton().then {
+    lazy var sortButton = WSortButton().then {
         $0.setTitle("내림차순")
-        $0.backgroundColor = .gray300
+        $0.backgroundColor = .white
+    }
+    
+    lazy var dropDown = DropDown(anchorView: sortButton).then {
+        $0.bottomOffset = CGPoint(x: -35, y: 40)
+        $0.backgroundColor = .white
+        $0.textFont = WFont.body1()
+        $0.selectionBackgroundColor = .gray100
+        $0.cornerRadius = 10
+        $0.width = 118
+        $0.cellHeight = 46
+        $0.shadowOpacity = 0.1
+        $0.layer.borderColor = UIColor.gray200.cgColor
+        $0.layer.borderWidth = 1
     }
     
     override init(reuseIdentifier: String?) {
@@ -38,14 +52,14 @@ class CategoryDetailHeaderView: UITableViewHeaderFooterView {
     
     func configureUI() {
         self.contentView.addSubview(searchBar)
-        self.contentView.addSubview(filterButton)
+        self.contentView.addSubview(sortButton)
         
         searchBar.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(12)
             make.top.equalToSuperview().offset(12)
         }
 
-        filterButton.snp.makeConstraints { make in
+        sortButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-5)
             make.trailing.equalToSuperview().offset(-12)
             make.width.equalTo(100)

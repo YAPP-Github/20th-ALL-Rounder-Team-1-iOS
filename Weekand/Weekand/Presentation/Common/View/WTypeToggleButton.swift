@@ -22,7 +22,7 @@ class WTypeToggleButton: UIButton, WToggleButtonType {
         var backGroundColor: UIColor {
             switch self {
             case .checked: return .subColor!
-            case .unchecked: return .gray100!
+            case .unchecked: return .gray100
             }
         }
     }

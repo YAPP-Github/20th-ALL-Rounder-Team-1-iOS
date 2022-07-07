@@ -51,6 +51,10 @@
 		7DF9688C284E019A00CE077E /* MainCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9688B284E019A00CE077E /* MainCalendarView.swift */; };
 		7DFB5E192872A4D3001DFC67 /* UserDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFB5E182872A4D3001DFC67 /* UserDataStorage.swift */; };
 		E8BDADFB0F95046E8D0F4BE0 /* Pods_Weekand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */; };
+		F323FEE92875FC3D00DFD8FD /* WCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */; };
+		F323FEEB28760E3A00DFD8FD /* FSCalendar+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */; };
+		F323FEF0287636B500DFD8FD /* SortDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEEE287636B500DFD8FD /* SortDropDownCell.swift */; };
+		F323FEF1287636B500DFD8FD /* SortDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F323FEEF287636B500DFD8FD /* SortDropDownCell.xib */; };
 		F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0128235D500082AF30 /* AppDelegate.swift */; };
 		F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0328235D500082AF30 /* SceneDelegate.swift */; };
 		F32ACC0628235D500082AF30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0528235D500082AF30 /* ViewController.swift */; };
@@ -65,7 +69,7 @@
 		F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F725D2854ADFA0056B189 /* OpenTypeStackView.swift */; };
 		F32F72602854BB730056B189 /* ColorStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F725F2854BB730056B189 /* ColorStackView.swift */; };
 		F32F72642854EC890056B189 /* InformationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F72632854EC890056B189 /* InformationCollectionViewCell.swift */; };
-		F33C6EAC28533D0A005B493A /* WFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAB28533D0A005B493A /* WFilterButton.swift */; };
+		F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAB28533D0A005B493A /* WSortButton.swift */; };
 		F33C6EAE28535021005B493A /* UIVIewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAD28535021005B493A /* UIVIewController+extension.swift */; };
 		F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */; };
 		F354C3DF283CECF5008929FD /* WTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DE283CECF5008929FD /* WTextLabel.swift */; };
@@ -94,6 +98,18 @@
 		F3C8E092286F571F00B0916A /* helloTest.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F3C8E091286F571F00B0916A /* helloTest.graphql */; };
 		F3C8E094286F598600B0916A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E093286F598600B0916A /* Network.swift */; };
 		F3C8E0962872AA5F00B0916A /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0952872AA5F00B0916A /* Key.swift */; };
+		F3C8E09C2872E17D00B0916A /* ScheduleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E09B2872E17D00B0916A /* ScheduleEditViewController.swift */; };
+		F3C8E0A12872EFF400B0916A /* DropDownStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0A02872EFF400B0916A /* DropDownStackView.swift */; };
+		F3C8E0A32872F29000B0916A /* WArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0A22872F29000B0916A /* WArrowButton.swift */; };
+		F3C8E0A52872FD2300B0916A /* DateTimeStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0A42872FD2300B0916A /* DateTimeStackView.swift */; };
+		F3C8E0A72873028B00B0916A /* WFilledGrayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0A62873028B00B0916A /* WFilledGrayButton.swift */; };
+		F3C8E0B028731E4900B0916A /* CategoryDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0AE28731E4900B0916A /* CategoryDropDownCell.swift */; };
+		F3C8E0B128731E4900B0916A /* CategoryDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3C8E0AF28731E4900B0916A /* CategoryDropDownCell.xib */; };
+		F3C8E0B32873500900B0916A /* AddInformationContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0B22873500900B0916A /* AddInformationContainerView.swift */; };
+		F3C8E0B52873578300B0916A /* WTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0B42873578300B0916A /* WTextView.swift */; };
+		F3C8E0B72873598A00B0916A /* MemoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0B62873598A00B0916A /* MemoStackView.swift */; };
+		F3C8E0B928736F0500B0916A /* ScheduleEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0B828736F0500B0916A /* ScheduleEditViewModel.swift */; };
+		F3C8E0BB28736F2A00B0916A /* ScheduleEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0BA28736F2A00B0916A /* ScheduleEditCoordinator.swift */; };
 		F3CC76AE2866CD1200A3FBBE /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC76AD2866CD1200A3FBBE /* BottomSheetViewController.swift */; };
 		F3CC76B028670BA200A3FBBE /* ColorSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC76AF28670BA200A3FBBE /* ColorSheetViewModel.swift */; };
 		F3CC76B22867130100A3FBBE /* ColorSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CC76B12867130100A3FBBE /* ColorSheetViewController.swift */; };
@@ -112,9 +128,7 @@
 		F3F731D328672AF500C8B778 /* WTypeToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731D228672AF500C8B778 /* WTypeToggleButton.swift */; };
 		F3F731D928677A2000C8B778 /* ColorsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731D828677A2000C8B778 /* ColorsCollectionViewCell.swift */; };
 		F3F731DB2868966700C8B778 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731DA2868966700C8B778 /* Color.swift */; };
-		F3F731DD2868DD5300C8B778 /* CategoryListFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731DC2868DD5300C8B778 /* CategoryListFilterViewController.swift */; };
-		F3F731DF2868DE0000C8B778 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731DE2868DE0000C8B778 /* Filter.swift */; };
-		F3F731E12868E02C00C8B778 /* CategoryListFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731E02868E02C00C8B778 /* CategoryListFilterViewModel.swift */; };
+		F3F731DF2868DE0000C8B778 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731DE2868DE0000C8B778 /* Sort.swift */; };
 		F3F731E32869918E00C8B778 /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731E22869918E00C8B778 /* FilterTableViewCell.swift */; };
 		F3F731E92869E5EC00C8B778 /* PasswordFindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F731E82869E5EC00C8B778 /* PasswordFindViewController.swift */; };
 /* End PBXBuildFile section */
@@ -165,6 +179,10 @@
 		7DF9688B284E019A00CE077E /* MainCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCalendarView.swift; sourceTree = "<group>"; };
 		7DFB5E182872A4D3001DFC67 /* UserDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataStorage.swift; sourceTree = "<group>"; };
 		CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weekand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCalendarView.swift; sourceTree = "<group>"; };
+		F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FSCalendar+extension.swift"; sourceTree = "<group>"; };
+		F323FEEE287636B500DFD8FD /* SortDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDropDownCell.swift; sourceTree = "<group>"; };
+		F323FEEF287636B500DFD8FD /* SortDropDownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SortDropDownCell.xib; sourceTree = "<group>"; };
 		F32ACBFE28235D500082AF30 /* Weekand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weekand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32ACC0128235D500082AF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F32ACC0328235D500082AF30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -181,7 +199,7 @@
 		F32F725D2854ADFA0056B189 /* OpenTypeStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTypeStackView.swift; sourceTree = "<group>"; };
 		F32F725F2854BB730056B189 /* ColorStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStackView.swift; sourceTree = "<group>"; };
 		F32F72632854EC890056B189 /* InformationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCollectionViewCell.swift; sourceTree = "<group>"; };
-		F33C6EAB28533D0A005B493A /* WFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WFilterButton.swift; sourceTree = "<group>"; };
+		F33C6EAB28533D0A005B493A /* WSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSortButton.swift; sourceTree = "<group>"; };
 		F33C6EAD28535021005B493A /* UIVIewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+extension.swift"; sourceTree = "<group>"; };
 		F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputGroupStackView.swift; sourceTree = "<group>"; };
 		F354C3DE283CECF5008929FD /* WTextLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextLabel.swift; sourceTree = "<group>"; };
@@ -211,6 +229,18 @@
 		F3C8E091286F571F00B0916A /* helloTest.graphql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = helloTest.graphql; sourceTree = "<group>"; };
 		F3C8E093286F598600B0916A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		F3C8E0952872AA5F00B0916A /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
+		F3C8E09B2872E17D00B0916A /* ScheduleEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditViewController.swift; sourceTree = "<group>"; };
+		F3C8E0A02872EFF400B0916A /* DropDownStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownStackView.swift; sourceTree = "<group>"; };
+		F3C8E0A22872F29000B0916A /* WArrowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WArrowButton.swift; sourceTree = "<group>"; };
+		F3C8E0A42872FD2300B0916A /* DateTimeStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeStackView.swift; sourceTree = "<group>"; };
+		F3C8E0A62873028B00B0916A /* WFilledGrayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WFilledGrayButton.swift; sourceTree = "<group>"; };
+		F3C8E0AE28731E4900B0916A /* CategoryDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDropDownCell.swift; sourceTree = "<group>"; };
+		F3C8E0AF28731E4900B0916A /* CategoryDropDownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryDropDownCell.xib; sourceTree = "<group>"; };
+		F3C8E0B22873500900B0916A /* AddInformationContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInformationContainerView.swift; sourceTree = "<group>"; };
+		F3C8E0B42873578300B0916A /* WTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextView.swift; sourceTree = "<group>"; };
+		F3C8E0B62873598A00B0916A /* MemoStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoStackView.swift; sourceTree = "<group>"; };
+		F3C8E0B828736F0500B0916A /* ScheduleEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditViewModel.swift; sourceTree = "<group>"; };
+		F3C8E0BA28736F2A00B0916A /* ScheduleEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditCoordinator.swift; sourceTree = "<group>"; };
 		F3CC76AD2866CD1200A3FBBE /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		F3CC76AF28670BA200A3FBBE /* ColorSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSheetViewModel.swift; sourceTree = "<group>"; };
 		F3CC76B12867130100A3FBBE /* ColorSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSheetViewController.swift; sourceTree = "<group>"; };
@@ -229,9 +259,7 @@
 		F3F731D228672AF500C8B778 /* WTypeToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTypeToggleButton.swift; sourceTree = "<group>"; };
 		F3F731D828677A2000C8B778 /* ColorsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsCollectionViewCell.swift; sourceTree = "<group>"; };
 		F3F731DA2868966700C8B778 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		F3F731DC2868DD5300C8B778 /* CategoryListFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListFilterViewController.swift; sourceTree = "<group>"; };
-		F3F731DE2868DE0000C8B778 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
-		F3F731E02868E02C00C8B778 /* CategoryListFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListFilterViewModel.swift; sourceTree = "<group>"; };
+		F3F731DE2868DE0000C8B778 /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		F3F731E22869918E00C8B778 /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		F3F731E82869E5EC00C8B778 /* PasswordFindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindViewController.swift; sourceTree = "<group>"; };
 		F77A7360107CB67CF89A6DEF /* Pods-Weekand.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weekand.release.xcconfig"; path = "Target Support Files/Pods-Weekand/Pods-Weekand.release.xcconfig"; sourceTree = "<group>"; };
@@ -299,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				7DAA8620284BAF9500F21E35 /* Common */,
+				F3C8E0972872E10F00B0916A /* ScheduleEdit */,
 				7D76AEB02844588E001C668D /* Main */,
 				F392A1C2284F508600512A42 /* Category */,
 			);
@@ -369,7 +398,6 @@
 				F378685828621C2C00BEEC81 /* CategoryModifyViewModel.swift */,
 				F378685A28621C8F00BEEC81 /* CategoryEditViewModelType.swift */,
 				F3CC76AF28670BA200A3FBBE /* ColorSheetViewModel.swift */,
-				F3F731E02868E02C00C8B778 /* CategoryListFilterViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -413,7 +441,7 @@
 				7D29E345286422FC0047C805 /* UserSummary.swift */,
 				F378684E285619F000BEEC81 /* Category.swift */,
 				F3F731DA2868966700C8B778 /* Color.swift */,
-				F3F731DE2868DE0000C8B778 /* Filter.swift */,
+				F3F731DE2868DE0000C8B778 /* Sort.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -429,6 +457,8 @@
 		7DAA8621284BAFA000F21E35 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F323FEEF287636B500DFD8FD /* SortDropDownCell.xib */,
+				F323FEEE287636B500DFD8FD /* SortDropDownCell.swift */,
 				7D6B911428449A760044E217 /* WIconLabel.swift */,
 				7D6B911628449F610044E217 /* WCategoryTitleLabel.swift */,
 				7D6B91182844A8D50044E217 /* WStatusTimeLabel.swift */,
@@ -533,6 +563,7 @@
 				F33C6EAD28535021005B493A /* UIVIewController+extension.swift */,
 				F354C3E9283E6946008929FD /* NSMutableAttributedString+extension.swift */,
 				7DF949C6283B6D0A007F84C5 /* DesignSystem */,
+				F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -560,10 +591,14 @@
 				F391B433283C119F004E7B06 /* WTitleLabel.swift */,
 				F354C3DE283CECF5008929FD /* WTextLabel.swift */,
 				7DEA177B2846006A00F6B990 /* WSquareImageView.swift */,
-				F33C6EAB28533D0A005B493A /* WFilterButton.swift */,
+				F33C6EAB28533D0A005B493A /* WSortButton.swift */,
 				F32F725B28549B650056B189 /* WTextFieldStackView.swift */,
 				F3CC76B32867264200A3FBBE /* WTagToggleButton.swift */,
 				F3F731D228672AF500C8B778 /* WTypeToggleButton.swift */,
+				F3C8E0A22872F29000B0916A /* WArrowButton.swift */,
+				F3C8E0A62873028B00B0916A /* WFilledGrayButton.swift */,
+				F3C8E0B42873578300B0916A /* WTextView.swift */,
+				F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -691,7 +726,6 @@
 			isa = PBXGroup;
 			children = (
 				F392A1C6284F51B100512A42 /* CategoryListViewController.swift */,
-				F3F731DC2868DD5300C8B778 /* CategoryListFilterViewController.swift */,
 				F32F724F2853AEE00056B189 /* CategoryDetailViewController.swift */,
 				F32F725928549A5D0056B189 /* CategoryEditViewController.swift */,
 				F3CC76B12867130100A3FBBE /* ColorSheetViewController.swift */,
@@ -717,6 +751,54 @@
 				F3C8E091286F571F00B0916A /* helloTest.graphql */,
 			);
 			path = Query;
+			sourceTree = "<group>";
+		};
+		F3C8E0972872E10F00B0916A /* ScheduleEdit */ = {
+			isa = PBXGroup;
+			children = (
+				F3C8E09A2872E12F00B0916A /* View */,
+				F3C8E0992872E12700B0916A /* ViewModel */,
+				F3C8E0982872E11A00B0916A /* Coordinator */,
+			);
+			path = ScheduleEdit;
+			sourceTree = "<group>";
+		};
+		F3C8E0982872E11A00B0916A /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				F3C8E0BA28736F2A00B0916A /* ScheduleEditCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		F3C8E0992872E12700B0916A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F3C8E0B828736F0500B0916A /* ScheduleEditViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F3C8E09A2872E12F00B0916A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F3C8E09B2872E17D00B0916A /* ScheduleEditViewController.swift */,
+				F3C8E09D2872E95F00B0916A /* Views */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F3C8E09D2872E95F00B0916A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F3C8E0A02872EFF400B0916A /* DropDownStackView.swift */,
+				F3C8E0A42872FD2300B0916A /* DateTimeStackView.swift */,
+				F3C8E0B22873500900B0916A /* AddInformationContainerView.swift */,
+				F3C8E0B62873598A00B0916A /* MemoStackView.swift */,
+				F3C8E0AE28731E4900B0916A /* CategoryDropDownCell.swift */,
+				F3C8E0AF28731E4900B0916A /* CategoryDropDownCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		F3DD0216284660D200AD9240 /* Coordinator */ = {
@@ -827,9 +909,11 @@
 			files = (
 				F3C8E092286F571F00B0916A /* helloTest.graphql in Resources */,
 				7DF8B7A928361FB100B224CA /* PretendardVariable.ttf in Resources */,
+				F323FEF1287636B500DFD8FD /* SortDropDownCell.xib in Resources */,
 				F3C8E090286F571600B0916A /* schema.json in Resources */,
 				7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */,
 				F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */,
+				F3C8E0B128731E4900B0916A /* CategoryDropDownCell.xib in Resources */,
 				F32ACC0B28235D530082AF30 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -921,43 +1005,50 @@
 			files = (
 				7DD71A80286C8E88002D1DCF /* AlarmViewController.swift in Sources */,
 				F354C3E8283D4126008929FD /* SignUpTermsViewController.swift in Sources */,
+				F3C8E0B32873500900B0916A /* AddInformationContainerView.swift in Sources */,
 				F32F72562853D1E40056B189 /* CategoryDetailFooterView.swift in Sources */,
 				F3C8E0962872AA5F00B0916A /* Key.swift in Sources */,
 				F3DD022B284678CF00AD9240 /* WelcomeViewModel.swift in Sources */,
 				7D6B91192844A8D50044E217 /* WStatusTimeLabel.swift in Sources */,
 				F32F725A28549A5D0056B189 /* CategoryEditViewController.swift in Sources */,
+				F323FEEB28760E3A00DFD8FD /* FSCalendar+extension.swift in Sources */,
 				F3DD0235284A6AA600AD9240 /* SignUpAddInformationViewModel.swift in Sources */,
 				7D8033D8286057A20039F73E /* FollwingUser.swift in Sources */,
 				7DC166AB2837140B00F1A8F1 /* SignInViewController.swift in Sources */,
 				F33C6EAE28535021005B493A /* UIVIewController+extension.swift in Sources */,
 				7D76AEB828448C79001C668D /* Font.swift in Sources */,
+				F3C8E0A52872FD2300B0916A /* DateTimeStackView.swift in Sources */,
 				7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */,
 				F32F72642854EC890056B189 /* InformationCollectionViewCell.swift in Sources */,
 				F3C8E094286F598600B0916A /* Network.swift in Sources */,
 				7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */,
+				F3C8E0A12872EFF400B0916A /* DropDownStackView.swift in Sources */,
 				F3F731DB2868966700C8B778 /* Color.swift in Sources */,
 				7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */,
 				F354C3DF283CECF5008929FD /* WTextLabel.swift in Sources */,
 				7DA4AB7A285871E0009E91FB /* UIButton+setImageInset.swift in Sources */,
 				7DC166BC28371B0C00F1A8F1 /* ColorSet.swift in Sources */,
 				F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */,
-				F3F731DD2868DD5300C8B778 /* CategoryListFilterViewController.swift in Sources */,
 				7DB5E13C284B4DA400DBB7EA /* MainCoordinator.swift in Sources */,
 				7D29E346286422FC0047C805 /* UserSummary.swift in Sources */,
 				7D76AEB4284458C2001C668D /* MainViewController.swift in Sources */,
+				F3C8E0A32872F29000B0916A /* WArrowButton.swift in Sources */,
 				7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */,
 				F3CC76B028670BA200A3FBBE /* ColorSheetViewModel.swift in Sources */,
 				F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */,
+				F3C8E0BB28736F2A00B0916A /* ScheduleEditCoordinator.swift in Sources */,
 				F3DD0229284670E900AD9240 /* AppCoordinator.swift in Sources */,
 				F32ACC0628235D500082AF30 /* ViewController.swift in Sources */,
+				F3C8E0B52873578300B0916A /* WTextView.swift in Sources */,
+				F323FEF0287636B500DFD8FD /* SortDropDownCell.swift in Sources */,
 				7D6E9972283BA18E006F5FC7 /* WBottmButton.swift in Sources */,
+				F3C8E0B72873598A00B0916A /* MemoStackView.swift in Sources */,
 				F37868552861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift in Sources */,
 				F3CC76AE2866CD1200A3FBBE /* BottomSheetViewController.swift in Sources */,
 				F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */,
 				F32F72542853C2200056B189 /* CategoryDetailHeaderView.swift in Sources */,
 				F3DD021A2846629100AD9240 /* Coordinator.swift in Sources */,
 				F392A1C7284F51B100512A42 /* CategoryListViewController.swift in Sources */,
-				F3F731E12868E02C00C8B778 /* CategoryListFilterViewModel.swift in Sources */,
 				F3DD0233284A534C00AD9240 /* CoordinatorType.swift in Sources */,
 				F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */,
 				7DAA861F284B968000F21E35 /* ScehduleMain.swift in Sources */,
@@ -971,9 +1062,10 @@
 				7DD71A8B286CA8C4002D1DCF /* AlarmViewModel.swift in Sources */,
 				7D76AEB628445AA5001C668D /* MainTableViewCell.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
-				F33C6EAC28533D0A005B493A /* WFilterButton.swift in Sources */,
+				F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */,
 				F3C8E08E286F570900B0916A /* API.swift in Sources */,
 				F3F731E92869E5EC00C8B778 /* PasswordFindViewController.swift in Sources */,
+				F323FEE92875FC3D00DFD8FD /* WCalendarView.swift in Sources */,
 				F392A1C9284F53A300512A42 /* CategoryListTableViewCell.swift in Sources */,
 				7D8033D4286001B70039F73E /* MainProfileView.swift in Sources */,
 				7D7178ED283E1ED500D7E5F2 /* WTextButton.swift in Sources */,
@@ -983,12 +1075,14 @@
 				F378685928621C2C00BEEC81 /* CategoryModifyViewModel.swift in Sources */,
 				7DA4AB7828586FA7009E91FB /* CategoryAddViewModel.swift in Sources */,
 				7DC166B42837148000F1A8F1 /* SignInViewModel.swift in Sources */,
+				F3C8E0B928736F0500B0916A /* ScheduleEditViewModel.swift in Sources */,
 				7D3B1F54283630A50037504A /* WTextField.swift in Sources */,
 				F3DD0218284661F900AD9240 /* WelcomeCoordinator.swift in Sources */,
 				F3F731D928677A2000C8B778 /* ColorsCollectionViewCell.swift in Sources */,
 				7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */,
 				F3F731D328672AF500C8B778 /* WTypeToggleButton.swift in Sources */,
-				F3F731DF2868DE0000C8B778 /* Filter.swift in Sources */,
+				F3F731DF2868DE0000C8B778 /* Sort.swift in Sources */,
+				F3C8E0B028731E4900B0916A /* CategoryDropDownCell.swift in Sources */,
 				F392A1EF28531FC600512A42 /* CategoryListHeaderView.swift in Sources */,
 				7DF949C8283B6F1F007F84C5 /* CommonShape.swift in Sources */,
 				7DEA177C2846006A00F6B990 /* WSquareImageView.swift in Sources */,
@@ -1003,11 +1097,13 @@
 				F32F72602854BB730056B189 /* ColorStackView.swift in Sources */,
 				F3DD0237284A6BEC00AD9240 /* SignUpTermsViewModel.swift in Sources */,
 				F3CC76B22867130100A3FBBE /* ColorSheetViewController.swift in Sources */,
+				F3C8E0A72873028B00B0916A /* WFilledGrayButton.swift in Sources */,
 				7DC166C02837234200F1A8F1 /* WButtonTextField.swift in Sources */,
 				F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */,
 				F32F725C28549B650056B189 /* WTextFieldStackView.swift in Sources */,
 				F378685B28621C8F00BEEC81 /* CategoryEditViewModelType.swift in Sources */,
 				F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */,
+				F3C8E09C2872E17D00B0916A /* ScheduleEditViewController.swift in Sources */,
 				F3CC76B42867264200A3FBBE /* WTagToggleButton.swift in Sources */,
 				F3DD0231284A36D300AD9240 /* BaseNavigationController.swift in Sources */,
 				F354C3E5283D3BF0008929FD /* InformationGroupStackView.swift in Sources */,

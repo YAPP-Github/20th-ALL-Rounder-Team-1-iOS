@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import RxSwift
+import RxRelay
+import RxCocoa
 
 class CategoryDetailViewModel {
     
@@ -16,4 +19,20 @@ class CategoryDetailViewModel {
         self.coordinator = coordinator
     }
 
+}
+
+// MARK: Bind UI
+extension CategoryDetailViewModel {
+    
+    struct Input {
+        let dropDownDidSelectEvent: BehaviorRelay<Sort>
+    }
+    
+    struct Output { }
+    
+    @discardableResult
+    func transform(input: Input) -> Output {
+        
+        return Output()
+    }
 }

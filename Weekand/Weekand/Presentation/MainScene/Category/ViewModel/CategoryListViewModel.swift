@@ -7,6 +7,8 @@
 
 import Foundation
 import RxSwift
+import RxRelay
+import RxCocoa
 
 class CategoryListViewModel {
     
@@ -24,28 +26,23 @@ extension CategoryListViewModel {
     
     struct Input {
         let didTapAddCategoryButton: Observable<Void>
-        let didTapFilterButton: Observable<Void>
         let didCategoryCellSelected: Observable<IndexPath>   // TODO: Cell의 Category-ID를 받아오도록 수정 (모델 구현 이후 진행)
+        let dropDownDidSelectEvent: BehaviorRelay<Sort>
     }
     
     struct Output { }
     
     @discardableResult
     func transform(input: Input) -> Output {
-        let output = Output()
         
         input.didTapAddCategoryButton.subscribe(onNext: { [weak self] _ in
             self?.coordinator?.showCategoryAddScene()
-        }).disposed(by: disposeBag)
-        
-        input.didTapFilterButton.subscribe(onNext: { [weak self] _ in
-            // self?.coordinator?.presenfilterBottonmSheet()
         }).disposed(by: disposeBag)
         
         input.didCategoryCellSelected.subscribe(onNext: { [weak self] _ in
             self?.coordinator?.pushCategoryDetailViewController()
         }).disposed(by: disposeBag)
         
-        return output
+        return Output()
     }
 }
