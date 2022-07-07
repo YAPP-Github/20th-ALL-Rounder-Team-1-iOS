@@ -39,6 +39,7 @@
 		7DBC4C612876AE7800F0AC86 /* StickerAddSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C602876AE7800F0AC86 /* StickerAddSheetViewModel.swift */; };
 		7DBC4C632876AEA200F0AC86 /* MonthlyCalendarSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C622876AEA200F0AC86 /* MonthlyCalendarSheetViewModel.swift */; };
 		7DBC4C652876B59500F0AC86 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C642876B59500F0AC86 /* Emoji.swift */; };
+		7DBC4C672876B66E00F0AC86 /* StickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C662876B66E00F0AC86 /* StickerCollectionViewCell.swift */; };
 		7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166A82837140000F1A8F1 /* SignUpViewController.swift */; };
 		7DC166AB2837140B00F1A8F1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166AA2837140B00F1A8F1 /* SignInViewController.swift */; };
 		7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC166B02837145200F1A8F1 /* SignUpViewModel.swift */; };
@@ -160,6 +161,7 @@
 		7DBC4C602876AE7800F0AC86 /* StickerAddSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerAddSheetViewModel.swift; sourceTree = "<group>"; };
 		7DBC4C622876AEA200F0AC86 /* MonthlyCalendarSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyCalendarSheetViewModel.swift; sourceTree = "<group>"; };
 		7DBC4C642876B59500F0AC86 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
+		7DBC4C662876B66E00F0AC86 /* StickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		7DC166A82837140000F1A8F1 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7DC166AA2837140B00F1A8F1 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		7DC166B02837145200F1A8F1 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -334,9 +336,7 @@
 			children = (
 				7DB5E13D284B4E3C00DBB7EA /* MainViewModel.swift */,
 				7DD71A8A286CA8C4002D1DCF /* AlarmViewModel.swift */,
-				7DBC4C5E2876AE1800F0AC86 /* EmojiSheetViewModel.swift */,
-				7DBC4C602876AE7800F0AC86 /* StickerAddSheetViewModel.swift */,
-				7DBC4C622876AEA200F0AC86 /* MonthlyCalendarSheetViewModel.swift */,
+				7DBC4C6B2876B75C00F0AC86 /* Sheet */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -346,9 +346,7 @@
 			children = (
 				7D76AEB3284458C2001C668D /* MainViewController.swift */,
 				7DD71A7F286C8E88002D1DCF /* AlarmViewController.swift */,
-				7DBC4C58287697F900F0AC86 /* EmojiSheetViewController.swift */,
-				7DBC4C5A28769C2600F0AC86 /* StickerAddSheet.swift */,
-				7DBC4C5C28769C3900F0AC86 /* MonthlyCalendarSheet.swift */,
+				7DBC4C682876B73000F0AC86 /* Sheet */,
 				7DA4AB742858669E009E91FB /* SubView */,
 			);
 			path = View;
@@ -407,12 +405,9 @@
 		7DA4AB742858669E009E91FB /* SubView */ = {
 			isa = PBXGroup;
 			children = (
-				7D76AEB528445AA5001C668D /* MainTableViewCell.swift */,
-				7D8033D5286034BB0039F73E /* MainCollectionViewCell.swift */,
-				7DF96889284DF2EB00CE077E /* MainViewHeader.swift */,
-				7DF9688B284E019A00CE077E /* MainCalendarView.swift */,
-				7D8033D3286001B70039F73E /* MainProfileView.swift */,
+				7DBC4C692876B74400F0AC86 /* MainView */,
 				7DD71A88286C9ACC002D1DCF /* AlarmTableViewCell.swift */,
+				7DBC4C6A2876B75200F0AC86 /* Sheet */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -464,6 +459,46 @@
 				7DB5E13B284B4DA400DBB7EA /* MainCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		7DBC4C682876B73000F0AC86 /* Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				7DBC4C58287697F900F0AC86 /* EmojiSheetViewController.swift */,
+				7DBC4C5A28769C2600F0AC86 /* StickerAddSheet.swift */,
+				7DBC4C5C28769C3900F0AC86 /* MonthlyCalendarSheet.swift */,
+			);
+			path = Sheet;
+			sourceTree = "<group>";
+		};
+		7DBC4C692876B74400F0AC86 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				7D76AEB528445AA5001C668D /* MainTableViewCell.swift */,
+				7D8033D5286034BB0039F73E /* MainCollectionViewCell.swift */,
+				7DF96889284DF2EB00CE077E /* MainViewHeader.swift */,
+				7DF9688B284E019A00CE077E /* MainCalendarView.swift */,
+				7D8033D3286001B70039F73E /* MainProfileView.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		7DBC4C6A2876B75200F0AC86 /* Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				7DBC4C662876B66E00F0AC86 /* StickerCollectionViewCell.swift */,
+			);
+			path = Sheet;
+			sourceTree = "<group>";
+		};
+		7DBC4C6B2876B75C00F0AC86 /* Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				7DBC4C5E2876AE1800F0AC86 /* EmojiSheetViewModel.swift */,
+				7DBC4C602876AE7800F0AC86 /* StickerAddSheetViewModel.swift */,
+				7DBC4C622876AEA200F0AC86 /* MonthlyCalendarSheetViewModel.swift */,
+			);
+			path = Sheet;
 			sourceTree = "<group>";
 		};
 		7DC166A72837139300F1A8F1 /* SignScene */ = {
@@ -1045,6 +1080,7 @@
 				7D6B911528449A760044E217 /* WIconLabel.swift in Sources */,
 				F37868532861D28C00BEEC81 /* CategoryAddCoordinator.swift in Sources */,
 				F354C3EA283E6946008929FD /* NSMutableAttributedString+extension.swift in Sources */,
+				7DBC4C672876B66E00F0AC86 /* StickerCollectionViewCell.swift in Sources */,
 				F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */,
 				F3DD022728466E3300AD9240 /* SignUpCoordinator.swift in Sources */,
 				7DB5E13E284B4E3C00DBB7EA /* MainViewModel.swift in Sources */,
