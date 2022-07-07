@@ -20,13 +20,12 @@ target 'Weekand' do
   # Cooperation
   pod 'SwiftLint'
 
-  # Calender
-  pod 'FSCalendar'
-
   # Apollo
   pod 'Apollo'
 
-  # DropDown
+  # Custom VUI
   pod 'DropDown', '2.3.13'
-  
+  pod 'FSCalendar'
+  pod 'Tabman'
+
 end
