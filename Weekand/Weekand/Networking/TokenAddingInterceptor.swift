@@ -19,8 +19,9 @@ class TokenAddingInterceptor: ApolloInterceptor {
         request: HTTPRequest<Operation>,
         response: HTTPResponse<Operation>?,
         completion: @escaping (Result<GraphQLResult<Operation.Data>, Error>) -> Void) {
-            let token = Key.tempToken
-            request.addHeader(name: "Access-Token", value: token)
+            if let token = UserDataStorage.shared.accessToken {
+                request.addHeader(name: "Access-Token", value: token)
+            }
             
             chain.proceedAsync(request: request,
                                response: response,
