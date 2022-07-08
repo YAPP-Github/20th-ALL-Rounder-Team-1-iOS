@@ -1,4 +1,4 @@
-query weekand {
+query helloTest {
   weekand(customField: "test") {
     hello
   }

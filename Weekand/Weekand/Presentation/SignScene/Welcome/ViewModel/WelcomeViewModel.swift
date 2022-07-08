@@ -38,7 +38,11 @@ class WelcomeViewModel: ViewModelType {
                 self?.coordinator?.showSignUpScene()
             })
             .disposed(by: disposeBag)
-            
+        
+        NetWork.shared.fetch(query: HelloTestQuery()).subscribe(onNext: { result in
+            print(result.weekand.hello)
+        }).disposed(by: disposeBag)
+        
         return output
     }
 }
