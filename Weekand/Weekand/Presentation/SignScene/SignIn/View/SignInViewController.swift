@@ -129,6 +129,12 @@ class SignInViewController: UIViewController {
                 self?.nextButton.disable(string: "로그인")
             }
         }).disposed(by: disposeBag)
+        
+        output.loginResult.drive(onNext: { [weak self] isValid in
+            if isValid == false {
+                self?.showToast(message: "이메일·비밀번호가 일치하지 않습니다.")
+            }
+        }).disposed(by: disposeBag)
     }
 }
 

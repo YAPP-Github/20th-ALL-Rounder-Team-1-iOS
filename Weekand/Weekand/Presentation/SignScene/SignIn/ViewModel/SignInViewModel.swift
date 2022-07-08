@@ -27,6 +27,7 @@ class SignInViewModel: ViewModelType {
     
     struct Output {
         var nextButtonEnable: Driver<Bool>
+        var loginResult: Driver<Bool>
     }
     
     func transform(input: Input) -> Output {
@@ -50,16 +51,19 @@ class SignInViewModel: ViewModelType {
             self.coordinator?.presentPasswordFindScene()
         }).disposed(by: disposeBag)
         
-        input.nextButtonDidTapEvent.withLatestFrom(checkEmailPassword).subscribe(onNext: { [weak self] isCheck in
-            if isCheck {
-                print("다음")
+        let loginResult = input.nextButtonDidTapEvent.withLatestFrom(checkEmailPassword)
+        
+        loginResult
+            .subscribe(onNext: { [weak self] isValid in
+            if isValid {
                 self?.coordinator?.showMainScene()
-            } else {
-                print("alert")
             }
         }).disposed(by: disposeBag)
         
-        return Output(nextButtonEnable: nextButtonEnable)
+        return Output(
+                nextButtonEnable: nextButtonEnable,
+                loginResult: loginResult.asDriver(onErrorJustReturn: false)
+        )
     }
     
     func checkEmailPassword(email: String, password: String) -> Bool {

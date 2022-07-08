@@ -66,6 +66,7 @@
 		F323FEF1287636B500DFD8FD /* SortDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F323FEEF287636B500DFD8FD /* SortDropDownCell.xib */; };
 		F323FF082877D08800DFD8FD /* TokenAddingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF072877D08800DFD8FD /* TokenAddingInterceptor.swift */; };
 		F323FF0A2877D21F00DFD8FD /* NetworkInterceptorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF092877D21F00DFD8FD /* NetworkInterceptorProvider.swift */; };
+		F323FF0C2877E87900DFD8FD /* WToastLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF0B2877E87900DFD8FD /* WToastLabel.swift */; };
 		F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0128235D500082AF30 /* AppDelegate.swift */; };
 		F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0328235D500082AF30 /* SceneDelegate.swift */; };
 		F32ACC0628235D500082AF30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0528235D500082AF30 /* ViewController.swift */; };
@@ -204,6 +205,7 @@
 		F323FEEF287636B500DFD8FD /* SortDropDownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SortDropDownCell.xib; sourceTree = "<group>"; };
 		F323FF072877D08800DFD8FD /* TokenAddingInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAddingInterceptor.swift; sourceTree = "<group>"; };
 		F323FF092877D21F00DFD8FD /* NetworkInterceptorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterceptorProvider.swift; sourceTree = "<group>"; };
+		F323FF0B2877E87900DFD8FD /* WToastLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WToastLabel.swift; sourceTree = "<group>"; };
 		F32ACBFE28235D500082AF30 /* Weekand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weekand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32ACC0128235D500082AF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F32ACC0328235D500082AF30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -659,6 +661,7 @@
 				F3C8E0A62873028B00B0916A /* WFilledGrayButton.swift */,
 				F3C8E0B42873578300B0916A /* WTextView.swift */,
 				F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */,
+				F323FF0B2877E87900DFD8FD /* WToastLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1090,6 +1093,7 @@
 				7D76AEB828448C79001C668D /* Font.swift in Sources */,
 				F3C8E0A52872FD2300B0916A /* DateTimeStackView.swift in Sources */,
 				7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */,
+				F323FF0C2877E87900DFD8FD /* WToastLabel.swift in Sources */,
 				F32F72642854EC890056B189 /* InformationCollectionViewCell.swift in Sources */,
 				F3C8E094286F598600B0916A /* Network.swift in Sources */,
 				7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */,
