@@ -7,12 +7,14 @@
 
 import Foundation
 
+/// 스티커 종류
 enum Emoji {
     case good       // 좋아요
     case awesome    // 대단해요
     case cool       // 멋져요
     case support    // 응원해요
     
+    /// 스티커 이미지 이름
     var imageName: String {
         switch self {
         case .good:     return "SmileEmoji"
@@ -22,6 +24,7 @@ enum Emoji {
         }
     }
     
+    /// 스티커 이름
     var emojiName: String {
         switch self {
         case .good:     return "좋아요"

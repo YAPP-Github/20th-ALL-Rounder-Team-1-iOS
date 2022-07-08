@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// 로그인한 유저 정보를 저장하는 싱글톤 객체
 final class UserDataStorage {
     
     static let shared = UserDataStorage()

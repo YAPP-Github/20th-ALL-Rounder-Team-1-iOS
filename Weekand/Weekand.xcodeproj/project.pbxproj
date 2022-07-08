@@ -343,8 +343,8 @@
 			isa = PBXGroup;
 			children = (
 				7DAA8620284BAF9500F21E35 /* Common */,
-				F3C8E0972872E10F00B0916A /* ScheduleEdit */,
 				7D76AEB02844588E001C668D /* Main */,
+				F3C8E0972872E10F00B0916A /* ScheduleEdit */,
 				F392A1C2284F508600512A42 /* Category */,
 			);
 			path = MainScene;

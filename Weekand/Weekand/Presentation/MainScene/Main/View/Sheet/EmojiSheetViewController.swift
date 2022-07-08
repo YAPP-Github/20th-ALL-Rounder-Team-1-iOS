@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// 스티커 현황
 class EmojiSheetViewController: BottomSheetViewController {
     
     override func viewDidLoad() {
