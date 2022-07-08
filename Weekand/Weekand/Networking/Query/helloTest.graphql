@@ -1,5 +1,0 @@
-query helloTest {
-  weekand(customField: "test") {
-    hello
-  }
-}
