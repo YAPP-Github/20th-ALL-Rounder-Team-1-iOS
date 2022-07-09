@@ -171,13 +171,6 @@ class SignUpTermsViewController: UIViewController {
             nextButtonDidTapEvent: confirmButton.rx.tap.asObservable()
         )
         
-        termsAgreeButton.rx.tap.subscribe(onNext: {
-            let url = URL(string: "https://typhoon-river-8ba.notion.site/a20528198b2f491fa3b6997c71156c42")!
-            let request = URLRequest(url: url)
-
-            self.termsAgreeWebView.load(request)
-        }).disposed(by: disposeBag)
-        
         let _ = viewModel.transform(input: input)
     }
 }
