@@ -59,8 +59,12 @@ class SignUpViewModel: ViewModelType {
         
         let checkAuthenticationNumberWithTap = input.authNumberButtonDidTapEvent
                                                     .withLatestFrom(input.authNumberTextFieldDidEditEvent)
+                                                    .distinctUntilChanged { $0 == $1 }
 
-        let checkNickNameWithTap = input.nickNameButtonDidTapEvent.withLatestFrom(input.nickNameTextFieldDidEditEvent)
+        let checkNickNameWithTap = input.nickNameButtonDidTapEvent
+                                        .withLatestFrom(input.nickNameTextFieldDidEditEvent)
+                                        .map(vaildNickname)
+                                        .distinctUntilChanged { $0 == $1 }
         
         let vaildPassword = input.passwordTextFieldDidEditEvent.map(validPassword).asObservable()
         let vaildPasswordWithEndEdit = input.passwordTextFieldDidEndEditEvent.withLatestFrom(vaildPassword)
@@ -83,8 +87,13 @@ class SignUpViewModel: ViewModelType {
         }).disposed(by: disposeBag)
         
         checkNickNameWithTap
-            .subscribe(onNext: { [weak self] nickname in
-                self?.checkDuplicateNickname(nickname)
+            .subscribe(onNext: { [weak self] nickname, isValid in
+                if isValid {
+                    self?.checkDuplicateNickname(nickname)
+                } else {
+                    self?.coordinator?.showToastMessage()
+                }
+                
         }).disposed(by: disposeBag)
         
         input.nextButtonDidTapEvent.subscribe(onNext: {
@@ -129,11 +138,11 @@ class SignUpViewModel: ViewModelType {
         return (emailText, regexFirstMatch != nil)
     }
     
-    private func checkNickName(_ nickName: String) -> Bool {
-        if nickName == "test" {
-            return true
+    private func vaildNickname(_ nickName: String) -> (String, Bool) {
+        if nickName.count >= 2 && nickName.count < 11 {
+            return (nickName, true)
         }
-        return false
+        return (nickName, false)
     }
     
     private func validPassword(_ password: String) -> Bool {

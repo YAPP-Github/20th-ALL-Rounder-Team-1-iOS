@@ -47,6 +47,10 @@ class SignUpCoordinator: Coordinator {
         authPopupCoordinator.start()
     }
     
+    func showToastMessage() {
+        signUpViewController.showToast(message: "닉네임은 2글자 이상 12글자 이하만 가능합니다.")
+    }
+    
     func finish() {
         self.finishDelegate?.childDidFinish(self)
     }

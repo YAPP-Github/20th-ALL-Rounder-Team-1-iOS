@@ -46,6 +46,7 @@ class SignUpViewController: BaseViewController {
     lazy var nickNameStackView = InputGroupStackView().then {
         $0.setNameLabelText(string: "닉네임")
         $0.setPlaceholderText(string: "닉네임을 입력해주세요")
+        $0.setInformlabelText(string: "최소 2글자 / 최대 12글자", informType: .normal)
         $0.setButtonText(string: "중복확인")
     }
     
