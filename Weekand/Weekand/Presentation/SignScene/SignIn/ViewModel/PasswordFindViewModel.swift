@@ -23,6 +23,7 @@ class PasswordFindViewModel: ViewModelType {
     
     struct Input {
         let emailTextFieldDidEditEvent: Observable<String>
+        let confirmButtonDidTapEvent: Observable<Void>
         let closeButtonDidTapEvent: Observable<Void>
     }
     
@@ -30,13 +31,15 @@ class PasswordFindViewModel: ViewModelType {
     
     func transform(input: Input) -> Output {
         
-        input.emailTextFieldDidEditEvent
+        input.confirmButtonDidTapEvent
+            .withLatestFrom(input.emailTextFieldDidEditEvent)
+            .distinctUntilChanged { $0 == $1 }
             .map(vaildEmail)
             .subscribe(onNext: { email, isVaild in
                 if isVaild {
                     self.issueTempPassword(email: email)
                 } else {
-                    self.invaildEmail.accept("유효하지 않은 이메일입니다.")
+                    self.coordinator?.presentPopViewController(titleText: "안내", informText: "유효하지 않은 이메일입니다.")
                 }
             }).disposed(by: disposeBag)
         
@@ -75,12 +78,12 @@ extension PasswordFindViewModel {
         self.signInUseCase.issueTempPassword(email: email)
             .subscribe(onSuccess: { isSucceed in
                 if isSucceed {
-                    // 임시비밀번호가 발급되었습니다
+                    self.coordinator?.presentPopViewController(titleText: "안내", informText: "임시비밀번호가 발급되었습니다.")
                 } else {
-                    // 가입되지 않은 이메일입니다
+                    self.coordinator?.presentPopViewController(titleText: "안내", informText: "가입되지 않은 이메일입니다")
                 }
         }, onFailure: { _ in
-            // 가입되지 않은 이메일입니다
+            self.coordinator?.presentPopViewController(titleText: "안내", informText: "가입되지 않은 이메일입니다")
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     }

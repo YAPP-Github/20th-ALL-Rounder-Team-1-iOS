@@ -25,6 +25,6 @@ class SimplePopupCoordinator: Coordinator {
     }
     
     func dismiss() {
-        self.dismiss()
+        self.navigationController.dismiss(animated: true)
     }
 }
