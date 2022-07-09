@@ -124,7 +124,7 @@ class SignUpViewController: BaseViewController {
     private func bindOutput(_ output: SignUpViewModel.Output) {
         output.vaildEmail.drive(onNext: { [weak self] email, isValid in
             if isValid {
-                self?.emailStackView.hideInformlabel()
+                self?.emailStackView.setInformlabelText(string: "유효한 이메일입니다", informType: .vaild)
             } else {
                 self?.emailStackView.setInformlabelText(string: "올바른 형식으로 입력해주세요", informType: .invaild)
             }
@@ -133,12 +133,14 @@ class SignUpViewController: BaseViewController {
         output.duplicatedEmail.subscribe(onNext: { [weak self] isDuplicate in
             if isDuplicate {
                 self?.emailStackView.setInformlabelText(string: "중복된 이메일입니다", informType: .invaild)
+            } else {
+                self?.emailStackView.setInformlabelText(string: "유효한 이메일입니다", informType: .vaild)
             }
         })
         
         output.checkAuthenticationNumber.subscribe(onNext: { [weak self] isCheck in
             if isCheck {
-                self?.authenticationNumberStackView.hideInformlabel()
+                self?.authenticationNumberStackView.setInformlabelText(string: "인증이 완료되었습니다", informType: .vaild)
                 self?.authenticationNumberStackView.disableButton(title: "확인완료")
                 self?.emailStackView.disableButton(title: "인증완료")
                 self?.emailStackView.disableTextField()
@@ -164,7 +166,7 @@ class SignUpViewController: BaseViewController {
         
         output.vaildPassword.drive(onNext: { [weak self] isVaild in
             if isVaild {
-                self?.passwordStackView.setInformlabelText(string: "숫자, 영어 조합 8자리 이상", informType: .normal)
+                self?.passwordStackView.setInformlabelText(string: "올바른 형식의 비밀번호입니다", informType: .vaild)
             } else {
                 self?.passwordStackView.setInformlabelText(string: "숫자, 영어 조합 8자리 이상 입력해주세요", informType: .invaild)
             }
@@ -172,7 +174,7 @@ class SignUpViewController: BaseViewController {
         
         output.accordPassword.drive(onNext: { [weak self] isAccord in
             if isAccord {
-                self?.passwordCheckStackView.hideInformlabel()
+                self?.passwordCheckStackView.setInformlabelText(string: "비밀번호가 일치합니다", informType: .vaild)
             } else {
                 self?.passwordCheckStackView.setInformlabelText(string: "비밀번호가 일치하지 않습니다", informType: .invaild)
             }

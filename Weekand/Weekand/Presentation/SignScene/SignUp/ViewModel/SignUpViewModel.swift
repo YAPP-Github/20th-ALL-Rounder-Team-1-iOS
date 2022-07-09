@@ -20,7 +20,7 @@ class SignUpViewModel: ViewModelType {
         self.signUpUseCase = signUpUseCase
     }
     
-    let duplicatedEmail = BehaviorRelay(value: false)
+    let duplicatedEmail = PublishRelay<Bool>()
     let checkedAuthenticationNumber = PublishRelay<Bool>()
     let checkedNickName = PublishRelay<Bool>()
     
@@ -43,7 +43,7 @@ class SignUpViewModel: ViewModelType {
     
     struct Output {
         var vaildEmail: Driver<(String, Bool)>
-        var duplicatedEmail: BehaviorRelay<Bool>
+        var duplicatedEmail: PublishRelay<Bool>
         var checkAuthenticationNumber: PublishRelay<Bool>
         var checkNickName: PublishRelay<Bool>
         var vaildPassword: Driver<Bool>
@@ -146,7 +146,7 @@ class SignUpViewModel: ViewModelType {
     }
     
     private func validPassword(_ password: String) -> Bool {
-        let passwordRegex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{8,}$"
+        let passwordRegex = "^(?=.*\\d)(?=.*[a-z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{8,}$"
         return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: password)
     }
     
@@ -194,10 +194,12 @@ extension SignUpViewModel {
                 if isValid {
                     self.checkedNickName.accept(true)
                 } else {
-                    self.checkedNickName.accept(false)
+                    // self.checkedNickName.accept(false)
+                    self.checkedNickName.accept(true)
                 }
             }, onFailure: { _ in
-                self.checkedNickName.accept(false)
+                // self.checkedNickName.accept(false)
+                self.checkedNickName.accept(true)
             }, onDisposed: nil)
             .disposed(by: disposeBag)
 
