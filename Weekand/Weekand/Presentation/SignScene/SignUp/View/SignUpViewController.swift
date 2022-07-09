@@ -147,7 +147,7 @@ class SignUpViewController: BaseViewController {
             }
         }).disposed(by: disposeBag)
         
-        output.checkNickName.drive(onNext: { [weak self] isCheck in
+        output.checkNickName.subscribe(onNext: { [weak self] isCheck in
             if isCheck {
                 self?.nickNameStackView.setInformlabelText(string: "사용가능한 닉네임입니다", informType: .vaild)
                 self?.nickNameStackView.disableButton(title: "중복확인")

@@ -23,4 +23,11 @@ final class SignUpUseCase {
             .map { $0.validAuthKey }
             .asSingle()
     }
+    
+    func checkDuplicateNickname(nickName: String) -> Single<Bool> {
+        return NetWork.shared
+            .fetch(query: CheckDuplicateNicknameQuery(nickname: nickName))
+            .map { $0.checkDuplicateNickname }
+            .asSingle()
+    }
 }
