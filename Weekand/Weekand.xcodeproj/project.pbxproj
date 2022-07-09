@@ -73,6 +73,10 @@
 		F323FF1928799B6D00DFD8FD /* AuthPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF1828799B6D00DFD8FD /* AuthPopupViewController.swift */; };
 		F323FF1B2879A05300DFD8FD /* AuthPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF1A2879A05300DFD8FD /* AuthPopupViewModel.swift */; };
 		F323FF1D2879A30100DFD8FD /* AuthPopupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF1C2879A30000DFD8FD /* AuthPopupCoordinator.swift */; };
+		F323FF1F2879AD5600DFD8FD /* sendAuthKey.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF1E2879AD5600DFD8FD /* sendAuthKey.graphql */; };
+		F323FF212879AF3000DFD8FD /* vaildAuthKey.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF202879AF3000DFD8FD /* vaildAuthKey.graphql */; };
+		F323FF232879B61C00DFD8FD /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF222879B61C00DFD8FD /* SignUpUseCase.swift */; };
+		F323FF252879BFF800DFD8FD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF242879BFF800DFD8FD /* NetworkError.swift */; };
 		F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0128235D500082AF30 /* AppDelegate.swift */; };
 		F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0328235D500082AF30 /* SceneDelegate.swift */; };
 		F32ACC0628235D500082AF30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0528235D500082AF30 /* ViewController.swift */; };
@@ -217,6 +221,10 @@
 		F323FF1828799B6D00DFD8FD /* AuthPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPopupViewController.swift; sourceTree = "<group>"; };
 		F323FF1A2879A05300DFD8FD /* AuthPopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPopupViewModel.swift; sourceTree = "<group>"; };
 		F323FF1C2879A30000DFD8FD /* AuthPopupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPopupCoordinator.swift; sourceTree = "<group>"; };
+		F323FF1E2879AD5600DFD8FD /* sendAuthKey.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = sendAuthKey.graphql; sourceTree = "<group>"; };
+		F323FF202879AF3000DFD8FD /* vaildAuthKey.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = vaildAuthKey.graphql; sourceTree = "<group>"; };
+		F323FF222879B61C00DFD8FD /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
+		F323FF242879BFF800DFD8FD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		F32ACBFE28235D500082AF30 /* Weekand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weekand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32ACC0128235D500082AF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F32ACC0328235D500082AF30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -727,6 +735,7 @@
 			isa = PBXGroup;
 			children = (
 				F323FF142877F7DC00DFD8FD /* SignInUseCase.swift */,
+				F323FF222879B61C00DFD8FD /* SignUpUseCase.swift */,
 			);
 			name = Sign;
 			sourceTree = "<group>";
@@ -844,6 +853,7 @@
 				F3C8E093286F598600B0916A /* Network.swift */,
 				F323FF072877D08800DFD8FD /* TokenAddingInterceptor.swift */,
 				F323FF092877D21F00DFD8FD /* NetworkInterceptorProvider.swift */,
+				F323FF242879BFF800DFD8FD /* NetworkError.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -852,6 +862,8 @@
 			isa = PBXGroup;
 			children = (
 				F323FF0F2877F3B500DFD8FD /* Login.graphql */,
+				F323FF1E2879AD5600DFD8FD /* sendAuthKey.graphql */,
+				F323FF202879AF3000DFD8FD /* vaildAuthKey.graphql */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1018,7 +1030,9 @@
 				F323FF102877F3B500DFD8FD /* Login.graphql in Resources */,
 				F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */,
 				F3C8E0B128731E4900B0916A /* CategoryDropDownCell.xib in Resources */,
+				F323FF1F2879AD5600DFD8FD /* sendAuthKey.graphql in Resources */,
 				F32ACC0B28235D530082AF30 /* Assets.xcassets in Resources */,
+				F323FF212879AF3000DFD8FD /* vaildAuthKey.graphql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1172,6 +1186,7 @@
 				7DF9688C284E019A00CE077E /* MainCalendarView.swift in Sources */,
 				7DD71A8B286CA8C4002D1DCF /* AlarmViewModel.swift in Sources */,
 				7D76AEB628445AA5001C668D /* MainTableViewCell.swift in Sources */,
+				F323FF232879B61C00DFD8FD /* SignUpUseCase.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
 				F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */,
 				F3C8E08E286F570900B0916A /* API.swift in Sources */,
@@ -1219,6 +1234,7 @@
 				F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */,
 				F32F725C28549B650056B189 /* WTextFieldStackView.swift in Sources */,
 				7DBC4C632876AEA200F0AC86 /* MonthlyCalendarSheetViewModel.swift in Sources */,
+				F323FF252879BFF800DFD8FD /* NetworkError.swift in Sources */,
 				F378685B28621C8F00BEEC81 /* CategoryEditViewModelType.swift in Sources */,
 				F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */,
 				F3C8E09C2872E17D00B0916A /* ScheduleEditViewController.swift in Sources */,

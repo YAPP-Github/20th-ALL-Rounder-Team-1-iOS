@@ -30,17 +30,18 @@ class RxApolloClient {
     ) -> Maybe<Query.Data> {
         return Maybe.create { maybe in
             let cancellable = self.client.fetch(query: query, cachePolicy: cachePolicy, contextIdentifier: nil, queue: queue) { result in
+                print(result)
                 switch result {
                 case .success(let graphQLResult):
                     if let errors = graphQLResult.errors {
-                        maybe(.error(ApolloError.graphQLErrors(errors)))
+                        maybe(.error(errors.first ?? ApolloError.fetchError))
                     } else if let data = graphQLResult.data {
                         maybe(.success(data))
                     } else {
                         maybe(.completed)
                     }
                 case .failure(let error):
-                    maybe(.error(error))
+                    maybe(.error(ApolloError.fetchError))
                 }
             }
             

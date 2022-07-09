@@ -12,11 +12,15 @@ import RxCocoa
 class SignUpViewModel: ViewModelType {
 
     weak var coordinator: SignUpCoordinator?
+    private let signUpUseCase: SignUpUseCase
     private let disposeBag = DisposeBag()
     
-    init(coordinator: SignUpCoordinator?) {
+    init(coordinator: SignUpCoordinator?, signUpUseCase: SignUpUseCase) {
         self.coordinator = coordinator
+        self.signUpUseCase = signUpUseCase
     }
+    
+    let duplicatedEmail = BehaviorRelay(value: false)
     
     struct Input {
         let emailTextFieldDidEditEvent: Observable<String>
@@ -34,17 +38,20 @@ class SignUpViewModel: ViewModelType {
     }
     
     struct Output {
-        var vaildEmail: Driver<Bool>
+        var vaildEmail: Driver<(String, Bool)>
         var checkAuthenticationNumber: Driver<Bool>
         var checkNickName: Driver<Bool>
         var vaildPassword: Driver<Bool>
         var accordPassword: Driver<Bool>
         var nextButtonEnable: Driver<Bool>
+        var duplicatedEmail: BehaviorRelay<Bool>
     }
     
     func transform(input: Input) -> Output {
         let vaildEmail = input.emailTextFieldDidEditEvent.map(vaildEmail).asObservable()
-        let vaildEmailWithTap = input.emailButtonDidTapEvent.withLatestFrom(vaildEmail)
+        let vaildEmailWithTap = input.emailButtonDidTapEvent
+                                        .withLatestFrom(vaildEmail)
+                                        .distinctUntilChanged { $0 == $1}
         
         let checkAuthenticationNumber = input.authNumberTextFieldDidEditEvent.map(checkAuthenticationNumber).asObservable()
         let checkAuthenticationNumberWithTap = input.authNumberButtonDidTapEvent.withLatestFrom(checkAuthenticationNumber)
@@ -58,11 +65,21 @@ class SignUpViewModel: ViewModelType {
         let accordPassword = Observable.combineLatest(input.passwordTextFieldDidEditEvent, input.passwordCheckTextFieldDidEditEvent).map(accordPassword).asObservable()
         let accordPasswordWithEndEdit = input.passwordCheckTextFieldDidEndEditEvent.withLatestFrom(accordPassword)
         
-        let nextButtonEnable = Observable.combineLatest(vaildEmail, checkAuthenticationNumber, checkNickName, checkNickNameWithTap, vaildPassword, accordPassword).map { $0 && $1 && $2 && $3 && $4 && $5 }
+        let nextButtonEnable = Observable.combineLatest(vaildEmail, checkAuthenticationNumber, checkNickName, checkNickNameWithTap, vaildPassword, accordPassword).map { $0.1 && $1 && $2 && $3 && $4 && $5 }
         
-        vaildEmailWithTap.subscribe(onNext: { [weak self] isVaild in
-            if isVaild {
-                self?.coordinator?.presentPopViewController()
+        vaildEmailWithTap.subscribe(onNext: { [weak self] email, isValid in
+            if isValid {
+                self?.signUpUseCase.sendAuthKey(email: email).subscribe(onSuccess: { authKey in
+                    print(authKey.sendAuthKey)
+                    if authKey.sendAuthKey == "succeed" {
+                        self?.coordinator?.presentPopViewController()
+                    }
+                }, onFailure: { error in
+                    if error.localizedDescription == NetworkError.duplicatedError.localizedDescription {
+                        self?.duplicatedEmail.accept(true)
+                    }
+                    // TODO: error 처리
+                }, onDisposed: nil)
             }
         }).disposed(by: disposeBag)
         
@@ -77,23 +94,25 @@ class SignUpViewModel: ViewModelType {
         }).disposed(by: disposeBag)
         
         return Output(
-            vaildEmail: vaildEmailWithTap.asDriver(onErrorJustReturn: false),
+            vaildEmail: vaildEmailWithTap.asDriver(onErrorJustReturn: ("", false)),
             checkAuthenticationNumber: checkAuthenticationNumberWithTap.asDriver(onErrorJustReturn: false),
             checkNickName: checkNickNameWithTap.asDriver(onErrorJustReturn: false),
             vaildPassword: vaildPasswordWithEndEdit.asDriver(onErrorJustReturn: false),
             accordPassword: accordPasswordWithEndEdit.asDriver(onErrorJustReturn: false),
-            nextButtonEnable: nextButtonEnable.asDriver(onErrorJustReturn: false)
+            nextButtonEnable: nextButtonEnable.asDriver(onErrorJustReturn: false),
+            duplicatedEmail: duplicatedEmail
         )
     }
     
-    private func vaildEmail(email: String) -> Bool {
+    private func vaildEmail(email: String) -> (String, Bool) {
+        let emailText = email.trimmingCharacters(in: [" "])
         guard let regex = try? NSRegularExpression(
             pattern: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}",
             options: [.caseInsensitive]
         )
         else {
             assertionFailure("Regex not valid")
-            return false
+            return (emailText, false)
         }
         
         let regexFirstMatch = regex
@@ -103,7 +122,7 @@ class SignUpViewModel: ViewModelType {
                 range: NSRange(location: 0, length: email.count)
             )
         
-        return regexFirstMatch != nil
+        return (emailText, regexFirstMatch != nil)
     }
     
     private func checkAuthenticationNumber(_ authNumber: String) -> Bool {

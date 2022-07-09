@@ -13,16 +13,18 @@ class SignUpCoordinator: Coordinator {
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
     var signUpViewController: SignUpViewController
+    var signUpUseCase: SignUpUseCase
     var type: CoordinatorType = .signUp
     
     required init() {
         self.signUpViewController = SignUpViewController()
+        self.signUpUseCase = SignUpUseCase()
         self.navigationController = UINavigationController(rootViewController: signUpViewController)
         self.navigationController.modalPresentationStyle = .overFullScreen
     }
     
     func start() {
-        self.signUpViewController.viewModel = SignUpViewModel(coordinator: self)
+        self.signUpViewController.viewModel = SignUpViewModel(coordinator: self, signUpUseCase: signUpUseCase)
     }
     
     func pushAddInformationViewController() {

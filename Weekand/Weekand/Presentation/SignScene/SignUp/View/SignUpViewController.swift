@@ -121,13 +121,19 @@ class SignUpViewController: BaseViewController {
     }
     
     private func bindOutput(_ output: SignUpViewModel.Output) {
-        output.vaildEmail.drive(onNext: { [weak self] isVaild in
-            if isVaild {
+        output.vaildEmail.drive(onNext: { [weak self] email, isValid in
+            if isValid {
                 self?.emailStackView.hideInformlabel()
             } else {
                 self?.emailStackView.setInformlabelText(string: "올바른 형식으로 입력해주세요", informType: .invaild)
             }
         }).disposed(by: disposeBag)
+        
+        output.duplicatedEmail.subscribe(onNext: { [weak self] isDuplicate in
+            if isDuplicate {
+                self?.emailStackView.setInformlabelText(string: "중복된 이메일입니다", informType: .invaild)
+            }
+        })
         
         output.checkAuthenticationNumber.drive(onNext: { [weak self] isCheck in
             if isCheck {
