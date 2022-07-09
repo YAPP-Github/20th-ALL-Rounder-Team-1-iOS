@@ -19,6 +19,8 @@ class SignUpTermsViewModel: ViewModelType {
     }
     
     struct Input {
+        let termsAgreeButtonDidTapEvent: Observable<Void>
+        let privacyAgreeButtonDidTapEvent: Observable<Void>
         let nextButtonDidTapEvent: Observable<Void>
     }
     

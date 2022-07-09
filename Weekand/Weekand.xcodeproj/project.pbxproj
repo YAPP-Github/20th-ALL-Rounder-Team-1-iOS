@@ -78,6 +78,7 @@
 		F323FF232879B61C00DFD8FD /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF222879B61C00DFD8FD /* SignUpUseCase.swift */; };
 		F323FF272879D18E00DFD8FD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF262879D18E00DFD8FD /* NetworkError.swift */; };
 		F323FF2B287A036E00DFD8FD /* checkDuplicateNickname.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF2A287A036E00DFD8FD /* checkDuplicateNickname.graphql */; };
+		F323FF2D287A154900DFD8FD /* UIButton+setUnderline.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF2C287A154900DFD8FD /* UIButton+setUnderline.swift */; };
 		F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0128235D500082AF30 /* AppDelegate.swift */; };
 		F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0328235D500082AF30 /* SceneDelegate.swift */; };
 		F32ACC0628235D500082AF30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0528235D500082AF30 /* ViewController.swift */; };
@@ -226,6 +227,7 @@
 		F323FF222879B61C00DFD8FD /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
 		F323FF262879D18E00DFD8FD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		F323FF2A287A036E00DFD8FD /* checkDuplicateNickname.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = checkDuplicateNickname.graphql; sourceTree = "<group>"; };
+		F323FF2C287A154900DFD8FD /* UIButton+setUnderline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+setUnderline.swift"; sourceTree = "<group>"; };
 		F32ACBFE28235D500082AF30 /* Weekand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weekand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32ACC0128235D500082AF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F32ACC0328235D500082AF30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -647,6 +649,7 @@
 				F354C3E9283E6946008929FD /* NSMutableAttributedString+extension.swift */,
 				7DF949C6283B6D0A007F84C5 /* DesignSystem */,
 				F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */,
+				F323FF2C287A154900DFD8FD /* UIButton+setUnderline.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1164,6 +1167,7 @@
 				F3C8E0B52873578300B0916A /* WTextView.swift in Sources */,
 				F323FEF0287636B500DFD8FD /* SortDropDownCell.swift in Sources */,
 				7D6E9972283BA18E006F5FC7 /* WBottmButton.swift in Sources */,
+				F323FF2D287A154900DFD8FD /* UIButton+setUnderline.swift in Sources */,
 				F3C8E0B72873598A00B0916A /* MemoStackView.swift in Sources */,
 				F37868552861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift in Sources */,
 				F3CC76AE2866CD1200A3FBBE /* BottomSheetViewController.swift in Sources */,

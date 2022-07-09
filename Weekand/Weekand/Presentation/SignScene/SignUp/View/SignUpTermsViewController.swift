@@ -9,6 +9,7 @@ import UIKit
 import SwiftUI
 import RxSwift
 import RxCocoa
+import WebKit
 
 class SignUpTermsViewController: UIViewController {
 
@@ -38,18 +39,40 @@ class SignUpTermsViewController: UIViewController {
     
     let termsAgreeCheckBoxButton = WCheckBox()
     
+    lazy var termsAgreeButton = UIButton().then {
+        let attributedString = NSMutableAttributedString(
+                                string: "이용약관",
+                                attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+                                             NSAttributedString.Key.font: WFont.subHead2(),
+                                             NSAttributedString.Key.foregroundColor: UIColor.mainColor]
+                            )
+        $0.setAttributedTitle(attributedString, for: .normal)
+        $0.backgroundColor = .clear
+    }
+    
     lazy var termsAgreeLabel = WTextLabel().then {
-        $0.attributedText = NSMutableAttributedString()
-            .semiBold("이용약관", fontSize: defaultFontSize, fontColor: .wblue)
-            .semiBold("에 동의합니다.", fontSize: defaultFontSize, fontColor: .gray700)
+        $0.text = "에 동의합니다."
+        $0.font = WFont.subHead2()
+        $0.textColor = .gray600
     }
     
     lazy var privacyAgreeCheckBoxButton = WCheckBox()
     
+    lazy var privacyAgreeButton = UIButton().then {
+        let attributedString = NSMutableAttributedString(
+                                string: "개인정보 취급방식",
+                                attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
+                                             NSAttributedString.Key.font: WFont.subHead2(),
+                                             NSAttributedString.Key.foregroundColor: UIColor.mainColor]
+                            )
+        $0.setAttributedTitle(attributedString, for: .normal)
+        $0.backgroundColor = .clear
+    }
+    
     lazy var privacyAgreeLabel = WTextLabel().then {
-        $0.attributedText = NSMutableAttributedString()
-            .semiBold("개인정보 취급방식", fontSize: defaultFontSize, fontColor: .wblue)
-            .semiBold("에 동의합니다.", fontSize: defaultFontSize, fontColor: .gray700)
+        $0.text = "에 동의합니다."
+        $0.font = WFont.subHead2()
+        $0.textColor = .gray600
     }
     
     lazy var confirmButton = WBottmButton().then {
@@ -98,10 +121,16 @@ class SignUpTermsViewController: UIViewController {
             make.leading.equalTo(checkBoxButton.snp.leading)
         }
         
+        view.addSubview(termsAgreeButton)
+        termsAgreeButton.snp.makeConstraints { make in
+            make.centerY.equalTo(termsAgreeCheckBoxButton.snp.centerY)
+            make.leading.equalTo(wholeAgreeLabel.snp.leading)
+        }
+        
         view.addSubview(termsAgreeLabel)
         termsAgreeLabel.snp.makeConstraints { make in
             make.centerY.equalTo(termsAgreeCheckBoxButton.snp.centerY)
-            make.leading.equalTo(wholeAgreeLabel.snp.leading)
+            make.leading.equalTo(termsAgreeButton.snp.trailing)
         }
         
         view.addSubview(privacyAgreeCheckBoxButton)
@@ -110,10 +139,16 @@ class SignUpTermsViewController: UIViewController {
             make.leading.equalTo(checkBoxButton.snp.leading)
         }
         
+        view.addSubview(privacyAgreeButton)
+        privacyAgreeButton.snp.makeConstraints { make in
+            make.centerY.equalTo(privacyAgreeCheckBoxButton.snp.centerY)
+            make.leading.equalTo(wholeAgreeLabel.snp.leading)
+        }
+        
         view.addSubview(privacyAgreeLabel)
         privacyAgreeLabel.snp.makeConstraints { make in
             make.centerY.equalTo(privacyAgreeCheckBoxButton.snp.centerY)
-            make.leading.equalTo(wholeAgreeLabel.snp.leading)
+            make.leading.equalTo(privacyAgreeButton.snp.trailing)
         }
         
         view.addSubview(confirmButton)
@@ -131,8 +166,17 @@ class SignUpTermsViewController: UIViewController {
         }
         
         let input = SignUpTermsViewModel.Input(
+            termsAgreeButtonDidTapEvent: termsAgreeButton.rx.tap.asObservable(),
+            privacyAgreeButtonDidTapEvent: privacyAgreeButton.rx.tap.asObservable(),
             nextButtonDidTapEvent: confirmButton.rx.tap.asObservable()
         )
+        
+        termsAgreeButton.rx.tap.subscribe(onNext: {
+            let url = URL(string: "https://typhoon-river-8ba.notion.site/a20528198b2f491fa3b6997c71156c42")!
+            let request = URLRequest(url: url)
+
+            self.termsAgreeWebView.load(request)
+        }).disposed(by: disposeBag)
         
         let _ = viewModel.transform(input: input)
     }
