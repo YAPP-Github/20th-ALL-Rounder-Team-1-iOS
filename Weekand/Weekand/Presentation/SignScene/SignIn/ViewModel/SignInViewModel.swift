@@ -51,17 +51,7 @@ class SignInViewModel: ViewModelType {
                 .withLatestFrom(isCheckEmailPassword)
                 .distinctUntilChanged { $0 == $1 }
                 .subscribe(onNext: { [weak self] email, password in
-                    let emailText = email.trimmingCharacters(in: [" "])
-                    let passwordText = password.trimmingCharacters(in: [" "])
-                    
-                    self?.signInUseCase.login(email: emailText, password: passwordText).subscribe(onSuccess: { tokenData in
-                        UserDataStorage.shared.setAccessToken(token: tokenData.accessToken)
-                        self?.coordinator?.showMainScene()
-                    }, onFailure: { _ in
-                        self?.coordinator?.showToastMessage()
-                    }, onDisposed: nil)
-                    .dispose()
-                    
+                    self?.login(email: email, password: password)
                 }).disposed(by: disposeBag)
     
         input.passwordFindButtonDidTapEvent.subscribe(onNext: {
@@ -75,5 +65,20 @@ class SignInViewModel: ViewModelType {
     
     func vaildInput(email: String, password: String) -> Bool {
         return email.isEmpty == false && password.isEmpty == false
+    }
+}
+
+extension SignInViewModel {
+    private func login(email: String, password: String) {
+        let emailText = email.trimmingCharacters(in: [" "])
+        let passwordText = password.trimmingCharacters(in: [" "])
+        
+        self.signInUseCase.login(email: emailText, password: passwordText).subscribe(onSuccess: { tokenData in
+            UserDataStorage.shared.setAccessToken(token: tokenData.accessToken)
+            self.coordinator?.showMainScene()
+        }, onFailure: { _ in
+            self.coordinator?.showToastMessage()
+        }, onDisposed: nil)
+        .disposed(by: disposeBag)
     }
 }
