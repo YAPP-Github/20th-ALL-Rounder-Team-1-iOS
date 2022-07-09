@@ -12,6 +12,7 @@ import Apollo
 enum ApolloError: Error {
     case partError
     case fetchError
+    case performError
     case graphQLErrors([GraphQLError])
 }
 
@@ -42,6 +43,38 @@ class RxApolloClient {
                     }
                 case .failure(let error):
                     maybe(.error(ApolloError.fetchError))
+                }
+            }
+            
+            return Disposables.create {
+                cancellable.cancel()
+            }
+        }
+    }
+    
+    func perform<Mutation: GraphQLMutation>(
+            mutation: Mutation,
+            publishResultToStore: Bool = true,
+            queue: DispatchQueue = DispatchQueue.main
+    ) -> Maybe<Mutation.Data> {
+        return Maybe.create { maybe in
+            let cancellable = self.client.perform(
+                mutation: mutation,
+                publishResultToStore: publishResultToStore,
+                queue: queue
+            ) { result in
+                print(result)
+                switch result {
+                case .success(let graphQLResult):
+                    if let errors = graphQLResult.errors {
+                        maybe(.error(errors.first ?? ApolloError.performError))
+                    } else if let data = graphQLResult.data {
+                        maybe(.success(data))
+                    } else {
+                        maybe(.completed)
+                    }
+                case .failure(let error):
+                    maybe(.error(ApolloError.performError))
                 }
             }
             

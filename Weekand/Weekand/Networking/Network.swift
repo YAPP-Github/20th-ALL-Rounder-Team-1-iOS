@@ -50,4 +50,15 @@ class NetWork {
                 queue: queue
             ).asObservable()
     }
+    
+    func perform<Mutation: GraphQLMutation>(
+        mutation: Mutation,
+        queue: DispatchQueue = DispatchQueue.main
+    ) -> Observable<Mutation.Data> {
+        return self.client.rx
+            .perform(
+                mutation: mutation,
+                queue: queue
+            ).asObservable()
+    }
 }

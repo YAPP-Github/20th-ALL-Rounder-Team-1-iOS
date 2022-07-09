@@ -40,7 +40,7 @@ class SignInCoordinator: Coordinator {
     }
     
     func presentPasswordFindScene() {
-        let passwordFindCoordinator = PasswordFindCoordinator()
+        let passwordFindCoordinator = PasswordFindCoordinator(signInUseCase: signInUseCase)
         passwordFindCoordinator.finishDelegate = self
         childCoordinators.append(passwordFindCoordinator)
         navigationController.present(passwordFindCoordinator.navigationController, animated: true, completion: nil)

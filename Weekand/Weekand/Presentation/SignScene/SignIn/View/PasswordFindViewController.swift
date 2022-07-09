@@ -81,6 +81,7 @@ class PasswordFindViewController: UIViewController {
     
     private func bindViewModel() {
         let input = PasswordFindViewModel.Input(
+            emailTextFieldDidEditEvent: emailField.rx.text.orEmpty.asObservable(),
             closeButtonDidTapEvent: closeButton.rx.tap.asObservable()
         )
         

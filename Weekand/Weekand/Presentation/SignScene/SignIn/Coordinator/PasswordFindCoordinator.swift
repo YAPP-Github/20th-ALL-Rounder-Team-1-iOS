@@ -14,16 +14,18 @@ class PasswordFindCoordinator: Coordinator {
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
     var passwordFindViewController: PasswordFindViewController
+    var signInUseCase: SignInUseCase
     var type: CoordinatorType = .passwordFind
     
-    required init() {
+    required init(signInUseCase: SignInUseCase) {
         self.passwordFindViewController = PasswordFindViewController()
+        self.signInUseCase = signInUseCase
         self.navigationController = UINavigationController(rootViewController: passwordFindViewController)
         self.navigationController.modalPresentationStyle = .fullScreen
     }
     
     func start() {
-        self.passwordFindViewController.viewModel = PasswordFindViewModel(coordinator: self)
+        self.passwordFindViewController.viewModel = PasswordFindViewModel(coordinator: self, signInUseCase: signInUseCase)
     }
     
     func finish() {

@@ -20,4 +20,13 @@ final class SignInUseCase {
             }
             .asSingle()
     }
+    
+    func issueTempPassword(email: String) -> Single<Bool> {
+        return NetWork.shared
+            .perform(mutation: IssueTempPasswordMutation(email: email))
+            .map {
+                $0.issueTempPassword
+            }
+            .asSingle()
+    }
 }
