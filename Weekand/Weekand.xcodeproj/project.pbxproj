@@ -70,9 +70,9 @@
 		F323FF102877F3B500DFD8FD /* Login.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF0F2877F3B500DFD8FD /* Login.graphql */; };
 		F323FF152877F7DC00DFD8FD /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF142877F7DC00DFD8FD /* SignInUseCase.swift */; };
 		F323FF172879390200DFD8FD /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF162879390200DFD8FD /* PopupViewController.swift */; };
-		F323FF1928799B6D00DFD8FD /* AuthPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF1828799B6D00DFD8FD /* AuthPopupViewController.swift */; };
-		F323FF1B2879A05300DFD8FD /* AuthPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF1A2879A05300DFD8FD /* AuthPopupViewModel.swift */; };
-		F323FF1D2879A30100DFD8FD /* AuthPopupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF1C2879A30000DFD8FD /* AuthPopupCoordinator.swift */; };
+		F323FF1928799B6D00DFD8FD /* SimplePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF1828799B6D00DFD8FD /* SimplePopupViewController.swift */; };
+		F323FF1B2879A05300DFD8FD /* SimplePopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF1A2879A05300DFD8FD /* SimplePopupViewModel.swift */; };
+		F323FF1D2879A30100DFD8FD /* SimplePopupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF1C2879A30000DFD8FD /* SimplePopupCoordinator.swift */; };
 		F323FF1F2879AD5600DFD8FD /* sendAuthKey.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF1E2879AD5600DFD8FD /* sendAuthKey.graphql */; };
 		F323FF212879AF3000DFD8FD /* vaildAuthKey.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF202879AF3000DFD8FD /* vaildAuthKey.graphql */; };
 		F323FF232879B61C00DFD8FD /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF222879B61C00DFD8FD /* SignUpUseCase.swift */; };
@@ -219,9 +219,9 @@
 		F323FF0F2877F3B500DFD8FD /* Login.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Login.graphql; sourceTree = "<group>"; };
 		F323FF142877F7DC00DFD8FD /* SignInUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCase.swift; sourceTree = "<group>"; };
 		F323FF162879390200DFD8FD /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
-		F323FF1828799B6D00DFD8FD /* AuthPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPopupViewController.swift; sourceTree = "<group>"; };
-		F323FF1A2879A05300DFD8FD /* AuthPopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPopupViewModel.swift; sourceTree = "<group>"; };
-		F323FF1C2879A30000DFD8FD /* AuthPopupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPopupCoordinator.swift; sourceTree = "<group>"; };
+		F323FF1828799B6D00DFD8FD /* SimplePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePopupViewController.swift; sourceTree = "<group>"; };
+		F323FF1A2879A05300DFD8FD /* SimplePopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePopupViewModel.swift; sourceTree = "<group>"; };
+		F323FF1C2879A30000DFD8FD /* SimplePopupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePopupCoordinator.swift; sourceTree = "<group>"; };
 		F323FF1E2879AD5600DFD8FD /* sendAuthKey.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = sendAuthKey.graphql; sourceTree = "<group>"; };
 		F323FF202879AF3000DFD8FD /* vaildAuthKey.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = vaildAuthKey.graphql; sourceTree = "<group>"; };
 		F323FF222879B61C00DFD8FD /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
@@ -594,7 +594,6 @@
 				7DC166A82837140000F1A8F1 /* SignUpViewController.swift */,
 				F354C3E2283D3615008929FD /* SignUpAddInfomationViewController.swift */,
 				F354C3E7283D4126008929FD /* SignUpTermsViewController.swift */,
-				F323FF1828799B6D00DFD8FD /* AuthPopupViewController.swift */,
 				F354C3E6283D3EC8008929FD /* Views */,
 			);
 			path = View;
@@ -606,7 +605,6 @@
 				7DC166B02837145200F1A8F1 /* SignUpViewModel.swift */,
 				F3DD0234284A6AA600AD9240 /* SignUpAddInformationViewModel.swift */,
 				F3DD0236284A6BEC00AD9240 /* SignUpTermsViewModel.swift */,
-				F323FF1A2879A05300DFD8FD /* AuthPopupViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -824,6 +822,7 @@
 		F391B432283BF0EC004E7B06 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F323FF1828799B6D00DFD8FD /* SimplePopupViewController.swift */,
 				F391B430283BE78B004E7B06 /* BaseViewController.swift */,
 				F3DD0230284A36D300AD9240 /* BaseNavigationController.swift */,
 				F3CC76AD2866CD1200A3FBBE /* BottomSheetViewController.swift */,
@@ -930,6 +929,7 @@
 		F3DD0216284660D200AD9240 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				F323FF1C2879A30000DFD8FD /* SimplePopupCoordinator.swift */,
 				F3DD02192846629100AD9240 /* Coordinator.swift */,
 				F3DD0228284670E900AD9240 /* AppCoordinator.swift */,
 				F3DD0232284A534C00AD9240 /* CoordinatorType.swift */,
@@ -959,7 +959,6 @@
 			isa = PBXGroup;
 			children = (
 				F3DD022628466E3300AD9240 /* SignUpCoordinator.swift */,
-				F323FF1C2879A30000DFD8FD /* AuthPopupCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -968,6 +967,7 @@
 			isa = PBXGroup;
 			children = (
 				F3DD022D2846815300AD9240 /* ViewModelType.swift */,
+				F323FF1A2879A05300DFD8FD /* SimplePopupViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1181,7 +1181,7 @@
 				F3CC76AE2866CD1200A3FBBE /* BottomSheetViewController.swift in Sources */,
 				F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */,
 				F32F72542853C2200056B189 /* CategoryDetailHeaderView.swift in Sources */,
-				F323FF1928799B6D00DFD8FD /* AuthPopupViewController.swift in Sources */,
+				F323FF1928799B6D00DFD8FD /* SimplePopupViewController.swift in Sources */,
 				F323FF152877F7DC00DFD8FD /* SignInUseCase.swift in Sources */,
 				F3DD021A2846629100AD9240 /* Coordinator.swift in Sources */,
 				F392A1C7284F51B100512A42 /* CategoryListViewController.swift in Sources */,
@@ -1209,7 +1209,7 @@
 				F323FF172879390200DFD8FD /* PopupViewController.swift in Sources */,
 				7D8033D4286001B70039F73E /* MainProfileView.swift in Sources */,
 				7D7178ED283E1ED500D7E5F2 /* WTextButton.swift in Sources */,
-				F323FF1D2879A30100DFD8FD /* AuthPopupCoordinator.swift in Sources */,
+				F323FF1D2879A30100DFD8FD /* SimplePopupCoordinator.swift in Sources */,
 				7DF9688A284DF2EB00CE077E /* MainViewHeader.swift in Sources */,
 				7DEA177A2845E7C500F6B990 /* WEmojiView.swift in Sources */,
 				7DBC38AE2875A92400EFE704 /* Key.swift in Sources */,
@@ -1224,7 +1224,7 @@
 				7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */,
 				F3F731D328672AF500C8B778 /* WTypeToggleButton.swift in Sources */,
 				F3F731DF2868DE0000C8B778 /* Sort.swift in Sources */,
-				F323FF1B2879A05300DFD8FD /* AuthPopupViewModel.swift in Sources */,
+				F323FF1B2879A05300DFD8FD /* SimplePopupViewModel.swift in Sources */,
 				F3C8E0B028731E4900B0916A /* CategoryDropDownCell.swift in Sources */,
 				F392A1EF28531FC600512A42 /* CategoryListHeaderView.swift in Sources */,
 				7DF949C8283B6F1F007F84C5 /* CommonShape.swift in Sources */,

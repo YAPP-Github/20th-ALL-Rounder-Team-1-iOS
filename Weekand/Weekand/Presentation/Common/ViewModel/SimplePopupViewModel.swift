@@ -1,5 +1,5 @@
 //
-//  AuthPopupViewModel.swift
+//  SimplePopupViewModel.swift
 //  Weekand
 //
 //  Created by 이호영 on 2022/07/09.
@@ -9,12 +9,12 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class AuthPopupViewModel: ViewModelType {
+class SimplePopupViewModel: ViewModelType {
     
-    weak var coordinator: AuthPopupCoordinator?
+    weak var coordinator: SimplePopupCoordinator?
     private var disposeBag = DisposeBag()
 
-    init(coordinator: AuthPopupCoordinator) {
+    init(coordinator: SimplePopupCoordinator) {
         self.coordinator = coordinator
     }
     

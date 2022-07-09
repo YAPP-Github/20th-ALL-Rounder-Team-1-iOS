@@ -39,9 +39,8 @@ class SignUpCoordinator: Coordinator {
         self.navigationController.pushViewController(signUpTermsViewController, animated: true)
     }
     
-    func presentPopViewController() {
-        let authPopupCoordinator = AuthPopupCoordinator()
-        authPopupCoordinator.finishDelegate = self
+    func presentPopViewController(titleText: String, informText: String) {
+        let authPopupCoordinator = SimplePopupCoordinator(titleText: titleText, informText: informText)
         childCoordinators.append(authPopupCoordinator)
         navigationController.present(authPopupCoordinator.navigationController, animated: true, completion: nil)
         authPopupCoordinator.start()
