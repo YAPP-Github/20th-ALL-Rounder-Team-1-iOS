@@ -18,7 +18,7 @@ class SignUpCoordinator: Coordinator {
     required init() {
         self.signUpViewController = SignUpViewController()
         self.navigationController = UINavigationController(rootViewController: signUpViewController)
-        self.navigationController.modalPresentationStyle = .fullScreen
+        self.navigationController.modalPresentationStyle = .overFullScreen
     }
     
     func start() {
@@ -37,7 +37,22 @@ class SignUpCoordinator: Coordinator {
         self.navigationController.pushViewController(signUpTermsViewController, animated: true)
     }
     
+    func presentPopViewController() {
+        let authPopupCoordinator = AuthPopupCoordinator()
+        authPopupCoordinator.finishDelegate = self
+        childCoordinators.append(authPopupCoordinator)
+        navigationController.present(authPopupCoordinator.navigationController, animated: true, completion: nil)
+        authPopupCoordinator.start()
+    }
+    
     func finish() {
         self.finishDelegate?.childDidFinish(self)
+    }
+}
+
+extension SignUpCoordinator: CoordinatorDidFinishDelegate {
+    func childDidFinish(_ child: Coordinator) {
+        self.childCoordinators = self.childCoordinators.filter({ $0.type != child.type })
+        navigationController.dismiss(animated: true, completion: nil)
     }
 }

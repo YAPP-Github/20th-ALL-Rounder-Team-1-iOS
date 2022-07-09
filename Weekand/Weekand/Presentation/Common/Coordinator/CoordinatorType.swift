@@ -16,6 +16,7 @@ enum CoordinatorType {
     case signIn
     case signUp
     case passwordFind
+    case authPopup
     
     // Main Scene
     case main

@@ -60,6 +60,12 @@ class SignUpViewModel: ViewModelType {
         
         let nextButtonEnable = Observable.combineLatest(vaildEmail, checkAuthenticationNumber, checkNickName, checkNickNameWithTap, vaildPassword, accordPassword).map { $0 && $1 && $2 && $3 && $4 && $5 }
         
+        vaildEmailWithTap.subscribe(onNext: { [weak self] isVaild in
+            if isVaild {
+                self?.coordinator?.presentPopViewController()
+            }
+        }).disposed(by: disposeBag)
+        
         input.nextButtonDidTapEvent.subscribe(onNext: {
             self.coordinator?.pushAddInformationViewController()
         }, onError: { _ in
