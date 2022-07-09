@@ -135,7 +135,7 @@ class SignUpViewController: BaseViewController {
             }
         })
         
-        output.checkAuthenticationNumber.drive(onNext: { [weak self] isCheck in
+        output.checkAuthenticationNumber.subscribe(onNext: { [weak self] isCheck in
             if isCheck {
                 self?.authenticationNumberStackView.hideInformlabel()
                 self?.authenticationNumberStackView.disableButton(title: "확인완료")

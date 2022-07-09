@@ -76,7 +76,7 @@
 		F323FF1F2879AD5600DFD8FD /* sendAuthKey.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF1E2879AD5600DFD8FD /* sendAuthKey.graphql */; };
 		F323FF212879AF3000DFD8FD /* vaildAuthKey.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF202879AF3000DFD8FD /* vaildAuthKey.graphql */; };
 		F323FF232879B61C00DFD8FD /* SignUpUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF222879B61C00DFD8FD /* SignUpUseCase.swift */; };
-		F323FF252879BFF800DFD8FD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF242879BFF800DFD8FD /* NetworkError.swift */; };
+		F323FF272879D18E00DFD8FD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF262879D18E00DFD8FD /* NetworkError.swift */; };
 		F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0128235D500082AF30 /* AppDelegate.swift */; };
 		F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0328235D500082AF30 /* SceneDelegate.swift */; };
 		F32ACC0628235D500082AF30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0528235D500082AF30 /* ViewController.swift */; };
@@ -116,7 +116,6 @@
 		F3AA9E1D2869FF1E00F71559 /* PasswordFindCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA9E1C2869FF1E00F71559 /* PasswordFindCoordinator.swift */; };
 		F3C8E087286DC71300B0916A /* RxApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E086286DC71300B0916A /* RxApolloClient.swift */; };
 		F3C8E08E286F570900B0916A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E08D286F570900B0916A /* API.swift */; };
-		F3C8E090286F571600B0916A /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = F3C8E08F286F571600B0916A /* schema.json */; };
 		F3C8E094286F598600B0916A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E093286F598600B0916A /* Network.swift */; };
 		F3C8E09C2872E17D00B0916A /* ScheduleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E09B2872E17D00B0916A /* ScheduleEditViewController.swift */; };
 		F3C8E0A12872EFF400B0916A /* DropDownStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0A02872EFF400B0916A /* DropDownStackView.swift */; };
@@ -224,7 +223,7 @@
 		F323FF1E2879AD5600DFD8FD /* sendAuthKey.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = sendAuthKey.graphql; sourceTree = "<group>"; };
 		F323FF202879AF3000DFD8FD /* vaildAuthKey.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = vaildAuthKey.graphql; sourceTree = "<group>"; };
 		F323FF222879B61C00DFD8FD /* SignUpUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUseCase.swift; sourceTree = "<group>"; };
-		F323FF242879BFF800DFD8FD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		F323FF262879D18E00DFD8FD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		F32ACBFE28235D500082AF30 /* Weekand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weekand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32ACC0128235D500082AF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F32ACC0328235D500082AF30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -267,7 +266,6 @@
 		F3AA9E1C2869FF1E00F71559 /* PasswordFindCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindCoordinator.swift; sourceTree = "<group>"; };
 		F3C8E086286DC71300B0916A /* RxApolloClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxApolloClient.swift; sourceTree = "<group>"; };
 		F3C8E08D286F570900B0916A /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		F3C8E08F286F571600B0916A /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		F3C8E093286F598600B0916A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		F3C8E09B2872E17D00B0916A /* ScheduleEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditViewController.swift; sourceTree = "<group>"; };
 		F3C8E0A02872EFF400B0916A /* DropDownStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownStackView.swift; sourceTree = "<group>"; };
@@ -849,11 +847,10 @@
 			children = (
 				F3C8E08A286F4D8F00B0916A /* Query */,
 				F3C8E086286DC71300B0916A /* RxApolloClient.swift */,
-				F3C8E08F286F571600B0916A /* schema.json */,
 				F3C8E093286F598600B0916A /* Network.swift */,
 				F323FF072877D08800DFD8FD /* TokenAddingInterceptor.swift */,
 				F323FF092877D21F00DFD8FD /* NetworkInterceptorProvider.swift */,
-				F323FF242879BFF800DFD8FD /* NetworkError.swift */,
+				F323FF262879D18E00DFD8FD /* NetworkError.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1025,7 +1022,6 @@
 			files = (
 				7DF8B7A928361FB100B224CA /* PretendardVariable.ttf in Resources */,
 				F323FEF1287636B500DFD8FD /* SortDropDownCell.xib in Resources */,
-				F3C8E090286F571600B0916A /* schema.json in Resources */,
 				7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */,
 				F323FF102877F3B500DFD8FD /* Login.graphql in Resources */,
 				F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */,
@@ -1234,7 +1230,7 @@
 				F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */,
 				F32F725C28549B650056B189 /* WTextFieldStackView.swift in Sources */,
 				7DBC4C632876AEA200F0AC86 /* MonthlyCalendarSheetViewModel.swift in Sources */,
-				F323FF252879BFF800DFD8FD /* NetworkError.swift in Sources */,
+				F323FF272879D18E00DFD8FD /* NetworkError.swift in Sources */,
 				F378685B28621C8F00BEEC81 /* CategoryEditViewModelType.swift in Sources */,
 				F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */,
 				F3C8E09C2872E17D00B0916A /* ScheduleEditViewController.swift in Sources */,

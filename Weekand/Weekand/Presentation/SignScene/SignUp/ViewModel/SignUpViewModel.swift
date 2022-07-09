@@ -21,6 +21,9 @@ class SignUpViewModel: ViewModelType {
     }
     
     let duplicatedEmail = BehaviorRelay(value: false)
+    let checkedAuthenticationNumber = PublishRelay<Bool>()
+    
+    var email: String = ""
     
     struct Input {
         let emailTextFieldDidEditEvent: Observable<String>
@@ -39,22 +42,22 @@ class SignUpViewModel: ViewModelType {
     
     struct Output {
         var vaildEmail: Driver<(String, Bool)>
-        var checkAuthenticationNumber: Driver<Bool>
+        var duplicatedEmail: BehaviorRelay<Bool>
+        var checkAuthenticationNumber: PublishRelay<Bool>
         var checkNickName: Driver<Bool>
         var vaildPassword: Driver<Bool>
         var accordPassword: Driver<Bool>
         var nextButtonEnable: Driver<Bool>
-        var duplicatedEmail: BehaviorRelay<Bool>
     }
     
     func transform(input: Input) -> Output {
         let vaildEmail = input.emailTextFieldDidEditEvent.map(vaildEmail).asObservable()
         let vaildEmailWithTap = input.emailButtonDidTapEvent
                                         .withLatestFrom(vaildEmail)
-                                        .distinctUntilChanged { $0 == $1}
+                                        .distinctUntilChanged { $0 == $1 }
         
-        let checkAuthenticationNumber = input.authNumberTextFieldDidEditEvent.map(checkAuthenticationNumber).asObservable()
-        let checkAuthenticationNumberWithTap = input.authNumberButtonDidTapEvent.withLatestFrom(checkAuthenticationNumber)
+        let checkAuthenticationNumberWithTap = input.authNumberButtonDidTapEvent
+                                                    .withLatestFrom(input.authNumberTextFieldDidEditEvent)
         
         let checkNickName = input.nickNameTextFieldDidEditEvent.map(checkNickName).asObservable()
         let checkNickNameWithTap = input.nickNameButtonDidTapEvent.withLatestFrom(checkNickName).asObservable()
@@ -65,22 +68,18 @@ class SignUpViewModel: ViewModelType {
         let accordPassword = Observable.combineLatest(input.passwordTextFieldDidEditEvent, input.passwordCheckTextFieldDidEditEvent).map(accordPassword).asObservable()
         let accordPasswordWithEndEdit = input.passwordCheckTextFieldDidEndEditEvent.withLatestFrom(accordPassword)
         
-        let nextButtonEnable = Observable.combineLatest(vaildEmail, checkAuthenticationNumber, checkNickName, checkNickNameWithTap, vaildPassword, accordPassword).map { $0.1 && $1 && $2 && $3 && $4 && $5 }
+        let nextButtonEnable = Observable.combineLatest(vaildEmailWithTap, checkedAuthenticationNumber, checkNickName, checkNickNameWithTap, vaildPassword, accordPassword).map { $0.1 && $1 && $2 && $3 && $4 && $5 }
         
-        vaildEmailWithTap.subscribe(onNext: { [weak self] email, isValid in
+        vaildEmailWithTap
+            .subscribe(onNext: { [weak self] email, isValid in
             if isValid {
-                self?.signUpUseCase.sendAuthKey(email: email).subscribe(onSuccess: { authKey in
-                    print(authKey.sendAuthKey)
-                    if authKey.sendAuthKey == "succeed" {
-                        self?.coordinator?.presentPopViewController()
-                    }
-                }, onFailure: { error in
-                    if error.localizedDescription == NetworkError.duplicatedError.localizedDescription {
-                        self?.duplicatedEmail.accept(true)
-                    }
-                    // TODO: error 처리
-                }, onDisposed: nil)
+                self?.sendAuthKey(email)
             }
+        }).disposed(by: disposeBag)
+        
+        checkAuthenticationNumberWithTap
+            .subscribe(onNext: { [weak self] authKey in
+                self?.vaildAuthKey(authKey)
         }).disposed(by: disposeBag)
         
         input.nextButtonDidTapEvent.subscribe(onNext: {
@@ -95,12 +94,12 @@ class SignUpViewModel: ViewModelType {
         
         return Output(
             vaildEmail: vaildEmailWithTap.asDriver(onErrorJustReturn: ("", false)),
-            checkAuthenticationNumber: checkAuthenticationNumberWithTap.asDriver(onErrorJustReturn: false),
+            duplicatedEmail: duplicatedEmail,
+            checkAuthenticationNumber: checkedAuthenticationNumber,
             checkNickName: checkNickNameWithTap.asDriver(onErrorJustReturn: false),
             vaildPassword: vaildPasswordWithEndEdit.asDriver(onErrorJustReturn: false),
             accordPassword: accordPasswordWithEndEdit.asDriver(onErrorJustReturn: false),
-            nextButtonEnable: nextButtonEnable.asDriver(onErrorJustReturn: false),
-            duplicatedEmail: duplicatedEmail
+            nextButtonEnable: nextButtonEnable.asDriver(onErrorJustReturn: false)
         )
     }
     
@@ -146,5 +145,40 @@ class SignUpViewModel: ViewModelType {
     
     private func accordPassword(password: String, passwordforCheck: String) -> Bool {
         return password == passwordforCheck
+    }
+}
+
+// network
+
+extension SignUpViewModel {
+    private func sendAuthKey(_ email: String) {
+        self.signUpUseCase.sendAuthKey(email: email)
+            .subscribe(onSuccess: { isSucceed in
+            if isSucceed {
+                self.coordinator?.presentPopViewController()
+                self.email = email
+            }
+        }, onFailure: { error in
+            if error.localizedDescription == NetworkError.duplicatedError.localizedDescription {
+                self.duplicatedEmail.accept(true)
+            }
+            // TODO: error 처리
+        }, onDisposed: nil)
+        .disposed(by: self.disposeBag)
+    }
+    
+    private func vaildAuthKey(_ key: String) {
+        self.signUpUseCase.vaildAuthKey(key: key, email: email)
+            .subscribe(onSuccess: { isValid in
+                print(isValid)
+                if isValid {
+                    self.checkedAuthenticationNumber.accept(true)
+                } else {
+                    self.checkedAuthenticationNumber.accept(false)
+                }
+            }, onFailure: { _ in
+                self.checkedAuthenticationNumber.accept(false)
+            }, onDisposed: nil)
+            .disposed(by: self.disposeBag)
     }
 }

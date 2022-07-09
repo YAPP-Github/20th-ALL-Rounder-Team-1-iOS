@@ -8,14 +8,19 @@
 import Foundation
 import RxSwift
 
-typealias AuthKey = SendAuthKeyQuery.Data
-
 final class SignUpUseCase {
     
-    func sendAuthKey(email: String) -> Single<AuthKey> {
+    func sendAuthKey(email: String) -> Single<Bool> {
         return NetWork.shared
             .fetch(query: SendAuthKeyQuery(email: email))
-            .map { AuthKey(sendAuthKey: $0.sendAuthKey) }
+            .map { $0.sendAuthKey }
+            .asSingle()
+    }
+    
+    func vaildAuthKey(key: String, email: String) -> Single<Bool> {
+        return NetWork.shared
+            .fetch(query: VaildAuthKeyQuery(authKey: key, email: email))
+            .map { $0.validAuthKey }
             .asSingle()
     }
 }
