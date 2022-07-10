@@ -112,14 +112,22 @@ extension SignUpAddInfomationViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             cell.configure(text: Constants.jobDataSource[indexPath.section][indexPath.item])
+            cell.delegate = self
             return cell
         } else {
             guard let cell = interestsStackView.collectionView.dequeueReusableCell(withReuseIdentifier: InformationCollectionViewCell.cellIdentifier, for: indexPath) as? InformationCollectionViewCell else {
                 return UICollectionViewCell()
             }
             cell.configure(text: Constants.interestsDataSource[indexPath.section][indexPath.item])
+            cell.delegate = self
             return cell
         }
+    }
+}
+
+extension SignUpAddInfomationViewController: InformationCellDelegate {
+    func cellTapped(tag: String?) {
+        print("\(#function), tag: \(String(describing: tag))")
     }
 }
 
