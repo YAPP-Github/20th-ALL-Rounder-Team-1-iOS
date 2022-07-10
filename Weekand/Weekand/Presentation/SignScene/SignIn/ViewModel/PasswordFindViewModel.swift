@@ -39,7 +39,10 @@ class PasswordFindViewModel: ViewModelType {
                 if isVaild {
                     self.issueTempPassword(email: email)
                 } else {
-                    self.coordinator?.presentPopViewController(titleText: "안내", informText: "유효하지 않은 이메일입니다.")
+                    self.coordinator?.presentPopViewController(
+                                        titleText: "안내",
+                                        informText: "유효하지 않은 이메일입니다.",
+                                        dismissParentCoordinator: false)
                 }
             }).disposed(by: disposeBag)
         
@@ -78,12 +81,21 @@ extension PasswordFindViewModel {
         self.signInUseCase.issueTempPassword(email: email)
             .subscribe(onSuccess: { isSucceed in
                 if isSucceed {
-                    self.coordinator?.presentPopViewController(titleText: "안내", informText: "임시비밀번호가 발급되었습니다.")
+                    self.coordinator?.presentPopViewController(
+                                        titleText: "안내",
+                                        informText: "임시비밀번호가 발급되었습니다.",
+                                        dismissParentCoordinator: true)
                 } else {
-                    self.coordinator?.presentPopViewController(titleText: "안내", informText: "가입되지 않은 이메일입니다")
+                    self.coordinator?.presentPopViewController(
+                                        titleText: "안내",
+                                        informText: "가입되지 않은 이메일입니다",
+                                        dismissParentCoordinator: false)
                 }
         }, onFailure: { _ in
-            self.coordinator?.presentPopViewController(titleText: "안내", informText: "가입되지 않은 이메일입니다")
+            self.coordinator?.presentPopViewController(
+                                titleText: "안내",
+                                informText: "가입되지 않은 이메일입니다",
+                                dismissParentCoordinator: false)
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     }

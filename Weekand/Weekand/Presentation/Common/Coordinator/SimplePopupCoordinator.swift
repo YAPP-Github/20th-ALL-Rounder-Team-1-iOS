@@ -9,12 +9,17 @@ import UIKit
 
 class SimplePopupCoordinator: Coordinator {
     var navigationController: UINavigationController
+    weak var finishDelegate: CoordinatorDidFinishDelegate?
     var childCoordinators: [Coordinator] = []
     var simplePopupViewController: SimplePopupViewController
+    var dismissParentCoordinator: Bool
     var type: CoordinatorType = .simplePopup
     
-    required init(titleText: String, informText: String) {
-        self.simplePopupViewController = SimplePopupViewController(titleText: titleText, informText: informText)
+    required init(titleText: String, informText: String, dismissParentCoordinator: Bool) {
+        self.simplePopupViewController = SimplePopupViewController(
+                                            titleText: titleText,
+                                            informText: informText)
+        self.dismissParentCoordinator = dismissParentCoordinator
         self.navigationController = UINavigationController(rootViewController: simplePopupViewController)
         self.navigationController.modalPresentationStyle = .overFullScreen
         self.navigationController.modalTransitionStyle = .crossDissolve
@@ -26,5 +31,8 @@ class SimplePopupCoordinator: Coordinator {
     
     func dismiss() {
         self.navigationController.dismiss(animated: true)
+        if self.dismissParentCoordinator {
+            self.finishDelegate?.childDidFinish(self)
+        }
     }
 }

@@ -39,14 +39,21 @@ class SignUpCoordinator: Coordinator {
     
     func pushTermsViewController(signUpModel: SignUpModel) {
         let signUpTermsViewController  = SignUpTermsViewController()
-        signUpTermsViewController.viewModel = SignUpTermsViewModel(coordinator: self, signUpModel: signUpModel)
+        signUpTermsViewController.viewModel = SignUpTermsViewModel(
+                                                    coordinator: self,
+                                                    signUpUseCase: signUpUseCase,
+                                                    signUpModel: signUpModel)
         self.navigationController.pushViewController(signUpTermsViewController, animated: true)
     }
     
-    func presentPopViewController(titleText: String, informText: String) {
-        let authPopupCoordinator = SimplePopupCoordinator(titleText: titleText, informText: informText)
+    func presentPopViewController(titleText: String, informText: String, dismissParentCoordinator: Bool) {
+        let authPopupCoordinator = SimplePopupCoordinator(
+                                        titleText: titleText,
+                                        informText: informText,
+                                        dismissParentCoordinator: dismissParentCoordinator)
         childCoordinators.append(authPopupCoordinator)
         navigationController.present(authPopupCoordinator.navigationController, animated: true, completion: nil)
+        authPopupCoordinator.finishDelegate = self
         authPopupCoordinator.start()
     }
     

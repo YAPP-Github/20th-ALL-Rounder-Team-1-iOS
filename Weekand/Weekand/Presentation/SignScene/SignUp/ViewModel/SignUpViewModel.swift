@@ -175,7 +175,10 @@ extension SignUpViewModel {
         self.signUpUseCase.sendAuthKey(email: email)
             .subscribe(onSuccess: { isSucceed in
             if isSucceed {
-                self.coordinator?.presentPopViewController(titleText: "안내", informText: "인증번호가 발송되었습니다.")
+                self.coordinator?.presentPopViewController(
+                                        titleText: "안내",
+                                        informText: "인증번호가 발송되었습니다.",
+                                        dismissParentCoordinator: false)
                 self.email = email
             }
         }, onFailure: { error in

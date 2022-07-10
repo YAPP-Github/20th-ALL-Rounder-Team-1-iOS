@@ -28,14 +28,25 @@ class PasswordFindCoordinator: Coordinator {
         self.passwordFindViewController.viewModel = PasswordFindViewModel(coordinator: self, signInUseCase: signInUseCase)
     }
     
-    func presentPopViewController(titleText: String, informText: String) {
-        let authPopupCoordinator = SimplePopupCoordinator(titleText: titleText, informText: informText)
+    func presentPopViewController(titleText: String, informText: String, dismissParentCoordinator: Bool) {
+        let authPopupCoordinator = SimplePopupCoordinator(
+                                        titleText: titleText,
+                                        informText: informText,
+                                        dismissParentCoordinator: dismissParentCoordinator)
         childCoordinators.append(authPopupCoordinator)
         navigationController.present(authPopupCoordinator.navigationController, animated: true, completion: nil)
+        authPopupCoordinator.finishDelegate = self
         authPopupCoordinator.start()
     }
     
     func finish() {
         self.finishDelegate?.childDidFinish(self)
+    }
+}
+
+extension PasswordFindCoordinator: CoordinatorDidFinishDelegate {
+    func childDidFinish(_ child: Coordinator) {
+        self.childCoordinators = self.childCoordinators.filter({ $0.type != child.type })
+        navigationController.dismiss(animated: true, completion: nil)
     }
 }
