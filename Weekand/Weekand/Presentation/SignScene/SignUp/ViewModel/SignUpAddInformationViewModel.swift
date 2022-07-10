@@ -29,21 +29,15 @@ class SignUpAddInfomationViewModel: ViewModelType {
     func transform(input: Input) -> Output {
         
         input.selectedJobs.subscribe(onNext: { [weak self] jobs in
-            print(jobs.count)
-        }, onError: { _ in
-            
+            jobs.forEach { print($0) }
         }).disposed(by: disposeBag)
         
         input.selectedInterests.subscribe(onNext: { [weak self] interests in
-            print(interests.count)
-        }, onError: { _ in
-            
+            interests.forEach { print($0) }
         }).disposed(by: disposeBag)
 
         input.nextButtonDidTapEvent.subscribe(onNext: {
             self.coordinator?.pushTermsViewController()
-        }, onError: { _ in
-            
         }).disposed(by: disposeBag)
         
         return Output()

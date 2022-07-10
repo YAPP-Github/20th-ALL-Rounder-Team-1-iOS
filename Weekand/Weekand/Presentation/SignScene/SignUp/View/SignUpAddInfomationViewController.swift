@@ -139,7 +139,6 @@ extension SignUpAddInfomationViewController: UICollectionViewDelegate {
             if let jobs = jobStackView.collectionView.indexPathsForSelectedItems,
                jobs.count <= 2
             {
-                self.selectedJobs.accept(jobs.map { Constants.jobDataSource[$0.section][$0.item] } ?? [])
                 return true
             } else {
                 return false
@@ -148,11 +147,24 @@ extension SignUpAddInfomationViewController: UICollectionViewDelegate {
             if let interests = interestsStackView.collectionView.indexPathsForSelectedItems,
                interests.count <= 2
             {
-                self.selectedInterests.accept(interests.map { Constants.interestsDataSource[$0.section][$0.item] } ?? [])
                 return true
             } else {
                 return false
             }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == jobStackView.collectionView {
+            let jobs = jobStackView.collectionView
+                        .indexPathsForSelectedItems?
+                        .map { Constants.jobDataSource[$0.section][$0.item] }
+            self.selectedJobs.accept(jobs ?? [])
+        } else {
+            let interests = interestsStackView.collectionView
+                        .indexPathsForSelectedItems?
+                        .map { Constants.interestsDataSource[$0.section][$0.item] }
+            self.selectedJobs.accept(interests ?? [])
         }
     }
     
