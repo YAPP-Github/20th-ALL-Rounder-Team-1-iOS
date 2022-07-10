@@ -133,18 +133,26 @@ extension SignUpAddInfomationViewController: UICollectionViewDataSource {
 }
 
 extension SignUpAddInfomationViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         if collectionView == jobStackView.collectionView {
-            let jobs = jobStackView.collectionView
-                        .indexPathsForSelectedItems?
-                        .map { Constants.jobDataSource[$0.section][$0.item] }
-            self.selectedJobs.accept(jobs ?? [])
+            if let jobs = jobStackView.collectionView.indexPathsForSelectedItems,
+               jobs.count <= 2
+            {
+                self.selectedJobs.accept(jobs.map { Constants.jobDataSource[$0.section][$0.item] } ?? [])
+                return true
+            } else {
+                return false
+            }
         } else {
-            let interests = interestsStackView.collectionView
-                        .indexPathsForSelectedItems?
-                        .map { Constants.interestsDataSource[$0.section][$0.item] }
-            self.selectedJobs.accept(interests ?? [])
+            if let interests = interestsStackView.collectionView.indexPathsForSelectedItems,
+               interests.count <= 2
+            {
+                self.selectedInterests.accept(interests.map { Constants.interestsDataSource[$0.section][$0.item] } ?? [])
+                return true
+            } else {
+                return false
+            }
         }
     }
     
