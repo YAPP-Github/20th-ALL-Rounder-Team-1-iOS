@@ -596,7 +596,7 @@
 				7DC166A82837140000F1A8F1 /* SignUpViewController.swift */,
 				F354C3E2283D3615008929FD /* SignUpAddInfomationViewController.swift */,
 				F354C3E7283D4126008929FD /* SignUpTermsViewController.swift */,
-				F354C3E6283D3EC8008929FD /* Views */,
+				F354C3E6283D3EC8008929FD /* SubView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -803,7 +803,7 @@
 			path = SubView;
 			sourceTree = "<group>";
 		};
-		F354C3E6283D3EC8008929FD /* Views */ = {
+		F354C3E6283D3EC8008929FD /* SubView */ = {
 			isa = PBXGroup;
 			children = (
 				F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */,
@@ -811,7 +811,7 @@
 				F32F72632854EC890056B189 /* InformationCollectionViewCell.swift */,
 				F323FF31287AB2C500DFD8FD /* BasePaddingLabel.swift */,
 			);
-			path = Views;
+			path = SubView;
 			sourceTree = "<group>";
 		};
 		F378684B285617D200BEEC81 /* Recovered References */ = {

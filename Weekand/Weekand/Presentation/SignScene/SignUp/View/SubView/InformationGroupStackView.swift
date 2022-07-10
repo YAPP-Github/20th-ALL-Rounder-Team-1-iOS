@@ -16,10 +16,12 @@ class InformationGroupStackView: UIStackView {
     
     lazy var namelabel = WTextLabel().then {
         $0.textColor = UIColor.gray800
+        $0.font = WFont.head2()
     }
     
     lazy var informlabel = WTextLabel().then {
         $0.textColor = UIColor.gray500
+        $0.font = WFont.body3()
     }
     
     lazy var collectionViewFlowLayout = AlignedCollectionViewFlowLayout(horizontalAlignment: .left, verticalAlignment: .top).then {
@@ -51,7 +53,7 @@ class InformationGroupStackView: UIStackView {
         
         collectionView.snp.makeConstraints { make in
             make.width.equalTo(300)
-            make.height.equalTo(290)
+            make.height.equalTo(270)
         }
         
         namelabel.setContentHuggingPriority(.init(rawValue: 251), for: .horizontal)
