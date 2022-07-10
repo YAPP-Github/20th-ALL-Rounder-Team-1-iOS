@@ -82,7 +82,7 @@ class DateTimeStackView: UIStackView {
         
         timePickerContainerView.snp.makeConstraints { make in
             make.trailing.leading.equalToSuperview()
-            make.height.equalTo(180)
+            make.height.equalTo(200)
         }
     }
     
