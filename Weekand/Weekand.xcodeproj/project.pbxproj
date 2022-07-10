@@ -79,6 +79,7 @@
 		F323FF272879D18E00DFD8FD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF262879D18E00DFD8FD /* NetworkError.swift */; };
 		F323FF2B287A036E00DFD8FD /* checkDuplicateNickname.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF2A287A036E00DFD8FD /* checkDuplicateNickname.graphql */; };
 		F323FF30287A276100DFD8FD /* issueTempPassword.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF2F287A276100DFD8FD /* issueTempPassword.graphql */; };
+		F323FF32287AB2C500DFD8FD /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF31287AB2C500DFD8FD /* BasePaddingLabel.swift */; };
 		F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0128235D500082AF30 /* AppDelegate.swift */; };
 		F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0328235D500082AF30 /* SceneDelegate.swift */; };
 		F32ACC0628235D500082AF30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0528235D500082AF30 /* ViewController.swift */; };
@@ -228,6 +229,7 @@
 		F323FF262879D18E00DFD8FD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		F323FF2A287A036E00DFD8FD /* checkDuplicateNickname.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = checkDuplicateNickname.graphql; sourceTree = "<group>"; };
 		F323FF2F287A276100DFD8FD /* issueTempPassword.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = issueTempPassword.graphql; sourceTree = "<group>"; };
+		F323FF31287AB2C500DFD8FD /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
 		F32ACBFE28235D500082AF30 /* Weekand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weekand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32ACC0128235D500082AF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F32ACC0328235D500082AF30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -807,6 +809,7 @@
 				F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */,
 				F354C3E4283D3BF0008929FD /* InformationGroupStackView.swift */,
 				F32F72632854EC890056B189 /* InformationCollectionViewCell.swift */,
+				F323FF31287AB2C500DFD8FD /* BasePaddingLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1194,6 +1197,7 @@
 				7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */,
 				F32F72522853B0930056B189 /* CategoryDetailTableViewCell.swift in Sources */,
 				F354C3E3283D3615008929FD /* SignUpAddInfomationViewController.swift in Sources */,
+				F323FF32287AB2C500DFD8FD /* BasePaddingLabel.swift in Sources */,
 				7DFB5E192872A4D3001DFC67 /* UserDataStorage.swift in Sources */,
 				7DF9688C284E019A00CE077E /* MainCalendarView.swift in Sources */,
 				7DD71A8B286CA8C4002D1DCF /* AlarmViewModel.swift in Sources */,

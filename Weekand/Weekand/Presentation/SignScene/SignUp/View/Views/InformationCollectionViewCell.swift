@@ -20,16 +20,33 @@ class InformationCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDe
     var delegate: InformationCellDelegate?
     private let disposeBag = DisposeBag()
     
-    lazy var button = WTagToggleButton(title: "", font: WFont.body2())
-    var tagValue: String?
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                label.backgroundColor = .subColor
+                label.textColor = .mainColor
+            } else {
+                label.backgroundColor = .gray100
+                label.textColor = .gray400
+            }
+        }
+    }
+    
+    let edgeInsets = UIEdgeInsets(top: 8, left: 14, bottom: 8, right: 14)
+    lazy var label = BasePaddingLabel(padding: edgeInsets).then {
+        $0.font = WFont.body2()
+        $0.textColor = .gray400
+        $0.backgroundColor = .gray100
+        $0.layer.masksToBounds = true
+        $0.layer.cornerRadius = 15
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+
+        self.addSubview(label)
         
-        bindGesture()
-        self.addSubview(button)
-        
-        button.snp.makeConstraints { make in
+        label.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
@@ -39,20 +56,7 @@ class InformationCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDe
     }
     
     func configure(text: String) {
-        button.setTitle(text, for: .normal, font: WFont.body2())
-        tagValue = text
-    }
-    
-    // MARK: Gesture Binding
-    private func bindGesture() {
-        
-        button.rx.tapGesture(configuration: { recognizer, _ in
-            recognizer.delegate = self
-        })
-        .when(.recognized)
-        .subscribe(onNext: { _ in
-            self.delegate?.cellTapped(tag: self.tagValue)
-        }).disposed(by: disposeBag)
+        label.text = text
     }
     
 }

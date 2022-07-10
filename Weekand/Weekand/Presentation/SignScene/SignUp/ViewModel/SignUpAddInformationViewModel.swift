@@ -19,15 +19,28 @@ class SignUpAddInfomationViewModel: ViewModelType {
     }
     
     struct Input {
+        let selectedJobs: PublishRelay<[String]>
+        let selectedInterests: PublishRelay<[String]>
         let nextButtonDidTapEvent: Observable<Void>
     }
     
     struct Output { }
     
     func transform(input: Input) -> Output {
+        
+        input.selectedJobs.subscribe(onNext: { [weak self] jobs in
+            print(jobs.count)
+        }, onError: { _ in
+            
+        }).disposed(by: disposeBag)
+        
+        input.selectedInterests.subscribe(onNext: { [weak self] interests in
+            print(interests.count)
+        }, onError: { _ in
+            
+        }).disposed(by: disposeBag)
 
         input.nextButtonDidTapEvent.subscribe(onNext: {
-            print("잉")
             self.coordinator?.pushTermsViewController()
         }, onError: { _ in
             
