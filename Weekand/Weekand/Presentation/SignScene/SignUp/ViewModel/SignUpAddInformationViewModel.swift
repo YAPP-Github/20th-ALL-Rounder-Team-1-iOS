@@ -12,10 +12,12 @@ import RxCocoa
 class SignUpAddInfomationViewModel: ViewModelType {
 
     weak var coordinator: SignUpCoordinator?
+    var signUpInput: SignUpInput
     private let disposeBag = DisposeBag()
     
-    init(coordinator: SignUpCoordinator?) {
+    init(coordinator: SignUpCoordinator?, signUpInput: SignUpInput) {
         self.coordinator = coordinator
+        self.signUpInput = signUpInput
     }
     
     struct Input {
@@ -29,15 +31,17 @@ class SignUpAddInfomationViewModel: ViewModelType {
     func transform(input: Input) -> Output {
         
         input.selectedJobs.subscribe(onNext: { [weak self] jobs in
-            jobs.forEach { print($0) }
-        }).disposed(by: disposeBag)
+            self?.signUpInput.jobs = jobs
+        })
+        .disposed(by: disposeBag)
         
         input.selectedInterests.subscribe(onNext: { [weak self] interests in
-            interests.forEach { print($0) }
-        }).disposed(by: disposeBag)
+            self?.signUpInput.interests = interests
+        })
+        .disposed(by: disposeBag)
 
         input.nextButtonDidTapEvent.subscribe(onNext: {
-            self.coordinator?.pushTermsViewController()
+            self.coordinator?.pushTermsViewController(signUpInput: self.signUpInput)
         }).disposed(by: disposeBag)
         
         return Output()

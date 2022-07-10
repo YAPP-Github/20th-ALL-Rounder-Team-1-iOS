@@ -13,11 +13,13 @@ class SignUpViewModel: ViewModelType {
 
     weak var coordinator: SignUpCoordinator?
     private let signUpUseCase: SignUpUseCase
+    var signUpInput: SignUpInput
     private let disposeBag = DisposeBag()
     
-    init(coordinator: SignUpCoordinator?, signUpUseCase: SignUpUseCase) {
+    init(coordinator: SignUpCoordinator?, signUpUseCase: SignUpUseCase, signUpInput: SignUpInput) {
         self.coordinator = coordinator
         self.signUpUseCase = signUpUseCase
+        self.signUpInput = signUpInput
     }
     
     let duplicatedEmail = PublishRelay<Bool>()
@@ -65,14 +67,16 @@ class SignUpViewModel: ViewModelType {
                                         .withLatestFrom(input.nickNameTextFieldDidEditEvent)
                                         .map(vaildNickname)
                                         .distinctUntilChanged { $0 == $1 }
-        
-        let vaildPassword = input.passwordTextFieldDidEditEvent.map(validPassword).asObservable()
-        let vaildPasswordWithEndEdit = input.passwordTextFieldDidEndEditEvent.withLatestFrom(vaildPassword)
+
+        let vaildPasswordWithEndEdit = input.passwordTextFieldDidEndEditEvent
+                                            .withLatestFrom(
+                                                input.passwordTextFieldDidEditEvent
+                                                    .map(validPassword))
         
         let accordPassword = Observable.combineLatest(input.passwordTextFieldDidEditEvent, input.passwordCheckTextFieldDidEditEvent).map(accordPassword).asObservable()
         let accordPasswordWithEndEdit = input.passwordCheckTextFieldDidEndEditEvent.withLatestFrom(accordPassword)
         
-        let nextButtonEnable = Observable.combineLatest(vaildEmailWithTap, checkedAuthenticationNumber, checkedNickName, vaildPassword, accordPassword).map { $0.1 && $1 && $2 && $3 && $4 }
+        let nextButtonEnable = Observable.combineLatest(vaildEmailWithTap, checkedAuthenticationNumber, checkedNickName, vaildPasswordWithEndEdit, accordPasswordWithEndEdit).map { $0.1 && $1 && $2 && $3 && $4 }
         
         vaildEmailWithTap
             .subscribe(onNext: { [weak self] email, isValid in
@@ -97,7 +101,7 @@ class SignUpViewModel: ViewModelType {
         }).disposed(by: disposeBag)
         
         input.nextButtonDidTapEvent.subscribe(onNext: {
-            self.coordinator?.pushAddInformationViewController()
+            self.coordinator?.pushAddInformationViewController(signUpInput: self.signUpInput)
         }, onError: { _ in
             
         }).disposed(by: disposeBag)
@@ -146,12 +150,21 @@ class SignUpViewModel: ViewModelType {
     }
     
     private func validPassword(_ password: String) -> Bool {
+        let passwordText = password.trimmingCharacters(in: [" "])
         let passwordRegex = "^(?=.*\\d)(?=.*[a-z])[0-9a-zA-Z!@#$%^&*()\\-_=+{}|?>.<,:;~`’]{8,}$"
-        return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: password)
+        return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: passwordText)
     }
     
     private func accordPassword(password: String, passwordforCheck: String) -> Bool {
-        return password == passwordforCheck
+        let passwordText = password.trimmingCharacters(in: [" "])
+        let passwordforCheckText = passwordforCheck.trimmingCharacters(in: [" "])
+        
+        if passwordText == passwordforCheckText {
+            self.signUpInput.password = passwordText
+            return true
+        } else {
+            return false
+        }
     }
 }
 
@@ -169,7 +182,6 @@ extension SignUpViewModel {
             if error.localizedDescription == NetworkError.duplicatedError.localizedDescription {
                 self.duplicatedEmail.accept(true)
             }
-            // TODO: error 처리
         }, onDisposed: nil)
         .disposed(by: self.disposeBag)
     }
@@ -179,6 +191,7 @@ extension SignUpViewModel {
             .subscribe(onSuccess: { isValid in
                 if isValid {
                     self.checkedAuthenticationNumber.accept(true)
+                    self.signUpInput.email = self.email
                 } else {
                     self.checkedAuthenticationNumber.accept(false)
                 }
@@ -190,16 +203,15 @@ extension SignUpViewModel {
     
     private func checkDuplicateNickname(_ nickName: String) {
         self.signUpUseCase.checkDuplicateNickname(nickName: nickName)
-            .subscribe(onSuccess: { isValid in
-                if isValid {
+            .subscribe(onSuccess: { isDuplicated in
+                if isDuplicated == false {
                     self.checkedNickName.accept(true)
+                    self.signUpInput.nickname = nickName
                 } else {
-                    // self.checkedNickName.accept(false)
-                    self.checkedNickName.accept(true)
+                    self.checkedNickName.accept(false)
                 }
             }, onFailure: { _ in
-                // self.checkedNickName.accept(false)
-                self.checkedNickName.accept(true)
+                self.checkedNickName.accept(false)
             }, onDisposed: nil)
             .disposed(by: disposeBag)
 

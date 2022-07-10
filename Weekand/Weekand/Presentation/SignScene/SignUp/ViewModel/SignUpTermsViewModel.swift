@@ -12,10 +12,12 @@ import RxCocoa
 class SignUpTermsViewModel: ViewModelType {
 
     weak var coordinator: SignUpCoordinator?
+    var signUpInput: SignUpInput
     private let disposeBag = DisposeBag()
     
-    init(coordinator: SignUpCoordinator?) {
+    init(coordinator: SignUpCoordinator?, signUpInput: SignUpInput) {
         self.coordinator = coordinator
+        self.signUpInput = signUpInput
     }
     
     struct Input {
@@ -29,6 +31,7 @@ class SignUpTermsViewModel: ViewModelType {
     func transform(input: Input) -> Output {
 
         input.nextButtonDidTapEvent.subscribe(onNext: {
+            print(self.signUpInput)
             self.coordinator?.finish()
         })
         .disposed(by: disposeBag)
