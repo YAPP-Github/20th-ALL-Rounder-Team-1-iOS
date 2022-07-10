@@ -12,12 +12,14 @@ import RxCocoa
 class SignUpTermsViewModel: ViewModelType {
 
     weak var coordinator: SignUpCoordinator?
-    var signUpInput: SignUpInput
+    private let signUpUseCase: SignUpUseCase
+    private var signUpModel: SignUpModel
     private let disposeBag = DisposeBag()
     
-    init(coordinator: SignUpCoordinator?, signUpInput: SignUpInput) {
+    init(coordinator: SignUpCoordinator?, signUpUseCase: SignUpUseCase, signUpModel: SignUpModel) {
         self.coordinator = coordinator
-        self.signUpInput = signUpInput
+        self.signUpUseCase = signUpUseCase
+        self.signUpModel = signUpModel
     }
     
     struct Input {
@@ -29,11 +31,29 @@ class SignUpTermsViewModel: ViewModelType {
     func transform(input: Input) -> Output {
 
         input.nextButtonDidTapEvent.subscribe(onNext: {
-            self.signUpInput.signUpAgreed = true
-            self.coordinator?.finish()
+            self.signUpModel.signUpAgreed = true
+            
+            self.SignUp(self.signUpModel)
         })
         .disposed(by: disposeBag)
         
         return Output()
+    }
+}
+
+extension SignUpTermsViewModel {
+    private func SignUp(_ signUpModel: SignUpModel) {
+        self.signUpUseCase.SignUp(signUpModel: signUpModel)
+            .subscribe(onSuccess: { isSucceed in
+                if isSucceed {
+                    self.coordinator?.finish()
+                } else {
+                    // error 처리
+                }
+            }, onFailure: { _ in
+                // error 처리
+            }, onDisposed: nil)
+            .disposed(by: disposeBag)
+
     }
 }

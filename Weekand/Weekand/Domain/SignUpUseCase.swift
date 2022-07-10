@@ -30,4 +30,20 @@ final class SignUpUseCase {
             .map { $0.checkDuplicateNickname }
             .asSingle()
     }
+    
+    func SignUp(signUpModel: SignUpModel) -> Single<Bool> {
+        let signUpInput = SignUpInput(
+                                email: signUpModel.email ?? "",
+                                password: signUpModel.password ?? "",
+                                nickname: signUpModel.nickname ?? "",
+                                jobs: signUpModel.jobs,
+                                interests: signUpModel.interests,
+                                signUpAgreed: signUpModel.signUpAgreed ?? false
+        )
+        
+        return NetWork.shared
+            .perform(mutation: SignUpMutation(signUpInput: signUpInput))
+            .map { $0.signUp }
+            .asSingle()
+    }
 }

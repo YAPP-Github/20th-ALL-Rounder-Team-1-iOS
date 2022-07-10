@@ -80,7 +80,8 @@
 		F323FF2B287A036E00DFD8FD /* checkDuplicateNickname.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF2A287A036E00DFD8FD /* checkDuplicateNickname.graphql */; };
 		F323FF30287A276100DFD8FD /* issueTempPassword.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF2F287A276100DFD8FD /* issueTempPassword.graphql */; };
 		F323FF32287AB2C500DFD8FD /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF31287AB2C500DFD8FD /* BasePaddingLabel.swift */; };
-		F323FF34287AC80200DFD8FD /* SignUpInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF33287AC80200DFD8FD /* SignUpInput.swift */; };
+		F323FF34287AC80200DFD8FD /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF33287AC80200DFD8FD /* SignUpModel.swift */; };
+		F323FF38287B13F900DFD8FD /* SignUp.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF37287B13F900DFD8FD /* SignUp.graphql */; };
 		F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0128235D500082AF30 /* AppDelegate.swift */; };
 		F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0328235D500082AF30 /* SceneDelegate.swift */; };
 		F32ACC0628235D500082AF30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0528235D500082AF30 /* ViewController.swift */; };
@@ -231,7 +232,8 @@
 		F323FF2A287A036E00DFD8FD /* checkDuplicateNickname.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = checkDuplicateNickname.graphql; sourceTree = "<group>"; };
 		F323FF2F287A276100DFD8FD /* issueTempPassword.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = issueTempPassword.graphql; sourceTree = "<group>"; };
 		F323FF31287AB2C500DFD8FD /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
-		F323FF33287AC80200DFD8FD /* SignUpInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInput.swift; sourceTree = "<group>"; };
+		F323FF33287AC80200DFD8FD /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
+		F323FF37287B13F900DFD8FD /* SignUp.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SignUp.graphql; sourceTree = "<group>"; };
 		F32ACBFE28235D500082AF30 /* Weekand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weekand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32ACC0128235D500082AF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F32ACC0328235D500082AF30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -489,7 +491,7 @@
 				F3F731DA2868966700C8B778 /* Color.swift */,
 				F3F731DE2868DE0000C8B778 /* Sort.swift */,
 				7DBC4C642876B59500F0AC86 /* Emoji.swift */,
-				F323FF33287AC80200DFD8FD /* SignUpInput.swift */,
+				F323FF33287AC80200DFD8FD /* SignUpModel.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -880,6 +882,7 @@
 				F323FF202879AF3000DFD8FD /* vaildAuthKey.graphql */,
 				F323FF2A287A036E00DFD8FD /* checkDuplicateNickname.graphql */,
 				F323FF2F287A276100DFD8FD /* issueTempPassword.graphql */,
+				F323FF37287B13F900DFD8FD /* SignUp.graphql */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1044,6 +1047,7 @@
 				F323FEF1287636B500DFD8FD /* SortDropDownCell.xib in Resources */,
 				7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */,
 				F323FF102877F3B500DFD8FD /* Login.graphql in Resources */,
+				F323FF38287B13F900DFD8FD /* SignUp.graphql in Resources */,
 				F323FF2B287A036E00DFD8FD /* checkDuplicateNickname.graphql in Resources */,
 				F323FF30287A276100DFD8FD /* issueTempPassword.graphql in Resources */,
 				F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */,
@@ -1252,7 +1256,7 @@
 				7DC166C02837234200F1A8F1 /* WButtonTextField.swift in Sources */,
 				F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */,
 				F32F725C28549B650056B189 /* WTextFieldStackView.swift in Sources */,
-				F323FF34287AC80200DFD8FD /* SignUpInput.swift in Sources */,
+				F323FF34287AC80200DFD8FD /* SignUpModel.swift in Sources */,
 				7DBC4C632876AEA200F0AC86 /* MonthlyCalendarSheetViewModel.swift in Sources */,
 				F323FF272879D18E00DFD8FD /* NetworkError.swift in Sources */,
 				F378685B28621C8F00BEEC81 /* CategoryEditViewModelType.swift in Sources */,

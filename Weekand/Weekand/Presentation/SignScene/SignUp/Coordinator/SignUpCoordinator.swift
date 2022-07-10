@@ -24,22 +24,22 @@ class SignUpCoordinator: Coordinator {
     }
     
     func start() {
-        let signUpInput = SignUpInput()
+        let signUpModel = SignUpModel()
         self.signUpViewController.viewModel = SignUpViewModel(
                                                 coordinator: self,
                                                 signUpUseCase: signUpUseCase,
-                                                signUpInput: signUpInput)
+                                                signUpModel: signUpModel)
     }
     
-    func pushAddInformationViewController(signUpInput: SignUpInput) {
+    func pushAddInformationViewController(signUpModel: SignUpModel) {
         let signUpAddInformationViewController = SignUpAddInfomationViewController()
-        signUpAddInformationViewController.viewModel = SignUpAddInfomationViewModel(coordinator: self, signUpInput: signUpInput)
+        signUpAddInformationViewController.viewModel = SignUpAddInfomationViewModel(coordinator: self, signUpModel: signUpModel)
         self.navigationController.pushViewController(signUpAddInformationViewController, animated: true)
     }
     
-    func pushTermsViewController(signUpInput: SignUpInput) {
+    func pushTermsViewController(signUpModel: SignUpModel) {
         let signUpTermsViewController  = SignUpTermsViewController()
-        signUpTermsViewController.viewModel = SignUpTermsViewModel(coordinator: self, signUpInput: signUpInput)
+        signUpTermsViewController.viewModel = SignUpTermsViewModel(coordinator: self, signUpModel: signUpModel)
         self.navigationController.pushViewController(signUpTermsViewController, animated: true)
     }
     

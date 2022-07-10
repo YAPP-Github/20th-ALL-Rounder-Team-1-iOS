@@ -181,7 +181,6 @@ class SignUpViewController: BaseViewController {
         }).disposed(by: disposeBag)
         
         output.nextButtonEnable.drive(onNext: { [weak self] state in
-            print(state)
             if state {
                 self?.confirmButton.enable(string: "다음")
             } else {

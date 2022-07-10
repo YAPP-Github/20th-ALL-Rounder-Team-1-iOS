@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SignUpInput {
+struct SignUpModel {
     var email: String? = nil
     var password: String? = nil
     var nickname: String? = nil

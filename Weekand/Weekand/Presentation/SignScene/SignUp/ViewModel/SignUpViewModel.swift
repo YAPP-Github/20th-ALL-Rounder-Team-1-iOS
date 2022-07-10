@@ -13,13 +13,13 @@ class SignUpViewModel: ViewModelType {
 
     weak var coordinator: SignUpCoordinator?
     private let signUpUseCase: SignUpUseCase
-    var signUpInput: SignUpInput
+    private var signUpModel: SignUpModel
     private let disposeBag = DisposeBag()
     
-    init(coordinator: SignUpCoordinator?, signUpUseCase: SignUpUseCase, signUpInput: SignUpInput) {
+    init(coordinator: SignUpCoordinator?, signUpUseCase: SignUpUseCase, signUpModel: SignUpModel) {
         self.coordinator = coordinator
         self.signUpUseCase = signUpUseCase
-        self.signUpInput = signUpInput
+        self.signUpModel = signUpModel
     }
     
     let duplicatedEmail = PublishRelay<Bool>()
@@ -101,7 +101,7 @@ class SignUpViewModel: ViewModelType {
         }).disposed(by: disposeBag)
         
         input.nextButtonDidTapEvent.subscribe(onNext: {
-            self.coordinator?.pushAddInformationViewController(signUpInput: self.signUpInput)
+            self.coordinator?.pushAddInformationViewController(signUpModel: self.signUpModel)
         }, onError: { _ in
             
         }).disposed(by: disposeBag)
@@ -160,7 +160,7 @@ class SignUpViewModel: ViewModelType {
         let passwordforCheckText = passwordforCheck.trimmingCharacters(in: [" "])
         
         if passwordText == passwordforCheckText {
-            self.signUpInput.password = passwordText
+            self.signUpModel.password = passwordText
             return true
         } else {
             return false
@@ -191,7 +191,7 @@ extension SignUpViewModel {
             .subscribe(onSuccess: { isValid in
                 if isValid {
                     self.checkedAuthenticationNumber.accept(true)
-                    self.signUpInput.email = self.email
+                    self.signUpModel.email = self.email
                 } else {
                     self.checkedAuthenticationNumber.accept(false)
                 }
@@ -206,7 +206,7 @@ extension SignUpViewModel {
             .subscribe(onSuccess: { isDuplicated in
                 if isDuplicated == false {
                     self.checkedNickName.accept(true)
-                    self.signUpInput.nickname = nickName
+                    self.signUpModel.nickname = nickName
                 } else {
                     self.checkedNickName.accept(false)
                 }
