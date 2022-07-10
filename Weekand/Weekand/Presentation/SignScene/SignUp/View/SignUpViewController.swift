@@ -189,14 +189,3 @@ class SignUpViewController: BaseViewController {
         }).disposed(by: disposeBag)
     }
 }
-
-#if canImport(SwiftUI) && DEBUG
-
-struct SignUpViewControllerPreview: PreviewProvider {
-    static var previews: some View {
-        Group {
-            SignUpViewController().showPreview(.iPhone8)
-        }
-    }
-}
-#endif
