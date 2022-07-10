@@ -21,7 +21,7 @@ class SignUpTermsViewController: UIViewController {
         $0.spacing = 10
     }
     
-    lazy var checkBoxButton = WCheckBox()
+    lazy var wholeAgreecheckBoxButton = WCheckBox(isChecked: false)
     
     lazy var wholeAgreeLabel = WTitleLabel().then {
         $0.setText(string: "전체 동의")
@@ -37,7 +37,7 @@ class SignUpTermsViewController: UIViewController {
         $0.backgroundColor = .gray200
     }
     
-    let termsAgreeCheckBoxButton = WCheckBox()
+    let termsAgreeCheckBoxButton = WCheckBox(isChecked: false)
     
     lazy var termsAgreeButton = UIButton().then {
         let attributedString = NSMutableAttributedString(
@@ -56,7 +56,7 @@ class SignUpTermsViewController: UIViewController {
         $0.textColor = .gray600
     }
     
-    lazy var privacyAgreeCheckBoxButton = WCheckBox()
+    lazy var privacyAgreeCheckBoxButton = WCheckBox(isChecked: false)
     
     lazy var privacyAgreeButton = UIButton().then {
         let attributedString = NSMutableAttributedString(
@@ -77,8 +77,12 @@ class SignUpTermsViewController: UIViewController {
     
     lazy var confirmButton = WBottmButton().then {
         $0.setTitle("로그인 하러가기", for: .normal)
-        $0.enable(string: "로그인 하러가기")
+        $0.disable(string: "로그인 하러가기")
     }
+    
+    let termsAgree = PublishRelay<Bool>()
+    let privacyAgree = PublishRelay<Bool>()
+    let wholeAgree = PublishRelay<Bool>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,7 +99,7 @@ class SignUpTermsViewController: UIViewController {
     
     private func configureUI() {
         view.addSubview(wholeAgreeStackView)
-        wholeAgreeStackView.addArrangedSubview(checkBoxButton)
+        wholeAgreeStackView.addArrangedSubview(wholeAgreecheckBoxButton)
         wholeAgreeStackView.addArrangedSubview(wholeAgreeLabel)
         wholeAgreeStackView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(50)
@@ -118,7 +122,7 @@ class SignUpTermsViewController: UIViewController {
         view.addSubview(termsAgreeCheckBoxButton)
         termsAgreeCheckBoxButton.snp.makeConstraints { make in
             make.top.equalTo(dividerLine.snp.bottom).offset(30)
-            make.leading.equalTo(checkBoxButton.snp.leading)
+            make.leading.equalTo(wholeAgreecheckBoxButton.snp.leading)
         }
         
         view.addSubview(termsAgreeButton)
@@ -136,7 +140,7 @@ class SignUpTermsViewController: UIViewController {
         view.addSubview(privacyAgreeCheckBoxButton)
         privacyAgreeCheckBoxButton.snp.makeConstraints { make in
             make.top.equalTo(termsAgreeLabel.snp.bottom).offset(30)
-            make.leading.equalTo(checkBoxButton.snp.leading)
+            make.leading.equalTo(wholeAgreecheckBoxButton.snp.leading)
         }
         
         view.addSubview(privacyAgreeButton)
@@ -165,23 +169,55 @@ class SignUpTermsViewController: UIViewController {
             return
         }
         
+        self.termsAgreeCheckBoxButton.rx.tap.subscribe(onNext: {
+            self.termsAgreeCheckBoxButton.isChecked = !self.termsAgreeCheckBoxButton.isChecked
+            self.termsAgree.accept(self.termsAgreeCheckBoxButton.isChecked)
+        }).disposed(by: disposeBag)
+        
+        self.privacyAgreeCheckBoxButton.rx.tap.subscribe(onNext: {
+            self.privacyAgreeCheckBoxButton.isChecked = !self.privacyAgreeCheckBoxButton.isChecked
+            self.privacyAgree.accept(self.privacyAgreeCheckBoxButton.isChecked)
+        }).disposed(by: disposeBag)
+        
+        self.wholeAgreecheckBoxButton.rx.tap.subscribe(onNext: {
+            self.wholeAgreecheckBoxButton.isChecked = !self.wholeAgreecheckBoxButton.isChecked
+            self.termsAgreeCheckBoxButton.isChecked = self.wholeAgreecheckBoxButton.isChecked
+            self.privacyAgreeCheckBoxButton.isChecked = self.wholeAgreecheckBoxButton.isChecked
+            self.wholeAgree.accept(self.wholeAgreecheckBoxButton.isChecked)
+        }).disposed(by: disposeBag)
+        
+        Observable.combineLatest(termsAgree, privacyAgree).subscribe(onNext: { terms, privacy in
+            if terms == false {
+                self.wholeAgreecheckBoxButton.isChecked = false
+                self.wholeAgree.accept(false)
+            }
+            
+            if privacy == false {
+                self.wholeAgreecheckBoxButton.isChecked = false
+                self.wholeAgree.accept(false)
+            }
+            
+            if terms && privacy {
+                self.wholeAgreecheckBoxButton.isChecked = true
+                self.wholeAgree.accept(true)
+            }
+        })
+        .disposed(by: disposeBag)
+        
+        wholeAgree.subscribe(onNext: { isChecked in
+            if isChecked {
+                self.confirmButton.enable(string: "로그인 하러가기")
+            } else {
+                self.confirmButton.disable(string: "로그인 하러가기")
+            }
+        })
+        .disposed(by: disposeBag)
+        
         let input = SignUpTermsViewModel.Input(
-            termsAgreeButtonDidTapEvent: termsAgreeButton.rx.tap.asObservable(),
-            privacyAgreeButtonDidTapEvent: privacyAgreeButton.rx.tap.asObservable(),
             nextButtonDidTapEvent: confirmButton.rx.tap.asObservable()
         )
-        
+
         let _ = viewModel.transform(input: input)
     }
 }
 
-#if canImport(SwiftUI) && DEBUG
-
-struct SignUpTermsViewControllerPreview: PreviewProvider {
-    static var previews: some View {
-        Group {
-            SignUpTermsViewController().showPreview(.iPhone8)
-        }
-    }
-}
-#endif

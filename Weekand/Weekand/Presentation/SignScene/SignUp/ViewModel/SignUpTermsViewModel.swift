@@ -21,8 +21,6 @@ class SignUpTermsViewModel: ViewModelType {
     }
     
     struct Input {
-        let termsAgreeButtonDidTapEvent: Observable<Void>
-        let privacyAgreeButtonDidTapEvent: Observable<Void>
         let nextButtonDidTapEvent: Observable<Void>
     }
     
@@ -31,7 +29,7 @@ class SignUpTermsViewModel: ViewModelType {
     func transform(input: Input) -> Output {
 
         input.nextButtonDidTapEvent.subscribe(onNext: {
-            print(self.signUpInput)
+            self.signUpInput.signUpAgreed = true
             self.coordinator?.finish()
         })
         .disposed(by: disposeBag)
