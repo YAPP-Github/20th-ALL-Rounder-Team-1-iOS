@@ -22,7 +22,7 @@ class TokenAddingInterceptor: ApolloInterceptor {
             if let token = UserDataStorage.shared.accessToken {
                 request.addHeader(name: "Access-Token", value: token)
             }
-            
+            print("request", request)
             chain.proceedAsync(request: request,
                                response: response,
                                completion: completion)
