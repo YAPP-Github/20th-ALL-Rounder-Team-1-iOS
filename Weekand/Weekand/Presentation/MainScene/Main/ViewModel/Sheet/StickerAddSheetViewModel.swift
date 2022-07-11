@@ -7,19 +7,19 @@
 
 import UIKit
 
-enum EmojiSection {
+enum StickerSection {
     case main
 }
 
 class StickerAddSheetViewModel {
     
-    var collectionViewDataSource: UICollectionViewDiffableDataSource<EmojiSection, Emoji>!
+    var collectionViewDataSource: UICollectionViewDiffableDataSource<StickerSection, Emoji>!
     
     let emojiList: [Emoji] = [.good, .awesome, .cool, .support]
     
     func configureCollectionViewSnapShot(animatingDifferences: Bool = false) {
         
-        var snapshot = NSDiffableDataSourceSnapshot<EmojiSection, Emoji>()
+        var snapshot = NSDiffableDataSourceSnapshot<StickerSection, Emoji>()
         snapshot.appendSections([.main])
         snapshot.appendItems(emojiList, toSection: .main)
         self.collectionViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)

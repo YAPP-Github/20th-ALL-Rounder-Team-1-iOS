@@ -100,7 +100,7 @@ extension StickerAddSheetViewController {
     
     private func configureCollectionViewDataSource() {
         
-        viewModel?.collectionViewDataSource = UICollectionViewDiffableDataSource<EmojiSection, Emoji>(collectionView: collectionView, cellProvider: { collectionView, indexPath, emoji in
+        viewModel?.collectionViewDataSource = UICollectionViewDiffableDataSource<StickerSection, Emoji>(collectionView: collectionView, cellProvider: { collectionView, indexPath, emoji in
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StickerCollectionViewCell.identifier, for: indexPath) as! StickerCollectionViewCell
             
