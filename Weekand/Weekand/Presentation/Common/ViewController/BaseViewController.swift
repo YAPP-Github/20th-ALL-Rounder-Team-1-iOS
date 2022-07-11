@@ -82,7 +82,7 @@ extension BaseViewController {
               }
         keyboardFrame = self.contentView.convert(keyboardFrame, from: nil)
         var contentInset = scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height
+        contentInset.bottom = keyboardFrame.size.height + 40
         scrollView.contentInset = contentInset
         scrollView.scrollIndicatorInsets = self.scrollView.contentInset
     }
