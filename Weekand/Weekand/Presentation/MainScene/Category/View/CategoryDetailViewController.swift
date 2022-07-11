@@ -160,14 +160,8 @@ extension CategoryDetailViewController {
         
         
         let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, _ in
-            self.showActionSheet(titles: "삭제", message: "카테고리를 삭제하시겠어요?") { _ in
+            self.showActionSheet(titles: "삭제", message: "이 기간의 모든 일정을 삭제하시겠어요?") { _ in
                 print("삭제~~")
-            }
-            
-            self.showActionSheet(titles: ("이 일정에만 적용", "이후 모든 일정에도 적용"), message: "반복된 일정을 삭제하시겠어요?") { _ in
-                
-            } deleteAfterHandler: { _ in
-                
             }
 
         }
@@ -194,5 +188,3 @@ extension CategoryDetailViewController {
         self.view.endEditing(true)
     }
 }
-
-
