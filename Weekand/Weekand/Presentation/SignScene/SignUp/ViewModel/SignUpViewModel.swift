@@ -204,7 +204,10 @@ extension SignUpViewModel {
                     self.checkedAuthenticationNumber.accept(false)
                 }
             }, onFailure: { _ in
-                self.checkedAuthenticationNumber.accept(false)
+                self.coordinator?.presentPopViewController(
+                                    titleText: "오류",
+                                    informText: "네트워크에 문제가 발생했습니다",
+                                    dismissParentCoordinator: true)
             }, onDisposed: nil)
             .disposed(by: self.disposeBag)
     }
@@ -219,7 +222,10 @@ extension SignUpViewModel {
                     self.checkedNickName.accept(false)
                 }
             }, onFailure: { _ in
-                self.checkedNickName.accept(false)
+                self.coordinator?.presentPopViewController(
+                                    titleText: "오류",
+                                    informText: "네트워크에 문제가 발생했습니다",
+                                    dismissParentCoordinator: true)
             }, onDisposed: nil)
             .disposed(by: disposeBag)
 

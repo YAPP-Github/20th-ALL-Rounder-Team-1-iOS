@@ -204,6 +204,18 @@ class SignUpTermsViewController: UIViewController {
         })
         .disposed(by: disposeBag)
         
+        termsAgreeButton.rx.tap.subscribe(onNext: {
+            if let url = URL(string: "https://wirehaired-dryosaurus-4eb.notion.site/2e0a116f69cb4bb0bc08ffac531c01e7") {
+                UIApplication.shared.open(url)
+            }
+        }).disposed(by: disposeBag)
+        
+        privacyAgreeButton.rx.tap.subscribe(onNext: {
+            if let url = URL(string: "https://wirehaired-dryosaurus-4eb.notion.site/60bfebd307f547f3800b02d2f0384021") {
+                UIApplication.shared.open(url)
+            }
+        }).disposed(by: disposeBag)
+        
         wholeAgree.subscribe(onNext: { isChecked in
             if isChecked {
                 self.confirmButton.enable(string: "로그인 하러가기")
