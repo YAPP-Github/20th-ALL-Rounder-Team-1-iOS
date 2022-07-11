@@ -18,7 +18,6 @@ class NetWork {
     
     private(set) lazy var client: ApolloClient = {
         let configuration: URLSessionConfiguration = .default
-        configuration.httpAdditionalHeaders = ["Access-Token": "\(Key.tempToken)"]
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         
         let store = ApolloStore(cache: InMemoryNormalizedCache())
