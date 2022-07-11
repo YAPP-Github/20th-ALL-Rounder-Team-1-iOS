@@ -45,6 +45,11 @@ class CategoryDetailViewController: UIViewController {
         bindViewModel()
         configureDataSource()
         configureSnapshot()
+        setupEndEditing()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     private func setupView() {
@@ -155,14 +160,8 @@ extension CategoryDetailViewController {
         
         
         let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, _ in
-            self.showActionSheet(titles: "삭제", message: "카테고리를 삭제하시겠어요?") { _ in
+            self.showActionSheet(titles: "삭제", message: "이 기간의 모든 일정을 삭제하시겠어요?") { _ in
                 print("삭제~~")
-            }
-            
-            self.showActionSheet(titles: ("이 일정에만 적용", "이후 모든 일정에도 적용"), message: "반복된 일정을 삭제하시겠어요?") { _ in
-                
-            } deleteAfterHandler: { _ in
-                
             }
 
         }
@@ -172,14 +171,20 @@ extension CategoryDetailViewController {
     }
 }
 
-import SwiftUI
-#if canImport(SwiftUI) && DEBUG
+// keyboard
 
-struct CategoryDetailViewControllerPreview: PreviewProvider {
-    static var previews: some View {
-        Group {
-            CategoryDetailViewController().showPreview(.iPhone11Pro)
-        }
+extension CategoryDetailViewController {
+    private func setupEndEditing() {
+        let singleTapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(tapAction))
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.isEnabled = true
+        singleTapGestureRecognizer.cancelsTouchesInView = false
+        tableView.addGestureRecognizer(singleTapGestureRecognizer)
+    }
+    
+    @objc func tapAction(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
 }
-#endif

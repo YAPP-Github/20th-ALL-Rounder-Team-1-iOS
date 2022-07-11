@@ -36,4 +36,16 @@ extension UIViewController {
         alert.addAction(cancelAction)
         self.present(alert, animated: true)
     }
+    
+    func showToast(message: String) {
+        let toastLabel = WToastLabel()
+        let toastLabelFrame = CGRect(x: self.view.frame.size.width/2 - 163, y: self.view.frame.size.height - 145, width: 327, height: 48)
+        toastLabel.setMessage(text: message, font: WFont.body1(), frame: toastLabelFrame)
+        self.view.addSubview(toastLabel)
+        UIView.animate(withDuration: 2.0, delay: 2.0, options: .curveEaseOut, animations: {
+            toastLabel.alpha = 0.0
+        }, completion: { _ in
+            toastLabel.removeFromSuperview()
+        })
+    }
 }

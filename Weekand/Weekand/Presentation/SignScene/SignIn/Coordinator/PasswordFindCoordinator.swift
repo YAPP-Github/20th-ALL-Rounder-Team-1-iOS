@@ -14,19 +14,39 @@ class PasswordFindCoordinator: Coordinator {
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
     var passwordFindViewController: PasswordFindViewController
+    var signInUseCase: SignInUseCase
     var type: CoordinatorType = .passwordFind
     
-    required init() {
+    required init(signInUseCase: SignInUseCase) {
         self.passwordFindViewController = PasswordFindViewController()
+        self.signInUseCase = signInUseCase
         self.navigationController = UINavigationController(rootViewController: passwordFindViewController)
         self.navigationController.modalPresentationStyle = .fullScreen
     }
     
     func start() {
-        self.passwordFindViewController.viewModel = PasswordFindViewModel(coordinator: self)
+        self.passwordFindViewController.viewModel = PasswordFindViewModel(coordinator: self, signInUseCase: signInUseCase)
+    }
+    
+    func presentPopViewController(titleText: String, informText: String, dismissParentCoordinator: Bool) {
+        let authPopupCoordinator = SimplePopupCoordinator(
+                                        titleText: titleText,
+                                        informText: informText,
+                                        dismissParentCoordinator: dismissParentCoordinator)
+        childCoordinators.append(authPopupCoordinator)
+        navigationController.present(authPopupCoordinator.navigationController, animated: true, completion: nil)
+        authPopupCoordinator.finishDelegate = self
+        authPopupCoordinator.start()
     }
     
     func finish() {
         self.finishDelegate?.childDidFinish(self)
+    }
+}
+
+extension PasswordFindCoordinator: CoordinatorDidFinishDelegate {
+    func childDidFinish(_ child: Coordinator) {
+        self.childCoordinators = self.childCoordinators.filter({ $0.type != child.type })
+        navigationController.dismiss(animated: true, completion: nil)
     }
 }

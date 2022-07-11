@@ -38,7 +38,7 @@ class WelcomeViewModel: ViewModelType {
                 self?.coordinator?.showSignUpScene()
             })
             .disposed(by: disposeBag)
-            
+        
         return output
     }
 }

@@ -10,7 +10,7 @@ import SnapKit
 import Then
 import RxSwift
 
-class SignInViewController: UIViewController {
+class SignInViewController: BaseViewController {
     
     private let disposeBag = DisposeBag()
     var viewModel: SignInViewModel?
@@ -24,8 +24,12 @@ class SignInViewController: UIViewController {
         $0.numberOfLines = 0
     }
     
+    let spacerView = UIView()
+    
     lazy var emailField = WTextField(placeHolder: "이메일을 입력해주세요")
-    lazy var passwordField = WTextField(placeHolder: "비밀번호를 입력해주세요")
+    lazy var passwordField = WTextField(placeHolder: "비밀번호를 입력해주세요").then {
+        $0.isSecureTextEntry = true
+    }
     
     lazy var textFieldStack = UIStackView().then {
         $0.addArrangedSubview(emailField)
@@ -73,25 +77,18 @@ class SignInViewController: UIViewController {
     
     private func configureUI() {
         view.backgroundColor = .white
-        self.view.addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(defaultWidthDivider)
-            make.centerY.equalToSuperview().dividedBy(1.6)
-        }
+        stackView.spacing = 10
         
-        self.view.addSubview(textFieldStack)
-        textFieldStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(defaultWidthDivider)
-            make.centerY.equalToSuperview()
+        [titleLabel, spacerView, textFieldStack, optionView].forEach { stackView.addArrangedSubview($0) }
+        
+        spacerView.snp.makeConstraints { make in
+            make.height.equalTo(50)
         }
 
-        self.view.addSubview(optionView)
-        optionView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(defaultWidthDivider)
-            make.top.equalTo(textFieldStack.snp.bottom).offset(10)
+        stackView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(110)
+            make.bottom.equalToSuperview().offset(-WBottmButton.buttonOffset - 64)
+            make.trailing.leading.equalToSuperview().inset(22)
         }
 
         self.view.addSubview(nextButton)

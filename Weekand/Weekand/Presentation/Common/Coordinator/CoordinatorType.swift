@@ -10,6 +10,7 @@ import Foundation
 enum CoordinatorType {
     // Common
     case app
+    case simplePopup
     
     // Sign Scene
     case welcome

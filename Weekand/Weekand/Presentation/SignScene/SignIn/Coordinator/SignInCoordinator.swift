@@ -14,15 +14,17 @@ class SignInCoordinator: Coordinator {
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
     var signInViewController: SignInViewController
+    var signInUseCase: SignInUseCase
     var type: CoordinatorType = .signIn
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        self.signInUseCase = SignInUseCase()
         self.signInViewController = SignInViewController()
     }
     
     func start() {
-        self.signInViewController.viewModel = SignInViewModel(coordinator: self)
+        self.signInViewController.viewModel = SignInViewModel(coordinator: self, signInUseCase: signInUseCase)
         self.navigationController.pushViewController(signInViewController, animated: true)
     }
     
@@ -38,11 +40,15 @@ class SignInCoordinator: Coordinator {
     }
     
     func presentPasswordFindScene() {
-        let passwordFindCoordinator = PasswordFindCoordinator()
+        let passwordFindCoordinator = PasswordFindCoordinator(signInUseCase: signInUseCase)
         passwordFindCoordinator.finishDelegate = self
         childCoordinators.append(passwordFindCoordinator)
         navigationController.present(passwordFindCoordinator.navigationController, animated: true, completion: nil)
         passwordFindCoordinator.start()
+    }
+    
+    func showToastMessage() {
+        signInViewController.showToast(message: "이메일·비밀번호가 일치하지 않습니다.")
     }
 }
 

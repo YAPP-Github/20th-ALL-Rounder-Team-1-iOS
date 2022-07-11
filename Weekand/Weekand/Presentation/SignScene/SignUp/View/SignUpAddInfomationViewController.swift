@@ -35,6 +35,9 @@ class SignUpAddInfomationViewController: BaseViewController {
         $0.enable(string: "다음")
     }
     
+    let selectedJobs = PublishRelay<[String]>()
+    let selectedInterests = PublishRelay<[String]>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,9 +53,13 @@ class SignUpAddInfomationViewController: BaseViewController {
         stackView.distribution = .fill
         
         jobStackView.collectionView.dataSource = self
+        jobStackView.collectionView.delegate = self
+        jobStackView.collectionView.allowsMultipleSelection = true
         jobStackView.collectionView.register(InformationCollectionViewCell.self, forCellWithReuseIdentifier: InformationCollectionViewCell.cellIdentifier)
         
         interestsStackView.collectionView.dataSource = self
+        interestsStackView.collectionView.delegate = self
+        interestsStackView.collectionView.allowsMultipleSelection = true
         interestsStackView.collectionView.register(InformationCollectionViewCell.self, forCellWithReuseIdentifier: InformationCollectionViewCell.cellIdentifier)
     }
 
@@ -79,6 +86,8 @@ class SignUpAddInfomationViewController: BaseViewController {
         }
         
         let input = SignUpAddInfomationViewModel.Input(
+            selectedJobs: selectedJobs,
+            selectedInterests: selectedInterests,
             nextButtonDidTapEvent: confirmButton.rx.tap.asObservable()
         )
         
@@ -119,6 +128,57 @@ extension SignUpAddInfomationViewController: UICollectionViewDataSource {
             }
             cell.configure(text: Constants.interestsDataSource[indexPath.section][indexPath.item])
             return cell
+        }
+    }
+}
+
+extension SignUpAddInfomationViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        if collectionView == jobStackView.collectionView {
+            if let jobs = jobStackView.collectionView.indexPathsForSelectedItems,
+               jobs.count <= 2
+            {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            if let interests = interestsStackView.collectionView.indexPathsForSelectedItems,
+               interests.count <= 2
+            {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == jobStackView.collectionView {
+            let jobs = jobStackView.collectionView
+                        .indexPathsForSelectedItems?
+                        .map { Constants.jobDataSource[$0.section][$0.item] }
+            self.selectedJobs.accept(jobs ?? [])
+        } else {
+            let interests = interestsStackView.collectionView
+                        .indexPathsForSelectedItems?
+                        .map { Constants.interestsDataSource[$0.section][$0.item] }
+            self.selectedJobs.accept(interests ?? [])
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if collectionView == jobStackView.collectionView {
+            let jobs = jobStackView.collectionView
+                        .indexPathsForSelectedItems?
+                        .map { Constants.jobDataSource[$0.section][$0.item] }
+            self.selectedJobs.accept(jobs ?? [])
+        } else {
+            let interests = interestsStackView.collectionView
+                        .indexPathsForSelectedItems?
+                        .map { Constants.interestsDataSource[$0.section][$0.item] }
+            self.selectedJobs.accept(interests ?? [])
         }
     }
 }
