@@ -29,11 +29,10 @@ class BaseViewController: UIViewController {
         contentView.addSubview(stackView)
         setConstraints()
         setUpNotification()
-        
         setupEndEditing()
     }
     
-    @objc func MyTapMethod(sender: UITapGestureRecognizer) {
+    @objc func tapAction(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
 
@@ -51,7 +50,7 @@ class BaseViewController: UIViewController {
     private func setupEndEditing() {
         let singleTapGestureRecognizer = UITapGestureRecognizer(
             target: self,
-            action: #selector(MyTapMethod))
+            action: #selector(tapAction))
         singleTapGestureRecognizer.numberOfTapsRequired = 1
         singleTapGestureRecognizer.isEnabled = true
         singleTapGestureRecognizer.cancelsTouchesInView = false

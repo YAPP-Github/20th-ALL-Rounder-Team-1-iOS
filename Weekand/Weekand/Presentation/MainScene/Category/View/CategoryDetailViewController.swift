@@ -45,6 +45,11 @@ class CategoryDetailViewController: UIViewController {
         bindViewModel()
         configureDataSource()
         configureSnapshot()
+        setupEndEditing()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     private func setupView() {
@@ -172,14 +177,22 @@ extension CategoryDetailViewController {
     }
 }
 
-import SwiftUI
-#if canImport(SwiftUI) && DEBUG
+// keyboard
 
-struct CategoryDetailViewControllerPreview: PreviewProvider {
-    static var previews: some View {
-        Group {
-            CategoryDetailViewController().showPreview(.iPhone11Pro)
-        }
+extension CategoryDetailViewController {
+    private func setupEndEditing() {
+        let singleTapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(tapAction))
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.isEnabled = true
+        singleTapGestureRecognizer.cancelsTouchesInView = false
+        tableView.addGestureRecognizer(singleTapGestureRecognizer)
+    }
+    
+    @objc func tapAction(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
 }
-#endif
+
+
