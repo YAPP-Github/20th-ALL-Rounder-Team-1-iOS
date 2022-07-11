@@ -27,7 +27,9 @@ class SignInViewController: BaseViewController {
     let spacerView = UIView()
     
     lazy var emailField = WTextField(placeHolder: "이메일을 입력해주세요")
-    lazy var passwordField = WTextField(placeHolder: "비밀번호를 입력해주세요")
+    lazy var passwordField = WTextField(placeHolder: "비밀번호를 입력해주세요").then {
+        $0.isSecureTextEntry = true
+    }
     
     lazy var textFieldStack = UIStackView().then {
         $0.addArrangedSubview(emailField)
