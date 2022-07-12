@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // TODO: 유저 로그인 구현 후 삭제
         UserDataStorage.shared.userID = "12345"
         
-        self.coordinator = AppCoordinator(navigationController: navigationController)
+        self.coordinator = MainCoordinator(navigationController: navigationController)
         self.coordinator?.start()
     }
 
