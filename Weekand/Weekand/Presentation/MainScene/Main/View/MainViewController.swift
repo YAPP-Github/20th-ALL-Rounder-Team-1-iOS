@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
     var headerView = MainViewHeader()
     var tableView: UITableView!
     
-    lazy var foldButton = UIBarButtonItem(image: nil, style: .plain, target: self, action: nil)
+    lazy var foldButton = UIBarButtonItem(image: UIImage(named: "emptyImage")!, style: .plain, target: self, action: nil)
     lazy var searchButton = UIBarButtonItem(image: UIImage(named: "search") ?? UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: nil)
     lazy var alarmButton = UIBarButtonItem(image: UIImage(named: "alarm") ?? UIImage(systemName: "bell"), style: .plain, target: self, action: nil)
 
