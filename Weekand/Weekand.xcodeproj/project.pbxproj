@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D0ED2BE287D064400DE3215 /* EmojiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0ED2BD287D064400DE3215 /* EmojiTableViewCell.swift */; };
+		7D0ED2C0287D065800DE3215 /* EmojiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0ED2BF287D065800DE3215 /* EmojiTableViewController.swift */; };
+		7D0ED2C2287D0DF900DE3215 /* EmojiGiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0ED2C1287D0DF900DE3215 /* EmojiGiver.swift */; };
+		7D0ED2C8287D547000DE3215 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D0ED2C7287D547000DE3215 /* schema.json */; };
+		7D0ED2CA287D584300DE3215 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0ED2C9287D584300DE3215 /* API.swift */; };
 		7D29E346286422FC0047C805 /* UserSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D29E345286422FC0047C805 /* UserSummary.swift */; };
 		7D3B1F54283630A50037504A /* WTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B1F53283630A50037504A /* WTextField.swift */; };
 		7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7D648FBC282367F600F5D0B5 /* .swiftlint.yml */; };
@@ -29,13 +34,14 @@
 		7DA4AB7828586FA7009E91FB /* CategoryAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7728586FA7009E91FB /* CategoryAddViewModel.swift */; };
 		7DA4AB7A285871E0009E91FB /* UIButton+setImageInset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB79285871E0009E91FB /* UIButton+setImageInset.swift */; };
 		7DAA861F284B968000F21E35 /* ScehduleMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAA861E284B968000F21E35 /* ScehduleMain.swift */; };
+		7DB1D5BF287C1C4C0032C209 /* EmojiTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB1D5BE287C1C4C0032C209 /* EmojiTabViewController.swift */; };
 		7DB5E13C284B4DA400DBB7EA /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB5E13B284B4DA400DBB7EA /* MainCoordinator.swift */; };
 		7DB5E13E284B4E3C00DBB7EA /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB5E13D284B4E3C00DBB7EA /* MainViewModel.swift */; };
 		7DBC38AE2875A92400EFE704 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC38AD2875A92400EFE704 /* Key.swift */; };
 		7DBC4C59287697F900F0AC86 /* EmojiSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C58287697F900F0AC86 /* EmojiSheetViewController.swift */; };
 		7DBC4C5B28769C2600F0AC86 /* StickerAddSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C5A28769C2600F0AC86 /* StickerAddSheet.swift */; };
 		7DBC4C5D28769C3900F0AC86 /* MonthlyCalendarSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C5C28769C3900F0AC86 /* MonthlyCalendarSheet.swift */; };
-		7DBC4C5F2876AE1800F0AC86 /* EmojiSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C5E2876AE1800F0AC86 /* EmojiSheetViewModel.swift */; };
+		7DBC4C5F2876AE1800F0AC86 /* EmojiTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C5E2876AE1800F0AC86 /* EmojiTableViewModel.swift */; };
 		7DBC4C612876AE7800F0AC86 /* StickerAddSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C602876AE7800F0AC86 /* StickerAddSheetViewModel.swift */; };
 		7DBC4C632876AEA200F0AC86 /* MonthlyCalendarSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C622876AEA200F0AC86 /* MonthlyCalendarSheetViewModel.swift */; };
 		7DBC4C652876B59500F0AC86 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C642876B59500F0AC86 /* Emoji.swift */; };
@@ -120,7 +126,6 @@
 		F3AA9E1B2869FEFC00F71559 /* PasswordFindViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA9E1A2869FEFC00F71559 /* PasswordFindViewModel.swift */; };
 		F3AA9E1D2869FF1E00F71559 /* PasswordFindCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA9E1C2869FF1E00F71559 /* PasswordFindCoordinator.swift */; };
 		F3C8E087286DC71300B0916A /* RxApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E086286DC71300B0916A /* RxApolloClient.swift */; };
-		F3C8E08E286F570900B0916A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E08D286F570900B0916A /* API.swift */; };
 		F3C8E094286F598600B0916A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E093286F598600B0916A /* Network.swift */; };
 		F3C8E09C2872E17D00B0916A /* ScheduleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E09B2872E17D00B0916A /* ScheduleEditViewController.swift */; };
 		F3C8E0A12872EFF400B0916A /* DropDownStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0A02872EFF400B0916A /* DropDownStackView.swift */; };
@@ -159,6 +164,11 @@
 
 /* Begin PBXFileReference section */
 		2F9EA8129964B7F5609AAF6E /* Pods-Weekand.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weekand.debug.xcconfig"; path = "Target Support Files/Pods-Weekand/Pods-Weekand.debug.xcconfig"; sourceTree = "<group>"; };
+		7D0ED2BD287D064400DE3215 /* EmojiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTableViewCell.swift; sourceTree = "<group>"; };
+		7D0ED2BF287D065800DE3215 /* EmojiTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTableViewController.swift; sourceTree = "<group>"; };
+		7D0ED2C1287D0DF900DE3215 /* EmojiGiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiGiver.swift; sourceTree = "<group>"; };
+		7D0ED2C7287D547000DE3215 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		7D0ED2C9287D584300DE3215 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7D29E345286422FC0047C805 /* UserSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSummary.swift; sourceTree = "<group>"; };
 		7D3B1F53283630A50037504A /* WTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextField.swift; sourceTree = "<group>"; };
 		7D648FBC282367F600F5D0B5 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -181,13 +191,14 @@
 		7DA4AB7728586FA7009E91FB /* CategoryAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryAddViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB79285871E0009E91FB /* UIButton+setImageInset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+setImageInset.swift"; sourceTree = "<group>"; };
 		7DAA861E284B968000F21E35 /* ScehduleMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScehduleMain.swift; sourceTree = "<group>"; };
+		7DB1D5BE287C1C4C0032C209 /* EmojiTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTabViewController.swift; sourceTree = "<group>"; };
 		7DB5E13B284B4DA400DBB7EA /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		7DB5E13D284B4E3C00DBB7EA /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		7DBC38AD2875A92400EFE704 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		7DBC4C58287697F900F0AC86 /* EmojiSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiSheetViewController.swift; sourceTree = "<group>"; };
 		7DBC4C5A28769C2600F0AC86 /* StickerAddSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerAddSheet.swift; sourceTree = "<group>"; };
 		7DBC4C5C28769C3900F0AC86 /* MonthlyCalendarSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyCalendarSheet.swift; sourceTree = "<group>"; };
-		7DBC4C5E2876AE1800F0AC86 /* EmojiSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiSheetViewModel.swift; sourceTree = "<group>"; };
+		7DBC4C5E2876AE1800F0AC86 /* EmojiTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTableViewModel.swift; sourceTree = "<group>"; };
 		7DBC4C602876AE7800F0AC86 /* StickerAddSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerAddSheetViewModel.swift; sourceTree = "<group>"; };
 		7DBC4C622876AEA200F0AC86 /* MonthlyCalendarSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyCalendarSheetViewModel.swift; sourceTree = "<group>"; };
 		7DBC4C642876B59500F0AC86 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
@@ -275,7 +286,6 @@
 		F3AA9E1A2869FEFC00F71559 /* PasswordFindViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindViewModel.swift; sourceTree = "<group>"; };
 		F3AA9E1C2869FF1E00F71559 /* PasswordFindCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindCoordinator.swift; sourceTree = "<group>"; };
 		F3C8E086286DC71300B0916A /* RxApolloClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxApolloClient.swift; sourceTree = "<group>"; };
-		F3C8E08D286F570900B0916A /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		F3C8E093286F598600B0916A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		F3C8E09B2872E17D00B0916A /* ScheduleEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditViewController.swift; sourceTree = "<group>"; };
 		F3C8E0A02872EFF400B0916A /* DropDownStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownStackView.swift; sourceTree = "<group>"; };
@@ -342,6 +352,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7D0ED2C3287D45D700DE3215 /* EmojiSheet */ = {
+			isa = PBXGroup;
+			children = (
+				7DBC4C58287697F900F0AC86 /* EmojiSheetViewController.swift */,
+				7DB1D5BE287C1C4C0032C209 /* EmojiTabViewController.swift */,
+				7D0ED2BF287D065800DE3215 /* EmojiTableViewController.swift */,
+			);
+			path = EmojiSheet;
+			sourceTree = "<group>";
+		};
 		7D3B1F5528363CFB0037504A /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,8 +395,8 @@
 			isa = PBXGroup;
 			children = (
 				7DAA8620284BAF9500F21E35 /* Common */,
-				F3C8E0972872E10F00B0916A /* ScheduleEdit */,
 				7D76AEB02844588E001C668D /* Main */,
+				F3C8E0972872E10F00B0916A /* ScheduleEdit */,
 				F392A1C2284F508600512A42 /* Category */,
 			);
 			path = MainScene;
@@ -488,6 +508,7 @@
 				7D8033D7286057A20039F73E /* FollwingUser.swift */,
 				7D29E345286422FC0047C805 /* UserSummary.swift */,
 				F378684E285619F000BEEC81 /* Category.swift */,
+				7D0ED2C1287D0DF900DE3215 /* EmojiGiver.swift */,
 				F3F731DA2868966700C8B778 /* Color.swift */,
 				F3F731DE2868DE0000C8B778 /* Sort.swift */,
 				7DBC4C642876B59500F0AC86 /* Emoji.swift */,
@@ -528,9 +549,9 @@
 		7DBC4C682876B73000F0AC86 /* Sheet */ = {
 			isa = PBXGroup;
 			children = (
-				7DBC4C58287697F900F0AC86 /* EmojiSheetViewController.swift */,
 				7DBC4C5A28769C2600F0AC86 /* StickerAddSheet.swift */,
 				7DBC4C5C28769C3900F0AC86 /* MonthlyCalendarSheet.swift */,
+				7D0ED2C3287D45D700DE3215 /* EmojiSheet */,
 			);
 			path = Sheet;
 			sourceTree = "<group>";
@@ -551,6 +572,7 @@
 			isa = PBXGroup;
 			children = (
 				7DBC4C662876B66E00F0AC86 /* StickerCollectionViewCell.swift */,
+				7D0ED2BD287D064400DE3215 /* EmojiTableViewCell.swift */,
 			);
 			path = Sheet;
 			sourceTree = "<group>";
@@ -558,7 +580,7 @@
 		7DBC4C6B2876B75C00F0AC86 /* Sheet */ = {
 			isa = PBXGroup;
 			children = (
-				7DBC4C5E2876AE1800F0AC86 /* EmojiSheetViewModel.swift */,
+				7DBC4C5E2876AE1800F0AC86 /* EmojiTableViewModel.swift */,
 				7DBC4C602876AE7800F0AC86 /* StickerAddSheetViewModel.swift */,
 				7DBC4C622876AEA200F0AC86 /* MonthlyCalendarSheetViewModel.swift */,
 			);
@@ -759,6 +781,7 @@
 			isa = PBXGroup;
 			children = (
 				7D648FBC282367F600F5D0B5 /* .swiftlint.yml */,
+				7D0ED2C9287D584300DE3215 /* API.swift */,
 				F32ACC0028235D500082AF30 /* Weekand */,
 				7DF8B7AA28361FB500B224CA /* Supporting Files */,
 				F323FEFF2877CC9E00DFD8FD /* WeekandTests */,
@@ -780,7 +803,6 @@
 		F32ACC0028235D500082AF30 /* Weekand */ = {
 			isa = PBXGroup;
 			children = (
-				F3C8E08D286F570900B0916A /* API.swift */,
 				F3C8E083286DAF9B00B0916A /* Networking */,
 				7D3B1F5628363D2D0037504A /* Application */,
 				7D3B1F5528363CFB0037504A /* Base */,
@@ -864,6 +886,7 @@
 		F3C8E083286DAF9B00B0916A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				7D0ED2C7287D547000DE3215 /* schema.json */,
 				F3C8E08A286F4D8F00B0916A /* Query */,
 				F3C8E086286DC71300B0916A /* RxApolloClient.swift */,
 				F3C8E093286F598600B0916A /* Network.swift */,
@@ -1049,6 +1072,7 @@
 				F323FF102877F3B500DFD8FD /* Login.graphql in Resources */,
 				F323FF38287B13F900DFD8FD /* SignUp.graphql in Resources */,
 				F323FF2B287A036E00DFD8FD /* checkDuplicateNickname.graphql in Resources */,
+				7D0ED2C8287D547000DE3215 /* schema.json in Resources */,
 				F323FF30287A276100DFD8FD /* issueTempPassword.graphql in Resources */,
 				F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */,
 				F3C8E0B128731E4900B0916A /* CategoryDropDownCell.xib in Resources */,
@@ -1147,7 +1171,7 @@
 				7DD71A80286C8E88002D1DCF /* AlarmViewController.swift in Sources */,
 				F354C3E8283D4126008929FD /* SignUpTermsViewController.swift in Sources */,
 				F3C8E0B32873500900B0916A /* AddInformationContainerView.swift in Sources */,
-				7DBC4C5F2876AE1800F0AC86 /* EmojiSheetViewModel.swift in Sources */,
+				7DBC4C5F2876AE1800F0AC86 /* EmojiTableViewModel.swift in Sources */,
 				F32F72562853D1E40056B189 /* CategoryDetailFooterView.swift in Sources */,
 				F3DD022B284678CF00AD9240 /* WelcomeViewModel.swift in Sources */,
 				7D6B91192844A8D50044E217 /* WStatusTimeLabel.swift in Sources */,
@@ -1177,6 +1201,9 @@
 				7D29E346286422FC0047C805 /* UserSummary.swift in Sources */,
 				7D76AEB4284458C2001C668D /* MainViewController.swift in Sources */,
 				F3C8E0A32872F29000B0916A /* WArrowButton.swift in Sources */,
+				7DB1D5BF287C1C4C0032C209 /* EmojiTabViewController.swift in Sources */,
+				7D0ED2C0287D065800DE3215 /* EmojiTableViewController.swift in Sources */,
+				7D0ED2CA287D584300DE3215 /* API.swift in Sources */,
 				7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */,
 				F3CC76B028670BA200A3FBBE /* ColorSheetViewModel.swift in Sources */,
 				F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */,
@@ -1187,6 +1214,7 @@
 				F323FEF0287636B500DFD8FD /* SortDropDownCell.swift in Sources */,
 				7D6E9972283BA18E006F5FC7 /* WBottmButton.swift in Sources */,
 				F3C8E0B72873598A00B0916A /* MemoStackView.swift in Sources */,
+				7D0ED2BE287D064400DE3215 /* EmojiTableViewCell.swift in Sources */,
 				F37868552861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift in Sources */,
 				F3CC76AE2866CD1200A3FBBE /* BottomSheetViewController.swift in Sources */,
 				F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */,
@@ -1212,7 +1240,6 @@
 				F323FF232879B61C00DFD8FD /* SignUpUseCase.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
 				F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */,
-				F3C8E08E286F570900B0916A /* API.swift in Sources */,
 				7DBC4C59287697F900F0AC86 /* EmojiSheetViewController.swift in Sources */,
 				F3F731E92869E5EC00C8B778 /* PasswordFindViewController.swift in Sources */,
 				F323FEE92875FC3D00DFD8FD /* WCalendarView.swift in Sources */,
@@ -1222,6 +1249,7 @@
 				7D7178ED283E1ED500D7E5F2 /* WTextButton.swift in Sources */,
 				F323FF1D2879A30100DFD8FD /* SimplePopupCoordinator.swift in Sources */,
 				7DF9688A284DF2EB00CE077E /* MainViewHeader.swift in Sources */,
+				7D0ED2C2287D0DF900DE3215 /* EmojiGiver.swift in Sources */,
 				7DEA177A2845E7C500F6B990 /* WEmojiView.swift in Sources */,
 				7DBC38AE2875A92400EFE704 /* Key.swift in Sources */,
 				F378684F285619F000BEEC81 /* Category.swift in Sources */,
@@ -1418,7 +1446,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = ZW6466CHF4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Weekand/Resources/Info.plist;
@@ -1448,7 +1476,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = ZW6466CHF4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Weekand/Resources/Info.plist;
