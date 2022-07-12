@@ -318,6 +318,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7D0ED2C3287D45D700DE3215 /* EmojiSheet */ = {
+			isa = PBXGroup;
+			children = (
+				7DBC4C58287697F900F0AC86 /* EmojiSheetViewController.swift */,
+				7DB1D5BE287C1C4C0032C209 /* EmojiTabViewController.swift */,
+				7D0ED2BF287D065800DE3215 /* EmojiTableViewController.swift */,
+			);
+			path = EmojiSheet;
+			sourceTree = "<group>";
+		};
 		7D3B1F5528363CFB0037504A /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,9 +515,7 @@
 			children = (
 				7DBC4C5A28769C2600F0AC86 /* StickerAddSheet.swift */,
 				7DBC4C5C28769C3900F0AC86 /* MonthlyCalendarSheet.swift */,
-				7DBC4C58287697F900F0AC86 /* EmojiSheetViewController.swift */,
-				7DB1D5BE287C1C4C0032C209 /* EmojiTabViewController.swift */,
-				7D0ED2BF287D065800DE3215 /* EmojiTableViewController.swift */,
+				7D0ED2C3287D45D700DE3215 /* EmojiSheet */,
 			);
 			path = Sheet;
 			sourceTree = "<group>";
