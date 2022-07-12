@@ -71,6 +71,7 @@ class MainTableViewCell: UITableViewCell {
         
         [timeLineLabel, emojiView, stickerButton].forEach { bottomStack.addArrangedSubview($0) }
         stickerButton.snp.makeConstraints { make in
+            make.height.greaterThanOrEqualTo(28)
             make.width.equalTo(stickerButton.snp.height)
         }
         
