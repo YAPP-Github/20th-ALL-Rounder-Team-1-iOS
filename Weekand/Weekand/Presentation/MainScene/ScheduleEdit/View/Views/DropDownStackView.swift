@@ -24,12 +24,18 @@ class DropDownStackView: UIStackView {
         $0.axis = .horizontal
         $0.alignment = .center
         $0.distribution = .fill
+        $0.spacing = 10
     }
     
+    lazy var colorView = UIView().then {
+        $0.backgroundColor = UIColor.mainColor
+        $0.layer.cornerRadius = 3
+    }
+
     lazy var label = WTextLabel().then {
         $0.backgroundColor?.withAlphaComponent(0)
         $0.font = WFont.body1()
-        $0.text = "todo"
+        $0.text = "내 일정"
     }
     
     let arrowButton = WArrowButton()
@@ -74,6 +80,7 @@ class DropDownStackView: UIStackView {
             make.height.equalTo(52)
         }
         
+        stackView.addArrangedSubview(colorView)
         stackView.addArrangedSubview(label)
         stackView.addArrangedSubview(arrowButton)
         arrowButton.snp.makeConstraints { make in
@@ -82,6 +89,9 @@ class DropDownStackView: UIStackView {
             make.width.equalTo(backgroundView.snp.width).multipliedBy(1/7.4)
         }
         
+        colorView.snp.makeConstraints { make in
+            make.height.width.equalTo(10)
+        }
     }
 
 }

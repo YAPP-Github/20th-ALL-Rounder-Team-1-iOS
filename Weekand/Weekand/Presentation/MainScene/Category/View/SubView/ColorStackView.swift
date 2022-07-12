@@ -36,7 +36,7 @@ class ColorStackView: UIStackView {
         [namelabel, colorView].forEach { self.addArrangedSubview($0) }
         
         colorView.snp.makeConstraints { make in
-            make.width.height.equalTo(36)
+            make.width.height.equalTo(UIScreen.main.bounds.width * 0.09)
         }
     }
     

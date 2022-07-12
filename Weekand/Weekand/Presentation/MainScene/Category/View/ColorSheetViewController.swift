@@ -18,7 +18,6 @@ class ColorSheetViewController: BottomSheetViewController, UICollectionViewDeleg
       case first, second, third
     }
     
-    var colorsCollectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Color>!
     
     // ViewMoel
@@ -30,7 +29,13 @@ class ColorSheetViewController: BottomSheetViewController, UICollectionViewDeleg
     
     override var bottomSheetHeight: CGFloat {
         get {
-            return 330
+            let screenHeight = UIScreen.main.bounds.height
+            if screenHeight < 750 {
+                return UIScreen.main.bounds.height * 0.44
+            } else {
+                return UIScreen.main.bounds.height * 0.37
+            }
+            
         }
     }
     
@@ -41,6 +46,13 @@ class ColorSheetViewController: BottomSheetViewController, UICollectionViewDeleg
         $0.textColor = .gray900
         $0.text = "색상"
     }
+    
+    lazy var stackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.alignment = .center
+    }
+    
+    var colorsCollectionView: UICollectionView!
     
     lazy var confirmButton = WDefaultButton(title: "확인", style: .filled, font: WFont.subHead1())
     
@@ -61,15 +73,20 @@ class ColorSheetViewController: BottomSheetViewController, UICollectionViewDeleg
     private func setupView() {
         let layout = UICollectionViewCompositionalLayout { (_: Int,
             _ : NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
-                        
-            let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(36), heightDimension: .absolute(36))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(5), top: nil, trailing: .fixed(5), bottom: nil)
+            let screenWidth = UIScreen.main.bounds.width
+            let itemSize = screenWidth * 0.096
+            let edgeSpacing = screenWidth * 0.013
+            let sectionInset = screenWidth * 0.021
+            let collectionLayoutSize = NSCollectionLayoutSize(
+                                widthDimension: .absolute(itemSize),
+                                heightDimension: .absolute(itemSize))
+            let item = NSCollectionLayoutItem(layoutSize: collectionLayoutSize)
+            item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(edgeSpacing), top: nil, trailing: .fixed(edgeSpacing), bottom: nil)
             
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.1)), subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
             section.orthogonalScrollingBehavior = .none
-            section.contentInsets = .init(top: 8, leading: 0, bottom: 8, trailing: 0)
+            section.contentInsets = .init(top: sectionInset, leading: 0, bottom: sectionInset, trailing: 0)
 
             return section
         }
@@ -82,25 +99,30 @@ class ColorSheetViewController: BottomSheetViewController, UICollectionViewDeleg
     }
     
     private func configureUI() {
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
+        let sideSpacing = screenWidth * 0.064
+        
         bottomSheetView.addSubview(sheetTitle)
         sheetTitle.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(32)
-            make.leading.equalToSuperview().offset(24)
+            make.top.equalToSuperview().offset(sideSpacing)
+            make.leading.equalToSuperview().offset(sideSpacing)
         }
         
         bottomSheetView.addSubview(colorsCollectionView)
         colorsCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(sheetTitle.snp.bottom).offset(20)
-            make.leading.equalToSuperview().offset(24)
-            make.trailing.equalToSuperview().offset(-24)
-            make.height.equalTo(200)
+            make.top.equalTo(sheetTitle.snp.bottom).offset(screenHeight * 0.015)
+            make.leading.equalToSuperview().offset(sideSpacing)
+            make.trailing.equalToSuperview().offset(-sideSpacing)
+            make.height.equalTo(screenHeight * 0.25)
         }
         
         bottomSheetView.addSubview(confirmButton)
         confirmButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(24)
-            make.trailing.equalToSuperview().offset(-24)
-            make.bottom.equalToSuperview().offset(-40)
+            make.leading.equalToSuperview().offset(sideSpacing)
+            make.trailing.equalToSuperview().offset(-sideSpacing)
+            make.bottom.equalToSuperview().offset(-screenHeight * 0.04)
+            make.height.equalTo(screenWidth * 0.12)
         }
     }
     
