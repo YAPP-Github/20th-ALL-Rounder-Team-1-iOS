@@ -11,12 +11,13 @@ import RxCocoa
 
 class CategoryAddViewModel: CategoryEditViewModelType {
     
-    private let disposeBag = DisposeBag()
     weak var coordinator: CategoryAddCoordinator?
+    private let categoryUseCase: CategoryUseCase
+    private var disposeBag = DisposeBag()
     
-    init(coordinator: CategoryAddCoordinator) {
-        
+    init(coordinator: CategoryAddCoordinator, categoryUseCase: CategoryUseCase) {
         self.coordinator = coordinator
+        self.categoryUseCase = categoryUseCase
     }
     
     struct Input {

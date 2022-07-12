@@ -13,10 +13,12 @@ import RxCocoa
 class CategoryDetailViewModel {
     
     weak var coordinator: CategoryCoordinator?
+    private let categoryUseCase: CategoryUseCase
+    private var disposeBag = DisposeBag()
     
-    init(coordinator: CategoryCoordinator) {
-        
+    init(coordinator: CategoryCoordinator, categoryUseCase: CategoryUseCase) {
         self.coordinator = coordinator
+        self.categoryUseCase = categoryUseCase
     }
 
 }

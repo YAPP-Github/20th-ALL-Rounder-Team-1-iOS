@@ -14,25 +14,27 @@ class CategoryCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var type: CoordinatorType = .category
     var categoryListViewController: CategoryListViewController
+    var categoryUseCase: CategoryUseCase
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.categoryListViewController = CategoryListViewController()
+        self.categoryUseCase = CategoryUseCase()
     }
     
     func start() {
-        self.categoryListViewController.viewModel = CategoryListViewModel(coordinator: self)
+        self.categoryListViewController.viewModel = CategoryListViewModel(coordinator: self, categoryUseCase: categoryUseCase)
         self.navigationController.pushViewController(categoryListViewController, animated: true)
     }
     
     func pushCategoryDetailViewController() {
         let categoryDetailViewController = CategoryDetailViewController()
-        categoryDetailViewController.viewModel = CategoryDetailViewModel(coordinator: self)
+        categoryDetailViewController.viewModel = CategoryDetailViewModel(coordinator: self, categoryUseCase: categoryUseCase)
         self.navigationController.pushViewController(categoryDetailViewController, animated: true)
     }
     
     func showCategoryAddScene() {
-        let categoryAddCoordinator = CategoryAddCoordinator()
+        let categoryAddCoordinator = CategoryAddCoordinator(categoryUseCase: categoryUseCase)
         categoryAddCoordinator.finishDelegate = self
         childCoordinators.append(categoryAddCoordinator)
         navigationController.present(categoryAddCoordinator.navigationController, animated: true, completion: nil)

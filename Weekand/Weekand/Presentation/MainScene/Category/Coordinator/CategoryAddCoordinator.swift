@@ -14,16 +14,18 @@ class CategoryAddCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var type: CoordinatorType = .categoryAdd
     var categoryAddViewController: CategoryEditViewController<CategoryAddViewModel>
+    var categoryUseCase: CategoryUseCase
     
-    required init() {
+    required init(categoryUseCase: CategoryUseCase) {
         self.categoryAddViewController = CategoryEditViewController<CategoryAddViewModel>()
         self.categoryAddViewController.title = "카테고리 추가"
         self.navigationController = UINavigationController(rootViewController: categoryAddViewController)
         self.navigationController.modalPresentationStyle = .fullScreen
+        self.categoryUseCase = categoryUseCase
     }
     
     func start() {
-        self.categoryAddViewController.viewModel = CategoryAddViewModel(coordinator: self)
+        self.categoryAddViewController.viewModel = CategoryAddViewModel(coordinator: self, categoryUseCase: categoryUseCase)
     }
     
     func pushColorBottonSheet() {

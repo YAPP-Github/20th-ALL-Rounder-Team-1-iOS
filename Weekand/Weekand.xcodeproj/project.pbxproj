@@ -128,6 +128,7 @@
 		F3B00273287D68FA00D6BB1D /* UserSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B00270287D68FA00D6BB1D /* UserSummary.swift */; };
 		F3B00274287D68FA00D6BB1D /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B00271287D68FA00D6BB1D /* Sort.swift */; };
 		F3B00275287D68FA00D6BB1D /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B00272287D68FA00D6BB1D /* SignUpModel.swift */; };
+		F3B00277287D700D00D6BB1D /* ScheduleCategories in Resources */ = {isa = PBXBuildFile; fileRef = F3B00276287D700D00D6BB1D /* ScheduleCategories */; };
 		F3C8E087286DC71300B0916A /* RxApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E086286DC71300B0916A /* RxApolloClient.swift */; };
 		F3C8E094286F598600B0916A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E093286F598600B0916A /* Network.swift */; };
 		F3C8E09C2872E17D00B0916A /* ScheduleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E09B2872E17D00B0916A /* ScheduleEditViewController.swift */; };
@@ -289,6 +290,7 @@
 		F3B00270287D68FA00D6BB1D /* UserSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserSummary.swift; path = Entities/UserSummary.swift; sourceTree = "<group>"; };
 		F3B00271287D68FA00D6BB1D /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sort.swift; path = Entities/Sort.swift; sourceTree = "<group>"; };
 		F3B00272287D68FA00D6BB1D /* SignUpModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpModel.swift; path = Entities/SignUpModel.swift; sourceTree = "<group>"; };
+		F3B00276287D700D00D6BB1D /* ScheduleCategories */ = {isa = PBXFileReference; lastKnownFileType = text; path = ScheduleCategories; sourceTree = "<group>"; };
 		F3C8E086286DC71300B0916A /* RxApolloClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxApolloClient.swift; sourceTree = "<group>"; };
 		F3C8E093286F598600B0916A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		F3C8E09B2872E17D00B0916A /* ScheduleEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditViewController.swift; sourceTree = "<group>"; };
@@ -909,6 +911,7 @@
 				F323FF2A287A036E00DFD8FD /* checkDuplicateNickname.graphql */,
 				F323FF2F287A276100DFD8FD /* issueTempPassword.graphql */,
 				F323FF37287B13F900DFD8FD /* SignUp.graphql */,
+				F3B00276287D700D00D6BB1D /* ScheduleCategories */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1078,6 +1081,7 @@
 				7D0ED2C8287D547000DE3215 /* schema.json in Resources */,
 				F323FF30287A276100DFD8FD /* issueTempPassword.graphql in Resources */,
 				F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */,
+				F3B00277287D700D00D6BB1D /* ScheduleCategories in Resources */,
 				F3C8E0B128731E4900B0916A /* CategoryDropDownCell.xib in Resources */,
 				F323FF1F2879AD5600DFD8FD /* sendAuthKey.graphql in Resources */,
 				F32ACC0B28235D530082AF30 /* Assets.xcassets in Resources */,

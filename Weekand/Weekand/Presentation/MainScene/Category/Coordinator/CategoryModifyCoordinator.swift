@@ -14,16 +14,18 @@ class CategoryModifyCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var type: CoordinatorType = .categoryModify
     var categoryModifyViewController: CategoryEditViewController<CategoryModifyViewModel>
+    var categoryUseCase: CategoryUseCase
     
-    required init() {
+    required init(categoryUseCase: CategoryUseCase) {
         self.categoryModifyViewController = CategoryEditViewController<CategoryModifyViewModel>()
         self.categoryModifyViewController.title = "카테고리 추가"
         self.navigationController = UINavigationController(rootViewController: categoryModifyViewController)
         self.navigationController.modalPresentationStyle = .fullScreen
+        self.categoryUseCase = categoryUseCase
     }
     
     func start() {
-        self.categoryModifyViewController.viewModel = CategoryModifyViewModel(coordinator: self)
+        self.categoryModifyViewController.viewModel = CategoryModifyViewModel(coordinator: self, categoryUseCase: categoryUseCase)
     }
     
     func dismiss() {
