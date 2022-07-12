@@ -13,6 +13,13 @@ class EmojiSheetViewController: BottomSheetViewController {
 
     let viewController = EmojiTabViewController()
     
+    override var bottomSheetHeight: CGFloat {
+        get {
+            return 400
+        }
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

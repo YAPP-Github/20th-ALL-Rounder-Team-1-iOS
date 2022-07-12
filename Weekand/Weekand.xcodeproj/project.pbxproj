@@ -328,6 +328,18 @@
 			path = EmojiSheet;
 			sourceTree = "<group>";
 		};
+		7D0ED2C6287D53DE00DE3215 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7DA4AB79285871E0009E91FB /* UIButton+setImageInset.swift */,
+				7DF8B7AB2836250400B224CA /* UIColor+hex.swift */,
+				F33C6EAD28535021005B493A /* UIVIewController+extension.swift */,
+				F354C3E9283E6946008929FD /* NSMutableAttributedString+extension.swift */,
+				F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		7D3B1F5528363CFB0037504A /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -634,11 +646,7 @@
 		7DC166B72837157500F1A8F1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				7DA4AB79285871E0009E91FB /* UIButton+setImageInset.swift */,
-				7DF8B7AB2836250400B224CA /* UIColor+hex.swift */,
-				F33C6EAD28535021005B493A /* UIVIewController+extension.swift */,
-				F354C3E9283E6946008929FD /* NSMutableAttributedString+extension.swift */,
-				F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */,
+				7D0ED2C6287D53DE00DE3215 /* Extensions */,
 				7DF949C6283B6D0A007F84C5 /* DesignSystem */,
 			);
 			path = Utils;
