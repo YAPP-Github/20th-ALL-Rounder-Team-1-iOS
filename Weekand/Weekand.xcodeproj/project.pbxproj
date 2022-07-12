@@ -362,18 +362,6 @@
 			path = EmojiSheet;
 			sourceTree = "<group>";
 		};
-		7D0ED2C6287D53DE00DE3215 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				7DA4AB79285871E0009E91FB /* UIButton+setImageInset.swift */,
-				7DF8B7AB2836250400B224CA /* UIColor+hex.swift */,
-				F33C6EAD28535021005B493A /* UIVIewController+extension.swift */,
-				F354C3E9283E6946008929FD /* NSMutableAttributedString+extension.swift */,
-				F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		7D3B1F5528363CFB0037504A /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -1458,7 +1446,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = ZW6466CHF4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Weekand/Resources/Info.plist;
@@ -1488,7 +1476,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = ZW6466CHF4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Weekand/Resources/Info.plist;
