@@ -10,6 +10,8 @@
 		7D0ED2BE287D064400DE3215 /* EmojiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0ED2BD287D064400DE3215 /* EmojiTableViewCell.swift */; };
 		7D0ED2C0287D065800DE3215 /* EmojiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0ED2BF287D065800DE3215 /* EmojiTableViewController.swift */; };
 		7D0ED2C2287D0DF900DE3215 /* EmojiGiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0ED2C1287D0DF900DE3215 /* EmojiGiver.swift */; };
+		7D0ED2C8287D547000DE3215 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D0ED2C7287D547000DE3215 /* schema.json */; };
+		7D0ED2CA287D584300DE3215 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0ED2C9287D584300DE3215 /* API.swift */; };
 		7D29E346286422FC0047C805 /* UserSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D29E345286422FC0047C805 /* UserSummary.swift */; };
 		7D3B1F54283630A50037504A /* WTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B1F53283630A50037504A /* WTextField.swift */; };
 		7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7D648FBC282367F600F5D0B5 /* .swiftlint.yml */; };
@@ -124,7 +126,6 @@
 		F3AA9E1B2869FEFC00F71559 /* PasswordFindViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA9E1A2869FEFC00F71559 /* PasswordFindViewModel.swift */; };
 		F3AA9E1D2869FF1E00F71559 /* PasswordFindCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA9E1C2869FF1E00F71559 /* PasswordFindCoordinator.swift */; };
 		F3C8E087286DC71300B0916A /* RxApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E086286DC71300B0916A /* RxApolloClient.swift */; };
-		F3C8E08E286F570900B0916A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E08D286F570900B0916A /* API.swift */; };
 		F3C8E094286F598600B0916A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E093286F598600B0916A /* Network.swift */; };
 		F3C8E09C2872E17D00B0916A /* ScheduleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E09B2872E17D00B0916A /* ScheduleEditViewController.swift */; };
 		F3C8E0A12872EFF400B0916A /* DropDownStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0A02872EFF400B0916A /* DropDownStackView.swift */; };
@@ -166,6 +167,8 @@
 		7D0ED2BD287D064400DE3215 /* EmojiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTableViewCell.swift; sourceTree = "<group>"; };
 		7D0ED2BF287D065800DE3215 /* EmojiTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTableViewController.swift; sourceTree = "<group>"; };
 		7D0ED2C1287D0DF900DE3215 /* EmojiGiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiGiver.swift; sourceTree = "<group>"; };
+		7D0ED2C7287D547000DE3215 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		7D0ED2C9287D584300DE3215 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7D29E345286422FC0047C805 /* UserSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSummary.swift; sourceTree = "<group>"; };
 		7D3B1F53283630A50037504A /* WTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextField.swift; sourceTree = "<group>"; };
 		7D648FBC282367F600F5D0B5 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -283,7 +286,6 @@
 		F3AA9E1A2869FEFC00F71559 /* PasswordFindViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindViewModel.swift; sourceTree = "<group>"; };
 		F3AA9E1C2869FF1E00F71559 /* PasswordFindCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindCoordinator.swift; sourceTree = "<group>"; };
 		F3C8E086286DC71300B0916A /* RxApolloClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxApolloClient.swift; sourceTree = "<group>"; };
-		F3C8E08D286F570900B0916A /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		F3C8E093286F598600B0916A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		F3C8E09B2872E17D00B0916A /* ScheduleEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditViewController.swift; sourceTree = "<group>"; };
 		F3C8E0A02872EFF400B0916A /* DropDownStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownStackView.swift; sourceTree = "<group>"; };
@@ -791,6 +793,7 @@
 			isa = PBXGroup;
 			children = (
 				7D648FBC282367F600F5D0B5 /* .swiftlint.yml */,
+				7D0ED2C9287D584300DE3215 /* API.swift */,
 				F32ACC0028235D500082AF30 /* Weekand */,
 				7DF8B7AA28361FB500B224CA /* Supporting Files */,
 				F323FEFF2877CC9E00DFD8FD /* WeekandTests */,
@@ -812,7 +815,6 @@
 		F32ACC0028235D500082AF30 /* Weekand */ = {
 			isa = PBXGroup;
 			children = (
-				F3C8E08D286F570900B0916A /* API.swift */,
 				F3C8E083286DAF9B00B0916A /* Networking */,
 				7D3B1F5628363D2D0037504A /* Application */,
 				7D3B1F5528363CFB0037504A /* Base */,
@@ -896,6 +898,7 @@
 		F3C8E083286DAF9B00B0916A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				7D0ED2C7287D547000DE3215 /* schema.json */,
 				F3C8E08A286F4D8F00B0916A /* Query */,
 				F3C8E086286DC71300B0916A /* RxApolloClient.swift */,
 				F3C8E093286F598600B0916A /* Network.swift */,
@@ -1081,6 +1084,7 @@
 				F323FF102877F3B500DFD8FD /* Login.graphql in Resources */,
 				F323FF38287B13F900DFD8FD /* SignUp.graphql in Resources */,
 				F323FF2B287A036E00DFD8FD /* checkDuplicateNickname.graphql in Resources */,
+				7D0ED2C8287D547000DE3215 /* schema.json in Resources */,
 				F323FF30287A276100DFD8FD /* issueTempPassword.graphql in Resources */,
 				F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */,
 				F3C8E0B128731E4900B0916A /* CategoryDropDownCell.xib in Resources */,
@@ -1211,6 +1215,7 @@
 				F3C8E0A32872F29000B0916A /* WArrowButton.swift in Sources */,
 				7DB1D5BF287C1C4C0032C209 /* EmojiTabViewController.swift in Sources */,
 				7D0ED2C0287D065800DE3215 /* EmojiTableViewController.swift in Sources */,
+				7D0ED2CA287D584300DE3215 /* API.swift in Sources */,
 				7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */,
 				F3CC76B028670BA200A3FBBE /* ColorSheetViewModel.swift in Sources */,
 				F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */,
@@ -1247,7 +1252,6 @@
 				F323FF232879B61C00DFD8FD /* SignUpUseCase.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
 				F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */,
-				F3C8E08E286F570900B0916A /* API.swift in Sources */,
 				7DBC4C59287697F900F0AC86 /* EmojiSheetViewController.swift in Sources */,
 				F3F731E92869E5EC00C8B778 /* PasswordFindViewController.swift in Sources */,
 				F323FEE92875FC3D00DFD8FD /* WCalendarView.swift in Sources */,
