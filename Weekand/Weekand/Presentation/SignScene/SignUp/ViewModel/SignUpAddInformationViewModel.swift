@@ -12,25 +12,36 @@ import RxCocoa
 class SignUpAddInfomationViewModel: ViewModelType {
 
     weak var coordinator: SignUpCoordinator?
+    private var signUpModel: SignUpModel
     private let disposeBag = DisposeBag()
     
-    init(coordinator: SignUpCoordinator?) {
+    init(coordinator: SignUpCoordinator?, signUpModel: SignUpModel) {
         self.coordinator = coordinator
+        self.signUpModel = signUpModel
     }
     
     struct Input {
+        let selectedJobs: PublishRelay<[String]>
+        let selectedInterests: PublishRelay<[String]>
         let nextButtonDidTapEvent: Observable<Void>
     }
     
     struct Output { }
     
     func transform(input: Input) -> Output {
+        
+        input.selectedJobs.subscribe(onNext: { [weak self] jobs in
+            self?.signUpModel.jobs = jobs
+        })
+        .disposed(by: disposeBag)
+        
+        input.selectedInterests.subscribe(onNext: { [weak self] interests in
+            self?.signUpModel.interests = interests
+        })
+        .disposed(by: disposeBag)
 
         input.nextButtonDidTapEvent.subscribe(onNext: {
-            print("잉")
-            self.coordinator?.pushTermsViewController()
-        }, onError: { _ in
-            
+            self.coordinator?.pushTermsViewController(signUpModel: self.signUpModel)
         }).disposed(by: disposeBag)
         
         return Output()

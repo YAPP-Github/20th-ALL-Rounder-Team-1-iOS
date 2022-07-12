@@ -46,6 +46,7 @@ class SignUpViewController: BaseViewController {
     lazy var nickNameStackView = InputGroupStackView().then {
         $0.setNameLabelText(string: "닉네임")
         $0.setPlaceholderText(string: "닉네임을 입력해주세요")
+        $0.setInformlabelText(string: "최소 2글자 / 최대 12글자", informType: .normal)
         $0.setButtonText(string: "중복확인")
     }
     
@@ -121,17 +122,25 @@ class SignUpViewController: BaseViewController {
     }
     
     private func bindOutput(_ output: SignUpViewModel.Output) {
-        output.vaildEmail.drive(onNext: { [weak self] isVaild in
-            if isVaild {
-                self?.emailStackView.hideInformlabel()
+        output.vaildEmail.drive(onNext: { [weak self] email, isValid in
+            if isValid {
+                self?.emailStackView.setInformlabelText(string: "유효한 이메일입니다", informType: .vaild)
             } else {
                 self?.emailStackView.setInformlabelText(string: "올바른 형식으로 입력해주세요", informType: .invaild)
             }
         }).disposed(by: disposeBag)
         
-        output.checkAuthenticationNumber.drive(onNext: { [weak self] isCheck in
+        output.duplicatedEmail.subscribe(onNext: { [weak self] isDuplicate in
+            if isDuplicate {
+                self?.emailStackView.setInformlabelText(string: "중복된 이메일입니다", informType: .invaild)
+            } else {
+                self?.emailStackView.setInformlabelText(string: "유효한 이메일입니다", informType: .vaild)
+            }
+        })
+        
+        output.checkAuthenticationNumber.subscribe(onNext: { [weak self] isCheck in
             if isCheck {
-                self?.authenticationNumberStackView.hideInformlabel()
+                self?.authenticationNumberStackView.setInformlabelText(string: "인증이 완료되었습니다", informType: .vaild)
                 self?.authenticationNumberStackView.disableButton(title: "확인완료")
                 self?.emailStackView.disableButton(title: "인증완료")
                 self?.emailStackView.disableTextField()
@@ -141,7 +150,7 @@ class SignUpViewController: BaseViewController {
             }
         }).disposed(by: disposeBag)
         
-        output.checkNickName.drive(onNext: { [weak self] isCheck in
+        output.checkNickName.subscribe(onNext: { [weak self] isCheck in
             if isCheck {
                 self?.nickNameStackView.setInformlabelText(string: "사용가능한 닉네임입니다", informType: .vaild)
                 self?.nickNameStackView.disableButton(title: "중복확인")
@@ -157,7 +166,7 @@ class SignUpViewController: BaseViewController {
         
         output.vaildPassword.drive(onNext: { [weak self] isVaild in
             if isVaild {
-                self?.passwordStackView.setInformlabelText(string: "숫자, 영어 조합 8자리 이상", informType: .normal)
+                self?.passwordStackView.setInformlabelText(string: "올바른 형식의 비밀번호입니다", informType: .vaild)
             } else {
                 self?.passwordStackView.setInformlabelText(string: "숫자, 영어 조합 8자리 이상 입력해주세요", informType: .invaild)
             }
@@ -165,7 +174,7 @@ class SignUpViewController: BaseViewController {
         
         output.accordPassword.drive(onNext: { [weak self] isAccord in
             if isAccord {
-                self?.passwordCheckStackView.hideInformlabel()
+                self?.passwordCheckStackView.setInformlabelText(string: "비밀번호가 일치합니다", informType: .vaild)
             } else {
                 self?.passwordCheckStackView.setInformlabelText(string: "비밀번호가 일치하지 않습니다", informType: .invaild)
             }
@@ -180,14 +189,3 @@ class SignUpViewController: BaseViewController {
         }).disposed(by: disposeBag)
     }
 }
-
-#if canImport(SwiftUI) && DEBUG
-
-struct SignUpViewControllerPreview: PreviewProvider {
-    static var previews: some View {
-        Group {
-            SignUpViewController().showPreview(.iPhone8)
-        }
-    }
-}
-#endif

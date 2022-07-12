@@ -1,0 +1,3 @@
+query checkDuplicateNickname($nickname: String!) {
+    checkDuplicateNickname(nickname: $nickname)
+}

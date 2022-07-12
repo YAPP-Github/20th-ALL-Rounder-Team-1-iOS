@@ -11,10 +11,12 @@ import RxCocoa
 
 class SignInViewModel: ViewModelType {
     weak var coordinator: SignInCoordinator?
+    private let signInUseCase: SignInUseCase
     private let disposeBag = DisposeBag()
     
-    init(coordinator: SignInCoordinator?) {
+    init(coordinator: SignInCoordinator?, signInUseCase: SignInUseCase) {
         self.coordinator = coordinator
+        self.signInUseCase = signInUseCase
     }
     
     struct Input {
@@ -39,35 +41,44 @@ class SignInViewModel: ViewModelType {
                                     .map(vaildInput)
                                     .asDriver(onErrorJustReturn: false)
         
-        let checkEmailPassword = Observable
+        let isCheckEmailPassword = Observable
                                     .combineLatest(
                                         input.emailTextFieldDidEditEvent,
                                         input.passwordTextFieldDidEditEvent
                                     )
-                                    .map(checkEmailPassword)
-        
+                        
+        input.nextButtonDidTapEvent
+                .withLatestFrom(isCheckEmailPassword)
+                .distinctUntilChanged { $0 == $1 }
+                .subscribe(onNext: { [weak self] email, password in
+                    self?.login(email: email, password: password)
+                }).disposed(by: disposeBag)
+    
         input.passwordFindButtonDidTapEvent.subscribe(onNext: {
             self.coordinator?.presentPasswordFindScene()
         }).disposed(by: disposeBag)
-        
-        input.nextButtonDidTapEvent.withLatestFrom(checkEmailPassword).subscribe(onNext: { [weak self] isCheck in
-            if isCheck {
-                print("다음")
-                self?.coordinator?.showMainScene()
-            } else {
-                print("alert")
-            }
-        }).disposed(by: disposeBag)
-        
-        return Output(nextButtonEnable: nextButtonEnable)
-    }
     
-    func checkEmailPassword(email: String, password: String) -> Bool {
-        // API connect
-        return email == "test" && password == "test"
+        return Output(
+                nextButtonEnable: nextButtonEnable
+        )
     }
     
     func vaildInput(email: String, password: String) -> Bool {
         return email.isEmpty == false && password.isEmpty == false
+    }
+}
+
+extension SignInViewModel {
+    private func login(email: String, password: String) {
+        let emailText = email.trimmingCharacters(in: [" "])
+        let passwordText = password.trimmingCharacters(in: [" "])
+        
+        self.signInUseCase.login(email: emailText, password: passwordText).subscribe(onSuccess: { tokenData in
+            UserDataStorage.shared.setAccessToken(token: tokenData.accessToken)
+            self.coordinator?.showMainScene()
+        }, onFailure: { _ in
+            self.coordinator?.showToastMessage()
+        }, onDisposed: nil)
+        .disposed(by: disposeBag)
     }
 }
