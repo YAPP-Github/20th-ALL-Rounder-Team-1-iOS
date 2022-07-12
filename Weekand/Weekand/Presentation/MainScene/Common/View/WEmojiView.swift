@@ -41,6 +41,7 @@ class WEmojiView: UIView {
         
         stackView.axis = .horizontal
         stackView.distribution = .fill
+        stackView.alignment = .center
         stackView.spacing = 9.5
     }
     
@@ -52,7 +53,7 @@ class WEmojiView: UIView {
         }
         
         emojiStack.snp.makeConstraints { make in
-            make.height.lessThanOrEqualTo(numberLabel)
+            make.height.lessThanOrEqualTo(19)
         }
         
         

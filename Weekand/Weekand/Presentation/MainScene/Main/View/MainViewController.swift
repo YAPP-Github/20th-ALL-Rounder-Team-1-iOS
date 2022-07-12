@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
     var headerView = MainViewHeader()
     var tableView: UITableView!
     
-    lazy var foldButton = UIBarButtonItem(image: nil, style: .plain, target: self, action: nil)
+    lazy var foldButton = UIBarButtonItem(image: UIImage(named: "emptyImage")!, style: .plain, target: self, action: nil)
     lazy var searchButton = UIBarButtonItem(image: UIImage(named: "search") ?? UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: nil)
     lazy var alarmButton = UIBarButtonItem(image: UIImage(named: "alarm") ?? UIImage(systemName: "bell"), style: .plain, target: self, action: nil)
 
@@ -150,8 +150,7 @@ extension MainViewController {
     
     private func setUpCollectionView() {
                 
-        let layout = UICollectionViewCompositionalLayout {
-            (_: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
+        let layout = UICollectionViewCompositionalLayout { (_: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
                         
             let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(40), heightDimension: .absolute(60))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -174,6 +173,7 @@ extension MainViewController {
     private func configureCollectionViewDataSource() {
         
         viewModel?.collectionViewDataSource = UICollectionViewDiffableDataSource<MainSection, FollowingUser>(collectionView: collectionView, cellProvider: { collectionView, indexPath, list in
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
             cell.setUpCell(list)
             
@@ -244,7 +244,7 @@ extension MainViewController: MainTableViewCellDelegate {
     
     func stickerButtonTapped(id: String?) {
         print("\(#function), id: \(String(describing: id))")
-        self.viewModel?.coordinator?.pushStickerAddSheet()
+        self.viewModel?.coordinator?.pushStickerAddSheet(id: id ?? "")
     }
 }
 

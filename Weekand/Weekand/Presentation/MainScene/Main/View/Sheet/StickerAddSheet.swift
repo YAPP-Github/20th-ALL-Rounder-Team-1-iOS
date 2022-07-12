@@ -8,10 +8,13 @@
 import UIKit
 import RxSwift
 
+/// 스티커 추가
 class StickerAddSheetViewController: BottomSheetViewController {
     
     var viewModel: StickerAddSheetViewModel?
     let disposeBag = DisposeBag()
+    
+    var selectedEmoji: Emoji?
     
     // MARK: UI Properties
     lazy var titleLabel = UILabel().then {
@@ -27,6 +30,15 @@ class StickerAddSheetViewController: BottomSheetViewController {
         }
     }
     
+    init(existingEmoji existing: Emoji?) {
+        super.init(nibName: nil, bundle: nil)
+        selectedEmoji = existing
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,10 +51,16 @@ class StickerAddSheetViewController: BottomSheetViewController {
     }
     
     private func configureUI() {
-        [titleLabel].forEach { self.bottomSheetView.addSubview($0) }
+        [titleLabel, collectionView].forEach { self.bottomSheetView.addSubview($0) }
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(43)
             make.left.right.equalToSuperview().inset(24)
+        }
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(30)
+            make.bottom.equalToSuperview().inset(30)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(375)
         }
     }
     
@@ -58,17 +76,15 @@ extension StickerAddSheetViewController {
     
     private func setUpCollectionView() {
                 
-        let layout = UICollectionViewCompositionalLayout {
-            (_: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
+        let layout = UICollectionViewCompositionalLayout { (_: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
                         
-            let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(40), heightDimension: .absolute(60))
+            let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(100), heightDimension: .absolute(130))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(14), top: nil, trailing: .fixed(14), bottom: nil)
+            item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(28), top: nil, trailing: .fixed(28), bottom: nil)
             
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .estimated(0), heightDimension: .absolute(60)), subitems: [item])
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.5)), subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
-            section.orthogonalScrollingBehavior = .continuous
-            section.contentInsets = .init(top: 12, leading: 10, bottom: 12, trailing: 24)
+            section.contentInsets = .init(top: 0, leading: 30, bottom: 0, trailing: 30)
 
             return section
         }
@@ -76,15 +92,23 @@ extension StickerAddSheetViewController {
         collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 0), collectionViewLayout: layout)
         collectionView.isScrollEnabled = false
         collectionView.allowsMultipleSelection = false
-        collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
+        collectionView.allowsSelection = true
+        collectionView.register(StickerCollectionViewCell.self, forCellWithReuseIdentifier: StickerCollectionViewCell.identifier)
+        
+        collectionView.delegate = self
     }
     
     private func configureCollectionViewDataSource() {
         
-        viewModel?.collectionViewDataSource = UICollectionViewDiffableDataSource<EmojiSection, Emoji>(collectionView: collectionView, cellProvider: { collectionView, indexPath, list in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
+        viewModel?.collectionViewDataSource = UICollectionViewDiffableDataSource<StickerSection, Emoji>(collectionView: collectionView, cellProvider: { collectionView, indexPath, emoji in
             
-            // TODO: Cell setup
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StickerCollectionViewCell.identifier, for: indexPath) as! StickerCollectionViewCell
+            
+            cell.setUpCell(emoji: emoji)
+            if self.selectedEmoji == emoji {
+                self.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+            }
+            
             
             return cell
         })
@@ -92,4 +116,14 @@ extension StickerAddSheetViewController {
         viewModel?.configureCollectionViewSnapShot()
     }
     
+}
+
+// TODO: 작동 안함 -> 수정 필요
+extension StickerAddSheetViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(#function)
+        selectedEmoji = self.viewModel?.emojiList[indexPath.item]
+        print(selectedEmoji!)
+    }
 }

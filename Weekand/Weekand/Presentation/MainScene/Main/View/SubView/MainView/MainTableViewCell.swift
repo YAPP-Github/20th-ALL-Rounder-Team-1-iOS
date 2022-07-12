@@ -71,6 +71,7 @@ class MainTableViewCell: UITableViewCell {
         
         [timeLineLabel, emojiView, stickerButton].forEach { bottomStack.addArrangedSubview($0) }
         stickerButton.snp.makeConstraints { make in
+            make.height.greaterThanOrEqualTo(28)
             make.width.equalTo(stickerButton.snp.height)
         }
         
@@ -122,7 +123,6 @@ extension MainTableViewCell {
         self.timeLineLabel.configureValue(status: status, title: time)
         self.emojiView.numberLabel.text = String(emojiNumber)
         self.emojiView.setEmoji(emojiOrder: emojiOrder)
-        
     }
     
     /// 일정 주인의 userID를 받아 로그인한 유저 본인이 아니라면 스티커 추가 버튼을 보여준다
