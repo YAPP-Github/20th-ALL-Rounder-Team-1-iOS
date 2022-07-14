@@ -15,4 +15,10 @@ final class CategoryUseCase {
             .map { $0.scheduleCategories.scheduleCategories }
             .asSingle()
     }
+    
+    func createCategory(name: String, color: String, openType: CategoryOpenType) -> Single<Bool> {
+        NetWork.shared.perform(mutation: CreateCategoryMutation(name: name, color: color, openType: openType.toModel()))
+            .map { $0.createCategory }
+            .asSingle()
+    }
 }

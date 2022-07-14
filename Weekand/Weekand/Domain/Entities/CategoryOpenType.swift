@@ -23,3 +23,16 @@ enum CategoryOpenType: String {
         }
     }
 }
+
+extension CategoryOpenType {
+    func toModel() -> ScheduleCategoryOpenType {
+        switch self {
+        case .allOpen:
+            return ScheduleCategoryOpenType.allOpen
+        case .followerOpen:
+            return ScheduleCategoryOpenType.followerOpen
+        case .closed:
+            return ScheduleCategoryOpenType.closed
+        }
+    }
+}
