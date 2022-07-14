@@ -62,6 +62,7 @@
 		E8BDADFB0F95046E8D0F4BE0 /* Pods_Weekand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */; };
 		F30EBCCA288068D200ECB48D /* CategoryOpenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCC9288068D200ECB48D /* CategoryOpenType.swift */; };
 		F30EBCCD288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCCC288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift */; };
+		F30EBCD1288078DF00ECB48D /* CreateCategory.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F30EBCD0288078DF00ECB48D /* CreateCategory.graphql */; };
 		F323FEE92875FC3D00DFD8FD /* WCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */; };
 		F323FEEB28760E3A00DFD8FD /* FSCalendar+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */; };
 		F323FEF0287636B500DFD8FD /* SortDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEEE287636B500DFD8FD /* SortDropDownCell.swift */; };
@@ -130,7 +131,7 @@
 		F3B00273287D68FA00D6BB1D /* UserSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B00270287D68FA00D6BB1D /* UserSummary.swift */; };
 		F3B00274287D68FA00D6BB1D /* ScheduleSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B00271287D68FA00D6BB1D /* ScheduleSort.swift */; };
 		F3B00275287D68FA00D6BB1D /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B00272287D68FA00D6BB1D /* SignUpModel.swift */; };
-		F3B00277287D700D00D6BB1D /* ScheduleCategories in Resources */ = {isa = PBXBuildFile; fileRef = F3B00276287D700D00D6BB1D /* ScheduleCategories */; };
+		F3B00277287D700D00D6BB1D /* ScheduleCategories.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F3B00276287D700D00D6BB1D /* ScheduleCategories.graphql */; };
 		F3C8E087286DC71300B0916A /* RxApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E086286DC71300B0916A /* RxApolloClient.swift */; };
 		F3C8E094286F598600B0916A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E093286F598600B0916A /* Network.swift */; };
 		F3C8E09C2872E17D00B0916A /* ScheduleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E09B2872E17D00B0916A /* ScheduleEditViewController.swift */; };
@@ -223,6 +224,7 @@
 		CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weekand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F30EBCC9288068D200ECB48D /* CategoryOpenType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOpenType.swift; sourceTree = "<group>"; };
 		F30EBCCC288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleCategoryOpenType+extension.swift"; sourceTree = "<group>"; };
+		F30EBCD0288078DF00ECB48D /* CreateCategory.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CreateCategory.graphql; sourceTree = "<group>"; };
 		F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCalendarView.swift; sourceTree = "<group>"; };
 		F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FSCalendar+extension.swift"; sourceTree = "<group>"; };
 		F323FEEE287636B500DFD8FD /* SortDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDropDownCell.swift; sourceTree = "<group>"; };
@@ -294,7 +296,7 @@
 		F3B00270287D68FA00D6BB1D /* UserSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserSummary.swift; path = Entities/UserSummary.swift; sourceTree = "<group>"; };
 		F3B00271287D68FA00D6BB1D /* ScheduleSort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleSort.swift; path = Entities/ScheduleSort.swift; sourceTree = "<group>"; };
 		F3B00272287D68FA00D6BB1D /* SignUpModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpModel.swift; path = Entities/SignUpModel.swift; sourceTree = "<group>"; };
-		F3B00276287D700D00D6BB1D /* ScheduleCategories */ = {isa = PBXFileReference; lastKnownFileType = text; path = ScheduleCategories; sourceTree = "<group>"; };
+		F3B00276287D700D00D6BB1D /* ScheduleCategories.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ScheduleCategories.graphql; sourceTree = "<group>"; };
 		F3C8E086286DC71300B0916A /* RxApolloClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxApolloClient.swift; sourceTree = "<group>"; };
 		F3C8E093286F598600B0916A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		F3C8E09B2872E17D00B0916A /* ScheduleEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditViewController.swift; sourceTree = "<group>"; };
@@ -925,7 +927,8 @@
 				F323FF2A287A036E00DFD8FD /* checkDuplicateNickname.graphql */,
 				F323FF2F287A276100DFD8FD /* issueTempPassword.graphql */,
 				F323FF37287B13F900DFD8FD /* SignUp.graphql */,
-				F3B00276287D700D00D6BB1D /* ScheduleCategories */,
+				F3B00276287D700D00D6BB1D /* ScheduleCategories.graphql */,
+				F30EBCD0288078DF00ECB48D /* CreateCategory.graphql */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1095,8 +1098,9 @@
 				7D0ED2C8287D547000DE3215 /* schema.json in Resources */,
 				F323FF30287A276100DFD8FD /* issueTempPassword.graphql in Resources */,
 				F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */,
-				F3B00277287D700D00D6BB1D /* ScheduleCategories in Resources */,
+				F3B00277287D700D00D6BB1D /* ScheduleCategories.graphql in Resources */,
 				F3C8E0B128731E4900B0916A /* CategoryDropDownCell.xib in Resources */,
+				F30EBCD1288078DF00ECB48D /* CreateCategory.graphql in Resources */,
 				F323FF1F2879AD5600DFD8FD /* sendAuthKey.graphql in Resources */,
 				F32ACC0B28235D530082AF30 /* Assets.xcassets in Resources */,
 				F323FF212879AF3000DFD8FD /* vaildAuthKey.graphql in Resources */,

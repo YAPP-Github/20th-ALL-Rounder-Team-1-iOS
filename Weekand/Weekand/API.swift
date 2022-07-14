@@ -4,6 +4,101 @@
 import Apollo
 import Foundation
 
+public enum ScheduleCategoryOpenType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  case allOpen
+  case followerOpen
+  case closed
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "ALL_OPEN": self = .allOpen
+      case "FOLLOWER_OPEN": self = .followerOpen
+      case "CLOSED": self = .closed
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .allOpen: return "ALL_OPEN"
+      case .followerOpen: return "FOLLOWER_OPEN"
+      case .closed: return "CLOSED"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: ScheduleCategoryOpenType, rhs: ScheduleCategoryOpenType) -> Bool {
+    switch (lhs, rhs) {
+      case (.allOpen, .allOpen): return true
+      case (.followerOpen, .followerOpen): return true
+      case (.closed, .closed): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [ScheduleCategoryOpenType] {
+    return [
+      .allOpen,
+      .followerOpen,
+      .closed,
+    ]
+  }
+}
+
+public enum ScheduleCategorySort: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  case dateCreatedAsc
+  case dateCreatedDesc
+  case nameAsc
+  case nameDesc
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "DATE_CREATED_ASC": self = .dateCreatedAsc
+      case "DATE_CREATED_DESC": self = .dateCreatedDesc
+      case "NAME_ASC": self = .nameAsc
+      case "NAME_DESC": self = .nameDesc
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .dateCreatedAsc: return "DATE_CREATED_ASC"
+      case .dateCreatedDesc: return "DATE_CREATED_DESC"
+      case .nameAsc: return "NAME_ASC"
+      case .nameDesc: return "NAME_DESC"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: ScheduleCategorySort, rhs: ScheduleCategorySort) -> Bool {
+    switch (lhs, rhs) {
+      case (.dateCreatedAsc, .dateCreatedAsc): return true
+      case (.dateCreatedDesc, .dateCreatedDesc): return true
+      case (.nameAsc, .nameAsc): return true
+      case (.nameDesc, .nameDesc): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [ScheduleCategorySort] {
+    return [
+      .dateCreatedAsc,
+      .dateCreatedDesc,
+      .nameAsc,
+      .nameDesc,
+    ]
+  }
+}
+
 public struct SignUpInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
@@ -120,6 +215,64 @@ public final class CheckDuplicateNicknameQuery: GraphQLQuery {
       }
       set {
         resultMap.updateValue(newValue, forKey: "checkDuplicateNickname")
+      }
+    }
+  }
+}
+
+public final class CreateCategoryMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation CreateCategory($name: String!, $color: String!, $openType: ScheduleCategoryOpenType!) {
+      createCategory(
+        scheduleCategoryInput: {name: $name, color: $color, openType: $openType}
+      )
+    }
+    """
+
+  public let operationName: String = "CreateCategory"
+
+  public var name: String
+  public var color: String
+  public var openType: ScheduleCategoryOpenType
+
+  public init(name: String, color: String, openType: ScheduleCategoryOpenType) {
+    self.name = name
+    self.color = color
+    self.openType = openType
+  }
+
+  public var variables: GraphQLMap? {
+    return ["name": name, "color": color, "openType": openType]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("createCategory", arguments: ["scheduleCategoryInput": ["name": GraphQLVariable("name"), "color": GraphQLVariable("color"), "openType": GraphQLVariable("openType")]], type: .nonNull(.scalar(Bool.self))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(createCategory: Bool) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "createCategory": createCategory])
+    }
+
+    /// 카테고리를 추가한다
+    public var createCategory: Bool {
+      get {
+        return resultMap["createCategory"]! as! Bool
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "createCategory")
       }
     }
   }
@@ -278,6 +431,232 @@ public final class LoginQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "accessToken")
+        }
+      }
+    }
+  }
+}
+
+public final class ScheduleCategoriesQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query ScheduleCategories($sort: ScheduleCategorySort!, $page: Int!, $size: Int!) {
+      scheduleCategories(sort: $sort, page: $page, size: $size) {
+        __typename
+        paginationInfo {
+          __typename
+          hasNext
+        }
+        scheduleCategories {
+          __typename
+          id
+          name
+          color
+          openType
+        }
+      }
+    }
+    """
+
+  public let operationName: String = "ScheduleCategories"
+
+  public var sort: ScheduleCategorySort
+  public var page: Int
+  public var size: Int
+
+  public init(sort: ScheduleCategorySort, page: Int, size: Int) {
+    self.sort = sort
+    self.page = page
+    self.size = size
+  }
+
+  public var variables: GraphQLMap? {
+    return ["sort": sort, "page": page, "size": size]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("scheduleCategories", arguments: ["sort": GraphQLVariable("sort"), "page": GraphQLVariable("page"), "size": GraphQLVariable("size")], type: .nonNull(.object(ScheduleCategory.selections))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(scheduleCategories: ScheduleCategory) {
+      self.init(unsafeResultMap: ["__typename": "Query", "scheduleCategories": scheduleCategories.resultMap])
+    }
+
+    /// 일정 카테고리 목록을 가져온다
+    public var scheduleCategories: ScheduleCategory {
+      get {
+        return ScheduleCategory(unsafeResultMap: resultMap["scheduleCategories"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "scheduleCategories")
+      }
+    }
+
+    public struct ScheduleCategory: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["ScheduleCategoryList"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("paginationInfo", type: .nonNull(.object(PaginationInfo.selections))),
+          GraphQLField("scheduleCategories", type: .nonNull(.list(.nonNull(.object(ScheduleCategory.selections))))),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(paginationInfo: PaginationInfo, scheduleCategories: [ScheduleCategory]) {
+        self.init(unsafeResultMap: ["__typename": "ScheduleCategoryList", "paginationInfo": paginationInfo.resultMap, "scheduleCategories": scheduleCategories.map { (value: ScheduleCategory) -> ResultMap in value.resultMap }])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var paginationInfo: PaginationInfo {
+        get {
+          return PaginationInfo(unsafeResultMap: resultMap["paginationInfo"]! as! ResultMap)
+        }
+        set {
+          resultMap.updateValue(newValue.resultMap, forKey: "paginationInfo")
+        }
+      }
+
+      public var scheduleCategories: [ScheduleCategory] {
+        get {
+          return (resultMap["scheduleCategories"] as! [ResultMap]).map { (value: ResultMap) -> ScheduleCategory in ScheduleCategory(unsafeResultMap: value) }
+        }
+        set {
+          resultMap.updateValue(newValue.map { (value: ScheduleCategory) -> ResultMap in value.resultMap }, forKey: "scheduleCategories")
+        }
+      }
+
+      public struct PaginationInfo: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["PaginationInfo"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("hasNext", type: .nonNull(.scalar(Bool.self))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(hasNext: Bool) {
+          self.init(unsafeResultMap: ["__typename": "PaginationInfo", "hasNext": hasNext])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var hasNext: Bool {
+          get {
+            return resultMap["hasNext"]! as! Bool
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "hasNext")
+          }
+        }
+      }
+
+      public struct ScheduleCategory: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["ScheduleCategory"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("name", type: .nonNull(.scalar(String.self))),
+            GraphQLField("color", type: .nonNull(.scalar(String.self))),
+            GraphQLField("openType", type: .nonNull(.scalar(ScheduleCategoryOpenType.self))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(id: GraphQLID, name: String, color: String, openType: ScheduleCategoryOpenType) {
+          self.init(unsafeResultMap: ["__typename": "ScheduleCategory", "id": id, "name": name, "color": color, "openType": openType])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var id: GraphQLID {
+          get {
+            return resultMap["id"]! as! GraphQLID
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "id")
+          }
+        }
+
+        public var name: String {
+          get {
+            return resultMap["name"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "name")
+          }
+        }
+
+        public var color: String {
+          get {
+            return resultMap["color"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "color")
+          }
+        }
+
+        public var openType: ScheduleCategoryOpenType {
+          get {
+            return resultMap["openType"]! as! ScheduleCategoryOpenType
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "openType")
+          }
         }
       }
     }
