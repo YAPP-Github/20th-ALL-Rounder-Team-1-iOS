@@ -11,10 +11,11 @@ typealias Categories = [ScheduleCategoriesQuery.Data.ScheduleCategory.ScheduleCa
 
 final class CategoryUseCase {
     func ScheduleCategories(sort: ScheduleSort, page: Int, size: Int) -> Single<Categories> {
-        NetWork.shared.fetch(query: ScheduleCategoriesQuery(sort: sort.toModel(), page: page, size: size))
-            .map { $0.scheduleCategories.scheduleCategories }
-            .asSingle()
-    }
+            NetWork.shared.fetch(query: ScheduleCategoriesQuery(sort: sort.toModel(), page: page, size: size),
+                                 cachePolicy: .fetchIgnoringCacheCompletely, queue: DispatchQueue.main)
+                .map { $0.scheduleCategories.scheduleCategories }
+                .asSingle()
+        }
     
     func createCategory(name: String, color: String, openType: CategoryOpenType) -> Single<Bool> {
         NetWork.shared.perform(mutation: CreateCategoryMutation(name: name, color: color, openType: openType.toModel()))

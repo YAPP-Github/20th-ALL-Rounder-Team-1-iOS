@@ -34,7 +34,7 @@ class CategoryListViewController: UIViewController {
     let tableView = UITableView()
     
     var list: [Category] = []
-    var categoryCount: Int = 5
+    var categoryCount: Int = 20
     var page: Int = 0
     var selectedSort: ScheduleSort = .nameCreateDESC
     
