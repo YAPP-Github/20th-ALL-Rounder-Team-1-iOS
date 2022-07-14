@@ -31,12 +31,19 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
         $0.tintColor = .gray400
     }
     
-    var selectedOpenType: CategoryOpenType = .allOpen
+    var selectedOpenType: CategoryOpenType = .allOpen {
+        didSet {
+            self.openTypeObservable.onNext(selectedOpenType)
+        }
+    }
     var selectedColor: Color = Constants.colors[0][0] {
         didSet {
             self.colorStackView.colorView.backgroundColor = UIColor(hex: selectedColor.hexCode)
+            self.colorObservable.onNext(selectedColor)
         }
     }
+    lazy var openTypeObservable = BehaviorSubject(value: selectedOpenType)
+    lazy var colorObservable = BehaviorSubject(value: selectedColor)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,8 +82,8 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
             colorButtonDidTapEvent: colorStackView.colorView.rx.tap.asObservable(),
             categoryNameTextFieldDidEditEvent: categoryTextFieldStackView.textField.rx.text.orEmpty.asObservable(),
             confirmButtonDidTapEvent: confirmButton.rx.tap.asObservable(),
-            selectedOpenType: selectedOpenType,
-            selectedColor: selectedColor
+            selectedOpenType: openTypeObservable,
+            selectedColor: colorObservable
         )
         
         openTypeStackView.allOpenButton.rx.tap.subscribe { _ in

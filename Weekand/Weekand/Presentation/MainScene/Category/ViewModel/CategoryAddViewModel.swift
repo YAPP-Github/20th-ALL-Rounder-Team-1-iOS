@@ -25,8 +25,8 @@ class CategoryAddViewModel: CategoryEditViewModelType {
         let colorButtonDidTapEvent: Observable<Void>
         let categoryNameTextFieldDidEditEvent: Observable<String>
         let confirmButtonDidTapEvent: Observable<Void>
-        let selectedOpenType: CategoryOpenType
-        let selectedColor: Color
+        let selectedOpenType: Observable<CategoryOpenType>
+        let selectedColor: Observable<Color>
     }
     
     struct Output { }
@@ -40,10 +40,12 @@ class CategoryAddViewModel: CategoryEditViewModelType {
             self.coordinator?.pushColorBottonSheet()
         }).disposed(by: disposeBag)
         
+        let categoryInput = Observable.combineLatest(input.categoryNameTextFieldDidEditEvent, input.selectedColor, input.selectedOpenType)
+        
         input.confirmButtonDidTapEvent
-            .withLatestFrom(input.categoryNameTextFieldDidEditEvent)
-            .subscribe(onNext: { [weak self] name in
-                self?.createCategory(name: name.trimWhiteSpace, color: input.selectedColor.hexCode, openType: input.selectedOpenType)
+            .withLatestFrom(categoryInput)
+            .subscribe(onNext: { [weak self] name, color, openType in
+                self?.createCategory(name: name, color: color.hexCode, openType: openType)
             }).disposed(by: disposeBag)
         
         return Output()
