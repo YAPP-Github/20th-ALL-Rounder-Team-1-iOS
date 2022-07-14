@@ -41,20 +41,28 @@ class CategoryAddViewModel: CategoryEditViewModelType {
         }).disposed(by: disposeBag)
         
         input.confirmButtonDidTapEvent
-            .withLatestFrom(input.categoryNameTextFieldDidEditEvent.map(trimmigText))
-            .subscribe(onNext: { [weak self] text in
-                // server
-                print(text)
-                print(input.selectedOpenType)
-                print(input.selectedColor)
-                self?.coordinator?.dismiss()
+            .withLatestFrom(input.categoryNameTextFieldDidEditEvent)
+            .subscribe(onNext: { [weak self] name in
+                self?.createCategory(name: name.trimWhiteSpace, color: input.selectedColor.hexCode, openType: input.selectedOpenType)
             }).disposed(by: disposeBag)
         
         return Output()
     }
-    
-    private func trimmigText(text: String) -> String {
-        return text.trimmingCharacters(in: [" "])
-    }
 
+}
+
+extension CategoryAddViewModel {
+    func createCategory(name: String, color: String, openType: CategoryOpenType) {
+        self.categoryUseCase.createCategory(name: name, color: color, openType: openType)
+            .subscribe(onSuccess: { isSucceed in
+                if isSucceed {
+                    self.coordinator?.dismiss()
+                } else {
+                    print("error")
+                }
+            }, onFailure: { error in
+                print(error)
+            }, onDisposed: nil)
+            .disposed(by: disposeBag)
+    }
 }

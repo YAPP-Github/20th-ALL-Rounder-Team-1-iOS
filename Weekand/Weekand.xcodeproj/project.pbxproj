@@ -59,10 +59,11 @@
 		7DF9688A284DF2EB00CE077E /* MainViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF96889284DF2EB00CE077E /* MainViewHeader.swift */; };
 		7DF9688C284E019A00CE077E /* MainCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9688B284E019A00CE077E /* MainCalendarView.swift */; };
 		E8BDADFB0F95046E8D0F4BE0 /* Pods_Weekand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */; };
-		F30EBCCA288068D200ECB48D /* CategoryOpenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCC9288068D200ECB48D /* CategoryOpenType.swift */; };
 		F30EBCCD288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCCC288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift */; };
 		F30EBCD1288078DF00ECB48D /* CreateCategory.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F30EBCD0288078DF00ECB48D /* CreateCategory.graphql */; };
 		F30EBCD328807B2600ECB48D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCD228807B2600ECB48D /* API.swift */; };
+		F30EBCD528807C9400ECB48D /* CategoryOpenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCD428807C9400ECB48D /* CategoryOpenType.swift */; };
+		F30EBCD728807DC000ECB48D /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCD628807DC000ECB48D /* String+extension.swift */; };
 		F323FEE92875FC3D00DFD8FD /* WCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */; };
 		F323FEEB28760E3A00DFD8FD /* FSCalendar+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */; };
 		F323FEF0287636B500DFD8FD /* SortDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEEE287636B500DFD8FD /* SortDropDownCell.swift */; };
@@ -221,10 +222,11 @@
 		7DF96889284DF2EB00CE077E /* MainViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewHeader.swift; sourceTree = "<group>"; };
 		7DF9688B284E019A00CE077E /* MainCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCalendarView.swift; sourceTree = "<group>"; };
 		CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weekand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F30EBCC9288068D200ECB48D /* CategoryOpenType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOpenType.swift; sourceTree = "<group>"; };
 		F30EBCCC288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleCategoryOpenType+extension.swift"; sourceTree = "<group>"; };
 		F30EBCD0288078DF00ECB48D /* CreateCategory.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CreateCategory.graphql; sourceTree = "<group>"; };
 		F30EBCD228807B2600ECB48D /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		F30EBCD428807C9400ECB48D /* CategoryOpenType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryOpenType.swift; path = Entities/CategoryOpenType.swift; sourceTree = "<group>"; };
+		F30EBCD628807DC000ECB48D /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCalendarView.swift; sourceTree = "<group>"; };
 		F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FSCalendar+extension.swift"; sourceTree = "<group>"; };
 		F323FEEE287636B500DFD8FD /* SortDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDropDownCell.swift; sourceTree = "<group>"; };
@@ -514,6 +516,7 @@
 		7DAA861D284B964800F21E35 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				F30EBCD428807C9400ECB48D /* CategoryOpenType.swift */,
 				F3B00266287D68E700D6BB1D /* Category.swift */,
 				F3B00268287D68F100D6BB1D /* Color.swift */,
 				F3B00269287D68F100D6BB1D /* Emoji.swift */,
@@ -523,7 +526,6 @@
 				F3B00270287D68FA00D6BB1D /* UserSummary.swift */,
 				F3B0026A287D68F100D6BB1D /* FollwingUser.swift */,
 				F3B0025C287D686200D6BB1D /* ScehduleMain.swift */,
-				F30EBCC9288068D200ECB48D /* CategoryOpenType.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -787,6 +789,7 @@
 				F33C6EAD28535021005B493A /* UIVIewController+extension.swift */,
 				F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */,
 				F354C3E9283E6946008929FD /* NSMutableAttributedString+extension.swift */,
+				F30EBCD628807DC000ECB48D /* String+extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1230,6 +1233,7 @@
 				7DB1D5BF287C1C4C0032C209 /* EmojiTabViewController.swift in Sources */,
 				7D0ED2C0287D065800DE3215 /* EmojiTableViewController.swift in Sources */,
 				7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */,
+				F30EBCD728807DC000ECB48D /* String+extension.swift in Sources */,
 				F3CC76B028670BA200A3FBBE /* ColorSheetViewModel.swift in Sources */,
 				F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */,
 				F3B0025F287D68A800D6BB1D /* UserDataStorage.swift in Sources */,
@@ -1239,6 +1243,7 @@
 				F3B00263287D68C600D6BB1D /* SignInUseCase.swift in Sources */,
 				F3C8E0B52873578300B0916A /* WTextView.swift in Sources */,
 				F323FEF0287636B500DFD8FD /* SortDropDownCell.swift in Sources */,
+				F30EBCD528807C9400ECB48D /* CategoryOpenType.swift in Sources */,
 				7D6E9972283BA18E006F5FC7 /* WBottmButton.swift in Sources */,
 				F3C8E0B72873598A00B0916A /* MemoStackView.swift in Sources */,
 				7D0ED2BE287D064400DE3215 /* EmojiTableViewCell.swift in Sources */,
@@ -1308,7 +1313,6 @@
 				F3C8E0A72873028B00B0916A /* WFilledGrayButton.swift in Sources */,
 				F3B0026F287D68F100D6BB1D /* EmojiGiver.swift in Sources */,
 				7DC166C02837234200F1A8F1 /* WButtonTextField.swift in Sources */,
-				F30EBCCA288068D200ECB48D /* CategoryOpenType.swift in Sources */,
 				F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */,
 				F32F725C28549B650056B189 /* WTextFieldStackView.swift in Sources */,
 				7DBC4C632876AEA200F0AC86 /* MonthlyCalendarSheetViewModel.swift in Sources */,
