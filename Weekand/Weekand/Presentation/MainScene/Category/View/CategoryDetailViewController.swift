@@ -35,7 +35,7 @@ class CategoryDetailViewController: UIViewController {
     let tableView = UITableView()
     var headerView = CategoryDetailHeaderView()
     
-    var selectedSort: Sort = .nameCreateDESC
+    var selectedSort: ScheduleSort = .nameCreateDESC
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +67,7 @@ class CategoryDetailViewController: UIViewController {
         }
         
         headerView.dropDown.cellNib = UINib(nibName: "SortDropDownCell", bundle: nil)
-        headerView.dropDown.dataSource = Sort.allCases.map { $0.description }
+        headerView.dropDown.dataSource = ScheduleSort.allCases.map { $0.description }
         headerView.dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
             guard let cell = cell as? SortDropDownCell else { return }
             
@@ -83,14 +83,14 @@ class CategoryDetailViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        let dropDownDidSelectEvent = BehaviorRelay(value: Sort.nameCreateDESC)
+        let dropDownDidSelectEvent = BehaviorRelay(value: ScheduleSort.nameCreateDESC)
         
         let input = CategoryDetailViewModel.Input(
             dropDownDidSelectEvent: dropDownDidSelectEvent
         )
         
         self.headerView.dropDown.selectionAction = { [unowned self] (_ : Int, item: String) in
-            guard let selectedSort = Sort.allCases.filter { $0.description == item }.first else {
+            guard let selectedSort = ScheduleSort.allCases.filter { $0.description == item }.first else {
                 return
             }
             

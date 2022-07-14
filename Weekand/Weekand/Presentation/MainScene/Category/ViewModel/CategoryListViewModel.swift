@@ -29,7 +29,7 @@ extension CategoryListViewModel {
     struct Input {
         let didTapAddCategoryButton: Observable<Void>
         let didCategoryCellSelected: Observable<IndexPath>   // TODO: Cell의 Category-ID를 받아오도록 수정 (모델 구현 이후 진행)
-        let dropDownDidSelectEvent: BehaviorRelay<Sort>
+        let dropDownDidSelectEvent: BehaviorRelay<ScheduleSort>
     }
     
     struct Output { }
@@ -46,5 +46,9 @@ extension CategoryListViewModel {
         }).disposed(by: disposeBag)
         
         return Output()
+    }
+    
+    func saerchCategories() {
+        self.categoryUseCase
     }
 }

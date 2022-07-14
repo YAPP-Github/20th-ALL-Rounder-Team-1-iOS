@@ -27,7 +27,7 @@ class CategoryDetailViewModel {
 extension CategoryDetailViewModel {
     
     struct Input {
-        let dropDownDidSelectEvent: BehaviorRelay<Sort>
+        let dropDownDidSelectEvent: BehaviorRelay<ScheduleSort>
     }
     
     struct Output { }

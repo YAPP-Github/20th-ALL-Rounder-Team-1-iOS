@@ -126,7 +126,7 @@
 		F3B0026E287D68F100D6BB1D /* FollwingUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0026A287D68F100D6BB1D /* FollwingUser.swift */; };
 		F3B0026F287D68F100D6BB1D /* EmojiGiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0026B287D68F100D6BB1D /* EmojiGiver.swift */; };
 		F3B00273287D68FA00D6BB1D /* UserSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B00270287D68FA00D6BB1D /* UserSummary.swift */; };
-		F3B00274287D68FA00D6BB1D /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B00271287D68FA00D6BB1D /* Sort.swift */; };
+		F3B00274287D68FA00D6BB1D /* ScheduleSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B00271287D68FA00D6BB1D /* ScheduleSort.swift */; };
 		F3B00275287D68FA00D6BB1D /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B00272287D68FA00D6BB1D /* SignUpModel.swift */; };
 		F3B00277287D700D00D6BB1D /* ScheduleCategories in Resources */ = {isa = PBXBuildFile; fileRef = F3B00276287D700D00D6BB1D /* ScheduleCategories */; };
 		F3C8E087286DC71300B0916A /* RxApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E086286DC71300B0916A /* RxApolloClient.swift */; };
@@ -288,7 +288,7 @@
 		F3B0026A287D68F100D6BB1D /* FollwingUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FollwingUser.swift; path = Entities/FollwingUser.swift; sourceTree = "<group>"; };
 		F3B0026B287D68F100D6BB1D /* EmojiGiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmojiGiver.swift; path = Entities/EmojiGiver.swift; sourceTree = "<group>"; };
 		F3B00270287D68FA00D6BB1D /* UserSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserSummary.swift; path = Entities/UserSummary.swift; sourceTree = "<group>"; };
-		F3B00271287D68FA00D6BB1D /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sort.swift; path = Entities/Sort.swift; sourceTree = "<group>"; };
+		F3B00271287D68FA00D6BB1D /* ScheduleSort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleSort.swift; path = Entities/ScheduleSort.swift; sourceTree = "<group>"; };
 		F3B00272287D68FA00D6BB1D /* SignUpModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpModel.swift; path = Entities/SignUpModel.swift; sourceTree = "<group>"; };
 		F3B00276287D700D00D6BB1D /* ScheduleCategories */ = {isa = PBXFileReference; lastKnownFileType = text; path = ScheduleCategories; sourceTree = "<group>"; };
 		F3C8E086286DC71300B0916A /* RxApolloClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxApolloClient.swift; sourceTree = "<group>"; };
@@ -513,7 +513,7 @@
 				F3B00269287D68F100D6BB1D /* Emoji.swift */,
 				F3B0026B287D68F100D6BB1D /* EmojiGiver.swift */,
 				F3B00272287D68FA00D6BB1D /* SignUpModel.swift */,
-				F3B00271287D68FA00D6BB1D /* Sort.swift */,
+				F3B00271287D68FA00D6BB1D /* ScheduleSort.swift */,
 				F3B00270287D68FA00D6BB1D /* UserSummary.swift */,
 				F3B0026A287D68F100D6BB1D /* FollwingUser.swift */,
 				F3B0025C287D686200D6BB1D /* ScehduleMain.swift */,
@@ -1304,7 +1304,7 @@
 				F3F731E32869918E00C8B778 /* FilterTableViewCell.swift in Sources */,
 				F3DD022428466E0C00AD9240 /* SignInCoordinator.swift in Sources */,
 				7D8033D6286034BB0039F73E /* MainCollectionViewCell.swift in Sources */,
-				F3B00274287D68FA00D6BB1D /* Sort.swift in Sources */,
+				F3B00274287D68FA00D6BB1D /* ScheduleSort.swift in Sources */,
 				7D6B911528449A760044E217 /* WIconLabel.swift in Sources */,
 				F37868532861D28C00BEEC81 /* CategoryAddCoordinator.swift in Sources */,
 				F354C3EA283E6946008929FD /* NSMutableAttributedString+extension.swift in Sources */,

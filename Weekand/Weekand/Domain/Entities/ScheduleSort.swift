@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Sort: CaseIterable {
+enum ScheduleSort: CaseIterable {
     case dateCreatedASC
     case dateCreateDESC
     case nameCreatedASC
@@ -23,6 +23,21 @@ enum Sort: CaseIterable {
             return "오름차순"
         case .nameCreateDESC:
             return "내림차순"
+        }
+    }
+}
+
+extension ScheduleSort {
+    func toModel() -> ScheduleCategorySort {
+        switch self {
+        case .dateCreatedASC:
+            return ScheduleCategorySort.dateCreatedAsc
+        case .dateCreateDESC:
+            return ScheduleCategorySort.dateCreatedDesc
+        case .nameCreatedASC:
+            return ScheduleCategorySort.nameAsc
+        case .nameCreateDESC:
+            return ScheduleCategorySort.nameDesc
         }
     }
 }
