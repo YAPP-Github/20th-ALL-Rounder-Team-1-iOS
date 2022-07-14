@@ -60,6 +60,8 @@
 		7DF9688A284DF2EB00CE077E /* MainViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF96889284DF2EB00CE077E /* MainViewHeader.swift */; };
 		7DF9688C284E019A00CE077E /* MainCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9688B284E019A00CE077E /* MainCalendarView.swift */; };
 		E8BDADFB0F95046E8D0F4BE0 /* Pods_Weekand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */; };
+		F30EBCCA288068D200ECB48D /* CategoryOpenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCC9288068D200ECB48D /* CategoryOpenType.swift */; };
+		F30EBCCD288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCCC288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift */; };
 		F323FEE92875FC3D00DFD8FD /* WCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */; };
 		F323FEEB28760E3A00DFD8FD /* FSCalendar+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */; };
 		F323FEF0287636B500DFD8FD /* SortDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEEE287636B500DFD8FD /* SortDropDownCell.swift */; };
@@ -219,6 +221,8 @@
 		7DF96889284DF2EB00CE077E /* MainViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewHeader.swift; sourceTree = "<group>"; };
 		7DF9688B284E019A00CE077E /* MainCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCalendarView.swift; sourceTree = "<group>"; };
 		CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weekand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F30EBCC9288068D200ECB48D /* CategoryOpenType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryOpenType.swift; sourceTree = "<group>"; };
+		F30EBCCC288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleCategoryOpenType+extension.swift"; sourceTree = "<group>"; };
 		F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCalendarView.swift; sourceTree = "<group>"; };
 		F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FSCalendar+extension.swift"; sourceTree = "<group>"; };
 		F323FEEE287636B500DFD8FD /* SortDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDropDownCell.swift; sourceTree = "<group>"; };
@@ -517,6 +521,7 @@
 				F3B00270287D68FA00D6BB1D /* UserSummary.swift */,
 				F3B0026A287D68F100D6BB1D /* FollwingUser.swift */,
 				F3B0025C287D686200D6BB1D /* ScehduleMain.swift */,
+				F30EBCC9288068D200ECB48D /* CategoryOpenType.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -674,6 +679,7 @@
 		7DC166B72837157500F1A8F1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				F30EBCCB2880698C00ECB48D /* APIModelExtensions */,
 				F323FF2E287A1CDA00DFD8FD /* Extensions */,
 				7DF949C6283B6D0A007F84C5 /* DesignSystem */,
 			);
@@ -743,6 +749,14 @@
 			);
 			name = Data;
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		F30EBCCB2880698C00ECB48D /* APIModelExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				F30EBCCC288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift */,
+			);
+			path = APIModelExtensions;
 			sourceTree = "<group>";
 		};
 		F323FF112877F75000DFD8FD /* UseCase */ = {
@@ -1278,6 +1292,7 @@
 				F323FF0A2877D21F00DFD8FD /* NetworkInterceptorProvider.swift in Sources */,
 				F3AA9E1B2869FEFC00F71559 /* PasswordFindViewModel.swift in Sources */,
 				F3AA9E1D2869FF1E00F71559 /* PasswordFindCoordinator.swift in Sources */,
+				F30EBCCD288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift in Sources */,
 				F3B0026E287D68F100D6BB1D /* FollwingUser.swift in Sources */,
 				F3B00273287D68FA00D6BB1D /* UserSummary.swift in Sources */,
 				F3B00265287D68CE00D6BB1D /* SignUpUseCase.swift in Sources */,
@@ -1290,6 +1305,7 @@
 				F3C8E0A72873028B00B0916A /* WFilledGrayButton.swift in Sources */,
 				F3B0026F287D68F100D6BB1D /* EmojiGiver.swift in Sources */,
 				7DC166C02837234200F1A8F1 /* WButtonTextField.swift in Sources */,
+				F30EBCCA288068D200ECB48D /* CategoryOpenType.swift in Sources */,
 				F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */,
 				F32F725C28549B650056B189 /* WTextFieldStackView.swift in Sources */,
 				7DBC4C632876AEA200F0AC86 /* MonthlyCalendarSheetViewModel.swift in Sources */,

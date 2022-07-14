@@ -16,6 +16,8 @@ class CategoryListViewModel {
     private let categoryUseCase: CategoryUseCase
     private var disposeBag = DisposeBag()
     
+    let categoryList = PublishRelay<[Category]>()
+    
     init(coordinator: CategoryCoordinator, categoryUseCase: CategoryUseCase) {
         self.coordinator = coordinator
         self.categoryUseCase = categoryUseCase
@@ -48,7 +50,18 @@ extension CategoryListViewModel {
         return Output()
     }
     
-    func saerchCategories() {
-        self.categoryUseCase
+    func saerchCategories(sort: ScheduleSort, page: Int, size: Int) {
+        
+        self.categoryUseCase.ScheduleCategories(sort: sort, page: page, size: size)
+            .subscribe(onSuccess: { categories in
+                let list = categories.map { category in
+                    Category(id: category.id, color: category.color, name: category.name, openType: category.openType.toEntity())
+                }
+                self.categoryList.accept(list)
+            }, onFailure: { error in
+                print(error)
+            }, onDisposed: nil)
+            .disposed(by: disposeBag)
+
     }
 }

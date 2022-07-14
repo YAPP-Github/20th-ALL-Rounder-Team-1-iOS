@@ -31,7 +31,7 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
         $0.tintColor = .gray400
     }
     
-    var selectedOpenType: OpenType = .allOpen
+    var selectedOpenType: CategoryOpenType = .allOpen
     var selectedColor: Color = Constants.colors[0][0] {
         didSet {
             self.colorStackView.colorView.backgroundColor = UIColor(hex: selectedColor.hexCode)

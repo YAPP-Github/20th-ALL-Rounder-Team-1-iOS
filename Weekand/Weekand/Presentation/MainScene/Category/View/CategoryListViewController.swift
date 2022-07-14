@@ -17,14 +17,14 @@ class CategoryListViewController: UIViewController {
     enum Section {
       case main
     }
-    
-    let sample: [Category] = [
-        Category(color: "red", name: "공부", openType: .allOpen),
-        Category(color: "red", name: "자기계발", openType: .closed),
-        Category(color: "red", name: "취미생활", openType: .followerOpen),
-        Category(color: "red", name: "업무", openType: .closed),
-        Category(color: "red", name: "to do", openType: .allOpen)
-    ]
+//
+//    let sample: [Category] = [
+//        Category(id: "1", color: "red", name: "공부", openType: .allOpen),
+//        Category(id: "1", color: "red", name: "자기계발", openType: .closed),
+//        Category(id: "1", color: "red", name: "취미생활", openType: .followerOpen),
+//        Category(id: "1", color: "red", name: "업무", openType: .closed),
+//        Category(id: "1", color: "red", name: "to do", openType: .allOpen)
+//    ]
     
     private let disposeBag = DisposeBag()
     var viewModel: CategoryListViewModel?
@@ -33,6 +33,9 @@ class CategoryListViewController: UIViewController {
     var headerView = CategoryListHeaderView()
     let tableView = UITableView()
     
+    var list: [Category] = []
+    var categoryCount: Int = 5
+    var page: Int = 0
     var selectedSort: ScheduleSort = .nameCreateDESC
     
     override func viewDidLoad() {
@@ -41,8 +44,13 @@ class CategoryListViewController: UIViewController {
         setupView()
         configureUI()
         configureDataSource()
-        configureSnapshot()
         bindViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setCategoryList()
     }
     
     private func setupView() {
@@ -105,22 +113,22 @@ extension CategoryListViewController {
     
     private func configureDataSource() {
         
-        dataSource = UITableViewDiffableDataSource<Section, Category>(tableView: tableView, cellProvider: { tableView, indexPath, list in
+        dataSource = UITableViewDiffableDataSource<Section, Category>(tableView: tableView, cellProvider: { tableView, indexPath, category in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryListTableViewCell.cellIdentifier, for: indexPath) as? CategoryListTableViewCell else {
                 return UITableViewCell()
             }
             cell.accessoryType = .disclosureIndicator
             cell.selectionStyle = .none
-            cell.configure(color: UIColor(hex: "#FFC8C8") ?? .red, openType: list.openType, name: list.name)
+            cell.configure(color: UIColor(hex: category.color)!, openType: category.openType, name: category.name)
             return cell
         })
     }
     
-    private func configureSnapshot(animatingDifferences: Bool = true) {
+    func configureSnapshot(animatingDifferences: Bool = true, list: [Category]) {
 
         var snapshot = NSDiffableDataSourceSnapshot<Section, Category>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(sample, toSection: .main)
+        snapshot.appendItems(list, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
     
@@ -155,6 +163,20 @@ extension CategoryListViewController {
         delete.backgroundColor = .wred
         
         return UISwipeActionsConfiguration(actions: [delete, update])
+    }
+}
+
+extension CategoryListViewController {
+    func setCategoryList() {
+        self.viewModel?.saerchCategories(sort: selectedSort, page: page, size: categoryCount)
+        self.viewModel?.categoryList
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] categoryList in
+                self?.configureSnapshot(list: categoryList)
+                self?.list = categoryList
+        })
+        .disposed(by: disposeBag)
+        
     }
 }
 

@@ -82,7 +82,7 @@ class CategoryListTableViewCell: UITableViewCell {
         contentStack.addArrangedSubview(nameLabel)
     }
     
-    public func configure(color: UIColor, openType: OpenType, name: String) {
+    public func configure(color: UIColor, openType: CategoryOpenType, name: String) {
         colorView.backgroundColor = color
         openTypeLabel.text = openType.description
         nameLabel.text = name

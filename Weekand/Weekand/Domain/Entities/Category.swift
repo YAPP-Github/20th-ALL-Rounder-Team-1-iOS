@@ -13,30 +13,8 @@ struct Category: Hashable {
       lhs.id == rhs.id
     }
     
-    func hash(into hasher: inout Hasher) {
-      hasher.combine(id)
-    }
-    
-    let id = UUID()
-    
+    let id: String
     let color: String
     let name: String
-    let openType: OpenType
-}
-
-enum OpenType: String {
-    case allOpen = "allOpen"
-    case followerOpen = "followerOpen"
-    case closed = "closed"
-    
-    var description: String {
-        switch self {
-        case .allOpen:
-            return "모두 공개"
-        case .followerOpen:
-            return "친구 공개"
-        case .closed:
-            return "비공개"
-        }
-    }
+    let openType: CategoryOpenType
 }
