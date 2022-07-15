@@ -40,6 +40,10 @@ class CategoryAddCoordinator: Coordinator {
     }
     
     func dismiss() {
+        self.navigationController.dismiss(animated: true)
+    }
+    
+    func endAndDismiss() {
         self.finishDelegate?.childDidFinish(self)
     }
     

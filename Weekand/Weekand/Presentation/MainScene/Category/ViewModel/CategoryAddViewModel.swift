@@ -58,7 +58,7 @@ extension CategoryAddViewModel {
         self.categoryUseCase.createCategory(name: name, color: color, openType: openType)
             .subscribe(onSuccess: { isSucceed in
                 if isSucceed {
-                    self.coordinator?.dismiss()
+                    self.coordinator?.endAndDismiss()
                 } else {
                     print("error")
                 }
