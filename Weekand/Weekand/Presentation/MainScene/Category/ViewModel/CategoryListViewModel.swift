@@ -44,8 +44,8 @@ extension CategoryListViewModel {
             self?.coordinator?.showCategoryAddScene()
         }).disposed(by: disposeBag)
         
-        input.categoryCellDidSelected.subscribe(onNext: { [weak self] _ in
-            self?.coordinator?.pushCategoryDetailViewController()
+        input.categoryCellDidSelected.subscribe(onNext: { [weak self] category in
+            self?.coordinator?.pushCategoryDetailViewController(category: category)
         }).disposed(by: disposeBag)
         
         input.categoryCellDidSwipeEvent.subscribe(onNext: { [weak self] category in

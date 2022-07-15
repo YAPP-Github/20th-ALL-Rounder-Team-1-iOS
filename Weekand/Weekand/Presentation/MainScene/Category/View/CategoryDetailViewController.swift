@@ -36,6 +36,11 @@ class CategoryDetailViewController: UIViewController {
     var headerView = CategoryDetailHeaderView()
     
     var selectedSort: ScheduleSort = .dateCreatedDESC
+    var selectedCategory: Category? {
+        didSet {
+            self.navigationItem.title = selectedCategory?.name
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -27,8 +27,9 @@ class CategoryCoordinator: Coordinator {
         self.navigationController.pushViewController(categoryListViewController, animated: true)
     }
     
-    func pushCategoryDetailViewController() {
+    func pushCategoryDetailViewController(category: Category) {
         let categoryDetailViewController = CategoryDetailViewController()
+        categoryDetailViewController.selectedCategory = category
         categoryDetailViewController.viewModel = CategoryDetailViewModel(coordinator: self, categoryUseCase: categoryUseCase)
         self.navigationController.pushViewController(categoryDetailViewController, animated: true)
     }

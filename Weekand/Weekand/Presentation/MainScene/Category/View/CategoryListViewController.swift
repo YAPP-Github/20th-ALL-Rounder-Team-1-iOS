@@ -162,7 +162,7 @@ extension CategoryListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(list[indexPath.item])
+        categoryCellDidSelected.accept(list[indexPath.item])
     }
 }
 
