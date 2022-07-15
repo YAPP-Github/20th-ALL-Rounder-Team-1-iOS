@@ -12,3 +12,10 @@ extension Date {
         return String(self.timeIntervalSince1970)
     }
 }
+
+extension String {
+    func fromStringTimestamp() -> Date {
+        
+        return Date(timeIntervalSince1970: Double(self)!)
+    }
+}
