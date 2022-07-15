@@ -13,7 +13,7 @@ enum MainSection {
   case main
 }
 
-class MainViewModel {
+class MainViewModel: ViewModelType {
     
     // TODO: Service 구현 후 삭제 or 이동
     let sampleUserSummary = UserSummary(name: "주호민", state: "콘텐츠어워드 만화부분 대통령상 미만 훈수 금지", imagePath: "https://pbs.twimg.com/profile_images/1119172481653149696/hUzsqa_X_400x400.png")
@@ -50,10 +50,8 @@ class MainViewModel {
         ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Pack", dateStart: Date(), dateEnd: Date(), stickerCount: 13, stickerNameList: [])
     ]
     
-    
-    
-    
     weak var coordinator: MainCoordinator?
+    private let mainUseCase: MainUseCase
     private let disposeBag = DisposeBag()
     
     // Diffable Data Source
@@ -70,14 +68,14 @@ class MainViewModel {
     private let scrollWeek = PublishRelay<Bool>()
     private let foldCollection = PublishRelay<Void>()
     
-    init(coordinator: MainCoordinator) {
+    init(coordinator: MainCoordinator, mainUseCase: MainUseCase) {
         self.coordinator = coordinator
+        self.mainUseCase = mainUseCase
         
         // TODO: Service 구현 후 데이터 받는 부분 이동
         PublishRelay<UserSummary>.just(sampleUserSummary).bind(to: userSummary).disposed(by: disposeBag)
         PublishRelay<[FollowingUser]>.just(sampleUserFollowingList).bind(to: userFollowingList).disposed(by: disposeBag)
-        PublishRelay<[ScheduleMain]>.just(sampleScheduleList).bind(to: scheduleList).disposed(by: disposeBag)
-    }
+            }
     
 }
 
@@ -188,19 +186,14 @@ extension MainViewModel {
     
     private func getScheduleList(date: Date) {
         
+        self.mainUseCase.scheduleList(date: date).subscribe (onSuccess: { scheduleData in
+            PublishRelay<[ScheduleMain]>.just(scheduleData).bind(to: self.scheduleList).disposed(by: self.disposeBag)
+
+        }, onFailure: { error in
+            print("Error: \(error)")
+        }, onDisposed: nil)
+        .disposed(by: disposeBag)
+        
     }
-    
-//    private func login(email: String, password: String) {
-//        let emailText = email.trimmingCharacters(in: [" "])
-//        let passwordText = password.trimmingCharacters(in: [" "])
-//
-//        self.signInUseCase.login(email: emailText, password: passwordText).subscribe(onSuccess: { tokenData in
-//            UserDataStorage.shared.setAccessToken(token: tokenData.accessToken)
-//            self.coordinator?.showMainScene()
-//        }, onFailure: { _ in
-//            self.coordinator?.showToastMessage()
-//        }, onDisposed: nil)
-//        .disposed(by: disposeBag)
-//    }
 
 }

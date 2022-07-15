@@ -13,15 +13,17 @@ class MainCoordinator: Coordinator {
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
     var type: CoordinatorType = .main
+    var mainUseCase: MainUseCase
     var mainViewController: MainViewController
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.mainViewController = MainViewController()
+        self.mainUseCase = MainUseCase()
     }
     
     func start() {
-        self.mainViewController.viewModel = MainViewModel(coordinator: self)
+        self.mainViewController.viewModel = MainViewModel(coordinator: self, mainUseCase: mainUseCase)
         self.navigationController.pushViewController(mainViewController, animated: true)
     }
     
