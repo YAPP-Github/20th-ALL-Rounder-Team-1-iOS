@@ -21,6 +21,12 @@ class CategoryModifyViewModel: CategoryEditViewModelType {
     }
     
     struct Input {
+        let closeButtonDidTapEvent: Observable<Void>
+        let colorButtonDidTapEvent: Observable<Void>
+        let categoryNameTextFieldDidEditEvent: Observable<String>
+        let confirmButtonDidTapEvent: Observable<Void>
+        let selectedOpenType: Observable<CategoryOpenType>
+        let selectedColor: Observable<Color>
     }
     
     struct Output { }

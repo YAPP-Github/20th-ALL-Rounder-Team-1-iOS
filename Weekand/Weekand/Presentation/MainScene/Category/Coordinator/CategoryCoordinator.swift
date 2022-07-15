@@ -41,6 +41,14 @@ class CategoryCoordinator: Coordinator {
         categoryAddCoordinator.start()
     }
     
+    func showCategoryModifyScene(category: Category) {
+        let categoryModifyCoordinator = CategoryModifyCoordinator(categoryUseCase: categoryUseCase, selectedCategory: category)
+        categoryModifyCoordinator.finishDelegate = self
+        childCoordinators.append(categoryModifyCoordinator)
+        navigationController.present(categoryModifyCoordinator.navigationController, animated: true, completion: nil)
+        categoryModifyCoordinator.start()
+    }
+    
     func finish() {
         self.finishDelegate?.childDidFinish(self)
     }

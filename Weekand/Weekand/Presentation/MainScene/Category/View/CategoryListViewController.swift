@@ -31,6 +31,10 @@ class CategoryListViewController: UIViewController {
     var page: Int = 0
     var selectedSort: ScheduleSort = .dateCreatedDESC
     
+    let dropDownDidSelectEvent = PublishRelay<ScheduleSort>()
+    let categoryCellDidSelected = PublishRelay<Category>()
+    let categoryCellDidSwipeEvent = PublishRelay<Category>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,11 +80,11 @@ class CategoryListViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        let dropDownDidSelectEvent = PublishRelay<ScheduleSort>()
         
         let input = CategoryListViewModel.Input(
             didTapAddCategoryButton: self.headerView.addCategoryButton.rx.tap.asObservable(),
-            didCategoryCellSelected: self.tableView.rx.itemSelected.asObservable()
+            categoryCellDidSelected: categoryCellDidSelected,
+            categoryCellDidSwipeEvent: categoryCellDidSwipeEvent
         )
         
         self.headerView.dropDown.selectionAction = { [unowned self] (_ : Int, item: String) in
@@ -156,13 +160,17 @@ extension CategoryListViewController: UITableViewDelegate {
             self.appendCategoryList()
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(list[indexPath.item])
+    }
 }
 
 extension CategoryListViewController {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let update = UIContextualAction(style: .normal, title: "수정") { _, _, _ in
-            print("수정 클릭 됨")
+            self.categoryCellDidSwipeEvent.accept(self.list[indexPath.item])
         }
         update.backgroundColor = .mainColor
         

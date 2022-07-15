@@ -77,7 +77,16 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
     }
     
     private func bindViewModel() {
-        let input = CategoryAddViewModel.Input(
+        let addInput = CategoryAddViewModel.Input(
+            closeButtonDidTapEvent: closeButton.rx.tap.asObservable(),
+            colorButtonDidTapEvent: colorStackView.colorView.rx.tap.asObservable(),
+            categoryNameTextFieldDidEditEvent: categoryTextFieldStackView.textField.rx.text.orEmpty.asObservable(),
+            confirmButtonDidTapEvent: confirmButton.rx.tap.asObservable(),
+            selectedOpenType: openTypeObservable,
+            selectedColor: colorObservable
+        )
+        
+        let modifyInput = CategoryModifyViewModel.Input(
             closeButtonDidTapEvent: closeButton.rx.tap.asObservable(),
             colorButtonDidTapEvent: colorStackView.colorView.rx.tap.asObservable(),
             categoryNameTextFieldDidEditEvent: categoryTextFieldStackView.textField.rx.text.orEmpty.asObservable(),
@@ -113,7 +122,11 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
             }
         }.disposed(by: disposeBag)
         
-        _ = viewModel?.transform(input: input as! T.Input)
+        if ((viewModel as? CategoryAddViewModel) != nil) {
+            let output = viewModel?.transform(input: addInput as! T.Input)
+        } else {
+            let output = viewModel?.transform(input: modifyInput as! T.Input)
+        }
         
         categoryTextFieldStackView.textField.rx.text.orEmpty
             .map(checkEmptyValue)
@@ -130,6 +143,15 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
         return text.trimmingCharacters(in: [" "]) != ""
     }
 
+}
+
+extension CategoryEditViewController {
+    func setCategory(_ category: Category) {
+        self.categoryTextFieldStackView.textField.text = category.name
+        self.selectedOpenType = category.openType
+        let color = Constants.colors.flatMap { $0 }.filter { $0.hexCode == category.color }
+        self.selectedColor = color.first ?? Constants.colors[0][0]
+    }
 }
 
 import SwiftUI

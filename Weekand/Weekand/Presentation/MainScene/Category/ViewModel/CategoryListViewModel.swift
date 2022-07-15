@@ -31,7 +31,8 @@ extension CategoryListViewModel {
     
     struct Input {
         let didTapAddCategoryButton: Observable<Void>
-        let didCategoryCellSelected: Observable<IndexPath>   // TODO: Cell의 Category-ID를 받아오도록 수정 (모델 구현 이후 진행)
+        let categoryCellDidSelected: PublishRelay<Category>
+        let categoryCellDidSwipeEvent: PublishRelay<Category>
     }
     
     struct Output { }
@@ -43,8 +44,12 @@ extension CategoryListViewModel {
             self?.coordinator?.showCategoryAddScene()
         }).disposed(by: disposeBag)
         
-        input.didCategoryCellSelected.subscribe(onNext: { [weak self] _ in
+        input.categoryCellDidSelected.subscribe(onNext: { [weak self] _ in
             self?.coordinator?.pushCategoryDetailViewController()
+        }).disposed(by: disposeBag)
+        
+        input.categoryCellDidSwipeEvent.subscribe(onNext: { [weak self] category in
+            self?.coordinator?.showCategoryModifyScene(category: category)
         }).disposed(by: disposeBag)
         
         return Output()
