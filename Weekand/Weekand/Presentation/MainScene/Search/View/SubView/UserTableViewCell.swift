@@ -19,7 +19,9 @@ class UserTableViewCell: UITableViewCell {
     }
     
     lazy var profileImageView = UIImageView().then {
-        $0.layer.cornerRadius = 10
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+        $0.layer.cornerRadius = 12
     }
     
     lazy var contentStack = UIStackView().then {
@@ -75,7 +77,7 @@ class UserTableViewCell: UITableViewCell {
         }
         
         profileImageView.snp.makeConstraints { make in
-            make.width.height.equalTo(cellStack.snp.width).multipliedBy(1/10.4)
+            make.width.height.equalTo(cellStack.snp.width).multipliedBy(1/8.5)
             make.centerY.equalTo(cellStack.snp.centerY)
         }
         
@@ -84,7 +86,11 @@ class UserTableViewCell: UITableViewCell {
     }
     
     public func configure(imageUrl: String, name: String, goal: String) {
-        // profileImageView.backgroundColor = color
+        guard let url = URL(string: imageUrl),
+              let data = try? Data(contentsOf: url) else {
+            return
+        }
+        profileImageView.image = UIImage(data: data)
         nameLabel.text = name
         goalLabel.text = goal
     }
