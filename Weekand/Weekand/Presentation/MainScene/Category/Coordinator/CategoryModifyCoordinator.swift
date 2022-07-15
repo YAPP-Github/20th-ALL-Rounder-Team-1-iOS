@@ -20,7 +20,7 @@ class CategoryModifyCoordinator: Coordinator {
         self.categoryUseCase = categoryUseCase
         self.categoryModifyViewController = CategoryEditViewController<CategoryModifyViewModel>()
         self.categoryModifyViewController.title = "카테고리 추가"
-        self.categoryModifyViewController.setCategory(selectedCategory)
+        self.categoryModifyViewController.selectedCategory = selectedCategory
         self.navigationController = UINavigationController(rootViewController: categoryModifyViewController)
         self.navigationController.modalPresentationStyle = .fullScreen
     }

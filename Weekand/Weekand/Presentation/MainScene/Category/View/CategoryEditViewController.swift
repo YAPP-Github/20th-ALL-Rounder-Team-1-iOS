@@ -31,6 +31,14 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
         $0.tintColor = .gray400
     }
     
+    var selectedCategory: Category? {
+        didSet {
+            self.categoryTextFieldStackView.textField.text = selectedCategory?.name
+            self.selectedOpenType = selectedCategory?.openType ?? .closed
+            let color = Constants.colors.flatMap { $0 }.filter { $0.hexCode == selectedCategory?.color }
+            self.selectedColor = color.first ?? Constants.colors[0][0]
+        }
+    }
     var selectedOpenType: CategoryOpenType = .allOpen {
         didSet {
             self.openTypeObservable.onNext(selectedOpenType)
@@ -143,15 +151,6 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
         return text.trimmingCharacters(in: [" "]) != ""
     }
 
-}
-
-extension CategoryEditViewController {
-    func setCategory(_ category: Category) {
-        self.categoryTextFieldStackView.textField.text = category.name
-        self.selectedOpenType = category.openType
-        let color = Constants.colors.flatMap { $0 }.filter { $0.hexCode == category.color }
-        self.selectedColor = color.first ?? Constants.colors[0][0]
-    }
 }
 
 import SwiftUI
