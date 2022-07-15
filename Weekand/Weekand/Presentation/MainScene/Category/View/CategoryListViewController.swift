@@ -17,14 +17,6 @@ class CategoryListViewController: UIViewController {
     enum Section {
       case main
     }
-//
-//    let sample: [Category] = [
-//        Category(id: "1", color: "red", name: "공부", openType: .allOpen),
-//        Category(id: "1", color: "red", name: "자기계발", openType: .closed),
-//        Category(id: "1", color: "red", name: "취미생활", openType: .followerOpen),
-//        Category(id: "1", color: "red", name: "업무", openType: .closed),
-//        Category(id: "1", color: "red", name: "to do", openType: .allOpen)
-//    ]
     
     private let disposeBag = DisposeBag()
     var viewModel: CategoryListViewModel?
@@ -59,8 +51,11 @@ class CategoryListViewController: UIViewController {
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.bounces = false
+        tableView.refreshControl = refreshControl
+        refreshControl.endRefreshing()
         tableView.register(CategoryListTableViewCell.self, forCellReuseIdentifier: CategoryListTableViewCell.cellIdentifier)
         tableView.register(CategoryListHeaderView.self, forHeaderFooterViewReuseIdentifier: CategoryListHeaderView.cellIdentifier)
+        refreshControl.addTarget(self, action: #selector(reloadCategoryList), for: .valueChanged)
         
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
