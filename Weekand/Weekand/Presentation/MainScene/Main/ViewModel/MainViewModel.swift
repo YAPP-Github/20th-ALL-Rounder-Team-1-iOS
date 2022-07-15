@@ -33,22 +33,6 @@ class MainViewModel: ViewModelType {
         FollowingUser(userId: "0", name: "김수자", imagePath: "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80"),
         FollowingUser(userId: "0", name: "여긴어디 난누구", imagePath: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTV8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60")
     ]
-    let sampleScheduleList: [ScheduleMain] = [
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Alfted", dateStart: Date(), dateEnd: Date(), stickerCount: 134, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Timothy", dateStart: Date(), dateEnd: Date(), stickerCount: 313, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Cook", dateStart: Date(), dateEnd: Date(), stickerCount: 54, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Steve", dateStart: Date(), dateEnd: Date(), stickerCount: 431, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Stwie", dateStart: Date(), dateEnd: Date(), stickerCount: 64, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Proro", dateStart: Date(), dateEnd: Date(), stickerCount: 3, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Pack", dateStart: Date(), dateEnd: Date(), stickerCount: 13, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Alfted", dateStart: Date(), dateEnd: Date(), stickerCount: 134, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Timothy", dateStart: Date(), dateEnd: Date(), stickerCount: 313, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Cook", dateStart: Date(), dateEnd: Date(), stickerCount: 54, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Steve", dateStart: Date(), dateEnd: Date(), stickerCount: 431, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Stwie", dateStart: Date(), dateEnd: Date(), stickerCount: 64, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Proro", dateStart: Date(), dateEnd: Date(), stickerCount: 3, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Pack", dateStart: Date(), dateEnd: Date(), stickerCount: 13, stickerNameList: [])
-    ]
     
     weak var coordinator: MainCoordinator?
     private let mainUseCase: MainUseCase
