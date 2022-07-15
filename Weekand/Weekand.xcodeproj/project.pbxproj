@@ -118,7 +118,7 @@
 		F392A1EF28531FC600512A42 /* CategoryListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */; };
 		F3AA9E1B2869FEFC00F71559 /* PasswordFindViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA9E1A2869FEFC00F71559 /* PasswordFindViewModel.swift */; };
 		F3AA9E1D2869FF1E00F71559 /* PasswordFindCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA9E1C2869FF1E00F71559 /* PasswordFindCoordinator.swift */; };
-		F3B0025D287D686200D6BB1D /* ScehduleMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0025C287D686200D6BB1D /* ScehduleMain.swift */; };
+		F3B0025D287D686200D6BB1D /* ScheduleMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0025C287D686200D6BB1D /* ScheduleMain.swift */; };
 		F3B0025F287D68A800D6BB1D /* UserDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0025E287D68A800D6BB1D /* UserDataStorage.swift */; };
 		F3B00261287D68BD00D6BB1D /* CategoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B00260287D68BD00D6BB1D /* CategoryUseCase.swift */; };
 		F3B00263287D68C600D6BB1D /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B00262287D68C600D6BB1D /* SignInUseCase.swift */; };
@@ -282,7 +282,7 @@
 		F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListHeaderView.swift; sourceTree = "<group>"; };
 		F3AA9E1A2869FEFC00F71559 /* PasswordFindViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindViewModel.swift; sourceTree = "<group>"; };
 		F3AA9E1C2869FF1E00F71559 /* PasswordFindCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindCoordinator.swift; sourceTree = "<group>"; };
-		F3B0025C287D686200D6BB1D /* ScehduleMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScehduleMain.swift; path = Entities/ScehduleMain.swift; sourceTree = "<group>"; };
+		F3B0025C287D686200D6BB1D /* ScheduleMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleMain.swift; path = Entities/ScheduleMain.swift; sourceTree = "<group>"; };
 		F3B0025E287D68A800D6BB1D /* UserDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDataStorage.swift; path = Weekand/Data/UserDataStorage.swift; sourceTree = SOURCE_ROOT; };
 		F3B00260287D68BD00D6BB1D /* CategoryUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryUseCase.swift; path = UseCase/Main/CategoryUseCase.swift; sourceTree = "<group>"; };
 		F3B00262287D68C600D6BB1D /* SignInUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInUseCase.swift; path = UseCase/Sign/SignInUseCase.swift; sourceTree = "<group>"; };
@@ -521,7 +521,7 @@
 				F3B00271287D68FA00D6BB1D /* Sort.swift */,
 				F3B00270287D68FA00D6BB1D /* UserSummary.swift */,
 				F3B0026A287D68F100D6BB1D /* FollwingUser.swift */,
-				F3B0025C287D686200D6BB1D /* ScehduleMain.swift */,
+				F3B0025C287D686200D6BB1D /* ScheduleMain.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -1171,7 +1171,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Don't run this during index builds\n# if [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\nSCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"Networking/schema.json\" API.swift\n";
+			shellScript = "# Don't run this during index builds\nif [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\nSCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"Networking/schema.json\" API.swift\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1251,7 +1251,7 @@
 				7DF9688C284E019A00CE077E /* MainCalendarView.swift in Sources */,
 				7DD71A8B286CA8C4002D1DCF /* AlarmViewModel.swift in Sources */,
 				7D76AEB628445AA5001C668D /* MainTableViewCell.swift in Sources */,
-				F3B0025D287D686200D6BB1D /* ScehduleMain.swift in Sources */,
+				F3B0025D287D686200D6BB1D /* ScheduleMain.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
 				F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */,
 				7DBC4C59287697F900F0AC86 /* EmojiSheetViewController.swift in Sources */,

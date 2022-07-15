@@ -216,7 +216,7 @@ extension MainViewController {
     
     private func configureTableViewDataSource() {
         
-        viewModel?.tableViewDataSource = UITableViewDiffableDataSource<MainSection, ScehduleMain>(tableView: tableView, cellProvider: { tableView, indexPath, list in
+        viewModel?.tableViewDataSource = UITableViewDiffableDataSource<MainSection, ScheduleMain>(tableView: tableView, cellProvider: { tableView, indexPath, list in
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as! MainTableViewCell
             
             cell.switchStickerButtonAppearance(userId: "123456")    // TODO: 로그인 구현 후 수정

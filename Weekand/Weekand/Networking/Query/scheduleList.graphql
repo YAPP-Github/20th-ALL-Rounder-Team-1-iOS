@@ -1,4 +1,4 @@
-query ScheduleList($date: Timestamp!){
+query ScheduleList($date: Timestamp!) {
     schedules(date: $date) {
         schedules {
           id

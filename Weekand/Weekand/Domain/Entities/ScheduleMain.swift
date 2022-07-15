@@ -8,9 +8,9 @@
 import Foundation
 
 /// 메인 일정 리스트의 일정 정보
-struct ScehduleMain: Hashable {
+struct ScheduleMain: Hashable {
     
-    static func == (lhs: ScehduleMain, rhs: ScehduleMain) -> Bool {
+    static func == (lhs: ScheduleMain, rhs: ScheduleMain) -> Bool {
       lhs.id == rhs.id
     }
     

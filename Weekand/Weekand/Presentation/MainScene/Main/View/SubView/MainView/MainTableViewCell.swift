@@ -131,7 +131,7 @@ extension MainTableViewCell {
     }
     
     // TODO: API 확정되면 수정
-    public func setUpCell(_ model: ScehduleMain) {
+    public func setUpCell(_ model: ScheduleMain) {
         
     }
 

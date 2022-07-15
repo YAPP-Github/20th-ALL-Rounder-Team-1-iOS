@@ -33,21 +33,21 @@ class MainViewModel {
         FollowingUser(userId: "0", name: "김수자", imagePath: "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80"),
         FollowingUser(userId: "0", name: "여긴어디 난누구", imagePath: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTV8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60")
     ]
-    let sampleScheduleList: [ScehduleMain] = [
-        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Alfted", dateStart: Date(), dataEnd: Date(), stickerCount: 134, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Timothy", dateStart: Date(), dataEnd: Date(), stickerCount: 313, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Cook", dateStart: Date(), dataEnd: Date(), stickerCount: 54, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Steve", dateStart: Date(), dataEnd: Date(), stickerCount: 431, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Stwie", dateStart: Date(), dataEnd: Date(), stickerCount: 64, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Proro", dateStart: Date(), dataEnd: Date(), stickerCount: 3, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Pack", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Alfted", dateStart: Date(), dataEnd: Date(), stickerCount: 134, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Timothy", dateStart: Date(), dataEnd: Date(), stickerCount: 313, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Cook", dateStart: Date(), dataEnd: Date(), stickerCount: 54, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Steve", dateStart: Date(), dataEnd: Date(), stickerCount: 431, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Stwie", dateStart: Date(), dataEnd: Date(), stickerCount: 64, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Proro", dateStart: Date(), dataEnd: Date(), stickerCount: 3, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Pack", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: [])
+    let sampleScheduleList: [ScheduleMain] = [
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Alfted", dateStart: Date(), dataEnd: Date(), stickerCount: 134, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Timothy", dateStart: Date(), dataEnd: Date(), stickerCount: 313, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Cook", dateStart: Date(), dataEnd: Date(), stickerCount: 54, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Steve", dateStart: Date(), dataEnd: Date(), stickerCount: 431, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Stwie", dateStart: Date(), dataEnd: Date(), stickerCount: 64, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Proro", dateStart: Date(), dataEnd: Date(), stickerCount: 3, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Pack", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Alfted", dateStart: Date(), dataEnd: Date(), stickerCount: 134, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Timothy", dateStart: Date(), dataEnd: Date(), stickerCount: 313, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Cook", dateStart: Date(), dataEnd: Date(), stickerCount: 54, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Steve", dateStart: Date(), dataEnd: Date(), stickerCount: 431, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Stwie", dateStart: Date(), dataEnd: Date(), stickerCount: 64, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Proro", dateStart: Date(), dataEnd: Date(), stickerCount: 3, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Pack", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: [])
     ]
     
     
@@ -58,12 +58,12 @@ class MainViewModel {
     
     // Diffable Data Source
     var collectionViewDataSource: UICollectionViewDiffableDataSource<MainSection, FollowingUser>!
-    var tableViewDataSource: UITableViewDiffableDataSource<MainSection, ScehduleMain>!
+    var tableViewDataSource: UITableViewDiffableDataSource<MainSection, ScheduleMain>!
     
     // View와 바인딩되는 Observables
     public var userSummary = BehaviorRelay<UserSummary>(value: UserSummary.defaultData)
     private var userFollowingList = BehaviorRelay<[FollowingUser]>(value: [])
-    private var scheduleList = BehaviorRelay<[ScehduleMain]>(value: [])
+    private var scheduleList = BehaviorRelay<[ScheduleMain]>(value: [])
     
     // Calendar 버튼 관련 Obsrvables
     private let calendarDate = BehaviorRelay<Date>(value: Date())
@@ -76,7 +76,7 @@ class MainViewModel {
         // TODO: Service 구현 후 데이터 받는 부분 이동
         PublishRelay<UserSummary>.just(sampleUserSummary).bind(to: userSummary).disposed(by: disposeBag)
         PublishRelay<[FollowingUser]>.just(sampleUserFollowingList).bind(to: userFollowingList).disposed(by: disposeBag)
-        PublishRelay<[ScehduleMain]>.just(sampleScheduleList).bind(to: scheduleList).disposed(by: disposeBag)
+        PublishRelay<[ScheduleMain]>.just(sampleScheduleList).bind(to: scheduleList).disposed(by: disposeBag)
     }
     
 }
@@ -174,7 +174,7 @@ extension MainViewModel {
         
         self.scheduleList.subscribe(onNext: { data in
             
-            var snapshot = NSDiffableDataSourceSnapshot<MainSection, ScehduleMain>()
+            var snapshot = NSDiffableDataSourceSnapshot<MainSection, ScheduleMain>()
             snapshot.appendSections([.main])
             snapshot.appendItems(data, toSection: .main)
             self.tableViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
