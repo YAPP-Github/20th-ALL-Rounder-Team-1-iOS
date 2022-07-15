@@ -10,8 +10,14 @@ import RxSwift
 
 final class MainUseCase {
     
-//    func scheduleList(date: Date) -> Single<[ScehduleMain]> {
-//        return NetWork.shared.fetch(query: )
+//    func scheduleList(date: Date) -> Single<[ScheduleMain]> {
+//        return NetWork.shared
+//            .fetch(query: ScheduleListQuery(date: date.toStringTimestamp()))
+//            .map {
+//                let data = $0.schedules.schedules
+//                return ScheduleMain(
+//            }
+//            .asSingle()
 //    }
     
     
