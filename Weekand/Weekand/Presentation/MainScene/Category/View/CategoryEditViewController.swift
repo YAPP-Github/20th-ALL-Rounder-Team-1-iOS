@@ -100,7 +100,8 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
             categoryNameTextFieldDidEditEvent: categoryTextFieldStackView.textField.rx.text.orEmpty.asObservable(),
             confirmButtonDidTapEvent: confirmButton.rx.tap.asObservable(),
             selectedOpenType: openTypeObservable,
-            selectedColor: colorObservable
+            selectedColor: colorObservable,
+            selectedCategory: selectedCategory 
         )
         
         openTypeStackView.allOpenButton.rx.tap.subscribe { _ in

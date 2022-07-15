@@ -27,12 +27,39 @@ class CategoryModifyViewModel: CategoryEditViewModelType {
         let confirmButtonDidTapEvent: Observable<Void>
         let selectedOpenType: Observable<CategoryOpenType>
         let selectedColor: Observable<Color>
+        let selectedCategory: Category?
     }
     
     struct Output { }
     
     func transform(input: Input) -> Output {
+        
+        input.closeButtonDidTapEvent.subscribe(onNext: {
+            self.coordinator?.dismiss()
+        }).disposed(by: disposeBag)
+        
+        input.colorButtonDidTapEvent.subscribe(onNext: {
+            self.coordinator?.pushColorBottonSheet()
+        }).disposed(by: disposeBag)
+        
+        let categoryInput = Observable.combineLatest(input.categoryNameTextFieldDidEditEvent, input.selectedColor, input.selectedOpenType)
+        
+        input.confirmButtonDidTapEvent
+            .withLatestFrom(categoryInput)
+            .subscribe(onNext: { [weak self] name, color, openType in
+                guard let category = input.selectedCategory else {
+                    return
+                }
+                self?.updateCategory(id: category.serverID, name: name, color: color.hexCode, openType: openType)
+            }).disposed(by: disposeBag)
+        
         return Output()
     }
 
+}
+
+extension CategoryModifyViewModel {
+    func updateCategory(id: String, name: String, color: String, openType: CategoryOpenType) {
+        
+    }
 }

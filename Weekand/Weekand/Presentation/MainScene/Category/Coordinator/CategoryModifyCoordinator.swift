@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoryModifyCoordinator: Coordinator {
+class CategoryModifyCoordinator: Coordinator, CategoryEditCoordinatorType {
     
     weak var finishDelegate: CoordinatorDidFinishDelegate?
     var navigationController: UINavigationController
@@ -27,6 +27,17 @@ class CategoryModifyCoordinator: Coordinator {
     
     func start() {
         self.categoryModifyViewController.viewModel = CategoryModifyViewModel(coordinator: self, categoryUseCase: categoryUseCase)
+    }
+    
+    func pushColorBottonSheet() {
+        let colorSheetViewController = ColorSheetViewController()
+        colorSheetViewController.viewModel = ColorSheetViewModel(coordinator: self)
+        colorSheetViewController.selectedColor = categoryModifyViewController.selectedColor
+        self.navigationController.present(colorSheetViewController, animated: true, completion: nil)
+    }
+    
+    func sendColorFromSheet(color: Color) {
+        categoryModifyViewController.selectedColor = color
     }
     
     func dismiss() {

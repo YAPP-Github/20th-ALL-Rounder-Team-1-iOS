@@ -11,10 +11,10 @@ import RxCocoa
 
 class ColorSheetViewModel: ViewModelType {
     
-    weak var coordinator: CategoryAddCoordinator?
+    weak var coordinator: CategoryEditCoordinatorType?
     private var disposeBag = DisposeBag()
 
-    init(coordinator: CategoryAddCoordinator) {
+    init(coordinator: CategoryEditCoordinatorType) {
         
         self.coordinator = coordinator
     }
@@ -31,7 +31,12 @@ class ColorSheetViewModel: ViewModelType {
         input.didTapConfirmButton
             .withLatestFrom(input.didColorCellSelected)
             .subscribe(onNext: { item in
-                self.coordinator?.sendColorFromSheet(color: Constants.colors[item.section][item.item])
+                if let coordinator = self.coordinator as? CategoryAddCoordinator {
+                    coordinator.sendColorFromSheet(color: Constants.colors[item.section][item.item])
+                } else if let coordinator = self.coordinator as? CategoryModifyCoordinator {
+                    coordinator.sendColorFromSheet(color: Constants.colors[item.section][item.item])
+                }
+                
             }).disposed(by: disposeBag)
         
         return Output()

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoryAddCoordinator: Coordinator {
+class CategoryAddCoordinator: Coordinator, CategoryEditCoordinatorType {
     
     weak var finishDelegate: CoordinatorDidFinishDelegate?
     var navigationController: UINavigationController
