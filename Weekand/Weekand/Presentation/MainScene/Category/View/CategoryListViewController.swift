@@ -27,6 +27,7 @@ class CategoryListViewController: UIViewController {
     
     var list: [Category] = []
     var categoryCount: Int = 20
+    var refreshListCount: Int = 15
     var page: Int = 0
     var selectedSort: ScheduleSort = .nameCreateDESC
     
@@ -51,11 +52,8 @@ class CategoryListViewController: UIViewController {
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.bounces = false
-        tableView.refreshControl = refreshControl
-        refreshControl.endRefreshing()
         tableView.register(CategoryListTableViewCell.self, forCellReuseIdentifier: CategoryListTableViewCell.cellIdentifier)
         tableView.register(CategoryListHeaderView.self, forHeaderFooterViewReuseIdentifier: CategoryListHeaderView.cellIdentifier)
-        refreshControl.addTarget(self, action: #selector(reloadCategoryList), for: .valueChanged)
         
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
@@ -120,7 +118,7 @@ extension CategoryListViewController {
     }
     
     func configureSnapshot(animatingDifferences: Bool = true, list: [Category]) {
-
+        print(list)
         var snapshot = NSDiffableDataSourceSnapshot<Section, Category>()
         snapshot.appendSections([.main])
         snapshot.appendItems(list, toSection: .main)
@@ -138,6 +136,13 @@ extension CategoryListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 65
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.item == refreshListCount * (page + 1) {
+            page += 1
+            self.viewModel?.searchCategories(sort: selectedSort, page: page, size: categoryCount, completion: { })
+        }
     }
 }
 
@@ -163,15 +168,14 @@ extension CategoryListViewController {
 
 extension CategoryListViewController {
     func setCategoryList() {
-        self.viewModel?.saerchCategories(sort: selectedSort, page: page, size: categoryCount)
+        self.viewModel?.searchCategories(sort: selectedSort, page: page, size: categoryCount, completion: { })
         self.viewModel?.categoryList
             .observe(on: MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] categoryList in
-                self?.configureSnapshot(list: categoryList)
-                self?.list = categoryList
+                categoryList.forEach { self?.list.append($0) }
+                self?.configureSnapshot(list: self?.list ?? [])
         })
-        .disposed(by: disposeBag)
-        
+        .disposed(by: self.disposeBag)
     }
 }
 

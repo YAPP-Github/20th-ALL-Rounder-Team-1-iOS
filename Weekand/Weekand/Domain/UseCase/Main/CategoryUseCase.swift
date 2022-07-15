@@ -10,11 +10,11 @@ import RxSwift
 typealias Categories = [ScheduleCategoriesQuery.Data.ScheduleCategory.ScheduleCategory]
 
 final class CategoryUseCase {
-    func ScheduleCategories(sort: ScheduleSort, page: Int, size: Int) -> Single<Categories> {
+    func ScheduleCategories(sort: ScheduleSort, page: Int, size: Int) -> Single<ScheduleCategoriesQuery.Data.ScheduleCategory> {
             NetWork.shared.fetch(query: ScheduleCategoriesQuery(sort: sort.toModel(), page: page, size: size),
                                  cachePolicy: .fetchIgnoringCacheCompletely, queue: DispatchQueue.main)
-                .map { $0.scheduleCategories.scheduleCategories }
-                .asSingle()
+            .map { $0.scheduleCategories }
+            .asSingle()
         }
     
     func createCategory(name: String, color: String, openType: CategoryOpenType) -> Single<Bool> {

@@ -10,10 +10,15 @@ import Foundation
 struct Category: Hashable {
     
     static func == (lhs: Category, rhs: Category) -> Bool {
-      lhs.id == rhs.id
+      lhs.identifier == rhs.identifier
     }
     
-    let id: String
+    func hash(into hasher: inout Hasher) {
+      hasher.combine(identifier)
+    }
+    
+    let identifier = UUID()
+    let serverID: String
     let color: String
     let name: String
     let openType: CategoryOpenType
