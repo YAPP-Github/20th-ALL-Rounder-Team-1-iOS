@@ -1,0 +1,8 @@
+query UserBrief {
+  user {
+    id
+    nickname
+    profileUrl
+    goal
+  }
+}

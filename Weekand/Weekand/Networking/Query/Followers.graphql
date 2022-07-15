@@ -1,0 +1,12 @@
+query Followers($page: Int!, $size: Int!) {
+  followers(page: $page, size: $size) {
+    paginationInfo {
+      hasNext
+    }
+    followers {
+      id
+      nickname
+      profileUrl
+    }
+  }
+}
