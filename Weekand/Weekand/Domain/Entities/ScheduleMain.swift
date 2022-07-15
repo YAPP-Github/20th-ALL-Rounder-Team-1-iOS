@@ -25,7 +25,31 @@ struct ScheduleMain: Hashable {
     let status: Status
     let name: String
     let dateStart: Date
-    let dataEnd: Date
+    let dateEnd: Date
     let stickerCount: Int
     let stickerNameList: [Emoji]
+    
+    init(scheduleId: String, color: String, status: Status,  name: String, dateStart: Date, dateEnd: Date, stickerCount: Int, stickerNameList: [Emoji]) {
+        
+        self.scheduleId = scheduleId
+        self.color = color
+        self.status = status
+        self.name = name
+        self.dateStart = dateStart
+        self.dateEnd = dateEnd
+        self.stickerCount = stickerCount
+        self.stickerNameList = stickerNameList
+    }
+        
+    init(model: ScheduleListQuery.Data.Schedule.Schedule) {
+        
+        self.scheduleId = model.id
+        self.color = model.category.color
+        self.status = Status(rawValue: model.status.rawValue) ?? .upcoming
+        self.name = model.name
+        self.dateStart = model.dateTimeStart.fromStringTimestamp()
+        self.dateEnd = model.dateTimeEnd.fromStringTimestamp()
+        self.stickerCount = model.stickerCount
+        self.stickerNameList = model.stickerNames.map { Emoji(rawValue: $0.rawValue) ?? .good }
+    }
 }

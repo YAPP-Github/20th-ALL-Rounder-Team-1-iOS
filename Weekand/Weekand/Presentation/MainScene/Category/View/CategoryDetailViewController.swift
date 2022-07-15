@@ -19,13 +19,13 @@ class CategoryDetailViewController: UIViewController {
     }
     
     let sample: [ScheduleMain] = [
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목1", dateStart: Date(), dataEnd: Date(), stickerCount: 134, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목2", dateStart: Date(), dataEnd: Date(), stickerCount: 313, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목3", dateStart: Date(), dataEnd: Date(), stickerCount: 54, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목4", dateStart: Date(), dataEnd: Date(), stickerCount: 431, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목5", dateStart: Date(), dataEnd: Date(), stickerCount: 64, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목6", dateStart: Date(), dataEnd: Date(), stickerCount: 3, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목7", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: [])
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목1", dateStart: Date(), dateEnd: Date(), stickerCount: 134, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목2", dateStart: Date(), dateEnd: Date(), stickerCount: 313, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목3", dateStart: Date(), dateEnd: Date(), stickerCount: 54, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목4", dateStart: Date(), dateEnd: Date(), stickerCount: 431, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목5", dateStart: Date(), dateEnd: Date(), stickerCount: 64, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목6", dateStart: Date(), dateEnd: Date(), stickerCount: 3, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목7", dateStart: Date(), dateEnd: Date(), stickerCount: 13, stickerNameList: [])
     ]
     
     private let disposeBag = DisposeBag()

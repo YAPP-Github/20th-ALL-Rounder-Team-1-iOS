@@ -34,20 +34,20 @@ class MainViewModel {
         FollowingUser(userId: "0", name: "여긴어디 난누구", imagePath: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTV8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60")
     ]
     let sampleScheduleList: [ScheduleMain] = [
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Alfted", dateStart: Date(), dataEnd: Date(), stickerCount: 134, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Timothy", dateStart: Date(), dataEnd: Date(), stickerCount: 313, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Cook", dateStart: Date(), dataEnd: Date(), stickerCount: 54, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Steve", dateStart: Date(), dataEnd: Date(), stickerCount: 431, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Stwie", dateStart: Date(), dataEnd: Date(), stickerCount: 64, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Proro", dateStart: Date(), dataEnd: Date(), stickerCount: 3, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Pack", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Alfted", dateStart: Date(), dataEnd: Date(), stickerCount: 134, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Timothy", dateStart: Date(), dataEnd: Date(), stickerCount: 313, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Cook", dateStart: Date(), dataEnd: Date(), stickerCount: 54, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Steve", dateStart: Date(), dataEnd: Date(), stickerCount: 431, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Stwie", dateStart: Date(), dataEnd: Date(), stickerCount: 64, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Proro", dateStart: Date(), dataEnd: Date(), stickerCount: 3, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Pack", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: [])
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Alfted", dateStart: Date(), dateEnd: Date(), stickerCount: 134, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Timothy", dateStart: Date(), dateEnd: Date(), stickerCount: 313, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Cook", dateStart: Date(), dateEnd: Date(), stickerCount: 54, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Steve", dateStart: Date(), dateEnd: Date(), stickerCount: 431, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Stwie", dateStart: Date(), dateEnd: Date(), stickerCount: 64, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Proro", dateStart: Date(), dateEnd: Date(), stickerCount: 3, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Pack", dateStart: Date(), dateEnd: Date(), stickerCount: 13, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Alfted", dateStart: Date(), dateEnd: Date(), stickerCount: 134, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Timothy", dateStart: Date(), dateEnd: Date(), stickerCount: 313, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Cook", dateStart: Date(), dateEnd: Date(), stickerCount: 54, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Steve", dateStart: Date(), dateEnd: Date(), stickerCount: 431, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Stwie", dateStart: Date(), dateEnd: Date(), stickerCount: 64, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Proro", dateStart: Date(), dateEnd: Date(), stickerCount: 3, stickerNameList: []),
+        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Pack", dateStart: Date(), dateEnd: Date(), stickerCount: 13, stickerNameList: [])
     ]
     
     
@@ -180,5 +180,27 @@ extension MainViewModel {
             self.tableViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
         }).disposed(by: disposeBag)
     }
+
+}
+
+// MARK: Network Request
+extension MainViewModel {
+    
+    private func getScheduleList(date: Date) {
+        
+    }
+    
+//    private func login(email: String, password: String) {
+//        let emailText = email.trimmingCharacters(in: [" "])
+//        let passwordText = password.trimmingCharacters(in: [" "])
+//
+//        self.signInUseCase.login(email: emailText, password: passwordText).subscribe(onSuccess: { tokenData in
+//            UserDataStorage.shared.setAccessToken(token: tokenData.accessToken)
+//            self.coordinator?.showMainScene()
+//        }, onFailure: { _ in
+//            self.coordinator?.showToastMessage()
+//        }, onDisposed: nil)
+//        .disposed(by: disposeBag)
+//    }
 
 }
