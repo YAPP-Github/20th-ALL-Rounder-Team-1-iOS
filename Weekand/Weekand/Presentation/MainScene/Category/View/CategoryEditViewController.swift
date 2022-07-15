@@ -31,12 +31,27 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
         $0.tintColor = .gray400
     }
     
-    var selectedOpenType: OpenType = .allOpen
+    var selectedCategory: Category? {
+        didSet {
+            self.categoryTextFieldStackView.textField.text = selectedCategory?.name
+            self.selectedOpenType = selectedCategory?.openType ?? .closed
+            let color = Constants.colors.flatMap { $0 }.filter { $0.hexCode == selectedCategory?.color }
+            self.selectedColor = color.first ?? Constants.colors[0][0]
+        }
+    }
+    var selectedOpenType: CategoryOpenType = .allOpen {
+        didSet {
+            self.openTypeObservable.onNext(selectedOpenType)
+        }
+    }
     var selectedColor: Color = Constants.colors[0][0] {
         didSet {
             self.colorStackView.colorView.backgroundColor = UIColor(hex: selectedColor.hexCode)
+            self.colorObservable.onNext(selectedColor)
         }
     }
+    lazy var openTypeObservable = BehaviorSubject(value: selectedOpenType)
+    lazy var colorObservable = BehaviorSubject(value: selectedColor)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,13 +85,23 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
     }
     
     private func bindViewModel() {
-        let input = CategoryAddViewModel.Input(
+        let addInput = CategoryAddViewModel.Input(
             closeButtonDidTapEvent: closeButton.rx.tap.asObservable(),
             colorButtonDidTapEvent: colorStackView.colorView.rx.tap.asObservable(),
             categoryNameTextFieldDidEditEvent: categoryTextFieldStackView.textField.rx.text.orEmpty.asObservable(),
             confirmButtonDidTapEvent: confirmButton.rx.tap.asObservable(),
-            selectedOpenType: selectedOpenType,
-            selectedColor: selectedColor
+            selectedOpenType: openTypeObservable,
+            selectedColor: colorObservable
+        )
+        
+        let modifyInput = CategoryModifyViewModel.Input(
+            closeButtonDidTapEvent: closeButton.rx.tap.asObservable(),
+            colorButtonDidTapEvent: colorStackView.colorView.rx.tap.asObservable(),
+            categoryNameTextFieldDidEditEvent: categoryTextFieldStackView.textField.rx.text.orEmpty.asObservable(),
+            confirmButtonDidTapEvent: confirmButton.rx.tap.asObservable(),
+            selectedOpenType: openTypeObservable,
+            selectedColor: colorObservable,
+            selectedCategory: selectedCategory 
         )
         
         openTypeStackView.allOpenButton.rx.tap.subscribe { _ in
@@ -106,7 +131,11 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
             }
         }.disposed(by: disposeBag)
         
-        _ = viewModel?.transform(input: input as! T.Input)
+        if ((viewModel as? CategoryAddViewModel) != nil) {
+            let output = viewModel?.transform(input: addInput as! T.Input)
+        } else {
+            let output = viewModel?.transform(input: modifyInput as! T.Input)
+        }
         
         categoryTextFieldStackView.textField.rx.text.orEmpty
             .map(checkEmptyValue)

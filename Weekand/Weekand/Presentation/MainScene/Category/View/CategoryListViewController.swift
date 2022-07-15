@@ -18,14 +18,6 @@ class CategoryListViewController: UIViewController {
       case main
     }
     
-    let sample: [Category] = [
-        Category(color: "red", name: "공부", openType: .allOpen),
-        Category(color: "red", name: "자기계발", openType: .closed),
-        Category(color: "red", name: "취미생활", openType: .followerOpen),
-        Category(color: "red", name: "업무", openType: .closed),
-        Category(color: "red", name: "to do", openType: .allOpen)
-    ]
-    
     private let disposeBag = DisposeBag()
     var viewModel: CategoryListViewModel?
     var dataSource: UITableViewDiffableDataSource<Section, Category>!
@@ -33,7 +25,15 @@ class CategoryListViewController: UIViewController {
     var headerView = CategoryListHeaderView()
     let tableView = UITableView()
     
-    var selectedSort: Sort = .nameCreateDESC
+    var list: [Category] = []
+    var categoryCount: Int = 20
+    var refreshListCount: Int = 15
+    var page: Int = 0
+    var selectedSort: ScheduleSort = .dateCreatedDESC
+    
+    let dropDownDidSelectEvent = PublishRelay<ScheduleSort>()
+    let categoryCellDidSelected = PublishRelay<Category>()
+    let categoryCellDidSwipeEvent = PublishRelay<Category>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +41,13 @@ class CategoryListViewController: UIViewController {
         setupView()
         configureUI()
         configureDataSource()
-        configureSnapshot()
         bindViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setCategoryList(sort: selectedSort)
     }
     
     private func setupView() {
@@ -59,7 +64,7 @@ class CategoryListViewController: UIViewController {
         }
         
         headerView.dropDown.cellNib = UINib(nibName: "SortDropDownCell", bundle: nil)
-        headerView.dropDown.dataSource = Sort.allCases.map { $0.description }
+        headerView.dropDown.dataSource = ScheduleSort.allCases.map { $0.description }
         headerView.dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
             guard let cell = cell as? SortDropDownCell else { return }
             
@@ -75,22 +80,35 @@ class CategoryListViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        let dropDownDidSelectEvent = BehaviorRelay(value: Sort.nameCreateDESC)
         
         let input = CategoryListViewModel.Input(
             didTapAddCategoryButton: self.headerView.addCategoryButton.rx.tap.asObservable(),
-            didCategoryCellSelected: self.tableView.rx.itemSelected.asObservable(),
-            dropDownDidSelectEvent: dropDownDidSelectEvent
+            categoryCellDidSelected: categoryCellDidSelected,
+            categoryCellDidSwipeEvent: categoryCellDidSwipeEvent
         )
         
         self.headerView.dropDown.selectionAction = { [unowned self] (_ : Int, item: String) in
-            guard let selectedSort = Sort.allCases.filter { $0.description == item }.first else {
+            guard let sort = ScheduleSort.allCases.filter { $0.description == item }.first else {
                 return
             }
             
-            dropDownDidSelectEvent.accept(selectedSort)
-            self.headerView.sortButton.setTitle(selectedSort.description)
+            dropDownDidSelectEvent.accept(sort)
+            selectedSort = sort
+            self.headerView.sortButton.setTitle(sort.description)
         }
+        
+        dropDownDidSelectEvent.subscribe(onNext: { [weak self] sort in
+            self?.setCategoryList(sort: sort)
+        })
+        .disposed(by: disposeBag)
+        
+        self.viewModel?.categoryList
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] categoryList in
+                categoryList.forEach { self?.list.append($0) }
+                self?.configureSnapshot(list: self?.list ?? [])
+        })
+        .disposed(by: self.disposeBag)
         
         self.headerView.sortButton.rx.tap.subscribe(onNext: {
             self.headerView.dropDown.show()
@@ -105,22 +123,21 @@ extension CategoryListViewController {
     
     private func configureDataSource() {
         
-        dataSource = UITableViewDiffableDataSource<Section, Category>(tableView: tableView, cellProvider: { tableView, indexPath, list in
+        dataSource = UITableViewDiffableDataSource<Section, Category>(tableView: tableView, cellProvider: { tableView, indexPath, category in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryListTableViewCell.cellIdentifier, for: indexPath) as? CategoryListTableViewCell else {
                 return UITableViewCell()
             }
             cell.accessoryType = .disclosureIndicator
             cell.selectionStyle = .none
-            cell.configure(color: UIColor(hex: "#FFC8C8") ?? .red, openType: list.openType, name: list.name)
+            cell.configure(color: UIColor(hex: category.color)!, openType: category.openType, name: category.name)
             return cell
         })
     }
     
-    private func configureSnapshot(animatingDifferences: Bool = true) {
-
+    func configureSnapshot(animatingDifferences: Bool = false, list: [Category]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Category>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(sample, toSection: .main)
+        snapshot.appendItems(list, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
     
@@ -136,16 +153,26 @@ extension CategoryListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 65
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.item == refreshListCount * (page + 1) {
+            page += 1
+            self.appendCategoryList()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        categoryCellDidSelected.accept(list[indexPath.item])
+    }
 }
 
 extension CategoryListViewController {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let update = UIContextualAction(style: .normal, title: "수정") { _, _, _ in
-            print("수정 클릭 됨")
+            self.categoryCellDidSwipeEvent.accept(self.list[indexPath.item])
         }
         update.backgroundColor = .mainColor
-        
         
         let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, _ in
             self.showActionSheet(titles: "삭제", message: "카테고리를 삭제하시겠어요?") { _ in
@@ -157,6 +184,20 @@ extension CategoryListViewController {
         return UISwipeActionsConfiguration(actions: [delete, update])
     }
 }
+
+extension CategoryListViewController {
+    func setCategoryList(sort: ScheduleSort = .dateCreatedDESC) {
+        self.page = 0
+        self.list = []
+        self.viewModel?.searchCategories(sort: sort, page: page, size: categoryCount)
+        self.tableView.scrollToTop()
+    }
+    
+    func appendCategoryList() {
+        self.viewModel?.searchCategories(sort: selectedSort, page: page, size: categoryCount)
+    }
+}
+
 
 import SwiftUI
 #if canImport(SwiftUI) && DEBUG

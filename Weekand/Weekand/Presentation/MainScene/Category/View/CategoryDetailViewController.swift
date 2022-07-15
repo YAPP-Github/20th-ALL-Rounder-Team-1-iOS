@@ -33,9 +33,15 @@ class CategoryDetailViewController: UIViewController {
     var dataSource: UITableViewDiffableDataSource<Section, ScehduleMain>!
     
     let tableView = UITableView()
-    var headerView = CategoryDetailHeaderView()
+    let headerView = CategoryDetailHeaderView()
+    let footerView = CategoryDetailFooterView()
     
-    var selectedSort: Sort = .nameCreateDESC
+    var selectedSort: ScheduleSort = .dateCreatedDESC
+    var selectedCategory: Category? {
+        didSet {
+            self.navigationItem.title = selectedCategory?.name
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +73,7 @@ class CategoryDetailViewController: UIViewController {
         }
         
         headerView.dropDown.cellNib = UINib(nibName: "SortDropDownCell", bundle: nil)
-        headerView.dropDown.dataSource = Sort.allCases.map { $0.description }
+        headerView.dropDown.dataSource = ScheduleSort.allCases.map { $0.description }
         headerView.dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
             guard let cell = cell as? SortDropDownCell else { return }
             
@@ -83,17 +89,18 @@ class CategoryDetailViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        let dropDownDidSelectEvent = BehaviorRelay(value: Sort.nameCreateDESC)
+        let dropDownDidSelectEvent = BehaviorRelay(value: self.selectedSort)
         
         let input = CategoryDetailViewModel.Input(
-            dropDownDidSelectEvent: dropDownDidSelectEvent
+            dropDownDidSelectEvent: dropDownDidSelectEvent,
+            didTapUpdateCategoryButton: self.footerView.updateCategoryButton.rx.tap.asObservable(),
+            selectedCategory: selectedCategory
         )
         
         self.headerView.dropDown.selectionAction = { [unowned self] (_ : Int, item: String) in
-            guard let selectedSort = Sort.allCases.filter { $0.description == item }.first else {
+            guard let selectedSort = ScheduleSort.allCases.filter { $0.description == item }.first else {
                 return
             }
-            
             dropDownDidSelectEvent.accept(selectedSort)
             self.headerView.sortButton.setTitle(selectedSort.description)
         }
@@ -101,6 +108,8 @@ class CategoryDetailViewController: UIViewController {
         self.headerView.sortButton.rx.tap.subscribe(onNext: {
             self.headerView.dropDown.show()
         }).disposed(by: disposeBag)
+        
+        let _ = viewModel?.transform(input: input)
     }
 
 }
@@ -142,7 +151,7 @@ extension CategoryDetailViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return CategoryDetailFooterView()
+        return footerView
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
