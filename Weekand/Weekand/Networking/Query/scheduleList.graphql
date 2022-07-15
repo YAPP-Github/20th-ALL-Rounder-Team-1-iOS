@@ -1,0 +1,16 @@
+query ScheduleList($date: Timestamp!){
+    schedules(date: $date) {
+        schedules {
+          id
+        name
+        status
+        category {
+          color
+        }
+        dateTimeStart
+        dateTimeEnd
+        stickerCount
+        stickerNames
+        }
+  }
+}

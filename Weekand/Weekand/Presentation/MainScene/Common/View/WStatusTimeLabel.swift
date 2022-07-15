@@ -7,18 +7,6 @@
 
 import UIKit
 
-enum StatusIcon: String {
-    
-    // TODO: String 대신 tintColor로 랜더링된 UIImage를 받을 수 있도록 리팩토링
-    case upcoming = "state.upcomming"
-    case proceeding = "state.proceeding"
-    case completed = "state.completed"
-    case skipped = "state.start"
-    
-    case start = "date.start"
-    case end = "date.end"
-}
-
 class WStatusTimeLabel: WIconLabel {
 
     override init(frame: CGRect) {

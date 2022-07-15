@@ -4,6 +4,106 @@
 import Apollo
 import Foundation
 
+public enum ScheduleStatus: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  case completed
+  case uncompleted
+  case skip
+  case undetermined
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "COMPLETED": self = .completed
+      case "UNCOMPLETED": self = .uncompleted
+      case "SKIP": self = .skip
+      case "UNDETERMINED": self = .undetermined
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .completed: return "COMPLETED"
+      case .uncompleted: return "UNCOMPLETED"
+      case .skip: return "SKIP"
+      case .undetermined: return "UNDETERMINED"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: ScheduleStatus, rhs: ScheduleStatus) -> Bool {
+    switch (lhs, rhs) {
+      case (.completed, .completed): return true
+      case (.uncompleted, .uncompleted): return true
+      case (.skip, .skip): return true
+      case (.undetermined, .undetermined): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [ScheduleStatus] {
+    return [
+      .completed,
+      .uncompleted,
+      .skip,
+      .undetermined,
+    ]
+  }
+}
+
+public enum ScheduleStickerName: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  case like
+  case cool
+  case good
+  case cheerUp
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "LIKE": self = .like
+      case "COOL": self = .cool
+      case "GOOD": self = .good
+      case "CHEER_UP": self = .cheerUp
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .like: return "LIKE"
+      case .cool: return "COOL"
+      case .good: return "GOOD"
+      case .cheerUp: return "CHEER_UP"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: ScheduleStickerName, rhs: ScheduleStickerName) -> Bool {
+    switch (lhs, rhs) {
+      case (.like, .like): return true
+      case (.cool, .cool): return true
+      case (.good, .good): return true
+      case (.cheerUp, .cheerUp): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [ScheduleStickerName] {
+    return [
+      .like,
+      .cool,
+      .good,
+      .cheerUp,
+    ]
+  }
+}
+
 public struct SignUpInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
@@ -278,6 +378,261 @@ public final class LoginQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "accessToken")
+        }
+      }
+    }
+  }
+}
+
+public final class ScheduleListQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query ScheduleList($date: Timestamp!) {
+      schedules(date: $date) {
+        __typename
+        schedules {
+          __typename
+          id
+          name
+          status
+          category {
+            __typename
+            color
+          }
+          dateTimeStart
+          dateTimeEnd
+          stickerCount
+          stickerNames
+        }
+      }
+    }
+    """
+
+  public let operationName: String = "ScheduleList"
+
+  public var date: String
+
+  public init(date: String) {
+    self.date = date
+  }
+
+  public var variables: GraphQLMap? {
+    return ["date": date]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("schedules", arguments: ["date": GraphQLVariable("date")], type: .nonNull(.object(Schedule.selections))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(schedules: Schedule) {
+      self.init(unsafeResultMap: ["__typename": "Query", "schedules": schedules.resultMap])
+    }
+
+    /// 메인 화면에 표시될 일정 목록을 반환한다
+    public var schedules: Schedule {
+      get {
+        return Schedule(unsafeResultMap: resultMap["schedules"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "schedules")
+      }
+    }
+
+    public struct Schedule: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["ScheduleList"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("schedules", type: .nonNull(.list(.nonNull(.object(Schedule.selections))))),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(schedules: [Schedule]) {
+        self.init(unsafeResultMap: ["__typename": "ScheduleList", "schedules": schedules.map { (value: Schedule) -> ResultMap in value.resultMap }])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var schedules: [Schedule] {
+        get {
+          return (resultMap["schedules"] as! [ResultMap]).map { (value: ResultMap) -> Schedule in Schedule(unsafeResultMap: value) }
+        }
+        set {
+          resultMap.updateValue(newValue.map { (value: Schedule) -> ResultMap in value.resultMap }, forKey: "schedules")
+        }
+      }
+
+      public struct Schedule: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["Schedule"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("name", type: .nonNull(.scalar(String.self))),
+            GraphQLField("status", type: .nonNull(.scalar(ScheduleStatus.self))),
+            GraphQLField("category", type: .nonNull(.object(Category.selections))),
+            GraphQLField("dateTimeStart", type: .nonNull(.scalar(String.self))),
+            GraphQLField("dateTimeEnd", type: .nonNull(.scalar(String.self))),
+            GraphQLField("stickerCount", type: .nonNull(.scalar(Int.self))),
+            GraphQLField("stickerNames", type: .nonNull(.list(.nonNull(.scalar(ScheduleStickerName.self))))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(id: GraphQLID, name: String, status: ScheduleStatus, category: Category, dateTimeStart: String, dateTimeEnd: String, stickerCount: Int, stickerNames: [ScheduleStickerName]) {
+          self.init(unsafeResultMap: ["__typename": "Schedule", "id": id, "name": name, "status": status, "category": category.resultMap, "dateTimeStart": dateTimeStart, "dateTimeEnd": dateTimeEnd, "stickerCount": stickerCount, "stickerNames": stickerNames])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var id: GraphQLID {
+          get {
+            return resultMap["id"]! as! GraphQLID
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "id")
+          }
+        }
+
+        public var name: String {
+          get {
+            return resultMap["name"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "name")
+          }
+        }
+
+        public var status: ScheduleStatus {
+          get {
+            return resultMap["status"]! as! ScheduleStatus
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "status")
+          }
+        }
+
+        public var category: Category {
+          get {
+            return Category(unsafeResultMap: resultMap["category"]! as! ResultMap)
+          }
+          set {
+            resultMap.updateValue(newValue.resultMap, forKey: "category")
+          }
+        }
+
+        public var dateTimeStart: String {
+          get {
+            return resultMap["dateTimeStart"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "dateTimeStart")
+          }
+        }
+
+        public var dateTimeEnd: String {
+          get {
+            return resultMap["dateTimeEnd"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "dateTimeEnd")
+          }
+        }
+
+        public var stickerCount: Int {
+          get {
+            return resultMap["stickerCount"]! as! Int
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "stickerCount")
+          }
+        }
+
+        public var stickerNames: [ScheduleStickerName] {
+          get {
+            return resultMap["stickerNames"]! as! [ScheduleStickerName]
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "stickerNames")
+          }
+        }
+
+        public struct Category: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["ScheduleCategory"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("color", type: .nonNull(.scalar(String.self))),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(color: String) {
+            self.init(unsafeResultMap: ["__typename": "ScheduleCategory", "color": color])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var color: String {
+            get {
+              return resultMap["color"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "color")
+            }
+          }
         }
       }
     }

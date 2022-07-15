@@ -34,20 +34,20 @@ class MainViewModel {
         FollowingUser(userId: "0", name: "여긴어디 난누구", imagePath: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTV8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60")
     ]
     let sampleScheduleList: [ScehduleMain] = [
-        ScehduleMain(scheduleId: "0", color: "red", name: "Alfted", dateStart: Date(), dataEnd: Date(), stickerCount: 134, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Timothy", dateStart: Date(), dataEnd: Date(), stickerCount: 313, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Cook", dateStart: Date(), dataEnd: Date(), stickerCount: 54, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Steve", dateStart: Date(), dataEnd: Date(), stickerCount: 431, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Stwie", dateStart: Date(), dataEnd: Date(), stickerCount: 64, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Proro", dateStart: Date(), dataEnd: Date(), stickerCount: 3, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Pack", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Alfted", dateStart: Date(), dataEnd: Date(), stickerCount: 134, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Timothy", dateStart: Date(), dataEnd: Date(), stickerCount: 313, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Cook", dateStart: Date(), dataEnd: Date(), stickerCount: 54, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Steve", dateStart: Date(), dataEnd: Date(), stickerCount: 431, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Stwie", dateStart: Date(), dataEnd: Date(), stickerCount: 64, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Proro", dateStart: Date(), dataEnd: Date(), stickerCount: 3, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Pack", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: [])
+        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Alfted", dateStart: Date(), dataEnd: Date(), stickerCount: 134, stickerNameList: []),
+        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Timothy", dateStart: Date(), dataEnd: Date(), stickerCount: 313, stickerNameList: []),
+        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Cook", dateStart: Date(), dataEnd: Date(), stickerCount: 54, stickerNameList: []),
+        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Steve", dateStart: Date(), dataEnd: Date(), stickerCount: 431, stickerNameList: []),
+        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Stwie", dateStart: Date(), dataEnd: Date(), stickerCount: 64, stickerNameList: []),
+        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Proro", dateStart: Date(), dataEnd: Date(), stickerCount: 3, stickerNameList: []),
+        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Pack", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: []),
+        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Alfted", dateStart: Date(), dataEnd: Date(), stickerCount: 134, stickerNameList: []),
+        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Timothy", dateStart: Date(), dataEnd: Date(), stickerCount: 313, stickerNameList: []),
+        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Cook", dateStart: Date(), dataEnd: Date(), stickerCount: 54, stickerNameList: []),
+        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Steve", dateStart: Date(), dataEnd: Date(), stickerCount: 431, stickerNameList: []),
+        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Stwie", dateStart: Date(), dataEnd: Date(), stickerCount: 64, stickerNameList: []),
+        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Proro", dateStart: Date(), dataEnd: Date(), stickerCount: 3, stickerNameList: []),
+        ScehduleMain(scheduleId: "0", color: "red", status: .completed,  name: "Pack", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: [])
     ]
     
     

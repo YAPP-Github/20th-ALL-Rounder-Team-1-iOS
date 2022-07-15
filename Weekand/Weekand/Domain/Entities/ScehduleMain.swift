@@ -22,9 +22,10 @@ struct ScehduleMain: Hashable {
     
     let scheduleId: String
     let color: String
+    let status: Status
     let name: String
     let dateStart: Date
     let dataEnd: Date
     let stickerCount: Int
-    let stickerNameList: [String]
+    let stickerNameList: [Emoji]
 }
