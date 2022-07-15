@@ -16,7 +16,7 @@ enum MainSection {
 class MainViewModel: ViewModelType {
     
     // TODO: Service 구현 후 삭제 or 이동
-    let sampleUserSummary = UserSummary(name: "주호민", state: "콘텐츠어워드 만화부분 대통령상 미만 훈수 금지", imagePath: "https://pbs.twimg.com/profile_images/1119172481653149696/hUzsqa_X_400x400.png")
+
     let sampleUserFollowingList = [
         FollowingUser(userId: "12345", name: "Sam", imagePath: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60"),
         FollowingUser(userId: "0", name: "Lisa", imagePath: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60"),
@@ -56,10 +56,13 @@ class MainViewModel: ViewModelType {
         self.coordinator = coordinator
         self.mainUseCase = mainUseCase
         
+        self.getUserSummary()
+        
+        self.getScheduleList(date: "1656255168388".fromStringTimestamp())   // TODO: 500 에러 수정
+        
         // TODO: Service 구현 후 데이터 받는 부분 이동
-        PublishRelay<UserSummary>.just(sampleUserSummary).bind(to: userSummary).disposed(by: disposeBag)
         PublishRelay<[FollowingUser]>.just(sampleUserFollowingList).bind(to: userFollowingList).disposed(by: disposeBag)
-            }
+        }
     
 }
 
@@ -168,10 +171,20 @@ extension MainViewModel {
 // MARK: Network Request
 extension MainViewModel {
     
+    private func getUserSummary() {
+        self.mainUseCase.userSummary().subscribe(onSuccess: { userData in
+            PublishRelay<UserSummary>.just(userData).bind(to: self.userSummary).disposed(by: self.disposeBag)
+        }, onFailure: { error in
+            print("Error: \(error)")
+        }, onDisposed: nil)
+        .disposed(by: disposeBag)
+    }
+    
     private func getScheduleList(date: Date) {
         
         self.mainUseCase.scheduleList(date: date).subscribe (onSuccess: { scheduleData in
             PublishRelay<[ScheduleMain]>.just(scheduleData).bind(to: self.scheduleList).disposed(by: self.disposeBag)
+            print(scheduleData)
 
         }, onFailure: { error in
             print("Error: \(error)")

@@ -1,6 +1,5 @@
-query UserBrief {
+query UserSummary {
   user {
-    id
     nickname
     profileUrl
     goal
