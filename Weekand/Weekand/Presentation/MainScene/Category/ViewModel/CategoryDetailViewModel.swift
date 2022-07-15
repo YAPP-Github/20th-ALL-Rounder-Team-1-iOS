@@ -28,12 +28,22 @@ extension CategoryDetailViewModel {
     
     struct Input {
         let dropDownDidSelectEvent: BehaviorRelay<ScheduleSort>
+        let didTapUpdateCategoryButton: Observable<Void>
+        let selectedCategory: Category?
     }
     
     struct Output { }
     
     @discardableResult
     func transform(input: Input) -> Output {
+        
+        input.didTapUpdateCategoryButton.subscribe(onNext: {
+            guard let category = input.selectedCategory else {
+                return
+            }
+            self.coordinator?.showCategoryModifyScene(category: category)
+        })
+        .disposed(by: disposeBag)
         
         return Output()
     }

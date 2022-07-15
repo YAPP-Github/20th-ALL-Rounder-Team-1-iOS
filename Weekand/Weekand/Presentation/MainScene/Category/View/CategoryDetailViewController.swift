@@ -33,7 +33,8 @@ class CategoryDetailViewController: UIViewController {
     var dataSource: UITableViewDiffableDataSource<Section, ScehduleMain>!
     
     let tableView = UITableView()
-    var headerView = CategoryDetailHeaderView()
+    let headerView = CategoryDetailHeaderView()
+    let footerView = CategoryDetailFooterView()
     
     var selectedSort: ScheduleSort = .dateCreatedDESC
     var selectedCategory: Category? {
@@ -91,14 +92,15 @@ class CategoryDetailViewController: UIViewController {
         let dropDownDidSelectEvent = BehaviorRelay(value: self.selectedSort)
         
         let input = CategoryDetailViewModel.Input(
-            dropDownDidSelectEvent: dropDownDidSelectEvent
+            dropDownDidSelectEvent: dropDownDidSelectEvent,
+            didTapUpdateCategoryButton: self.footerView.updateCategoryButton.rx.tap.asObservable(),
+            selectedCategory: selectedCategory
         )
         
         self.headerView.dropDown.selectionAction = { [unowned self] (_ : Int, item: String) in
             guard let selectedSort = ScheduleSort.allCases.filter { $0.description == item }.first else {
                 return
             }
-            
             dropDownDidSelectEvent.accept(selectedSort)
             self.headerView.sortButton.setTitle(selectedSort.description)
         }
@@ -106,6 +108,8 @@ class CategoryDetailViewController: UIViewController {
         self.headerView.sortButton.rx.tap.subscribe(onNext: {
             self.headerView.dropDown.show()
         }).disposed(by: disposeBag)
+        
+        let _ = viewModel?.transform(input: input)
     }
 
 }
@@ -147,7 +151,7 @@ extension CategoryDetailViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return CategoryDetailFooterView()
+        return footerView
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
