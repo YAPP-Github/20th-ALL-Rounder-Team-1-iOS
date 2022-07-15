@@ -35,7 +35,7 @@ class CategoryDetailViewController: UIViewController {
     let tableView = UITableView()
     var headerView = CategoryDetailHeaderView()
     
-    var selectedSort: ScheduleSort = .nameCreateDESC
+    var selectedSort: ScheduleSort = .dateCreatedDESC
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +83,7 @@ class CategoryDetailViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        let dropDownDidSelectEvent = BehaviorRelay(value: ScheduleSort.nameCreateDESC)
+        let dropDownDidSelectEvent = BehaviorRelay(value: self.selectedSort)
         
         let input = CategoryDetailViewModel.Input(
             dropDownDidSelectEvent: dropDownDidSelectEvent

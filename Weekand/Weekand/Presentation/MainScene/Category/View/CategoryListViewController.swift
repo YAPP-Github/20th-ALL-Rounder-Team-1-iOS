@@ -29,7 +29,7 @@ class CategoryListViewController: UIViewController {
     var categoryCount: Int = 20
     var refreshListCount: Int = 15
     var page: Int = 0
-    var selectedSort: ScheduleSort = .nameCreateDESC
+    var selectedSort: ScheduleSort = .dateCreatedDESC
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +43,7 @@ class CategoryListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        setCategoryList()
+        setCategoryList(sort: selectedSort)
     }
     
     private func setupView() {
@@ -76,22 +76,35 @@ class CategoryListViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        let dropDownDidSelectEvent = BehaviorRelay(value: ScheduleSort.nameCreateDESC)
+        let dropDownDidSelectEvent = PublishRelay<ScheduleSort>()
         
         let input = CategoryListViewModel.Input(
             didTapAddCategoryButton: self.headerView.addCategoryButton.rx.tap.asObservable(),
-            didCategoryCellSelected: self.tableView.rx.itemSelected.asObservable(),
-            dropDownDidSelectEvent: dropDownDidSelectEvent
+            didCategoryCellSelected: self.tableView.rx.itemSelected.asObservable()
         )
         
         self.headerView.dropDown.selectionAction = { [unowned self] (_ : Int, item: String) in
-            guard let selectedSort = ScheduleSort.allCases.filter { $0.description == item }.first else {
+            guard let sort = ScheduleSort.allCases.filter { $0.description == item }.first else {
                 return
             }
             
-            dropDownDidSelectEvent.accept(selectedSort)
-            self.headerView.sortButton.setTitle(selectedSort.description)
+            dropDownDidSelectEvent.accept(sort)
+            selectedSort = sort
+            self.headerView.sortButton.setTitle(sort.description)
         }
+        
+        dropDownDidSelectEvent.subscribe(onNext: { [weak self] sort in
+            self?.setCategoryList(sort: sort)
+        })
+        .disposed(by: disposeBag)
+        
+        self.viewModel?.categoryList
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] categoryList in
+                categoryList.forEach { self?.list.append($0) }
+                self?.configureSnapshot(list: self?.list ?? [])
+        })
+        .disposed(by: self.disposeBag)
         
         self.headerView.sortButton.rx.tap.subscribe(onNext: {
             self.headerView.dropDown.show()
@@ -117,8 +130,7 @@ extension CategoryListViewController {
         })
     }
     
-    func configureSnapshot(animatingDifferences: Bool = true, list: [Category]) {
-        print(list)
+    func configureSnapshot(animatingDifferences: Bool = false, list: [Category]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Category>()
         snapshot.appendSections([.main])
         snapshot.appendItems(list, toSection: .main)
@@ -141,7 +153,7 @@ extension CategoryListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.item == refreshListCount * (page + 1) {
             page += 1
-            self.viewModel?.searchCategories(sort: selectedSort, page: page, size: categoryCount, completion: { })
+            self.appendCategoryList()
         }
     }
 }
@@ -153,7 +165,6 @@ extension CategoryListViewController {
             print("수정 클릭 됨")
         }
         update.backgroundColor = .mainColor
-        
         
         let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, _ in
             self.showActionSheet(titles: "삭제", message: "카테고리를 삭제하시겠어요?") { _ in
@@ -167,15 +178,15 @@ extension CategoryListViewController {
 }
 
 extension CategoryListViewController {
-    func setCategoryList() {
-        self.viewModel?.searchCategories(sort: selectedSort, page: page, size: categoryCount, completion: { })
-        self.viewModel?.categoryList
-            .observe(on: MainScheduler.asyncInstance)
-            .subscribe(onNext: { [weak self] categoryList in
-                categoryList.forEach { self?.list.append($0) }
-                self?.configureSnapshot(list: self?.list ?? [])
-        })
-        .disposed(by: self.disposeBag)
+    func setCategoryList(sort: ScheduleSort = .dateCreatedDESC) {
+        self.page = 0
+        self.list = []
+        self.viewModel?.searchCategories(sort: sort, page: page, size: categoryCount)
+        self.tableView.scrollToTop()
+    }
+    
+    func appendCategoryList() {
+        self.viewModel?.searchCategories(sort: selectedSort, page: page, size: categoryCount)
     }
 }
 

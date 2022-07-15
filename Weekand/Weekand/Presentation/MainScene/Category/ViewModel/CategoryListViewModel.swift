@@ -32,7 +32,6 @@ extension CategoryListViewModel {
     struct Input {
         let didTapAddCategoryButton: Observable<Void>
         let didCategoryCellSelected: Observable<IndexPath>   // TODO: Cell의 Category-ID를 받아오도록 수정 (모델 구현 이후 진행)
-        let dropDownDidSelectEvent: BehaviorRelay<ScheduleSort>
     }
     
     struct Output { }
@@ -51,7 +50,7 @@ extension CategoryListViewModel {
         return Output()
     }
     
-    func searchCategories(sort: ScheduleSort, page: Int, size: Int, completion: @escaping () -> Void) {
+    func searchCategories(sort: ScheduleSort, page: Int, size: Int) {
         
         self.categoryUseCase.ScheduleCategories(sort: sort, page: page, size: size)
             .subscribe(onSuccess: { data in
@@ -60,16 +59,15 @@ extension CategoryListViewModel {
                     Category(serverID: category.id, color: category.color, name: category.name, openType: category.openType.toEntity())
                 }
                 self.categoryList.accept(list)
-                completion()
             }, onFailure: { error in
                 print(error)
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }
     
-    func loadMoreCategoryList(selectedSort: ScheduleSort, page: Int, size: Int, completion: @escaping () -> Void) {
+    func loadMoreCategoryList(selectedSort: ScheduleSort, page: Int, size: Int) {
         if hasNext {
-            self.searchCategories(sort: selectedSort, page: page, size: size, completion: completion)
+            self.searchCategories(sort: selectedSort, page: page, size: size)
         }
     }
 }

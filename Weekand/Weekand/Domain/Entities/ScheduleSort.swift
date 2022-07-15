@@ -8,20 +8,20 @@
 import Foundation
 
 enum ScheduleSort: CaseIterable {
+    case dateCreatedDESC
     case dateCreatedASC
-    case dateCreateDESC
     case nameCreatedASC
-    case nameCreateDESC
+    case nameCreatedDESC
     
     var description: String {
         switch self {
-        case .dateCreatedASC:
+        case .dateCreatedDESC:
             return "최신순"
-        case .dateCreateDESC:
+        case .dateCreatedASC:
             return "오래된순"
         case .nameCreatedASC:
             return "오름차순"
-        case .nameCreateDESC:
+        case .nameCreatedDESC:
             return "내림차순"
         }
     }
@@ -32,11 +32,11 @@ extension ScheduleSort {
         switch self {
         case .dateCreatedASC:
             return ScheduleCategorySort.dateCreatedAsc
-        case .dateCreateDESC:
+        case .dateCreatedDESC:
             return ScheduleCategorySort.dateCreatedDesc
         case .nameCreatedASC:
             return ScheduleCategorySort.nameAsc
-        case .nameCreateDESC:
+        case .nameCreatedDESC:
             return ScheduleCategorySort.nameDesc
         }
     }
