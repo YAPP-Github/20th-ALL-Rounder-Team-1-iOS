@@ -168,6 +168,45 @@ public struct SignUpInput: GraphQLMapConvertible {
   }
 }
 
+public struct ScheduleCategoryInput: GraphQLMapConvertible {
+  public var graphQLMap: GraphQLMap
+
+  /// - Parameters:
+  ///   - name
+  ///   - color
+  ///   - openType
+  public init(name: String, color: String, openType: ScheduleCategoryOpenType) {
+    graphQLMap = ["name": name, "color": color, "openType": openType]
+  }
+
+  public var name: String {
+    get {
+      return graphQLMap["name"] as! String
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "name")
+    }
+  }
+
+  public var color: String {
+    get {
+      return graphQLMap["color"] as! String
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "color")
+    }
+  }
+
+  public var openType: ScheduleCategoryOpenType {
+    get {
+      return graphQLMap["openType"] as! ScheduleCategoryOpenType
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "openType")
+    }
+  }
+}
+
 public final class CheckDuplicateNicknameQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
@@ -762,6 +801,63 @@ public final class SignUpMutation: GraphQLMutation {
       }
       set {
         resultMap.updateValue(newValue, forKey: "signUp")
+      }
+    }
+  }
+}
+
+public final class UpdateCategoryMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation UpdateCategory($categoryId: ID!, $scheduleCategoryInput: ScheduleCategoryInput!) {
+      updateCategory(
+        categoryId: $categoryId
+        scheduleCategoryInput: $scheduleCategoryInput
+      )
+    }
+    """
+
+  public let operationName: String = "UpdateCategory"
+
+  public var categoryId: GraphQLID
+  public var scheduleCategoryInput: ScheduleCategoryInput
+
+  public init(categoryId: GraphQLID, scheduleCategoryInput: ScheduleCategoryInput) {
+    self.categoryId = categoryId
+    self.scheduleCategoryInput = scheduleCategoryInput
+  }
+
+  public var variables: GraphQLMap? {
+    return ["categoryId": categoryId, "scheduleCategoryInput": scheduleCategoryInput]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("updateCategory", arguments: ["categoryId": GraphQLVariable("categoryId"), "scheduleCategoryInput": GraphQLVariable("scheduleCategoryInput")], type: .nonNull(.scalar(Bool.self))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(updateCategory: Bool) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "updateCategory": updateCategory])
+    }
+
+    /// 카테고리를 수정한다
+    public var updateCategory: Bool {
+      get {
+        return resultMap["updateCategory"]! as! Bool
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "updateCategory")
       }
     }
   }

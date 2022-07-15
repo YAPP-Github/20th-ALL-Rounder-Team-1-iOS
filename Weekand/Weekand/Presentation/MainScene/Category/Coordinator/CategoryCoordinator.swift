@@ -59,7 +59,7 @@ extension CategoryCoordinator: CoordinatorDidFinishDelegate {
     
     func childDidFinish(_ child: Coordinator) {
         self.childCoordinators = self.childCoordinators.filter({ $0.type != child.type })
-        if child.type == .categoryAdd {
+        if child.type == .categoryAdd || child.type == .categoryModify {
             self.categoryListViewController.setCategoryList()
         }
         navigationController.dismiss(animated: true, completion: nil)

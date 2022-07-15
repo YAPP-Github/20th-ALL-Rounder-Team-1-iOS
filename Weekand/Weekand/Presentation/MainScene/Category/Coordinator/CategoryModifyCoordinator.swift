@@ -41,6 +41,10 @@ class CategoryModifyCoordinator: Coordinator, CategoryEditCoordinatorType {
     }
     
     func dismiss() {
+        self.navigationController.dismiss(animated: true)
+    }
+    
+    func endAndDismiss() {
         self.finishDelegate?.childDidFinish(self)
     }
     

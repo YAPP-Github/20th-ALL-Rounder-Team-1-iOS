@@ -66,6 +66,7 @@
 		F30EBCD728807DC000ECB48D /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCD628807DC000ECB48D /* String+extension.swift */; };
 		F30EBCD9288138E800ECB48D /* UIScrollView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCD8288138E800ECB48D /* UIScrollView+extension.swift */; };
 		F30EBCDB28817A2400ECB48D /* CategoryEditCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCDA28817A2400ECB48D /* CategoryEditCoordinatorType.swift */; };
+		F30EBCDD28817CFD00ECB48D /* UpdateCategory.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F30EBCDC28817CFD00ECB48D /* UpdateCategory.graphql */; };
 		F323FEE92875FC3D00DFD8FD /* WCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */; };
 		F323FEEB28760E3A00DFD8FD /* FSCalendar+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */; };
 		F323FEF0287636B500DFD8FD /* SortDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEEE287636B500DFD8FD /* SortDropDownCell.swift */; };
@@ -231,6 +232,7 @@
 		F30EBCD628807DC000ECB48D /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		F30EBCD8288138E800ECB48D /* UIScrollView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+extension.swift"; sourceTree = "<group>"; };
 		F30EBCDA28817A2400ECB48D /* CategoryEditCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEditCoordinatorType.swift; sourceTree = "<group>"; };
+		F30EBCDC28817CFD00ECB48D /* UpdateCategory.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UpdateCategory.graphql; sourceTree = "<group>"; };
 		F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCalendarView.swift; sourceTree = "<group>"; };
 		F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FSCalendar+extension.swift"; sourceTree = "<group>"; };
 		F323FEEE287636B500DFD8FD /* SortDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDropDownCell.swift; sourceTree = "<group>"; };
@@ -938,6 +940,7 @@
 				F323FF37287B13F900DFD8FD /* SignUp.graphql */,
 				F3B00276287D700D00D6BB1D /* ScheduleCategories.graphql */,
 				F30EBCD0288078DF00ECB48D /* CreateCategory.graphql */,
+				F30EBCDC28817CFD00ECB48D /* UpdateCategory.graphql */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1102,6 +1105,7 @@
 				F323FEF1287636B500DFD8FD /* SortDropDownCell.xib in Resources */,
 				7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */,
 				F323FF102877F3B500DFD8FD /* Login.graphql in Resources */,
+				F30EBCDD28817CFD00ECB48D /* UpdateCategory.graphql in Resources */,
 				F323FF38287B13F900DFD8FD /* SignUp.graphql in Resources */,
 				F323FF2B287A036E00DFD8FD /* checkDuplicateNickname.graphql in Resources */,
 				7D0ED2C8287D547000DE3215 /* schema.json in Resources */,
