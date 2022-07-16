@@ -10,6 +10,13 @@ import RxSwift
 
 final class MainUseCase {
     
+    func followers(page: Int, size: Int) -> Single<[FollowingUser]> {
+        return NetWork.shared.fetch(query: FollowersQuery(page: page, size: size))
+            .map {
+                $0.followers.followers.map { FollowingUser(model: $0) }
+            }.asSingle()
+    }
+    
     func userSummary() -> Single<UserSummary> {
         return NetWork.shared.fetch(query: UserSummaryQuery())
             .map {

@@ -56,13 +56,12 @@ class MainViewModel: ViewModelType {
         self.coordinator = coordinator
         self.mainUseCase = mainUseCase
         
+        self.getFollowingUser()
         self.getUserSummary()
         
         self.getScheduleList(date: "1656255168388".fromStringTimestamp())   // TODO: 500 에러 수정
         
-        // TODO: Service 구현 후 데이터 받는 부분 이동
-        PublishRelay<[FollowingUser]>.just(sampleUserFollowingList).bind(to: userFollowingList).disposed(by: disposeBag)
-        }
+    }
     
 }
 
@@ -170,6 +169,15 @@ extension MainViewModel {
 
 // MARK: Network Request
 extension MainViewModel {
+    
+    private func getFollowingUser() {
+        self.mainUseCase.followers(page: 0, size: 20).subscribe(onSuccess: { following in
+            PublishRelay<[FollowingUser]>.just(following).bind(to: self.userFollowingList).disposed(by: self.disposeBag)
+        }, onFailure: { error in
+            print("Error: \(error)")
+        }, onDisposed: nil)
+        .disposed(by: disposeBag)
+    }
     
     private func getUserSummary() {
         self.mainUseCase.userSummary().subscribe(onSuccess: { userData in
