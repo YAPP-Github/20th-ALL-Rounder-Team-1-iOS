@@ -23,6 +23,18 @@ class SearchHeaderView: UITableViewHeaderFooterView {
         $0.backgroundColor = .white
     }
     
+    lazy var jobFilterButton = WFilterButtton().then {
+        $0.setTitle("직업 ", 2)
+        $0.clipsToBounds = true
+        $0.backgroundColor = .gray100
+    }
+    
+    lazy var interestsFilterButton = WFilterButtton().then {
+        $0.setTitle("관심사 ", 2)
+        $0.clipsToBounds = true
+        $0.backgroundColor = .gray100
+    }
+    
     lazy var dropDown = DropDown(anchorView: sortButton).then {
         $0.bottomOffset = CGPoint(x: -35, y: 40)
         $0.backgroundColor = .white
@@ -53,11 +65,27 @@ class SearchHeaderView: UITableViewHeaderFooterView {
     
     func configureUI() {
         self.contentView.addSubview(searchBar)
+        self.contentView.addSubview(jobFilterButton)
+        self.contentView.addSubview(interestsFilterButton)
         self.contentView.addSubview(sortButton)
         
         searchBar.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(12)
             make.top.equalToSuperview().offset(12)
+        }
+        
+        jobFilterButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-5)
+            make.leading.equalToSuperview().offset(14)
+            make.width.equalTo(67)
+            make.height.equalTo(36)
+        }
+        
+        interestsFilterButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-5)
+            make.leading.equalTo(jobFilterButton.snp.trailing).offset(5)
+            make.width.equalTo(67)
+            make.height.equalTo(36)
         }
 
         sortButton.snp.makeConstraints { make in
