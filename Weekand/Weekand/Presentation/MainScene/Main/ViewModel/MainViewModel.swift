@@ -42,9 +42,8 @@ class MainViewModel: ViewModelType {
         self.coordinator = coordinator
         self.mainUseCase = mainUseCase
         
-        self.getUserSummary()
         self.getFollowingUser()
-        self.getScheduleList(date: currentDate)
+        reloadData()
     }
     
 }
