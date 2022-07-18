@@ -35,4 +35,10 @@ struct FollowingUser: Hashable {
         self.name = model.nickname ?? ""
         self.imagePath = model.profileUrl ?? ""
     }
+    
+    init(userSummary: UserSummary) {
+        self.userId = UserDataStorage.shared.userID ?? ""
+        self.name = userSummary.name
+        self.imagePath = userSummary.imagePath
+    }
 }

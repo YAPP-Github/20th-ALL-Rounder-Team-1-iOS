@@ -35,6 +35,7 @@ class MainViewModel: ViewModelType {
     
     // 현재 일정이 나의 일정인지 식별하는 Property
     var isMySchedule: Bool = true
+    var currentUserId: String?
     
     init(coordinator: MainCoordinator, mainUseCase: MainUseCase) {
         self.coordinator = coordinator
@@ -60,7 +61,7 @@ extension MainViewModel {
         let didsearchBarButton: Observable<Void>
         
         // UserSummary
-        let didUserSummaryTap: Observable<String>
+        let didUserSummaryTap: Observable<UITapGestureRecognizer>
         
         // CalendarView
         let didTapTodayButton: Observable<Void>
@@ -103,7 +104,7 @@ extension MainViewModel {
                 print("To my Profile")
                 // TODO: 내 프로필로 이동
             } else {
-                print("To other's Profile")
+                print("To \(self?.currentUserId ?? "") Profile")
                 // TODO: 남의 프로필로 이동
             }
             
@@ -148,6 +149,8 @@ extension MainViewModel {
     /// id가 로그인한 유저인지 식별 후 저장
     func identifyMyPage(id: String?) {
         
+        currentUserId = id
+        
         guard let id = id else {
             print("Error: id Not Found")
             return
@@ -168,6 +171,18 @@ extension MainViewModel {
     
     func configureCollectionViewSnapShot(animatingDifferences: Bool = false) {
         
+        // 로그인한 유저 정보 (내정보)
+        self.userSummary.subscribe(onNext: { data in
+            var snapshot = self.collectionViewDataSource.snapshot()
+            
+            if let first = snapshot.itemIdentifiers.first {
+                snapshot.insertItems([FollowingUser(userSummary: data)], beforeItem: first)
+            }
+            self.collectionViewDataSource.apply(snapshot)
+            
+        }).disposed(by: disposeBag)
+        
+        // 팔로잉중인 유저 정보
         self.userFollowingList.subscribe(onNext: { data in
             
             var snapshot = NSDiffableDataSourceSnapshot<MainSection, FollowingUser>()

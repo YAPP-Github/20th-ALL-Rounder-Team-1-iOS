@@ -107,6 +107,8 @@ class MainViewController: UIViewController, UITableViewDelegate {
             didAlarmBarButton: self.alarmButton.rx.tap.asObservable(),
             didsearchBarButton: self.searchButton.rx.tap.asObservable(),
             
+            didUserSummaryTap: self.headerView.profileView.rx.tapGesture().asObservable(),
+            
             // Calendar Button
             didTapTodayButton: self.headerView.calendarView.todayButton.rx.tap.asObservable(),
             didTapNextWeekButton: self.headerView.calendarView.rightButton.rx.tap.asObservable(),
@@ -134,6 +136,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
         
         output?.userSummary.subscribe(onNext: { data in
             self.headerView.profileView.setUpView(data)
+            self.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .init())
         }).disposed(by: disposeBag)
         
     }
@@ -177,10 +180,6 @@ extension MainViewController {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
             cell.setUpCell(list)
-            
-            if indexPath.item == 0 {
-                self.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
-            }
             
             return cell
         })
