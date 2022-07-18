@@ -28,6 +28,7 @@ class MonthlyCalendarSheetViewController: BottomSheetViewController {
         super.init(nibName: nil, bundle: nil)
         print("현재날짜: \(currentDate)")
         viewModel?.selectedDate = currentDate
+        calendar.calendar.select(currentDate)
     }
     
     required init?(coder: NSCoder) {

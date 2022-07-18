@@ -49,7 +49,6 @@ class MainViewController: UIViewController, UITableViewDelegate {
     }
     
     private func setUpView() {
-        
         configureCollectionView()
         configureTableView()
     }
@@ -75,6 +74,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
             make.top.equalTo(collectionView.snp.bottom)
             make.left.right.equalToSuperview()
         }
+        headerView.calendarView.delegate = self
         tableView.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom)
             make.left.right.equalToSuperview()
@@ -201,6 +201,13 @@ extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! MainCollectionViewCell
         viewModel?.identifyMyPage(id: cell.dataId)
+    }
+}
+
+// MARK: Calender Selection
+extension MainViewController: MainCalendarDelegate {
+    func didSelectCalendar(date: Date) {
+        self.currentDate = date
     }
 }
 

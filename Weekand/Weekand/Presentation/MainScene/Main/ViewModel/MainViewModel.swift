@@ -150,7 +150,7 @@ extension MainViewModel {
     }
     
     /// id가 로그인한 유저인지 식별 후 저장
-    func identifyMyPage(id: String?){
+    func identifyMyPage(id: String?) {
         
         currentUserId = id
         
