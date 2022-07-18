@@ -11,7 +11,7 @@ import Then
 import RxSwift
 import RxGesture
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UITableViewDelegate {
         
     var viewModel: MainViewModel?
     let disposeBag = DisposeBag()
@@ -165,6 +165,7 @@ extension MainViewController {
         }
         
         collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 0), collectionViewLayout: layout)
+        collectionView.delegate = self
         collectionView.isScrollEnabled = false
         collectionView.allowsMultipleSelection = false
         collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
@@ -188,6 +189,16 @@ extension MainViewController {
     }
     
 }
+
+// MARK: CollectionViewCell Tap Delegate
+extension MainViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! MainCollectionViewCell
+        
+        print(cell.dataId)
+    }
+}
+
 
 // MARK: TableView DataSource
 extension MainViewController {
@@ -231,7 +242,7 @@ extension MainViewController {
     
 }
 
-// MARK: Cell Tap Gesture
+// MARK: TableViewCell Tap Gesture
 extension MainViewController: MainTableViewCellDelegate {
     func cellTapped(id: String?) {
         print("\(#function), id: \(String(describing: id))")

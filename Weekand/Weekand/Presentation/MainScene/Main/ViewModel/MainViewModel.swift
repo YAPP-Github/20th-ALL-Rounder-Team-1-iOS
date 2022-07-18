@@ -33,6 +33,9 @@ class MainViewModel: ViewModelType {
     private let scrollWeek = PublishRelay<Bool>()
     private let foldCollection = PublishRelay<Void>()
     
+    // 현재 일정이 나의 일정인지 식별하는 Property
+    var isMySchedule: Bool = true
+    
     init(coordinator: MainCoordinator, mainUseCase: MainUseCase) {
         self.coordinator = coordinator
         self.mainUseCase = mainUseCase
