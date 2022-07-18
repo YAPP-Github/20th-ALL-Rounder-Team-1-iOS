@@ -97,6 +97,15 @@ class UserSearchViewController: UIViewController {
         }).disposed(by: disposeBag)
         
         let output = viewModel?.transform(input: input)
+        
+        output?.searchAction
+            .subscribe(onNext: { (searchText , informations) in
+            print(searchText)
+            print(informations.0)
+            print(informations.1)
+
+        })
+        .disposed(by: disposeBag)
     }
     
     private func setipTableView() {

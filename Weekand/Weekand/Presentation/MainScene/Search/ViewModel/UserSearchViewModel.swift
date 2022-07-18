@@ -34,7 +34,9 @@ extension UserSearchViewModel {
         let selectedInterests: BehaviorRelay<[Any]>
     }
     
-    struct Output { }
+    struct Output {
+        var searchAction: Observable<(Observable<String>.Element, Observable<([Any], [Any])>.Element)>
+    }
     
     @discardableResult
     func transform(input: Input) -> Output {
@@ -43,15 +45,6 @@ extension UserSearchViewModel {
             .debounce(.seconds(2), scheduler: MainScheduler.instance)
         
         let informationEdit = Observable.combineLatest(input.selectedJobs, input.selectedInterests)
-        
-        Observable.combineLatest(searchBarEdit, informationEdit)
-            .subscribe(onNext: { (searchText , informations) in
-                print(searchText)
-                print(informations.0)
-                print(informations.1)
-                
-            })
-            .disposed(by: disposeBag)
         
         input.didTapJobFilterButton.subscribe(onNext: {
             self.coordinator?.presentJobInformationSheet()
@@ -63,6 +56,6 @@ extension UserSearchViewModel {
         })
         .disposed(by: disposeBag)
         
-        return Output()
+        return Output(searchAction: Observable.combineLatest(searchBarEdit, informationEdit))
     }
 }
