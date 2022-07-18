@@ -51,7 +51,7 @@ class InformationSheetController: BottomSheetViewController {
     
     // property
     
-    var selectInformations: [String] = []
+    var informations: [String] = []
     let selectedInformations = PublishRelay<[String]>()
     let dropDownDidSelectEvent = PublishRelay<UserSort>()
     
@@ -82,11 +82,11 @@ class InformationSheetController: BottomSheetViewController {
         
         DispatchQueue.main.async {
             if self.informationType == .job {
-                self.selectInformations.forEach {
+                self.informations.forEach {
                     self.collectionView.selectItem(at: Constants.convertJobToIndexPath($0), animated: true, scrollPosition: .init())
                 }
             } else {
-                self.selectInformations.forEach {
+                self.informations.forEach {
                     self.collectionView.selectItem(at: Constants.convertInterestsToIndexPath($0), animated: true, scrollPosition: .init())
                 }
             }
