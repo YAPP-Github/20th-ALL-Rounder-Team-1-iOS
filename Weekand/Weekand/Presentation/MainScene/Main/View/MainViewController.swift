@@ -132,7 +132,7 @@ class MainViewController: UIViewController {
             self.foldCollectionView()
         }).disposed(by: disposeBag)
         
-        viewModel?.userSummary.subscribe(onNext: { data in
+        output?.userSummary.subscribe(onNext: { data in
             self.headerView.profileView.setUpView(data)
         }).disposed(by: disposeBag)
         

@@ -70,6 +70,8 @@ extension MainViewModel {
         let calendarDate: Observable<Date>
         let scrollWeek: Observable<Bool>
         let foldCollection: Observable<Void>
+        
+        let userSummary: Observable<UserSummary>
     }
     
     @discardableResult
@@ -114,7 +116,8 @@ extension MainViewModel {
         return Output(
             calendarDate: calendarDate.asObservable(),
             scrollWeek: scrollWeek.asObservable(),
-            foldCollection: foldCollection.asObservable()
+            foldCollection: foldCollection.asObservable(),
+            userSummary: userSummary.asObservable()
         )
     }
 
