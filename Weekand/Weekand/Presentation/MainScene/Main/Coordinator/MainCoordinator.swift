@@ -78,7 +78,10 @@ class MainCoordinator: Coordinator {
     
     // TODO: 검색 화면 구현 후 개발
     func showSearchScene() {
-        print(#function)
+        let userSearchCoordinator = UserSearchCoordinator(navigationController: self.navigationController)
+        userSearchCoordinator.finishDelegate = self
+        childCoordinators.append(userSearchCoordinator)
+        userSearchCoordinator.start()
     }
     
     func sendDateFromMonthlyCalender(date: Date?) {

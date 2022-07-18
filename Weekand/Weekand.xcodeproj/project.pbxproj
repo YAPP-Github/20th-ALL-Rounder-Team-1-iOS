@@ -74,6 +74,16 @@
 		F30EBCD9288138E800ECB48D /* UIScrollView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCD8288138E800ECB48D /* UIScrollView+extension.swift */; };
 		F30EBCDB28817A2400ECB48D /* CategoryEditCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCDA28817A2400ECB48D /* CategoryEditCoordinatorType.swift */; };
 		F30EBCDD28817CFD00ECB48D /* UpdateCategory.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F30EBCDC28817CFD00ECB48D /* UpdateCategory.graphql */; };
+		F30EBCE32881983100ECB48D /* UserSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCE22881983100ECB48D /* UserSearchViewController.swift */; };
+		F30EBCE62881993100ECB48D /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCE52881993100ECB48D /* SearchHeaderView.swift */; };
+		F30EBCE828819C3E00ECB48D /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCE728819C3E00ECB48D /* UserTableViewCell.swift */; };
+		F30EBCEA2881A04D00ECB48D /* UserSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCE92881A04D00ECB48D /* UserSearchViewModel.swift */; };
+		F30EBCEC2881A09300ECB48D /* UserSearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCEB2881A09300ECB48D /* UserSearchCoordinator.swift */; };
+		F30EBCEE2881A4D900ECB48D /* UserSummaryTemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCED2881A4D900ECB48D /* UserSummaryTemp.swift */; };
+		F30EBCF028828C3C00ECB48D /* WFilterButtton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCEF28828C3C00ECB48D /* WFilterButtton.swift */; };
+		F30EBCF32885176300ECB48D /* UserSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCF22885176300ECB48D /* UserSort.swift */; };
+		F30EBCF528851EC400ECB48D /* InformationSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCF428851EC400ECB48D /* InformationSheetController.swift */; };
+		F30EBCF7288532F800ECB48D /* InformationSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCF6288532F800ECB48D /* InformationSheetViewModel.swift */; };
 		F323FEE92875FC3D00DFD8FD /* WCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */; };
 		F323FEEB28760E3A00DFD8FD /* FSCalendar+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */; };
 		F323FEF0287636B500DFD8FD /* SortDropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FEEE287636B500DFD8FD /* SortDropDownCell.swift */; };
@@ -127,6 +137,8 @@
 		F392A1C7284F51B100512A42 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1C6284F51B100512A42 /* CategoryListViewController.swift */; };
 		F392A1C9284F53A300512A42 /* CategoryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1C8284F53A300512A42 /* CategoryListTableViewCell.swift */; };
 		F392A1EF28531FC600512A42 /* CategoryListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */; };
+		F3A4D95B2885A94500DDE03B /* SearchUsers.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F3A4D95A2885A94500DDE03B /* SearchUsers.graphql */; };
+		F3A4D95D2885B28600DDE03B /* SearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A4D95C2885B28600DDE03B /* SearchUseCase.swift */; };
 		F3AA9E1B2869FEFC00F71559 /* PasswordFindViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA9E1A2869FEFC00F71559 /* PasswordFindViewModel.swift */; };
 		F3AA9E1D2869FF1E00F71559 /* PasswordFindCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA9E1C2869FF1E00F71559 /* PasswordFindCoordinator.swift */; };
 		F3B0025D287D686200D6BB1D /* ScheduleMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0025C287D686200D6BB1D /* ScheduleMain.swift */; };
@@ -247,6 +259,16 @@
 		F30EBCD8288138E800ECB48D /* UIScrollView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+extension.swift"; sourceTree = "<group>"; };
 		F30EBCDA28817A2400ECB48D /* CategoryEditCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEditCoordinatorType.swift; sourceTree = "<group>"; };
 		F30EBCDC28817CFD00ECB48D /* UpdateCategory.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UpdateCategory.graphql; sourceTree = "<group>"; };
+		F30EBCE22881983100ECB48D /* UserSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchViewController.swift; sourceTree = "<group>"; };
+		F30EBCE52881993100ECB48D /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
+		F30EBCE728819C3E00ECB48D /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		F30EBCE92881A04D00ECB48D /* UserSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchViewModel.swift; sourceTree = "<group>"; };
+		F30EBCEB2881A09300ECB48D /* UserSearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCoordinator.swift; sourceTree = "<group>"; };
+		F30EBCED2881A4D900ECB48D /* UserSummaryTemp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSummaryTemp.swift; sourceTree = "<group>"; };
+		F30EBCEF28828C3C00ECB48D /* WFilterButtton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WFilterButtton.swift; sourceTree = "<group>"; };
+		F30EBCF22885176300ECB48D /* UserSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSort.swift; sourceTree = "<group>"; };
+		F30EBCF428851EC400ECB48D /* InformationSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationSheetController.swift; sourceTree = "<group>"; };
+		F30EBCF6288532F800ECB48D /* InformationSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationSheetViewModel.swift; sourceTree = "<group>"; };
 		F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCalendarView.swift; sourceTree = "<group>"; };
 		F323FEEA28760E3A00DFD8FD /* FSCalendar+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FSCalendar+extension.swift"; sourceTree = "<group>"; };
 		F323FEEE287636B500DFD8FD /* SortDropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDropDownCell.swift; sourceTree = "<group>"; };
@@ -303,6 +325,8 @@
 		F392A1C8284F53A300512A42 /* CategoryListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListTableViewCell.swift; sourceTree = "<group>"; };
 		F392A1CA284F5AB400512A42 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListHeaderView.swift; sourceTree = "<group>"; };
+		F3A4D95A2885A94500DDE03B /* SearchUsers.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SearchUsers.graphql; sourceTree = "<group>"; };
+		F3A4D95C2885B28600DDE03B /* SearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCase.swift; sourceTree = "<group>"; };
 		F3AA9E1A2869FEFC00F71559 /* PasswordFindViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindViewModel.swift; sourceTree = "<group>"; };
 		F3AA9E1C2869FF1E00F71559 /* PasswordFindCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindCoordinator.swift; sourceTree = "<group>"; };
 		F3B0025C287D686200D6BB1D /* ScheduleMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleMain.swift; path = Entities/ScheduleMain.swift; sourceTree = "<group>"; };
@@ -426,6 +450,7 @@
 		7D76AEAF28445878001C668D /* MainScene */ = {
 			isa = PBXGroup;
 			children = (
+				F30EBCDE288197BA00ECB48D /* Search */,
 				7DAA8620284BAF9500F21E35 /* Common */,
 				7D76AEB02844588E001C668D /* Main */,
 				F3C8E0972872E10F00B0916A /* ScheduleEdit */,
@@ -538,16 +563,17 @@
 			isa = PBXGroup;
 			children = (
 				F30EBCD428807C9400ECB48D /* CategoryOpenType.swift */,
+				F3B00271287D68FA00D6BB1D /* ScheduleSort.swift */,
+				F3B00269287D68F100D6BB1D /* Emoji.swift */,
+				F30EBCF22885176300ECB48D /* UserSort.swift */,
 				F3B00266287D68E700D6BB1D /* Category.swift */,
 				F3B00268287D68F100D6BB1D /* Color.swift */,
-				F3B00269287D68F100D6BB1D /* Emoji.swift */,
 				F3B0026B287D68F100D6BB1D /* EmojiGiver.swift */,
 				7D0A6A3328813C7100CFE61D /* Status.swift */,
 				F3B00272287D68FA00D6BB1D /* SignUpModel.swift */,
-				F3B00271287D68FA00D6BB1D /* ScheduleSort.swift */,
 				F3B00270287D68FA00D6BB1D /* UserSummary.swift */,
 				F3B0026A287D68F100D6BB1D /* FollwingUser.swift */,
-				F3B0025C287D686200D6BB1D /* ScheduleMain.swift */,
+        F3B0025C287D686200D6BB1D /* ScheduleMain.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -744,6 +770,7 @@
 				F3C8E0B42873578300B0916A /* WTextView.swift */,
 				F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */,
 				F323FF0B2877E87900DFD8FD /* WToastLabel.swift */,
+				F30EBCEF28828C3C00ECB48D /* WFilterButtton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -783,6 +810,52 @@
 				F30EBCCC288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift */,
 			);
 			path = APIModelExtensions;
+			sourceTree = "<group>";
+		};
+		F30EBCDE288197BA00ECB48D /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				F30EBCE0288197CE00ECB48D /* Coordinator */,
+				F30EBCE1288197D700ECB48D /* ViewModel */,
+				F30EBCDF288197C700ECB48D /* View */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		F30EBCDF288197C700ECB48D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F30EBCE22881983100ECB48D /* UserSearchViewController.swift */,
+				F30EBCF428851EC400ECB48D /* InformationSheetController.swift */,
+				F30EBCE4288198E100ECB48D /* SubView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F30EBCE0288197CE00ECB48D /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				F30EBCEB2881A09300ECB48D /* UserSearchCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		F30EBCE1288197D700ECB48D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F30EBCE92881A04D00ECB48D /* UserSearchViewModel.swift */,
+				F30EBCF6288532F800ECB48D /* InformationSheetViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F30EBCE4288198E100ECB48D /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				F30EBCE52881993100ECB48D /* SearchHeaderView.swift */,
+				F30EBCE728819C3E00ECB48D /* UserTableViewCell.swift */,
+			);
+			path = SubView;
 			sourceTree = "<group>";
 		};
 		F323FF112877F75000DFD8FD /* UseCase */ = {
@@ -928,6 +1001,7 @@
 			children = (
 				7D0A6A352881521400CFE61D /* MainUseCase.swift */,
 				F3B00260287D68BD00D6BB1D /* CategoryUseCase.swift */,
+				F3A4D95C2885B28600DDE03B /* SearchUseCase.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -959,7 +1033,7 @@
 				F3B00276287D700D00D6BB1D /* ScheduleCategories.graphql */,
 				F30EBCD0288078DF00ECB48D /* CreateCategory.graphql */,
 				F30EBCDC28817CFD00ECB48D /* UpdateCategory.graphql */,
-				7D0A6A3B2881C4C100CFE61D /* UserSummary.graphql */,
+        7D0A6A3B2881C4C100CFE61D /* UserSummary.graphql */,
 				7D0A6A3F2881C61F00CFE61D /* Followers.graphql */,
 			);
 			path = Query;
@@ -1138,6 +1212,7 @@
 				F3C8E0B128731E4900B0916A /* CategoryDropDownCell.xib in Resources */,
 				F30EBCD1288078DF00ECB48D /* CreateCategory.graphql in Resources */,
 				F323FF1F2879AD5600DFD8FD /* sendAuthKey.graphql in Resources */,
+				F3A4D95B2885A94500DDE03B /* SearchUsers.graphql in Resources */,
 				F32ACC0B28235D530082AF30 /* Assets.xcassets in Resources */,
 				F323FF212879AF3000DFD8FD /* vaildAuthKey.graphql in Resources */,
 			);
@@ -1245,11 +1320,13 @@
 				F33C6EAE28535021005B493A /* UIVIewController+extension.swift in Sources */,
 				7D76AEB828448C79001C668D /* Font.swift in Sources */,
 				F3C8E0A52872FD2300B0916A /* DateTimeStackView.swift in Sources */,
+				F3A4D95D2885B28600DDE03B /* SearchUseCase.swift in Sources */,
 				7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */,
 				F3B00267287D68E700D6BB1D /* Category.swift in Sources */,
 				F323FF0C2877E87900DFD8FD /* WToastLabel.swift in Sources */,
 				F32F72642854EC890056B189 /* InformationCollectionViewCell.swift in Sources */,
 				F3C8E094286F598600B0916A /* Network.swift in Sources */,
+				F30EBCE32881983100ECB48D /* UserSearchViewController.swift in Sources */,
 				7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */,
 				F3C8E0A12872EFF400B0916A /* DropDownStackView.swift in Sources */,
 				7DBC4C612876AE7800F0AC86 /* StickerAddSheetViewModel.swift in Sources */,
@@ -1272,10 +1349,12 @@
 				F3CC76B028670BA200A3FBBE /* ColorSheetViewModel.swift in Sources */,
 				F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */,
 				F3B0025F287D68A800D6BB1D /* UserDataStorage.swift in Sources */,
+				F30EBCE828819C3E00ECB48D /* UserTableViewCell.swift in Sources */,
 				F3C8E0BB28736F2A00B0916A /* ScheduleEditCoordinator.swift in Sources */,
 				F3DD0229284670E900AD9240 /* AppCoordinator.swift in Sources */,
 				F32ACC0628235D500082AF30 /* ViewController.swift in Sources */,
 				F3B00263287D68C600D6BB1D /* SignInUseCase.swift in Sources */,
+				F30EBCEE2881A4D900ECB48D /* UserSummaryTemp.swift in Sources */,
 				F3C8E0B52873578300B0916A /* WTextView.swift in Sources */,
 				F323FEF0287636B500DFD8FD /* SortDropDownCell.swift in Sources */,
 				F30EBCD528807C9400ECB48D /* CategoryOpenType.swift in Sources */,
@@ -1293,6 +1372,7 @@
 				F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */,
 				7DC166BE28371C4E00F1A8F1 /* WDefaultButton.swift in Sources */,
 				F3DD022E2846815300AD9240 /* ViewModelType.swift in Sources */,
+				F30EBCF32885176300ECB48D /* UserSort.swift in Sources */,
 				F323FF082877D08800DFD8FD /* TokenAddingInterceptor.swift in Sources */,
 				7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */,
 				F32F72522853B0930056B189 /* CategoryDetailTableViewCell.swift in Sources */,
@@ -1301,8 +1381,9 @@
 				7DF9688C284E019A00CE077E /* MainCalendarView.swift in Sources */,
 				7DD71A8B286CA8C4002D1DCF /* AlarmViewModel.swift in Sources */,
 				7D76AEB628445AA5001C668D /* MainTableViewCell.swift in Sources */,
-				F3B0025D287D686200D6BB1D /* ScheduleMain.swift in Sources */,
+        F3B0025D287D686200D6BB1D /* ScheduleMain.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
+				F30EBCEC2881A09300ECB48D /* UserSearchCoordinator.swift in Sources */,
 				F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */,
 				7DBC4C59287697F900F0AC86 /* EmojiSheetViewController.swift in Sources */,
 				F3F731E92869E5EC00C8B778 /* PasswordFindViewController.swift in Sources */,
@@ -1345,10 +1426,12 @@
 				7D7178EB283E1C9D00D7E5F2 /* WCheckBox.swift in Sources */,
 				F3C8E087286DC71300B0916A /* RxApolloClient.swift in Sources */,
 				F32F72602854BB730056B189 /* ColorStackView.swift in Sources */,
+				F30EBCF7288532F800ECB48D /* InformationSheetViewModel.swift in Sources */,
 				F3DD0237284A6BEC00AD9240 /* SignUpTermsViewModel.swift in Sources */,
 				F3CC76B22867130100A3FBBE /* ColorSheetViewController.swift in Sources */,
 				F3C8E0A72873028B00B0916A /* WFilledGrayButton.swift in Sources */,
 				F3B0026F287D68F100D6BB1D /* EmojiGiver.swift in Sources */,
+				F30EBCE62881993100ECB48D /* SearchHeaderView.swift in Sources */,
 				7DC166C02837234200F1A8F1 /* WButtonTextField.swift in Sources */,
 				F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */,
 				F32F725C28549B650056B189 /* WTextFieldStackView.swift in Sources */,
@@ -1365,6 +1448,7 @@
 				F3DD022428466E0C00AD9240 /* SignInCoordinator.swift in Sources */,
 				7D8033D6286034BB0039F73E /* MainCollectionViewCell.swift in Sources */,
 				F30EBCDB28817A2400ECB48D /* CategoryEditCoordinatorType.swift in Sources */,
+				F30EBCF028828C3C00ECB48D /* WFilterButtton.swift in Sources */,
 				F3B00274287D68FA00D6BB1D /* ScheduleSort.swift in Sources */,
 				F30EBCD328807B2600ECB48D /* API.swift in Sources */,
 				7D6B911528449A760044E217 /* WIconLabel.swift in Sources */,
@@ -1376,6 +1460,7 @@
 				F3DD022728466E3300AD9240 /* SignUpCoordinator.swift in Sources */,
 				7DB5E13E284B4E3C00DBB7EA /* MainViewModel.swift in Sources */,
 				7DD71A89286C9ACC002D1DCF /* AlarmTableViewCell.swift in Sources */,
+				F30EBCF528851EC400ECB48D /* InformationSheetController.swift in Sources */,
 				F3786851285D98F500BEEC81 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
