@@ -24,27 +24,29 @@ class WFilterButtton: UIButton {
             var configuration = UIButton.Configuration.filled()
             configuration.background.backgroundColor = .gray100
             configuration.baseForegroundColor = .gray700
-            configuration.background.cornerRadius = defaultCornerRadius
-            configuration.contentInsets = NSDirectionalEdgeInsets.defaultEdgeInset
+            configuration.contentInsets = NSDirectionalEdgeInsets(top: 6, leading: 12, bottom: 6, trailing: 6)
             self.configuration = configuration
             
         } else {
-            self.layer.cornerRadius = defaultCornerRadius
             self.backgroundColor = .gray100
             self.setTitleColor(.gray700, for: .normal)
-            self.contentEdgeInsets = UIEdgeInsets.defaultEdgeInset
+            self.clipsToBounds = true
+            self.layer.cornerRadius = 8
+            self.contentEdgeInsets = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 6)
         }
     }
     
     func setTitle(_ title: String?, _ count: Int?) {
         self.setTitle(title, for: .normal)
         
-        guard let text = title,
-              let count = count else { return }
+        guard let text = title else { return }
     
         let mutableAttributedString = NSMutableAttributedString()
             .normal(text, font: WFont.body3(), fontColor: .gray700)
-            .normal(String(describing: count), font: WFont.body3(), fontColor: .mainColor)
+        
+        if let count = count {
+            mutableAttributedString.normal(String(describing: count), font: WFont.body3(), fontColor: .mainColor)
+        }
         
         let imageAttachment = NSTextAttachment()
         imageAttachment.image = UIImage(named: "chevron.down")
@@ -54,6 +56,7 @@ class WFilterButtton: UIButton {
         mutableAttributedString.append(attachmentString)
         
         self.setAttributedTitle(mutableAttributedString, for: .normal)
+        setUpView()
     }
 
 }

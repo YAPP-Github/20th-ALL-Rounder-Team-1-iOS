@@ -24,15 +24,11 @@ class SearchHeaderView: UITableViewHeaderFooterView {
     }
     
     lazy var jobFilterButton = WFilterButtton().then {
-        $0.setTitle("직업 ", 2)
-        $0.clipsToBounds = true
-        $0.backgroundColor = .gray100
+        $0.setTitle("직업 ", nil)
     }
     
     lazy var interestsFilterButton = WFilterButtton().then {
-        $0.setTitle("관심사 ", 2)
-        $0.clipsToBounds = true
-        $0.backgroundColor = .gray100
+        $0.setTitle("관심사 ", 3)
     }
     
     lazy var dropDown = DropDown(anchorView: sortButton).then {
@@ -75,17 +71,13 @@ class SearchHeaderView: UITableViewHeaderFooterView {
         }
         
         jobFilterButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-5)
-            make.leading.equalToSuperview().offset(14)
-            make.width.equalTo(67)
-            make.height.equalTo(36)
+            make.bottom.equalToSuperview().offset(-7)
+            make.leading.equalToSuperview().offset(18)
         }
         
         interestsFilterButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-5)
-            make.leading.equalTo(jobFilterButton.snp.trailing).offset(5)
-            make.width.equalTo(67)
-            make.height.equalTo(36)
+            make.bottom.equalToSuperview().offset(-7)
+            make.leading.equalTo(jobFilterButton.snp.trailing).offset(8)
         }
 
         sortButton.snp.makeConstraints { make in
