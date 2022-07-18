@@ -26,16 +26,6 @@ class UserSearchViewController: UIViewController {
     let tableView = UITableView()
     
     let sample = [UserSummaryTemp(userSummaryId: "a", name: "풍이", goal: "풍이는 기여워", imagePath: "https://user-images.githubusercontent.com/40068674/179262802-4595ff1a-dcdc-4ac0-a6af-1705dbc0d03c.jpg"),
-                  UserSummaryTemp(userSummaryId: "a", name: "예삐", goal: "예삐는 뚱뚱해", imagePath: "https://user-images.githubusercontent.com/40068674/179264228-e57b41a5-039f-459c-a03b-637d614c96f1.jpg"),
-                  UserSummaryTemp(userSummaryId: "a", name: "풍이", goal: "풍이는 기여워", imagePath: "https://user-images.githubusercontent.com/40068674/179262802-4595ff1a-dcdc-4ac0-a6af-1705dbc0d03c.jpg"),
-                  UserSummaryTemp(userSummaryId: "a", name: "예삐", goal: "예삐는 뚱뚱해", imagePath: "https://user-images.githubusercontent.com/40068674/179264228-e57b41a5-039f-459c-a03b-637d614c96f1.jpg"),
-                  UserSummaryTemp(userSummaryId: "a", name: "풍이", goal: "풍이는 기여워", imagePath: "https://user-images.githubusercontent.com/40068674/179262802-4595ff1a-dcdc-4ac0-a6af-1705dbc0d03c.jpg"),
-                  UserSummaryTemp(userSummaryId: "a", name: "예삐", goal: "예삐는 뚱뚱해", imagePath: "https://user-images.githubusercontent.com/40068674/179264228-e57b41a5-039f-459c-a03b-637d614c96f1.jpg"),
-                  UserSummaryTemp(userSummaryId: "a", name: "풍이", goal: "풍이는 기여워", imagePath: "https://user-images.githubusercontent.com/40068674/179262802-4595ff1a-dcdc-4ac0-a6af-1705dbc0d03c.jpg"),
-                  UserSummaryTemp(userSummaryId: "a", name: "예삐", goal: "예삐는 뚱뚱해", imagePath: "https://user-images.githubusercontent.com/40068674/179264228-e57b41a5-039f-459c-a03b-637d614c96f1.jpg"),
-                  UserSummaryTemp(userSummaryId: "a", name: "풍이", goal: "풍이는 기여워", imagePath: "https://user-images.githubusercontent.com/40068674/179262802-4595ff1a-dcdc-4ac0-a6af-1705dbc0d03c.jpg"),
-                  UserSummaryTemp(userSummaryId: "a", name: "예삐", goal: "예삐는 뚱뚱해", imagePath: "https://user-images.githubusercontent.com/40068674/179264228-e57b41a5-039f-459c-a03b-637d614c96f1.jpg"),
-                  UserSummaryTemp(userSummaryId: "a", name: "풍이", goal: "풍이는 기여워", imagePath: "https://user-images.githubusercontent.com/40068674/179262802-4595ff1a-dcdc-4ac0-a6af-1705dbc0d03c.jpg"),
                   UserSummaryTemp(userSummaryId: "a", name: "예삐", goal: "예삐는 뚱뚱해", imagePath: "https://user-images.githubusercontent.com/40068674/179264228-e57b41a5-039f-459c-a03b-637d614c96f1.jpg")]
     
     override func viewDidLoad() {
@@ -53,6 +43,7 @@ class UserSearchViewController: UIViewController {
     }
     
     private func setupView() {
+        navigationItem.title = "유저 찾기"
         view.backgroundColor = .white
         
         tableView.delegate = self
