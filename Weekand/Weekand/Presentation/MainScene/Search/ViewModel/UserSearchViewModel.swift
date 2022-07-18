@@ -29,12 +29,29 @@ extension UserSearchViewModel {
     struct Input {
         let didTapJobFilterButton: Observable<Void>
         let didTapInterestsFilterButton: Observable<Void>
+        let didEditSearchBar: Observable<String>
+        let selectedJobs: BehaviorRelay<[Any]>
+        let selectedInterests: BehaviorRelay<[Any]>
     }
     
     struct Output { }
     
     @discardableResult
     func transform(input: Input) -> Output {
+        
+        let searchBarEdit = input.didEditSearchBar
+            .debounce(.seconds(2), scheduler: MainScheduler.instance)
+        
+        let informationEdit = Observable.combineLatest(input.selectedJobs, input.selectedInterests)
+        
+        Observable.combineLatest(searchBarEdit, informationEdit)
+            .subscribe(onNext: { (searchText , informations) in
+                print(searchText)
+                print(informations.0)
+                print(informations.1)
+                
+            })
+            .disposed(by: disposeBag)
         
         input.didTapJobFilterButton.subscribe(onNext: {
             self.coordinator?.presentJobInformationSheet()
