@@ -13,70 +13,37 @@ enum MainSection {
   case main
 }
 
-class MainViewModel {
-    
-    // TODO: Service 구현 후 삭제 or 이동
-    let sampleUserSummary = UserSummary(name: "주호민", state: "콘텐츠어워드 만화부분 대통령상 미만 훈수 금지", imagePath: "https://pbs.twimg.com/profile_images/1119172481653149696/hUzsqa_X_400x400.png")
-    let sampleUserFollowingList = [
-        FollowingUser(userId: "12345", name: "Sam", imagePath: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60"),
-        FollowingUser(userId: "0", name: "Lisa", imagePath: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60"),
-        FollowingUser(userId: "0", name: "James", imagePath: "https://images.unsplash.com/photo-1466112928291-0903b80a9466?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60"),
-        FollowingUser(userId: "0", name: "Susan", imagePath: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60"),
-        FollowingUser(userId: "0", name: "Tom", imagePath: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTl8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60"),
-        FollowingUser(userId: "0", name: "김수자", imagePath: "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80"),
-        FollowingUser(userId: "0", name: "여긴어디 난누구", imagePath: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTV8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60"),
-        FollowingUser(userId: "0", name: "Sam", imagePath: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60"),
-        FollowingUser(userId: "0", name: "Lisa", imagePath: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60"),
-        FollowingUser(userId: "0", name: "James", imagePath: "https://images.unsplash.com/photo-1466112928291-0903b80a9466?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60"),
-        FollowingUser(userId: "0", name: "Susan", imagePath: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60"),
-        FollowingUser(userId: "0", name: "Tom", imagePath: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTl8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60"),
-        FollowingUser(userId: "0", name: "김수자", imagePath: "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80"),
-        FollowingUser(userId: "0", name: "여긴어디 난누구", imagePath: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTV8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60")
-    ]
-    let sampleScheduleList: [ScehduleMain] = [
-        ScehduleMain(scheduleId: "0", color: "red", name: "Alfted", dateStart: Date(), dataEnd: Date(), stickerCount: 134, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Timothy", dateStart: Date(), dataEnd: Date(), stickerCount: 313, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Cook", dateStart: Date(), dataEnd: Date(), stickerCount: 54, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Steve", dateStart: Date(), dataEnd: Date(), stickerCount: 431, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Stwie", dateStart: Date(), dataEnd: Date(), stickerCount: 64, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Proro", dateStart: Date(), dataEnd: Date(), stickerCount: 3, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Pack", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Alfted", dateStart: Date(), dataEnd: Date(), stickerCount: 134, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Timothy", dateStart: Date(), dataEnd: Date(), stickerCount: 313, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Cook", dateStart: Date(), dataEnd: Date(), stickerCount: 54, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Steve", dateStart: Date(), dataEnd: Date(), stickerCount: 431, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Stwie", dateStart: Date(), dataEnd: Date(), stickerCount: 64, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Proro", dateStart: Date(), dataEnd: Date(), stickerCount: 3, stickerNameList: []),
-        ScehduleMain(scheduleId: "0", color: "red", name: "Pack", dateStart: Date(), dataEnd: Date(), stickerCount: 13, stickerNameList: [])
-    ]
-    
-    
-    
-    
+class MainViewModel: ViewModelType {
+        
     weak var coordinator: MainCoordinator?
+    private let mainUseCase: MainUseCase
     private let disposeBag = DisposeBag()
     
     // Diffable Data Source
     var collectionViewDataSource: UICollectionViewDiffableDataSource<MainSection, FollowingUser>!
-    var tableViewDataSource: UITableViewDiffableDataSource<MainSection, ScehduleMain>!
+    var tableViewDataSource: UITableViewDiffableDataSource<MainSection, ScheduleMain>!
     
     // View와 바인딩되는 Observables
     public var userSummary = BehaviorRelay<UserSummary>(value: UserSummary.defaultData)
     private var userFollowingList = BehaviorRelay<[FollowingUser]>(value: [])
-    private var scheduleList = BehaviorRelay<[ScehduleMain]>(value: [])
+    private var scheduleList = BehaviorRelay<[ScheduleMain]>(value: [])
     
     // Calendar 버튼 관련 Obsrvables
     private let calendarDate = BehaviorRelay<Date>(value: Date())
     private let scrollWeek = PublishRelay<Bool>()
     private let foldCollection = PublishRelay<Void>()
     
-    init(coordinator: MainCoordinator) {
+    // 현재 일정이 나의 일정인지 식별하는 Property
+    var isMySchedule: Bool = true
+    var currentUserId: String?
+    var currentDate: Date = Date()
+    
+    init(coordinator: MainCoordinator, mainUseCase: MainUseCase) {
         self.coordinator = coordinator
+        self.mainUseCase = mainUseCase
         
-        // TODO: Service 구현 후 데이터 받는 부분 이동
-        PublishRelay<UserSummary>.just(sampleUserSummary).bind(to: userSummary).disposed(by: disposeBag)
-        PublishRelay<[FollowingUser]>.just(sampleUserFollowingList).bind(to: userFollowingList).disposed(by: disposeBag)
-        PublishRelay<[ScehduleMain]>.just(sampleScheduleList).bind(to: scheduleList).disposed(by: disposeBag)
+        self.getFollowingUser()
+        reloadData()
     }
     
 }
@@ -90,6 +57,9 @@ extension MainViewModel {
         let didFoldBarButton: Observable<Void>
         let didAlarmBarButton: Observable<Void>
         let didsearchBarButton: Observable<Void>
+        
+        // UserSummary
+        let didUserSummaryTap: Observable<UITapGestureRecognizer>
         
         // CalendarView
         let didTapTodayButton: Observable<Void>
@@ -105,6 +75,8 @@ extension MainViewModel {
         let calendarDate: Observable<Date>
         let scrollWeek: Observable<Bool>
         let foldCollection: Observable<Void>
+        
+        let userSummary: Observable<UserSummary>
     }
     
     @discardableResult
@@ -122,6 +94,20 @@ extension MainViewModel {
         input.didsearchBarButton.subscribe(onNext: { [weak self] _ in
             self?.coordinator?.showSearchScene()
         }).disposed(by: disposeBag)
+        
+        // UserSummary
+        input.didUserSummaryTap.subscribe(onNext: { [weak self] _ in
+            
+            if self?.isMySchedule ?? true {
+                print("To my Profile")
+                // TODO: 내 프로필로 이동
+            } else {
+                print("To \(self?.currentUserId ?? "") Profile")
+                // TODO: 남의 프로필로 이동
+            }
+            
+        }).disposed(by: disposeBag)
+
         
         // Calander Buttons
         input.didTapEditButton.subscribe(onNext: { [weak self] _ in
@@ -149,10 +135,51 @@ extension MainViewModel {
         return Output(
             calendarDate: calendarDate.asObservable(),
             scrollWeek: scrollWeek.asObservable(),
-            foldCollection: foldCollection.asObservable()
+            foldCollection: foldCollection.asObservable(),
+            userSummary: userSummary.asObservable()
         )
     }
 
+}
+
+extension MainViewModel {
+    
+    func switchUser(id: String?) {
+        identifyMyPage(id: id)
+        currentUserId = id
+    }
+    
+    /// id가 로그인한 유저인지 식별 후 저장
+    func identifyMyPage(id: String?) {
+        
+        currentUserId = id
+        
+        guard let id = id else {
+            print("Error: id Not Found")
+            return
+        }
+        
+        if id == UserDataStorage.shared.userID {
+            self.isMySchedule = true
+        } else {
+            self.isMySchedule = false
+        }
+        
+        print("My Schedule: \(self.isMySchedule)")
+    }
+    
+    /// 데이터 불러오기
+    func reloadData() {
+        
+        if isMySchedule {
+            self.getUserSummary()
+            self.getScheduleList(date: "1656255168388".fromStringTimestamp())   // TODO: 500 에러 수정
+        } else {
+            guard let id = currentUserId else { return }
+            // TODO: 선택된 유저의 UserSummary 가져오기
+            // TODO: 선택된 유저의 ScheduleMain 가져오기
+        }
+    }
 }
 
 // MARK: Configure DiffableDataSource Snapshot
@@ -160,6 +187,18 @@ extension MainViewModel {
     
     func configureCollectionViewSnapShot(animatingDifferences: Bool = false) {
         
+        // 로그인한 유저 정보 (내정보)
+        self.userSummary.subscribe(onNext: { data in
+            var snapshot = self.collectionViewDataSource.snapshot()
+            
+            if let first = snapshot.itemIdentifiers.first {
+                snapshot.insertItems([FollowingUser(userSummary: data)], beforeItem: first)
+            }
+            self.collectionViewDataSource.apply(snapshot)
+            
+        }).disposed(by: disposeBag)
+        
+        // 팔로잉중인 유저 정보
         self.userFollowingList.subscribe(onNext: { data in
             
             var snapshot = NSDiffableDataSourceSnapshot<MainSection, FollowingUser>()
@@ -174,11 +213,47 @@ extension MainViewModel {
         
         self.scheduleList.subscribe(onNext: { data in
             
-            var snapshot = NSDiffableDataSourceSnapshot<MainSection, ScehduleMain>()
+            var snapshot = NSDiffableDataSourceSnapshot<MainSection, ScheduleMain>()
             snapshot.appendSections([.main])
             snapshot.appendItems(data, toSection: .main)
             self.tableViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
         }).disposed(by: disposeBag)
+    }
+
+}
+
+// MARK: Network Request
+extension MainViewModel {
+    
+    private func getFollowingUser() {
+        self.mainUseCase.followers(page: 0, size: 20).subscribe(onSuccess: { following in
+            PublishRelay<[FollowingUser]>.just(following).bind(to: self.userFollowingList).disposed(by: self.disposeBag)
+        }, onFailure: { error in
+            print("Error: \(error)")
+        }, onDisposed: nil)
+        .disposed(by: disposeBag)
+    }
+    
+    private func getUserSummary() {
+        self.mainUseCase.userSummary().subscribe(onSuccess: { userData in
+            PublishRelay<UserSummary>.just(userData).bind(to: self.userSummary).disposed(by: self.disposeBag)
+        }, onFailure: { error in
+            print("Error: \(error)")
+        }, onDisposed: nil)
+        .disposed(by: disposeBag)
+    }
+    
+    private func getScheduleList(date: Date) {
+        
+        self.mainUseCase.scheduleList(date: date).subscribe (onSuccess: { scheduleData in
+            PublishRelay<[ScheduleMain]>.just(scheduleData).bind(to: self.scheduleList).disposed(by: self.disposeBag)
+            print(scheduleData)
+
+        }, onFailure: { error in
+            print("Error: \(error)")
+        }, onDisposed: nil)
+        .disposed(by: disposeBag)
+        
     }
 
 }

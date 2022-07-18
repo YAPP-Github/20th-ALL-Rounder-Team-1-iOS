@@ -11,10 +11,17 @@ import Then
 import RxSwift
 import RxGesture
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UITableViewDelegate {
         
     var viewModel: MainViewModel?
     let disposeBag = DisposeBag()
+    
+    var currentDate: Date = Date() {
+        didSet {
+            headerView.calendarView.selectDate(date: currentDate)
+            viewModel?.currentDate = currentDate
+        }
+    }
     
     // MARK: UI Properties
     var collectionView: UICollectionView!
@@ -42,7 +49,6 @@ class MainViewController: UIViewController {
     }
     
     private func setUpView() {
-        
         configureCollectionView()
         configureTableView()
     }
@@ -68,6 +74,7 @@ class MainViewController: UIViewController {
             make.top.equalTo(collectionView.snp.bottom)
             make.left.right.equalToSuperview()
         }
+        headerView.calendarView.delegate = self
         tableView.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom)
             make.left.right.equalToSuperview()
@@ -86,7 +93,7 @@ class MainViewController: UIViewController {
         self.headerView.calendarView.titleLabel.rx.tapGesture()
             .when(.recognized)
             .bind { _ in
-                self.viewModel?.coordinator?.pushMonthlyCalendarSheet()
+                self.viewModel?.coordinator?.pushMonthlyCalendarSheet(date: self.currentDate)
             }.disposed(by: disposeBag)
         
         self.headerView.profileView.rx.tapGesture()
@@ -103,9 +110,11 @@ class MainViewController: UIViewController {
         let input = MainViewModel.Input(
             
             // Navigation Button
-            didFoldBarButton: self.foldButton.rx.tap.asObservable() ,
-            didAlarmBarButton: self.alarmButton.rx.tap.asObservable() ,
-            didsearchBarButton: self.searchButton.rx.tap.asObservable() ,
+            didFoldBarButton: self.foldButton.rx.tap.asObservable(),
+            didAlarmBarButton: self.alarmButton.rx.tap.asObservable(),
+            didsearchBarButton: self.searchButton.rx.tap.asObservable(),
+            
+            didUserSummaryTap: self.headerView.profileView.rx.tapGesture().asObservable(),
             
             // Calendar Button
             didTapTodayButton: self.headerView.calendarView.todayButton.rx.tap.asObservable(),
@@ -132,8 +141,9 @@ class MainViewController: UIViewController {
             self.foldCollectionView()
         }).disposed(by: disposeBag)
         
-        viewModel?.userSummary.subscribe(onNext: { data in
+        output?.userSummary.subscribe(onNext: { data in
             self.headerView.profileView.setUpView(data)
+            self.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .init())
         }).disposed(by: disposeBag)
         
     }
@@ -165,6 +175,7 @@ extension MainViewController {
         }
         
         collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 0), collectionViewLayout: layout)
+        collectionView.delegate = self
         collectionView.isScrollEnabled = false
         collectionView.allowsMultipleSelection = false
         collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
@@ -177,10 +188,6 @@ extension MainViewController {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
             cell.setUpCell(list)
             
-            if indexPath.item == 0 {
-                self.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
-            }
-            
             return cell
         })
         
@@ -188,6 +195,22 @@ extension MainViewController {
     }
     
 }
+
+// MARK: CollectionViewCell Tap Delegate
+extension MainViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! MainCollectionViewCell
+        viewModel?.identifyMyPage(id: cell.dataId)
+    }
+}
+
+// MARK: Calender Selection
+extension MainViewController: MainCalendarDelegate {
+    func didSelectCalendar(date: Date) {
+        self.currentDate = date
+    }
+}
+
 
 // MARK: TableView DataSource
 extension MainViewController {
@@ -216,10 +239,10 @@ extension MainViewController {
     
     private func configureTableViewDataSource() {
         
-        viewModel?.tableViewDataSource = UITableViewDiffableDataSource<MainSection, ScehduleMain>(tableView: tableView, cellProvider: { tableView, indexPath, list in
+        viewModel?.tableViewDataSource = UITableViewDiffableDataSource<MainSection, ScheduleMain>(tableView: tableView, cellProvider: { tableView, indexPath, list in
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as! MainTableViewCell
             
-            cell.switchStickerButtonAppearance(userId: "123456")    // TODO: 로그인 구현 후 수정
+            cell.switchStickerButtonAppearance(isMine: self.viewModel?.isMySchedule)
             cell.setUpCell(id: "id: \(indexPath.row)", color: .red, title: list.name, status: .completed, time: "00:00 - 00:00", emojiNumber: list.stickerCount, emojiOrder: [.awesome, .cool, .good, .support])
             cell.delegate = self
             
@@ -231,7 +254,7 @@ extension MainViewController {
     
 }
 
-// MARK: Cell Tap Gesture
+// MARK: TableViewCell Tap Gesture
 extension MainViewController: MainTableViewCellDelegate {
     func cellTapped(id: String?) {
         print("\(#function), id: \(String(describing: id))")

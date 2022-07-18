@@ -10,6 +10,7 @@ import UIKit
 /// 메인화면 가장 위쪽 팔로잉 목록 CollectionView에 쓰이는 Cell
 class MainCollectionViewCell: UICollectionViewCell {
     
+    var dataId: String?
     static let identifier = "MainCollectionViewCell"
     
     lazy var profileImageView = UIImageView().then {
@@ -89,6 +90,7 @@ extension MainCollectionViewCell {
     
     /// Model을 이용한 setUp
     func setUpCell(_ data: FollowingUser) {
+        self.dataId = data.userId
         setUpCell(name: data.name, imagePath: data.imagePath)
     }
     
