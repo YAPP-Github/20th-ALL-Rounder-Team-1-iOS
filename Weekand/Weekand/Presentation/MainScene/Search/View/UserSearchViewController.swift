@@ -25,9 +25,6 @@ class UserSearchViewController: UIViewController {
     var headerView = SearchHeaderView()
     let tableView = UITableView()
     
-    let sample = [UserSummaryTemp(userSummaryId: "a", name: "풍이", goal: "풍이는 기여워", imagePath: "https://user-images.githubusercontent.com/40068674/179262802-4595ff1a-dcdc-4ac0-a6af-1705dbc0d03c.jpg"),
-                  UserSummaryTemp(userSummaryId: "a", name: "예삐", goal: "예삐는 뚱뚱해", imagePath: "https://user-images.githubusercontent.com/40068674/179264228-e57b41a5-039f-459c-a03b-637d614c96f1.jpg")]
-    
     let selectedJobsObservable = BehaviorRelay<[String]>(value: [])
     let selectedInterestsObservable = BehaviorRelay<[String]>(value: [])
     var selectedJobs: [String] = [] {
@@ -62,6 +59,8 @@ class UserSearchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        configureSnapshot(list: list)
     }
     
     private func setupView() {
@@ -104,6 +103,7 @@ class UserSearchViewController: UIViewController {
         let output = viewModel?.transform(input: input)
         
         output?.searchAction
+            .filter { $0 != "" || $1.0 != [] || $1.1 != [] }
             .subscribe(onNext: { (searchText , informations) in
                 self.setUserList(searchQuery: searchText, jobs: informations.0, interests: informations.1)
         })
