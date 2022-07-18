@@ -30,7 +30,6 @@
 		7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80021A283DEAE7007874C6 /* WelcomeViewController.swift */; };
 		7D8033D4286001B70039F73E /* MainProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8033D3286001B70039F73E /* MainProfileView.swift */; };
 		7D8033D6286034BB0039F73E /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8033D5286034BB0039F73E /* MainCollectionViewCell.swift */; };
-		7D8E4E842882A9D70035FB7E /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8E4E832882A9D70035FB7E /* API.swift */; };
 		7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */; };
 		7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */; };
 		7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */; };
@@ -573,7 +572,8 @@
 				F3B00272287D68FA00D6BB1D /* SignUpModel.swift */,
 				F3B00270287D68FA00D6BB1D /* UserSummary.swift */,
 				F3B0026A287D68F100D6BB1D /* FollwingUser.swift */,
-        F3B0025C287D686200D6BB1D /* ScheduleMain.swift */,
+				F3B0025C287D686200D6BB1D /* ScheduleMain.swift */,
+				F30EBCED2881A4D900ECB48D /* UserSummaryTemp.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -958,6 +958,7 @@
 			isa = PBXGroup;
 			children = (
 				F392A1CA284F5AB400512A42 /* Category.swift */,
+				7D8E4E832882A9D70035FB7E /* API.swift */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1033,7 +1034,8 @@
 				F3B00276287D700D00D6BB1D /* ScheduleCategories.graphql */,
 				F30EBCD0288078DF00ECB48D /* CreateCategory.graphql */,
 				F30EBCDC28817CFD00ECB48D /* UpdateCategory.graphql */,
-        7D0A6A3B2881C4C100CFE61D /* UserSummary.graphql */,
+				F3A4D95A2885A94500DDE03B /* SearchUsers.graphql */,
+				7D0A6A3B2881C4C100CFE61D /* UserSummary.graphql */,
 				7D0A6A3F2881C61F00CFE61D /* Followers.graphql */,
 			);
 			path = Query;
@@ -1381,7 +1383,8 @@
 				7DF9688C284E019A00CE077E /* MainCalendarView.swift in Sources */,
 				7DD71A8B286CA8C4002D1DCF /* AlarmViewModel.swift in Sources */,
 				7D76AEB628445AA5001C668D /* MainTableViewCell.swift in Sources */,
-        F3B0025D287D686200D6BB1D /* ScheduleMain.swift in Sources */,
+				F3B0025D287D686200D6BB1D /* ScheduleMain.swift in Sources */,
+				F30EBCEA2881A04D00ECB48D /* UserSearchViewModel.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
 				F30EBCEC2881A09300ECB48D /* UserSearchCoordinator.swift in Sources */,
 				F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */,
@@ -1411,7 +1414,6 @@
 				7DF949C8283B6F1F007F84C5 /* CommonShape.swift in Sources */,
 				7D0A6A362881521400CFE61D /* MainUseCase.swift in Sources */,
 				7DEA177C2846006A00F6B990 /* WSquareImageView.swift in Sources */,
-				7D8E4E842882A9D70035FB7E /* API.swift in Sources */,
 				F32F72502853AEE00056B189 /* CategoryDetailViewController.swift in Sources */,
 				7D6B911728449F610044E217 /* WCategoryTitleLabel.swift in Sources */,
 				7DC166C228372ACF00F1A8F1 /* Inset.swift in Sources */,
