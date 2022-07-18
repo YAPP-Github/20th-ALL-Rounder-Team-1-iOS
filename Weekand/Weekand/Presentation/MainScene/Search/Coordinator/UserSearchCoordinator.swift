@@ -29,6 +29,7 @@ class UserSearchCoordinator: Coordinator {
         let jobInformationSheetController = InformationSheetController(informationType: .job)
         jobInformationSheetController.viewModel = InformationSheetViewModel(coordinator: self, informationType: .job)
         jobInformationSheetController.modalPresentationStyle = .overFullScreen
+        jobInformationSheetController.selectInformations = userSearchViewController.selectedJobs
         self.navigationController.present(jobInformationSheetController, animated: true, completion: nil)
     }
     
@@ -36,6 +37,7 @@ class UserSearchCoordinator: Coordinator {
         let interestsInformationSheetController = InformationSheetController(informationType: .interests)
         interestsInformationSheetController.viewModel = InformationSheetViewModel(coordinator: self, informationType: .interests)
         interestsInformationSheetController.modalPresentationStyle = .overFullScreen
+        interestsInformationSheetController.selectInformations = userSearchViewController.selectedInterests
         self.navigationController.present(interestsInformationSheetController, animated: true, completion: nil)
     }
     
@@ -46,8 +48,6 @@ class UserSearchCoordinator: Coordinator {
     func setInterestsInformations(_ selectedInterests: [String]) {
         userSearchViewController.selectedInterests = selectedInterests
     }
-    
-    
     
     func finish() {
         self.finishDelegate?.childDidFinish(self)

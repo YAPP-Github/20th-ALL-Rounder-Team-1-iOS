@@ -44,3 +44,29 @@ struct Constants {
                    Color(id: 20, hexCode: "#d8e3ff"),
                    Color(id: 21, hexCode: "#e9d3ff")]]
 }
+
+extension Constants {
+    static func convertJobToIndexPath(_ text: String) -> IndexPath {
+        var indexPath = IndexPath(item: 0, section: 0)
+        for section in 0..<Constants.jobDataSource.count {
+            for item in 0..<Constants.jobDataSource[section].count {
+                if Constants.jobDataSource[section][item] == text {
+                    indexPath = IndexPath(item: item, section: section)
+                }
+            }
+        }
+        return indexPath
+    }
+    
+    static func convertInterestsToIndexPath(_ text: String) -> IndexPath {
+        var indexPath = IndexPath(item: 0, section: 0)
+        for section in 0..<Constants.interestsDataSource.count {
+            for item in 0..<Constants.interestsDataSource[section].count {
+                if Constants.interestsDataSource[section][item] == text {
+                    indexPath = IndexPath(item: item, section: section)
+                }
+            }
+        }
+        return indexPath
+    }
+}
