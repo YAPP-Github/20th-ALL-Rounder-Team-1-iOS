@@ -45,23 +45,9 @@ class UserSearchViewController: UIViewController {
     private func setupView() {
         navigationItem.title = "유저 찾기"
         view.backgroundColor = .white
-        
-        tableView.delegate = self
-        tableView.separatorStyle = .none
-        tableView.bounces = false
-        tableView.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.cellIdentifier)
-        tableView.register(SearchHeaderView.self, forHeaderFooterViewReuseIdentifier: SearchHeaderView.cellIdentifier)
-        
-        if #available(iOS 15.0, *) {
-            tableView.sectionHeaderTopPadding = 0
-        }
-        
-        headerView.dropDown.cellNib = UINib(nibName: "SortDropDownCell", bundle: nil)
-        headerView.dropDown.dataSource = ScheduleSort.allCases.map { $0.description }
-        headerView.dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
-            guard let cell = cell as? SortDropDownCell else { return }
-            
-        }
+    
+        setipTableView()
+        setupDropDown()
     }
     
     private func configureUI() {
@@ -78,13 +64,37 @@ class UserSearchViewController: UIViewController {
         )
         
         self.headerView.dropDown.selectionAction = { [unowned self] (_ : Int, item: String) in
-            guard let sort = ScheduleSort.allCases.filter { $0.description == item }.first else {
+            guard let sort = UserSort.allCases.filter { $0.description == item }.first else {
                 return
             }
             self.headerView.sortButton.setTitle(sort.description)
         }
         
+        self.headerView.sortButton.rx.tap.subscribe(onNext: {
+            self.headerView.dropDown.show()
+        }).disposed(by: disposeBag)
+        
         let output = viewModel?.transform(input: input)
+    }
+    
+    private func setipTableView() {
+        tableView.delegate = self
+        tableView.separatorStyle = .none
+        tableView.bounces = false
+        tableView.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.cellIdentifier)
+        tableView.register(SearchHeaderView.self, forHeaderFooterViewReuseIdentifier: SearchHeaderView.cellIdentifier)
+        
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
+    }
+    
+    private func setupDropDown() {
+        headerView.dropDown.cellNib = UINib(nibName: "SortDropDownCell", bundle: nil)
+        headerView.dropDown.dataSource = UserSort.allCases.map { $0.description }
+        headerView.dropDown.customCellConfiguration = { (_: Index, _: String, cell: DropDownCell) -> Void in
+            guard let _ = cell as? SortDropDownCell else { return }
+        }
     }
 
 }
