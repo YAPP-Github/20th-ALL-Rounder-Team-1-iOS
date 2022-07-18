@@ -13,15 +13,17 @@ class MainCoordinator: Coordinator {
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
     var type: CoordinatorType = .main
+    var mainUseCase: MainUseCase
     var mainViewController: MainViewController
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.mainViewController = MainViewController()
+        self.mainUseCase = MainUseCase()
     }
     
     func start() {
-        self.mainViewController.viewModel = MainViewModel(coordinator: self)
+        self.mainViewController.viewModel = MainViewModel(coordinator: self, mainUseCase: mainUseCase)
         self.navigationController.pushViewController(mainViewController, animated: true)
     }
     
@@ -51,14 +53,17 @@ class MainCoordinator: Coordinator {
     }
     
     /// 월간 달력으로 날짜 선택 Sheet
-    func pushMonthlyCalendarSheet() {
-        let monthlyCalendarViewController = MonthlyCalendarSheetViewController()
+    func pushMonthlyCalendarSheet(date: Date) {
+        let monthlyCalendarViewController = MonthlyCalendarSheetViewController(currentDate: date)
+        monthlyCalendarViewController.viewModel = MonthlyCalendarSheetViewModel(coordinator: self)
+        monthlyCalendarViewController.modalPresentationStyle = .overFullScreen
         self.navigationController.present(monthlyCalendarViewController, animated: true, completion: nil)
     }
     
     /// 받은 스티커 현황 Sheet
     func pushEmojiSheet() {
         let emojiViewController = EmojiSheetViewController()
+        emojiViewController.modalPresentationStyle = .overFullScreen
         self.navigationController.present(emojiViewController, animated: true, completion: nil)
     }
     
@@ -67,15 +72,19 @@ class MainCoordinator: Coordinator {
         // TODO: 이미 선택된 이모지 확인 후 existingEmoji에 넣어준다
         let stickerAddViewController = StickerAddSheetViewController(existingEmoji: .good)
         stickerAddViewController.viewModel = StickerAddSheetViewModel()
+        stickerAddViewController.modalPresentationStyle = .overFullScreen
         self.navigationController.present(stickerAddViewController, animated: true, completion: nil)
     }
     
-
-
-        
     // TODO: 검색 화면 구현 후 개발
     func showSearchScene() {
         print(#function)
+    }
+    
+    func sendDateFromMonthlyCalender(date: Date?) {
+        
+        guard let date = date else { return }
+        self.mainViewController.currentDate = date
     }
 }
 

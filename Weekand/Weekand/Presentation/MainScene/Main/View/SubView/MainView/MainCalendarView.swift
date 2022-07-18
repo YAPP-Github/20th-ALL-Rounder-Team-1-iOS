@@ -10,10 +10,15 @@ import SnapKit
 import Then
 import FSCalendar
 
+protocol MainCalendarDelegate: AnyObject {
+    func didSelectCalendar(date: Date)
+}
+
 /// 메인 화면 주간 캘린더 + 위쪽 버튼
 class MainCalendarView: UIView {
     
     private var currentPage: Date?
+    var delegate: MainCalendarDelegate?
     
     // MARK: UI Properties
     fileprivate weak var calendar: FSCalendar!
@@ -189,17 +194,10 @@ extension MainCalendarView: FSCalendarDelegate, FSCalendarDataSource {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
-        let dateFormatter: DateFormatter = {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy/MM/dd" 
-            return formatter
-        }()
-
-        print("did select date \(dateFormatter.string(from: date))")
-        let selectedDates = calendar.selectedDates.map({dateFormatter.string(from: $0)})
-        print("selected dates is \(selectedDates)")
-        
+        self.changeTitle(date: date)
         self.calendar.setCurrentPage(date, animated: true)
+        
+        self.delegate?.didSelectCalendar(date: date)
     }
     
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {

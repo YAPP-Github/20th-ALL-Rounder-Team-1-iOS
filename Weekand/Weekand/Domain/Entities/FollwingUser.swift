@@ -23,4 +23,22 @@ struct FollowingUser: Hashable {
     let userId: String
     let name: String
     let imagePath: String
+    
+    init(userId: String, name: String, imagePath: String) {
+        self.userId = userId
+        self.name = name
+        self.imagePath = imagePath
+    }
+    
+    init (model: FollowersQuery.Data.Follower.Follower) {
+        self.userId = model.id ?? ""
+        self.name = model.nickname ?? ""
+        self.imagePath = model.profileUrl ?? ""
+    }
+    
+    init(userSummary: UserSummary) {
+        self.userId = UserDataStorage.shared.userID ?? ""
+        self.name = userSummary.name
+        self.imagePath = userSummary.imagePath
+    }
 }

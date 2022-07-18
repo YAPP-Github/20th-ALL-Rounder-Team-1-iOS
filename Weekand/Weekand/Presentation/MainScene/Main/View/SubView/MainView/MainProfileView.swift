@@ -95,7 +95,7 @@ class MainProfileView: UIView {
     
     /// Model을 이용한 setUp
     func setUpView(_ data: UserSummary) {
-        setUpView(name: data.name, state: data.state, imagePath: data.imagePath)
+        setUpView(name: data.name, state: data.goal, imagePath: data.imagePath)
     }
     
 }

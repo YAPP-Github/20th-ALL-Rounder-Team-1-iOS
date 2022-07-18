@@ -126,12 +126,17 @@ extension MainTableViewCell {
     }
     
     /// 일정 주인의 userID를 받아 로그인한 유저 본인이 아니라면 스티커 추가 버튼을 보여준다
-    public func switchStickerButtonAppearance(userId: String) {
-        stickerButton.isHidden = (userId == UserDataStorage.shared.userID) ? true : false
+    public func switchStickerButtonAppearance(isMine: Bool?) {
+        
+        guard let isMine = isMine else {
+            return
+        }
+
+        stickerButton.isHidden = isMine ? true : false
     }
     
     // TODO: API 확정되면 수정
-    public func setUpCell(_ model: ScehduleMain) {
+    public func setUpCell(_ model: ScheduleMain) {
         
     }
 
