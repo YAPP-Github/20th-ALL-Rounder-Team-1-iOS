@@ -28,8 +28,8 @@ class UserSearchViewController: UIViewController {
     let sample = [UserSummaryTemp(userSummaryId: "a", name: "풍이", goal: "풍이는 기여워", imagePath: "https://user-images.githubusercontent.com/40068674/179262802-4595ff1a-dcdc-4ac0-a6af-1705dbc0d03c.jpg"),
                   UserSummaryTemp(userSummaryId: "a", name: "예삐", goal: "예삐는 뚱뚱해", imagePath: "https://user-images.githubusercontent.com/40068674/179264228-e57b41a5-039f-459c-a03b-637d614c96f1.jpg")]
     
-    let selectedJobsObservable = BehaviorRelay(value: [])
-    let selectedInterestsObservable = BehaviorRelay(value: [])
+    let selectedJobsObservable = BehaviorRelay<[String]>(value: [])
+    let selectedInterestsObservable = BehaviorRelay<[String]>(value: [])
     var selectedJobs: [String] = [] {
         didSet {
             let count = selectedJobs.count == 0 ? nil : selectedJobs.count
@@ -45,13 +45,18 @@ class UserSearchViewController: UIViewController {
         }
     }
     
+    var list: [UserSummaryTemp] = []
+    var UserCount: Int = 20
+    var refreshListCount: Int = 15
+    var page: Int = 0
+    var selectedSort: UserSort = .dateCreatedDESC
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
         configureUI()
         configureDataSource()
-        configureSnapshot()
         bindViewModel()
     }
     
@@ -100,12 +105,17 @@ class UserSearchViewController: UIViewController {
         
         output?.searchAction
             .subscribe(onNext: { (searchText , informations) in
-            print(searchText)
-            print(informations.0)
-            print(informations.1)
-
+                self.setUserList(searchQuery: searchText, jobs: informations.0, interests: informations.1)
         })
         .disposed(by: disposeBag)
+        
+        self.viewModel?.userList
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] userList in
+                userList.forEach { self?.list.append($0) }
+                self?.configureSnapshot(list: self?.list ?? [])
+        })
+        .disposed(by: self.disposeBag)
     }
     
     private func setipTableView() {
@@ -145,10 +155,10 @@ extension UserSearchViewController {
         })
     }
     
-    func configureSnapshot(animatingDifferences: Bool = false) {
+    func configureSnapshot(animatingDifferences: Bool = false, list: [UserSummaryTemp]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, UserSummaryTemp>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(sample, toSection: .main)
+        snapshot.appendItems(list, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
     
@@ -161,5 +171,20 @@ extension UserSearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 120
+    }
+}
+
+extension UserSearchViewController {
+    func setUserList(searchQuery: String, jobs: [String], interests: [String], sort: ScheduleSort = .dateCreatedDESC) {
+        self.page = 0
+        self.list = []
+        self.viewModel?.searchUsers(
+                            searchQuery: searchQuery,
+                            jobs: jobs,
+                            interests: interests,
+                            sort: self.selectedSort,
+                            page: self.page,
+                            size: self.UserCount)
+        self.tableView.scrollToTop()
     }
 }

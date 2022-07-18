@@ -86,7 +86,11 @@ class UserTableViewCell: UITableViewCell {
     }
     
     public func configure(imageUrl: String, name: String, goal: String) {
-        guard let url = URL(string: imageUrl),
+        var profileurl = ""
+        if imageUrl == "" {
+            profileurl = "https://user-images.githubusercontent.com/40068674/179536999-3201492e-80c3-4349-9dde-19511cf1770d.png"
+        }
+        guard let url = URL(string: profileurl),
               let data = try? Data(contentsOf: url) else {
             return
         }

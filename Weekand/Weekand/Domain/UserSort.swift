@@ -26,3 +26,18 @@ enum UserSort: CaseIterable {
         }
     }
 }
+
+extension UserSort {
+    func toModel() -> SearchUserSort {
+        switch self {
+        case .dateCreatedDESC:
+            return SearchUserSort.dateCreatedDesc
+        case .followerCountDESC:
+            return SearchUserSort.followerCountDesc
+        case .nicknameASC:
+            return SearchUserSort.nicknameAsc
+        case .nicknameDESC:
+            return SearchUserSort.nicknameDesc
+        }
+    }
+}

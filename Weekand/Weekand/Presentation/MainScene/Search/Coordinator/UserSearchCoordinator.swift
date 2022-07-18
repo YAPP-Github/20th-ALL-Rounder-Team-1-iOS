@@ -14,14 +14,16 @@ class UserSearchCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var type: CoordinatorType = .userSearch
     var userSearchViewController: UserSearchViewController
+    var searchUseCase: SearchUseCase
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.userSearchViewController = UserSearchViewController()
+        self.searchUseCase = SearchUseCase()
     }
     
     func start() {
-        self.userSearchViewController.viewModel = UserSearchViewModel(coordinator: self)
+        self.userSearchViewController.viewModel = UserSearchViewModel(coordinator: self, searchUseCase: searchUseCase)
         self.navigationController.pushViewController(userSearchViewController, animated: true)
     }
     

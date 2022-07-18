@@ -130,6 +130,8 @@
 		F392A1C7284F51B100512A42 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1C6284F51B100512A42 /* CategoryListViewController.swift */; };
 		F392A1C9284F53A300512A42 /* CategoryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1C8284F53A300512A42 /* CategoryListTableViewCell.swift */; };
 		F392A1EF28531FC600512A42 /* CategoryListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */; };
+		F3A4D95B2885A94500DDE03B /* SearchUsers.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F3A4D95A2885A94500DDE03B /* SearchUsers.graphql */; };
+		F3A4D95D2885B28600DDE03B /* SearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A4D95C2885B28600DDE03B /* SearchUseCase.swift */; };
 		F3AA9E1B2869FEFC00F71559 /* PasswordFindViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA9E1A2869FEFC00F71559 /* PasswordFindViewModel.swift */; };
 		F3AA9E1D2869FF1E00F71559 /* PasswordFindCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA9E1C2869FF1E00F71559 /* PasswordFindCoordinator.swift */; };
 		F3B0025D287D686200D6BB1D /* ScehduleMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0025C287D686200D6BB1D /* ScehduleMain.swift */; };
@@ -309,6 +311,8 @@
 		F392A1C8284F53A300512A42 /* CategoryListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListTableViewCell.swift; sourceTree = "<group>"; };
 		F392A1CA284F5AB400512A42 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListHeaderView.swift; sourceTree = "<group>"; };
+		F3A4D95A2885A94500DDE03B /* SearchUsers.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SearchUsers.graphql; sourceTree = "<group>"; };
+		F3A4D95C2885B28600DDE03B /* SearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCase.swift; sourceTree = "<group>"; };
 		F3AA9E1A2869FEFC00F71559 /* PasswordFindViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindViewModel.swift; sourceTree = "<group>"; };
 		F3AA9E1C2869FF1E00F71559 /* PasswordFindCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindCoordinator.swift; sourceTree = "<group>"; };
 		F3B0025C287D686200D6BB1D /* ScehduleMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScehduleMain.swift; path = Entities/ScehduleMain.swift; sourceTree = "<group>"; };
@@ -981,6 +985,7 @@
 			isa = PBXGroup;
 			children = (
 				F3B00260287D68BD00D6BB1D /* CategoryUseCase.swift */,
+				F3A4D95C2885B28600DDE03B /* SearchUseCase.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -1011,6 +1016,7 @@
 				F3B00276287D700D00D6BB1D /* ScheduleCategories.graphql */,
 				F30EBCD0288078DF00ECB48D /* CreateCategory.graphql */,
 				F30EBCDC28817CFD00ECB48D /* UpdateCategory.graphql */,
+				F3A4D95A2885A94500DDE03B /* SearchUsers.graphql */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1185,6 +1191,7 @@
 				F3C8E0B128731E4900B0916A /* CategoryDropDownCell.xib in Resources */,
 				F30EBCD1288078DF00ECB48D /* CreateCategory.graphql in Resources */,
 				F323FF1F2879AD5600DFD8FD /* sendAuthKey.graphql in Resources */,
+				F3A4D95B2885A94500DDE03B /* SearchUsers.graphql in Resources */,
 				F32ACC0B28235D530082AF30 /* Assets.xcassets in Resources */,
 				F323FF212879AF3000DFD8FD /* vaildAuthKey.graphql in Resources */,
 			);
@@ -1292,6 +1299,7 @@
 				F33C6EAE28535021005B493A /* UIVIewController+extension.swift in Sources */,
 				7D76AEB828448C79001C668D /* Font.swift in Sources */,
 				F3C8E0A52872FD2300B0916A /* DateTimeStackView.swift in Sources */,
+				F3A4D95D2885B28600DDE03B /* SearchUseCase.swift in Sources */,
 				7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */,
 				F3B00267287D68E700D6BB1D /* Category.swift in Sources */,
 				F323FF0C2877E87900DFD8FD /* WToastLabel.swift in Sources */,
