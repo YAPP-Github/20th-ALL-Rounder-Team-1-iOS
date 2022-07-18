@@ -9,7 +9,8 @@ import UIKit
 
 extension NSMutableAttributedString {
 
-    func semiBold(_ value: String, font: UIFont, fontColor: UIColor) -> NSMutableAttributedString {
+    func semiBold(_ value: String, fontSize: CGFloat, fontColor: UIColor) -> NSMutableAttributedString {
+        let font = UIFont(name: "PretendardVariable-SemiBold", size: fontSize) ?? UIFont.boldSystemFont(ofSize: fontSize)
         let attributes: [NSAttributedString.Key: Any] = [
             .font: font,
             .foregroundColor: fontColor
@@ -19,7 +20,8 @@ extension NSMutableAttributedString {
         return self
     }
     
-    func bold(_ value: String, font: UIFont, fontColor: UIColor) -> NSMutableAttributedString {
+    func bold(_ value: String, fontSize: CGFloat, fontColor: UIColor) -> NSMutableAttributedString {
+        let font = UIFont(name: "PretendardVariable-Bold", size: fontSize) ?? UIFont.boldSystemFont(ofSize: fontSize)
         let attributes: [NSAttributedString.Key: Any] = [
             .font: font,
             .foregroundColor: fontColor
@@ -29,7 +31,8 @@ extension NSMutableAttributedString {
         return self
     }
     
-    func normal(_ value: String, font: UIFont, fontColor: UIColor) -> NSMutableAttributedString {
+    func normal(_ value: String, fontSize: CGFloat, fontColor: UIColor) -> NSMutableAttributedString {
+        let font = UIFont(name: "PretendardVariable-Medium", size: fontSize) ?? UIFont.systemFont(ofSize: fontSize)
         let attributes: [NSAttributedString.Key: Any] = [
             .font: font,
             .foregroundColor: fontColor
