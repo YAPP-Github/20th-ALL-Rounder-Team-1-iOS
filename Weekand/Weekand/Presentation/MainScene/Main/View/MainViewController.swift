@@ -103,9 +103,9 @@ class MainViewController: UIViewController, UITableViewDelegate {
         let input = MainViewModel.Input(
             
             // Navigation Button
-            didFoldBarButton: self.foldButton.rx.tap.asObservable() ,
-            didAlarmBarButton: self.alarmButton.rx.tap.asObservable() ,
-            didsearchBarButton: self.searchButton.rx.tap.asObservable() ,
+            didFoldBarButton: self.foldButton.rx.tap.asObservable(),
+            didAlarmBarButton: self.alarmButton.rx.tap.asObservable(),
+            didsearchBarButton: self.searchButton.rx.tap.asObservable(),
             
             // Calendar Button
             didTapTodayButton: self.headerView.calendarView.todayButton.rx.tap.asObservable(),
@@ -194,8 +194,7 @@ extension MainViewController {
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! MainCollectionViewCell
-        
-        print(cell.dataId)
+        viewModel?.identifyMyPage(id: cell.dataId)
     }
 }
 
@@ -230,7 +229,7 @@ extension MainViewController {
         viewModel?.tableViewDataSource = UITableViewDiffableDataSource<MainSection, ScheduleMain>(tableView: tableView, cellProvider: { tableView, indexPath, list in
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as! MainTableViewCell
             
-            cell.switchStickerButtonAppearance(userId: "123456")    // TODO: 로그인 구현 후 수정
+            cell.switchStickerButtonAppearance(isMine: self.viewModel?.isMySchedule)
             cell.setUpCell(id: "id: \(indexPath.row)", color: .red, title: list.name, status: .completed, time: "00:00 - 00:00", emojiNumber: list.stickerCount, emojiOrder: [.awesome, .cool, .good, .support])
             cell.delegate = self
             

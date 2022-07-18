@@ -59,6 +59,9 @@ extension MainViewModel {
         let didAlarmBarButton: Observable<Void>
         let didsearchBarButton: Observable<Void>
         
+        // UserSummary
+        let didUserSummaryTap: Observable<String>
+        
         // CalendarView
         let didTapTodayButton: Observable<Void>
         let didTapNextWeekButton: Observable<Void>
@@ -93,6 +96,20 @@ extension MainViewModel {
             self?.coordinator?.showSearchScene()
         }).disposed(by: disposeBag)
         
+        // UserSummary
+        input.didUserSummaryTap.subscribe(onNext: { [weak self] _ in
+            
+            if self?.isMySchedule ?? true {
+                print("To my Profile")
+                // TODO: 내 프로필로 이동
+            } else {
+                print("To other's Profile")
+                // TODO: 남의 프로필로 이동
+            }
+            
+        }).disposed(by: disposeBag)
+
+        
         // Calander Buttons
         input.didTapEditButton.subscribe(onNext: { [weak self] _ in
             self?.coordinator?.showCategoryScene()
@@ -124,6 +141,26 @@ extension MainViewModel {
         )
     }
 
+}
+
+extension MainViewModel {
+    
+    /// id가 로그인한 유저인지 식별 후 저장
+    func identifyMyPage(id: String?) {
+        
+        guard let id = id else {
+            print("Error: id Not Found")
+            return
+        }
+        
+        if id == UserDataStorage.shared.userID {
+            self.isMySchedule = true
+        } else {
+            self.isMySchedule = false
+        }
+        
+        print("My Schedule: \(self.isMySchedule)")
+    }
 }
 
 // MARK: Configure DiffableDataSource Snapshot
