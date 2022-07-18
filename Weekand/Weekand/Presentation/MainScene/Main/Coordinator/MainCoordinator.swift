@@ -56,12 +56,14 @@ class MainCoordinator: Coordinator {
     func pushMonthlyCalendarSheet(date: Date) {
         let monthlyCalendarViewController = MonthlyCalendarSheetViewController(currentDate: date)
         monthlyCalendarViewController.viewModel = MonthlyCalendarSheetViewModel(coordinator: self)
+        monthlyCalendarViewController.modalPresentationStyle = .overFullScreen
         self.navigationController.present(monthlyCalendarViewController, animated: true, completion: nil)
     }
     
     /// 받은 스티커 현황 Sheet
     func pushEmojiSheet() {
         let emojiViewController = EmojiSheetViewController()
+        emojiViewController.modalPresentationStyle = .overFullScreen
         self.navigationController.present(emojiViewController, animated: true, completion: nil)
     }
     
@@ -70,6 +72,7 @@ class MainCoordinator: Coordinator {
         // TODO: 이미 선택된 이모지 확인 후 existingEmoji에 넣어준다
         let stickerAddViewController = StickerAddSheetViewController(existingEmoji: .good)
         stickerAddViewController.viewModel = StickerAddSheetViewModel()
+        stickerAddViewController.modalPresentationStyle = .overFullScreen
         self.navigationController.present(stickerAddViewController, animated: true, completion: nil)
     }
     
