@@ -25,6 +25,18 @@ class UserSearchCoordinator: Coordinator {
         self.navigationController.pushViewController(userSearchViewController, animated: true)
     }
     
+    func presentJobInformationSheet() {
+        let jobInformationSheetController = InformationSheetController(informationType: .job)
+        jobInformationSheetController.modalPresentationStyle = .overFullScreen
+        self.navigationController.present(jobInformationSheetController, animated: true, completion: nil)
+    }
+    
+    func presentInterestsInformationSheet() {
+        let interestsInformationSheetController = InformationSheetController(informationType: .interests)
+        interestsInformationSheetController.modalPresentationStyle = .overFullScreen
+        self.navigationController.present(interestsInformationSheetController, animated: true, completion: nil)
+    }
+    
     func finish() {
         self.finishDelegate?.childDidFinish(self)
     }

@@ -27,12 +27,24 @@ class UserSearchViewModel: ViewModelType {
 extension UserSearchViewModel {
     
     struct Input {
+        let didTapJobFilterButton: Observable<Void>
+        let didTapInterestsFilterButton: Observable<Void>
     }
     
     struct Output { }
     
     @discardableResult
     func transform(input: Input) -> Output {
+        
+        input.didTapJobFilterButton.subscribe(onNext: {
+            self.coordinator?.presentJobInformationSheet()
+        })
+        .disposed(by: disposeBag)
+        
+        input.didTapInterestsFilterButton.subscribe(onNext: {
+            self.coordinator?.presentInterestsInformationSheet()
+        })
+        .disposed(by: disposeBag)
         
         return Output()
     }

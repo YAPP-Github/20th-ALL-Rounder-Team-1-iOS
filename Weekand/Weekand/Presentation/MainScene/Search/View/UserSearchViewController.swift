@@ -61,6 +61,8 @@ class UserSearchViewController: UIViewController {
     private func bindViewModel() {
         
         let input = UserSearchViewModel.Input(
+            didTapJobFilterButton: headerView.jobFilterButton.rx.tap.asObservable(),
+            didTapInterestsFilterButton: headerView.interestsFilterButton.rx.tap.asObservable()
         )
         
         self.headerView.dropDown.selectionAction = { [unowned self] (_ : Int, item: String) in
