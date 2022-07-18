@@ -28,7 +28,7 @@ class SearchHeaderView: UITableViewHeaderFooterView {
     }
     
     lazy var interestsFilterButton = WFilterButtton().then {
-        $0.setTitle("관심사 ", 3)
+        $0.setTitle("관심사 ", nil)
     }
     
     lazy var dropDown = DropDown(anchorView: sortButton).then {

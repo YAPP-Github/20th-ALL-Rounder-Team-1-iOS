@@ -20,7 +20,7 @@ class InformationSheetController: BottomSheetViewController {
     // ViewMoel
     
     private let disposeBag = DisposeBag()
-    var viewModel: ColorSheetViewModel?
+    var viewModel: InformationSheetViewModel?
     
     // SheetHeight
     
@@ -51,9 +51,10 @@ class InformationSheetController: BottomSheetViewController {
     
     // property
     
-    let selectedJobs = PublishRelay<[String]>()
+    let selectedInformations = PublishRelay<[String]>()
+    let dropDownDidSelectEvent = PublishRelay<UserSort>()
     
-    let informationType : InformationType
+    let informationType: InformationType
     
     init(informationType: InformationType) {
         self.informationType = informationType
@@ -108,6 +109,13 @@ class InformationSheetController: BottomSheetViewController {
     }
     
     private func bindViewModel() {
+        
+        let input = InformationSheetViewModel.Input(
+            selectedInformations: selectedInformations,
+            didTapConfirmButton: confirmButton.rx.tap.asObservable()
+        )
+        
+        let output = viewModel?.transform(input: input)
     }
 }
 
@@ -172,12 +180,12 @@ extension InformationSheetController: UICollectionViewDelegate {
             let jobs = collectionView
                         .indexPathsForSelectedItems?
                         .map { Constants.jobDataSource[$0.section][$0.item] }
-            self.selectedJobs.accept(jobs ?? [])
+            self.selectedInformations.accept(jobs ?? [])
         } else {
             let interests = collectionView
                         .indexPathsForSelectedItems?
                         .map { Constants.interestsDataSource[$0.section][$0.item] }
-            self.selectedJobs.accept(interests ?? [])
+            self.selectedInformations.accept(interests ?? [])
         }
     }
     
@@ -186,12 +194,12 @@ extension InformationSheetController: UICollectionViewDelegate {
             let jobs = collectionView
                         .indexPathsForSelectedItems?
                         .map { Constants.jobDataSource[$0.section][$0.item] }
-            self.selectedJobs.accept(jobs ?? [])
+            self.selectedInformations.accept(jobs ?? [])
         } else {
             let interests = collectionView
                         .indexPathsForSelectedItems?
                         .map { Constants.interestsDataSource[$0.section][$0.item] }
-            self.selectedJobs.accept(interests ?? [])
+            self.selectedInformations.accept(interests ?? [])
         }
     }
 }
