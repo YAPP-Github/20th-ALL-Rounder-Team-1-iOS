@@ -36,16 +36,14 @@ class MainViewModel: ViewModelType {
     // 현재 일정이 나의 일정인지 식별하는 Property
     var isMySchedule: Bool = true
     var currentUserId: String?
+    var currentDate: Date = Date()
     
     init(coordinator: MainCoordinator, mainUseCase: MainUseCase) {
         self.coordinator = coordinator
         self.mainUseCase = mainUseCase
         
         self.getFollowingUser()
-        self.getUserSummary()
-        
-        self.getScheduleList(date: "1656255168388".fromStringTimestamp())   // TODO: 500 에러 수정
-        
+        reloadData()
     }
     
 }
@@ -146,8 +144,13 @@ extension MainViewModel {
 
 extension MainViewModel {
     
+    func switchUser(id: String?) {
+        identifyMyPage(id: id)
+        currentUserId = id
+    }
+    
     /// id가 로그인한 유저인지 식별 후 저장
-    func identifyMyPage(id: String?) {
+    func identifyMyPage(id: String?){
         
         currentUserId = id
         
@@ -163,6 +166,19 @@ extension MainViewModel {
         }
         
         print("My Schedule: \(self.isMySchedule)")
+    }
+    
+    /// 데이터 불러오기
+    func reloadData() {
+        
+        if isMySchedule {
+            self.getUserSummary()
+            self.getScheduleList(date: "1656255168388".fromStringTimestamp())   // TODO: 500 에러 수정
+        } else {
+            guard let id = currentUserId else { return }
+            // TODO: 선택된 유저의 UserSummary 가져오기
+            // TODO: 선택된 유저의 ScheduleMain 가져오기
+        }
     }
 }
 
