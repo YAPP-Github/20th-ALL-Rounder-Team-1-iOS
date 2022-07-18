@@ -23,11 +23,11 @@ final class CategoryUseCase {
             .asSingle()
     }
     
-    func updateCategory(id: String, scheduleCategoryInput: ScheduleCategoryInput) -> Single<Bool> {
+    func updateCategory(id: String, scheduleCategoryInput: ScheduleCategoryInput) -> Single<String> {
         NetWork.shared.perform(mutation: UpdateCategoryMutation(
                                             categoryId: id,
                                             scheduleCategoryInput: scheduleCategoryInput))
-        .map { $0.updateCategory }
+        .map { $0.updateCategory.name }
         .asSingle()
     }
 }

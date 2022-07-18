@@ -62,9 +62,9 @@ extension CategoryModifyViewModel {
     func updateCategory(id: String, name: String, color: String, openType: CategoryOpenType) {
         let categoryInput = ScheduleCategoryInput(name: name, color: color, openType: openType.toModel())
         self.categoryUseCase.updateCategory(id: id, scheduleCategoryInput: categoryInput)
-            .subscribe(onSuccess: { isSucceed in
-                if isSucceed {
-                    self.coordinator?.endAndDismiss()
+            .subscribe(onSuccess: { categoryName in
+                if categoryName != "" {
+                    self.coordinator?.endAndDismiss(categoryName: categoryName)
                 } else {
                     print("error")
                 }
