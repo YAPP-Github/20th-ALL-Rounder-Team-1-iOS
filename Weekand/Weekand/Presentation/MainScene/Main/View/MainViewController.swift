@@ -16,6 +16,13 @@ class MainViewController: UIViewController, UITableViewDelegate {
     var viewModel: MainViewModel?
     let disposeBag = DisposeBag()
     
+    var currentDate: Date = Date() {
+        didSet {
+            headerView.calendarView.selectDate(date: currentDate)
+            viewModel?.currentDate = currentDate
+        }
+    }
+    
     // MARK: UI Properties
     var collectionView: UICollectionView!
     var headerView = MainViewHeader()
@@ -86,7 +93,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
         self.headerView.calendarView.titleLabel.rx.tapGesture()
             .when(.recognized)
             .bind { _ in
-                self.viewModel?.coordinator?.pushMonthlyCalendarSheet()
+                self.viewModel?.coordinator?.pushMonthlyCalendarSheet(date: self.currentDate)
             }.disposed(by: disposeBag)
         
         self.headerView.profileView.rx.tapGesture()

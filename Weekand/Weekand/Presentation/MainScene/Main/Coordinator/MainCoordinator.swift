@@ -53,8 +53,9 @@ class MainCoordinator: Coordinator {
     }
     
     /// 월간 달력으로 날짜 선택 Sheet
-    func pushMonthlyCalendarSheet() {
-        let monthlyCalendarViewController = MonthlyCalendarSheetViewController()
+    func pushMonthlyCalendarSheet(date: Date) {
+        let monthlyCalendarViewController = MonthlyCalendarSheetViewController(currentDate: date)
+        monthlyCalendarViewController.viewModel = MonthlyCalendarSheetViewModel(coordinator: self)
         self.navigationController.present(monthlyCalendarViewController, animated: true, completion: nil)
     }
     
@@ -72,12 +73,15 @@ class MainCoordinator: Coordinator {
         self.navigationController.present(stickerAddViewController, animated: true, completion: nil)
     }
     
-
-
-        
     // TODO: 검색 화면 구현 후 개발
     func showSearchScene() {
         print(#function)
+    }
+    
+    func sendDateFromMonthlyCalender(date: Date?) {
+        
+        guard let date = date else { return }
+        self.mainViewController.currentDate = date
     }
 }
 
