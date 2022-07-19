@@ -192,8 +192,8 @@
 /* Begin PBXFileReference section */
 		2F9EA8129964B7F5609AAF6E /* Pods-Weekand.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weekand.debug.xcconfig"; path = "Target Support Files/Pods-Weekand/Pods-Weekand.debug.xcconfig"; sourceTree = "<group>"; };
 		7D0A6A312881330E00CFE61D /* scheduleList.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = scheduleList.graphql; sourceTree = "<group>"; };
-		7D0A6A3328813C7100CFE61D /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
-		7D0A6A352881521400CFE61D /* MainUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUseCase.swift; sourceTree = "<group>"; };
+		7D0A6A3328813C7100CFE61D /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Status.swift; path = Enum/Status.swift; sourceTree = "<group>"; };
+		7D0A6A352881521400CFE61D /* MainUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainUseCase.swift; path = UseCase/Main/MainUseCase.swift; sourceTree = "<group>"; };
 		7D0A6A392881588000CFE61D /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		7D0A6A3B2881C4C100CFE61D /* UserSummary.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UserSummary.graphql; sourceTree = "<group>"; };
 		7D0A6A3F2881C61F00CFE61D /* Followers.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Followers.graphql; sourceTree = "<group>"; };
@@ -253,7 +253,7 @@
 		F30EBCCC288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleCategoryOpenType+extension.swift"; sourceTree = "<group>"; };
 		F30EBCD0288078DF00ECB48D /* CreateCategory.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CreateCategory.graphql; sourceTree = "<group>"; };
 		F30EBCD228807B2600ECB48D /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		F30EBCD428807C9400ECB48D /* CategoryOpenType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryOpenType.swift; path = Entities/CategoryOpenType.swift; sourceTree = "<group>"; };
+		F30EBCD428807C9400ECB48D /* CategoryOpenType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryOpenType.swift; path = Enum/CategoryOpenType.swift; sourceTree = "<group>"; };
 		F30EBCD628807DC000ECB48D /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		F30EBCD8288138E800ECB48D /* UIScrollView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+extension.swift"; sourceTree = "<group>"; };
 		F30EBCDA28817A2400ECB48D /* CategoryEditCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEditCoordinatorType.swift; sourceTree = "<group>"; };
@@ -263,9 +263,9 @@
 		F30EBCE728819C3E00ECB48D /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		F30EBCE92881A04D00ECB48D /* UserSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchViewModel.swift; sourceTree = "<group>"; };
 		F30EBCEB2881A09300ECB48D /* UserSearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCoordinator.swift; sourceTree = "<group>"; };
-		F30EBCED2881A4D900ECB48D /* UserSummaryTemp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSummaryTemp.swift; sourceTree = "<group>"; };
+		F30EBCED2881A4D900ECB48D /* UserSummaryTemp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserSummaryTemp.swift; path = Entities/UserSummaryTemp.swift; sourceTree = "<group>"; };
 		F30EBCEF28828C3C00ECB48D /* WFilterButtton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WFilterButtton.swift; sourceTree = "<group>"; };
-		F30EBCF22885176300ECB48D /* UserSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSort.swift; sourceTree = "<group>"; };
+		F30EBCF22885176300ECB48D /* UserSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserSort.swift; path = Enum/UserSort.swift; sourceTree = "<group>"; };
 		F30EBCF428851EC400ECB48D /* InformationSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationSheetController.swift; sourceTree = "<group>"; };
 		F30EBCF6288532F800ECB48D /* InformationSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationSheetViewModel.swift; sourceTree = "<group>"; };
 		F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCalendarView.swift; sourceTree = "<group>"; };
@@ -325,7 +325,7 @@
 		F392A1CA284F5AB400512A42 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListHeaderView.swift; sourceTree = "<group>"; };
 		F3A4D95A2885A94500DDE03B /* SearchUsers.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SearchUsers.graphql; sourceTree = "<group>"; };
-		F3A4D95C2885B28600DDE03B /* SearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCase.swift; sourceTree = "<group>"; };
+		F3A4D95C2885B28600DDE03B /* SearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchUseCase.swift; path = UseCase/Main/SearchUseCase.swift; sourceTree = "<group>"; };
 		F3AA9E1A2869FEFC00F71559 /* PasswordFindViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindViewModel.swift; sourceTree = "<group>"; };
 		F3AA9E1C2869FF1E00F71559 /* PasswordFindCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFindCoordinator.swift; sourceTree = "<group>"; };
 		F3B0025C287D686200D6BB1D /* ScheduleMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleMain.swift; path = Entities/ScheduleMain.swift; sourceTree = "<group>"; };
@@ -335,11 +335,11 @@
 		F3B00264287D68CE00D6BB1D /* SignUpUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpUseCase.swift; path = UseCase/Sign/SignUpUseCase.swift; sourceTree = "<group>"; };
 		F3B00266287D68E700D6BB1D /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = Entities/Category.swift; sourceTree = "<group>"; };
 		F3B00268287D68F100D6BB1D /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Entities/Color.swift; sourceTree = "<group>"; };
-		F3B00269287D68F100D6BB1D /* Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Emoji.swift; path = Entities/Emoji.swift; sourceTree = "<group>"; };
+		F3B00269287D68F100D6BB1D /* Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Emoji.swift; path = Enum/Emoji.swift; sourceTree = "<group>"; };
 		F3B0026A287D68F100D6BB1D /* FollwingUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FollwingUser.swift; path = Entities/FollwingUser.swift; sourceTree = "<group>"; };
 		F3B0026B287D68F100D6BB1D /* EmojiGiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmojiGiver.swift; path = Entities/EmojiGiver.swift; sourceTree = "<group>"; };
 		F3B00270287D68FA00D6BB1D /* UserSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserSummary.swift; path = Entities/UserSummary.swift; sourceTree = "<group>"; };
-		F3B00271287D68FA00D6BB1D /* ScheduleSort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleSort.swift; path = Entities/ScheduleSort.swift; sourceTree = "<group>"; };
+		F3B00271287D68FA00D6BB1D /* ScheduleSort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleSort.swift; path = Enum/ScheduleSort.swift; sourceTree = "<group>"; };
 		F3B00272287D68FA00D6BB1D /* SignUpModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpModel.swift; path = Entities/SignUpModel.swift; sourceTree = "<group>"; };
 		F3B00276287D700D00D6BB1D /* ScheduleCategories.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ScheduleCategories.graphql; sourceTree = "<group>"; };
 		F3C8E086286DC71300B0916A /* RxApolloClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxApolloClient.swift; sourceTree = "<group>"; };
@@ -515,6 +515,18 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		7D8129C5288632AA006C0A5D /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				F30EBCD428807C9400ECB48D /* CategoryOpenType.swift */,
+				F3B00271287D68FA00D6BB1D /* ScheduleSort.swift */,
+				F3B00269287D68F100D6BB1D /* Emoji.swift */,
+				F30EBCF22885176300ECB48D /* UserSort.swift */,
+				7D0A6A3328813C7100CFE61D /* Status.swift */,
+			);
+			name = Enum;
+			sourceTree = "<group>";
+		};
 		7DA4AB6E28586602009E91FB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -553,6 +565,7 @@
 			isa = PBXGroup;
 			children = (
 				F323FF112877F75000DFD8FD /* UseCase */,
+				7D8129C5288632AA006C0A5D /* Enum */,
 				7DAA861D284B964800F21E35 /* Entities */,
 			);
 			path = Domain;
@@ -561,14 +574,9 @@
 		7DAA861D284B964800F21E35 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				F30EBCD428807C9400ECB48D /* CategoryOpenType.swift */,
-				F3B00271287D68FA00D6BB1D /* ScheduleSort.swift */,
-				F3B00269287D68F100D6BB1D /* Emoji.swift */,
-				F30EBCF22885176300ECB48D /* UserSort.swift */,
 				F3B00266287D68E700D6BB1D /* Category.swift */,
 				F3B00268287D68F100D6BB1D /* Color.swift */,
 				F3B0026B287D68F100D6BB1D /* EmojiGiver.swift */,
-				7D0A6A3328813C7100CFE61D /* Status.swift */,
 				F3B00272287D68FA00D6BB1D /* SignUpModel.swift */,
 				F3B00270287D68FA00D6BB1D /* UserSummary.swift */,
 				F3B0026A287D68F100D6BB1D /* FollwingUser.swift */,
