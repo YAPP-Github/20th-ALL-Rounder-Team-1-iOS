@@ -1100,9 +1100,9 @@ public final class ScheduleListQuery: GraphQLQuery {
 
   public let operationName: String = "ScheduleList"
 
-  public var date: String
+  public var date: Timestamp
 
-  public init(date: String) {
+  public init(date: Timestamp) {
     self.date = date
   }
 
@@ -1187,8 +1187,8 @@ public final class ScheduleListQuery: GraphQLQuery {
             GraphQLField("name", type: .nonNull(.scalar(String.self))),
             GraphQLField("status", type: .nonNull(.scalar(ScheduleStatus.self))),
             GraphQLField("category", type: .nonNull(.object(Category.selections))),
-            GraphQLField("dateTimeStart", type: .nonNull(.scalar(String.self))),
-            GraphQLField("dateTimeEnd", type: .nonNull(.scalar(String.self))),
+            GraphQLField("dateTimeStart", type: .nonNull(.scalar(Timestamp.self))),
+            GraphQLField("dateTimeEnd", type: .nonNull(.scalar(Timestamp.self))),
             GraphQLField("stickerCount", type: .nonNull(.scalar(Int.self))),
             GraphQLField("stickerNames", type: .nonNull(.list(.nonNull(.scalar(ScheduleStickerName.self))))),
           ]
@@ -1200,7 +1200,7 @@ public final class ScheduleListQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(id: GraphQLID, name: String, status: ScheduleStatus, category: Category, dateTimeStart: String, dateTimeEnd: String, stickerCount: Int, stickerNames: [ScheduleStickerName]) {
+        public init(id: GraphQLID, name: String, status: ScheduleStatus, category: Category, dateTimeStart: Timestamp, dateTimeEnd: Timestamp, stickerCount: Int, stickerNames: [ScheduleStickerName]) {
           self.init(unsafeResultMap: ["__typename": "Schedule", "id": id, "name": name, "status": status, "category": category.resultMap, "dateTimeStart": dateTimeStart, "dateTimeEnd": dateTimeEnd, "stickerCount": stickerCount, "stickerNames": stickerNames])
         }
 
@@ -1249,18 +1249,18 @@ public final class ScheduleListQuery: GraphQLQuery {
           }
         }
 
-        public var dateTimeStart: String {
+        public var dateTimeStart: Timestamp {
           get {
-            return resultMap["dateTimeStart"]! as! String
+            return resultMap["dateTimeStart"]! as! Timestamp
           }
           set {
             resultMap.updateValue(newValue, forKey: "dateTimeStart")
           }
         }
 
-        public var dateTimeEnd: String {
+        public var dateTimeEnd: Timestamp {
           get {
-            return resultMap["dateTimeEnd"]! as! String
+            return resultMap["dateTimeEnd"]! as! Timestamp
           }
           set {
             resultMap.updateValue(newValue, forKey: "dateTimeEnd")

@@ -8,14 +8,15 @@
 import Foundation
 
 extension Date {
-    func toStringTimestamp() -> String {
-        return String(Int(self.timeIntervalSince1970*1000))
+    /// Date 값을 Timestamp로 변환
+    func toTimestamp() -> Int64 {
+        return Int64(self.timeIntervalSince1970*1000)
     }
 }
 
-extension String {
-    func fromStringTimestamp() -> Date {
-        
-        return Date(timeIntervalSince1970: Double(self)!/1000.0)
+extension Int64 {
+    /// Timestamp값을 Date로 변환
+    func toDate() -> Date {
+        return Date(timeIntervalSince1970: TimeInterval(self/1000))
     }
 }

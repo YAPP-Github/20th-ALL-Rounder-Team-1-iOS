@@ -173,7 +173,7 @@ extension MainViewModel {
         
         if isMySchedule {
             self.getUserSummary()
-            self.getScheduleList(date: "1656255168388".fromStringTimestamp())   // TODO: 500 에러 수정
+            self.getScheduleList(date: currentDate)   // TODO: 500 에러 수정
         } else {
             guard let id = currentUserId else { return }
             // TODO: 선택된 유저의 UserSummary 가져오기
@@ -246,7 +246,7 @@ extension MainViewModel {
         self.mainUseCase.followers(page: 0, size: 20).subscribe(onSuccess: { following in
             PublishRelay<[FollowingUser]>.just(following).bind(to: self.userFollowingList).disposed(by: self.disposeBag)
         }, onFailure: { error in
-            print("Error: \(error)")
+            print("\(#function) Error: \(error)")
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     }
@@ -255,19 +255,19 @@ extension MainViewModel {
         self.mainUseCase.userSummary().subscribe(onSuccess: { userData in
             PublishRelay<UserSummary>.just(userData).bind(to: self.userSummary).disposed(by: self.disposeBag)
         }, onFailure: { error in
-            print("Error: \(error)")
+            print("\(#function) Error: \(error)")
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     }
     
     private func getScheduleList(date: Date) {
         
-        self.mainUseCase.scheduleList(date: date).subscribe (onSuccess: { scheduleData in
+        self.mainUseCase.scheduleList(date: date).subscribe(onSuccess: { scheduleData in
             PublishRelay<[ScheduleMain]>.just(scheduleData).bind(to: self.scheduleList).disposed(by: self.disposeBag)
-            print(scheduleData)
+            print("Schedule: \(scheduleData)")
 
         }, onFailure: { error in
-            print("Error: \(error)")
+            print("\(#function) Error: \(error)")
         }, onDisposed: nil)
         .disposed(by: disposeBag)
         

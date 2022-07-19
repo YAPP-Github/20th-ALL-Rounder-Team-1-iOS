@@ -30,8 +30,10 @@ final class MainUseCase {
     }
     
     func scheduleList(date: Date) -> Single<[ScheduleMain]> {
+        print("Timestamp:")
+        print(date.toTimestamp())
         return NetWork.shared
-            .fetch(query: ScheduleListQuery(date: date.toStringTimestamp()))
+            .fetch(query: ScheduleListQuery(date: date.toTimestamp()))
             .map {
                 $0.schedules.schedules.map {
                     ScheduleMain(model: $0)
