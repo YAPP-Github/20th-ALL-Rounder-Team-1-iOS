@@ -14,15 +14,17 @@ class ScheduleEditCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var scheduleEditViewController: ScheduleEditViewController
     var type: CoordinatorType = .scheduleEdit
+    var scheduleEditUseCase: ScheduleEditUseCase
     
     required init() {
         self.scheduleEditViewController = ScheduleEditViewController()
         self.navigationController = UINavigationController(rootViewController: scheduleEditViewController)
         self.navigationController.modalPresentationStyle = .fullScreen
+        self.scheduleEditUseCase = ScheduleEditUseCase()
     }
     
     func start() {
-        self.scheduleEditViewController.viewModel = ScheduleEditViewModel(coordinator: self)
+        self.scheduleEditViewController.viewModel = ScheduleEditViewModel(coordinator: self, scheduleEditUseCase: scheduleEditUseCase)
     }
     
     func presentRepeatSheet() {

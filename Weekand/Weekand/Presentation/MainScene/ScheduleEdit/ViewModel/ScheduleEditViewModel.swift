@@ -17,10 +17,12 @@ class ScheduleEditViewModel: ViewModelType {
     }
 
     weak var coordinator: ScheduleEditCoordinator?
+    var scheduleEditUseCase: ScheduleEditUseCase
     private let disposeBag = DisposeBag()
     
-    init(coordinator: ScheduleEditCoordinator?) {
+    init(coordinator: ScheduleEditCoordinator?, scheduleEditUseCase: ScheduleEditUseCase) {
         self.coordinator = coordinator
+        self.scheduleEditUseCase = scheduleEditUseCase
     }
     
     struct Input {
