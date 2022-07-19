@@ -155,7 +155,8 @@ class ScheduleEditViewController: BaseViewController {
             endDateButtonDidTapEvent: endDateTimeStackView.dateButton.rx.tap.asObservable(),
             endTimeButtonDidTapEvent: endDateTimeStackView.timeButton.rx.tap.asObservable(),
             startDateDidSelectEvent: startDateTimeStackView.calendarView.calendar.rx.didSelect.asObservable(),
-            endDateDidSelectEvent: endDateTimeStackView.calendarView.calendar.rx.didSelect.asObservable()
+            endDateDidSelectEvent: endDateTimeStackView.calendarView.calendar.rx.didSelect.asObservable(),
+            repeatButtonDidTapEvent: addInformationContainerView.repeatButton.rx.tap.asObservable()
         )
         
         let output = viewModel?.transform(input: input)

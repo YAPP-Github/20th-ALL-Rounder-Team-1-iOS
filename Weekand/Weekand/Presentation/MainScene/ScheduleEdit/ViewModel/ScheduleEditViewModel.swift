@@ -37,6 +37,7 @@ class ScheduleEditViewModel: ViewModelType {
         let endTimeButtonDidTapEvent: Observable<Void>
         let startDateDidSelectEvent: Observable<Date>
         let endDateDidSelectEvent: Observable<Date>
+        let repeatButtonDidTapEvent: Observable<Void>
     }
     
     struct Output {
@@ -97,6 +98,11 @@ class ScheduleEditViewModel: ViewModelType {
                 break
             }
             previousTag = tag
+        })
+        .disposed(by: disposeBag)
+        
+        input.repeatButtonDidTapEvent.subscribe(onNext: {
+            self.coordinator?.presentRepeatSheet()
         })
         .disposed(by: disposeBag)
         
