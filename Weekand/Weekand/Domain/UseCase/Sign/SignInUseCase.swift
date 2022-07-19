@@ -29,4 +29,16 @@ final class SignInUseCase {
             }
             .asSingle()
     }
+    
+    func userID() -> Single<String> {
+        return NetWork.shared.fetch(query: UserSummaryQuery())
+            .map {
+                if let user = $0.user {
+                    return user.id
+                } else {
+                    return UserSummary.defaultData.name
+                }
+            }
+            .asSingle()
+    }
 }
