@@ -182,7 +182,7 @@ extension SignUpViewModel {
                 self.email = email
             }
         }, onFailure: { error in
-            if error.localizedDescription == NetworkError.duplicatedError.localizedDescription {
+            if error.localizedDescription == SignUpError.duplicatedError.localizedDescription {
                 self.duplicatedEmail.accept(true)
             } else {
                 self.coordinator?.presentPopViewController(
