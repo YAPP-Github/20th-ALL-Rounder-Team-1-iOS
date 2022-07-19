@@ -68,8 +68,8 @@ class CategoryListViewController: UIViewController {
         
         headerView.dropDown.cellNib = UINib(nibName: "SortDropDownCell", bundle: nil)
         headerView.dropDown.dataSource = ScheduleSort.allCases.map { $0.description }
-        headerView.dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
-            guard let cell = cell as? SortDropDownCell else { return }
+        headerView.dropDown.customCellConfiguration = { (_: Index, _: String, cell: DropDownCell) -> Void in
+            guard cell is SortDropDownCell else { return }
             
         }
     }
@@ -91,7 +91,7 @@ class CategoryListViewController: UIViewController {
         )
         
         self.headerView.dropDown.selectionAction = { [unowned self] (_ : Int, item: String) in
-            guard let sort = ScheduleSort.allCases.filter { $0.description == item }.first else {
+            guard let sort = ScheduleSort.allCases.filter({ $0.description == item }).first else {
                 return
             }
             selectedSort = sort
@@ -110,7 +110,7 @@ class CategoryListViewController: UIViewController {
             self.headerView.dropDown.show()
         }).disposed(by: disposeBag)
         
-        let output = viewModel?.transform(input: input)
+        let _ = viewModel?.transform(input: input)
     }
 }
 

@@ -86,8 +86,12 @@ extension CategoryListViewModel {
                 } else {
                     self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")
                 }
-            }, onFailure: { _ in
-                self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")
+            }, onFailure: { error in
+                if error.localizedDescription == CategoryError.minimumCategoryCount.localizedDescription {
+                    self.coordinator?.showToastMessage(text: error.localizedDescription)
+                } else {
+                    self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")
+                }
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }
