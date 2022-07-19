@@ -1792,6 +1792,7 @@ public final class UserSummaryQuery: GraphQLQuery {
     query UserSummary {
       user {
         __typename
+        id
         nickname
         profileUrl
         goal
@@ -1841,6 +1842,7 @@ public final class UserSummaryQuery: GraphQLQuery {
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("nickname", type: .nonNull(.scalar(String.self))),
           GraphQLField("profileUrl", type: .nonNull(.scalar(String.self))),
           GraphQLField("goal", type: .scalar(String.self)),
@@ -1853,8 +1855,8 @@ public final class UserSummaryQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(nickname: String, profileUrl: String, goal: String? = nil) {
-        self.init(unsafeResultMap: ["__typename": "User", "nickname": nickname, "profileUrl": profileUrl, "goal": goal])
+      public init(id: GraphQLID, nickname: String, profileUrl: String, goal: String? = nil) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id, "nickname": nickname, "profileUrl": profileUrl, "goal": goal])
       }
 
       public var __typename: String {
@@ -1863,6 +1865,15 @@ public final class UserSummaryQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
         }
       }
 
