@@ -9,20 +9,24 @@ import Foundation
 import UIKit
 
 class ProfileCoordinator: Coordinator {
+    
     weak var finishDelegate: CoordinatorDidFinishDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
-    var profileViewController: ProfileViewController
+    var myProfileViewController: MyProfileViewController
     var type: CoordinatorType = .profile
     
-    required init() {
-        self.profileViewController = ProfileViewController()
-        self.navigationController = UINavigationController(rootViewController: profileViewController)
-        self.navigationController.modalPresentationStyle = .fullScreen
+    
+    required init(navigationController: UINavigationController) {
+        
+        self.navigationController = navigationController
+        self.myProfileViewController = MyProfileViewController()
     }
     
     func start() {
-        self.profileViewController.viewModel = ProfileViewModel(coordinator: self)
+        self.myProfileViewController.viewModel = MyProfileViewModel(coordinator: self)
+        self.navigationController.modalPresentationStyle = .fullScreen
+        self.navigationController.pushViewController(myProfileViewController, animated: true)
     }
     
     

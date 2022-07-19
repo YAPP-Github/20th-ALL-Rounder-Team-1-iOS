@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-class ProfileViewModel {
+class MyProfileViewModel {
     
     weak var coordinator: ProfileCoordinator?
     private let disposeBag = DisposeBag()

@@ -30,9 +30,10 @@
 		7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D80021A283DEAE7007874C6 /* WelcomeViewController.swift */; };
 		7D8033D4286001B70039F73E /* MainProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8033D3286001B70039F73E /* MainProfileView.swift */; };
 		7D8033D6286034BB0039F73E /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8033D5286034BB0039F73E /* MainCollectionViewCell.swift */; };
-		7D8129C92886F320006C0A5D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129C82886F320006C0A5D /* ProfileViewModel.swift */; };
-		7D8129CB2886F66E006C0A5D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129CA2886F66E006C0A5D /* ProfileViewController.swift */; };
+		7D8129C92886F320006C0A5D /* MyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129C82886F320006C0A5D /* MyProfileViewModel.swift */; };
+		7D8129CB2886F66E006C0A5D /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129CA2886F66E006C0A5D /* MyProfileViewController.swift */; };
 		7D8129CE2886FC5A006C0A5D /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129CD2886FC5A006C0A5D /* ProfileCoordinator.swift */; };
+		7D8129D328870ADA006C0A5D /* OtherProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129D228870ADA006C0A5D /* OtherProfileViewController.swift */; };
 		7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */; };
 		7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */; };
 		7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */; };
@@ -217,9 +218,10 @@
 		7D80021A283DEAE7007874C6 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		7D8033D3286001B70039F73E /* MainProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProfileView.swift; sourceTree = "<group>"; };
 		7D8033D5286034BB0039F73E /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
-		7D8129C82886F320006C0A5D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		7D8129CA2886F66E006C0A5D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		7D8129C82886F320006C0A5D /* MyProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewModel.swift; sourceTree = "<group>"; };
+		7D8129CA2886F66E006C0A5D /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		7D8129CD2886FC5A006C0A5D /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		7D8129D228870ADA006C0A5D /* OtherProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileViewController.swift; sourceTree = "<group>"; };
 		7D8E4E832882A9D70035FB7E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCoordinator.swift; sourceTree = "<group>"; };
@@ -547,7 +549,7 @@
 		7D8129CF2886FE7F006C0A5D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				7D8129C82886F320006C0A5D /* ProfileViewModel.swift */,
+				7D8129C82886F320006C0A5D /* MyProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -563,7 +565,8 @@
 		7D8129D12886FEA1006C0A5D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7D8129CA2886F66E006C0A5D /* ProfileViewController.swift */,
+				7D8129CA2886F66E006C0A5D /* MyProfileViewController.swift */,
+				7D8129D228870ADA006C0A5D /* OtherProfileViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1368,7 +1371,7 @@
 				F3B0026D287D68F100D6BB1D /* Emoji.swift in Sources */,
 				F3DD0235284A6AA600AD9240 /* SignUpAddInformationViewModel.swift in Sources */,
 				7DC166AB2837140B00F1A8F1 /* SignInViewController.swift in Sources */,
-				7D8129C92886F320006C0A5D /* ProfileViewModel.swift in Sources */,
+				7D8129C92886F320006C0A5D /* MyProfileViewModel.swift in Sources */,
 				F33C6EAE28535021005B493A /* UIVIewController+extension.swift in Sources */,
 				7D76AEB828448C79001C668D /* Font.swift in Sources */,
 				F3C8E0A52872FD2300B0916A /* DateTimeStackView.swift in Sources */,
@@ -1436,6 +1439,7 @@
 				F3B0025D287D686200D6BB1D /* ScheduleMain.swift in Sources */,
 				F30EBCEA2881A04D00ECB48D /* UserSearchViewModel.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
+				7D8129D328870ADA006C0A5D /* OtherProfileViewController.swift in Sources */,
 				F30EBCEC2881A09300ECB48D /* UserSearchCoordinator.swift in Sources */,
 				F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */,
 				7DBC4C59287697F900F0AC86 /* EmojiSheetViewController.swift in Sources */,
@@ -1485,7 +1489,7 @@
 				F3C8E0A72873028B00B0916A /* WFilledGrayButton.swift in Sources */,
 				F3B0026F287D68F100D6BB1D /* EmojiGiver.swift in Sources */,
 				F30EBCE62881993100ECB48D /* SearchHeaderView.swift in Sources */,
-				7D8129CB2886F66E006C0A5D /* ProfileViewController.swift in Sources */,
+				7D8129CB2886F66E006C0A5D /* MyProfileViewController.swift in Sources */,
 				7DC166C02837234200F1A8F1 /* WButtonTextField.swift in Sources */,
 				F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */,
 				F32F725C28549B650056B189 /* WTextFieldStackView.swift in Sources */,
