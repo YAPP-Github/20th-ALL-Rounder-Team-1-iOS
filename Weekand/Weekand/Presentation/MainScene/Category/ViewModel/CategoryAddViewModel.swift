@@ -62,8 +62,8 @@ extension CategoryAddViewModel {
                 } else {
                     print("error")
                 }
-            }, onFailure: { error in
-                print(error)
+            }, onFailure: { _ in
+                self.coordinator?.showToastMessage(text: "일정 수정에 실패하였습니다.")
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }

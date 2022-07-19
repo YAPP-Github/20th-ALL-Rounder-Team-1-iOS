@@ -40,6 +40,10 @@ class CategoryModifyCoordinator: Coordinator, CategoryEditCoordinatorType {
         categoryModifyViewController.selectedColor = color
     }
     
+    func showToastMessage(text: String) {
+        categoryModifyViewController.showToast(message: text)
+    }
+    
     func dismiss() {
         self.navigationController.dismiss(animated: true)
     }
