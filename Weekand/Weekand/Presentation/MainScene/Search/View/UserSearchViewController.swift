@@ -102,6 +102,7 @@ class UserSearchViewController: UIViewController {
             guard let sort = UserSort.allCases.filter { $0.description == item }.first else {
                 return
             }
+            selectedSort = sort
             self.headerView.sortButton.setTitle(sort.description)
         }
         

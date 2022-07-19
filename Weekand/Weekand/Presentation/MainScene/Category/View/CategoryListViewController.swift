@@ -29,9 +29,12 @@ class CategoryListViewController: UIViewController {
     var categoryCount: Int = 20
     var refreshListCount: Int = 15
     var page: Int = 0
-    var selectedSort: ScheduleSort = .dateCreatedDESC
+    var selectedSort: ScheduleSort = .dateCreatedDESC {
+        didSet {
+            self.setCategoryList(sort: selectedSort)
+        }
+    }
     
-    let dropDownDidSelectEvent = PublishRelay<ScheduleSort>()
     let categoryCellDidSelected = PublishRelay<Category>()
     let categoryCellDidSwipeEvent = PublishRelay<Category>()
     
@@ -91,16 +94,9 @@ class CategoryListViewController: UIViewController {
             guard let sort = ScheduleSort.allCases.filter { $0.description == item }.first else {
                 return
             }
-            
-            dropDownDidSelectEvent.accept(sort)
             selectedSort = sort
             self.headerView.sortButton.setTitle(sort.description)
         }
-        
-        dropDownDidSelectEvent.subscribe(onNext: { [weak self] sort in
-            self?.setCategoryList(sort: sort)
-        })
-        .disposed(by: disposeBag)
         
         self.viewModel?.categoryList
             .observe(on: MainScheduler.asyncInstance)
