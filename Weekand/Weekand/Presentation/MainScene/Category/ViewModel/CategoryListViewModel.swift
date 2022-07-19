@@ -78,10 +78,12 @@ extension CategoryListViewModel {
         }
     }
     
-    func deleteCategory(id: String) {
+    func deleteCategory(id: String, completion: @escaping () -> Void) {
         self.categoryUseCase.deleteCategory(id: id)
             .subscribe(onSuccess: { isSucceed in
-                if isSucceed == false {
+                if isSucceed {
+                    completion()
+                } else {
                     self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")
                 }
             }, onFailure: { _ in

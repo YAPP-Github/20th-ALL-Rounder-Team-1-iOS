@@ -172,7 +172,11 @@ extension CategoryListViewController {
         
         let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, _ in
             self.showActionSheet(titles: "삭제", message: "카테고리를 삭제하시겠어요?") { _ in
-                self.viewModel?.deleteCategory(id: self.list[indexPath.item].serverID)
+                self.viewModel?.deleteCategory(id: self.list[indexPath.item].serverID) {
+                    DispatchQueue.main.async {
+                        self.setCategoryList(sort: self.selectedSort)
+                    }
+                }
             }
         }
         delete.backgroundColor = .wred
