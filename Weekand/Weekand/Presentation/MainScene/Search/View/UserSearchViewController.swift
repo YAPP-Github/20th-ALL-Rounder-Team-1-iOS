@@ -85,6 +85,7 @@ class UserSearchViewController: UIViewController {
             didTapJobFilterButton: headerView.jobFilterButton.rx.tap.asObservable(),
             didTapInterestsFilterButton: headerView.interestsFilterButton.rx.tap.asObservable(),
             didEditSearchBar: headerView.searchBar.rx.text.orEmpty.asObservable(),
+            didTapSearchButton: headerView.searchBar.rx.searchButtonClicked.asObservable(),
             selectedJobs: selectedJobsObservable,
             selectedInterests: selectedInterestsObservable
         )
@@ -102,12 +103,20 @@ class UserSearchViewController: UIViewController {
         
         let output = viewModel?.transform(input: input)
         
-        output?.searchAction
-            .filter { $0 != "" || $1.0 != [] || $1.1 != [] }
-            .subscribe(onNext: { (searchText , informations) in
-                self.setUserList(searchQuery: searchText, jobs: informations.0, interests: informations.1)
+        output?.searchWithInformation
+            .filter { $0 != [] || $1 != [] }
+            .subscribe(onNext: { (jobs, interests) in
+                let searchText = self.headerView.searchBar.text ?? ""
+                self.setUserList(searchQuery: searchText, jobs: jobs, interests: interests)
         })
         .disposed(by: disposeBag)
+        
+        output?.searchWithQueryInformation
+            .subscribe(onNext: { (jobs, interests) in
+                let searchText = self.headerView.searchBar.text ?? ""
+                self.setUserList(searchQuery: searchText, jobs: jobs, interests: interests)
+            })
+            .disposed(by: disposeBag)
         
         self.viewModel?.userList
             .observe(on: MainScheduler.asyncInstance)
