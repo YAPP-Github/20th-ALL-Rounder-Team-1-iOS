@@ -30,4 +30,10 @@ final class CategoryUseCase {
         .map { $0.updateCategory.name }
         .asSingle()
     }
+    
+    func deleteCategory(id: String) -> Single<Bool> {
+        NetWork.shared.perform(mutation: DeleteCategoryMutation(categoryId: id))
+            .map { $0.deleteCategory }
+            .asSingle()
+    }
 }

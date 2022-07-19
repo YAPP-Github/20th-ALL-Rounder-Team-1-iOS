@@ -54,7 +54,9 @@ extension CategoryListViewModel {
         
         return Output()
     }
-    
+}
+
+extension CategoryListViewModel {
     func searchCategories(sort: ScheduleSort, page: Int, size: Int) {
         
         self.categoryUseCase.ScheduleCategories(sort: sort, page: page, size: size)
@@ -75,4 +77,17 @@ extension CategoryListViewModel {
             self.searchCategories(sort: selectedSort, page: page, size: size)
         }
     }
+    
+    func deleteCategory(id: String) {
+        self.categoryUseCase.deleteCategory(id: id)
+            .subscribe(onSuccess: { isSucceed in
+                if isSucceed == false {
+                    self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")
+                }
+            }, onFailure: { _ in
+                self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")
+            }, onDisposed: nil)
+            .disposed(by: disposeBag)
+    }
+    
 }
