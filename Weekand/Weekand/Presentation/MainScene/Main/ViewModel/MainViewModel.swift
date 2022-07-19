@@ -187,27 +187,44 @@ extension MainViewModel {
     
     func configureCollectionViewSnapShot(animatingDifferences: Bool = false) {
         
+        var snapshot = NSDiffableDataSourceSnapshot<MainSection, FollowingUser>()
+        snapshot.appendSections([.main])
+        self.collectionViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+        
         // 로그인한 유저 정보 (내정보)
         self.userSummary.subscribe(onNext: { data in
-            var snapshot = self.collectionViewDataSource.snapshot()
             
-            if let first = snapshot.itemIdentifiers.first {
-                snapshot.insertItems([FollowingUser(userSummary: data)], beforeItem: first)
+            if data.userId != "" {
+                var snapshot = self.collectionViewDataSource.snapshot()
+                
+                if let first = snapshot.itemIdentifiers.first {
+                    snapshot.insertItems([FollowingUser(userSummary: data)], beforeItem: first)
+                } else {
+                    snapshot.appendItems([FollowingUser(userSummary: data)], toSection: .main)
+                }
+                self.collectionViewDataSource.apply(snapshot)
             }
-            self.collectionViewDataSource.apply(snapshot)
             
         }).disposed(by: disposeBag)
         
         // 팔로잉중인 유저 정보
         self.userFollowingList.subscribe(onNext: { data in
             
-            var snapshot = NSDiffableDataSourceSnapshot<MainSection, FollowingUser>()
-            snapshot.appendSections([.main])
-            snapshot.appendItems(data, toSection: .main)
-            self.collectionViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+            if data.count != 0 {
+                var snapshot = self.collectionViewDataSource.snapshot()
+                
+                if let first = snapshot.itemIdentifiers.first {
+                    snapshot.insertItems(data, afterItem: first)
+                } else {
+                    snapshot.appendItems(data, toSection: .main)
+                }
+                self.collectionViewDataSource.apply(snapshot)
+            }
+            
         }).disposed(by: disposeBag)
-        
     }
+    
+    
     
     func configureTableViewSnapshot(animatingDifferences: Bool = true) {
         
