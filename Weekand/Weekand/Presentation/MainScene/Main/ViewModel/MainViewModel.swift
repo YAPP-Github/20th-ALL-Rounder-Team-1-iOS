@@ -36,14 +36,19 @@ class MainViewModel: ViewModelType {
     // 현재 일정이 나의 일정인지 식별하는 Property
     var isMySchedule: Bool = true
     var currentUserId: String?
-    var currentDate: Date = Date()
+    var currentDate: Date = Date() {
+        didSet {
+            self.switchDate(id: currentUserId)
+        }
+    }
     
     init(coordinator: MainCoordinator, mainUseCase: MainUseCase) {
         self.coordinator = coordinator
         self.mainUseCase = mainUseCase
         
         self.getFollowingUser()
-        reloadData()
+        self.getUserSummary()
+        self.getScheduleList(date: currentDate)
     }
     
 }
@@ -142,43 +147,65 @@ extension MainViewModel {
 
 }
 
+// MARK: User Switch Actions
 extension MainViewModel {
     
+    /// 유저 전환
     func switchUser(id: String?) {
-        identifyMyPage(id: id)
-        currentUserId = id
+        
+        if isMySchedule {
+            print("Switch to my Schedule")
+            getUserSummary()
+            getScheduleList(date: currentDate)
+        } else {
+            print("Switch to \(id) Schedule")
+            // TODO: id 소유자의 프로필 불러오기
+            getScheduleList(date: currentDate) // TODO: id 소유자의 일정 불러오기
+        }
+    }
+    
+    /// 날짜 전환
+    func switchDate(id: String?) {
+        
+        if isMySchedule {
+            print("Get my Schedule on \(currentDate)")
+            getScheduleList(date: currentDate)
+        } else {
+            print("Get \(String(describing: id)) Schedule on \(currentDate)")
+            getScheduleList(date: currentDate) // TODO: id 소유자의 일정 불러오기
+        }
     }
     
     /// id가 로그인한 유저인지 식별 후 저장
     func identifyMyPage(id: String?) {
         
-        currentUserId = id
-        
-        guard let id = id else {
-            print("Error: id Not Found")
-            return
+        if currentUserId != id {
+            currentUserId = id
+            
+            guard let id = id else {
+                print("Error: id Not Found")
+                return
+            }
+            
+            if id == UserDataStorage.shared.userID {
+                self.isMySchedule = true
+            } else {
+                self.isMySchedule = false
+            }
+            
+            print("My Schedule: \(self.isMySchedule)")
         }
-        
-        if id == UserDataStorage.shared.userID {
-            self.isMySchedule = true
-        } else {
-            self.isMySchedule = false
-        }
-        
-        print("My Schedule: \(self.isMySchedule)")
     }
     
-    /// 데이터 불러오기
-    func reloadData() {
-        
-        if isMySchedule {
-            self.getUserSummary()
-            self.getScheduleList(date: currentDate)   // TODO: 500 에러 수정
-        } else {
-            guard let id = currentUserId else { return }
-            // TODO: 선택된 유저의 UserSummary 가져오기
-            // TODO: 선택된 유저의 ScheduleMain 가져오기
-        }
+    /// 유저 변경(CollectionView selection)이 이루어졌을때 실행되는 동작
+    func userChanged(id: String?) {
+        identifyMyPage(id: id)
+        switchUser(id: id)
+    }
+    
+    func dateChanged(date: Date) {
+        currentDate = date
+        switchDate(id: currentUserId)
     }
 }
 
@@ -198,11 +225,16 @@ extension MainViewModel {
                 var snapshot = self.collectionViewDataSource.snapshot()
                 
                 if let first = snapshot.itemIdentifiers.first {
-                    snapshot.insertItems([FollowingUser(userSummary: data)], beforeItem: first)
+                    
+                    if !(self.isMySchedule) {
+                        snapshot.insertItems([FollowingUser(userSummary: data)], beforeItem: first)
+                        self.collectionViewDataSource.apply(snapshot)
+                    }
                 } else {
                     snapshot.appendItems([FollowingUser(userSummary: data)], toSection: .main)
+                    self.collectionViewDataSource.apply(snapshot)
                 }
-                self.collectionViewDataSource.apply(snapshot)
+                
             }
             
         }).disposed(by: disposeBag)

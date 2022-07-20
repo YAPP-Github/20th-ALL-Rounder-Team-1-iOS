@@ -32,7 +32,6 @@ class MainViewController: UIViewController, UITableViewDelegate {
     lazy var searchButton = UIBarButtonItem(image: UIImage(named: "search") ?? UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: nil)
     lazy var alarmButton = UIBarButtonItem(image: UIImage(named: "alarm") ?? UIImage(systemName: "bell"), style: .plain, target: self, action: nil)
 
-    
     lazy var floatingButton = UIButton().then {
         $0.backgroundColor = .mainColor
         $0.layer.cornerRadius = 28
@@ -130,7 +129,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
         let output = self.viewModel?.transform(input: input)
         
         output?.calendarDate.subscribe(onNext: { data in
-            self.headerView.calendarView.selectDate(date: data)
+            self.currentDate = data
         }).disposed(by: disposeBag)
         
         output?.scrollWeek.subscribe(onNext: { data in
@@ -196,18 +195,18 @@ extension MainViewController {
     
 }
 
-// MARK: CollectionViewCell Tap Delegate
+// MARK: CollectionViewCell Tap
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! MainCollectionViewCell
-        viewModel?.identifyMyPage(id: cell.dataId)
+        viewModel?.userChanged(id: cell.dataId)
     }
 }
 
 // MARK: Calender Selection
 extension MainViewController: MainCalendarDelegate {
     func didSelectCalendar(date: Date) {
-        self.currentDate = date
+        viewModel?.dateChanged(date: date)
     }
 }
 
