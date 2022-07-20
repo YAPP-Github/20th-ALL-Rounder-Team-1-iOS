@@ -14,7 +14,7 @@ final class SignInUseCase {
     
     func login(email: String, password: String) -> Single<Token> {
         return NetWork.shared
-            .fetch(query: LoginQuery(email: email, password: password))
+            .fetch(query: LoginQuery(email: email, password: password), cachePolicy: .fetchIgnoringCacheCompletely, queue: DispatchQueue.main)
             .map {
                 Token(refreshToken: $0.login.refreshToken, accessToken: $0.login.accessToken)
             }

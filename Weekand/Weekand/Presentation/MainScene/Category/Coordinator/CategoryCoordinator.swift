@@ -50,6 +50,10 @@ class CategoryCoordinator: Coordinator {
         categoryModifyCoordinator.start()
     }
     
+    func showToastMessage(text: String) {
+        categoryListViewController.showToast(message: text)
+    }
+    
     func finish() {
         self.finishDelegate?.childDidFinish(self)
     }

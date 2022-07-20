@@ -12,7 +12,7 @@ final class SignUpUseCase {
     
     func sendAuthKey(email: String) -> Single<Bool> {
         return NetWork.shared
-            .fetch(query: SendAuthKeyQuery(email: email))
+            .fetch(query: SendAuthKeyQuery(email: email), cachePolicy: .fetchIgnoringCacheCompletely, queue: DispatchQueue.main)
             .map { $0.sendAuthKey }
             .asSingle()
     }
@@ -26,7 +26,7 @@ final class SignUpUseCase {
     
     func checkDuplicateNickname(nickName: String) -> Single<Bool> {
         return NetWork.shared
-            .fetch(query: CheckDuplicateNicknameQuery(nickname: nickName))
+            .fetch(query: CheckDuplicateNicknameQuery(nickname: nickName), cachePolicy: .fetchIgnoringCacheCompletely, queue: DispatchQueue.main)
             .map { $0.checkDuplicateNickname }
             .asSingle()
     }

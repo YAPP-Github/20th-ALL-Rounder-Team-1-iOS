@@ -93,7 +93,6 @@ class UserSearchViewController: UIViewController {
             didTapJobFilterButton: headerView.jobFilterButton.rx.tap.asObservable(),
             didTapInterestsFilterButton: headerView.interestsFilterButton.rx.tap.asObservable(),
             didEditSearchBar: headerView.searchBar.rx.text.orEmpty.asObservable(),
-            didTapSearchButton: headerView.searchBar.rx.searchButtonClicked.asObservable(),
             selectedJobs: selectedJobsObservable,
             selectedInterests: selectedInterestsObservable
         )
@@ -102,6 +101,7 @@ class UserSearchViewController: UIViewController {
             guard let sort = UserSort.allCases.filter { $0.description == item }.first else {
                 return
             }
+            selectedSort = sort
             self.headerView.sortButton.setTitle(sort.description)
         }
         
@@ -111,16 +111,10 @@ class UserSearchViewController: UIViewController {
         
         let output = viewModel?.transform(input: input)
         
-        output?.searchWithInformation
-            .filter { $0 != [] || $1 != [] }
-            .subscribe(onNext: { (jobs, interests) in
-                self.setUserList(searchQuery: self.searchText, jobs: jobs, interests: interests)
-        })
-        .disposed(by: disposeBag)
-        
         output?.searchWithQueryInformation
-            .subscribe(onNext: { (jobs, interests) in
-                self.setUserList(searchQuery: self.searchText, jobs: jobs, interests: interests)
+            .filter { $0 != "" || $1.0 != [] || $1.1 != [] }
+            .subscribe(onNext: { (searchText, informations) in
+                self.setUserList(searchQuery: searchText, jobs: informations.0, interests: informations.1)
             })
             .disposed(by: disposeBag)
         
