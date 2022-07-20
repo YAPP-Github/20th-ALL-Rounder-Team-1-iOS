@@ -137,7 +137,12 @@ extension MainTableViewCell {
     
     // TODO: API 확정되면 수정
     public func setUpCell(_ model: ScheduleMain) {
+        self.dataId = model.scheduleId
         
+        self.nameLabel.editValue(color: UIColor(hex: model.color) ?? .gray100, title: model.name)
+        self.timeLineLabel.configureValue(status: model.status.icon, title: Date.getTimelineString(model.dateStart, model.dateEnd))
+        self.emojiView.numberLabel.text = String(model.stickerCount)
+        self.emojiView.setEmoji(emojiOrder: model.stickerNameList)
     }
-
+    
 }

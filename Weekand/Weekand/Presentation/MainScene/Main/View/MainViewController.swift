@@ -239,11 +239,11 @@ extension MainViewController {
     
     private func configureTableViewDataSource() {
         
-        viewModel?.tableViewDataSource = UITableViewDiffableDataSource<MainSection, ScheduleMain>(tableView: tableView, cellProvider: { tableView, indexPath, list in
+        viewModel?.tableViewDataSource = UITableViewDiffableDataSource<MainSection, ScheduleMain>(tableView: tableView, cellProvider: { tableView, indexPath, schedule in
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as! MainTableViewCell
             
             cell.switchStickerButtonAppearance(isMine: self.viewModel?.isMySchedule)
-            cell.setUpCell(id: "id: \(indexPath.row)", color: .red, title: list.name, status: .completed, time: "00:00 - 00:00", emojiNumber: list.stickerCount, emojiOrder: [.awesome, .cool, .good, .support])
+            cell.setUpCell(schedule)
             cell.delegate = self
             
             return cell
