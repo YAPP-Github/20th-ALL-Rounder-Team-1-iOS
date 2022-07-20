@@ -103,6 +103,7 @@ class MainCalendarView: UIView {
         }
         
         titleLabel.setContentHuggingPriority(.required, for: .vertical)
+        titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         titleLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.top.bottom.equalToSuperview().inset(9)
