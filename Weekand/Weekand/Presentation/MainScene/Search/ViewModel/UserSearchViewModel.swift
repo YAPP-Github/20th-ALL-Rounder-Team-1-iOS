@@ -34,14 +34,12 @@ extension UserSearchViewModel {
         let didTapJobFilterButton: Observable<Void>
         let didTapInterestsFilterButton: Observable<Void>
         let didEditSearchBar: Observable<String>
-        let didTapSearchButton: Observable<Void>
         let selectedJobs: BehaviorRelay<[String]>
         let selectedInterests: BehaviorRelay<[String]>
     }
     
     struct Output {
-        var searchWithInformation: Observable<([String], [String])>
-        var searchWithQueryInformation: Observable<([String], [String])>
+        var searchWithQueryInformation: Observable<(String, ([String], [String]))>
     }
     
     @discardableResult
@@ -49,7 +47,9 @@ extension UserSearchViewModel {
         
         let informationEdit = Observable.combineLatest(input.selectedJobs, input.selectedInterests)
         
-        let searchWithQueryInformation = input.didTapSearchButton.withLatestFrom(informationEdit)
+        let searchBarEdit = input.didEditSearchBar.debounce(.seconds(1), scheduler: MainScheduler.instance)
+        
+        let searchWithQueryInformation = Observable.combineLatest(searchBarEdit, informationEdit)
         
         input.didTapJobFilterButton.subscribe(onNext: {
             self.coordinator?.presentJobInformationSheet()
@@ -61,7 +61,7 @@ extension UserSearchViewModel {
         })
         .disposed(by: disposeBag)
         
-        return Output(searchWithInformation: informationEdit, searchWithQueryInformation: searchWithQueryInformation)
+        return Output(searchWithQueryInformation: searchWithQueryInformation)
     }
     
     func searchUsers(searchQuery: String, jobs: [String], interests: [String], sort: UserSort, page: Int, size: Int) {
