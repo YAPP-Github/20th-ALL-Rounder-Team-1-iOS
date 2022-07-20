@@ -224,16 +224,16 @@ extension MainViewModel {
         }).disposed(by: disposeBag)
     }
     
-    
-    
     func configureTableViewSnapshot(animatingDifferences: Bool = true) {
         
         self.scheduleList.subscribe(onNext: { data in
             
-            var snapshot = NSDiffableDataSourceSnapshot<MainSection, ScheduleMain>()
-            snapshot.appendSections([.main])
-            snapshot.appendItems(data, toSection: .main)
-            self.tableViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+            if data.count != 0 {
+                var snapshot = NSDiffableDataSourceSnapshot<MainSection, ScheduleMain>()
+                snapshot.appendSections([.main])
+                snapshot.appendItems(data, toSection: .main)
+                self.tableViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+            }
         }).disposed(by: disposeBag)
     }
 

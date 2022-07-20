@@ -1099,7 +1099,6 @@
 				F3C8E093286F598600B0916A /* Network.swift */,
 				F323FF072877D08800DFD8FD /* TokenAddingInterceptor.swift */,
 				F323FF092877D21F00DFD8FD /* NetworkInterceptorProvider.swift */,
-				F323FF262879D18E00DFD8FD /* NetworkError.swift */,
 				7D8129D42887100F006C0A5D /* Timestamp.swift */,
 			);
 			path = Networking;

@@ -469,6 +469,62 @@ public final class CreateCategoryMutation: GraphQLMutation {
   }
 }
 
+public final class DeleteCategoryMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation deleteCategory($categoryId: ID!) {
+      deleteCategory(input: {scheduleCategoryId: $categoryId})
+    }
+    """
+
+  public let operationName: String = "deleteCategory"
+
+  public var categoryId: GraphQLID
+
+  public init(categoryId: GraphQLID) {
+    self.categoryId = categoryId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["categoryId": categoryId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("deleteCategory", arguments: ["input": ["scheduleCategoryId": GraphQLVariable("categoryId")]], type: .nonNull(.scalar(Bool.self))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(deleteCategory: Bool) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "deleteCategory": deleteCategory])
+    }
+
+    /// 카테고리를 삭제한다
+    /// [error]
+    /// 4008: 최소 2개 이상의 카테고리가 존재할 시 삭제 가능합니다.
+    /// 4002: 해당 카테고리를 찾을 수 없습니다.
+    /// 3006: 권한이 없는 유저의 접근입니다.
+    public var deleteCategory: Bool {
+      get {
+        return resultMap["deleteCategory"]! as! Bool
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "deleteCategory")
+      }
+    }
+  }
+}
+
 public final class FollowersQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
