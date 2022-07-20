@@ -25,8 +25,19 @@ class UserSearchViewController: UIViewController {
     var headerView = SearchHeaderView()
     let tableView = UITableView()
     
-    let selectedJobsObservable = BehaviorRelay<[String]>(value: [])
-    let selectedInterestsObservable = BehaviorRelay<[String]>(value: [])
+    var list: [UserSummaryTemp] = []
+    var UserCount: Int = 20
+    var refreshListCount: Int = 15
+    var page: Int = 0
+    
+    var selectedSort: UserSort = .dateCreatedDESC {
+        didSet {
+            self.setUserList(searchQuery: self.searchText, jobs: self.selectedJobs, interests: self.selectedInterests)
+        }
+    }
+    var searchText: String {
+        return self.headerView.searchBar.text ?? ""
+    }
     var selectedJobs: [String] = [] {
         didSet {
             let count = selectedJobs.count == 0 ? nil : selectedJobs.count
@@ -42,11 +53,8 @@ class UserSearchViewController: UIViewController {
         }
     }
     
-    var list: [UserSummaryTemp] = []
-    var UserCount: Int = 20
-    var refreshListCount: Int = 15
-    var page: Int = 0
-    var selectedSort: UserSort = .dateCreatedDESC
+    let selectedJobsObservable = BehaviorRelay<[String]>(value: [])
+    let selectedInterestsObservable = BehaviorRelay<[String]>(value: [])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,6 +101,7 @@ class UserSearchViewController: UIViewController {
             guard let sort = UserSort.allCases.filter { $0.description == item }.first else {
                 return
             }
+            selectedSort = sort
             self.headerView.sortButton.setTitle(sort.description)
         }
         
@@ -102,12 +111,12 @@ class UserSearchViewController: UIViewController {
         
         let output = viewModel?.transform(input: input)
         
-        output?.searchAction
+        output?.searchWithQueryInformation
             .filter { $0 != "" || $1.0 != [] || $1.1 != [] }
-            .subscribe(onNext: { (searchText , informations) in
+            .subscribe(onNext: { (searchText, informations) in
                 self.setUserList(searchQuery: searchText, jobs: informations.0, interests: informations.1)
-        })
-        .disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
         
         self.viewModel?.userList
             .observe(on: MainScheduler.asyncInstance)
@@ -172,10 +181,18 @@ extension UserSearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 120
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print(indexPath.item)
+        if indexPath.item == refreshListCount * (page + 1) - 1 {
+            page += 1
+            self.appendUserList(searchQuery: self.searchText, jobs: self.selectedJobs, interests: selectedInterests)
+        }
+    }
 }
 
 extension UserSearchViewController {
-    func setUserList(searchQuery: String, jobs: [String], interests: [String], sort: ScheduleSort = .dateCreatedDESC) {
+    func setUserList(searchQuery: String, jobs: [String], interests: [String]) {
         self.page = 0
         self.list = []
         self.viewModel?.searchUsers(
@@ -186,5 +203,9 @@ extension UserSearchViewController {
                             page: self.page,
                             size: self.UserCount)
         self.tableView.scrollToTop()
+    }
+    
+    func appendUserList(searchQuery: String, jobs: [String], interests: [String]) {
+        self.viewModel?.loadMoreUserList(searchQuery: searchQuery, jobs: jobs, interests: interests, sort: self.selectedSort, page: page, size: UserCount)
     }
 }

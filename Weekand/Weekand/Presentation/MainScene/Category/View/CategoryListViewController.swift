@@ -29,9 +29,12 @@ class CategoryListViewController: UIViewController {
     var categoryCount: Int = 20
     var refreshListCount: Int = 15
     var page: Int = 0
-    var selectedSort: ScheduleSort = .dateCreatedDESC
+    var selectedSort: ScheduleSort = .dateCreatedDESC {
+        didSet {
+            self.setCategoryList(sort: selectedSort)
+        }
+    }
     
-    let dropDownDidSelectEvent = PublishRelay<ScheduleSort>()
     let categoryCellDidSelected = PublishRelay<Category>()
     let categoryCellDidSwipeEvent = PublishRelay<Category>()
     
@@ -65,8 +68,8 @@ class CategoryListViewController: UIViewController {
         
         headerView.dropDown.cellNib = UINib(nibName: "SortDropDownCell", bundle: nil)
         headerView.dropDown.dataSource = ScheduleSort.allCases.map { $0.description }
-        headerView.dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
-            guard let cell = cell as? SortDropDownCell else { return }
+        headerView.dropDown.customCellConfiguration = { (_: Index, _: String, cell: DropDownCell) -> Void in
+            guard cell is SortDropDownCell else { return }
             
         }
     }
@@ -88,19 +91,12 @@ class CategoryListViewController: UIViewController {
         )
         
         self.headerView.dropDown.selectionAction = { [unowned self] (_ : Int, item: String) in
-            guard let sort = ScheduleSort.allCases.filter { $0.description == item }.first else {
+            guard let sort = ScheduleSort.allCases.filter({ $0.description == item }).first else {
                 return
             }
-            
-            dropDownDidSelectEvent.accept(sort)
             selectedSort = sort
             self.headerView.sortButton.setTitle(sort.description)
         }
-        
-        dropDownDidSelectEvent.subscribe(onNext: { [weak self] sort in
-            self?.setCategoryList(sort: sort)
-        })
-        .disposed(by: disposeBag)
         
         self.viewModel?.categoryList
             .observe(on: MainScheduler.asyncInstance)
@@ -114,7 +110,7 @@ class CategoryListViewController: UIViewController {
             self.headerView.dropDown.show()
         }).disposed(by: disposeBag)
         
-        let output = viewModel?.transform(input: input)
+        let _ = viewModel?.transform(input: input)
     }
 }
 
@@ -176,7 +172,11 @@ extension CategoryListViewController {
         
         let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, _ in
             self.showActionSheet(titles: "삭제", message: "카테고리를 삭제하시겠어요?") { _ in
-                print("삭제~~")
+                self.viewModel?.deleteCategory(id: self.list[indexPath.item].serverID) {
+                    DispatchQueue.main.async {
+                        self.setCategoryList(sort: self.selectedSort)
+                    }
+                }
             }
         }
         delete.backgroundColor = .wred

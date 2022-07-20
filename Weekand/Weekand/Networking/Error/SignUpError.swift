@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum NetworkError: LocalizedError {
+enum SignUpError: LocalizedError {
     case duplicatedError
     
     var errorDescription: String? {

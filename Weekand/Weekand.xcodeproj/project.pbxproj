@@ -102,7 +102,7 @@
 		F323FF1D2879A30100DFD8FD /* SimplePopupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF1C2879A30000DFD8FD /* SimplePopupCoordinator.swift */; };
 		F323FF1F2879AD5600DFD8FD /* sendAuthKey.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF1E2879AD5600DFD8FD /* sendAuthKey.graphql */; };
 		F323FF212879AF3000DFD8FD /* vaildAuthKey.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF202879AF3000DFD8FD /* vaildAuthKey.graphql */; };
-		F323FF272879D18E00DFD8FD /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF262879D18E00DFD8FD /* NetworkError.swift */; };
+		F323FF272879D18E00DFD8FD /* SignUpError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF262879D18E00DFD8FD /* SignUpError.swift */; };
 		F323FF2B287A036E00DFD8FD /* checkDuplicateNickname.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF2A287A036E00DFD8FD /* checkDuplicateNickname.graphql */; };
 		F323FF30287A276100DFD8FD /* issueTempPassword.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF2F287A276100DFD8FD /* issueTempPassword.graphql */; };
 		F323FF32287AB2C500DFD8FD /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF31287AB2C500DFD8FD /* BasePaddingLabel.swift */; };
@@ -121,6 +121,15 @@
 		F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F725D2854ADFA0056B189 /* OpenTypeStackView.swift */; };
 		F32F72602854BB730056B189 /* ColorStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F725F2854BB730056B189 /* ColorStackView.swift */; };
 		F32F72642854EC890056B189 /* InformationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F72632854EC890056B189 /* InformationCollectionViewCell.swift */; };
+		F336F36028867ECF005B57A0 /* deleteCategory.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F336F35F28867ECF005B57A0 /* deleteCategory.graphql */; };
+		F336F3632886C4A9005B57A0 /* CategoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3622886C4A9005B57A0 /* CategoryError.swift */; };
+		F336F3652886D2A3005B57A0 /* ScheduleEditUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3642886D2A3005B57A0 /* ScheduleEditUseCase.swift */; };
+		F336F3672886ECEE005B57A0 /* RepeatTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3662886ECEE005B57A0 /* RepeatTabViewController.swift */; };
+		F336F3692886EDD4005B57A0 /* DayRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3682886EDD4005B57A0 /* DayRepeatViewController.swift */; };
+		F336F36B2886EF56005B57A0 /* WeekRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F36A2886EF56005B57A0 /* WeekRepeatViewController.swift */; };
+		F336F36E2886F13E005B57A0 /* MonthRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F36D2886F13E005B57A0 /* MonthRepeatViewController.swift */; };
+		F336F3702886F2A5005B57A0 /* YearRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F36F2886F2A5005B57A0 /* YearRepeatViewController.swift */; };
+		F336F3722886F4A4005B57A0 /* RepeatSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3712886F4A4005B57A0 /* RepeatSheetViewController.swift */; };
 		F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAB28533D0A005B493A /* WSortButton.swift */; };
 		F33C6EAE28535021005B493A /* UIVIewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAD28535021005B493A /* UIVIewController+extension.swift */; };
 		F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */; };
@@ -292,7 +301,7 @@
 		F323FF1C2879A30000DFD8FD /* SimplePopupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePopupCoordinator.swift; sourceTree = "<group>"; };
 		F323FF1E2879AD5600DFD8FD /* sendAuthKey.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = sendAuthKey.graphql; sourceTree = "<group>"; };
 		F323FF202879AF3000DFD8FD /* vaildAuthKey.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = vaildAuthKey.graphql; sourceTree = "<group>"; };
-		F323FF262879D18E00DFD8FD /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		F323FF262879D18E00DFD8FD /* SignUpError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpError.swift; sourceTree = "<group>"; };
 		F323FF2A287A036E00DFD8FD /* checkDuplicateNickname.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = checkDuplicateNickname.graphql; sourceTree = "<group>"; };
 		F323FF2F287A276100DFD8FD /* issueTempPassword.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = issueTempPassword.graphql; sourceTree = "<group>"; };
 		F323FF31287AB2C500DFD8FD /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
@@ -313,6 +322,15 @@
 		F32F725D2854ADFA0056B189 /* OpenTypeStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTypeStackView.swift; sourceTree = "<group>"; };
 		F32F725F2854BB730056B189 /* ColorStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStackView.swift; sourceTree = "<group>"; };
 		F32F72632854EC890056B189 /* InformationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCollectionViewCell.swift; sourceTree = "<group>"; };
+		F336F35F28867ECF005B57A0 /* deleteCategory.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = deleteCategory.graphql; sourceTree = "<group>"; };
+		F336F3622886C4A9005B57A0 /* CategoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryError.swift; sourceTree = "<group>"; };
+		F336F3642886D2A3005B57A0 /* ScheduleEditUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditUseCase.swift; sourceTree = "<group>"; };
+		F336F3662886ECEE005B57A0 /* RepeatTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatTabViewController.swift; sourceTree = "<group>"; };
+		F336F3682886EDD4005B57A0 /* DayRepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRepeatViewController.swift; sourceTree = "<group>"; };
+		F336F36A2886EF56005B57A0 /* WeekRepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekRepeatViewController.swift; sourceTree = "<group>"; };
+		F336F36D2886F13E005B57A0 /* MonthRepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthRepeatViewController.swift; sourceTree = "<group>"; };
+		F336F36F2886F2A5005B57A0 /* YearRepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearRepeatViewController.swift; sourceTree = "<group>"; };
+		F336F3712886F4A4005B57A0 /* RepeatSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatSheetViewController.swift; sourceTree = "<group>"; };
 		F33C6EAB28533D0A005B493A /* WSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSortButton.swift; sourceTree = "<group>"; };
 		F33C6EAD28535021005B493A /* UIVIewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+extension.swift"; sourceTree = "<group>"; };
 		F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputGroupStackView.swift; sourceTree = "<group>"; };
@@ -981,6 +999,15 @@
 			path = Weekand;
 			sourceTree = "<group>";
 		};
+		F336F3612886C49A005B57A0 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				F336F3622886C4A9005B57A0 /* CategoryError.swift */,
+				F323FF262879D18E00DFD8FD /* SignUpError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
 		F33C6EAF2853530B005B493A /* SubView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1057,6 +1084,7 @@
 				7D0A6A352881521400CFE61D /* MainUseCase.swift */,
 				F3B00260287D68BD00D6BB1D /* CategoryUseCase.swift */,
 				F3A4D95C2885B28600DDE03B /* SearchUseCase.swift */,
+				F336F3642886D2A3005B57A0 /* ScheduleEditUseCase.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -1064,6 +1092,7 @@
 		F3C8E083286DAF9B00B0916A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				F336F3612886C49A005B57A0 /* Error */,
 				7D0ED2C7287D547000DE3215 /* schema.json */,
 				F3C8E08A286F4D8F00B0916A /* Query */,
 				F3C8E086286DC71300B0916A /* RxApolloClient.swift */,
@@ -1092,6 +1121,7 @@
 				F3A4D95A2885A94500DDE03B /* SearchUsers.graphql */,
 				7D0A6A3B2881C4C100CFE61D /* UserSummary.graphql */,
 				7D0A6A3F2881C61F00CFE61D /* Followers.graphql */,
+				F336F35F28867ECF005B57A0 /* deleteCategory.graphql */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1126,6 +1156,8 @@
 			isa = PBXGroup;
 			children = (
 				F3C8E09B2872E17D00B0916A /* ScheduleEditViewController.swift */,
+				F336F3712886F4A4005B57A0 /* RepeatSheetViewController.swift */,
+				F336F3662886ECEE005B57A0 /* RepeatTabViewController.swift */,
 				F3C8E09D2872E95F00B0916A /* Views */,
 			);
 			path = View;
@@ -1134,6 +1166,10 @@
 		F3C8E09D2872E95F00B0916A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F336F3682886EDD4005B57A0 /* DayRepeatViewController.swift */,
+				F336F36A2886EF56005B57A0 /* WeekRepeatViewController.swift */,
+				F336F36D2886F13E005B57A0 /* MonthRepeatViewController.swift */,
+				F336F36F2886F2A5005B57A0 /* YearRepeatViewController.swift */,
 				F3C8E0A02872EFF400B0916A /* DropDownStackView.swift */,
 				F3C8E0A42872FD2300B0916A /* DateTimeStackView.swift */,
 				F3C8E0B22873500900B0916A /* AddInformationContainerView.swift */,
@@ -1254,6 +1290,7 @@
 			files = (
 				7DF8B7A928361FB100B224CA /* PretendardVariable.ttf in Resources */,
 				F323FEF1287636B500DFD8FD /* SortDropDownCell.xib in Resources */,
+				F336F36028867ECF005B57A0 /* deleteCategory.graphql in Resources */,
 				7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */,
 				F323FF102877F3B500DFD8FD /* Login.graphql in Resources */,
 				F30EBCDD28817CFD00ECB48D /* UpdateCategory.graphql in Resources */,
@@ -1383,6 +1420,7 @@
 				F3B00267287D68E700D6BB1D /* Category.swift in Sources */,
 				F323FF0C2877E87900DFD8FD /* WToastLabel.swift in Sources */,
 				F32F72642854EC890056B189 /* InformationCollectionViewCell.swift in Sources */,
+				F336F3632886C4A9005B57A0 /* CategoryError.swift in Sources */,
 				F3C8E094286F598600B0916A /* Network.swift in Sources */,
 				F30EBCE32881983100ECB48D /* UserSearchViewController.swift in Sources */,
 				7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */,
@@ -1401,6 +1439,7 @@
 				7D76AEB4284458C2001C668D /* MainViewController.swift in Sources */,
 				F3C8E0A32872F29000B0916A /* WArrowButton.swift in Sources */,
 				7DB1D5BF287C1C4C0032C209 /* EmojiTabViewController.swift in Sources */,
+				F336F3652886D2A3005B57A0 /* ScheduleEditUseCase.swift in Sources */,
 				7D0ED2C0287D065800DE3215 /* EmojiTableViewController.swift in Sources */,
 				7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */,
 				F30EBCD728807DC000ECB48D /* String+extension.swift in Sources */,
@@ -1433,6 +1472,7 @@
 				F30EBCF32885176300ECB48D /* UserSort.swift in Sources */,
 				F323FF082877D08800DFD8FD /* TokenAddingInterceptor.swift in Sources */,
 				7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */,
+				F336F3702886F2A5005B57A0 /* YearRepeatViewController.swift in Sources */,
 				F32F72522853B0930056B189 /* CategoryDetailTableViewCell.swift in Sources */,
 				F354C3E3283D3615008929FD /* SignUpAddInfomationViewController.swift in Sources */,
 				F323FF32287AB2C500DFD8FD /* BasePaddingLabel.swift in Sources */,
@@ -1440,6 +1480,7 @@
 				7DD71A8B286CA8C4002D1DCF /* AlarmViewModel.swift in Sources */,
 				7D76AEB628445AA5001C668D /* MainTableViewCell.swift in Sources */,
 				F3B0025D287D686200D6BB1D /* ScheduleMain.swift in Sources */,
+				F336F36B2886EF56005B57A0 /* WeekRepeatViewController.swift in Sources */,
 				F30EBCEA2881A04D00ECB48D /* UserSearchViewModel.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
 				7D8129D52887100F006C0A5D /* Timestamp.swift in Sources */,
@@ -1476,6 +1517,7 @@
 				7D6B911728449F610044E217 /* WCategoryTitleLabel.swift in Sources */,
 				7DC166C228372ACF00F1A8F1 /* Inset.swift in Sources */,
 				F323FF0A2877D21F00DFD8FD /* NetworkInterceptorProvider.swift in Sources */,
+				F336F3672886ECEE005B57A0 /* RepeatTabViewController.swift in Sources */,
 				F3AA9E1B2869FEFC00F71559 /* PasswordFindViewModel.swift in Sources */,
 				F3AA9E1D2869FF1E00F71559 /* PasswordFindCoordinator.swift in Sources */,
 				F30EBCCD288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift in Sources */,
@@ -1498,7 +1540,7 @@
 				F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */,
 				F32F725C28549B650056B189 /* WTextFieldStackView.swift in Sources */,
 				7DBC4C632876AEA200F0AC86 /* MonthlyCalendarSheetViewModel.swift in Sources */,
-				F323FF272879D18E00DFD8FD /* NetworkError.swift in Sources */,
+				F323FF272879D18E00DFD8FD /* SignUpError.swift in Sources */,
 				F378685B28621C8F00BEEC81 /* CategoryEditViewModelType.swift in Sources */,
 				F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */,
 				F3C8E09C2872E17D00B0916A /* ScheduleEditViewController.swift in Sources */,
@@ -1516,7 +1558,10 @@
 				7D6B911528449A760044E217 /* WIconLabel.swift in Sources */,
 				F37868532861D28C00BEEC81 /* CategoryAddCoordinator.swift in Sources */,
 				7D0A6A3A2881588000CFE61D /* DateExtension.swift in Sources */,
+				F336F3692886EDD4005B57A0 /* DayRepeatViewController.swift in Sources */,
 				F354C3EA283E6946008929FD /* NSMutableAttributedString+extension.swift in Sources */,
+				F336F3722886F4A4005B57A0 /* RepeatSheetViewController.swift in Sources */,
+				F336F36E2886F13E005B57A0 /* MonthRepeatViewController.swift in Sources */,
 				7DBC4C672876B66E00F0AC86 /* StickerCollectionViewCell.swift in Sources */,
 				F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */,
 				F3DD022728466E3300AD9240 /* SignUpCoordinator.swift in Sources */,

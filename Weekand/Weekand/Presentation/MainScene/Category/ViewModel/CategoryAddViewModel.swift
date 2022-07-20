@@ -60,10 +60,14 @@ extension CategoryAddViewModel {
                 if isSucceed {
                     self.coordinator?.endAndDismiss()
                 } else {
-                    print("error")
+                    self.coordinator?.showToastMessage(text: "일정 추가에 실패하였습니다.")
                 }
             }, onFailure: { error in
-                print(error)
+                if error.localizedDescription == CategoryError.duplicatedName.localizedDescription {
+                    self.coordinator?.showToastMessage(text: error.localizedDescription)
+                } else {
+                    self.coordinator?.showToastMessage(text: "일정 추가에 실패하였습니다.")
+                }
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }
