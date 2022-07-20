@@ -42,7 +42,6 @@ class WEmojiView: UIView {
         stackView.axis = .horizontal
         stackView.distribution = .fill
         stackView.alignment = .center
-        stackView.spacing = 9.5
     }
     
     private func setupView() {
@@ -76,9 +75,10 @@ class WEmojiView: UIView {
 extension WEmojiView {
     
     /// Emoji를 배열로 받아 순서대로 표시해준다.
-    // API가 [emojiName: emojiNumber] 형태로 전달해주면 추후에 emojiOrder 생성하는 함수 구현
     func setEmoji(emojiOrder: [Emoji]) {
         
+        stackView.spacing = 9.5 - CGFloat((4 - emojiOrder.count) * 15)
+
         let imageViewSet = emojiStack.arrangedSubviews.reversed()
         let emojiSet = emojiOrder.reversed()
         
