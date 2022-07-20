@@ -46,7 +46,9 @@ enum StatusIcon: String {
         case .completed:     return .mainColor
         case .skipped:       return .gray600
         case .undetermined:  return .gray300
-        default:            return UIColor()
+
+        case .start:         return .gray500
+        case .end:           return .gray500
         }
     }
 }
