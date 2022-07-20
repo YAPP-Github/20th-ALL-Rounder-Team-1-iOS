@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 /// 일정 상태 정보
 enum Status: String {
@@ -22,6 +23,7 @@ enum Status: String {
         case .undetermined: return .undetermined
         }
     }
+    
 }
 
 /// 일정상태 아이콘 정보
@@ -36,4 +38,15 @@ enum StatusIcon: String {
     
     case start = "date.start"
     case end = "date.end"
+    
+    var tintColor: UIColor {
+        switch self {
+        case .upcoming:      return .gray600
+        case .proceeding:    return .gray600
+        case .completed:     return .mainColor
+        case .skipped:       return .gray600
+        case .undetermined:  return .gray300
+        default:            return UIColor()
+        }
+    }
 }

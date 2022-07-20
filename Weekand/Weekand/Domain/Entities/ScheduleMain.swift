@@ -47,8 +47,8 @@ struct ScheduleMain: Hashable {
         self.color = model.category.color
         self.status = Status(rawValue: model.status.rawValue) ?? .upcoming
         self.name = model.name
-        self.dateStart = model.dateTimeStart.fromStringTimestamp()
-        self.dateEnd = model.dateTimeEnd.fromStringTimestamp()
+        self.dateStart = model.dateTimeStart.toDate()
+        self.dateEnd = model.dateTimeEnd.toDate()
         self.stickerCount = model.stickerCount
         self.stickerNameList = model.stickerNames.map { Emoji(rawValue: $0.rawValue) ?? .good }
     }

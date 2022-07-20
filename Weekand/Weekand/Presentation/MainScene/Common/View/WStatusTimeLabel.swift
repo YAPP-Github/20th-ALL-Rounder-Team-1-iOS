@@ -38,7 +38,7 @@ extension WStatusTimeLabel {
     
     public func configureValue(status: StatusIcon, title: String) {
         
-        self.icon.image = UIImage(named: status.rawValue)!.withTintColor(.gray400)
+        self.icon.image = UIImage(named: status.rawValue)!.withTintColor(status.tintColor)
         self.label.text = title
     }
 }

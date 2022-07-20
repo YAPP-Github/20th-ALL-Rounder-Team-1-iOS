@@ -37,7 +37,7 @@ struct FollowingUser: Hashable {
     }
     
     init(userSummary: UserSummary) {
-        self.userId = UserDataStorage.shared.userID ?? ""
+        self.userId = userSummary.userId
         self.name = userSummary.name
         self.imagePath = userSummary.imagePath
     }

@@ -135,9 +135,27 @@ extension MainTableViewCell {
         stickerButton.isHidden = isMine ? true : false
     }
     
-    // TODO: API 확정되면 수정
     public func setUpCell(_ model: ScheduleMain) {
+        self.dataId = model.scheduleId
         
+        self.nameLabel.editValue(color: UIColor(hex: model.color) ?? .gray100, title: model.name)
+        
+        let icon = getStatusIcon(status: model.status, dateStart: model.dateStart, dateEnd: model.dateEnd)
+        self.timeLineLabel.configureValue(status: icon, title: Date.getTimelineString(model.dateStart, model.dateEnd))
+        self.emojiView.numberLabel.text = String(model.stickerCount)
+        self.emojiView.setEmoji(emojiOrder: model.stickerNameList)
     }
-
+    
+    /// 현재 진행중인 일정이면 "진행중" 아이콘 리턴
+    private func getStatusIcon(status: Status, dateStart: Date, dateEnd: Date) -> StatusIcon {
+        
+        if status == .upcoming {
+            if Date().compare(dateStart) == .orderedDescending && Date().compare(dateEnd) == .orderedAscending {
+                return .proceeding
+            }
+        }
+        
+        return status.icon
+    }
+    
 }

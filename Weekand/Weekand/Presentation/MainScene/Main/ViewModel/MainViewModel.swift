@@ -173,7 +173,7 @@ extension MainViewModel {
         
         if isMySchedule {
             self.getUserSummary()
-            self.getScheduleList(date: "1656255168388".fromStringTimestamp())   // TODO: 500 에러 수정
+            self.getScheduleList(date: currentDate)   // TODO: 500 에러 수정
         } else {
             guard let id = currentUserId else { return }
             // TODO: 선택된 유저의 UserSummary 가져오기
@@ -187,27 +187,44 @@ extension MainViewModel {
     
     func configureCollectionViewSnapShot(animatingDifferences: Bool = false) {
         
+        var snapshot = NSDiffableDataSourceSnapshot<MainSection, FollowingUser>()
+        snapshot.appendSections([.main])
+        self.collectionViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+        
         // 로그인한 유저 정보 (내정보)
         self.userSummary.subscribe(onNext: { data in
-            var snapshot = self.collectionViewDataSource.snapshot()
             
-            if let first = snapshot.itemIdentifiers.first {
-                snapshot.insertItems([FollowingUser(userSummary: data)], beforeItem: first)
+            if data.userId != "" {
+                var snapshot = self.collectionViewDataSource.snapshot()
+                
+                if let first = snapshot.itemIdentifiers.first {
+                    snapshot.insertItems([FollowingUser(userSummary: data)], beforeItem: first)
+                } else {
+                    snapshot.appendItems([FollowingUser(userSummary: data)], toSection: .main)
+                }
+                self.collectionViewDataSource.apply(snapshot)
             }
-            self.collectionViewDataSource.apply(snapshot)
             
         }).disposed(by: disposeBag)
         
         // 팔로잉중인 유저 정보
         self.userFollowingList.subscribe(onNext: { data in
             
-            var snapshot = NSDiffableDataSourceSnapshot<MainSection, FollowingUser>()
-            snapshot.appendSections([.main])
-            snapshot.appendItems(data, toSection: .main)
-            self.collectionViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+            if data.count != 0 {
+                var snapshot = self.collectionViewDataSource.snapshot()
+                
+                if let first = snapshot.itemIdentifiers.first {
+                    snapshot.insertItems(data, afterItem: first)
+                } else {
+                    snapshot.appendItems(data, toSection: .main)
+                }
+                self.collectionViewDataSource.apply(snapshot)
+            }
+            
         }).disposed(by: disposeBag)
-        
     }
+    
+    
     
     func configureTableViewSnapshot(animatingDifferences: Bool = true) {
         
@@ -229,7 +246,7 @@ extension MainViewModel {
         self.mainUseCase.followers(page: 0, size: 20).subscribe(onSuccess: { following in
             PublishRelay<[FollowingUser]>.just(following).bind(to: self.userFollowingList).disposed(by: self.disposeBag)
         }, onFailure: { error in
-            print("Error: \(error)")
+            print("\(#function) Error: \(error)")
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     }
@@ -238,19 +255,19 @@ extension MainViewModel {
         self.mainUseCase.userSummary().subscribe(onSuccess: { userData in
             PublishRelay<UserSummary>.just(userData).bind(to: self.userSummary).disposed(by: self.disposeBag)
         }, onFailure: { error in
-            print("Error: \(error)")
+            print("\(#function) Error: \(error)")
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     }
     
     private func getScheduleList(date: Date) {
         
-        self.mainUseCase.scheduleList(date: date).subscribe (onSuccess: { scheduleData in
+        self.mainUseCase.scheduleList(date: date).subscribe(onSuccess: { scheduleData in
             PublishRelay<[ScheduleMain]>.just(scheduleData).bind(to: self.scheduleList).disposed(by: self.disposeBag)
-            print(scheduleData)
+            print("Schedule: \(scheduleData)")
 
         }, onFailure: { error in
-            print("Error: \(error)")
+            print("\(#function) Error: \(error)")
         }, onDisposed: nil)
         .disposed(by: disposeBag)
         

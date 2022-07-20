@@ -25,4 +25,5 @@ enum CoordinatorType {
     case categoryModify
     case scheduleEdit
     case userSearch
+    case profile
 }
