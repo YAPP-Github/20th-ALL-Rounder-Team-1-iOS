@@ -37,6 +37,8 @@
 		7D8129D72888E6BD006C0A5D /* ProfileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129D62888E6BD006C0A5D /* ProfileDetailView.swift */; };
 		7D8129D9288920F5006C0A5D /* ProfileDetailBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129D8288920F5006C0A5D /* ProfileDetailBlockView.swift */; };
 		7D8129DB288928ED006C0A5D /* ProfileDetailInteractoinBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129DA288928ED006C0A5D /* ProfileDetailInteractoinBlockView.swift */; };
+		7D8129DF2889484F006C0A5D /* ProfileDetailHelperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129DE2889484F006C0A5D /* ProfileDetailHelperView.swift */; };
+		7D8129E128894BB8006C0A5D /* ProfileSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129E028894BB8006C0A5D /* ProfileSetting.swift */; };
 		7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */; };
 		7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */; };
 		7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */; };
@@ -237,6 +239,8 @@
 		7D8129D62888E6BD006C0A5D /* ProfileDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailView.swift; sourceTree = "<group>"; };
 		7D8129D8288920F5006C0A5D /* ProfileDetailBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailBlockView.swift; sourceTree = "<group>"; };
 		7D8129DA288928ED006C0A5D /* ProfileDetailInteractoinBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailInteractoinBlockView.swift; sourceTree = "<group>"; };
+		7D8129DE2889484F006C0A5D /* ProfileDetailHelperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailHelperView.swift; sourceTree = "<group>"; };
+		7D8129E028894BB8006C0A5D /* ProfileSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetting.swift; sourceTree = "<group>"; };
 		7D8E4E832882A9D70035FB7E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCoordinator.swift; sourceTree = "<group>"; };
@@ -556,6 +560,7 @@
 				F30EBCF22885176300ECB48D /* UserSort.swift */,
 				7D0A6A3328813C7100CFE61D /* Status.swift */,
 				F3B00269287D68F100D6BB1D /* Emoji.swift */,
+				7D8129E028894BB8006C0A5D /* ProfileSetting.swift */,
 			);
 			name = Enum;
 			sourceTree = "<group>";
@@ -590,11 +595,20 @@
 			isa = PBXGroup;
 			children = (
 				7D8129CA2886F66E006C0A5D /* ProfileViewController.swift */,
+				7D8129DD28894693006C0A5D /* SubView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7D8129DD28894693006C0A5D /* SubView */ = {
+			isa = PBXGroup;
+			children = (
 				7D8129D62888E6BD006C0A5D /* ProfileDetailView.swift */,
 				7D8129D8288920F5006C0A5D /* ProfileDetailBlockView.swift */,
 				7D8129DA288928ED006C0A5D /* ProfileDetailInteractoinBlockView.swift */,
+				7D8129DE2889484F006C0A5D /* ProfileDetailHelperView.swift */,
 			);
-			path = View;
+			path = SubView;
 			sourceTree = "<group>";
 		};
 		7DA4AB6E28586602009E91FB /* ViewModel */ = {
@@ -1448,6 +1462,7 @@
 				F336F3652886D2A3005B57A0 /* ScheduleEditUseCase.swift in Sources */,
 				7D0ED2C0287D065800DE3215 /* EmojiTableViewController.swift in Sources */,
 				7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */,
+				7D8129E128894BB8006C0A5D /* ProfileSetting.swift in Sources */,
 				F30EBCD728807DC000ECB48D /* String+extension.swift in Sources */,
 				F3CC76B028670BA200A3FBBE /* ColorSheetViewModel.swift in Sources */,
 				F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */,
@@ -1566,6 +1581,7 @@
 				F37868532861D28C00BEEC81 /* CategoryAddCoordinator.swift in Sources */,
 				7D0A6A3A2881588000CFE61D /* DateExtension.swift in Sources */,
 				F336F3692886EDD4005B57A0 /* DayRepeatViewController.swift in Sources */,
+				7D8129DF2889484F006C0A5D /* ProfileDetailHelperView.swift in Sources */,
 				F354C3EA283E6946008929FD /* NSMutableAttributedString+extension.swift in Sources */,
 				F336F3722886F4A4005B57A0 /* RepeatSheetViewController.swift in Sources */,
 				F336F36E2886F13E005B57A0 /* MonthRepeatViewController.swift in Sources */,

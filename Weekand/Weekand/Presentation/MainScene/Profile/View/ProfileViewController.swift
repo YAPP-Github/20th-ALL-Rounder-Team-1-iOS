@@ -16,6 +16,8 @@ class ProfileViewController: UIViewController {
     var viewModel: ProfileViewModel?
     private let disposeBag = DisposeBag()
     
+    lazy var scrollView = UIScrollView()
+    
     // 상단 유저정보
     lazy var nameLabel = UILabel().then {
         $0.font = WFont.head1()
@@ -24,12 +26,12 @@ class ProfileViewController: UIViewController {
     
     lazy var emailLabel = UILabel().then {
         $0.font = WFont.body2()
-        $0.textColor = .gray400
+        $0.textColor = .gray600
     }
     
     lazy var profileLabelStack = UIStackView().then {
         $0.axis = .vertical
-        $0.distribution = .equalCentering
+        $0.distribution = .fill
         $0.alignment = .leading
         $0.spacing = 6
     }
@@ -52,6 +54,19 @@ class ProfileViewController: UIViewController {
     // 회색 부분 (목표, 직업 & 관심사, 팔로워 & 팔로잉)
     lazy var detailBar = ProfileDetailView()
         
+    // 하단 버튼들
+    lazy var contactLink = ProfileDetailHelperView(.contact)
+    lazy var accessibilityLink = ProfileDetailHelperView(.accessibility)
+    lazy var passwordLink = ProfileDetailHelperView(.password)
+    lazy var logoutLink = ProfileDetailHelperView(.logout)
+    lazy var signOutLink = ProfileDetailHelperView(.signOut)
+    
+    lazy var bottomStack = UIStackView().then {
+        $0.spacing = 0
+        $0.axis = .vertical
+        $0.distribution = .fillEqually
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,14 +100,20 @@ class ProfileViewController: UIViewController {
         [nameLabel, emailLabel].forEach { profileLabelStack.addArrangedSubview($0) }
         [profileLabelStack, profileImageView].forEach { profileBarStack.addArrangedSubview($0) }
         profileLabelStack.setContentHuggingPriority(.required, for: .vertical)
+        profileLabelStack.snp.makeConstraints { make in
+            make.height.equalTo(58)
+        }
         profileImageView.snp.makeConstraints { make in
             make.height.equalTo(70)
-            make.width.equalTo(profileLabelStack.snp.height)
+            make.width.equalTo(70)
         }
         
-        [profileBarStack, profileButton, detailBar].forEach { self.view.addSubview($0) }
+        // 하단
+        [contactLink, accessibilityLink, passwordLink, logoutLink, signOutLink].forEach { bottomStack.addArrangedSubview($0) }
+        
+        [profileBarStack, profileButton, detailBar, bottomStack].forEach { scrollView.addSubview($0) }
         profileBarStack.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
+            make.top.equalToSuperview().offset(16)
             make.left.right.equalToSuperview().inset(24)
         }
         profileButton.snp.makeConstraints { make in
@@ -104,6 +125,18 @@ class ProfileViewController: UIViewController {
             make.top.equalTo(profileButton.snp.bottom).offset(24)
             make.left.right.equalToSuperview()
             make.height.greaterThanOrEqualTo(100)
+        }
+        bottomStack.snp.makeConstraints { make in
+            make.top.equalTo(detailBar.snp.bottom).offset(16)
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-64)
+        }
+        
+        
+        self.view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.height.equalToSuperview()
         }
         
 

@@ -14,7 +14,7 @@ class ProfileDetailInteractoinBlockView: ProfileDetailBlockView {
     
     let icon = UIImage(named: "chevron.right") ?? UIImage(systemName: "chevron.right")
     
-    lazy var arrow = UIImageView().then {
+    lazy var disclosure = UIImageView().then {
         $0.contentMode = .scaleAspectFit
         $0.image = icon
     }
@@ -24,8 +24,8 @@ class ProfileDetailInteractoinBlockView: ProfileDetailBlockView {
         
         contentLabel.font = WFont.head1()
         
-        self.addSubview(arrow)
-        arrow.snp.makeConstraints { make in
+        self.addSubview(disclosure)
+        disclosure.snp.makeConstraints { make in
             make.height.equalTo(self.contentLabel.snp.height)
             make.right.equalTo(self.contentLabel.snp.right)
             make.centerY.equalTo(self.contentLabel.snp.centerY)
@@ -46,10 +46,12 @@ extension ProfileDetailInteractoinBlockView {
         
         if content == 0 {
             contentLabel.textColor = .gray400
-            arrow.image = icon?.withTintColor(.gray400)
+            disclosure.image = icon?.withTintColor(.gray400)
+            self.isUserInteractionEnabled = false
         } else {
             contentLabel.textColor = .gray900
-            arrow.image = icon?.withTintColor(.mainColor)
+            disclosure.image = icon?.withTintColor(.mainColor)
+            self.isUserInteractionEnabled = true
         }
     }
 }
