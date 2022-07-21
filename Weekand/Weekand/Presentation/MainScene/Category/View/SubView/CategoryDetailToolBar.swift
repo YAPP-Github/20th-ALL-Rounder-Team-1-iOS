@@ -7,14 +7,13 @@
 
 import UIKit
 
-class CategoryDetailFooterView: UITableViewHeaderFooterView {
-
-    static let cellIdentifier = "CategoryDetailFooterCell"
+class CategoryDetailToolBar: UIToolbar {
+    
+    let viewHeight = 50
     
     lazy var scheduleCountLabel = UILabel().then {
         $0.textColor = .mainColor
         $0.font = WFont.body2()
-        $0.text = "nn개의 일정"
     }
     
     lazy var updateCategoryButton = UIButton().then {
@@ -24,8 +23,8 @@ class CategoryDetailFooterView: UITableViewHeaderFooterView {
         $0.setImage(buttonImage, for: .normal)
     }
     
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         setupView()
         configureUI()
@@ -36,23 +35,26 @@ class CategoryDetailFooterView: UITableViewHeaderFooterView {
     }
     
     func setupView() {
-        self.contentView.backgroundColor = .white
+        self.backgroundColor = .white
     }
     
     func configureUI() {
-        self.contentView.addSubview(scheduleCountLabel)
-        self.contentView.addSubview(updateCategoryButton)
+        self.addSubview(scheduleCountLabel)
+        self.addSubview(updateCategoryButton)
         
         scheduleCountLabel.snp.makeConstraints { make in
             make.centerX.equalTo(self.snp.centerX)
-            make.top.equalToSuperview().offset(25)
+            make.top.equalToSuperview().offset(13)
         }
         
         updateCategoryButton.snp.makeConstraints { make in
-            make.height.width.equalTo(40)
-            make.trailing.equalToSuperview().offset(-15)
-            make.top.equalToSuperview().offset(13)
+            make.height.width.equalTo(35)
+            make.trailing.equalToSuperview().offset(-8)
+            make.top.equalToSuperview().offset(8)
         }
     }
 
+    func setScheduleCount(_ count: Int) {
+        scheduleCountLabel.text = "\(count)개의 일정"
+    }
 }
