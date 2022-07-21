@@ -19,7 +19,6 @@ class CategoryCoordinator: Coordinator {
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.categoryListViewController = CategoryListViewController()
-        self.categoryListViewController.title = "카테고리"
         self.categoryUseCase = CategoryUseCase()
     }
     

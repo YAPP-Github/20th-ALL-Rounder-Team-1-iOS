@@ -137,13 +137,6 @@ extension CategoryListViewController {
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
     
-    func deleteItem(_ indexPath: IndexPath) {
-        var snapshot = self.dataSource.snapshot()
-        snapshot.deleteItems([self.list[indexPath.item]])
-        self.list.remove(at: indexPath.item)
-        self.dataSource.apply(snapshot)
-    }
-    
 }
 
 extension CategoryListViewController: UITableViewDelegate {
@@ -180,7 +173,9 @@ extension CategoryListViewController {
         let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, _ in
             self.showActionSheet(titles: "삭제", message: "카테고리를 삭제하시겠어요?") { _ in
                 self.viewModel?.deleteCategory(id: self.list[indexPath.item].serverID) {
-                    self.deleteItem(indexPath)
+                    DispatchQueue.main.async {
+                        self.setCategoryList(sort: self.selectedSort)
+                    }
                 }
             }
         }
