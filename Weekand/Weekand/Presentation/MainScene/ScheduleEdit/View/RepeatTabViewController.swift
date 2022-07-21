@@ -43,10 +43,10 @@ class RepeatTabViewController: TabmanViewController {
     
     private func setUpView() {
         
-        let dayViewController = DayRepeatViewController()
+        let dayViewController = DefaultRepeatViewController()
         let weekRepeatViewController = WeekRepeatViewController()
-        let monthRepeatViewController = DayRepeatViewController()
-        let yearRepeatViewController = DayRepeatViewController()
+        let monthRepeatViewController = DefaultRepeatViewController()
+        let yearRepeatViewController = DefaultRepeatViewController()
         
         viewControllers.append(dayViewController)
         viewControllers.append(weekRepeatViewController)

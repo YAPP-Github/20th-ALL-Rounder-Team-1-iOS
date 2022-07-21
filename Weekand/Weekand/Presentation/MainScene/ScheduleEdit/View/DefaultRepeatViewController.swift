@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DayRepeatViewController: UIViewController {
+class DefaultRepeatViewController: UIViewController {
     
     enum Section {
       case main
@@ -82,7 +82,7 @@ class DayRepeatViewController: UIViewController {
     }
 }
 
-extension DayRepeatViewController {
+extension DefaultRepeatViewController {
     private func configureDataSource() {
         
         dataSource = UITableViewDiffableDataSource<Section, String>(tableView: repeatRadioStackView.tableView, cellProvider: { tableView, indexPath, text in
@@ -104,7 +104,7 @@ extension DayRepeatViewController {
     }
 }
 
-extension DayRepeatViewController: UITableViewDelegate {
+extension DefaultRepeatViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dateSelectIndex = 1
         if indexPath.row == dateSelectIndex {
