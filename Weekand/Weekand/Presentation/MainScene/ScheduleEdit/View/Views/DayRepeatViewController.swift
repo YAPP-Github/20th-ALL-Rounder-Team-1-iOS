@@ -15,31 +15,7 @@ class DayRepeatViewController: UIViewController {
     
     let list = ["안함", "종료날짜 선택"]
     
-    lazy var stackView = UIStackView().then {
-        $0.axis = .vertical
-        $0.alignment = .fill
-        $0.distribution = .fill
-        $0.spacing = 10
-    }
-    
-    lazy var namelabel = WTextLabel().then {
-        $0.textColor = UIColor.gray900
-        $0.font = WFont.subHead2()
-        $0.text = "반복종료"
-    }
-    
-    let tableView = UITableView()
-    
-    lazy var dividerLine = UIView().then {
-        $0.backgroundColor = .gray200
-    }
-    
-    lazy var calendarContainerView = UIView().then {
-        $0.backgroundColor = .white
-        $0.isHidden = true
-    }
-    
-    let calendarView = WCalendarView()
+    lazy var repeatRadioStackView = RepeatRadioStackView()
     
     var dataSource: UITableViewDiffableDataSource<Section, String>!
     
@@ -64,48 +40,21 @@ class DayRepeatViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
+        repeatRadioStackView.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
     }
     
     
     private func setUpView() {
-        tableView.allowsMultipleSelection = false
-        tableView.separatorStyle = .none
-        tableView.delegate = self
-        
-        tableView.register(RepeatTableViewCell.self, forCellReuseIdentifier: RepeatTableViewCell.cellIdentifier)
+        repeatRadioStackView.tableView.delegate = self
+        repeatRadioStackView.tableView.register(RepeatTableViewCell.self, forCellReuseIdentifier: RepeatTableViewCell.cellIdentifier)
     }
     
     private func configureUI() {
-        self.view.addSubview(stackView)
+        self.view.addSubview(repeatRadioStackView)
         
-        stackView.addArrangedSubview(namelabel)
-        stackView.addArrangedSubview(tableView)
-        stackView.addArrangedSubview(dividerLine)
-        stackView.addArrangedSubview(calendarContainerView)
-        
-        stackView.snp.makeConstraints { make in
+        repeatRadioStackView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(60)
             make.trailing.leading.equalToSuperview()
-        }
-        
-        tableView.snp.makeConstraints { make in
-            make.height.equalTo(100)
-        }
-        
-        dividerLine.snp.makeConstraints { make in
-            make.height.equalTo(1)
-        }
-        
-        calendarContainerView.addSubview(calendarView)
-        
-        calendarContainerView.snp.makeConstraints { make in
-            make.trailing.leading.equalToSuperview()
-            make.height.equalTo(350)
-        }
-        
-        calendarView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
         }
     }
     
@@ -117,7 +66,7 @@ class DayRepeatViewController: UIViewController {
 extension DayRepeatViewController {
     private func configureDataSource() {
         
-        dataSource = UITableViewDiffableDataSource<Section, String>(tableView: tableView, cellProvider: { tableView, indexPath, text in
+        dataSource = UITableViewDiffableDataSource<Section, String>(tableView: repeatRadioStackView.tableView, cellProvider: { tableView, indexPath, text in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RepeatTableViewCell.cellIdentifier, for: indexPath) as? RepeatTableViewCell else {
                 return UITableViewCell()
             }
@@ -141,8 +90,8 @@ extension DayRepeatViewController: UITableViewDelegate {
         let dateSelectIndex = 1
         if indexPath.row == dateSelectIndex {
             UIView.animate(withDuration: 0.3, delay: 0.0, options: .transitionCrossDissolve, animations: {
-                self.calendarContainerView.alpha = 1
-                self.calendarContainerView.isHidden = false
+                self.repeatRadioStackView.calendarContainerView.alpha = 1
+                self.repeatRadioStackView.calendarContainerView.isHidden = false
             }, completion: nil)
         }
     }
@@ -151,8 +100,8 @@ extension DayRepeatViewController: UITableViewDelegate {
         let dateSelectIndex = 1
         if indexPath.row == dateSelectIndex {
             UIView.animate(withDuration: 0.3, delay: 0.0, options: .transitionCrossDissolve, animations: {
-                self.calendarContainerView.alpha = 0
-                self.calendarContainerView.isHidden = true
+                self.repeatRadioStackView.calendarContainerView.alpha = 0
+                self.repeatRadioStackView.calendarContainerView.isHidden = true
             }, completion: nil)
         }
     }
