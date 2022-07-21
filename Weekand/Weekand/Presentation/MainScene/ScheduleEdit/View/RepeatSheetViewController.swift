@@ -7,17 +7,10 @@
 
 import UIKit
 
-class RepeatSheetViewController: BottomSheetViewController {
+class RepeatViewController: UIViewController {
 
     let viewController = RepeatTabViewController()
-    
-    override var bottomSheetHeight: CGFloat {
-        get {
-            return 400
-        }
-    }
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,12 +19,12 @@ class RepeatSheetViewController: BottomSheetViewController {
     }
     
     private func setUpView() {
-        
+        view.backgroundColor = .white
     }
     
     private func configureUI() {
         
-        self.bottomSheetView.addSubview(viewController.view)
+        self.view.addSubview(viewController.view)
         viewController.view.clipsToBounds = true
         viewController.view.layer.cornerRadius = 27
         viewController.view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
