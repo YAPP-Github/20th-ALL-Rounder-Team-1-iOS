@@ -101,11 +101,12 @@ extension MainViewModel {
         }).disposed(by: disposeBag)
         
         // UserSummary
-        input.didUserSummaryTap.subscribe(onNext: { [weak self] _ in
+        input.didUserSummaryTap.when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
             
             if self?.isMySchedule ?? true {
                 print("To my Profile")
-                // TODO: 내 프로필로 이동
+                self?.coordinator?.showProfileScene()
             } else {
                 print("To \(self?.currentUserId ?? "") Profile")
                 // TODO: 남의 프로필로 이동
