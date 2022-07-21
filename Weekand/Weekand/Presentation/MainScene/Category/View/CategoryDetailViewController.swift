@@ -43,6 +43,11 @@ class CategoryDetailViewController: UIViewController {
         }
     }
     
+    var list: [ScheduleSummary] = []
+    var scheduleCount: Int = 20
+    var refreshListCount: Int = 15
+    var page: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -177,6 +182,19 @@ extension CategoryDetailViewController {
         delete.backgroundColor = .wred
         
         return UISwipeActionsConfiguration(actions: [delete, update])
+    }
+}
+
+extension CategoryDetailViewController {
+    func setScheduleLsit(searchQuery: String) {
+        self.page = 0
+        self.list = []
+        self.viewModel?.searchSchedules(sort: self.selectedSort, page: self.page, size: self.scheduleCount, searchQuery: searchQuery, categoryId: Int(self.selectedCategory?.serverID ?? "") ?? 0)
+        self.tableView.scrollToTop()
+    }
+    
+    func appendUserList(searchQuery: String) {
+        self.viewModel?.loadMoreScheduelList(sort: self.selectedSort, page: self.page, size: self.scheduleCount, searchQuery: searchQuery, categoryId: Int(self.selectedCategory?.serverID ?? "") ?? 0)
     }
 }
 

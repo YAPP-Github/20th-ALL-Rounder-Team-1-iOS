@@ -86,4 +86,10 @@ extension CategoryDetailViewModel {
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }
+    
+    func loadMoreScheduelList(sort: ScheduleSort, page: Int, size: Int, searchQuery: String, categoryId: Int) {
+        if hasNext {
+            self.searchSchedules(sort: sort, page: page, size: size, searchQuery: searchQuery, categoryId: categoryId)
+        }
+    }
 }
