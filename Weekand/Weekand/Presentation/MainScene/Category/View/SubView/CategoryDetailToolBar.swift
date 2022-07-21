@@ -7,9 +7,9 @@
 
 import UIKit
 
-class CategoryDetailFooterView: UITableViewHeaderFooterView {
-
-    static let cellIdentifier = "CategoryDetailFooterCell"
+class CategoryDetailToolBar: UIToolbar {
+    
+    let viewHeight = 50
     
     lazy var scheduleCountLabel = UILabel().then {
         $0.textColor = .mainColor
@@ -24,8 +24,8 @@ class CategoryDetailFooterView: UITableViewHeaderFooterView {
         $0.setImage(buttonImage, for: .normal)
     }
     
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         setupView()
         configureUI()
@@ -36,12 +36,12 @@ class CategoryDetailFooterView: UITableViewHeaderFooterView {
     }
     
     func setupView() {
-        self.contentView.backgroundColor = .white
+        self.backgroundColor = .white
     }
     
     func configureUI() {
-        self.contentView.addSubview(scheduleCountLabel)
-        self.contentView.addSubview(updateCategoryButton)
+        self.addSubview(scheduleCountLabel)
+        self.addSubview(updateCategoryButton)
         
         scheduleCountLabel.snp.makeConstraints { make in
             make.centerX.equalTo(self.snp.centerX)

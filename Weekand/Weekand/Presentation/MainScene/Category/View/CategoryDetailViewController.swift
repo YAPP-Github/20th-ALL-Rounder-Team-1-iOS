@@ -18,23 +18,13 @@ class CategoryDetailViewController: UIViewController {
       case main
     }
     
-    let sample: [ScheduleMain] = [
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목1", dateStart: Date(), dateEnd: Date(), stickerCount: 134, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목2", dateStart: Date(), dateEnd: Date(), stickerCount: 313, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목3", dateStart: Date(), dateEnd: Date(), stickerCount: 54, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목4", dateStart: Date(), dateEnd: Date(), stickerCount: 431, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목5", dateStart: Date(), dateEnd: Date(), stickerCount: 64, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목6", dateStart: Date(), dateEnd: Date(), stickerCount: 3, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목7", dateStart: Date(), dateEnd: Date(), stickerCount: 13, stickerNameList: [])
-    ]
-    
     private let disposeBag = DisposeBag()
     var viewModel: CategoryDetailViewModel?
     var dataSource: UITableViewDiffableDataSource<Section, ScheduleSummary>!
     
     let tableView = UITableView()
     let headerView = CategoryDetailHeaderView()
-    let footerView = CategoryDetailFooterView()
+    let toolBar = CategoryDetailToolBar()
     
     var selectedSort: ScheduleSort = .dateCreatedDESC
     var selectedCategory: Category? {
@@ -76,7 +66,6 @@ class CategoryDetailViewController: UIViewController {
         tableView.bounces = false
         tableView.register(CategoryDetailTableViewCell.self, forCellReuseIdentifier: CategoryDetailTableViewCell.cellIdentifier)
         tableView.register(CategoryDetailHeaderView.self, forHeaderFooterViewReuseIdentifier: CategoryDetailHeaderView.cellIdentifier)
-        tableView.register(CategoryDetailFooterView.self, forHeaderFooterViewReuseIdentifier: CategoryDetailFooterView.cellIdentifier)
         
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
@@ -92,9 +81,18 @@ class CategoryDetailViewController: UIViewController {
     
     private func configureUI() {
         view.addSubview(tableView)
+        view.addSubview(toolBar)
+        
         tableView.snp.makeConstraints { make in
-            make.top.bottom.equalTo(self.view.safeAreaLayoutGuide)
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(self.toolBar.viewHeight)
             make.trailing.leading.equalToSuperview()
+        }
+        
+        toolBar.snp.makeConstraints { make in
+            make.trailing.leading.equalToSuperview()
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
+            make.height.equalTo(self.toolBar.viewHeight)
         }
     }
     
@@ -104,7 +102,7 @@ class CategoryDetailViewController: UIViewController {
         let input = CategoryDetailViewModel.Input(
             dropDownDidSelectEvent: dropDownDidSelectEvent,
             didEditSearchBar: self.headerView.searchBar.rx.text.orEmpty.asObservable(),
-            didTapUpdateCategoryButton: self.footerView.updateCategoryButton.rx.tap.asObservable(),
+            didTapUpdateCategoryButton: self.toolBar.updateCategoryButton.rx.tap.asObservable(),
             selectedCategory: selectedCategory
         )
         
@@ -174,14 +172,6 @@ extension CategoryDetailViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 120
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return footerView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 58
     }
 }
 
