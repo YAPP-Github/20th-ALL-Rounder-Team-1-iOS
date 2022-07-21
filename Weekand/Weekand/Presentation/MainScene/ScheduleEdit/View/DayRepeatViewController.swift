@@ -17,6 +17,15 @@ class DayRepeatViewController: UIViewController {
     
     lazy var repeatRadioStackView = RepeatRadioStackView()
     
+    lazy var buttonStackView = UIStackView().then {
+        $0.axis = .horizontal
+        $0.alignment = .fill
+        $0.spacing = 10
+    }
+
+    let cancelButton = WDefaultButton(title: "취소", style: .tint, font: WFont.subHead1())
+    let confirmButton = WDefaultButton(title: "확인", style: .filled, font: WFont.subHead1())
+    
     var dataSource: UITableViewDiffableDataSource<Section, String>!
     
     init() {
@@ -51,10 +60,21 @@ class DayRepeatViewController: UIViewController {
     
     private func configureUI() {
         self.view.addSubview(repeatRadioStackView)
+        self.view.addSubview(cancelButton)
+        self.view.addSubview(buttonStackView)
         
         repeatRadioStackView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(60)
             make.trailing.leading.equalToSuperview()
+        }
+        
+        buttonStackView.addArrangedSubview(cancelButton)
+        buttonStackView.addArrangedSubview(confirmButton)
+        
+        buttonStackView.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-60)
+            make.leading.trailing.equalToSuperview()
+            make.width.equalTo(45)
         }
     }
     
