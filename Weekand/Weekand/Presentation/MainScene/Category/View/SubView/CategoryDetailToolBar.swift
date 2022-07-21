@@ -45,13 +45,13 @@ class CategoryDetailToolBar: UIToolbar {
         
         scheduleCountLabel.snp.makeConstraints { make in
             make.centerX.equalTo(self.snp.centerX)
-            make.top.equalToSuperview().offset(25)
+            make.top.equalToSuperview().offset(13)
         }
         
         updateCategoryButton.snp.makeConstraints { make in
-            make.height.width.equalTo(40)
-            make.trailing.equalToSuperview().offset(-15)
-            make.top.equalToSuperview().offset(13)
+            make.height.width.equalTo(35)
+            make.trailing.equalToSuperview().offset(-8)
+            make.top.equalToSuperview().offset(8)
         }
     }
 
