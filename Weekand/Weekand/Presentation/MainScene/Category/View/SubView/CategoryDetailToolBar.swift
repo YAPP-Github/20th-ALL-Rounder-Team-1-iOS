@@ -14,7 +14,6 @@ class CategoryDetailToolBar: UIToolbar {
     lazy var scheduleCountLabel = UILabel().then {
         $0.textColor = .mainColor
         $0.font = WFont.body2()
-        $0.text = "nn개의 일정"
     }
     
     lazy var updateCategoryButton = UIButton().then {
@@ -55,4 +54,7 @@ class CategoryDetailToolBar: UIToolbar {
         }
     }
 
+    func setScheduleCount(_ count: Int) {
+        scheduleCountLabel.text = "\(count)개의 일정"
+    }
 }

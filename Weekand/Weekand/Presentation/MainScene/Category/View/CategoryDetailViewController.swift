@@ -38,7 +38,11 @@ class CategoryDetailViewController: UIViewController {
         }
     }
     
-    var list: [ScheduleSummary] = []
+    var list: [ScheduleSummary] = [] {
+        didSet {
+            self.toolBar.setScheduleCount(self.list.count)
+        }
+    }
     var scheduleCount: Int = 20
     var refreshListCount: Int = 15
     var page: Int = 0
