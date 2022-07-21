@@ -37,7 +37,7 @@ final class CategoryUseCase {
             .asSingle()
     }
     
-    func searchSchedules(sort: ScheduleSort, page: Int, size: Int, searchQuery: String, categoryId: Int) -> Single<SearchSchedulesQuery.Data.SearchSchedule> {
+    func searchSchedules(sort: ScheduleSort, page: Int, size: Int, searchQuery: String, categoryId: String) -> Single<SearchSchedulesQuery.Data.SearchSchedule> {
         NetWork.shared.fetch(
             query: SearchSchedulesQuery(sort: sort.toModel(), page: page, size: size, searchQuery: searchQuery, categoryId: categoryId),
             cachePolicy: .fetchIgnoringCacheCompletely,

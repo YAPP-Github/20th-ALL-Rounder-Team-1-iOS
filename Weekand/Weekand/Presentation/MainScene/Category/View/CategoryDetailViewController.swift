@@ -30,7 +30,7 @@ class CategoryDetailViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     var viewModel: CategoryDetailViewModel?
-    var dataSource: UITableViewDiffableDataSource<Section, ScheduleMain>!
+    var dataSource: UITableViewDiffableDataSource<Section, ScheduleSummary>!
     
     let tableView = UITableView()
     let headerView = CategoryDetailHeaderView()
@@ -55,8 +55,13 @@ class CategoryDetailViewController: UIViewController {
         configureUI()
         bindViewModel()
         configureDataSource()
-        configureSnapshot()
         setupEndEditing()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setScheduleList(searchQuery: "")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -98,6 +103,7 @@ class CategoryDetailViewController: UIViewController {
         
         let input = CategoryDetailViewModel.Input(
             dropDownDidSelectEvent: dropDownDidSelectEvent,
+            didEditSearchBar: self.headerView.searchBar.rx.text.orEmpty.asObservable(),
             didTapUpdateCategoryButton: self.footerView.updateCategoryButton.rx.tap.asObservable(),
             selectedCategory: selectedCategory
         )
@@ -114,7 +120,22 @@ class CategoryDetailViewController: UIViewController {
             self.headerView.dropDown.show()
         }).disposed(by: disposeBag)
         
-        let _ = viewModel?.transform(input: input)
+        let output = viewModel?.transform(input: input)
+        
+        output?.searchWithQueryInformation
+            .filter { $0 != "" }
+            .subscribe(onNext: { (searchText) in
+                self.setScheduleList(searchQuery: searchText)
+            })
+            .disposed(by: disposeBag)
+        
+        self.viewModel?.scheduleList
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] scheduleList in
+                scheduleList.forEach { self?.list.append($0) }
+                self?.configureSnapshot(list: self?.list ?? [])
+        })
+        .disposed(by: self.disposeBag)
     }
 
 }
@@ -124,7 +145,7 @@ extension CategoryDetailViewController {
     
     private func configureDataSource() {
         
-        dataSource = UITableViewDiffableDataSource<Section, ScheduleMain>(tableView: tableView, cellProvider: { tableView, indexPath, list in
+        dataSource = UITableViewDiffableDataSource<Section, ScheduleSummary>(tableView: tableView, cellProvider: { tableView, indexPath, list in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryDetailTableViewCell.cellIdentifier, for: indexPath) as? CategoryDetailTableViewCell else {
                 return UITableViewCell()
             }
@@ -134,11 +155,11 @@ extension CategoryDetailViewController {
         })
     }
     
-    private func configureSnapshot(animatingDifferences: Bool = true) {
+    private func configureSnapshot(animatingDifferences: Bool = false, list: [ScheduleSummary]) {
 
-        var snapshot = NSDiffableDataSourceSnapshot<Section, ScheduleMain>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, ScheduleSummary>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(sample, toSection: .main)
+        snapshot.appendItems(list, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
     
@@ -186,15 +207,15 @@ extension CategoryDetailViewController {
 }
 
 extension CategoryDetailViewController {
-    func setScheduleLsit(searchQuery: String) {
+    func setScheduleList(searchQuery: String) {
         self.page = 0
         self.list = []
-        self.viewModel?.searchSchedules(sort: self.selectedSort, page: self.page, size: self.scheduleCount, searchQuery: searchQuery, categoryId: Int(self.selectedCategory?.serverID ?? "") ?? 0)
+        self.viewModel?.searchSchedules(sort: self.selectedSort, page: self.page, size: self.scheduleCount, searchQuery: searchQuery, categoryId: self.selectedCategory?.serverID ?? "")
         self.tableView.scrollToTop()
     }
     
     func appendUserList(searchQuery: String) {
-        self.viewModel?.loadMoreScheduelList(sort: self.selectedSort, page: self.page, size: self.scheduleCount, searchQuery: searchQuery, categoryId: Int(self.selectedCategory?.serverID ?? "") ?? 0)
+        self.viewModel?.loadMoreScheduelList(sort: self.selectedSort, page: self.page, size: self.scheduleCount, searchQuery: searchQuery, categoryId: self.selectedCategory?.serverID ?? "")
     }
 }
 

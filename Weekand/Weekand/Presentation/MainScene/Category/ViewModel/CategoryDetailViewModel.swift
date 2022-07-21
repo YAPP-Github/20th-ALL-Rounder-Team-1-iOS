@@ -32,14 +32,19 @@ extension CategoryDetailViewModel {
     
     struct Input {
         let dropDownDidSelectEvent: BehaviorRelay<ScheduleSort>
+        let didEditSearchBar: Observable<String>
         let didTapUpdateCategoryButton: Observable<Void>
         let selectedCategory: Category?
     }
     
-    struct Output { }
+    struct Output {
+        var searchWithQueryInformation: Observable<(String)>
+    }
     
     @discardableResult
     func transform(input: Input) -> Output {
+        
+        let searchBarEdit = input.didEditSearchBar.debounce(.seconds(1), scheduler: MainScheduler.instance)
         
         input.didTapUpdateCategoryButton.subscribe(onNext: {
             guard let category = input.selectedCategory else {
@@ -49,7 +54,7 @@ extension CategoryDetailViewModel {
         })
         .disposed(by: disposeBag)
         
-        return Output()
+        return Output(searchWithQueryInformation: searchBarEdit)
     }
 }
 
@@ -72,7 +77,7 @@ extension CategoryDetailViewModel {
             .disposed(by: disposeBag)
     }
     
-    func searchSchedules(sort: ScheduleSort, page: Int, size: Int, searchQuery: String, categoryId: Int) {
+    func searchSchedules(sort: ScheduleSort, page: Int, size: Int, searchQuery: String, categoryId: String) {
         
         self.categoryUseCase.searchSchedules(sort: sort, page: page, size: size, searchQuery: searchQuery, categoryId: categoryId)
             .subscribe(onSuccess: { data in
@@ -87,7 +92,7 @@ extension CategoryDetailViewModel {
             .disposed(by: disposeBag)
     }
     
-    func loadMoreScheduelList(sort: ScheduleSort, page: Int, size: Int, searchQuery: String, categoryId: Int) {
+    func loadMoreScheduelList(sort: ScheduleSort, page: Int, size: Int, searchQuery: String, categoryId: String) {
         if hasNext {
             self.searchSchedules(sort: sort, page: page, size: size, searchQuery: searchQuery, categoryId: categoryId)
         }
