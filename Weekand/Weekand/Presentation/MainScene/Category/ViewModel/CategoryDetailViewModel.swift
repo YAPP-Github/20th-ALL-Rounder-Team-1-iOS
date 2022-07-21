@@ -16,6 +16,10 @@ class CategoryDetailViewModel {
     private let categoryUseCase: CategoryUseCase
     private var disposeBag = DisposeBag()
     
+    var hasNext: Bool = false
+    
+    let scheduleList = PublishRelay<[ScheduleSummary]>()
+    
     init(coordinator: CategoryCoordinator, categoryUseCase: CategoryUseCase) {
         self.coordinator = coordinator
         self.categoryUseCase = categoryUseCase
@@ -46,5 +50,40 @@ extension CategoryDetailViewModel {
         .disposed(by: disposeBag)
         
         return Output()
+    }
+}
+
+extension CategoryDetailViewModel {
+    func searchSchedules(id: String, completion: @escaping () -> Void) {
+        self.categoryUseCase.deleteCategory(id: id)
+            .subscribe(onSuccess: { isSucceed in
+                if isSucceed {
+                    completion()
+                } else {
+                    self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")
+                }
+            }, onFailure: { error in
+                if error.localizedDescription == CategoryError.minimumCategoryCount.localizedDescription {
+                    self.coordinator?.showToastMessage(text: error.localizedDescription)
+                } else {
+                    self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")
+                }
+            }, onDisposed: nil)
+            .disposed(by: disposeBag)
+    }
+    
+    func searchSchedules(sort: ScheduleSort, page: Int, size: Int, searchQuery: String, categoryId: Int) {
+        
+        self.categoryUseCase.searchSchedules(sort: sort, page: page, size: size, searchQuery: searchQuery, categoryId: categoryId)
+            .subscribe(onSuccess: { data in
+                self.hasNext = data.paginationInfo.hasNext
+                let list = data.schedules.map { scedule in
+                    ScheduleSummary(model: scedule)
+                }
+                self.scheduleList.accept(list)
+            }, onFailure: { error in
+                print(error)
+            }, onDisposed: nil)
+            .disposed(by: disposeBag)
     }
 }
