@@ -36,4 +36,13 @@ final class CategoryUseCase {
             .map { $0.deleteCategory }
             .asSingle()
     }
+    
+    func searchSchedules(sort: ScheduleSort, page: Int, size: Int, searchQuery: String, categoryId: Int) -> Single<SearchSchedulesQuery.Data.SearchSchedule> {
+        NetWork.shared.fetch(
+            query: SearchSchedulesQuery(sort: sort.toModel(), page: page, size: size, searchQuery: searchQuery, categoryId: categoryId),
+            cachePolicy: .fetchIgnoringCacheCompletely,
+            queue: DispatchQueue.main)
+        .map { $0.searchSchedules }
+        .asSingle()
+    }
 }
