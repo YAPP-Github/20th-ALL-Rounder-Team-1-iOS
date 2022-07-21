@@ -31,7 +31,6 @@ class CategoryDetailViewModel {
 extension CategoryDetailViewModel {
     
     struct Input {
-        let dropDownDidSelectEvent: BehaviorRelay<ScheduleSort>
         let didEditSearchBar: Observable<String>
         let didTapUpdateCategoryButton: Observable<Void>
         let selectedCategory: Category?

@@ -26,7 +26,11 @@ class CategoryDetailViewController: UIViewController {
     let headerView = CategoryDetailHeaderView()
     let toolBar = CategoryDetailToolBar()
     
-    var selectedSort: ScheduleSort = .dateCreatedDESC
+    var selectedSort: ScheduleSort = .dateCreatedDESC {
+        didSet {
+            self.setScheduleList()
+        }
+    }
     var selectedCategory: Category? {
         didSet {
             self.navigationItem.title = selectedCategory?.name
@@ -51,7 +55,7 @@ class CategoryDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        setScheduleList(searchQuery: "")
+        setScheduleList()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -73,7 +77,7 @@ class CategoryDetailViewController: UIViewController {
         
         headerView.dropDown.cellNib = UINib(nibName: "SortDropDownCell", bundle: nil)
         headerView.dropDown.dataSource = ScheduleSort.allCases.map { $0.description }
-        headerView.dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
+        headerView.dropDown.customCellConfiguration = { (_: Index, _: String, cell: DropDownCell) -> Void in
             guard let cell = cell as? SortDropDownCell else { return }
             
         }
@@ -97,20 +101,17 @@ class CategoryDetailViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        let dropDownDidSelectEvent = BehaviorRelay(value: self.selectedSort)
-        
         let input = CategoryDetailViewModel.Input(
-            dropDownDidSelectEvent: dropDownDidSelectEvent,
             didEditSearchBar: self.headerView.searchBar.rx.text.orEmpty.asObservable(),
             didTapUpdateCategoryButton: self.toolBar.updateCategoryButton.rx.tap.asObservable(),
             selectedCategory: selectedCategory
         )
         
         self.headerView.dropDown.selectionAction = { [unowned self] (_ : Int, item: String) in
-            guard let selectedSort = ScheduleSort.allCases.filter { $0.description == item }.first else {
+            guard let sort = ScheduleSort.allCases.filter { $0.description == item }.first else {
                 return
             }
-            dropDownDidSelectEvent.accept(selectedSort)
+            selectedSort = sort
             self.headerView.sortButton.setTitle(selectedSort.description)
         }
         
@@ -197,14 +198,14 @@ extension CategoryDetailViewController {
 }
 
 extension CategoryDetailViewController {
-    func setScheduleList(searchQuery: String) {
+    func setScheduleList(searchQuery: String = "") {
         self.page = 0
         self.list = []
         self.viewModel?.searchSchedules(sort: self.selectedSort, page: self.page, size: self.scheduleCount, searchQuery: searchQuery, categoryId: self.selectedCategory?.serverID ?? "")
         self.tableView.scrollToTop()
     }
     
-    func appendUserList(searchQuery: String) {
+    func appendUserList(searchQuery: String = "") {
         self.viewModel?.loadMoreScheduelList(sort: self.selectedSort, page: self.page, size: self.scheduleCount, searchQuery: searchQuery, categoryId: self.selectedCategory?.serverID ?? "")
     }
 }
