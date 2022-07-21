@@ -1,0 +1,16 @@
+query searchSchedules($sort: ScheduleCategorySort!, $page: Int!, $size: Int!, $searchQuery: String, $categoryId: Int!) {
+  searchSchedules(sort: $sort, page: $page, size: $size, searchQuery: $searchQuery, categoryId: $categoryId) {
+    schedules {
+      id
+      name
+      category {
+        id
+        color
+      }
+      dateTimeStart
+      dateTimeEnd
+      repeatType
+      repeatSelectedValue
+    }
+  }
+}
