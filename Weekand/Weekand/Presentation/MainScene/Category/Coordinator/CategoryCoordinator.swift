@@ -51,6 +51,14 @@ class CategoryCoordinator: Coordinator {
         categoryModifyCoordinator.start()
     }
     
+    func showScheduleAddScene(category: Category) {
+        let scheduleEditCoordinator = ScheduleEditCoordinator()
+        scheduleEditCoordinator.finishDelegate = self
+        childCoordinators.append(scheduleEditCoordinator)
+        navigationController.present(scheduleEditCoordinator.navigationController, animated: true, completion: nil)
+        scheduleEditCoordinator.start()
+    }
+    
     func showToastMessage(text: String) {
         categoryListViewController.showToast(message: text)
     }
