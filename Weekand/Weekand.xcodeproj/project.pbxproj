@@ -43,6 +43,7 @@
 		7DB1D5BF287C1C4C0032C209 /* EmojiTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB1D5BE287C1C4C0032C209 /* EmojiTabViewController.swift */; };
 		7DB5E13C284B4DA400DBB7EA /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB5E13B284B4DA400DBB7EA /* MainCoordinator.swift */; };
 		7DB5E13E284B4E3C00DBB7EA /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB5E13D284B4E3C00DBB7EA /* MainViewModel.swift */; };
+		7DBC38AE2875A92400EFE704 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC38AD2875A92400EFE704 /* Key.swift */; };
 		7DBC4C59287697F900F0AC86 /* EmojiSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C58287697F900F0AC86 /* EmojiSheetViewController.swift */; };
 		7DBC4C5B28769C2600F0AC86 /* StickerAddSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C5A28769C2600F0AC86 /* StickerAddSheet.swift */; };
 		7DBC4C5D28769C3900F0AC86 /* MonthlyCalendarSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C5C28769C3900F0AC86 /* MonthlyCalendarSheet.swift */; };
@@ -114,6 +115,7 @@
 		F32F72502853AEE00056B189 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F724F2853AEE00056B189 /* CategoryDetailViewController.swift */; };
 		F32F72522853B0930056B189 /* CategoryDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F72512853B0930056B189 /* CategoryDetailTableViewCell.swift */; };
 		F32F72542853C2200056B189 /* CategoryDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F72532853C2200056B189 /* CategoryDetailHeaderView.swift */; };
+		F32F72562853D1E40056B189 /* CategoryDetailFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F72552853D1E40056B189 /* CategoryDetailFooterView.swift */; };
 		F32F725A28549A5D0056B189 /* CategoryEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F725928549A5D0056B189 /* CategoryEditViewController.swift */; };
 		F32F725C28549B650056B189 /* WTextFieldStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F725B28549B650056B189 /* WTextFieldStackView.swift */; };
 		F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F725D2854ADFA0056B189 /* OpenTypeStackView.swift */; };
@@ -121,18 +123,13 @@
 		F32F72642854EC890056B189 /* InformationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F72632854EC890056B189 /* InformationCollectionViewCell.swift */; };
 		F336F36028867ECF005B57A0 /* deleteCategory.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F336F35F28867ECF005B57A0 /* deleteCategory.graphql */; };
 		F336F3632886C4A9005B57A0 /* CategoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3622886C4A9005B57A0 /* CategoryError.swift */; };
+		F336F3652886D2A3005B57A0 /* ScheduleEditUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3642886D2A3005B57A0 /* ScheduleEditUseCase.swift */; };
 		F336F3672886ECEE005B57A0 /* RepeatTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3662886ECEE005B57A0 /* RepeatTabViewController.swift */; };
 		F336F3692886EDD4005B57A0 /* DayRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3682886EDD4005B57A0 /* DayRepeatViewController.swift */; };
 		F336F36B2886EF56005B57A0 /* WeekRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F36A2886EF56005B57A0 /* WeekRepeatViewController.swift */; };
 		F336F36E2886F13E005B57A0 /* MonthRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F36D2886F13E005B57A0 /* MonthRepeatViewController.swift */; };
 		F336F3702886F2A5005B57A0 /* YearRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F36F2886F2A5005B57A0 /* YearRepeatViewController.swift */; };
 		F336F3722886F4A4005B57A0 /* RepeatSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3712886F4A4005B57A0 /* RepeatSheetViewController.swift */; };
-		F336F39628892EF4005B57A0 /* RepeatType+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F39528892EF4005B57A0 /* RepeatType+extension.swift */; };
-		F336F39828892F03005B57A0 /* CategoryDetailToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F39728892F03005B57A0 /* CategoryDetailToolBar.swift */; };
-		F336F39A28892F3D005B57A0 /* ScheduleEditUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F39928892F3D005B57A0 /* ScheduleEditUseCase.swift */; };
-		F336F39C28892F5A005B57A0 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F39B28892F5A005B57A0 /* Key.swift */; };
-		F336F39E28892F75005B57A0 /* ScheduleSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F39D28892F75005B57A0 /* ScheduleSummary.swift */; };
-		F336F3A028892F7F005B57A0 /* ScheduleRepeatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F39F28892F7F005B57A0 /* ScheduleRepeatType.swift */; };
 		F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAB28533D0A005B493A /* WSortButton.swift */; };
 		F33C6EAE28535021005B493A /* UIVIewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAD28535021005B493A /* UIVIewController+extension.swift */; };
 		F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */; };
@@ -245,6 +242,7 @@
 		7DB1D5BE287C1C4C0032C209 /* EmojiTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTabViewController.swift; sourceTree = "<group>"; };
 		7DB5E13B284B4DA400DBB7EA /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		7DB5E13D284B4E3C00DBB7EA /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		7DBC38AD2875A92400EFE704 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		7DBC4C58287697F900F0AC86 /* EmojiSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiSheetViewController.swift; sourceTree = "<group>"; };
 		7DBC4C5A28769C2600F0AC86 /* StickerAddSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerAddSheet.swift; sourceTree = "<group>"; };
 		7DBC4C5C28769C3900F0AC86 /* MonthlyCalendarSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyCalendarSheet.swift; sourceTree = "<group>"; };
@@ -318,6 +316,7 @@
 		F32F724F2853AEE00056B189 /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
 		F32F72512853B0930056B189 /* CategoryDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailTableViewCell.swift; sourceTree = "<group>"; };
 		F32F72532853C2200056B189 /* CategoryDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailHeaderView.swift; sourceTree = "<group>"; };
+		F32F72552853D1E40056B189 /* CategoryDetailFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailFooterView.swift; sourceTree = "<group>"; };
 		F32F725928549A5D0056B189 /* CategoryEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEditViewController.swift; sourceTree = "<group>"; };
 		F32F725B28549B650056B189 /* WTextFieldStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextFieldStackView.swift; sourceTree = "<group>"; };
 		F32F725D2854ADFA0056B189 /* OpenTypeStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTypeStackView.swift; sourceTree = "<group>"; };
@@ -325,18 +324,13 @@
 		F32F72632854EC890056B189 /* InformationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCollectionViewCell.swift; sourceTree = "<group>"; };
 		F336F35F28867ECF005B57A0 /* deleteCategory.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = deleteCategory.graphql; sourceTree = "<group>"; };
 		F336F3622886C4A9005B57A0 /* CategoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryError.swift; sourceTree = "<group>"; };
+		F336F3642886D2A3005B57A0 /* ScheduleEditUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditUseCase.swift; sourceTree = "<group>"; };
 		F336F3662886ECEE005B57A0 /* RepeatTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatTabViewController.swift; sourceTree = "<group>"; };
 		F336F3682886EDD4005B57A0 /* DayRepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRepeatViewController.swift; sourceTree = "<group>"; };
 		F336F36A2886EF56005B57A0 /* WeekRepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekRepeatViewController.swift; sourceTree = "<group>"; };
 		F336F36D2886F13E005B57A0 /* MonthRepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthRepeatViewController.swift; sourceTree = "<group>"; };
 		F336F36F2886F2A5005B57A0 /* YearRepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearRepeatViewController.swift; sourceTree = "<group>"; };
 		F336F3712886F4A4005B57A0 /* RepeatSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatSheetViewController.swift; sourceTree = "<group>"; };
-		F336F39528892EF4005B57A0 /* RepeatType+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RepeatType+extension.swift"; sourceTree = "<group>"; };
-		F336F39728892F03005B57A0 /* CategoryDetailToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDetailToolBar.swift; sourceTree = "<group>"; };
-		F336F39928892F3D005B57A0 /* ScheduleEditUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleEditUseCase.swift; path = UseCase/Main/ScheduleEditUseCase.swift; sourceTree = "<group>"; };
-		F336F39B28892F5A005B57A0 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
-		F336F39D28892F75005B57A0 /* ScheduleSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleSummary.swift; path = Entities/ScheduleSummary.swift; sourceTree = "<group>"; };
-		F336F39F28892F7F005B57A0 /* ScheduleRepeatType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleRepeatType.swift; path = Enum/ScheduleRepeatType.swift; sourceTree = "<group>"; };
 		F33C6EAB28533D0A005B493A /* WSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSortButton.swift; sourceTree = "<group>"; };
 		F33C6EAD28535021005B493A /* UIVIewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+extension.swift"; sourceTree = "<group>"; };
 		F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputGroupStackView.swift; sourceTree = "<group>"; };
@@ -553,7 +547,6 @@
 		7D8129C5288632AA006C0A5D /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				F336F39F28892F7F005B57A0 /* ScheduleRepeatType.swift */,
 				F30EBCD428807C9400ECB48D /* CategoryOpenType.swift */,
 				F3B00271287D68FA00D6BB1D /* ScheduleSort.swift */,
 				F30EBCF22885176300ECB48D /* UserSort.swift */,
@@ -645,7 +638,6 @@
 		7DAA861D284B964800F21E35 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				F336F39D28892F75005B57A0 /* ScheduleSummary.swift */,
 				F3B00266287D68E700D6BB1D /* Category.swift */,
 				F3B00268287D68F100D6BB1D /* Color.swift */,
 				F3B0026B287D68F100D6BB1D /* EmojiGiver.swift */,
@@ -824,7 +816,7 @@
 				F32ACC0F28235D530082AF30 /* Info.plist */,
 				F32ACC0A28235D530082AF30 /* Assets.xcassets */,
 				F3786850285D98F500BEEC81 /* Constants.swift */,
-				F336F39B28892F5A005B57A0 /* Key.swift */,
+				7DBC38AD2875A92400EFE704 /* Key.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -887,7 +879,6 @@
 		F30EBCCB2880698C00ECB48D /* APIModelExtensions */ = {
 			isa = PBXGroup;
 			children = (
-				F336F39528892EF4005B57A0 /* RepeatType+extension.swift */,
 				F30EBCCC288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift */,
 			);
 			path = APIModelExtensions;
@@ -1024,7 +1015,7 @@
 				F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */,
 				F32F72512853B0930056B189 /* CategoryDetailTableViewCell.swift */,
 				F32F72532853C2200056B189 /* CategoryDetailHeaderView.swift */,
-				F336F39728892F03005B57A0 /* CategoryDetailToolBar.swift */,
+				F32F72552853D1E40056B189 /* CategoryDetailFooterView.swift */,
 				F32F725D2854ADFA0056B189 /* OpenTypeStackView.swift */,
 				F32F725F2854BB730056B189 /* ColorStackView.swift */,
 				F3F731D828677A2000C8B778 /* ColorsCollectionViewCell.swift */,
@@ -1093,7 +1084,7 @@
 				7D0A6A352881521400CFE61D /* MainUseCase.swift */,
 				F3B00260287D68BD00D6BB1D /* CategoryUseCase.swift */,
 				F3A4D95C2885B28600DDE03B /* SearchUseCase.swift */,
-				F336F39928892F3D005B57A0 /* ScheduleEditUseCase.swift */,
+				F336F3642886D2A3005B57A0 /* ScheduleEditUseCase.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -1410,6 +1401,7 @@
 				F3C8E0B32873500900B0916A /* AddInformationContainerView.swift in Sources */,
 				7DBC4C5F2876AE1800F0AC86 /* EmojiTableViewModel.swift in Sources */,
 				F3B0026C287D68F100D6BB1D /* Color.swift in Sources */,
+				F32F72562853D1E40056B189 /* CategoryDetailFooterView.swift in Sources */,
 				F3DD022B284678CF00AD9240 /* WelcomeViewModel.swift in Sources */,
 				F30EBCD9288138E800ECB48D /* UIScrollView+extension.swift in Sources */,
 				7D6B91192844A8D50044E217 /* WStatusTimeLabel.swift in Sources */,
@@ -1436,7 +1428,6 @@
 				F3B00275287D68FA00D6BB1D /* SignUpModel.swift in Sources */,
 				7DBC4C5B28769C2600F0AC86 /* StickerAddSheet.swift in Sources */,
 				F3B00261287D68BD00D6BB1D /* CategoryUseCase.swift in Sources */,
-				F336F39C28892F5A005B57A0 /* Key.swift in Sources */,
 				7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */,
 				F354C3DF283CECF5008929FD /* WTextLabel.swift in Sources */,
 				7D0A6A3428813C7100CFE61D /* Status.swift in Sources */,
@@ -1447,6 +1438,7 @@
 				7D76AEB4284458C2001C668D /* MainViewController.swift in Sources */,
 				F3C8E0A32872F29000B0916A /* WArrowButton.swift in Sources */,
 				7DB1D5BF287C1C4C0032C209 /* EmojiTabViewController.swift in Sources */,
+				F336F3652886D2A3005B57A0 /* ScheduleEditUseCase.swift in Sources */,
 				7D0ED2C0287D065800DE3215 /* EmojiTableViewController.swift in Sources */,
 				7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */,
 				F30EBCD728807DC000ECB48D /* String+extension.swift in Sources */,
@@ -1455,7 +1447,6 @@
 				F3B0025F287D68A800D6BB1D /* UserDataStorage.swift in Sources */,
 				F30EBCE828819C3E00ECB48D /* UserTableViewCell.swift in Sources */,
 				F3C8E0BB28736F2A00B0916A /* ScheduleEditCoordinator.swift in Sources */,
-				F336F39628892EF4005B57A0 /* RepeatType+extension.swift in Sources */,
 				F3DD0229284670E900AD9240 /* AppCoordinator.swift in Sources */,
 				F32ACC0628235D500082AF30 /* ViewController.swift in Sources */,
 				F3B00263287D68C600D6BB1D /* SignInUseCase.swift in Sources */,
@@ -1467,7 +1458,6 @@
 				F3C8E0B72873598A00B0916A /* MemoStackView.swift in Sources */,
 				7D0ED2BE287D064400DE3215 /* EmojiTableViewCell.swift in Sources */,
 				F37868552861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift in Sources */,
-				F336F39A28892F3D005B57A0 /* ScheduleEditUseCase.swift in Sources */,
 				F3CC76AE2866CD1200A3FBBE /* BottomSheetViewController.swift in Sources */,
 				F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */,
 				F32F72542853C2200056B189 /* CategoryDetailHeaderView.swift in Sources */,
@@ -1485,7 +1475,6 @@
 				F32F72522853B0930056B189 /* CategoryDetailTableViewCell.swift in Sources */,
 				F354C3E3283D3615008929FD /* SignUpAddInfomationViewController.swift in Sources */,
 				F323FF32287AB2C500DFD8FD /* BasePaddingLabel.swift in Sources */,
-				F336F39828892F03005B57A0 /* CategoryDetailToolBar.swift in Sources */,
 				7DF9688C284E019A00CE077E /* MainCalendarView.swift in Sources */,
 				7DD71A8B286CA8C4002D1DCF /* AlarmViewModel.swift in Sources */,
 				7D76AEB628445AA5001C668D /* MainTableViewCell.swift in Sources */,
@@ -1507,6 +1496,7 @@
 				F323FF1D2879A30100DFD8FD /* SimplePopupCoordinator.swift in Sources */,
 				7DF9688A284DF2EB00CE077E /* MainViewHeader.swift in Sources */,
 				7DEA177A2845E7C500F6B990 /* WEmojiView.swift in Sources */,
+				7DBC38AE2875A92400EFE704 /* Key.swift in Sources */,
 				F378685928621C2C00BEEC81 /* CategoryModifyViewModel.swift in Sources */,
 				7DA4AB7828586FA7009E91FB /* CategoryAddViewModel.swift in Sources */,
 				7DC166B42837148000F1A8F1 /* SignInViewModel.swift in Sources */,
@@ -1538,7 +1528,6 @@
 				F3C8E087286DC71300B0916A /* RxApolloClient.swift in Sources */,
 				F32F72602854BB730056B189 /* ColorStackView.swift in Sources */,
 				7D8129CE2886FC5A006C0A5D /* ProfileCoordinator.swift in Sources */,
-				F336F3A028892F7F005B57A0 /* ScheduleRepeatType.swift in Sources */,
 				F30EBCF7288532F800ECB48D /* InformationSheetViewModel.swift in Sources */,
 				F3DD0237284A6BEC00AD9240 /* SignUpTermsViewModel.swift in Sources */,
 				F3CC76B22867130100A3FBBE /* ColorSheetViewController.swift in Sources */,
@@ -1575,7 +1564,6 @@
 				7DBC4C672876B66E00F0AC86 /* StickerCollectionViewCell.swift in Sources */,
 				F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */,
 				F3DD022728466E3300AD9240 /* SignUpCoordinator.swift in Sources */,
-				F336F39E28892F75005B57A0 /* ScheduleSummary.swift in Sources */,
 				7DB5E13E284B4E3C00DBB7EA /* MainViewModel.swift in Sources */,
 				7DD71A89286C9ACC002D1DCF /* AlarmTableViewCell.swift in Sources */,
 				F30EBCF528851EC400ECB48D /* InformationSheetController.swift in Sources */,
