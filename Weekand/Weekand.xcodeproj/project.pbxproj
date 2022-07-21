@@ -35,6 +35,8 @@
 		7D8129CE2886FC5A006C0A5D /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129CD2886FC5A006C0A5D /* ProfileCoordinator.swift */; };
 		7D8129D52887100F006C0A5D /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129D42887100F006C0A5D /* Timestamp.swift */; };
 		7D8129D72888E6BD006C0A5D /* ProfileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129D62888E6BD006C0A5D /* ProfileDetailView.swift */; };
+		7D8129D9288920F5006C0A5D /* ProfileDetailBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129D8288920F5006C0A5D /* ProfileDetailBlockView.swift */; };
+		7D8129DB288928ED006C0A5D /* ProfileDetailInteractoinBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129DA288928ED006C0A5D /* ProfileDetailInteractoinBlockView.swift */; };
 		7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */; };
 		7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */; };
 		7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */; };
@@ -233,6 +235,8 @@
 		7D8129CD2886FC5A006C0A5D /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		7D8129D42887100F006C0A5D /* Timestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
 		7D8129D62888E6BD006C0A5D /* ProfileDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailView.swift; sourceTree = "<group>"; };
+		7D8129D8288920F5006C0A5D /* ProfileDetailBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailBlockView.swift; sourceTree = "<group>"; };
+		7D8129DA288928ED006C0A5D /* ProfileDetailInteractoinBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailInteractoinBlockView.swift; sourceTree = "<group>"; };
 		7D8E4E832882A9D70035FB7E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCoordinator.swift; sourceTree = "<group>"; };
@@ -587,6 +591,8 @@
 			children = (
 				7D8129CA2886F66E006C0A5D /* ProfileViewController.swift */,
 				7D8129D62888E6BD006C0A5D /* ProfileDetailView.swift */,
+				7D8129D8288920F5006C0A5D /* ProfileDetailBlockView.swift */,
+				7D8129DA288928ED006C0A5D /* ProfileDetailInteractoinBlockView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1418,6 +1424,7 @@
 				7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */,
 				F3B00267287D68E700D6BB1D /* Category.swift in Sources */,
 				F323FF0C2877E87900DFD8FD /* WToastLabel.swift in Sources */,
+				7D8129D9288920F5006C0A5D /* ProfileDetailBlockView.swift in Sources */,
 				F32F72642854EC890056B189 /* InformationCollectionViewCell.swift in Sources */,
 				F336F3632886C4A9005B57A0 /* CategoryError.swift in Sources */,
 				F3C8E094286F598600B0916A /* Network.swift in Sources */,
@@ -1497,6 +1504,7 @@
 				7DF9688A284DF2EB00CE077E /* MainViewHeader.swift in Sources */,
 				7DEA177A2845E7C500F6B990 /* WEmojiView.swift in Sources */,
 				7DBC38AE2875A92400EFE704 /* Key.swift in Sources */,
+				7D8129DB288928ED006C0A5D /* ProfileDetailInteractoinBlockView.swift in Sources */,
 				F378685928621C2C00BEEC81 /* CategoryModifyViewModel.swift in Sources */,
 				7DA4AB7828586FA7009E91FB /* CategoryAddViewModel.swift in Sources */,
 				7DC166B42837148000F1A8F1 /* SignInViewModel.swift in Sources */,

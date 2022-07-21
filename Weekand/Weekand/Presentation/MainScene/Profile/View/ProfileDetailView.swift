@@ -7,31 +7,21 @@
 
 import UIKit
 
+/// 프로필 화면 회색 부분
 class ProfileDetailView: UIView {
     
     // 한줄목표 블록
-    lazy var goalTitleLabel = UILabel().then {
-        $0.font = WFont.body2()
-        $0.textColor = .gray600
-        $0.text = "한줄목표"
-    }
-    
-    lazy var goalLabel = UILabel().then {
-        $0.font = WFont.body1()
-        $0.textColor = .gray900
-    }
-    
-    lazy var goalBlock = UIStackView().then {
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 10
-        $0.clipsToBounds = true
+    lazy var goalBlock = ProfileDetailBlockView(title: "한줄 목표")
         
-        $0.spacing = 8
-        $0.axis = .vertical
-        $0.distribution = .fill
-        $0.isLayoutMarginsRelativeArrangement = true
-        $0.layoutMargins = UIEdgeInsets(top: 13, left: 16, bottom: 9, right: 16)
+    lazy var followeeBlock = ProfileDetailInteractoinBlockView(title: "팔로워")
+    lazy var followerBlock = ProfileDetailInteractoinBlockView(title: "팔로잉")
+    
+    lazy var followStack = UIStackView().then {
+        $0.spacing = 12
+        $0.distribution = .fillEqually
+        $0.axis = .horizontal
     }
+
     
     lazy var parentStack = UIStackView().then {
         $0.spacing = 12
@@ -43,7 +33,6 @@ class ProfileDetailView: UIView {
     
     init() {
         super.init(frame: CGRect.zero)
-        
         setupView()
         configureUI()
     }
@@ -57,21 +46,26 @@ class ProfileDetailView: UIView {
     }
     
     private func configureUI() {
-        [goalTitleLabel, goalLabel].forEach { goalBlock.addArrangedSubview($0) }
         
-        [goalBlock].forEach { self.parentStack.addArrangedSubview($0)}
+        [followeeBlock, followerBlock].forEach { followStack.addArrangedSubview($0) }
+        
+        [goalBlock, followStack].forEach { self.parentStack.addArrangedSubview($0)}
         
         self.addSubview(parentStack)
         parentStack.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+        
     }
     
 }
 
 extension ProfileDetailView {
     func setUpData(goal: String, jobs: [String], interests: [String], follower: Int, followee: Int) {
-        goalLabel.text = goal
+        goalBlock.setContentText(content: goal)
         
+        followeeBlock.setContentInt(content: followee)
+        followerBlock.setContentInt(content: follower)
     }
 }

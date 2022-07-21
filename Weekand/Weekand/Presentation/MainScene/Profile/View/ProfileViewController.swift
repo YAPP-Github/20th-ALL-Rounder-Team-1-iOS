@@ -61,6 +61,9 @@ class ProfileViewController: UIViewController {
     }
     
     private func setUpView() {
+        
+        self.view.backgroundColor = .backgroundColor
+        
         // TODO: 서버연결 후 수정
         nameLabel.text = "이건두"
         emailLabel.text = "dei313r@mail.com"
@@ -73,9 +76,7 @@ class ProfileViewController: UIViewController {
             }
         }
         
-        detailBar.setUpData(goal: "오늘도 행복한 하루를 보내자 아자아자 화이팅", jobs: [], interests: [], follower: 112, followee: 312)
-        
-        
+        detailBar.setUpData(goal: "오늘도 행복한 하루를 보내자 아자아자 화이팅", jobs: [], interests: [], follower: 0, followee: 312)
     }
     
     private func configureUI() {
