@@ -39,6 +39,9 @@
 		7D8129DB288928ED006C0A5D /* ProfileDetailInteractoinBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129DA288928ED006C0A5D /* ProfileDetailInteractoinBlockView.swift */; };
 		7D8129DF2889484F006C0A5D /* ProfileDetailHelperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129DE2889484F006C0A5D /* ProfileDetailHelperView.swift */; };
 		7D8129E128894BB8006C0A5D /* ProfileSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129E028894BB8006C0A5D /* ProfileSetting.swift */; };
+		7D8129E32889A2E7006C0A5D /* ProfileDetailJobInterestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129E22889A2E6006C0A5D /* ProfileDetailJobInterestView.swift */; };
+		7D8129E52889A5DE006C0A5D /* ProfileDetailCollectionStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129E42889A5DE006C0A5D /* ProfileDetailCollectionStackView.swift */; };
+		7D8129E72889A89C006C0A5D /* ProfileDetailCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129E62889A89C006C0A5D /* ProfileDetailCollectionCell.swift */; };
 		7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */; };
 		7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */; };
 		7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */; };
@@ -241,6 +244,9 @@
 		7D8129DA288928ED006C0A5D /* ProfileDetailInteractoinBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailInteractoinBlockView.swift; sourceTree = "<group>"; };
 		7D8129DE2889484F006C0A5D /* ProfileDetailHelperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailHelperView.swift; sourceTree = "<group>"; };
 		7D8129E028894BB8006C0A5D /* ProfileSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetting.swift; sourceTree = "<group>"; };
+		7D8129E22889A2E6006C0A5D /* ProfileDetailJobInterestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailJobInterestView.swift; sourceTree = "<group>"; };
+		7D8129E42889A5DE006C0A5D /* ProfileDetailCollectionStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailCollectionStackView.swift; sourceTree = "<group>"; };
+		7D8129E62889A89C006C0A5D /* ProfileDetailCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailCollectionCell.swift; sourceTree = "<group>"; };
 		7D8E4E832882A9D70035FB7E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCoordinator.swift; sourceTree = "<group>"; };
@@ -606,6 +612,9 @@
 				7D8129D62888E6BD006C0A5D /* ProfileDetailView.swift */,
 				7D8129D8288920F5006C0A5D /* ProfileDetailBlockView.swift */,
 				7D8129DA288928ED006C0A5D /* ProfileDetailInteractoinBlockView.swift */,
+				7D8129E22889A2E6006C0A5D /* ProfileDetailJobInterestView.swift */,
+				7D8129E42889A5DE006C0A5D /* ProfileDetailCollectionStackView.swift */,
+				7D8129E62889A89C006C0A5D /* ProfileDetailCollectionCell.swift */,
 				7D8129DE2889484F006C0A5D /* ProfileDetailHelperView.swift */,
 			);
 			path = SubView;
@@ -1420,6 +1429,7 @@
 				F354C3E8283D4126008929FD /* SignUpTermsViewController.swift in Sources */,
 				F3C8E0B32873500900B0916A /* AddInformationContainerView.swift in Sources */,
 				7DBC4C5F2876AE1800F0AC86 /* EmojiTableViewModel.swift in Sources */,
+				7D8129E72889A89C006C0A5D /* ProfileDetailCollectionCell.swift in Sources */,
 				F3B0026C287D68F100D6BB1D /* Color.swift in Sources */,
 				F32F72562853D1E40056B189 /* CategoryDetailFooterView.swift in Sources */,
 				F3DD022B284678CF00AD9240 /* WelcomeViewModel.swift in Sources */,
@@ -1482,6 +1492,7 @@
 				F37868552861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift in Sources */,
 				F3CC76AE2866CD1200A3FBBE /* BottomSheetViewController.swift in Sources */,
 				F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */,
+				7D8129E32889A2E7006C0A5D /* ProfileDetailJobInterestView.swift in Sources */,
 				F32F72542853C2200056B189 /* CategoryDetailHeaderView.swift in Sources */,
 				F323FF1928799B6D00DFD8FD /* SimplePopupViewController.swift in Sources */,
 				F3DD021A2846629100AD9240 /* Coordinator.swift in Sources */,
@@ -1573,6 +1584,7 @@
 				F3F731E32869918E00C8B778 /* FilterTableViewCell.swift in Sources */,
 				F3DD022428466E0C00AD9240 /* SignInCoordinator.swift in Sources */,
 				7D8033D6286034BB0039F73E /* MainCollectionViewCell.swift in Sources */,
+				7D8129E52889A5DE006C0A5D /* ProfileDetailCollectionStackView.swift in Sources */,
 				F30EBCDB28817A2400ECB48D /* CategoryEditCoordinatorType.swift in Sources */,
 				F30EBCF028828C3C00ECB48D /* WFilterButtton.swift in Sources */,
 				F3B00274287D68FA00D6BB1D /* ScheduleSort.swift in Sources */,

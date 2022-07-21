@@ -16,6 +16,8 @@ class ProfileDetailView: UIView {
     lazy var followeeBlock = ProfileDetailInteractoinBlockView(title: "팔로워")
     lazy var followerBlock = ProfileDetailInteractoinBlockView(title: "팔로잉")
     
+    lazy var jobInterestView = ProfileDetailJobInterestView()
+    
     lazy var followStack = UIStackView().then {
         $0.spacing = 12
         $0.distribution = .fillEqually
@@ -49,7 +51,7 @@ class ProfileDetailView: UIView {
         
         [followeeBlock, followerBlock].forEach { followStack.addArrangedSubview($0) }
         
-        [goalBlock, followStack].forEach { self.parentStack.addArrangedSubview($0)}
+        [goalBlock, jobInterestView, followStack].forEach { self.parentStack.addArrangedSubview($0)}
         
         self.addSubview(parentStack)
         parentStack.snp.makeConstraints { make in
@@ -64,6 +66,8 @@ class ProfileDetailView: UIView {
 extension ProfileDetailView {
     func setUpData(goal: String, jobs: [String], interests: [String], follower: Int, followee: Int) {
         goalBlock.setContentText(content: goal)
+        
+        jobInterestView.setData(jobs: jobs, interests: interests)
         
         followeeBlock.setContentInt(content: followee)
         followerBlock.setContentInt(content: follower)

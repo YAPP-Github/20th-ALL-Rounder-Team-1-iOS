@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     lazy var scrollView = UIScrollView()
+    lazy var contenteView = UIView()
     
     // 상단 유저정보
     lazy var nameLabel = UILabel().then {
@@ -91,7 +92,7 @@ class ProfileViewController: UIViewController {
             }
         }
         
-        detailBar.setUpData(goal: "오늘도 행복한 하루를 보내자 아자아자 화이팅", jobs: [], interests: [], follower: 0, followee: 312)
+        detailBar.setUpData(goal: "오늘도 행복한 하루를 보내자 아자아자 화이팅", jobs: ["직장인", "iOS"], interests: [], follower: 0, followee: 312)
     }
     
     private func configureUI() {
@@ -103,6 +104,7 @@ class ProfileViewController: UIViewController {
         profileLabelStack.snp.makeConstraints { make in
             make.height.equalTo(58)
         }
+        profileImageView.setContentHuggingPriority(.required, for: .horizontal)
         profileImageView.snp.makeConstraints { make in
             make.height.equalTo(70)
             make.width.equalTo(70)
@@ -111,7 +113,7 @@ class ProfileViewController: UIViewController {
         // 하단
         [contactLink, accessibilityLink, passwordLink, logoutLink, signOutLink].forEach { bottomStack.addArrangedSubview($0) }
         
-        [profileBarStack, profileButton, detailBar, bottomStack].forEach { scrollView.addSubview($0) }
+        [profileBarStack, profileButton, detailBar, bottomStack].forEach { contenteView.addSubview($0) }
         profileBarStack.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(16)
             make.left.right.equalToSuperview().inset(24)
@@ -124,7 +126,6 @@ class ProfileViewController: UIViewController {
         detailBar.snp.makeConstraints { make in
             make.top.equalTo(profileButton.snp.bottom).offset(24)
             make.left.right.equalToSuperview()
-            make.height.greaterThanOrEqualTo(100)
         }
         bottomStack.snp.makeConstraints { make in
             make.top.equalTo(detailBar.snp.bottom).offset(16)
@@ -132,13 +133,15 @@ class ProfileViewController: UIViewController {
             make.bottom.equalToSuperview().offset(-64)
         }
         
+        scrollView.addSubview(contenteView)
+        contenteView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
         self.view.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.width.height.equalToSuperview()
+            make.edges.equalToSuperview()
         }
-        
 
     }
     
