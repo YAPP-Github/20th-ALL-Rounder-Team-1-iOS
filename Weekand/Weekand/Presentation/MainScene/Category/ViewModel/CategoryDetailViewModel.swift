@@ -49,7 +49,7 @@ extension CategoryDetailViewModel {
             guard let category = input.selectedCategory else {
                 return
             }
-            self.coordinator?.showCategoryModifyScene(category: category)
+            self.coordinator?.showScheduleAddScene(category: category)
         })
         .disposed(by: disposeBag)
         

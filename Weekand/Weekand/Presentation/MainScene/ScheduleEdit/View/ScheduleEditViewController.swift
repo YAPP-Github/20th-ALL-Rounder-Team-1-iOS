@@ -18,6 +18,8 @@ class ScheduleEditViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     var viewModel: ScheduleEditViewModel?
     
+    var selectedCategory: Category?
+    
     lazy var closeButton = UIBarButtonItem().then {
         $0.image = UIImage(named: "close")
         $0.tintColor = .gray400

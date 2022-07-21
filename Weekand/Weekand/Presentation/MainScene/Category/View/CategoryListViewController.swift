@@ -137,6 +137,13 @@ extension CategoryListViewController {
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
     
+    func deleteItem(_ indexPath: IndexPath) {
+        var snapshot = self.dataSource.snapshot()
+        snapshot.deleteItems([self.list[indexPath.item]])
+        self.list.remove(at: indexPath.item)
+        self.dataSource.apply(snapshot)
+    }
+    
 }
 
 extension CategoryListViewController: UITableViewDelegate {
