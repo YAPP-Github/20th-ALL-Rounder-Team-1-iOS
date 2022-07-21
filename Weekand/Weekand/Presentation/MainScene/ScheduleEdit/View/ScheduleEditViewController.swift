@@ -29,7 +29,7 @@ class ScheduleEditViewController: BaseViewController {
         $0.disable(string: "완료")
     }
     lazy var nameStackView = WTextFieldStackView(fieldPlaceholder: "일정명을 입력해주세요.", nameText: "일정")
-    lazy var dropDownStackView = DropDownStackView()
+    lazy var categoryStackView = CategoryStackView()
     lazy var startDateTimeStackView = DateTimeStackView(
         nameText: "시작",
         dateText: dateFormatter.string(from: Date()),
@@ -92,7 +92,7 @@ class ScheduleEditViewController: BaseViewController {
     private func configureUI() {
         [
             nameStackView,
-            dropDownStackView,
+            categoryStackView,
             startDateTimeStackView,
             endDateTimeStackView,
             memoStackView,
@@ -163,7 +163,7 @@ class ScheduleEditViewController: BaseViewController {
             self.endDateTimeStackView.dateButton.setTitle(dateString, for: .normal, font: WFont.body1())
         }).disposed(by: disposeBag)
         
-        dropDownStackView.arrowButton.rx.tap.subscribe(onNext: {
+        categoryStackView.arrowButton.rx.tap.subscribe(onNext: {
             // sheet
         }).disposed(by: disposeBag)
         

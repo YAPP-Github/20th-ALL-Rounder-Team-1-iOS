@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DropDownStackView: UIStackView {
+class CategoryStackView: UIStackView {
 
     lazy var namelabel = WTextLabel().then {
         $0.textColor = UIColor.gray800
