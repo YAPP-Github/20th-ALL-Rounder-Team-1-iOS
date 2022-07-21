@@ -11,6 +11,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 import FSCalendar
+import DeveloperToolsSupport
 
 class ScheduleEditViewController: BaseViewController {
 
@@ -138,6 +139,7 @@ class ScheduleEditViewController: BaseViewController {
         
         let input = ScheduleEditViewModel.Input(
             closeButtonDidTapEvent: closeButton.rx.tap.asObservable(),
+            categoryArrowDidTapEvent: categoryStackView.arrowButton.rx.tap.asObservable(),
             isSelectedStartDate: isSelectedStartDate,
             isSelectedStartTime: isSelectedStartTime,
             isSelectedEndDate: isSelectedEndDate,
@@ -161,10 +163,6 @@ class ScheduleEditViewController: BaseViewController {
         output?.endDateDidSelectEvent.drive(onNext: { date in
             let dateString = self.dateFormatter.string(from: date)
             self.endDateTimeStackView.dateButton.setTitle(dateString, for: .normal, font: WFont.body1())
-        }).disposed(by: disposeBag)
-        
-        categoryStackView.arrowButton.rx.tap.subscribe(onNext: {
-            // sheet
         }).disposed(by: disposeBag)
         
         isSelectedStartDate.subscribe(onNext: { isSelected in

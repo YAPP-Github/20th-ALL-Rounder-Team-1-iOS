@@ -27,6 +27,7 @@ class ScheduleEditViewModel: ViewModelType {
     
     struct Input {
         let closeButtonDidTapEvent: Observable<Void>
+        let categoryArrowDidTapEvent: Observable<Void>
         let isSelectedStartDate: BehaviorRelay<Bool>
         let isSelectedStartTime: BehaviorRelay<Bool>
         let isSelectedEndDate: BehaviorRelay<Bool>
@@ -103,6 +104,11 @@ class ScheduleEditViewModel: ViewModelType {
         
         input.repeatButtonDidTapEvent.subscribe(onNext: {
             self.coordinator?.presentRepeatSheet()
+        })
+        .disposed(by: disposeBag)
+        
+        input.categoryArrowDidTapEvent.subscribe(onNext: {
+            self.coordinator?.presentCategorySheet()
         })
         .disposed(by: disposeBag)
         

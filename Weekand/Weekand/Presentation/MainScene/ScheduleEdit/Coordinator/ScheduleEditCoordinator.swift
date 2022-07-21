@@ -33,6 +33,14 @@ class ScheduleEditCoordinator: Coordinator {
         self.navigationController.present(repeatSheetViewController, animated: true, completion: nil)
     }
     
+    func presentCategorySheet() {
+        let categoryListSheetViewController = CategoryListSheetViewController()
+        let categoryListSheetViewModel = CategoryListSheetViewModel(coordinator: self, scheduleEditUseCase: scheduleEditUseCase)
+        categoryListSheetViewController.viewModel = categoryListSheetViewModel
+        categoryListSheetViewController.modalPresentationStyle = .overFullScreen
+        self.navigationController.present(categoryListSheetViewController, animated: true, completion: nil)
+    }
+    
     func finish() {
         self.navigationController.dismiss(animated: true)
     }
