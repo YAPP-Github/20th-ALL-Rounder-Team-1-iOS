@@ -26,6 +26,7 @@ class CategoryDetailViewController: UIViewController {
     let headerView = CategoryDetailHeaderView()
     let toolBar = CategoryDetailToolBar()
     
+    var searchText: String = ""
     var selectedSort: ScheduleSort = .dateCreatedDESC {
         didSet {
             self.setScheduleList()
@@ -78,8 +79,7 @@ class CategoryDetailViewController: UIViewController {
         headerView.dropDown.cellNib = UINib(nibName: "SortDropDownCell", bundle: nil)
         headerView.dropDown.dataSource = ScheduleSort.allCases.map { $0.description }
         headerView.dropDown.customCellConfiguration = { (_: Index, _: String, cell: DropDownCell) -> Void in
-            guard let cell = cell as? SortDropDownCell else { return }
-            
+            guard cell is SortDropDownCell else { return }
         }
     }
     
@@ -108,7 +108,7 @@ class CategoryDetailViewController: UIViewController {
         )
         
         self.headerView.dropDown.selectionAction = { [unowned self] (_ : Int, item: String) in
-            guard let sort = ScheduleSort.allCases.filter { $0.description == item }.first else {
+            guard let sort = ScheduleSort.allCases.filter({ $0.description == item }).first else {
                 return
             }
             selectedSort = sort
@@ -124,7 +124,7 @@ class CategoryDetailViewController: UIViewController {
         output?.searchWithQueryInformation
             .filter { $0 != "" }
             .subscribe(onNext: { (searchText) in
-                self.setScheduleList(searchQuery: searchText)
+                self.searchText = searchText
             })
             .disposed(by: disposeBag)
         
@@ -174,6 +174,13 @@ extension CategoryDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 120
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.item == refreshListCount * (page + 1) - 1 {
+            page += 1
+            self.appendUserList()
+        }
+    }
 }
 
 extension CategoryDetailViewController {
@@ -198,15 +205,15 @@ extension CategoryDetailViewController {
 }
 
 extension CategoryDetailViewController {
-    func setScheduleList(searchQuery: String = "") {
+    func setScheduleList() {
         self.page = 0
         self.list = []
-        self.viewModel?.searchSchedules(sort: self.selectedSort, page: self.page, size: self.scheduleCount, searchQuery: searchQuery, categoryId: self.selectedCategory?.serverID ?? "")
+        self.viewModel?.searchSchedules(sort: self.selectedSort, page: self.page, size: self.scheduleCount, searchQuery: self.searchText, categoryId: self.selectedCategory?.serverID ?? "")
         self.tableView.scrollToTop()
     }
     
-    func appendUserList(searchQuery: String = "") {
-        self.viewModel?.loadMoreScheduelList(sort: self.selectedSort, page: self.page, size: self.scheduleCount, searchQuery: searchQuery, categoryId: self.selectedCategory?.serverID ?? "")
+    func appendUserList() {
+        self.viewModel?.loadMoreScheduelList(sort: self.selectedSort, page: self.page, size: self.scheduleCount, searchQuery: self.searchText, categoryId: self.selectedCategory?.serverID ?? "")
     }
 }
 
