@@ -6,12 +6,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "radio_disabled@2x.png",
+      "filename" : "radio_disabled2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "radio_disabled@3x.png",
+      "filename" : "radio_disabled3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

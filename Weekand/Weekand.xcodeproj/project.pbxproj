@@ -125,14 +125,13 @@
 		F336F3672886ECEE005B57A0 /* RepeatTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3662886ECEE005B57A0 /* RepeatTabViewController.swift */; };
 		F336F3692886EDD4005B57A0 /* DayRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3682886EDD4005B57A0 /* DayRepeatViewController.swift */; };
 		F336F36B2886EF56005B57A0 /* WeekRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F36A2886EF56005B57A0 /* WeekRepeatViewController.swift */; };
-		F336F36E2886F13E005B57A0 /* MonthRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F36D2886F13E005B57A0 /* MonthRepeatViewController.swift */; };
-		F336F3702886F2A5005B57A0 /* YearRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F36F2886F2A5005B57A0 /* YearRepeatViewController.swift */; };
-		F336F3722886F4A4005B57A0 /* RepeatSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3712886F4A4005B57A0 /* RepeatSheetViewController.swift */; };
+		F336F3722886F4A4005B57A0 /* RepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3712886F4A4005B57A0 /* RepeatViewController.swift */; };
 		F336F3A2288939B8005B57A0 /* CategoryDetailToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3A1288939B8005B57A0 /* CategoryDetailToolBar.swift */; };
 		F336F3A4288939DC005B57A0 /* ScheduleSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3A3288939DC005B57A0 /* ScheduleSummary.swift */; };
 		F336F3A6288939E9005B57A0 /* ScheduleRepeatType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3A5288939E9005B57A0 /* ScheduleRepeatType.swift */; };
 		F336F3A8288939F6005B57A0 /* ScheduleEditUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3A7288939F6005B57A0 /* ScheduleEditUseCase.swift */; };
 		F336F3AA28893A12005B57A0 /* RepeatType+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3A928893A12005B57A0 /* RepeatType+extension.swift */; };
+		F336F3AC288946B0005B57A0 /* RepeatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3AB288946B0005B57A0 /* RepeatTableViewCell.swift */; };
 		F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAB28533D0A005B493A /* WSortButton.swift */; };
 		F33C6EAE28535021005B493A /* UIVIewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAD28535021005B493A /* UIVIewController+extension.swift */; };
 		F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */; };
@@ -329,14 +328,13 @@
 		F336F3662886ECEE005B57A0 /* RepeatTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatTabViewController.swift; sourceTree = "<group>"; };
 		F336F3682886EDD4005B57A0 /* DayRepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRepeatViewController.swift; sourceTree = "<group>"; };
 		F336F36A2886EF56005B57A0 /* WeekRepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekRepeatViewController.swift; sourceTree = "<group>"; };
-		F336F36D2886F13E005B57A0 /* MonthRepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthRepeatViewController.swift; sourceTree = "<group>"; };
-		F336F36F2886F2A5005B57A0 /* YearRepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearRepeatViewController.swift; sourceTree = "<group>"; };
-		F336F3712886F4A4005B57A0 /* RepeatSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatSheetViewController.swift; sourceTree = "<group>"; };
+		F336F3712886F4A4005B57A0 /* RepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatViewController.swift; sourceTree = "<group>"; };
 		F336F3A1288939B8005B57A0 /* CategoryDetailToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDetailToolBar.swift; sourceTree = "<group>"; };
 		F336F3A3288939DC005B57A0 /* ScheduleSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleSummary.swift; path = Entities/ScheduleSummary.swift; sourceTree = "<group>"; };
 		F336F3A5288939E9005B57A0 /* ScheduleRepeatType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleRepeatType.swift; path = Enum/ScheduleRepeatType.swift; sourceTree = "<group>"; };
 		F336F3A7288939F6005B57A0 /* ScheduleEditUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleEditUseCase.swift; path = UseCase/Main/ScheduleEditUseCase.swift; sourceTree = "<group>"; };
 		F336F3A928893A12005B57A0 /* RepeatType+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RepeatType+extension.swift"; sourceTree = "<group>"; };
+		F336F3AB288946B0005B57A0 /* RepeatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatTableViewCell.swift; sourceTree = "<group>"; };
 		F33C6EAB28533D0A005B493A /* WSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSortButton.swift; sourceTree = "<group>"; };
 		F33C6EAD28535021005B493A /* UIVIewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+extension.swift"; sourceTree = "<group>"; };
 		F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputGroupStackView.swift; sourceTree = "<group>"; };
@@ -1164,7 +1162,7 @@
 			isa = PBXGroup;
 			children = (
 				F3C8E09B2872E17D00B0916A /* ScheduleEditViewController.swift */,
-				F336F3712886F4A4005B57A0 /* RepeatSheetViewController.swift */,
+				F336F3712886F4A4005B57A0 /* RepeatViewController.swift */,
 				F336F3662886ECEE005B57A0 /* RepeatTabViewController.swift */,
 				F3C8E09D2872E95F00B0916A /* Views */,
 			);
@@ -1176,14 +1174,13 @@
 			children = (
 				F336F3682886EDD4005B57A0 /* DayRepeatViewController.swift */,
 				F336F36A2886EF56005B57A0 /* WeekRepeatViewController.swift */,
-				F336F36D2886F13E005B57A0 /* MonthRepeatViewController.swift */,
-				F336F36F2886F2A5005B57A0 /* YearRepeatViewController.swift */,
 				F3C8E0A02872EFF400B0916A /* DropDownStackView.swift */,
 				F3C8E0A42872FD2300B0916A /* DateTimeStackView.swift */,
 				F3C8E0B22873500900B0916A /* AddInformationContainerView.swift */,
 				F3C8E0B62873598A00B0916A /* MemoStackView.swift */,
 				F3C8E0AE28731E4900B0916A /* CategoryDropDownCell.swift */,
 				F3C8E0AF28731E4900B0916A /* CategoryDropDownCell.xib */,
+				F336F3AB288946B0005B57A0 /* RepeatTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1447,6 +1444,7 @@
 				7DB5E13C284B4DA400DBB7EA /* MainCoordinator.swift in Sources */,
 				7D76AEB4284458C2001C668D /* MainViewController.swift in Sources */,
 				F3C8E0A32872F29000B0916A /* WArrowButton.swift in Sources */,
+				F336F3AC288946B0005B57A0 /* RepeatTableViewCell.swift in Sources */,
 				7DB1D5BF287C1C4C0032C209 /* EmojiTabViewController.swift in Sources */,
 				7D0ED2C0287D065800DE3215 /* EmojiTableViewController.swift in Sources */,
 				7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */,
@@ -1481,7 +1479,6 @@
 				F30EBCF32885176300ECB48D /* UserSort.swift in Sources */,
 				F323FF082877D08800DFD8FD /* TokenAddingInterceptor.swift in Sources */,
 				7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */,
-				F336F3702886F2A5005B57A0 /* YearRepeatViewController.swift in Sources */,
 				F32F72522853B0930056B189 /* CategoryDetailTableViewCell.swift in Sources */,
 				F354C3E3283D3615008929FD /* SignUpAddInfomationViewController.swift in Sources */,
 				F323FF32287AB2C500DFD8FD /* BasePaddingLabel.swift in Sources */,
@@ -1570,8 +1567,7 @@
 				7D0A6A3A2881588000CFE61D /* DateExtension.swift in Sources */,
 				F336F3692886EDD4005B57A0 /* DayRepeatViewController.swift in Sources */,
 				F354C3EA283E6946008929FD /* NSMutableAttributedString+extension.swift in Sources */,
-				F336F3722886F4A4005B57A0 /* RepeatSheetViewController.swift in Sources */,
-				F336F36E2886F13E005B57A0 /* MonthRepeatViewController.swift in Sources */,
+				F336F3722886F4A4005B57A0 /* RepeatViewController.swift in Sources */,
 				F336F3A4288939DC005B57A0 /* ScheduleSummary.swift in Sources */,
 				7DBC4C672876B66E00F0AC86 /* StickerCollectionViewCell.swift in Sources */,
 				F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */,

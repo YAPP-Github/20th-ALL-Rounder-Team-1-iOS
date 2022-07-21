@@ -45,8 +45,8 @@ class RepeatTabViewController: TabmanViewController {
         
         let dayViewController = DayRepeatViewController()
         let weekRepeatViewController = WeekRepeatViewController()
-        let monthRepeatViewController = MonthRepeatViewController()
-        let yearRepeatViewController = YearRepeatViewController()
+        let monthRepeatViewController = DayRepeatViewController()
+        let yearRepeatViewController = DayRepeatViewController()
         
         viewControllers.append(dayViewController)
         viewControllers.append(weekRepeatViewController)
