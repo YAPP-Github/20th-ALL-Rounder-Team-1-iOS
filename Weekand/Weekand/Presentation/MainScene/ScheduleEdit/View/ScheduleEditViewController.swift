@@ -10,7 +10,6 @@ import Then
 import SnapKit
 import RxSwift
 import RxCocoa
-import DropDown
 import FSCalendar
 
 class ScheduleEditViewController: BaseViewController {
@@ -83,15 +82,6 @@ class ScheduleEditViewController: BaseViewController {
         
         memoStackView.isHidden = true
         memoStackView.textView.delegate = self
-        
-        dropDownStackView.dropDown.cellNib = UINib(nibName: "CategoryDropDownCell", bundle: nil)
-        dropDownStackView.dropDown.dataSource = ["공부", "자기 계발", "업무"]
-        let colorList: [Color] = [Color(id: 1, hexCode: "#FF9292"), Color(id: 2, hexCode: "#FFB27A"), Color(id: 3, hexCode: "#FFE600")]
-        dropDownStackView.dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
-            guard let cell = cell as? CategoryDropDownCell else { return }
-            
-            cell.colorView.backgroundColor = UIColor(hex: colorList[index].hexCode)
-        }
         
         startDateTimeStackView.timePicker.setDate(defaultStartTime, animated: false)
         startDateTimeStackView.timePicker.addTarget(self, action: #selector(startTimePickerValueDidChange(_:)), for: .valueChanged)
@@ -174,7 +164,7 @@ class ScheduleEditViewController: BaseViewController {
         }).disposed(by: disposeBag)
         
         dropDownStackView.arrowButton.rx.tap.subscribe(onNext: {
-            self.dropDownStackView.dropDown.show()
+            // sheet
         }).disposed(by: disposeBag)
         
         isSelectedStartDate.subscribe(onNext: { isSelected in
