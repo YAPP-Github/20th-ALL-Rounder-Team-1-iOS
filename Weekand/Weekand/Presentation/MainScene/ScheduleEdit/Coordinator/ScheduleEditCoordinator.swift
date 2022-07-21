@@ -28,9 +28,9 @@ class ScheduleEditCoordinator: Coordinator {
     }
     
     func presentRepeatSheet() {
-        let repeatViewController = RepeatViewController()
-        repeatViewController.modalPresentationStyle = .pageSheet
-        self.navigationController.present(repeatViewController, animated: true, completion: nil)
+        let repeatSheetViewController = RepeatSheetViewController()
+        repeatSheetViewController.modalPresentationStyle = .pageSheet
+        self.navigationController.present(repeatSheetViewController, animated: true, completion: nil)
     }
     
     func finish() {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RepeatViewController: UIViewController {
+class RepeatSheetViewController: UIViewController {
 
     let viewController = RepeatTabViewController()
 

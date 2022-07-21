@@ -51,8 +51,7 @@ class DayRepeatViewController: UIViewController {
         
         repeatRadioStackView.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
     }
-    
-    
+
     private func setUpView() {
         repeatRadioStackView.tableView.delegate = self
         repeatRadioStackView.tableView.register(RepeatTableViewCell.self, forCellReuseIdentifier: RepeatTableViewCell.cellIdentifier)
