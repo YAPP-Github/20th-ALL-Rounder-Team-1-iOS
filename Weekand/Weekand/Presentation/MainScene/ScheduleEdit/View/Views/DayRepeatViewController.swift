@@ -30,6 +30,17 @@ class DayRepeatViewController: UIViewController {
     
     let tableView = UITableView()
     
+    lazy var dividerLine = UIView().then {
+        $0.backgroundColor = .gray200
+    }
+    
+    lazy var calendarContainerView = UIView().then {
+        $0.backgroundColor = .white
+        $0.isHidden = true
+    }
+    
+    let calendarView = WCalendarView()
+    
     var dataSource: UITableViewDiffableDataSource<Section, String>!
     
     init() {
@@ -70,6 +81,8 @@ class DayRepeatViewController: UIViewController {
         
         stackView.addArrangedSubview(namelabel)
         stackView.addArrangedSubview(tableView)
+        stackView.addArrangedSubview(dividerLine)
+        stackView.addArrangedSubview(calendarContainerView)
         
         stackView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(60)
@@ -77,7 +90,22 @@ class DayRepeatViewController: UIViewController {
         }
         
         tableView.snp.makeConstraints { make in
-            make.height.equalTo(200)
+            make.height.equalTo(100)
+        }
+        
+        dividerLine.snp.makeConstraints { make in
+            make.height.equalTo(1)
+        }
+        
+        calendarContainerView.addSubview(calendarView)
+        
+        calendarContainerView.snp.makeConstraints { make in
+            make.trailing.leading.equalToSuperview()
+            make.height.equalTo(350)
+        }
+        
+        calendarView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
     
@@ -110,6 +138,22 @@ extension DayRepeatViewController {
 
 extension DayRepeatViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
+        let dateSelectIndex = 1
+        if indexPath.row == dateSelectIndex {
+            UIView.animate(withDuration: 0.3, delay: 0.0, options: .transitionCrossDissolve, animations: {
+                self.calendarContainerView.alpha = 1
+                self.calendarContainerView.isHidden = false
+            }, completion: nil)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let dateSelectIndex = 1
+        if indexPath.row == dateSelectIndex {
+            UIView.animate(withDuration: 0.3, delay: 0.0, options: .transitionCrossDissolve, animations: {
+                self.calendarContainerView.alpha = 0
+                self.calendarContainerView.isHidden = true
+            }, completion: nil)
+        }
     }
 }
