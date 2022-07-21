@@ -13,20 +13,20 @@ class ProfileCoordinator: Coordinator {
     weak var finishDelegate: CoordinatorDidFinishDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
-    var myProfileViewController: MyProfileViewController
+    var profileViewController: ProfileViewController
     var type: CoordinatorType = .profile
     
     
     required init(navigationController: UINavigationController) {
         
         self.navigationController = navigationController
-        self.myProfileViewController = MyProfileViewController()
+        self.profileViewController = ProfileViewController()
     }
     
     func start() {
-        self.myProfileViewController.viewModel = MyProfileViewModel(coordinator: self)
+        self.profileViewController.viewModel = ProfileViewModel(coordinator: self)
         self.navigationController.modalPresentationStyle = .fullScreen
-        self.navigationController.pushViewController(myProfileViewController, animated: true)
+        self.navigationController.pushViewController(profileViewController, animated: true)
     }
     
     

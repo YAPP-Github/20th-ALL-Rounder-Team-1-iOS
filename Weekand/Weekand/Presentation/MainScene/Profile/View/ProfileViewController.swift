@@ -11,9 +11,9 @@ import RxSwift
 import Then
 import SnapKit
 
-class MyProfileViewController: UIViewController {
+class ProfileViewController: UIViewController {
     
-    var viewModel: MyProfileViewModel?
+    var viewModel: ProfileViewModel?
     private let disposeBag = DisposeBag()
     
     // 상단 유저정보
@@ -49,8 +49,9 @@ class MyProfileViewController: UIViewController {
     // 프로필 수정 or 팔로우 버튼
     lazy var profileButton = WDefaultButton(title: "프로필 수정", style: .tint, font: WFont.subHead1())
     
-    
-    
+    // 회색 부분 (목표, 직업 & 관심사, 팔로워 & 팔로잉)
+    lazy var detailBar = ProfileDetailView()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,6 +61,20 @@ class MyProfileViewController: UIViewController {
     }
     
     private func setUpView() {
+        // TODO: 서버연결 후 수정
+        nameLabel.text = "이건두"
+        emailLabel.text = "dei313r@mail.com"
+        DispatchQueue.global().async {
+            guard let imageURL = URL(string: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80") else { return }
+            guard let imageData = try? Data(contentsOf: imageURL) else { return }
+            
+            DispatchQueue.main.async {
+                self.profileImageView.image = UIImage(data: imageData)
+            }
+        }
+        
+        detailBar.setUpData(goal: "오늘도 행복한 하루를 보내자 아자아자 화이팅", jobs: [], interests: [], follower: 112, followee: 312)
+        
         
     }
     
@@ -74,15 +89,20 @@ class MyProfileViewController: UIViewController {
             make.width.equalTo(profileLabelStack.snp.height)
         }
         
-        [profileBarStack, profileButton].forEach { self.view.addSubview($0) }
+        [profileBarStack, profileButton, detailBar].forEach { self.view.addSubview($0) }
         profileBarStack.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(16)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(16)
             make.left.right.equalToSuperview().inset(24)
         }
         profileButton.snp.makeConstraints { make in
             make.top.equalTo(profileBarStack.snp.bottom).offset(24)
             make.left.right.equalToSuperview().inset(24)
             make.height.equalTo(52)
+        }
+        detailBar.snp.makeConstraints { make in
+            make.top.equalTo(profileButton.snp.bottom).offset(24)
+            make.left.right.equalToSuperview()
+            make.height.greaterThanOrEqualTo(100)
         }
         
 
