@@ -24,7 +24,17 @@ class ScheduleEditCoordinator: Coordinator {
     }
     
     func start() {
-        self.scheduleEditViewController.viewModel = ScheduleEditViewModel(coordinator: self, scheduleEditUseCase: scheduleEditUseCase)
+        let scheduleInputModel = ScheduleInputModel(
+                                        name: "",
+                                        categoryId: "",
+                                        dateStart: Date(),
+                                        dateEnd: Date(),
+                                        repeatType: .once,
+                                        repeatSelectedValue: nil,
+                                        repeatEnd: nil,
+                                        memo: nil)
+        self.scheduleEditViewController.viewModel = ScheduleEditViewModel(coordinator: self, scheduleEditUseCase: scheduleEditUseCase, scheduleInputModel: scheduleInputModel)
+        
     }
     
     func presentRepeatSheet() {
@@ -42,7 +52,7 @@ class ScheduleEditCoordinator: Coordinator {
     }
     
     func sendCategoryFromSheet(category: Category) {
-        scheduleEditViewController.selectedCategory = category
+        scheduleEditViewController.selectCategory = category
     }
     
     func finish() {

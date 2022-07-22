@@ -18,10 +18,11 @@ class ScheduleEditViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     var viewModel: ScheduleEditViewModel?
     
-    var selectedCategory: Category? {
+    var selectCategory: Category? {
         didSet {
             // TODO: forced optional
-            self.categoryStackView.setCategory(self.selectedCategory!)
+            self.categoryStackView.setCategory(self.selectCategory!)
+            self.selectedCategory.accept(self.selectCategory!)
         }
     }
     
@@ -69,8 +70,19 @@ class ScheduleEditViewController: BaseViewController {
         return addedTime
     }
     
-    let didselectStartDate = PublishSubject<Date>()
-    let didselectEndDate = PublishSubject<Date>()
+    let isSelectedStartDate = BehaviorRelay(value: false)
+    let isSelectedStartTime = BehaviorRelay(value: false)
+    let isSelectedEndDate = BehaviorRelay(value: false)
+    let isSelectedEndTime = BehaviorRelay(value: false)
+    
+    let selectedStartDate = BehaviorRelay<Date>(value: Date())
+    let selectedStartTime = BehaviorRelay<Date>(value: Date())
+    let selectedEndDate = BehaviorRelay<Date>(value: Date())
+    let selectedEndTime = BehaviorRelay<Date>(value: Date())
+    let selectedCategory = PublishRelay<Category>()
+    let selectedRepeatType = BehaviorRelay<ScheduleRepeatType>(value: .once)
+    let selectedRepeatSelectedValue = BehaviorRelay<[ScheduleWeek]>(value: [])
+    let selectedRepeatEnd = BehaviorRelay<Date>(value: Date())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,11 +134,61 @@ class ScheduleEditViewController: BaseViewController {
     }
     
     private func bindViewModel() {
-        let isSelectedStartDate = BehaviorRelay(value: false)
-        let isSelectedStartTime = BehaviorRelay(value: false)
-        let isSelectedEndDate = BehaviorRelay(value: false)
-        let isSelectedEndTime = BehaviorRelay(value: false)
+        bindDateTimeView()
         
+        let input = ScheduleEditViewModel.Input(
+            closeButtonDidTapEvent: closeButton.rx.tap.asObservable(),
+            categoryArrowDidTapEvent: categoryStackView.arrowButton.rx.tap.asObservable(),
+            isSelectedStartDate: isSelectedStartDate,
+            isSelectedStartTime: isSelectedStartTime,
+            isSelectedEndDate: isSelectedEndDate,
+            isSelectedEndTime: isSelectedEndTime,
+            startDateButtonDidTapEvent: startDateTimeStackView.dateButton.rx.tap.asObservable(),
+            startTimeButtonDidTapEvent: startDateTimeStackView.timeButton.rx.tap.asObservable(),
+            endDateButtonDidTapEvent: endDateTimeStackView.dateButton.rx.tap.asObservable(),
+            endTimeButtonDidTapEvent: endDateTimeStackView.timeButton.rx.tap.asObservable(),
+            startDateDidSelectEvent: startDateTimeStackView.calendarView.calendar.rx.didSelect.asObservable(),
+            endDateDidSelectEvent: endDateTimeStackView.calendarView.calendar.rx.didSelect.asObservable(),
+            repeatButtonDidTapEvent: addInformationContainerView.repeatButton.rx.tap.asObservable(),
+            nameTextFieldDidEditEvent: nameStackView.textField.rx.text.orEmpty.asObservable(),
+            selectedStartDate: selectedStartDate,
+            selectedStartTime: selectedStartTime,
+            selectedEndDate: selectedEndDate,
+            selectedEndTime: selectedEndTime,
+            selectedCategory: selectedCategory,
+            selectedRepeatType: selectedRepeatType,
+            selectedRepeatSelectedValue: selectedRepeatSelectedValue,
+            selectedRepeatEnd: selectedRepeatEnd
+        )
+        
+        let output = viewModel?.transform(input: input)
+        
+        output?.startDateDidSelectEvent.drive(onNext: { date in
+            let dateString = self.dateFormatter.string(from: date)
+            self.startDateTimeStackView.dateButton.setTitle(dateString, for: .normal, font: WFont.body1())
+            self.selectedStartDate.accept(date)
+        }).disposed(by: disposeBag)
+        
+        output?.endDateDidSelectEvent.drive(onNext: { date in
+            let dateString = self.dateFormatter.string(from: date)
+            self.endDateTimeStackView.dateButton.setTitle(dateString, for: .normal, font: WFont.body1())
+            self.selectedEndDate.accept(date)
+        }).disposed(by: disposeBag)
+        
+        addInformationContainerView.memoButton.rx.tap.subscribe(onNext: {
+            self.memoStackView.isHidden = false
+            self.addInformationContainerView.memoButton.isHidden = true
+        }).disposed(by: disposeBag)
+        
+        self.viewModel?.defaultCategory
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] category in
+                self?.selectCategory = category
+        })
+        .disposed(by: self.disposeBag)
+    }
+    
+    func bindDateTimeView() {
         isSelectedStartDate.asObservable()
             .bind(to: startDateTimeStackView.dateButton.rx.isSelected)
             .disposed(by: disposeBag)
@@ -142,34 +204,6 @@ class ScheduleEditViewController: BaseViewController {
         isSelectedEndTime.asObservable()
             .bind(to: endDateTimeStackView.timeButton.rx.isSelected)
             .disposed(by: disposeBag)
-        
-        let input = ScheduleEditViewModel.Input(
-            closeButtonDidTapEvent: closeButton.rx.tap.asObservable(),
-            categoryArrowDidTapEvent: categoryStackView.arrowButton.rx.tap.asObservable(),
-            isSelectedStartDate: isSelectedStartDate,
-            isSelectedStartTime: isSelectedStartTime,
-            isSelectedEndDate: isSelectedEndDate,
-            isSelectedEndTime: isSelectedEndTime,
-            startDateButtonDidTapEvent: startDateTimeStackView.dateButton.rx.tap.asObservable(),
-            startTimeButtonDidTapEvent: startDateTimeStackView.timeButton.rx.tap.asObservable(),
-            endDateButtonDidTapEvent: endDateTimeStackView.dateButton.rx.tap.asObservable(),
-            endTimeButtonDidTapEvent: endDateTimeStackView.timeButton.rx.tap.asObservable(),
-            startDateDidSelectEvent: startDateTimeStackView.calendarView.calendar.rx.didSelect.asObservable(),
-            endDateDidSelectEvent: endDateTimeStackView.calendarView.calendar.rx.didSelect.asObservable(),
-            repeatButtonDidTapEvent: addInformationContainerView.repeatButton.rx.tap.asObservable()
-        )
-        
-        let output = viewModel?.transform(input: input)
-        
-        output?.startDateDidSelectEvent.drive(onNext: { date in
-            let dateString = self.dateFormatter.string(from: date)
-            self.startDateTimeStackView.dateButton.setTitle(dateString, for: .normal, font: WFont.body1())
-        }).disposed(by: disposeBag)
-        
-        output?.endDateDidSelectEvent.drive(onNext: { date in
-            let dateString = self.dateFormatter.string(from: date)
-            self.endDateTimeStackView.dateButton.setTitle(dateString, for: .normal, font: WFont.body1())
-        }).disposed(by: disposeBag)
         
         isSelectedStartDate.subscribe(onNext: { isSelected in
             UIView.transition(with: self.startDateTimeStackView.dateButton ?? UIButton(), duration: 0.3, options: .transitionCrossDissolve) {
@@ -226,18 +260,6 @@ class ScheduleEditViewController: BaseViewController {
                 
             }
         }).disposed(by: disposeBag)
-        
-        addInformationContainerView.memoButton.rx.tap.subscribe(onNext: {
-            self.memoStackView.isHidden = false
-            self.addInformationContainerView.memoButton.isHidden = true
-        }).disposed(by: disposeBag)
-        
-        self.viewModel?.defaultCategory
-            .observe(on: MainScheduler.asyncInstance)
-            .subscribe(onNext: { [weak self] category in
-                self?.selectedCategory = category
-        })
-        .disposed(by: self.disposeBag)
     }
 }
 
@@ -245,13 +267,13 @@ extension ScheduleEditViewController {
     @objc private func startTimePickerValueDidChange(_ datePicker: UIDatePicker) {
         let selectedTime = timeFormatter.string(from: datePicker.date)
         self.startDateTimeStackView.timeButton.setTitle(selectedTime, for: .normal, font: WFont.body1())
-        self.didselectStartDate.onNext(datePicker.date)
+        self.selectedStartTime.accept(datePicker.date)
     }
     
     @objc private func endTimePickerValueDidChange(_ datePicker: UIDatePicker) {
         let selectedTime = timeFormatter.string(from: datePicker.date)
         self.endDateTimeStackView.timeButton.setTitle(selectedTime, for: .normal, font: WFont.body1())
-        self.didselectEndDate.onNext(datePicker.date)
+        self.selectedStartDate.accept(datePicker.date)
     }
 }
 

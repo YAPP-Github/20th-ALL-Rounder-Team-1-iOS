@@ -22,9 +22,12 @@ class ScheduleEditViewModel: ViewModelType {
     
     let defaultCategory = PublishRelay<Category>()
     
-    init(coordinator: ScheduleEditCoordinator?, scheduleEditUseCase: ScheduleEditUseCase) {
+    let scheduleInputModel: ScheduleInputModel?
+    
+    init(coordinator: ScheduleEditCoordinator?, scheduleEditUseCase: ScheduleEditUseCase, scheduleInputModel: ScheduleInputModel) {
         self.coordinator = coordinator
         self.scheduleEditUseCase = scheduleEditUseCase
+        self.scheduleInputModel = scheduleInputModel
     }
     
     struct Input {
@@ -41,6 +44,15 @@ class ScheduleEditViewModel: ViewModelType {
         let startDateDidSelectEvent: Observable<Date>
         let endDateDidSelectEvent: Observable<Date>
         let repeatButtonDidTapEvent: Observable<Void>
+        let nameTextFieldDidEditEvent: Observable<String>
+        let selectedStartDate: BehaviorRelay<Date>
+        let selectedStartTime: BehaviorRelay<Date>
+        let selectedEndDate: BehaviorRelay<Date>
+        let selectedEndTime: BehaviorRelay<Date>
+        let selectedCategory: PublishRelay<Category>
+        let selectedRepeatType: BehaviorRelay<ScheduleRepeatType>
+        let selectedRepeatSelectedValue: BehaviorRelay<[ScheduleWeek]>
+        let selectedRepeatEnd: BehaviorRelay<Date>
     }
     
     struct Output {
