@@ -121,4 +121,8 @@ extension ProfileViewModel {
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     }
+    
+    private func getUserProfile(id: String) {
+        PublishRelay<UserDetail>.just(UserDetail.defaultData).bind(to: self.userDeatil).disposed(by: self.disposeBag)
+    }
 }

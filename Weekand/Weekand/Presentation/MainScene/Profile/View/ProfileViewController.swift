@@ -43,6 +43,8 @@ class ProfileViewController: UIViewController {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 20
+        
+        $0.image = UIImage(named: "default.person")
     }
     
     lazy var profileBarStack = UIStackView().then {
