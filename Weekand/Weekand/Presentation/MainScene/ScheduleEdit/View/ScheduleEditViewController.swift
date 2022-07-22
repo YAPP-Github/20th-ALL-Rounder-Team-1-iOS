@@ -18,14 +18,6 @@ class ScheduleEditViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     var viewModel: ScheduleEditViewModel?
     
-    var selectCategory: Category? {
-        didSet {
-            // TODO: forced optional
-            self.categoryStackView.setCategory(self.selectCategory!)
-            self.selectedCategory.accept(self.selectCategory!)
-        }
-    }
-    
     lazy var closeButton = UIBarButtonItem().then {
         $0.image = UIImage(named: "close")
         $0.tintColor = .gray400
@@ -68,6 +60,32 @@ class ScheduleEditViewController: BaseViewController {
         let currentTime = Date()
         let addedTime = Calendar.current.date(byAdding: .hour, value: 1, to: currentTime) ?? currentTime
         return addedTime
+    }
+    
+    var category: Category? {
+        didSet {
+            // TODO: forced optional
+            self.categoryStackView.setCategory(self.category!)
+            self.selectedCategory.accept(self.category!)
+        }
+    }
+    
+    var repeatType: ScheduleRepeatType = .once {
+        didSet {
+            self.selectedRepeatType.accept(self.repeatType)
+        }
+    }
+    
+    var repeatSelectedValue: [ScheduleWeek] = [] {
+        didSet {
+            self.selectedRepeatSelectedValue.accept(self.repeatSelectedValue)
+        }
+    }
+    
+    var repeatEnd: Date = Date() {
+        didSet {
+            self.selectedRepeatEnd.accept(self.repeatEnd)
+        }
     }
     
     let isSelectedStartDate = BehaviorRelay(value: false)
@@ -189,7 +207,7 @@ class ScheduleEditViewController: BaseViewController {
         self.viewModel?.defaultCategory
             .observe(on: MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] category in
-                self?.selectCategory = category
+                self?.category = category
         })
         .disposed(by: self.disposeBag)
     }

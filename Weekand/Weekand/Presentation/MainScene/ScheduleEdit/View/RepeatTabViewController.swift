@@ -32,7 +32,7 @@ class RepeatTabViewController: TabmanViewController {
         }
     }
     
-    private var viewControllers: [UIViewController] = []
+    var viewControllers: [UIViewController] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,16 +42,6 @@ class RepeatTabViewController: TabmanViewController {
     }
     
     private func setUpView() {
-        
-        let dayViewController = DefaultRepeatViewController()
-        let weekRepeatViewController = WeekRepeatViewController()
-        let monthRepeatViewController = DefaultRepeatViewController()
-        let yearRepeatViewController = DefaultRepeatViewController()
-        
-        viewControllers.append(dayViewController)
-        viewControllers.append(weekRepeatViewController)
-        viewControllers.append(monthRepeatViewController)
-        viewControllers.append(yearRepeatViewController)
         
         self.dataSource = self
 

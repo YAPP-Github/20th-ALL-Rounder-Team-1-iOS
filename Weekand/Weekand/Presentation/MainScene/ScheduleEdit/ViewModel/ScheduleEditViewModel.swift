@@ -155,7 +155,7 @@ class ScheduleEditViewModel: ViewModelType {
     }
     
     func vaildInput(name: String) -> Bool {
-        return name.isEmpty
+        return !name.isEmpty
     }
 }
 

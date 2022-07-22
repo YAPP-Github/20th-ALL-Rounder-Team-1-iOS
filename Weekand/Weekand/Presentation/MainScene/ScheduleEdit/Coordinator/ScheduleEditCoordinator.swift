@@ -39,6 +39,22 @@ class ScheduleEditCoordinator: Coordinator {
     
     func presentRepeatSheet() {
         let repeatSheetViewController = RepeatSheetViewController()
+        
+        let dayViewController = DefaultRepeatViewController()
+        let weekRepeatViewController = WeekRepeatViewController()
+        let monthRepeatViewController = DefaultRepeatViewController()
+        let yearRepeatViewController = DefaultRepeatViewController()
+        
+        repeatSheetViewController.viewController.viewControllers.append(dayViewController)
+        repeatSheetViewController.viewController.viewControllers.append(weekRepeatViewController)
+        repeatSheetViewController.viewController.viewControllers.append(monthRepeatViewController)
+        repeatSheetViewController.viewController.viewControllers.append(yearRepeatViewController)
+        
+        dayViewController.viewModel = DefaultRepeatViewModel(coordinator: self, repeatType: .daily)
+        weekRepeatViewController.viewModel = WeekRepeatViewModel(coordinator: self)
+        monthRepeatViewController.viewModel = DefaultRepeatViewModel(coordinator: self, repeatType: .monthly)
+        yearRepeatViewController.viewModel = DefaultRepeatViewModel(coordinator: self, repeatType: .yearly)
+        
         repeatSheetViewController.modalPresentationStyle = .pageSheet
         self.navigationController.present(repeatSheetViewController, animated: true, completion: nil)
     }
@@ -52,7 +68,7 @@ class ScheduleEditCoordinator: Coordinator {
     }
     
     func sendCategoryFromSheet(category: Category) {
-        scheduleEditViewController.selectCategory = category
+        scheduleEditViewController.category = category
     }
     
     func finish() {

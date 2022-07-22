@@ -27,6 +27,7 @@ class DefaultRepeatViewController: UIViewController {
     let confirmButton = WDefaultButton(title: "확인", style: .filled, font: WFont.subHead1())
     
     var dataSource: UITableViewDiffableDataSource<Section, String>!
+    var viewModel: DefaultRepeatViewModel?
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -78,6 +79,12 @@ class DefaultRepeatViewController: UIViewController {
     }
     
     private func bindViewModel() {
+        let input = DefaultRepeatViewModel.Input(
+            cancelButtonDidTapEvent: self.cancelButton.rx.tap.asObservable(),
+            confirmButtonDidTapEvent: self.confirmButton.rx.tap.asObservable()
+        )
+        
+        let _ = viewModel?.transform(input: input)
         
     }
 }

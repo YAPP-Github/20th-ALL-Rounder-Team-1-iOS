@@ -30,7 +30,7 @@ class WeekRepeatViewController: UIViewController {
     
     var tableViewDataSource: UITableViewDiffableDataSource<Section, String>!
     var collectionViewDataSource: UICollectionViewDiffableDataSource<Section, String>!
-    
+    var viewModel: WeekRepeatViewModel?
     
     init() {
         super.init(nibName: nil, bundle: nil)
