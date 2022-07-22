@@ -91,8 +91,8 @@ class ScheduleEditViewModel: ViewModelType {
                 let scheduleInputModel = ScheduleInputModel(
                     name: nameText,
                     categoryId: category.serverID,
-                    dateStart: dates[1],
-                    dateEnd: dates[3],
+                    dateStart: dates[0],
+                    dateEnd: dates[2],
                     repeatType: repeatType,
                     repeatSelectedValue: repeatSelectValue,
                     repeatEnd: repeatEnd,
@@ -215,8 +215,11 @@ extension ScheduleEditViewModel {
     private func createSchedule(_ scheduleInputModel: ScheduleInputModel) {
         self.scheduleEditUseCase.createSchedule(input: scheduleInputModel)
             .subscribe(onSuccess: { isSucceed in
-                print(isSucceed)
+                if isSucceed {
+                    self.coordinator?.finish()
+                }
             }, onFailure: { _ in
+                
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }
