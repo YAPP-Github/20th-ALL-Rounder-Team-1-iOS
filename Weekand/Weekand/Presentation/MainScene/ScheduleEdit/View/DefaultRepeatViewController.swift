@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import Then
+import SnapKit
+import RxSwift
+import RxCocoa
 
 class DefaultRepeatViewController: UIViewController {
     
@@ -26,8 +30,12 @@ class DefaultRepeatViewController: UIViewController {
     let cancelButton = WDefaultButton(title: "취소", style: .tint, font: WFont.subHead1())
     let confirmButton = WDefaultButton(title: "확인", style: .filled, font: WFont.subHead1())
     
+    private let disposeBag = DisposeBag()
     var dataSource: UITableViewDiffableDataSource<Section, String>!
     var viewModel: DefaultRepeatViewModel?
+    
+    let isSelectedRepeatEndDate = BehaviorRelay(value: false)
+    let selectedRepeatEndDate = BehaviorRelay<Date>(value: Date())
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -80,9 +88,15 @@ class DefaultRepeatViewController: UIViewController {
     
     private func bindViewModel() {
         let input = DefaultRepeatViewModel.Input(
+            isSelectedRepeatEndDate: isSelectedRepeatEndDate,
+            repeatEndDateDidSelectEvent: selectedRepeatEndDate,
             cancelButtonDidTapEvent: self.cancelButton.rx.tap.asObservable(),
             confirmButtonDidTapEvent: self.confirmButton.rx.tap.asObservable()
         )
+        
+        repeatRadioStackView.calendarView.calendar.rx.didSelect
+            .bind(to: selectedRepeatEndDate)
+            .disposed(by: disposeBag)
         
         let _ = viewModel?.transform(input: input)
         
@@ -119,6 +133,7 @@ extension DefaultRepeatViewController: UITableViewDelegate {
                 self.repeatRadioStackView.calendarContainerView.alpha = 1
                 self.repeatRadioStackView.calendarContainerView.isHidden = false
             }, completion: nil)
+            self.isSelectedRepeatEndDate.accept(true)
         }
     }
     
@@ -129,6 +144,7 @@ extension DefaultRepeatViewController: UITableViewDelegate {
                 self.repeatRadioStackView.calendarContainerView.alpha = 0
                 self.repeatRadioStackView.calendarContainerView.isHidden = true
             }, completion: nil)
+            self.isSelectedRepeatEndDate.accept(false)
         }
     }
 }

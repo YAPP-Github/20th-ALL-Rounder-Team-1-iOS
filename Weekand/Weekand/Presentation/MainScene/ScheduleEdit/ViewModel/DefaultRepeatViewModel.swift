@@ -28,6 +28,8 @@ class DefaultRepeatViewModel: ViewModelType {
 extension DefaultRepeatViewModel {
     
     struct Input {
+        let isSelectedRepeatEndDate: BehaviorRelay<Bool>
+        let repeatEndDateDidSelectEvent: BehaviorRelay<Date>
         let cancelButtonDidTapEvent: Observable<Void>
         let confirmButtonDidTapEvent: Observable<Void>
     }
@@ -41,24 +43,31 @@ extension DefaultRepeatViewModel {
         })
         .disposed(by: disposeBag)
         
-        input.confirmButtonDidTapEvent.subscribe(onNext: {
-            switch self.repeatType {
-            case .daily:
-                print("daily")
-            case .monthly:
-                print("monthly")
-            case .yearly:
-                print("yearly")
-            case .weekly:
-                break
-            case .once:
-                break
-            case .none:
-                break
-            }
-            self.coordinator?.finish()
-        })
-        .disposed(by: disposeBag)
+        let selectRepeatEndDate = Observable.combineLatest(input.repeatEndDateDidSelectEvent, input.isSelectedRepeatEndDate)
+        
+        input.confirmButtonDidTapEvent
+            .withLatestFrom(selectRepeatEndDate)
+            .subscribe(onNext: { [weak self] date, isSelect in
+                if isSelect {
+                    switch self?.repeatType {
+                    case .daily:
+                        print("daily")
+                    case .monthly:
+                        print("monthly")
+                    case .yearly:
+                        print("yearly")
+                    case .weekly:
+                        break
+                    case .once:
+                        break
+                    case .none:
+                        break
+                    }
+                    print(date)
+                    self?.coordinator?.finish()
+                }
+            })
+            .disposed(by: disposeBag)
         
         return Output()
     }
