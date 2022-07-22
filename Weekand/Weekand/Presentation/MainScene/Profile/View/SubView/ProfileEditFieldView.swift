@@ -43,6 +43,7 @@ class ProfileEditFieldView: UIView {
         if validation == nil {
             validationLabel.isHidden = true
             textField.allowsEditingTextAttributes = false
+            textField.tintColor = .clear
         } else {
             maxLength = validation
         }

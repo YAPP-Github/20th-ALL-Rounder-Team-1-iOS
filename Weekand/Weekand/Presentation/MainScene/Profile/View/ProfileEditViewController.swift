@@ -79,13 +79,12 @@ class ProfileEditViewController: UIViewController {
             make.left.right.equalToSuperview().inset(24)
         }
 
+        bottomButton.enable(string: "완료")
         bottomButton.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-WBottmButton.buttonOffset)
             make.bottom.equalToSuperview()
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview()
+            make.left.right.equalToSuperview()
         }
-
         
     }
     
