@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ScheduleWeek {
+enum ScheduleWeek: CaseIterable {
     case sunday, monday, thuesday, wednesday, thursday, friday, saturday
     
     var description: String {

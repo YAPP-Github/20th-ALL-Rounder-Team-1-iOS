@@ -141,6 +141,7 @@
 		F336F3BA288A9676005B57A0 /* ScheduleWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3B9288A9676005B57A0 /* ScheduleWeek.swift */; };
 		F336F3BC288ABF05005B57A0 /* DefaultRepeatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3BB288ABF05005B57A0 /* DefaultRepeatViewModel.swift */; };
 		F336F3BE288AC427005B57A0 /* WeekRepeatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3BD288AC427005B57A0 /* WeekRepeatViewModel.swift */; };
+		F336F3C0288AD597005B57A0 /* RepeatStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3BF288AD597005B57A0 /* RepeatStackView.swift */; };
 		F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAB28533D0A005B493A /* WSortButton.swift */; };
 		F33C6EAE28535021005B493A /* UIVIewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAD28535021005B493A /* UIVIewController+extension.swift */; };
 		F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */; };
@@ -353,6 +354,7 @@
 		F336F3B9288A9676005B57A0 /* ScheduleWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWeek.swift; sourceTree = "<group>"; };
 		F336F3BB288ABF05005B57A0 /* DefaultRepeatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRepeatViewModel.swift; sourceTree = "<group>"; };
 		F336F3BD288AC427005B57A0 /* WeekRepeatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekRepeatViewModel.swift; sourceTree = "<group>"; };
+		F336F3BF288AD597005B57A0 /* RepeatStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatStackView.swift; sourceTree = "<group>"; };
 		F33C6EAB28533D0A005B493A /* WSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSortButton.swift; sourceTree = "<group>"; };
 		F33C6EAD28535021005B493A /* UIVIewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+extension.swift"; sourceTree = "<group>"; };
 		F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputGroupStackView.swift; sourceTree = "<group>"; };
@@ -1208,6 +1210,7 @@
 				F336F3AD288955A3005B57A0 /* RepeatRadioStackView.swift */,
 				F336F3B32889750F005B57A0 /* CategorySheetTableViewCell.swift */,
 				F336F3B52889828D005B57A0 /* WeekCollectionViewCell.swift */,
+				F336F3BF288AD597005B57A0 /* RepeatStackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1543,6 +1546,7 @@
 				F3C8E0B928736F0500B0916A /* ScheduleEditViewModel.swift in Sources */,
 				F336F3B42889750F005B57A0 /* CategorySheetTableViewCell.swift in Sources */,
 				7D3B1F54283630A50037504A /* WTextField.swift in Sources */,
+				F336F3C0288AD597005B57A0 /* RepeatStackView.swift in Sources */,
 				F3DD0218284661F900AD9240 /* WelcomeCoordinator.swift in Sources */,
 				F3F731D928677A2000C8B778 /* ColorsCollectionViewCell.swift in Sources */,
 				7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */,

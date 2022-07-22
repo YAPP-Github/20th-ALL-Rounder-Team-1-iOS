@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import Then
+import SnapKit
+import RxSwift
+import RxCocoa
 
 class WeekRepeatViewController: UIViewController {
     
@@ -14,7 +18,7 @@ class WeekRepeatViewController: UIViewController {
     }
     
     let radioTableViewlist = ["안함", "종료날짜 선택"]
-    let weekList = ["일","월","화","수","목","금","토"]
+    let weekList = ScheduleWeek.allCases.map { $0.description }
     
     lazy var repeatRadioStackView = RepeatRadioStackView()
     var weekCollecitonView: UICollectionView! = nil
@@ -28,9 +32,14 @@ class WeekRepeatViewController: UIViewController {
     let cancelButton = WDefaultButton(title: "취소", style: .tint, font: WFont.subHead1())
     let confirmButton = WDefaultButton(title: "확인", style: .filled, font: WFont.subHead1())
     
+    private let disposeBag = DisposeBag()
     var tableViewDataSource: UITableViewDiffableDataSource<Section, String>!
     var collectionViewDataSource: UICollectionViewDiffableDataSource<Section, String>!
     var viewModel: WeekRepeatViewModel?
+    
+    let isSelectedRepeatEndDate = BehaviorRelay(value: false)
+    let selectedRepeatWeek = BehaviorRelay<[ScheduleWeek]>(value: [])
+    let selectedRepeatEndDate = BehaviorRelay<Date>(value: Date())
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -53,7 +62,10 @@ class WeekRepeatViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        let calendar = NSCalendar.current
+        let component = calendar.component(.weekday, from: Date())
         repeatRadioStackView.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
+        weekCollecitonView.selectItem(at: IndexPath(item: component - 1, section: 0), animated: false, scrollPosition: .centeredHorizontally)
     }
 
     private func setUpView() {
@@ -116,7 +128,19 @@ class WeekRepeatViewController: UIViewController {
     }
     
     private func bindViewModel() {
+        let input = WeekRepeatViewModel.Input(
+            isSelectedRepeatEndDate: isSelectedRepeatEndDate,
+            selectedRepeatWeek: selectedRepeatWeek,
+            repeatEndDateDidSelectEvent: selectedRepeatEndDate,
+            cancelButtonDidTapEvent: self.cancelButton.rx.tap.asObservable(),
+            confirmButtonDidTapEvent: self.confirmButton.rx.tap.asObservable()
+        )
         
+        repeatRadioStackView.calendarView.calendar.rx.didSelect
+            .bind(to: selectedRepeatEndDate)
+            .disposed(by: disposeBag)
+        
+        let _ = viewModel?.transform(input: input)
     }
 }
 
@@ -179,4 +203,26 @@ extension WeekRepeatViewController: UITableViewDelegate {
 
 extension WeekRepeatViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
+        if let weeks = collectionView.indexPathsForSelectedItems,
+           weeks.count <= 1 {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let weeks = collectionView
+                    .indexPathsForSelectedItems?
+                    .map { ScheduleWeek.allCases[$0.item] }
+        self.selectedRepeatWeek.accept(weeks ?? [])
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let weeks = collectionView
+                    .indexPathsForSelectedItems?
+                    .map { ScheduleWeek.allCases[$0.item] }
+        self.selectedRepeatWeek.accept(weeks ?? [])
+    }
 }

@@ -74,8 +74,12 @@ class ScheduleEditCoordinator: Coordinator {
     func sendRepeatTypeFromSheet(repeatType: ScheduleRepeatType, repeatEndDate: Date?) {
         scheduleEditViewController.repeatType = repeatType
         scheduleEditViewController.repeatEnd = repeatEndDate
-        print(repeatType.description)
-        print(repeatEndDate)
+    }
+    
+    func sendWeekRepeatTypeFromSheet(repeatType: ScheduleRepeatType, repeatEndDate: Date?, repeatSelectedValue: [ScheduleWeek]) {
+        scheduleEditViewController.repeatType = repeatType
+        scheduleEditViewController.repeatSelectedValue = repeatSelectedValue
+        scheduleEditViewController.repeatEnd = repeatEndDate
     }
     
     func finish() {

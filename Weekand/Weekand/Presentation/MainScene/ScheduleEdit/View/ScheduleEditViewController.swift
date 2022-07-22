@@ -175,6 +175,24 @@ class ScheduleEditViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
+        Observable.zip(selectedRepeatType, selectedRepeatSelectedValue, selectedRepeatEnd)
+            .filter({ repeatType, _, _ in
+                repeatType == .weekly
+            })
+            .subscribe(onNext: { [weak self] repeatType, repeatSelectedValue, repeatEndDate in
+                var repeatText = ""
+                let repeatSelectedValueText = repeatSelectedValue.map { $0.description }.joined(separator: ",")
+                if let date = repeatEndDate {
+                    let dateString = self?.dateFormatter.string(from: date) ?? ""
+                    repeatText = "\(dateString)까지 \(repeatType.description) \(repeatSelectedValueText)"
+                } else {
+                    repeatText = "\(repeatType.description) \(repeatSelectedValueText)"
+                }
+                self?.repeatStackView.setRepeatText(repeatText)
+                self?.repeatStackView.isHidden = false
+            })
+            .disposed(by: disposeBag)
+        
         let input = ScheduleEditViewModel.Input(
             closeButtonDidTapEvent: closeButton.rx.tap.asObservable(),
             confirmButtonDidTapEvent: confirmButton.rx.tap.asObservable(),
