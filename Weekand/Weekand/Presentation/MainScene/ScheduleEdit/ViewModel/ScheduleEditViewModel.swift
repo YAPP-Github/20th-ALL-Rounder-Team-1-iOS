@@ -47,10 +47,10 @@ class ScheduleEditViewModel: ViewModelType {
         let repeatButtonDidTapEvent: Observable<Void>
         let nameTextFieldDidEditEvent: Observable<String>
         let selectedDateTimes: [BehaviorRelay<Date>]
-        let selectedCategory: PublishRelay<Category>
+        let selectedCategory: BehaviorRelay<Category?>
         let selectedRepeatType: BehaviorRelay<ScheduleRepeatType>
         let selectedRepeatSelectedValue: BehaviorRelay<[ScheduleWeek]>
-        let selectedRepeatEnd: BehaviorRelay<Date>
+        let selectedRepeatEnd: BehaviorRelay<Date?>
     }
     
     struct Output {

@@ -71,6 +71,13 @@ class ScheduleEditCoordinator: Coordinator {
         scheduleEditViewController.category = category
     }
     
+    func sendRepeatTypeFromSheet(repeatType: ScheduleRepeatType, repeatEndDate: Date?) {
+        scheduleEditViewController.repeatType = repeatType
+        scheduleEditViewController.repeatEnd = repeatEndDate
+        print(repeatType.description)
+        print(repeatEndDate)
+    }
+    
     func finish() {
         self.navigationController.dismiss(animated: true)
     }

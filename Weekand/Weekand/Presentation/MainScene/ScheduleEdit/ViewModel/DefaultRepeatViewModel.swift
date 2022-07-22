@@ -47,25 +47,10 @@ extension DefaultRepeatViewModel {
         
         input.confirmButtonDidTapEvent
             .withLatestFrom(selectRepeatEndDate)
-            .subscribe(onNext: { [weak self] date, isSelect in
-                if isSelect {
-                    switch self?.repeatType {
-                    case .daily:
-                        print("daily")
-                    case .monthly:
-                        print("monthly")
-                    case .yearly:
-                        print("yearly")
-                    case .weekly:
-                        break
-                    case .once:
-                        break
-                    case .none:
-                        break
-                    }
-                    print(date)
-                    self?.coordinator?.finish()
-                }
+            .subscribe(onNext: { [weak self] date, isRepeat in
+                let repeatEndDate = isRepeat ? date : nil
+                self?.coordinator?.sendRepeatTypeFromSheet(repeatType: self?.repeatType ?? .once, repeatEndDate: repeatEndDate)
+                self?.coordinator?.finish()
             })
             .disposed(by: disposeBag)
         

@@ -82,7 +82,7 @@ class ScheduleEditViewController: BaseViewController {
         }
     }
     
-    var repeatEnd: Date = Date() {
+    var repeatEnd: Date? {
         didSet {
             self.selectedRepeatEnd.accept(self.repeatEnd)
         }
@@ -97,10 +97,10 @@ class ScheduleEditViewController: BaseViewController {
     let selectedStartTime = BehaviorRelay<Date>(value: Date())
     let selectedEndDate = BehaviorRelay<Date>(value: Date())
     let selectedEndTime = BehaviorRelay<Date>(value: Date())
-    let selectedCategory = PublishRelay<Category>()
+    let selectedCategory = BehaviorRelay<Category?>(value: nil)
     let selectedRepeatType = BehaviorRelay<ScheduleRepeatType>(value: .once)
     let selectedRepeatSelectedValue = BehaviorRelay<[ScheduleWeek]>(value: [])
-    let selectedRepeatEnd = BehaviorRelay<Date>(value: Date())
+    let selectedRepeatEnd = BehaviorRelay<Date?>(value: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()

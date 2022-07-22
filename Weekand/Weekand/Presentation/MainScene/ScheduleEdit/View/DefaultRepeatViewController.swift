@@ -59,6 +59,7 @@ class DefaultRepeatViewController: UIViewController {
         super.viewWillAppear(animated)
         
         repeatRadioStackView.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
+        repeatRadioStackView.calendarContainerView.isHidden = true
     }
 
     private func setUpView() {
