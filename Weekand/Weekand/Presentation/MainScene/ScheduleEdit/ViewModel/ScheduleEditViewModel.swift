@@ -32,6 +32,7 @@ class ScheduleEditViewModel: ViewModelType {
     
     struct Input {
         let closeButtonDidTapEvent: Observable<Void>
+        let confirmButtonDidTapEvent: Observable<Void>
         let categoryArrowDidTapEvent: Observable<Void>
         let isSelectedStartDate: BehaviorRelay<Bool>
         let isSelectedStartTime: BehaviorRelay<Bool>
@@ -45,10 +46,7 @@ class ScheduleEditViewModel: ViewModelType {
         let endDateDidSelectEvent: Observable<Date>
         let repeatButtonDidTapEvent: Observable<Void>
         let nameTextFieldDidEditEvent: Observable<String>
-        let selectedStartDate: BehaviorRelay<Date>
-        let selectedStartTime: BehaviorRelay<Date>
-        let selectedEndDate: BehaviorRelay<Date>
-        let selectedEndTime: BehaviorRelay<Date>
+        let selectedDateTimes: [BehaviorRelay<Date>]
         let selectedCategory: PublishRelay<Category>
         let selectedRepeatType: BehaviorRelay<ScheduleRepeatType>
         let selectedRepeatSelectedValue: BehaviorRelay<[ScheduleWeek]>
@@ -58,9 +56,27 @@ class ScheduleEditViewModel: ViewModelType {
     struct Output {
         var startDateDidSelectEvent: Driver<Date>
         var endDateDidSelectEvent: Driver<Date>
+        var validNameInput: Driver<Bool>
     }
     
     func transform(input: Input) -> Output {
+        
+        let combinedDateTimes = Observable.combineLatest(input.selectedDateTimes)
+        let validNameInput = input.nameTextFieldDidEditEvent.map(vaildInput)
+        let combinedInputs = Observable.combineLatest(
+             combinedDateTimes,
+             input.nameTextFieldDidEditEvent,
+             input.selectedCategory,
+             input.selectedRepeatType,
+             input.selectedRepeatSelectedValue,
+             input.selectedRepeatEnd)
+        
+        input.confirmButtonDidTapEvent.withLatestFrom(combinedInputs)
+            .subscribe(onNext: { [weak self] dates, nameText, category, repeatType, repeatSelectValue, repeatEnd in
+                print(dates, nameText, category, repeatType, repeatSelectValue, repeatEnd)
+            })
+            .disposed(by: disposeBag)
+        
         
         self.bindDateTime(input: input)
         
@@ -76,7 +92,8 @@ class ScheduleEditViewModel: ViewModelType {
         
         return Output(
             startDateDidSelectEvent: input.startDateDidSelectEvent.asDriver(onErrorJustReturn: Date()),
-            endDateDidSelectEvent: input.endDateDidSelectEvent.asDriver(onErrorJustReturn: Date())
+            endDateDidSelectEvent: input.endDateDidSelectEvent.asDriver(onErrorJustReturn: Date()),
+            validNameInput: validNameInput.asDriver(onErrorJustReturn: false)
         )
     }
     
@@ -135,6 +152,10 @@ class ScheduleEditViewModel: ViewModelType {
             previousTag = tag
         })
         .disposed(by: disposeBag)
+    }
+    
+    func vaildInput(name: String) -> Bool {
+        return name.isEmpty
     }
 }
 

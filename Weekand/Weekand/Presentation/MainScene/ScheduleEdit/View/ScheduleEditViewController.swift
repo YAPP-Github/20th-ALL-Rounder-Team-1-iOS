@@ -138,6 +138,7 @@ class ScheduleEditViewController: BaseViewController {
         
         let input = ScheduleEditViewModel.Input(
             closeButtonDidTapEvent: closeButton.rx.tap.asObservable(),
+            confirmButtonDidTapEvent: confirmButton.rx.tap.asObservable(),
             categoryArrowDidTapEvent: categoryStackView.arrowButton.rx.tap.asObservable(),
             isSelectedStartDate: isSelectedStartDate,
             isSelectedStartTime: isSelectedStartTime,
@@ -151,10 +152,7 @@ class ScheduleEditViewController: BaseViewController {
             endDateDidSelectEvent: endDateTimeStackView.calendarView.calendar.rx.didSelect.asObservable(),
             repeatButtonDidTapEvent: addInformationContainerView.repeatButton.rx.tap.asObservable(),
             nameTextFieldDidEditEvent: nameStackView.textField.rx.text.orEmpty.asObservable(),
-            selectedStartDate: selectedStartDate,
-            selectedStartTime: selectedStartTime,
-            selectedEndDate: selectedEndDate,
-            selectedEndTime: selectedEndTime,
+            selectedDateTimes: [self.selectedStartDate, self.selectedStartTime, self.selectedEndDate, self.selectedEndTime],
             selectedCategory: selectedCategory,
             selectedRepeatType: selectedRepeatType,
             selectedRepeatSelectedValue: selectedRepeatSelectedValue,
@@ -162,6 +160,14 @@ class ScheduleEditViewController: BaseViewController {
         )
         
         let output = viewModel?.transform(input: input)
+        
+        output?.validNameInput.drive(onNext: { isValid in
+            if isValid {
+                self.confirmButton.enable(string: "완료")
+            } else {
+                self.confirmButton.disable(string: "완료")
+            }
+        }).disposed(by: disposeBag)
         
         output?.startDateDidSelectEvent.drive(onNext: { date in
             let dateString = self.dateFormatter.string(from: date)
