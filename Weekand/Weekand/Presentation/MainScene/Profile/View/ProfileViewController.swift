@@ -47,6 +47,7 @@ class ProfileViewController: UIViewController {
         $0.axis = .horizontal
         $0.distribution = .fill
         $0.spacing = 20
+        $0.alignment = .center
     }
     
     // 프로필 수정 or 팔로우 버튼
@@ -83,6 +84,7 @@ class ProfileViewController: UIViewController {
         // TODO: 서버연결 후 수정
         nameLabel.text = "이건두"
         emailLabel.text = "dei313r@mail.com"
+        
         DispatchQueue.global().async {
             guard let imageURL = URL(string: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80") else { return }
             guard let imageData = try? Data(contentsOf: imageURL) else { return }
@@ -92,7 +94,11 @@ class ProfileViewController: UIViewController {
             }
         }
         
-        detailBar.setUpData(goal: "오늘도 행복한 하루를 보내자 아자아자 화이팅", jobs: ["직장인", "iOS"], interests: [], follower: 0, followee: 312)
+        detailBar.setUpData(
+            goal: "오늘도 행복한 하루를 보내자 아자아자 화이팅",
+            jobs: ["직장인", "iOS"], interests: [],
+            follower: 0, followee: 312
+        )
     }
     
     private func configureUI() {
@@ -136,6 +142,7 @@ class ProfileViewController: UIViewController {
         scrollView.addSubview(contenteView)
         contenteView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+            make.width.equalToSuperview()
         }
         
         self.view.addSubview(scrollView)

@@ -72,8 +72,6 @@ extension ProfileDetailCollectionStackView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        print(indexPath.item)
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileDetailCollectionCell.cellIdentifier, for: indexPath) as! ProfileDetailCollectionCell
         
         

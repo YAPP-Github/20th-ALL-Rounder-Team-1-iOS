@@ -23,7 +23,6 @@ class ProfileDetailView: UIView {
         $0.distribution = .fillEqually
         $0.axis = .horizontal
     }
-
     
     lazy var parentStack = UIStackView().then {
         $0.spacing = 12

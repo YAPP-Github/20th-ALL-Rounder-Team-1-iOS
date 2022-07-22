@@ -25,7 +25,6 @@ class ProfileCoordinator: Coordinator {
     
     func start() {
         self.profileViewController.viewModel = ProfileViewModel(coordinator: self)
-        self.navigationController.modalPresentationStyle = .fullScreen
         self.navigationController.pushViewController(profileViewController, animated: true)
     }
     
