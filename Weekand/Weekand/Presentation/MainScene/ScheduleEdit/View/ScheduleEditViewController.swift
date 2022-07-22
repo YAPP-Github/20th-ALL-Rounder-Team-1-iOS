@@ -75,6 +75,12 @@ class ScheduleEditViewController: BaseViewController {
         bindViewModel()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setCategory()
+    }
+    
     private func setupView() {
         view.backgroundColor = .white
         navigationItem.title = "일정 추가"
@@ -225,6 +231,13 @@ class ScheduleEditViewController: BaseViewController {
             self.memoStackView.isHidden = false
             self.addInformationContainerView.memoButton.isHidden = true
         }).disposed(by: disposeBag)
+        
+        self.viewModel?.defaultCategory
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] category in
+                self?.categoryStackView.setCategory(category)
+        })
+        .disposed(by: self.disposeBag)
     }
 }
 
@@ -255,5 +268,11 @@ extension ScheduleEditViewController: UITextViewDelegate {
             textView.text = memoStackView.textView.placeHolder
             textView.textColor = .gray400
         }
+    }
+}
+
+extension ScheduleEditViewController {
+    func setCategory() {
+        self.viewModel?.searchCategories()
     }
 }

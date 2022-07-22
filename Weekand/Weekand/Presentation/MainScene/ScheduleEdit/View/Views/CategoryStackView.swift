@@ -9,7 +9,7 @@ import UIKit
 
 class CategoryStackView: UIStackView {
 
-    lazy var namelabel = WTextLabel().then {
+    lazy var titleLabel = WTextLabel().then {
         $0.textColor = UIColor.gray800
         $0.text = "카테고리"
     }
@@ -31,7 +31,7 @@ class CategoryStackView: UIStackView {
         $0.layer.cornerRadius = 3
     }
 
-    lazy var label = WTextLabel().then {
+    lazy var nameLabel = WTextLabel().then {
         $0.backgroundColor?.withAlphaComponent(0)
         $0.font = WFont.body1()
         $0.text = "내 일정"
@@ -55,7 +55,7 @@ class CategoryStackView: UIStackView {
         self.alignment = .fill
         self.spacing = 10
         
-        [namelabel, backgroundView].forEach { self.addArrangedSubview($0) }
+        [titleLabel, backgroundView].forEach { self.addArrangedSubview($0) }
 
         backgroundView.addSubview(stackView)
         
@@ -67,7 +67,7 @@ class CategoryStackView: UIStackView {
         }
         
         stackView.addArrangedSubview(colorView)
-        stackView.addArrangedSubview(label)
+        stackView.addArrangedSubview(nameLabel)
         stackView.addArrangedSubview(arrowButton)
         arrowButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(6)
@@ -80,4 +80,11 @@ class CategoryStackView: UIStackView {
         }
     }
 
+}
+
+extension CategoryStackView {
+    func setCategory(_ category: Category) {
+        colorView.backgroundColor = UIColor(hex: category.color)!
+        nameLabel.text = category.name
+    }
 }

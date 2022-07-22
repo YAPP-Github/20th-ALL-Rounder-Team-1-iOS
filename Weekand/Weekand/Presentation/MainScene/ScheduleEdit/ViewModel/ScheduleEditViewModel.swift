@@ -20,6 +20,8 @@ class ScheduleEditViewModel: ViewModelType {
     var scheduleEditUseCase: ScheduleEditUseCase
     private let disposeBag = DisposeBag()
     
+    let defaultCategory = PublishRelay<Category>()
+    
     init(coordinator: ScheduleEditCoordinator?, scheduleEditUseCase: ScheduleEditUseCase) {
         self.coordinator = coordinator
         self.scheduleEditUseCase = scheduleEditUseCase
@@ -116,5 +118,25 @@ class ScheduleEditViewModel: ViewModelType {
             startDateDidSelectEvent: input.startDateDidSelectEvent.asDriver(onErrorJustReturn: Date()),
             endDateDidSelectEvent: input.endDateDidSelectEvent.asDriver(onErrorJustReturn: Date())
         )
+    }
+}
+
+extension ScheduleEditViewModel {
+    func searchCategories() {
+        self.scheduleEditUseCase.ScheduleCategories(sort: .dateCreatedDESC, page: 0, size: 1)
+            .subscribe(onSuccess: { data in
+                let list = data.scheduleCategories.map { category in
+                    Category(serverID: category.id, color: category.color, name: category.name, openType: category.openType.toEntity())
+                }
+                
+                guard let category = list.first else {
+                    // error
+                    return
+                }
+                self.defaultCategory.accept(category)
+            }, onFailure: { error in
+                print(error)
+            }, onDisposed: nil)
+            .disposed(by: disposeBag)
     }
 }
