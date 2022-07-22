@@ -49,6 +49,26 @@ class ScheduleEditViewModel: ViewModelType {
     }
     
     func transform(input: Input) -> Output {
+        
+        self.bindDateTime(input: input)
+        
+        input.repeatButtonDidTapEvent.subscribe(onNext: {
+            self.coordinator?.presentRepeatSheet()
+        })
+        .disposed(by: disposeBag)
+        
+        input.categoryArrowDidTapEvent.subscribe(onNext: {
+            self.coordinator?.presentCategorySheet()
+        })
+        .disposed(by: disposeBag)
+        
+        return Output(
+            startDateDidSelectEvent: input.startDateDidSelectEvent.asDriver(onErrorJustReturn: Date()),
+            endDateDidSelectEvent: input.endDateDidSelectEvent.asDriver(onErrorJustReturn: Date())
+        )
+    }
+    
+    private func bindDateTime(input: Input) {
         input.startDateButtonDidTapEvent
             .subscribe(onNext: { _ in
                 input.isSelectedStartDate.accept(!input.isSelectedStartDate.value)
@@ -103,21 +123,6 @@ class ScheduleEditViewModel: ViewModelType {
             previousTag = tag
         })
         .disposed(by: disposeBag)
-        
-        input.repeatButtonDidTapEvent.subscribe(onNext: {
-            self.coordinator?.presentRepeatSheet()
-        })
-        .disposed(by: disposeBag)
-        
-        input.categoryArrowDidTapEvent.subscribe(onNext: {
-            self.coordinator?.presentCategorySheet()
-        })
-        .disposed(by: disposeBag)
-        
-        return Output(
-            startDateDidSelectEvent: input.startDateDidSelectEvent.asDriver(onErrorJustReturn: Date()),
-            endDateDidSelectEvent: input.endDateDidSelectEvent.asDriver(onErrorJustReturn: Date())
-        )
     }
 }
 
