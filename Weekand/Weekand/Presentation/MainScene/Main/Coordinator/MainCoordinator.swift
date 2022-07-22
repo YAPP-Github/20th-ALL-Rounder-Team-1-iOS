@@ -46,8 +46,8 @@ class MainCoordinator: Coordinator {
         scheduleEditCoordinator.start()
     }
     
-    func showProfileScene() {
-        let profileCoordinator = ProfileCoordinator(navigationController: self.navigationController)
+    func showProfileScene(id: String?) {
+        let profileCoordinator = ProfileCoordinator(navigationController: self.navigationController, userId: id)
         profileCoordinator.finishDelegate = self
         childCoordinators.append(profileCoordinator)
         profileCoordinator.start()

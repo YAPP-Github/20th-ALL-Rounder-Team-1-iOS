@@ -69,6 +69,7 @@ class ProfileViewController: UIViewController {
         $0.distribution = .fillEqually
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -13,8 +13,19 @@ class ProfileViewModel {
     weak var coordinator: ProfileCoordinator?
     private let disposeBag = DisposeBag()
     
-    init (coordinator: ProfileCoordinator) {
+    var userId: String?
+    var isMyPage: Bool {
+        
+        guard let id = userId else {
+            return false
+        }
+        
+        return UserDataStorage.shared.userID == id ? true : false
+    }
+    
+    init (coordinator: ProfileCoordinator, userId: String?) {
         self.coordinator = coordinator
+        self.userId = userId
     }
     
 }

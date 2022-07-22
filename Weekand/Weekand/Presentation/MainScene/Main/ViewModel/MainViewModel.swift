@@ -106,7 +106,7 @@ extension MainViewModel {
             
             if self?.isMySchedule ?? true {
                 print("To my Profile")
-                self?.coordinator?.showProfileScene()
+                self?.coordinator?.showProfileScene(id: self?.currentUserId)
             } else {
                 print("To \(self?.currentUserId ?? "") Profile")
                 // TODO: 남의 프로필로 이동

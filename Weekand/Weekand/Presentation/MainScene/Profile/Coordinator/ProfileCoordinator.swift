@@ -15,16 +15,18 @@ class ProfileCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var profileViewController: ProfileViewController
     var type: CoordinatorType = .profile
+    var userId: String?
     
     
-    required init(navigationController: UINavigationController) {
+    required init(navigationController: UINavigationController, userId: String?) {
         
         self.navigationController = navigationController
         self.profileViewController = ProfileViewController()
+        self.userId = userId
     }
     
     func start() {
-        self.profileViewController.viewModel = ProfileViewModel(coordinator: self)
+        self.profileViewController.viewModel = ProfileViewModel(coordinator: self, userId: userId)
         self.navigationController.pushViewController(profileViewController, animated: true)
     }
     
