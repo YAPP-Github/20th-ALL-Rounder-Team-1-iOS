@@ -22,3 +22,18 @@ struct UserDetail {
     let interest: [String]  // 관심사
             
 }
+
+extension UserDetail {
+    
+    init (model: MyUserDetailQuery.Data.User) {
+        userId = model.id
+        email = model.email
+        name = model.nickname
+        goal = model.goal ?? ""
+        imagePath = model.profileUrl
+        followee = model.followeeCount
+        follower = model.followerCount
+        job = model.jobs
+        interest = model.interests
+    }
+}

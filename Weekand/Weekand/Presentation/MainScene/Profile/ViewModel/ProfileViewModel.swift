@@ -12,6 +12,7 @@ import RxRelay
 class ProfileViewModel: ViewModelType {
     
     weak var coordinator: ProfileCoordinator?
+    private let profileUseCase: ProfileUseCase
     private let disposeBag = DisposeBag()
     
     var userDeatil = BehaviorRelay<UserDetail>(value: UserDetail.defaultData)
@@ -19,8 +20,9 @@ class ProfileViewModel: ViewModelType {
     var userId: String?
     var isMyPage: Bool
     
-    init (coordinator: ProfileCoordinator, userId: String?) {
+    init (coordinator: ProfileCoordinator, useCase: ProfileUseCase, userId: String?) {
         self.coordinator = coordinator
+        self.profileUseCase = useCase
         self.userId = userId
         
         if let id = userId {
@@ -29,18 +31,7 @@ class ProfileViewModel: ViewModelType {
             isMyPage = false
         }
         
-        // TODO: 서버 연결 후 삭제
-        PublishRelay<UserDetail>.just(UserDetail(
-            userId: "1",
-            email: "dei313r@mail.com",
-            name: "이건두",
-            goal: "오늘도 행복한 하루를 보내자 아자아자 화이팅",
-            imagePath: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80",
-            followee: 31,
-            follower: 0,
-            job: ["직장인", "개발"],
-            interest: [])
-        ).bind(to: userDeatil).disposed(by: disposeBag)
+        getMyUserProfile()
     }
     
 }
@@ -116,4 +107,18 @@ extension ProfileViewModel {
         return Output(userDetail: userDeatil.asObservable())
     }
     
+}
+
+extension ProfileViewModel {
+    
+    private func getMyUserProfile() {
+        
+        self.profileUseCase.myProfileDetail().debug()
+            .subscribe(onSuccess: { userData in
+            PublishRelay<UserDetail>.just(userData).bind(to: self.userDeatil).disposed(by: self.disposeBag)
+        }, onFailure: { error in
+            print("\(#function) Error: \(error)")
+        }, onDisposed: nil)
+        .disposed(by: disposeBag)
+    }
 }

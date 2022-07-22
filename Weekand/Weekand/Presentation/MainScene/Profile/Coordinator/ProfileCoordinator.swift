@@ -14,6 +14,7 @@ class ProfileCoordinator: Coordinator {
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
     var profileViewController: ProfileViewController
+    var profileUseCase: ProfileUseCase
     var type: CoordinatorType = .profile
     var userId: String?
     
@@ -22,11 +23,12 @@ class ProfileCoordinator: Coordinator {
         
         self.navigationController = navigationController
         self.profileViewController = ProfileViewController()
+        self.profileUseCase = ProfileUseCase()
         self.userId = userId
     }
     
     func start() {
-        self.profileViewController.viewModel = ProfileViewModel(coordinator: self, userId: userId)
+        self.profileViewController.viewModel = ProfileViewModel(coordinator: self, useCase: profileUseCase, userId: userId)
         self.navigationController.pushViewController(profileViewController, animated: true)
     }
     
