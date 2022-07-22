@@ -43,6 +43,7 @@
 		7D8129E52889A5DE006C0A5D /* ProfileDetailCollectionStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129E42889A5DE006C0A5D /* ProfileDetailCollectionStackView.swift */; };
 		7D8129E72889A89C006C0A5D /* ProfileDetailCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129E62889A89C006C0A5D /* ProfileDetailCollectionCell.swift */; };
 		7D8129E9288A4331006C0A5D /* UserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129E8288A4331006C0A5D /* UserDetail.swift */; };
+		7D8129EB288A6C0E006C0A5D /* MyUserDetail.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D8129EA288A6C0D006C0A5D /* MyUserDetail.graphql */; };
 		7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */; };
 		7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */; };
 		7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */; };
@@ -249,6 +250,7 @@
 		7D8129E42889A5DE006C0A5D /* ProfileDetailCollectionStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailCollectionStackView.swift; sourceTree = "<group>"; };
 		7D8129E62889A89C006C0A5D /* ProfileDetailCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailCollectionCell.swift; sourceTree = "<group>"; };
 		7D8129E8288A4331006C0A5D /* UserDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetail.swift; sourceTree = "<group>"; };
+		7D8129EA288A6C0D006C0A5D /* MyUserDetail.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = MyUserDetail.graphql; sourceTree = "<group>"; };
 		7D8E4E832882A9D70035FB7E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCoordinator.swift; sourceTree = "<group>"; };
@@ -1153,6 +1155,7 @@
 				7D0A6A3B2881C4C100CFE61D /* UserSummary.graphql */,
 				7D0A6A3F2881C61F00CFE61D /* Followers.graphql */,
 				F336F35F28867ECF005B57A0 /* deleteCategory.graphql */,
+				7D8129EA288A6C0D006C0A5D /* MyUserDetail.graphql */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1337,6 +1340,7 @@
 				F3C8E0B128731E4900B0916A /* CategoryDropDownCell.xib in Resources */,
 				F30EBCD1288078DF00ECB48D /* CreateCategory.graphql in Resources */,
 				F323FF1F2879AD5600DFD8FD /* sendAuthKey.graphql in Resources */,
+				7D8129EB288A6C0E006C0A5D /* MyUserDetail.graphql in Resources */,
 				F3A4D95B2885A94500DDE03B /* SearchUsers.graphql in Resources */,
 				F32ACC0B28235D530082AF30 /* Assets.xcassets in Resources */,
 				F323FF212879AF3000DFD8FD /* vaildAuthKey.graphql in Resources */,
