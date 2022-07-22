@@ -66,6 +66,10 @@ class WeekRepeatViewController: UIViewController {
         let component = calendar.component(.weekday, from: Date())
         repeatRadioStackView.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
         weekCollecitonView.selectItem(at: IndexPath(item: component - 1, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+        let weeks = weekCollecitonView
+                    .indexPathsForSelectedItems?
+                    .map { ScheduleWeek.allCases[$0.item] }
+        self.selectedRepeatWeek.accept(weeks ?? [])
     }
 
     private func setUpView() {
@@ -153,7 +157,6 @@ extension WeekRepeatViewController {
             }
             cell.selectionStyle = .none
             cell.configure(text: text)
-            tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
             return cell
         })
         
@@ -187,6 +190,7 @@ extension WeekRepeatViewController: UITableViewDelegate {
                 self.repeatRadioStackView.calendarContainerView.alpha = 1
                 self.repeatRadioStackView.calendarContainerView.isHidden = false
             }, completion: nil)
+            self.isSelectedRepeatEndDate.accept(true)
         }
     }
     
@@ -197,6 +201,7 @@ extension WeekRepeatViewController: UITableViewDelegate {
                 self.repeatRadioStackView.calendarContainerView.alpha = 0
                 self.repeatRadioStackView.calendarContainerView.isHidden = true
             }, completion: nil)
+            self.isSelectedRepeatEndDate.accept(false)
         }
     }
 }
