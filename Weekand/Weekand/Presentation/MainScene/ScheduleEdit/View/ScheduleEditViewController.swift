@@ -39,6 +39,7 @@ class ScheduleEditViewController: BaseViewController {
         dateText: dateFormatter.string(from: Date()),
         timeText: timeFormatter.string(from: defaultEndTime))
     lazy var addInformationContainerView = AddInformationContainerView()
+    lazy var repeatStackView = RepeatStackView()
     lazy var memoStackView = MemoStackView(placeholder: "메모를 입력해주세요", nameText: "메모")
     
     lazy var dateFormatter = DateFormatter().then {
@@ -117,6 +118,7 @@ class ScheduleEditViewController: BaseViewController {
         navigationItem.leftBarButtonItem = closeButton
         stackView.spacing = 25
         
+        repeatStackView.isHidden = true
         memoStackView.isHidden = true
         memoStackView.textView.delegate = self
         
@@ -132,6 +134,7 @@ class ScheduleEditViewController: BaseViewController {
             categoryStackView,
             startDateTimeStackView,
             endDateTimeStackView,
+            repeatStackView,
             memoStackView,
             addInformationContainerView
         ].forEach { stackView.addArrangedSubview($0) }
@@ -153,6 +156,24 @@ class ScheduleEditViewController: BaseViewController {
     
     private func bindViewModel() {
         bindDateTimeView()
+        
+        Observable.zip(selectedRepeatType, selectedRepeatEnd)
+            .filter({ repeatType, _ in
+                repeatType != .once
+            })
+            .subscribe(onNext: { [weak self] repeatType, repeatEndDate in
+                var repeatText = ""
+                if let date = repeatEndDate {
+                    let dateString = self?.dateFormatter.string(from: date) ?? ""
+                    repeatText = "\(dateString)까지 \(repeatType.description)"
+                } else {
+                    repeatText = "\(repeatType.description)"
+                }
+                
+                self?.repeatStackView.setRepeatText(repeatText)
+                self?.repeatStackView.isHidden = false
+            })
+            .disposed(by: disposeBag)
         
         let input = ScheduleEditViewModel.Input(
             closeButtonDidTapEvent: closeButton.rx.tap.asObservable(),
