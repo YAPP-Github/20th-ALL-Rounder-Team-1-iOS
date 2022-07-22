@@ -42,6 +42,7 @@
 		7D8129E32889A2E7006C0A5D /* ProfileDetailJobInterestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129E22889A2E6006C0A5D /* ProfileDetailJobInterestView.swift */; };
 		7D8129E52889A5DE006C0A5D /* ProfileDetailCollectionStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129E42889A5DE006C0A5D /* ProfileDetailCollectionStackView.swift */; };
 		7D8129E72889A89C006C0A5D /* ProfileDetailCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129E62889A89C006C0A5D /* ProfileDetailCollectionCell.swift */; };
+		7D8129E9288A4331006C0A5D /* UserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129E8288A4331006C0A5D /* UserDetail.swift */; };
 		7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */; };
 		7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */; };
 		7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */; };
@@ -247,6 +248,7 @@
 		7D8129E22889A2E6006C0A5D /* ProfileDetailJobInterestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailJobInterestView.swift; sourceTree = "<group>"; };
 		7D8129E42889A5DE006C0A5D /* ProfileDetailCollectionStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailCollectionStackView.swift; sourceTree = "<group>"; };
 		7D8129E62889A89C006C0A5D /* ProfileDetailCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailCollectionCell.swift; sourceTree = "<group>"; };
+		7D8129E8288A4331006C0A5D /* UserDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetail.swift; sourceTree = "<group>"; };
 		7D8E4E832882A9D70035FB7E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCoordinator.swift; sourceTree = "<group>"; };
@@ -672,6 +674,7 @@
 				F3B0026B287D68F100D6BB1D /* EmojiGiver.swift */,
 				F3B00272287D68FA00D6BB1D /* SignUpModel.swift */,
 				F3B00270287D68FA00D6BB1D /* UserSummary.swift */,
+				7D8129E8288A4331006C0A5D /* UserDetail.swift */,
 				F3B0026A287D68F100D6BB1D /* FollwingUser.swift */,
 				F3B0025C287D686200D6BB1D /* ScheduleMain.swift */,
 				F30EBCED2881A4D900ECB48D /* UserSummaryTemp.swift */,
@@ -1558,6 +1561,7 @@
 				F3B00273287D68FA00D6BB1D /* UserSummary.swift in Sources */,
 				F3B00265287D68CE00D6BB1D /* SignUpUseCase.swift in Sources */,
 				F378685728621BD200BEEC81 /* CategoryModifyCoordinator.swift in Sources */,
+				7D8129E9288A4331006C0A5D /* UserDetail.swift in Sources */,
 				7D7178EB283E1C9D00D7E5F2 /* WCheckBox.swift in Sources */,
 				F3C8E087286DC71300B0916A /* RxApolloClient.swift in Sources */,
 				F32F72602854BB730056B189 /* ColorStackView.swift in Sources */,

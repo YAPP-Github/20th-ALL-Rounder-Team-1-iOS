@@ -8,8 +8,10 @@
 import Foundation
 import UIKit
 import RxSwift
+import RxGesture
 import Then
 import SnapKit
+
 
 class ProfileViewController: UIViewController {
     
@@ -82,24 +84,6 @@ class ProfileViewController: UIViewController {
         
         self.view.backgroundColor = .backgroundColor
         
-        // TODO: 서버연결 후 수정
-        nameLabel.text = "이건두"
-        emailLabel.text = "dei313r@mail.com"
-        
-        DispatchQueue.global().async {
-            guard let imageURL = URL(string: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80") else { return }
-            guard let imageData = try? Data(contentsOf: imageURL) else { return }
-            
-            DispatchQueue.main.async {
-                self.profileImageView.image = UIImage(data: imageData)
-            }
-        }
-        
-        detailBar.setUpData(
-            goal: "오늘도 행복한 하루를 보내자 아자아자 화이팅",
-            jobs: ["직장인", "iOS"], interests: [],
-            follower: 0, followee: 312
-        )
     }
     
     private func configureUI() {
@@ -155,7 +139,53 @@ class ProfileViewController: UIViewController {
     
     private func bindViewModel() {
         
+        let input = ProfileViewModel.Input(
+            
+            didProfileButton: profileButton.rx.tap.asObservable(),
+            
+            didJobTap: detailBar.jobInterestView.jobView.rx.tapGesture().asObservable(),
+            
+            didInterestTap: detailBar.jobInterestView.interestView.rx.tapGesture().asObservable(),
+            didFolloweeTap: detailBar.followeeBlock.rx.tapGesture().asObservable(),
+            didFollowerTap: detailBar.followerBlock.rx.tapGesture().asObservable(),
+            
+            didContactTap: contactLink.rx.tapGesture().asObservable(),
+            didAccessibilityTap: accessibilityLink.rx.tapGesture().asObservable(),
+            didPasswordTap: passwordLink.rx.tapGesture().asObservable(),
+            didLogoutTap: logoutLink.rx.tapGesture().asObservable(),
+            didSignOutTap: signOutLink.rx.tapGesture().asObservable()
+        )
+        
+        let output = viewModel?.transform(input: input)
+        
+        output?.userDetail.subscribe(onNext: { userData in
+            self.setData(user: userData)
+        }).disposed(by: disposeBag)
     }
     
     
+    
+}
+
+extension ProfileViewController {
+    
+    func setData(user: UserDetail) {
+        nameLabel.text = user.name
+        emailLabel.text = user.email
+        
+        DispatchQueue.global().async {
+            guard let imageURL = URL(string: user.imagePath) else { return }
+            guard let imageData = try? Data(contentsOf: imageURL) else { return }
+            
+            DispatchQueue.main.async {
+                self.profileImageView.image = UIImage(data: imageData)
+            }
+        }
+        
+        detailBar.setUpData(
+            goal: user.goal,
+            jobs: user.job, interests: user.interest,
+            follower: user.follower, followee: user.followee
+        )
+    }
 }
