@@ -45,6 +45,9 @@
 		7D8129E9288A4331006C0A5D /* UserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129E8288A4331006C0A5D /* UserDetail.swift */; };
 		7D8129EB288A6C0E006C0A5D /* MyUserDetail.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D8129EA288A6C0D006C0A5D /* MyUserDetail.graphql */; };
 		7D8129ED288A7B5B006C0A5D /* ProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129EC288A7B5B006C0A5D /* ProfileUseCase.swift */; };
+		7D8129EF288AD914006C0A5D /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129EE288AD914006C0A5D /* ProfileEditViewModel.swift */; };
+		7D8129F1288AD92A006C0A5D /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129F0288AD92A006C0A5D /* ProfileEditViewController.swift */; };
+		7D8129F4288AE277006C0A5D /* ProfileEditFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129F3288AE277006C0A5D /* ProfileEditFieldView.swift */; };
 		7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */; };
 		7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */; };
 		7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */; };
@@ -253,6 +256,9 @@
 		7D8129E8288A4331006C0A5D /* UserDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetail.swift; sourceTree = "<group>"; };
 		7D8129EA288A6C0D006C0A5D /* MyUserDetail.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = MyUserDetail.graphql; sourceTree = "<group>"; };
 		7D8129EC288A7B5B006C0A5D /* ProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUseCase.swift; sourceTree = "<group>"; };
+		7D8129EE288AD914006C0A5D /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
+		7D8129F0288AD92A006C0A5D /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
+		7D8129F3288AE277006C0A5D /* ProfileEditFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditFieldView.swift; sourceTree = "<group>"; };
 		7D8E4E832882A9D70035FB7E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCoordinator.swift; sourceTree = "<group>"; };
@@ -591,6 +597,7 @@
 			isa = PBXGroup;
 			children = (
 				7D8129C82886F320006C0A5D /* ProfileViewModel.swift */,
+				7D8129EE288AD914006C0A5D /* ProfileEditViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -607,12 +614,22 @@
 			isa = PBXGroup;
 			children = (
 				7D8129CA2886F66E006C0A5D /* ProfileViewController.swift */,
+				7D8129F0288AD92A006C0A5D /* ProfileEditViewController.swift */,
 				7D8129DD28894693006C0A5D /* SubView */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
 		7D8129DD28894693006C0A5D /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				7D8129F2288AE261006C0A5D /* ProfileDetail */,
+				7D8129F3288AE277006C0A5D /* ProfileEditFieldView.swift */,
+			);
+			path = SubView;
+			sourceTree = "<group>";
+		};
+		7D8129F2288AE261006C0A5D /* ProfileDetail */ = {
 			isa = PBXGroup;
 			children = (
 				7D8129D62888E6BD006C0A5D /* ProfileDetailView.swift */,
@@ -623,7 +640,7 @@
 				7D8129E62889A89C006C0A5D /* ProfileDetailCollectionCell.swift */,
 				7D8129DE2889484F006C0A5D /* ProfileDetailHelperView.swift */,
 			);
-			path = SubView;
+			path = ProfileDetail;
 			sourceTree = "<group>";
 		};
 		7DA4AB6E28586602009E91FB /* ViewModel */ = {
@@ -1557,6 +1574,7 @@
 				7DF949C8283B6F1F007F84C5 /* CommonShape.swift in Sources */,
 				7D0A6A362881521400CFE61D /* MainUseCase.swift in Sources */,
 				7DEA177C2846006A00F6B990 /* WSquareImageView.swift in Sources */,
+				7D8129EF288AD914006C0A5D /* ProfileEditViewModel.swift in Sources */,
 				F32F72502853AEE00056B189 /* CategoryDetailViewController.swift in Sources */,
 				7D6B911728449F610044E217 /* WCategoryTitleLabel.swift in Sources */,
 				7DC166C228372ACF00F1A8F1 /* Inset.swift in Sources */,
@@ -1564,6 +1582,7 @@
 				F336F3672886ECEE005B57A0 /* RepeatTabViewController.swift in Sources */,
 				F3AA9E1B2869FEFC00F71559 /* PasswordFindViewModel.swift in Sources */,
 				F3AA9E1D2869FF1E00F71559 /* PasswordFindCoordinator.swift in Sources */,
+				7D8129F1288AD92A006C0A5D /* ProfileEditViewController.swift in Sources */,
 				F30EBCCD288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift in Sources */,
 				F3B0026E287D68F100D6BB1D /* FollwingUser.swift in Sources */,
 				F3B00273287D68FA00D6BB1D /* UserSummary.swift in Sources */,
@@ -1600,6 +1619,7 @@
 				F30EBCDB28817A2400ECB48D /* CategoryEditCoordinatorType.swift in Sources */,
 				F30EBCF028828C3C00ECB48D /* WFilterButtton.swift in Sources */,
 				F3B00274287D68FA00D6BB1D /* ScheduleSort.swift in Sources */,
+				7D8129F4288AE277006C0A5D /* ProfileEditFieldView.swift in Sources */,
 				F30EBCD328807B2600ECB48D /* API.swift in Sources */,
 				7D6B911528449A760044E217 /* WIconLabel.swift in Sources */,
 				F37868532861D28C00BEEC81 /* CategoryAddCoordinator.swift in Sources */,

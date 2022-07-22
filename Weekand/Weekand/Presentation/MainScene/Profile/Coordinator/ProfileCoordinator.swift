@@ -32,6 +32,14 @@ class ProfileCoordinator: Coordinator {
         self.navigationController.pushViewController(profileViewController, animated: true)
     }
     
+    /// 프로필 설정으로 이동
+    func pushProfileEditViewController() {
+        
+        let profileEditViewController = ProfileEditViewController()
+        profileEditViewController.viewModel = ProfileEditViewModel(coordinator: self, useCase: profileUseCase)
+        self.navigationController.pushViewController(profileEditViewController, animated: true)
+    }
+    
     
     func finish() {
         self.navigationController.dismiss(animated: true)

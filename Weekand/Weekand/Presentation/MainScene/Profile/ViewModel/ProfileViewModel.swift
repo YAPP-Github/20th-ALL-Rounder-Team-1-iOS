@@ -31,7 +31,6 @@ class ProfileViewModel: ViewModelType {
             isMyPage = false
         }
         
-        print(userId)
         getMyUserProfile()
     }
     
@@ -63,7 +62,7 @@ extension ProfileViewModel {
     func transform(input: Input) -> Output {
         
         input.didProfileButton.subscribe(onNext: { _ in
-            print("프로필")
+            self.coordinator?.pushProfileEditViewController()
         }).disposed(by: disposeBag)
         
         // 직업 관심사
@@ -112,6 +111,7 @@ extension ProfileViewModel {
 
 extension ProfileViewModel {
     
+    /// 내 프로필 가져오기
     private func getMyUserProfile() {
         
         self.profileUseCase.myProfileDetail().debug()
@@ -123,6 +123,7 @@ extension ProfileViewModel {
         .disposed(by: disposeBag)
     }
     
+    /// 남의 프로필 가져오기
     private func getUserProfile(id: String) {
         PublishRelay<UserDetail>.just(UserDetail.defaultData).bind(to: self.userDeatil).disposed(by: self.disposeBag)
     }

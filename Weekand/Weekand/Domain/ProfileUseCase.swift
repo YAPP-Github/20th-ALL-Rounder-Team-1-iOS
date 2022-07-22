@@ -13,7 +13,12 @@ final class ProfileUseCase {
     func myProfileDetail() -> Single<UserDetail> {
         return NetWork.shared.fetch(query: MyUserDetailQuery())
             .map {
-                UserDetail(model: $0.user!)
+                if let userData = $0.user {
+                    return UserDetail(model: userData)
+                } else {
+                    return UserDetail.defaultData
+                }
+                
             }.asSingle()
     }
 }
