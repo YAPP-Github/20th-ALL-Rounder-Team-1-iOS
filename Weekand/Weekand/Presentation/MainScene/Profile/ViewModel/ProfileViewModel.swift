@@ -31,6 +31,7 @@ class ProfileViewModel: ViewModelType {
             isMyPage = false
         }
         
+        print(userId)
         getMyUserProfile()
     }
     

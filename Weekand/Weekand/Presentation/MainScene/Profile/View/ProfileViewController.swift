@@ -189,5 +189,30 @@ extension ProfileViewController {
             jobs: user.job, interests: user.interest,
             follower: user.follower, followee: user.followee
         )
+        
+        // 다른유저의 프로필화면일 경우 일부 기능 수정 (Default = 내 프로필)
+        if UserDataStorage.shared.userID != viewModel?.userId {
+            
+            bottomStack.isHidden = true
+            
+            // TODO: 내가 팔로우하고 있는지 request -> 버튼 변경
+            let isFollowing = Bool.random()
+            let followButton = WDefaultButton(title: "팔로우", style: .filled, font: WFont.subHead1())
+            let followingButton = WDefaultButton(title: "팔로잉", style: .tint, font: WFont.subHead1())
+            profileButton = isFollowing ? followingButton : followButton
+            
+            if user.job.isEmpty {
+                
+                if user.interest.isEmpty {
+                    detailBar.jobInterestView.isHidden = true
+                } else {
+                    detailBar.jobInterestView.jobView.isHidden = true
+                }
+            } else if user.interest.isEmpty {
+                detailBar.jobInterestView.interestView.isHidden = true
+            }
+        }
     }
+    
+    
 }
