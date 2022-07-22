@@ -23,7 +23,7 @@ class RepeatRadioStackView: UIStackView {
     
     lazy var calendarContainerView = UIView().then {
         $0.backgroundColor = .white
-        $0.isHidden = true
+        //$0.isHidden = true
     }
     
     let calendarView = WCalendarView()
@@ -42,9 +42,10 @@ class RepeatRadioStackView: UIStackView {
         axis = .vertical
         distribution = .fill
         alignment = .fill
-        spacing = 10
+        spacing = 5
         
         tableView.allowsMultipleSelection = false
+        tableView.isScrollEnabled = false
         tableView.separatorStyle = .none
         
         self.addArrangedSubview(namelabel)
@@ -53,7 +54,7 @@ class RepeatRadioStackView: UIStackView {
         self.addArrangedSubview(calendarContainerView)
         
         tableView.snp.makeConstraints { make in
-            make.height.equalTo(100)
+            make.height.equalTo(90)
         }
         
         dividerLine.snp.makeConstraints { make in
@@ -64,7 +65,7 @@ class RepeatRadioStackView: UIStackView {
         
         calendarContainerView.snp.makeConstraints { make in
             make.trailing.leading.equalToSuperview()
-            make.height.equalTo(350)
+            make.height.equalTo(300)
         }
         
         calendarView.snp.makeConstraints { make in

@@ -65,6 +65,7 @@ class WeekRepeatViewController: UIViewController {
         let calendar = NSCalendar.current
         let component = calendar.component(.weekday, from: Date())
         repeatRadioStackView.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
+        Array(0..<7).forEach { weekCollecitonView.deselectItem(at: IndexPath(item: $0, section: 0), animated: false) }
         weekCollecitonView.selectItem(at: IndexPath(item: component - 1, section: 0), animated: false, scrollPosition: .centeredHorizontally)
         let weeks = weekCollecitonView
                     .indexPathsForSelectedItems?
@@ -110,7 +111,7 @@ class WeekRepeatViewController: UIViewController {
         self.view.addSubview(buttonStackView)
         
         weekCollecitonView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(60)
+            make.top.equalToSuperview().offset(50)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(45)
         }
