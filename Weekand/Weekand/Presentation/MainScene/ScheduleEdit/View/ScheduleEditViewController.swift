@@ -18,7 +18,12 @@ class ScheduleEditViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     var viewModel: ScheduleEditViewModel?
     
-    var selectedCategory: Category?
+    var selectedCategory: Category? {
+        didSet {
+            // TODO: forced optional
+            self.categoryStackView.setCategory(self.selectedCategory!)
+        }
+    }
     
     lazy var closeButton = UIBarButtonItem().then {
         $0.image = UIImage(named: "close")
@@ -73,11 +78,6 @@ class ScheduleEditViewController: BaseViewController {
         setupView()
         configureUI()
         bindViewModel()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         setCategory()
     }
     
@@ -235,7 +235,7 @@ class ScheduleEditViewController: BaseViewController {
         self.viewModel?.defaultCategory
             .observe(on: MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] category in
-                self?.categoryStackView.setCategory(category)
+                self?.selectedCategory = category
         })
         .disposed(by: self.disposeBag)
     }

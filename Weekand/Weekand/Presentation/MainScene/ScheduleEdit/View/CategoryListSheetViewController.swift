@@ -44,7 +44,7 @@ class CategoryListSheetViewController: BottomSheetViewController {
     
     // stored property
     
-    var selectedCategory: Category?
+    var selectedCategory = PublishRelay<Category>()
     var categoryCount: Int = 10
     var refreshListCount: Int = 8
     var page: Int = 0
@@ -66,6 +66,7 @@ class CategoryListSheetViewController: BottomSheetViewController {
     }
     
     private func setupView() {
+        tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.bounces = false
         tableView.showsVerticalScrollIndicator = false
@@ -93,6 +94,12 @@ class CategoryListSheetViewController: BottomSheetViewController {
     }
     
     private func bindViewModel() {
+        
+        let input = CategoryListSheetViewModel.Input(
+            selectedCategory: selectedCategory
+        )
+        
+        let _ = viewModel?.transform(input: input)
         
         self.viewModel?.categoryList
             .observe(on: MainScheduler.asyncInstance)
@@ -129,6 +136,15 @@ extension CategoryListSheetViewController {
         var snapshot = dataSource.snapshot()
         snapshot.appendItems(list, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: false)
+    }
+}
+
+extension CategoryListSheetViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let category = dataSource.itemIdentifier(for: indexPath) else {
+            return
+        }
+        self.selectedCategory.accept(category)
     }
 }
 

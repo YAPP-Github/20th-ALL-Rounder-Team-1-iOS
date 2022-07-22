@@ -41,6 +41,10 @@ class ScheduleEditCoordinator: Coordinator {
         self.navigationController.present(categoryListSheetViewController, animated: true, completion: nil)
     }
     
+    func sendCategoryFromSheet(category: Category) {
+        scheduleEditViewController.selectedCategory = category
+    }
+    
     func finish() {
         self.navigationController.dismiss(animated: true)
     }

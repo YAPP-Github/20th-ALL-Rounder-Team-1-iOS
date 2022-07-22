@@ -30,12 +30,19 @@ class CategoryListSheetViewModel: ViewModelType {
 extension CategoryListSheetViewModel {
     
     struct Input {
+        let selectedCategory: PublishRelay<Category>
     }
     
     struct Output { }
     
     @discardableResult
     func transform(input: Input) -> Output {
+        
+        input.selectedCategory.subscribe(onNext: { [weak self] category in
+            self?.coordinator?.sendCategoryFromSheet(category: category)
+            self?.coordinator?.finish()
+        })
+        .disposed(by: disposeBag)
         
         return Output()
     }
