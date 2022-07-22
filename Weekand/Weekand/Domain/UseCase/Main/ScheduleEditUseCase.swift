@@ -15,4 +15,21 @@ final class ScheduleEditUseCase {
             .map { $0.scheduleCategories }
             .asSingle()
         }
+    
+    func createSchedule(input: ScheduleInputModel) -> Single<Bool> {
+        let scheduleInputModel = ScheduleInput(
+            name: input.name,
+            categoryId: input.categoryId,
+            dateTimeStart: input.dateStart.toTimestamp(),
+            dateTimeEnd: input.dateEnd.toTimestamp(),
+            repeatType: input.repeatType.toModel(),
+            repeatSelectedValue: input.repeatSelectedValue?.map { $0.toModel() },
+            repeatEnd: input.repeatEnd?.toTimestamp(),
+            memo: input.memo
+        )
+        
+        return NetWork.shared.perform(mutation: CreateScheduleMutation(input: scheduleInputModel))
+            .map { $0.createSchedule }
+            .asSingle()
+        }
 }

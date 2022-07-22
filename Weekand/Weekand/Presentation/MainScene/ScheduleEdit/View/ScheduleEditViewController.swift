@@ -208,12 +208,13 @@ class ScheduleEditViewController: BaseViewController {
             startDateDidSelectEvent: startDateTimeStackView.calendarView.calendar.rx.didSelect.asObservable(),
             endDateDidSelectEvent: endDateTimeStackView.calendarView.calendar.rx.didSelect.asObservable(),
             repeatButtonDidTapEvent: addInformationContainerView.repeatButton.rx.tap.asObservable(),
-            nameTextFieldDidEditEvent: nameStackView.textField.rx.text.orEmpty.asObservable(),
+            nameTextFieldDidEditEvent: nameStackView.textField.rx.text.asObservable(),
             selectedDateTimes: [self.selectedStartDate, self.selectedStartTime, self.selectedEndDate, self.selectedEndTime],
             selectedCategory: selectedCategory,
             selectedRepeatType: selectedRepeatType,
             selectedRepeatSelectedValue: selectedRepeatSelectedValue,
-            selectedRepeatEnd: selectedRepeatEnd
+            selectedRepeatEnd: selectedRepeatEnd,
+            memoTextViewDidEditEvent: memoStackView.textView.rx.text.asObservable()
         )
         
         let output = viewModel?.transform(input: input)

@@ -45,12 +45,13 @@ class ScheduleEditViewModel: ViewModelType {
         let startDateDidSelectEvent: Observable<Date>
         let endDateDidSelectEvent: Observable<Date>
         let repeatButtonDidTapEvent: Observable<Void>
-        let nameTextFieldDidEditEvent: Observable<String>
+        let nameTextFieldDidEditEvent: Observable<String?>
         let selectedDateTimes: [BehaviorRelay<Date>]
         let selectedCategory: BehaviorRelay<Category?>
         let selectedRepeatType: BehaviorRelay<ScheduleRepeatType>
         let selectedRepeatSelectedValue: BehaviorRelay<[ScheduleWeek]>
         let selectedRepeatEnd: BehaviorRelay<Date?>
+        let memoTextViewDidEditEvent: Observable<String?>
     }
     
     struct Output {
@@ -63,17 +64,42 @@ class ScheduleEditViewModel: ViewModelType {
         
         let combinedDateTimes = Observable.combineLatest(input.selectedDateTimes)
         let validNameInput = input.nameTextFieldDidEditEvent.map(vaildInput)
+        
         let combinedInputs = Observable.combineLatest(
              combinedDateTimes,
              input.nameTextFieldDidEditEvent,
              input.selectedCategory,
              input.selectedRepeatType,
              input.selectedRepeatSelectedValue,
-             input.selectedRepeatEnd)
+             input.selectedRepeatEnd,
+             input.memoTextViewDidEditEvent)
         
         input.confirmButtonDidTapEvent.withLatestFrom(combinedInputs)
-            .subscribe(onNext: { [weak self] dates, nameText, category, repeatType, repeatSelectValue, repeatEnd in
-                print(dates, nameText, category, repeatType, repeatSelectValue, repeatEnd)
+            .subscribe(onNext: { [weak self] dates, nameText, category, repeatType, repeatSelectValue, repeatEnd, memo in
+                print(dates[1], nameText, category, repeatType, repeatSelectValue, repeatEnd, memo)
+                guard let nameText = nameText,
+                      let category = category,
+                      let memo = memo else {
+                    return
+                }
+                
+                guard memo.count <= 500 else {
+                    print("error")
+                    return
+                }
+                
+                let scheduleInputModel = ScheduleInputModel(
+                    name: nameText,
+                    categoryId: category.serverID,
+                    dateStart: dates[1],
+                    dateEnd: dates[3],
+                    repeatType: repeatType,
+                    repeatSelectedValue: repeatSelectValue,
+                    repeatEnd: repeatEnd,
+                    memo: memo
+                )
+            
+                self?.createSchedule(scheduleInputModel)
             })
             .disposed(by: disposeBag)
         
@@ -154,8 +180,16 @@ class ScheduleEditViewModel: ViewModelType {
         .disposed(by: disposeBag)
     }
     
-    func vaildInput(name: String) -> Bool {
-        return !name.isEmpty
+    func vaildInput(name: String?) -> Bool {
+        if let name = name {
+            if name.isEmpty {
+                return false
+            } else {
+                return true
+            }
+        } else {
+            return false
+        }
     }
 }
 
@@ -174,6 +208,15 @@ extension ScheduleEditViewModel {
                 self.defaultCategory.accept(category)
             }, onFailure: { error in
                 print(error)
+            }, onDisposed: nil)
+            .disposed(by: disposeBag)
+    }
+    
+    private func createSchedule(_ scheduleInputModel: ScheduleInputModel) {
+        self.scheduleEditUseCase.createSchedule(input: scheduleInputModel)
+            .subscribe(onSuccess: { isSucceed in
+                print(isSucceed)
+            }, onFailure: { _ in
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }

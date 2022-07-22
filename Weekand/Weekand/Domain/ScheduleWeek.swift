@@ -29,3 +29,24 @@ enum ScheduleWeek: CaseIterable {
         }
     }
 }
+
+extension ScheduleWeek {
+    func toModel() -> Week {
+        switch self {
+        case .sunday:
+            return Week.sunday
+        case .monday:
+            return Week.monday
+        case .thuesday:
+            return Week.tuesday
+        case .wednesday:
+            return Week.wednesday
+        case .thursday:
+            return Week.thursday
+        case .friday:
+            return Week.friday
+        case .saturday:
+            return Week.saturday
+        }
+    }
+}

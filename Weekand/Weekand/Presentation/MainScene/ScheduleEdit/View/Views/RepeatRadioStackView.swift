@@ -23,7 +23,7 @@ class RepeatRadioStackView: UIStackView {
     
     lazy var calendarContainerView = UIView().then {
         $0.backgroundColor = .white
-        //$0.isHidden = true
+        $0.isHidden = true
     }
     
     let calendarView = WCalendarView()
