@@ -50,6 +50,7 @@
 		7D8129F4288AE277006C0A5D /* ProfileEditFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129F3288AE277006C0A5D /* ProfileEditFieldView.swift */; };
 		7D8129F6288BDE30006C0A5D /* SelectionSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129F5288BDE30006C0A5D /* SelectionSheetViewModel.swift */; };
 		7D8129F8288BDE3C006C0A5D /* SelectionSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129F7288BDE3C006C0A5D /* SelectionSheetViewController.swift */; };
+		7D8129FA288BF130006C0A5D /* UserUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129F9288BF130006C0A5D /* UserUpdate.swift */; };
 		7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */; };
 		7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */; };
 		7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */; };
@@ -263,6 +264,7 @@
 		7D8129F3288AE277006C0A5D /* ProfileEditFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditFieldView.swift; sourceTree = "<group>"; };
 		7D8129F5288BDE30006C0A5D /* SelectionSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionSheetViewModel.swift; sourceTree = "<group>"; };
 		7D8129F7288BDE3C006C0A5D /* SelectionSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionSheetViewController.swift; sourceTree = "<group>"; };
+		7D8129F9288BF130006C0A5D /* UserUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUpdate.swift; sourceTree = "<group>"; };
 		7D8E4E832882A9D70035FB7E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCoordinator.swift; sourceTree = "<group>"; };
@@ -702,6 +704,7 @@
 				F3B00272287D68FA00D6BB1D /* SignUpModel.swift */,
 				F3B00270287D68FA00D6BB1D /* UserSummary.swift */,
 				7D8129E8288A4331006C0A5D /* UserDetail.swift */,
+				7D8129F9288BF130006C0A5D /* UserUpdate.swift */,
 				F3B0026A287D68F100D6BB1D /* FollwingUser.swift */,
 				F3B0025C287D686200D6BB1D /* ScheduleMain.swift */,
 				F30EBCED2881A4D900ECB48D /* UserSummaryTemp.swift */,
@@ -1591,6 +1594,7 @@
 				F3AA9E1B2869FEFC00F71559 /* PasswordFindViewModel.swift in Sources */,
 				F3AA9E1D2869FF1E00F71559 /* PasswordFindCoordinator.swift in Sources */,
 				7D8129F1288AD92A006C0A5D /* ProfileEditViewController.swift in Sources */,
+				7D8129FA288BF130006C0A5D /* UserUpdate.swift in Sources */,
 				F30EBCCD288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift in Sources */,
 				F3B0026E287D68F100D6BB1D /* FollwingUser.swift in Sources */,
 				F3B00273287D68FA00D6BB1D /* UserSummary.swift in Sources */,

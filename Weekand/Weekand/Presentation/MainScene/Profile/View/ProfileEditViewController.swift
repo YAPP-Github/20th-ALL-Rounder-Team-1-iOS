@@ -16,8 +16,16 @@ class ProfileEditViewController: UIViewController {
     var viewModel: ProfileEditViewModel?
     private let disposeBag = DisposeBag()
     
-    var selectedJobs: [String] = []
-    var selectedInterests: [String] = []
+    var selectedJobs: [String] = [] {
+        didSet {
+            self.setJob(selected: self.selectedJobs)
+        }
+    }
+    var selectedInterests: [String] = [] {
+        didSet {
+            self.setInterest(selected: self.selectedInterests)
+        }
+    }
     
     lazy var profileImageView = UIImageView().then {
         $0.layer.cornerRadius = 20
@@ -107,6 +115,19 @@ class ProfileEditViewController: UIViewController {
             self.selectedJobs = userData.job
             self.selectedInterests = userData.interest
         }).disposed(by: disposeBag)
+        
+        bottomButton.rx.tap.subscribe(onNext: { _ in
+            
+            let update = UserUpdate(
+                name: self.nickNameField.textField.text ?? "",
+                goal: self.goalField.textField.text ?? "",
+                imageFileName: "",
+                job: self.selectedJobs,
+                interest: self.selectedInterests
+            )
+            
+            PublishSubject<UserUpdate>.just(update).bind(to: self.viewModel!.userUpdate).disposed(by: self.disposeBag)
+        }).disposed(by: disposeBag)
     }
 }
 
@@ -126,5 +147,13 @@ extension ProfileEditViewController {
         goalField.textField.text = user.goal
         jobField.textField.text = user.job.joined(separator: ", ")
         interestField.textField.text = user.interest.joined(separator: ", ")
+    }
+    
+    func setJob(selected: [String]) {
+        self.jobField.textField.text = selected.joined(separator: ", ")
+    }
+    
+    func setInterest(selected: [String]) {
+        self.interestField.textField.text = selected.joined(separator: ", ")
     }
 }

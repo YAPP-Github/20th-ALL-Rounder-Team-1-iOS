@@ -15,13 +15,24 @@ class ProfileEditViewModel: ViewModelType {
     private let profileUseCase: ProfileUseCase
     private let disposeBag = DisposeBag()
     
+    var alertText = PublishSubject<String>()
     var userDetail = BehaviorRelay<UserDetail>(value: UserDetail.defaultData)
+    var userUpdate = PublishSubject<UserUpdate>()
     
     init (coordinator: ProfileCoordinator, useCase: ProfileUseCase) {
         self.coordinator = coordinator
         self.profileUseCase = useCase
         
         getMyUserProfile()
+        
+        userUpdate.subscribe(onNext: { update in
+            print(update)
+            
+            if update.name.count < 3 {
+                PublishSubject<String>.just("닉네임은 최소 3글자 이상이어야 합니다.").bind(to: self.alertText).disposed(by: self.disposeBag)
+            }
+            
+        }).disposed(by: disposeBag)
     }
     
 }
@@ -37,6 +48,7 @@ extension ProfileEditViewModel {
     
     struct Output {
         let userDetail: Observable<UserDetail>
+        let alertText: Observable<String>
     }
     
     @discardableResult
@@ -54,11 +66,14 @@ extension ProfileEditViewModel {
             self.coordinator?.presentInterestsInformationSheet()
         }).disposed(by: disposeBag)
         
-        input.didButtonTap.subscribe(onNext: { _ in
-            print("Button")
+        input.didButtonTap.subscribe(onNext: { update in
+            print(update)
         }).disposed(by: disposeBag)
         
-        return Output(userDetail: userDetail.asObservable())
+        return Output(
+            userDetail: userDetail.asObservable(),
+            alertText: alertText.asObservable()
+        )
     }
 }
 
