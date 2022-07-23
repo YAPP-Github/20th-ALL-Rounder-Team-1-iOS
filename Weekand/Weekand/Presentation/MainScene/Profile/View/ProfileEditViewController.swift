@@ -116,6 +116,10 @@ class ProfileEditViewController: UIViewController {
             self.selectedInterests = userData.interest
         }).disposed(by: disposeBag)
         
+        output?.alertText.subscribe(onNext: { text in
+            self.showToast(message: text)
+        }).disposed(by: disposeBag)
+        
         bottomButton.rx.tap.subscribe(onNext: { _ in
             
             let update = UserUpdate(

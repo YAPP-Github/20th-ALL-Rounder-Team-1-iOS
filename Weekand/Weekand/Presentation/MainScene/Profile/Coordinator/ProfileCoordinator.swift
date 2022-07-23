@@ -67,7 +67,6 @@ class ProfileCoordinator: Coordinator {
     func setInterestsInformations(_ selectedInterests: [String]) {
         profileEditViewController.selectedInterests = selectedInterests
     }
-
     
     func finish() {
         self.navigationController.dismiss(animated: true)
