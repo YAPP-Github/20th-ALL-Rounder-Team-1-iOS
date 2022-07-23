@@ -61,17 +61,18 @@ extension ProfileViewModel {
     @discardableResult
     func transform(input: Input) -> Output {
         
+        // 프로필 수정 버튼
         input.didProfileButton.subscribe(onNext: { _ in
             self.coordinator?.pushProfileEditViewController()
         }).disposed(by: disposeBag)
         
         // 직업 관심사
         input.didJobTap.when(.recognized).subscribe(onNext: { _ in
-            print("직업")
+            self.coordinator?.pushProfileEditViewController()   // TODO: 직업선택 Sheet 띄우기
         }).disposed(by: disposeBag)
         
         input.didInterestTap.when(.recognized).subscribe(onNext: { _ in
-            print("관심사")
+            self.coordinator?.pushProfileEditViewController()   // TODO: 관심사선택 Sheet 띄우기
         }).disposed(by: disposeBag)
 
         // 팔로워 팔로우

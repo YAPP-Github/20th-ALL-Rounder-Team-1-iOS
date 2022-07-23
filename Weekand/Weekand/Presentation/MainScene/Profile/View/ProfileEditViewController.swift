@@ -16,6 +16,9 @@ class ProfileEditViewController: UIViewController {
     var viewModel: ProfileEditViewModel?
     private let disposeBag = DisposeBag()
     
+    var selectedJobs: [String] = []
+    var selectedInterests: [String] = []
+    
     lazy var profileImageView = UIImageView().then {
         $0.layer.cornerRadius = 20
         $0.clipsToBounds = true
@@ -101,6 +104,8 @@ class ProfileEditViewController: UIViewController {
         
         output?.userDetail.subscribe(onNext: { userData in
             self.setData(user: userData)
+            self.selectedJobs = userData.job
+            self.selectedInterests = userData.interest
         }).disposed(by: disposeBag)
     }
 }

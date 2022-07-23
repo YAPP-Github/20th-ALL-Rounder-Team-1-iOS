@@ -47,11 +47,11 @@ extension ProfileEditViewModel {
         }).disposed(by: disposeBag)
         
         input.didJobTap.when(.recognized).subscribe(onNext: { _ in
-            print("Job")
+            self.coordinator?.presentJobInformationSheet()
         }).disposed(by: disposeBag)
         
         input.didInterestTap.when(.recognized).subscribe(onNext: { _ in
-            print("Interest")
+            self.coordinator?.presentInterestsInformationSheet()
         }).disposed(by: disposeBag)
         
         input.didButtonTap.subscribe(onNext: { _ in
