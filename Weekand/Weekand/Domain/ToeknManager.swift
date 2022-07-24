@@ -13,7 +13,7 @@ class ToeknManager {
     static let shared = ToeknManager()
     private let disposeBag = DisposeBag()
 
-    var isExpired: Bool = true
+    var isExpired: Bool = false
     
     private init() {}
     

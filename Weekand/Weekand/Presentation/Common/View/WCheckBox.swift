@@ -45,9 +45,5 @@ class WCheckBox: UIButton {
     private func setUpView(isChecked: Bool) {
         self.isChecked = isChecked
     }
-    
-    func tap() {
-        isChecked = !isChecked
-    }
 
 }

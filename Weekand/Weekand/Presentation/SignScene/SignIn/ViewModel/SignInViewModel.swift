@@ -25,6 +25,7 @@ class SignInViewModel: ViewModelType {
         let autoSignButtonDidTapEvent: Observable<Void>
         let passwordFindButtonDidTapEvent: Observable<Void>
         let nextButtonDidTapEvent: Observable<Void>
+        let isSelectAutoSign: BehaviorRelay<Bool>
     }
     
     struct Output {
@@ -46,6 +47,12 @@ class SignInViewModel: ViewModelType {
                                         input.emailTextFieldDidEditEvent,
                                         input.passwordTextFieldDidEditEvent
                                     )
+        
+        input.isSelectAutoSign
+            .subscribe(onNext: { isChecked in
+                UserDefaults.standard.set(isChecked, forKey: "autoSign")
+            })
+            .disposed(by: disposeBag)
                         
         input.nextButtonDidTapEvent
                 .withLatestFrom(isCheckEmailPassword)
