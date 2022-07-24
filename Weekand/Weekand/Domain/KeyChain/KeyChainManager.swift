@@ -9,30 +9,30 @@ import Foundation
 
 class KeyChainManager {
     
-    let shared = KeyChainManager()
+    static let shared = KeyChainManager()
     private let service = Bundle.main.bundleIdentifier
     
     private init() { }
     
-    func create(account: String, data: String, KSecClass: CFString) throws {
+    func create(account: KeyChainAccount, data: String) throws {
         let query = [kSecAttrService: service,
-                     kSecClass: KSecClass,
-                     kSecAttrAccount: account,
-                     kSecValueData: data] as CFDictionary
+                     kSecClass: account.keyChainClass,
+                     kSecAttrAccount: account.description,
+                     kSecValueData: data.data(using: .utf8, allowLossyConversion: false)!] as CFDictionary
         
         SecItemDelete(query)
         
         let status = SecItemAdd(query, nil)
         
-        guard status == errSecSuccess else {
+        guard status == noErr else {
             throw KeyChainError.unhandledError(status: status)
         }
     }
     
-    func read(account: String, KSecClass: CFString) throws -> String {
+    func read(account: KeyChainAccount) throws -> String {
         let query = [kSecAttrService: service,
-                     kSecClass: KSecClass,
-                     kSecAttrAccount: account,
+                     kSecClass: account.keyChainClass,
+                     kSecAttrAccount: account.description,
                      kSecReturnData: true] as CFDictionary
         
         var dataTypeRef: AnyObject?
@@ -52,10 +52,10 @@ class KeyChainManager {
         }
     }
     
-    func delete(account: String, KSecClass: CFString) throws {
+    func delete(account: KeyChainAccount) throws {
         let query = [kSecAttrService: service,
-                     kSecClass: KSecClass,
-                     kSecAttrAccount: account] as CFDictionary
+                     kSecClass: account.keyChainClass,
+                     kSecAttrAccount: account.description] as CFDictionary
         
         let status = SecItemDelete(query)
         
