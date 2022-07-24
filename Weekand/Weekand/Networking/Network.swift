@@ -23,7 +23,7 @@ class NetWork {
         let store = ApolloStore(cache: InMemoryNormalizedCache())
         
         let sessionClient = URLSessionClient(sessionConfiguration: configuration, callbackQueue: .main)
-        let provider = NetworkInterceptorProvider(client: sessionClient, shouldInvalidateClientOnDeinit: true, store: store)
+        let provider = NetworkInterceptorProvider(store: store, client: sessionClient)
         let url = URL(string: Key.graphqlUrl)!
         
         let requestChainTransport = RequestChainNetworkTransport(

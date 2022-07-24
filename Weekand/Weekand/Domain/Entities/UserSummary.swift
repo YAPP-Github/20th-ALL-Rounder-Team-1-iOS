@@ -28,6 +28,6 @@ struct UserSummary {
         self.userId = model.id
         self.name = model.nickname
         self.goal = model.goal ?? ""
-        self.imagePath = model.profileUrl
+        self.imagePath = model.profileImageUrl
     }
 }

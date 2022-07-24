@@ -18,13 +18,23 @@ class AppCoordinator: Coordinator {
     }
 
     func start() {
-        // TODO: 자동 로그인 구현
-        showWelcomeScene()
+        if UserDefaults.standard.bool(forKey: "autoSign") {
+//            showMainScene()
+            showWelcomeScene()
+        } else {
+            showWelcomeScene()
+        }
     }
     
     private func showWelcomeScene() {
         let welcomeCoordinator = WelcomeCoordinator(navigationController: self.navigationController)
         childCoordinators.append(welcomeCoordinator)
         welcomeCoordinator.start()
+    }
+    
+    private func showMainScene() {
+        let mainCoordinator = MainCoordinator(navigationController: self.navigationController)
+        childCoordinators.append(mainCoordinator)
+        mainCoordinator.start()
     }
 }

@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import Then
 import RxSwift
+import RxCocoa
 
 class SignInViewController: BaseViewController {
     
@@ -67,6 +68,7 @@ class SignInViewController: BaseViewController {
     
     lazy var nextButton = WBottmButton(title: "로그인")
     
+    let isCheckedAutoSign = BehaviorRelay<Bool>(value: false)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,11 +112,13 @@ class SignInViewController: BaseViewController {
             passwordTextFieldDidEditEvent: passwordField.rx.text.orEmpty.asObservable(),
             autoSignButtonDidTapEvent: autoSignCheckBox.rx.tap.asObservable(),
             passwordFindButtonDidTapEvent: signUpLink.rx.tap.asObservable(),
-            nextButtonDidTapEvent: nextButton.rx.tap.asObservable()
+            nextButtonDidTapEvent: nextButton.rx.tap.asObservable(),
+            isSelectAutoSign: isCheckedAutoSign
         )
         
         autoSignCheckBox.rx.tap.subscribe(onNext: {
-            self.autoSignCheckBox.tap()
+            self.autoSignCheckBox.isChecked = !self.autoSignCheckBox.isChecked
+            self.isCheckedAutoSign.accept(self.autoSignCheckBox.isChecked)
         }).disposed(by: disposeBag)
         
         let output = viewModel.transform(input: input)
