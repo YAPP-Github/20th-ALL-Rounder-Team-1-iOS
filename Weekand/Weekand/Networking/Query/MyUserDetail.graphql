@@ -1,0 +1,13 @@
+query MyUserDetail {
+  user {
+    id
+    email
+    nickname
+    profileUrl
+    goal
+    followerCount
+    followeeCount
+    jobs
+    interests
+  }
+}

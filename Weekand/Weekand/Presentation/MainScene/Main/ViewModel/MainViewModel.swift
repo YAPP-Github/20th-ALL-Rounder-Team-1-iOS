@@ -101,15 +101,17 @@ extension MainViewModel {
         }).disposed(by: disposeBag)
         
         // UserSummary
-        input.didUserSummaryTap.subscribe(onNext: { [weak self] _ in
+        input.didUserSummaryTap.when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
             
-            if self?.isMySchedule ?? true {
-                print("To my Profile")
-                // TODO: 내 프로필로 이동
-            } else {
                 print("To \(self?.currentUserId ?? "") Profile")
-                // TODO: 남의 프로필로 이동
-            }
+                self?.coordinator?.showProfileScene(id: self?.currentUserId)
+                
+//            if self?.isMySchedule ?? true {
+//                print("To my Profile")
+//            } else {
+//                print("To \(self?.currentUserId ?? "") Profile")
+//            }
             
         }).disposed(by: disposeBag)
 
@@ -225,7 +227,6 @@ extension MainViewModel {
                 var snapshot = self.collectionViewDataSource.snapshot()
                 
                 if let first = snapshot.itemIdentifiers.first {
-                    
                     if !(self.isMySchedule) {
                         snapshot.insertItems([FollowingUser(userSummary: data)], beforeItem: first)
                         self.collectionViewDataSource.apply(snapshot)
@@ -235,6 +236,7 @@ extension MainViewModel {
                     self.collectionViewDataSource.apply(snapshot)
                 }
                 
+                self.currentUserId = data.userId
             }
             
         }).disposed(by: disposeBag)
@@ -286,6 +288,7 @@ extension MainViewModel {
     private func getUserSummary() {
         self.mainUseCase.userSummary().subscribe(onSuccess: { userData in
             PublishRelay<UserSummary>.just(userData).bind(to: self.userSummary).disposed(by: self.disposeBag)
+            
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
         }, onDisposed: nil)

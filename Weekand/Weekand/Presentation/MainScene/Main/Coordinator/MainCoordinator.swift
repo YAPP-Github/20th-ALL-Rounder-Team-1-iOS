@@ -46,6 +46,14 @@ class MainCoordinator: Coordinator {
         scheduleEditCoordinator.start()
     }
     
+    func showProfileScene(id: String?) {
+        let profileCoordinator = ProfileCoordinator(navigationController: self.navigationController, userId: id)
+        profileCoordinator.finishDelegate = self
+        childCoordinators.append(profileCoordinator)
+        profileCoordinator.start()
+    }
+    
+    /// 알람 화면
     func pushAlarmViewController() {
         let alarmViewController = AlarmViewController()
         alarmViewController.viewModel = AlarmViewModel()
