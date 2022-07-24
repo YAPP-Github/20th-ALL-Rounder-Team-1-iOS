@@ -29,3 +29,20 @@ enum ScheduleRepeatType {
         }
     }
 }
+
+extension ScheduleRepeatType {
+    func toModel() -> RepeatType {
+        switch self {
+        case .daily:
+            return RepeatType.daily
+        case .weekly:
+            return RepeatType.weekly
+        case .monthly:
+            return RepeatType.monthly
+        case .yearly:
+            return RepeatType.yearly
+        case .once:
+            return RepeatType.once
+        }
+    }
+}

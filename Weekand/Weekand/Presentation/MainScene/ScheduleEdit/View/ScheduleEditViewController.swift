@@ -10,15 +10,13 @@ import Then
 import SnapKit
 import RxSwift
 import RxCocoa
-import DropDown
 import FSCalendar
+import DeveloperToolsSupport
 
 class ScheduleEditViewController: BaseViewController {
 
     private let disposeBag = DisposeBag()
     var viewModel: ScheduleEditViewModel?
-    
-    var selectedCategory: Category?
     
     lazy var closeButton = UIBarButtonItem().then {
         $0.image = UIImage(named: "close")
@@ -30,7 +28,7 @@ class ScheduleEditViewController: BaseViewController {
         $0.disable(string: "완료")
     }
     lazy var nameStackView = WTextFieldStackView(fieldPlaceholder: "일정명을 입력해주세요.", nameText: "일정")
-    lazy var dropDownStackView = DropDownStackView()
+    lazy var categoryStackView = CategoryStackView()
     lazy var startDateTimeStackView = DateTimeStackView(
         nameText: "시작",
         dateText: dateFormatter.string(from: Date()),
@@ -41,6 +39,7 @@ class ScheduleEditViewController: BaseViewController {
         dateText: dateFormatter.string(from: Date()),
         timeText: timeFormatter.string(from: defaultEndTime))
     lazy var addInformationContainerView = AddInformationContainerView()
+    lazy var repeatStackView = RepeatStackView()
     lazy var memoStackView = MemoStackView(placeholder: "메모를 입력해주세요", nameText: "메모")
     
     lazy var dateFormatter = DateFormatter().then {
@@ -64,8 +63,45 @@ class ScheduleEditViewController: BaseViewController {
         return addedTime
     }
     
-    let didselectStartDate = PublishSubject<Date>()
-    let didselectEndDate = PublishSubject<Date>()
+    var category: Category? {
+        didSet {
+            // TODO: forced optional
+            self.categoryStackView.setCategory(self.category!)
+            self.selectedCategory.accept(self.category!)
+        }
+    }
+    
+    var repeatType: ScheduleRepeatType = .once {
+        didSet {
+            self.selectedRepeatType.accept(self.repeatType)
+        }
+    }
+    
+    var repeatSelectedValue: [ScheduleWeek] = [] {
+        didSet {
+            self.selectedRepeatSelectedValue.accept(self.repeatSelectedValue)
+        }
+    }
+    
+    var repeatEnd: Date? {
+        didSet {
+            self.selectedRepeatEnd.accept(self.repeatEnd)
+        }
+    }
+    
+    let isSelectedStartDate = BehaviorRelay(value: false)
+    let isSelectedStartTime = BehaviorRelay(value: false)
+    let isSelectedEndDate = BehaviorRelay(value: false)
+    let isSelectedEndTime = BehaviorRelay(value: false)
+    
+    let selectedStartDate = BehaviorRelay<Date>(value: Date())
+    let selectedStartTime = BehaviorRelay<Date>(value: Date())
+    let selectedEndDate = BehaviorRelay<Date>(value: Date())
+    let selectedEndTime = BehaviorRelay<Date>(value: Date())
+    let selectedCategory = BehaviorRelay<Category?>(value: nil)
+    let selectedRepeatType = BehaviorRelay<ScheduleRepeatType>(value: .once)
+    let selectedRepeatSelectedValue = BehaviorRelay<[ScheduleWeek]>(value: [])
+    let selectedRepeatEnd = BehaviorRelay<Date?>(value: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +109,7 @@ class ScheduleEditViewController: BaseViewController {
         setupView()
         configureUI()
         bindViewModel()
+        setCategory()
     }
     
     private func setupView() {
@@ -81,17 +118,9 @@ class ScheduleEditViewController: BaseViewController {
         navigationItem.leftBarButtonItem = closeButton
         stackView.spacing = 25
         
+        repeatStackView.isHidden = true
         memoStackView.isHidden = true
         memoStackView.textView.delegate = self
-        
-        dropDownStackView.dropDown.cellNib = UINib(nibName: "CategoryDropDownCell", bundle: nil)
-        dropDownStackView.dropDown.dataSource = ["공부", "자기 계발", "업무"]
-        let colorList: [Color] = [Color(id: 1, hexCode: "#FF9292"), Color(id: 2, hexCode: "#FFB27A"), Color(id: 3, hexCode: "#FFE600")]
-        dropDownStackView.dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
-            guard let cell = cell as? CategoryDropDownCell else { return }
-            
-            cell.colorView.backgroundColor = UIColor(hex: colorList[index].hexCode)
-        }
         
         startDateTimeStackView.timePicker.setDate(defaultStartTime, animated: false)
         startDateTimeStackView.timePicker.addTarget(self, action: #selector(startTimePickerValueDidChange(_:)), for: .valueChanged)
@@ -102,9 +131,10 @@ class ScheduleEditViewController: BaseViewController {
     private func configureUI() {
         [
             nameStackView,
-            dropDownStackView,
+            categoryStackView,
             startDateTimeStackView,
             endDateTimeStackView,
+            repeatStackView,
             memoStackView,
             addInformationContainerView
         ].forEach { stackView.addArrangedSubview($0) }
@@ -125,11 +155,104 @@ class ScheduleEditViewController: BaseViewController {
     }
     
     private func bindViewModel() {
-        let isSelectedStartDate = BehaviorRelay(value: false)
-        let isSelectedStartTime = BehaviorRelay(value: false)
-        let isSelectedEndDate = BehaviorRelay(value: false)
-        let isSelectedEndTime = BehaviorRelay(value: false)
+        bindDateTimeView()
         
+        Observable.zip(selectedRepeatType, selectedRepeatEnd)
+            .filter({ repeatType, _ in
+                repeatType != .once
+            })
+            .subscribe(onNext: { [weak self] repeatType, repeatEndDate in
+                var repeatText = ""
+                if let date = repeatEndDate {
+                    let dateString = self?.dateFormatter.string(from: date) ?? ""
+                    repeatText = "\(dateString)까지 \(repeatType.description)"
+                } else {
+                    repeatText = "\(repeatType.description)"
+                }
+                
+                self?.repeatStackView.setRepeatText(repeatText)
+                self?.repeatStackView.isHidden = false
+            })
+            .disposed(by: disposeBag)
+        
+        Observable.zip(selectedRepeatType, selectedRepeatSelectedValue, selectedRepeatEnd)
+            .filter({ repeatType, _, _ in
+                repeatType == .weekly
+            })
+            .subscribe(onNext: { [weak self] repeatType, repeatSelectedValue, repeatEndDate in
+                var repeatText = ""
+                let repeatSelectedValueText = repeatSelectedValue.map { $0.description }.joined(separator: ",")
+                if let date = repeatEndDate {
+                    let dateString = self?.dateFormatter.string(from: date) ?? ""
+                    repeatText = "\(dateString)까지 \(repeatType.description) \(repeatSelectedValueText)"
+                } else {
+                    repeatText = "\(repeatType.description) \(repeatSelectedValueText)"
+                }
+                self?.repeatStackView.setRepeatText(repeatText)
+                self?.repeatStackView.isHidden = false
+            })
+            .disposed(by: disposeBag)
+        
+        let input = ScheduleEditViewModel.Input(
+            closeButtonDidTapEvent: closeButton.rx.tap.asObservable(),
+            confirmButtonDidTapEvent: confirmButton.rx.tap.asObservable(),
+            categoryArrowDidTapEvent: categoryStackView.arrowButton.rx.tap.asObservable(),
+            isSelectedStartDate: isSelectedStartDate,
+            isSelectedStartTime: isSelectedStartTime,
+            isSelectedEndDate: isSelectedEndDate,
+            isSelectedEndTime: isSelectedEndTime,
+            startDateButtonDidTapEvent: startDateTimeStackView.dateButton.rx.tap.asObservable(),
+            startTimeButtonDidTapEvent: startDateTimeStackView.timeButton.rx.tap.asObservable(),
+            endDateButtonDidTapEvent: endDateTimeStackView.dateButton.rx.tap.asObservable(),
+            endTimeButtonDidTapEvent: endDateTimeStackView.timeButton.rx.tap.asObservable(),
+            startDateDidSelectEvent: startDateTimeStackView.calendarView.calendar.rx.didSelect.asObservable(),
+            endDateDidSelectEvent: endDateTimeStackView.calendarView.calendar.rx.didSelect.asObservable(),
+            repeatButtonDidTapEvent: addInformationContainerView.repeatButton.rx.tap.asObservable(),
+            nameTextFieldDidEditEvent: nameStackView.textField.rx.text.asObservable(),
+            selectedDateTimes: [self.selectedStartDate, self.selectedStartTime, self.selectedEndDate, self.selectedEndTime],
+            selectedCategory: selectedCategory,
+            selectedRepeatType: selectedRepeatType,
+            selectedRepeatSelectedValue: selectedRepeatSelectedValue,
+            selectedRepeatEnd: selectedRepeatEnd,
+            memoTextViewDidEditEvent: memoStackView.textView.rx.text.asObservable()
+        )
+        
+        let output = viewModel?.transform(input: input)
+        
+        output?.validNameInput.drive(onNext: { isValid in
+            if isValid {
+                self.confirmButton.enable(string: "완료")
+            } else {
+                self.confirmButton.disable(string: "완료")
+            }
+        }).disposed(by: disposeBag)
+        
+        output?.startDateDidSelectEvent.drive(onNext: { date in
+            let dateString = self.dateFormatter.string(from: date)
+            self.startDateTimeStackView.dateButton.setTitle(dateString, for: .normal, font: WFont.body1())
+            self.selectedStartDate.accept(date)
+        }).disposed(by: disposeBag)
+        
+        output?.endDateDidSelectEvent.drive(onNext: { date in
+            let dateString = self.dateFormatter.string(from: date)
+            self.endDateTimeStackView.dateButton.setTitle(dateString, for: .normal, font: WFont.body1())
+            self.selectedEndDate.accept(date)
+        }).disposed(by: disposeBag)
+        
+        addInformationContainerView.memoButton.rx.tap.subscribe(onNext: {
+            self.memoStackView.isHidden = false
+            self.addInformationContainerView.memoButton.isHidden = true
+        }).disposed(by: disposeBag)
+        
+        self.viewModel?.defaultCategory
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] category in
+                self?.category = category
+        })
+        .disposed(by: self.disposeBag)
+    }
+    
+    func bindDateTimeView() {
         isSelectedStartDate.asObservable()
             .bind(to: startDateTimeStackView.dateButton.rx.isSelected)
             .disposed(by: disposeBag)
@@ -145,37 +268,6 @@ class ScheduleEditViewController: BaseViewController {
         isSelectedEndTime.asObservable()
             .bind(to: endDateTimeStackView.timeButton.rx.isSelected)
             .disposed(by: disposeBag)
-        
-        let input = ScheduleEditViewModel.Input(
-            closeButtonDidTapEvent: closeButton.rx.tap.asObservable(),
-            isSelectedStartDate: isSelectedStartDate,
-            isSelectedStartTime: isSelectedStartTime,
-            isSelectedEndDate: isSelectedEndDate,
-            isSelectedEndTime: isSelectedEndTime,
-            startDateButtonDidTapEvent: startDateTimeStackView.dateButton.rx.tap.asObservable(),
-            startTimeButtonDidTapEvent: startDateTimeStackView.timeButton.rx.tap.asObservable(),
-            endDateButtonDidTapEvent: endDateTimeStackView.dateButton.rx.tap.asObservable(),
-            endTimeButtonDidTapEvent: endDateTimeStackView.timeButton.rx.tap.asObservable(),
-            startDateDidSelectEvent: startDateTimeStackView.calendarView.calendar.rx.didSelect.asObservable(),
-            endDateDidSelectEvent: endDateTimeStackView.calendarView.calendar.rx.didSelect.asObservable(),
-            repeatButtonDidTapEvent: addInformationContainerView.repeatButton.rx.tap.asObservable()
-        )
-        
-        let output = viewModel?.transform(input: input)
-        
-        output?.startDateDidSelectEvent.drive(onNext: { date in
-            let dateString = self.dateFormatter.string(from: date)
-            self.startDateTimeStackView.dateButton.setTitle(dateString, for: .normal, font: WFont.body1())
-        }).disposed(by: disposeBag)
-        
-        output?.endDateDidSelectEvent.drive(onNext: { date in
-            let dateString = self.dateFormatter.string(from: date)
-            self.endDateTimeStackView.dateButton.setTitle(dateString, for: .normal, font: WFont.body1())
-        }).disposed(by: disposeBag)
-        
-        dropDownStackView.arrowButton.rx.tap.subscribe(onNext: {
-            self.dropDownStackView.dropDown.show()
-        }).disposed(by: disposeBag)
         
         isSelectedStartDate.subscribe(onNext: { isSelected in
             UIView.transition(with: self.startDateTimeStackView.dateButton ?? UIButton(), duration: 0.3, options: .transitionCrossDissolve) {
@@ -232,11 +324,6 @@ class ScheduleEditViewController: BaseViewController {
                 
             }
         }).disposed(by: disposeBag)
-        
-        addInformationContainerView.memoButton.rx.tap.subscribe(onNext: {
-            self.memoStackView.isHidden = false
-            self.addInformationContainerView.memoButton.isHidden = true
-        }).disposed(by: disposeBag)
     }
 }
 
@@ -244,13 +331,13 @@ extension ScheduleEditViewController {
     @objc private func startTimePickerValueDidChange(_ datePicker: UIDatePicker) {
         let selectedTime = timeFormatter.string(from: datePicker.date)
         self.startDateTimeStackView.timeButton.setTitle(selectedTime, for: .normal, font: WFont.body1())
-        self.didselectStartDate.onNext(datePicker.date)
+        self.selectedStartTime.accept(datePicker.date)
     }
     
     @objc private func endTimePickerValueDidChange(_ datePicker: UIDatePicker) {
         let selectedTime = timeFormatter.string(from: datePicker.date)
         self.endDateTimeStackView.timeButton.setTitle(selectedTime, for: .normal, font: WFont.body1())
-        self.didselectEndDate.onNext(datePicker.date)
+        self.selectedStartDate.accept(datePicker.date)
     }
 }
 
@@ -267,5 +354,11 @@ extension ScheduleEditViewController: UITextViewDelegate {
             textView.text = memoStackView.textView.placeHolder
             textView.textColor = .gray400
         }
+    }
+}
+
+extension ScheduleEditViewController {
+    func setCategory() {
+        self.viewModel?.searchCategories()
     }
 }
