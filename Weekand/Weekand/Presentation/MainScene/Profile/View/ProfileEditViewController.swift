@@ -11,7 +11,7 @@ import Then
 import RxSwift
 import RxGesture
 
-class ProfileEditViewController: UIViewController {
+class ProfileEditViewController: BaseViewController {
     
     var viewModel: ProfileEditViewModel?
     private let disposeBag = DisposeBag()
@@ -77,7 +77,7 @@ class ProfileEditViewController: UIViewController {
         
         [nickNameField, goalField, jobField, interestField].forEach { textFieldStack.addArrangedSubview($0) }
         
-        [profileImageView, textFieldStack, bottomButton].forEach { self.view.addSubview($0) }
+        [profileImageView, textFieldStack, bottomButton].forEach { self.contentView.addSubview($0) }
         profileImageView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(24)
             make.height.equalTo(80)
