@@ -15,7 +15,7 @@ class RefreshTokenInterceptor: ApolloInterceptor {
             
             if let error = response.parsedResponse?.errors?.first,
                error.description == NetworkError.expiredToken.errorDescription {
-                ToeknManager.shared.accessToken?.isExpired = true
+                ToeknManager.shared.isExpired = true
                 ToeknManager.shared.reissue { result in
                     switch result {
                     case .success:

@@ -12,26 +12,72 @@ class ToeknManager {
   
     static let shared = ToeknManager()
     private let disposeBag = DisposeBag()
-  
-    var accessToken: Token?
-    var refreshToken: Token?
+
+    var isExpired: Bool = true
     
-    func reissue(completion: @escaping (Result<Token, Error>) -> Void) {
+    private init() {}
+    
+    func reissue(completion: @escaping (Result<String, Error>) -> Void) {
         NetWork.shared.fetch(query: ReissueQuery())
             .subscribe(onNext: { result in
-                let token = Token(value: result.reissue.accessToken, isExpired: false)
-                ToeknManager.shared.accessToken = token
-                completion(.success(token))
+                let accessToken = result.reissue.accessToken
+                ToeknManager.shared.setAccessToken(accessToken)
+                completion(.success(accessToken))
             }, onError: { error in
                 completion(.failure(error))
             })
             .disposed(by: disposeBag)
     }
     
-    private init() {}
-}
-
-struct Token {
-    let value: String
-    var isExpired: Bool
+    func createTokens(accessToken: String, refreshToken: String) {
+        do {
+            try KeyChainManager.shared.create(account: .accessToken,
+                                              data: accessToken)
+            try KeyChainManager.shared.create(account: .refreshToken,
+                                              data: refreshToken)
+            self.isExpired = false
+        } catch {
+            print(error)
+        }
+    }
+    
+    func setAccessToken(_ accessToken: String) {
+        do {
+            try KeyChainManager.shared.create(account: .accessToken,
+                                          data: accessToken)
+            self.isExpired = false
+        } catch {
+            print(error)
+        }
+    }
+    
+    func readAccessToken() -> String? {
+        do {
+            let accessToken = try KeyChainManager.shared.read(account: .accessToken)
+            return accessToken
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+    
+    func readRefreshToken() -> String? {
+        do {
+            let refreshToken = try KeyChainManager.shared.read(account: .refreshToken)
+            return refreshToken
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+    
+    func deleteTokens() {
+        do {
+            try KeyChainManager.shared.delete(account: .accessToken)
+            try KeyChainManager.shared.delete(account: .refreshToken)
+        } catch {
+            print(error)
+        }
+    }
+    
 }

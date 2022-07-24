@@ -148,6 +148,9 @@
 		F336F3CD288BDB44005B57A0 /* Reissue.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F336F3CC288BDB44005B57A0 /* Reissue.graphql */; };
 		F336F3D1288C5239005B57A0 /* RefreshTokenInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3D0288C5239005B57A0 /* RefreshTokenInterceptor.swift */; };
 		F336F3D3288CF63D005B57A0 /* ToeknManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3D2288CF63D005B57A0 /* ToeknManager.swift */; };
+		F336F3D6288D1626005B57A0 /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3D5288D1626005B57A0 /* KeyChainManager.swift */; };
+		F336F3D8288D2308005B57A0 /* KeyChainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3D7288D2308005B57A0 /* KeyChainError.swift */; };
+		F336F3DA288D30FB005B57A0 /* KeyChainAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3D9288D30FB005B57A0 /* KeyChainAccount.swift */; };
 		F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAB28533D0A005B493A /* WSortButton.swift */; };
 		F33C6EAE28535021005B493A /* UIVIewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAD28535021005B493A /* UIVIewController+extension.swift */; };
 		F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */; };
@@ -365,6 +368,9 @@
 		F336F3CC288BDB44005B57A0 /* Reissue.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Reissue.graphql; sourceTree = "<group>"; };
 		F336F3D0288C5239005B57A0 /* RefreshTokenInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenInterceptor.swift; sourceTree = "<group>"; };
 		F336F3D2288CF63D005B57A0 /* ToeknManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToeknManager.swift; sourceTree = "<group>"; };
+		F336F3D5288D1626005B57A0 /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
+		F336F3D7288D2308005B57A0 /* KeyChainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainError.swift; sourceTree = "<group>"; };
+		F336F3D9288D30FB005B57A0 /* KeyChainAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainAccount.swift; sourceTree = "<group>"; };
 		F33C6EAB28533D0A005B493A /* WSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSortButton.swift; sourceTree = "<group>"; };
 		F33C6EAD28535021005B493A /* UIVIewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+extension.swift"; sourceTree = "<group>"; };
 		F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputGroupStackView.swift; sourceTree = "<group>"; };
@@ -906,6 +912,7 @@
 		7DFB5E172872A49B001DFC67 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				F336F3D4288D1609005B57A0 /* KeyChain */,
 				F3B0025E287D68A800D6BB1D /* UserDataStorage.swift */,
 				F336F3D2288CF63D005B57A0 /* ToeknManager.swift */,
 			);
@@ -1045,6 +1052,16 @@
 				F336F3C8288BA6A4005B57A0 /* NetworkError.swift */,
 			);
 			path = Error;
+			sourceTree = "<group>";
+		};
+		F336F3D4288D1609005B57A0 /* KeyChain */ = {
+			isa = PBXGroup;
+			children = (
+				F336F3D5288D1626005B57A0 /* KeyChainManager.swift */,
+				F336F3D7288D2308005B57A0 /* KeyChainError.swift */,
+				F336F3D9288D30FB005B57A0 /* KeyChainAccount.swift */,
+			);
+			path = KeyChain;
 			sourceTree = "<group>";
 		};
 		F33C6EAF2853530B005B493A /* SubView */ = {
@@ -1452,6 +1469,7 @@
 				F3C8E0B32873500900B0916A /* AddInformationContainerView.swift in Sources */,
 				7DBC4C5F2876AE1800F0AC86 /* EmojiTableViewModel.swift in Sources */,
 				F3B0026C287D68F100D6BB1D /* Color.swift in Sources */,
+				F336F3D6288D1626005B57A0 /* KeyChainManager.swift in Sources */,
 				F336F3B8288A958C005B57A0 /* ScheduleInputModel.swift in Sources */,
 				F3DD022B284678CF00AD9240 /* WelcomeViewModel.swift in Sources */,
 				F336F3A6288939E9005B57A0 /* ScheduleRepeatType.swift in Sources */,
@@ -1464,6 +1482,7 @@
 				7DC166AB2837140B00F1A8F1 /* SignInViewController.swift in Sources */,
 				7D8129C92886F320006C0A5D /* MyProfileViewModel.swift in Sources */,
 				F33C6EAE28535021005B493A /* UIVIewController+extension.swift in Sources */,
+				F336F3DA288D30FB005B57A0 /* KeyChainAccount.swift in Sources */,
 				7D76AEB828448C79001C668D /* Font.swift in Sources */,
 				F3C8E0A52872FD2300B0916A /* DateTimeStackView.swift in Sources */,
 				F3A4D95D2885B28600DDE03B /* SearchUseCase.swift in Sources */,
@@ -1613,6 +1632,7 @@
 				F3DD022428466E0C00AD9240 /* SignInCoordinator.swift in Sources */,
 				7D8033D6286034BB0039F73E /* MainCollectionViewCell.swift in Sources */,
 				F30EBCDB28817A2400ECB48D /* CategoryEditCoordinatorType.swift in Sources */,
+				F336F3D8288D2308005B57A0 /* KeyChainError.swift in Sources */,
 				F30EBCF028828C3C00ECB48D /* WFilterButtton.swift in Sources */,
 				F3B00274287D68FA00D6BB1D /* ScheduleSort.swift in Sources */,
 				F30EBCD328807B2600ECB48D /* API.swift in Sources */,
