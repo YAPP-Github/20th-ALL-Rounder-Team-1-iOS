@@ -51,6 +51,8 @@
 		7D8129F6288BDE30006C0A5D /* SelectionSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129F5288BDE30006C0A5D /* SelectionSheetViewModel.swift */; };
 		7D8129F8288BDE3C006C0A5D /* SelectionSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129F7288BDE3C006C0A5D /* SelectionSheetViewController.swift */; };
 		7D8129FA288BF130006C0A5D /* UserUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129F9288BF130006C0A5D /* UserUpdate.swift */; };
+		7D8129FC288C60A2006C0A5D /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129FB288C60A1006C0A5D /* ContactViewModel.swift */; };
+		7D8129FE288C60BF006C0A5D /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129FD288C60BF006C0A5D /* ContactViewController.swift */; };
 		7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */; };
 		7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */; };
 		7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */; };
@@ -265,6 +267,8 @@
 		7D8129F5288BDE30006C0A5D /* SelectionSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionSheetViewModel.swift; sourceTree = "<group>"; };
 		7D8129F7288BDE3C006C0A5D /* SelectionSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionSheetViewController.swift; sourceTree = "<group>"; };
 		7D8129F9288BF130006C0A5D /* UserUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUpdate.swift; sourceTree = "<group>"; };
+		7D8129FB288C60A1006C0A5D /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
+		7D8129FD288C60BF006C0A5D /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		7D8E4E832882A9D70035FB7E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCoordinator.swift; sourceTree = "<group>"; };
@@ -605,6 +609,7 @@
 				7D8129C82886F320006C0A5D /* ProfileViewModel.swift */,
 				7D8129EE288AD914006C0A5D /* ProfileEditViewModel.swift */,
 				7D8129F5288BDE30006C0A5D /* SelectionSheetViewModel.swift */,
+				7D8129FB288C60A1006C0A5D /* ContactViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -623,6 +628,7 @@
 				7D8129CA2886F66E006C0A5D /* ProfileViewController.swift */,
 				7D8129F0288AD92A006C0A5D /* ProfileEditViewController.swift */,
 				7D8129F7288BDE3C006C0A5D /* SelectionSheetViewController.swift */,
+				7D8129FD288C60BF006C0A5D /* ContactViewController.swift */,
 				7D8129DD28894693006C0A5D /* SubView */,
 			);
 			path = View;
@@ -1574,6 +1580,7 @@
 				7DC166B42837148000F1A8F1 /* SignInViewModel.swift in Sources */,
 				F3C8E0B928736F0500B0916A /* ScheduleEditViewModel.swift in Sources */,
 				7D8129ED288A7B5B006C0A5D /* ProfileUseCase.swift in Sources */,
+				7D8129FE288C60BF006C0A5D /* ContactViewController.swift in Sources */,
 				7D3B1F54283630A50037504A /* WTextField.swift in Sources */,
 				F3DD0218284661F900AD9240 /* WelcomeCoordinator.swift in Sources */,
 				F3F731D928677A2000C8B778 /* ColorsCollectionViewCell.swift in Sources */,
@@ -1637,6 +1644,7 @@
 				F37868532861D28C00BEEC81 /* CategoryAddCoordinator.swift in Sources */,
 				7D0A6A3A2881588000CFE61D /* DateExtension.swift in Sources */,
 				F336F3692886EDD4005B57A0 /* DayRepeatViewController.swift in Sources */,
+				7D8129FC288C60A2006C0A5D /* ContactViewModel.swift in Sources */,
 				7D8129DF2889484F006C0A5D /* ProfileDetailHelperView.swift in Sources */,
 				F354C3EA283E6946008929FD /* NSMutableAttributedString+extension.swift in Sources */,
 				F336F3722886F4A4005B57A0 /* RepeatSheetViewController.swift in Sources */,

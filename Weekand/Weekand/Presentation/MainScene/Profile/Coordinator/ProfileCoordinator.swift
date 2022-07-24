@@ -42,6 +42,13 @@ class ProfileCoordinator: Coordinator {
         self.navigationController.pushViewController(profileEditViewController, animated: true)
     }
     
+    /// 문의하기로 이동
+    func pushContactViewController() {
+        let contactViewController = ContactViewController()
+        contactViewController.viewModel = ContactViewModel(coordinator: self, useCase: profileUseCase)
+        self.navigationController.pushViewController(contactViewController, animated: true)
+    }
+    
     /// 프로필설정 - 직업선택 Sheet
     func presentJobInformationSheet() {
         let jobSelectionSheetController = SelectionSheetViewController(informationType: .job)

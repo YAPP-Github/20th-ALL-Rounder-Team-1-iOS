@@ -86,7 +86,7 @@ extension ProfileViewModel {
 
         // 하단
         input.didContactTap.when(.recognized).subscribe(onNext: { _ in
-            print("문의하기")
+            self.coordinator?.pushContactViewController()
         }).disposed(by: disposeBag)
         
         input.didAccessibilityTap.when(.recognized).subscribe(onNext: { _ in
