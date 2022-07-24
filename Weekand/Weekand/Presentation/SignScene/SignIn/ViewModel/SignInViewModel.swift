@@ -74,7 +74,9 @@ extension SignInViewModel {
         let passwordText = password.trimmingCharacters(in: [" "])
         
         self.signInUseCase.login(email: emailText, password: passwordText).subscribe(onSuccess: { tokenData in
-            UserDataStorage.shared.setAccessToken(token: tokenData.accessToken)
+            ToeknManager.shared.accessToken = Token(value: tokenData.accessToken, isExpired: false)
+            ToeknManager.shared.refreshToken = Token(value: tokenData.refreshToken, isExpired: false)
+            self.coordinator?.showMainScene()
             self.userID()
         }, onFailure: { _ in
             self.coordinator?.showToastMessage()
@@ -85,7 +87,6 @@ extension SignInViewModel {
     private func userID() {
         self.signInUseCase.userID().subscribe(onSuccess: { id in
             UserDataStorage.shared.setUserID(id: id)
-            self.coordinator?.showMainScene()
         }, onFailure: { _ in
             self.coordinator?.showToastMessage()
         }, onDisposed: nil)

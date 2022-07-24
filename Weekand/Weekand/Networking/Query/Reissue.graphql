@@ -1,0 +1,5 @@
+query Reissue {
+  reissue {
+    accessToken
+  }
+}

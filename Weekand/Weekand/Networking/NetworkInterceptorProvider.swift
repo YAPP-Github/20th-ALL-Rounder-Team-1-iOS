@@ -8,10 +8,28 @@
 import Foundation
 import Apollo
 
-class NetworkInterceptorProvider: DefaultInterceptorProvider {
-    override func interceptors<Operation: GraphQLOperation>(for operation: Operation) -> [ApolloInterceptor] {
-        var interceptors = super.interceptors(for: operation)
-        interceptors.insert(TokenAddingInterceptor(), at: 0)
-        return interceptors
-    }
+class NetworkInterceptorProvider: InterceptorProvider {
+    
+    private let store: ApolloStore
+      private let client: URLSessionClient
+      
+      init(store: ApolloStore,
+           client: URLSessionClient) {
+        self.store = store
+        self.client = client
+      }
+      
+      func interceptors<Operation: GraphQLOperation>(for operation: Operation) -> [ApolloInterceptor] {
+        return [
+          MaxRetryInterceptor(),
+          CacheReadInterceptor(store: self.store),
+          TokenAddingInterceptor(),
+          NetworkFetchInterceptor(client: self.client),
+          ResponseCodeInterceptor(),
+          JSONResponseParsingInterceptor(cacheKeyForObject: self.store.cacheKeyForObject),
+          RefreshTokenInterceptor(),
+          AutomaticPersistedQueryInterceptor(),
+          CacheWriteInterceptor(store: self.store)
+        ]
+      }
 }
