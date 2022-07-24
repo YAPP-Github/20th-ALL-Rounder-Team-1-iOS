@@ -19,6 +19,7 @@ class CategoryCoordinator: Coordinator {
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.categoryListViewController = CategoryListViewController()
+        self.categoryListViewController.title = "카테고리"
         self.categoryUseCase = CategoryUseCase()
     }
     
@@ -48,6 +49,14 @@ class CategoryCoordinator: Coordinator {
         childCoordinators.append(categoryModifyCoordinator)
         navigationController.present(categoryModifyCoordinator.navigationController, animated: true, completion: nil)
         categoryModifyCoordinator.start()
+    }
+    
+    func showScheduleAddScene(category: Category) {
+        let scheduleEditCoordinator = ScheduleEditCoordinator()
+        scheduleEditCoordinator.finishDelegate = self
+        childCoordinators.append(scheduleEditCoordinator)
+        navigationController.present(scheduleEditCoordinator.navigationController, animated: true, completion: nil)
+        scheduleEditCoordinator.start()
     }
     
     func showToastMessage(text: String) {

@@ -71,7 +71,7 @@ extension UserSearchViewModel {
                 self.hasNext = data.paginationInfo.hasNext
                 let list = data.users.map { user in
                     
-                    UserSummaryTemp(userSummaryId: user.id, name: user.nickname, goal: user.goal ?? "", imagePath: user.profileUrl)
+                    UserSummaryTemp(userSummaryId: user.id, name: user.nickname, goal: user.goal ?? "", imagePath: user.profileImageUrl)
                 }
                 self.userList.accept(list)
             }, onFailure: { error in

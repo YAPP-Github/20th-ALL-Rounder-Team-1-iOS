@@ -8,15 +8,15 @@
 import Foundation
 import RxSwift
 
-typealias Token = LoginQuery.Data.Login
+typealias Tokens = LoginQuery.Data.Login
 
 final class SignInUseCase {
     
-    func login(email: String, password: String) -> Single<Token> {
+    func login(email: String, password: String) -> Single<Tokens> {
         return NetWork.shared
             .fetch(query: LoginQuery(email: email, password: password), cachePolicy: .fetchIgnoringCacheCompletely, queue: DispatchQueue.main)
             .map {
-                Token(refreshToken: $0.login.refreshToken, accessToken: $0.login.accessToken)
+                Tokens(refreshToken: $0.login.refreshToken, accessToken: $0.login.accessToken)
             }
             .asSingle()
     }

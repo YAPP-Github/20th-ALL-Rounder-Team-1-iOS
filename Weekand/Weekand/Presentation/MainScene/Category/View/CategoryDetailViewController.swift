@@ -18,30 +18,34 @@ class CategoryDetailViewController: UIViewController {
       case main
     }
     
-    let sample: [ScheduleMain] = [
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목1", dateStart: Date(), dateEnd: Date(), stickerCount: 134, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목2", dateStart: Date(), dateEnd: Date(), stickerCount: 313, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목3", dateStart: Date(), dateEnd: Date(), stickerCount: 54, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목4", dateStart: Date(), dateEnd: Date(), stickerCount: 431, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목5", dateStart: Date(), dateEnd: Date(), stickerCount: 64, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목6", dateStart: Date(), dateEnd: Date(), stickerCount: 3, stickerNameList: []),
-        ScheduleMain(scheduleId: "0", color: "red", status: .completed,  name: "일정 제목7", dateStart: Date(), dateEnd: Date(), stickerCount: 13, stickerNameList: [])
-    ]
-    
     private let disposeBag = DisposeBag()
     var viewModel: CategoryDetailViewModel?
-    var dataSource: UITableViewDiffableDataSource<Section, ScheduleMain>!
+    var dataSource: UITableViewDiffableDataSource<Section, ScheduleSummary>!
     
     let tableView = UITableView()
     let headerView = CategoryDetailHeaderView()
-    let footerView = CategoryDetailFooterView()
+    let toolBar = CategoryDetailToolBar()
     
-    var selectedSort: ScheduleSort = .dateCreatedDESC
+    var searchText: String = ""
+    var selectedSort: ScheduleSort = .dateCreatedDESC {
+        didSet {
+            self.setScheduleList()
+        }
+    }
     var selectedCategory: Category? {
         didSet {
             self.navigationItem.title = selectedCategory?.name
         }
     }
+    
+    var list: [ScheduleSummary] = [] {
+        didSet {
+            self.toolBar.setScheduleCount(self.list.count)
+        }
+    }
+    var scheduleCount: Int = 20
+    var refreshListCount: Int = 15
+    var page: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +54,13 @@ class CategoryDetailViewController: UIViewController {
         configureUI()
         bindViewModel()
         configureDataSource()
-        configureSnapshot()
         setupEndEditing()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setScheduleList()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -66,7 +75,6 @@ class CategoryDetailViewController: UIViewController {
         tableView.bounces = false
         tableView.register(CategoryDetailTableViewCell.self, forCellReuseIdentifier: CategoryDetailTableViewCell.cellIdentifier)
         tableView.register(CategoryDetailHeaderView.self, forHeaderFooterViewReuseIdentifier: CategoryDetailHeaderView.cellIdentifier)
-        tableView.register(CategoryDetailFooterView.self, forHeaderFooterViewReuseIdentifier: CategoryDetailFooterView.cellIdentifier)
         
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
@@ -74,34 +82,40 @@ class CategoryDetailViewController: UIViewController {
         
         headerView.dropDown.cellNib = UINib(nibName: "SortDropDownCell", bundle: nil)
         headerView.dropDown.dataSource = ScheduleSort.allCases.map { $0.description }
-        headerView.dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
-            guard let cell = cell as? SortDropDownCell else { return }
-            
+        headerView.dropDown.customCellConfiguration = { (_: Index, _: String, cell: DropDownCell) -> Void in
+            guard cell is SortDropDownCell else { return }
         }
     }
     
     private func configureUI() {
         view.addSubview(tableView)
+        view.addSubview(toolBar)
+        
         tableView.snp.makeConstraints { make in
-            make.top.bottom.equalTo(self.view.safeAreaLayoutGuide)
+            make.top.equalTo(self.view.safeAreaLayoutGuide)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(self.toolBar.viewHeight)
             make.trailing.leading.equalToSuperview()
+        }
+        
+        toolBar.snp.makeConstraints { make in
+            make.trailing.leading.equalToSuperview()
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
+            make.height.equalTo(self.toolBar.viewHeight)
         }
     }
     
     private func bindViewModel() {
-        let dropDownDidSelectEvent = BehaviorRelay(value: self.selectedSort)
-        
         let input = CategoryDetailViewModel.Input(
-            dropDownDidSelectEvent: dropDownDidSelectEvent,
-            didTapUpdateCategoryButton: self.footerView.updateCategoryButton.rx.tap.asObservable(),
+            didEditSearchBar: self.headerView.searchBar.rx.text.orEmpty.asObservable(),
+            didTapUpdateCategoryButton: self.toolBar.updateCategoryButton.rx.tap.asObservable(),
             selectedCategory: selectedCategory
         )
         
         self.headerView.dropDown.selectionAction = { [unowned self] (_ : Int, item: String) in
-            guard let selectedSort = ScheduleSort.allCases.filter { $0.description == item }.first else {
+            guard let sort = ScheduleSort.allCases.filter({ $0.description == item }).first else {
                 return
             }
-            dropDownDidSelectEvent.accept(selectedSort)
+            selectedSort = sort
             self.headerView.sortButton.setTitle(selectedSort.description)
         }
         
@@ -109,7 +123,22 @@ class CategoryDetailViewController: UIViewController {
             self.headerView.dropDown.show()
         }).disposed(by: disposeBag)
         
-        let _ = viewModel?.transform(input: input)
+        let output = viewModel?.transform(input: input)
+        
+        output?.searchWithQueryInformation
+            .filter { $0 != "" }
+            .subscribe(onNext: { (searchText) in
+                self.searchText = searchText
+            })
+            .disposed(by: disposeBag)
+        
+        self.viewModel?.scheduleList
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] scheduleList in
+                scheduleList.forEach { self?.list.append($0) }
+                self?.configureSnapshot(list: self?.list ?? [])
+        })
+        .disposed(by: self.disposeBag)
     }
 
 }
@@ -119,7 +148,7 @@ extension CategoryDetailViewController {
     
     private func configureDataSource() {
         
-        dataSource = UITableViewDiffableDataSource<Section, ScheduleMain>(tableView: tableView, cellProvider: { tableView, indexPath, list in
+        dataSource = UITableViewDiffableDataSource<Section, ScheduleSummary>(tableView: tableView, cellProvider: { tableView, indexPath, list in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryDetailTableViewCell.cellIdentifier, for: indexPath) as? CategoryDetailTableViewCell else {
                 return UITableViewCell()
             }
@@ -129,11 +158,11 @@ extension CategoryDetailViewController {
         })
     }
     
-    private func configureSnapshot(animatingDifferences: Bool = true) {
+    private func configureSnapshot(animatingDifferences: Bool = false, list: [ScheduleSummary]) {
 
-        var snapshot = NSDiffableDataSourceSnapshot<Section, ScheduleMain>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, ScheduleSummary>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(sample, toSection: .main)
+        snapshot.appendItems(list, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
     
@@ -150,12 +179,11 @@ extension CategoryDetailViewController: UITableViewDelegate {
         return 120
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return footerView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 58
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.item == refreshListCount * (page + 1) - 1 {
+            page += 1
+            self.appendUserList()
+        }
     }
 }
 
@@ -177,6 +205,19 @@ extension CategoryDetailViewController {
         delete.backgroundColor = .wred
         
         return UISwipeActionsConfiguration(actions: [delete, update])
+    }
+}
+
+extension CategoryDetailViewController {
+    func setScheduleList() {
+        self.page = 0
+        self.list = []
+        self.viewModel?.searchSchedules(sort: self.selectedSort, page: self.page, size: self.scheduleCount, searchQuery: self.searchText, categoryId: self.selectedCategory?.serverID ?? "")
+        self.tableView.scrollToTop()
+    }
+    
+    func appendUserList() {
+        self.viewModel?.loadMoreScheduelList(sort: self.selectedSort, page: self.page, size: self.scheduleCount, searchQuery: self.searchText, categoryId: self.selectedCategory?.serverID ?? "")
     }
 }
 

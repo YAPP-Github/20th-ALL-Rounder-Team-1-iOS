@@ -5,7 +5,7 @@ query SearchUsers($searchQuery: String, $jobs: [String!], $interests: [String!],
     }
     users {
       id
-      profileUrl
+      profileImageUrl
       nickname
       goal
     }

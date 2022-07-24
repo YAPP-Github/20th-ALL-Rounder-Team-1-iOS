@@ -6,11 +6,10 @@
 //
 
 import UIKit
-import DropDown
 
-class DropDownStackView: UIStackView {
+class CategoryStackView: UIStackView {
 
-    lazy var namelabel = WTextLabel().then {
+    lazy var titleLabel = WTextLabel().then {
         $0.textColor = UIColor.gray800
         $0.text = "카테고리"
     }
@@ -32,26 +31,13 @@ class DropDownStackView: UIStackView {
         $0.layer.cornerRadius = 3
     }
 
-    lazy var label = WTextLabel().then {
+    lazy var nameLabel = WTextLabel().then {
         $0.backgroundColor?.withAlphaComponent(0)
         $0.font = WFont.body1()
         $0.text = "내 일정"
     }
     
     let arrowButton = WArrowButton()
-    
-    lazy var dropDown = DropDown(anchorView: arrowButton).then {
-        
-        $0.bottomOffset = CGPoint(x: -(UIScreen.main.bounds.size.width * 0.75), y: 55)
-        $0.backgroundColor = .white
-        $0.selectionBackgroundColor = .gray100
-        $0.cornerRadius = 10
-        $0.width = UIScreen.main.bounds.size.width * 0.88
-        $0.cellHeight = 46
-        $0.shadowOpacity = 0.1
-        $0.layer.borderColor = UIColor.gray200.cgColor
-        $0.layer.borderWidth = 1
-    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,7 +55,7 @@ class DropDownStackView: UIStackView {
         self.alignment = .fill
         self.spacing = 10
         
-        [namelabel, backgroundView].forEach { self.addArrangedSubview($0) }
+        [titleLabel, backgroundView].forEach { self.addArrangedSubview($0) }
 
         backgroundView.addSubview(stackView)
         
@@ -81,7 +67,7 @@ class DropDownStackView: UIStackView {
         }
         
         stackView.addArrangedSubview(colorView)
-        stackView.addArrangedSubview(label)
+        stackView.addArrangedSubview(nameLabel)
         stackView.addArrangedSubview(arrowButton)
         arrowButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(6)
@@ -94,4 +80,11 @@ class DropDownStackView: UIStackView {
         }
     }
 
+}
+
+extension CategoryStackView {
+    func setCategory(_ category: Category) {
+        colorView.backgroundColor = UIColor(hex: category.color)!
+        nameLabel.text = category.name
+    }
 }

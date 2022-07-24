@@ -2,7 +2,7 @@ query UserSummary {
   user {
     id
     nickname
-    profileUrl
+    profileImageUrl
     goal
   }
 }

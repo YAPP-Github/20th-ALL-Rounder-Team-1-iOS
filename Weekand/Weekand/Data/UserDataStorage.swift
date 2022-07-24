@@ -13,7 +13,6 @@ final class UserDataStorage {
     static let shared = UserDataStorage()
     
     var userID: String?
-    var accessToken: String?
     
     init() {
         
@@ -21,12 +20,7 @@ final class UserDataStorage {
 }
 
 extension UserDataStorage {
-    
     func setUserID(id: String) {
         UserDataStorage.shared.userID = id
-    }
-    
-    func setAccessToken(token: String) {
-        UserDataStorage.shared.accessToken = token
     }
 }
