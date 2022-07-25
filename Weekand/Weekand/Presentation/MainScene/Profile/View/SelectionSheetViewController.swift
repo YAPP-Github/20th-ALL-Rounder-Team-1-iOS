@@ -52,7 +52,7 @@ class SelectionSheetViewController: BottomSheetViewController {
     // property
     
     var informations: [String] = []
-    let selectedInformations = PublishRelay<[String]>()
+    let selectedInformations = BehaviorRelay<[String]>(value: [])
     let dropDownDidSelectEvent = PublishRelay<UserSort>()
     
     let informationType: InformationType
@@ -216,4 +216,3 @@ extension SelectionSheetViewController: UICollectionViewDelegate {
         }
     }
 }
-
