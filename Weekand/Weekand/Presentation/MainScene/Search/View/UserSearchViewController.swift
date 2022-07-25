@@ -112,7 +112,6 @@ class UserSearchViewController: UIViewController {
         let output = viewModel?.transform(input: input)
         
         output?.searchWithQueryInformation
-            .filter { $0 != "" || $1.0 != [] || $1.1 != [] }
             .subscribe(onNext: { (searchText, informations) in
                 self.setUserList(searchQuery: searchText, jobs: informations.0, interests: informations.1)
             })
@@ -195,6 +194,9 @@ extension UserSearchViewController {
     func setUserList(searchQuery: String, jobs: [String], interests: [String]) {
         self.page = 0
         self.list = []
+        guard searchQuery != "" && jobs != [] && interests != [] else {
+            return
+        }
         self.viewModel?.searchUsers(
                             searchQuery: searchQuery,
                             jobs: jobs,
