@@ -20,10 +20,8 @@ class PasswordFindViewController: UIViewController {
         $0.tintColor = .gray400
     }
     
-    lazy var titleLabel = WTextLabel().then {
-        $0.text = "비밀번호를\n잊으셨나요?"
-        $0.font = WFont.title()
-        $0.numberOfLines = 0
+    lazy var titleLabel = WTitleLabel().then {
+        $0.setText(string: "비밀번호를\n잊으셨나요?")
     }
     
     lazy var informLabel = WMultiLineTextLabel().then {
