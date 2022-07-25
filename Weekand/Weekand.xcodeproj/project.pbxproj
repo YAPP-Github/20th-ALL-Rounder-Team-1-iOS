@@ -680,8 +680,7 @@
 			isa = PBXGroup;
 			children = (
 				7D8129F2288AE261006C0A5D /* ProfileDetail */,
-				7D8129F3288AE277006C0A5D /* ProfileEditFieldView.swift */,
-				7D812A01288E1CCC006C0A5D /* ProfileEditSelectionView.swift */,
+				7D812A03288E7299006C0A5D /* ProfileEdit */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -698,6 +697,15 @@
 				7D8129DE2889484F006C0A5D /* ProfileDetailHelperView.swift */,
 			);
 			path = ProfileDetail;
+			sourceTree = "<group>";
+		};
+		7D812A03288E7299006C0A5D /* ProfileEdit */ = {
+			isa = PBXGroup;
+			children = (
+				7D8129F3288AE277006C0A5D /* ProfileEditFieldView.swift */,
+				7D812A01288E1CCC006C0A5D /* ProfileEditSelectionView.swift */,
+			);
+			path = ProfileEdit;
 			sourceTree = "<group>";
 		};
 		7DA4AB6E28586602009E91FB /* ViewModel */ = {
