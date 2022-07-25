@@ -78,7 +78,7 @@ class ProfileEditViewController: BaseViewController {
         
         [nickNameField, goalField, jobField, interestField].forEach { textFieldStack.addArrangedSubview($0) }
         
-        [profileImageView, textFieldStack].forEach { self.contentView.addSubview($0) }
+        [profileImageView, textFieldStack].forEach { self.view.addSubview($0) }
         profileImageView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(24)
             make.height.equalTo(80)
@@ -92,7 +92,7 @@ class ProfileEditViewController: BaseViewController {
         }
 
 //        self.view.addSubview(bottomButton)
-        self.contentView.addSubview(bottomButton)
+        self.view.addSubview(bottomButton)
         bottomButton.enable(string: "완료")
         bottomButton.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-WBottmButton.buttonOffset)
