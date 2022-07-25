@@ -77,18 +77,28 @@ class ProfileEditFieldView: UIView {
 }
 
 extension ProfileEditFieldView: UITextFieldDelegate {
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         guard let text = textField.text else { return false }
-        
         guard let limit = maxLength else { return false }
         
-        validationLabel.text = "\(text.count)/\(limit)자"
-                
-        if text.count >= limit {
-            return false
+        if let input = string.cString(using: String.Encoding.utf8) {
+            let isBackSpace = strcmp(input, "\\b")
+            if isBackSpace == -92 {
+                updateValidationText(length: text.count-1, limit: limit)
+                return true
+            }
         }
-                
+        
+        let length = text.count + (string == "" ? -1 : +1)
+        guard length <= limit else { return false }
+        updateValidationText(length: length, limit: limit)
+        
         return true
+    }
+    
+    func updateValidationText(length: Int, limit: Int) {
+        validationLabel.text = "\(length)/\(limit)자"
     }
 }
