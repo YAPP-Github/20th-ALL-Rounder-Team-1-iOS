@@ -82,7 +82,7 @@ extension PasswordFindViewModel {
                                     informText: "임시비밀번호가 발급되었습니다.",
                                     dismissParentCoordinator: true)
         }, onFailure: { error in
-            if error.localizedDescription == SignInError.noExistUser.serverDescription {
+            if error.localizedDescription == SignInError.notFoundUser.serverDescription {
                 self.coordinator?.showToastMessage(text: "가입되지 않은 이메일입니다")
             } else {
                 self.coordinator?.showToastMessage(text: "네트워크 요청에 실패하였습니다")

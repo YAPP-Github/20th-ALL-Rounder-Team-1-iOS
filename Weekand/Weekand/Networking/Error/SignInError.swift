@@ -8,12 +8,15 @@
 import Foundation
 
 enum SignInError {
-    case noExistUser
+    case notFoundUser
+    case notMatchIdPassword
     
     var serverDescription: String {
         switch self {
-        case .noExistUser:
+        case .notFoundUser:
             return "존재하지 않는 유저입니다."
+        case .notMatchIdPassword:
+            return "이메일, 비밀번호가 일치하지 않습니다."
         }
     }
 }
