@@ -26,11 +26,9 @@ class PasswordFindViewController: UIViewController {
         $0.numberOfLines = 0
     }
     
-    lazy var informLabel = WTextLabel().then {
-        $0.text = "작성하신 이메일로 임시 비밀번호를 보내드려요.\n임시 비밀번호로 로그인하신 후에 \n계정관리에서 비밀번호를 변경해주세요."
-        $0.font = WFont.subHead2()
+    lazy var informLabel = WMultiLineTextLabel().then {
+        $0.setText(string: "작성하신 이메일로 임시 비밀번호를 보내드려요.\n임시 비밀번호로 로그인하신 후에 \n계정관리에서 비밀번호를 변경해주세요.")
         $0.textColor = .gray600
-        $0.numberOfLines = 0
     }
     
     lazy var emailField = WTextField(placeHolder: "이메일을 입력해주세요")
@@ -53,6 +51,12 @@ class PasswordFindViewController: UIViewController {
         bindViewModel()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        self.view.endEditing(true)
+    }
+    
     private func setupView() {
         view.backgroundColor = .white
         navigationItem.leftBarButtonItem = closeButton
@@ -73,7 +77,7 @@ class PasswordFindViewController: UIViewController {
         
         self.view.addSubview(textFieldStack)
         textFieldStack.snp.makeConstraints { make in
-            make.top.equalTo(informLabel.snp.bottom).offset(60)
+            make.top.equalTo(informLabel.snp.bottom).offset(50)
             make.leading.equalToSuperview().offset(24)
             make.trailing.equalToSuperview().offset(-24)
         }
@@ -86,7 +90,7 @@ class PasswordFindViewController: UIViewController {
             closeButtonDidTapEvent: closeButton.rx.tap.asObservable()
         )
         
-        let output = viewModel?.transform(input: input)
+        let _ = viewModel?.transform(input: input)
     }
 
 }
