@@ -17,7 +17,7 @@ class ProfileEditViewModel: ViewModelType {
     
     var alertText = PublishSubject<String>()
     var userDetail = BehaviorRelay<UserDetail>(value: UserDetail.defaultData)
-    var userUpdate = PublishSubject<UserUpdate>()
+    var userUpdate = PublishRelay<UserUpdate>()
     
     init (coordinator: ProfileCoordinator, useCase: ProfileUseCase) {
         self.coordinator = coordinator
@@ -29,7 +29,7 @@ class ProfileEditViewModel: ViewModelType {
             print(update)
             
             if update.name.count < 3 {
-                PublishSubject<String>.just("닉네임은 최소 3글자 이상이어야 합니다.").bind(to: self.alertText).disposed(by: self.disposeBag)
+                PublishRelay<String>.just("닉네임은 최소 3글자 이상이어야 합니다.").bind(to: self.alertText).disposed(by: self.disposeBag)
             }
             
         }).disposed(by: disposeBag)

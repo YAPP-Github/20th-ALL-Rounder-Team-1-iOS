@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import Then
 import RxSwift
+import RxRelay
 import RxGesture
 
 class ProfileEditViewController: BaseViewController {
@@ -64,6 +65,7 @@ class ProfileEditViewController: BaseViewController {
     private func setUpView() {
         self.title = "프로필 수정"
         self.view.backgroundColor = .backgroundColor
+        
     }
     
     private func configureUI() {
@@ -91,7 +93,6 @@ class ProfileEditViewController: BaseViewController {
             make.left.right.equalToSuperview().inset(24)
         }
 
-//        self.view.addSubview(bottomButton)
         self.view.addSubview(bottomButton)
         bottomButton.enable(string: "완료")
         bottomButton.snp.makeConstraints { make in
@@ -133,7 +134,7 @@ class ProfileEditViewController: BaseViewController {
                 interest: self.selectedInterests
             )
             
-            PublishSubject<UserUpdate>.just(update).bind(to: self.viewModel!.userUpdate).disposed(by: self.disposeBag)
+            PublishRelay<UserUpdate>.just(update).bind(to: self.viewModel!.userUpdate).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
     }
 }
