@@ -136,7 +136,7 @@ class SignUpViewController: BaseViewController {
             } else {
                 self?.emailStackView.setInformlabelText(string: "유효한 이메일입니다", informType: .vaild)
             }
-        })
+        }).disposed(by: disposeBag)
         
         output.checkAuthenticationNumber.subscribe(onNext: { [weak self] isCheck in
             if isCheck {
