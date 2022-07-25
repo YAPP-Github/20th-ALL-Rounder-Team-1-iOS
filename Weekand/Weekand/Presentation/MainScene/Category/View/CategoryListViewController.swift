@@ -204,16 +204,3 @@ extension CategoryListViewController {
         self.viewModel?.searchCategories(sort: selectedSort, page: page, size: categoryCount)
     }
 }
-
-
-import SwiftUI
-#if canImport(SwiftUI) && DEBUG
-
-struct CategoryListViewControllerPreview: PreviewProvider {
-    static var previews: some View {
-        Group {
-            CategoryListViewController().showPreview(.iPhone11Pro)
-        }
-    }
-}
-#endif

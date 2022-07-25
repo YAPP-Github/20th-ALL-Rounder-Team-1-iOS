@@ -23,7 +23,6 @@ class CategoryListViewModel {
         self.coordinator = coordinator
         self.categoryUseCase = categoryUseCase
     }
-
 }
 
 // MARK: Bind UI
@@ -56,9 +55,10 @@ extension CategoryListViewModel {
     }
 }
 
+// Network
+
 extension CategoryListViewModel {
     func searchCategories(sort: ScheduleSort, page: Int, size: Int) {
-        
         self.categoryUseCase.ScheduleCategories(sort: sort, page: page, size: size)
             .subscribe(onSuccess: { data in
                 self.hasNext = data.paginationInfo.hasNext
@@ -66,8 +66,8 @@ extension CategoryListViewModel {
                     Category(serverID: category.id, color: category.color, name: category.name, openType: category.openType.toEntity())
                 }
                 self.categoryList.accept(list)
-            }, onFailure: { error in
-                print(error)
+            }, onFailure: { _ in
+                self.coordinator?.showToastMessage(text: "카테고리 리스트를 불러오지 못했습니다.")
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }
@@ -84,13 +84,13 @@ extension CategoryListViewModel {
                 if isSucceed {
                     completion()
                 } else {
-                    self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")
+                    self.coordinator?.showToastMessage(text: "카테고리 삭제에 실패하였습니다.")
                 }
             }, onFailure: { error in
                 if error.localizedDescription == CategoryError.minimumCategoryCount.localizedDescription {
                     self.coordinator?.showToastMessage(text: error.localizedDescription)
                 } else {
-                    self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")
+                    self.coordinator?.showToastMessage(text: "카테고리 삭제에 실패하였습니다.")
                 }
             }, onDisposed: nil)
             .disposed(by: disposeBag)

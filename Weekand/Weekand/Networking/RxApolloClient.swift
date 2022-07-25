@@ -42,7 +42,7 @@ class RxApolloClient {
                         maybe(.completed)
                     }
                 case .failure(let error):
-                    maybe(.error(ApolloError.fetchError))
+                    maybe(.error(error))
                 }
             }
             
@@ -74,7 +74,7 @@ class RxApolloClient {
                         maybe(.completed)
                     }
                 case .failure(let error):
-                    maybe(.error(ApolloError.performError))
+                    maybe(.error(error))
                 }
             }
             
