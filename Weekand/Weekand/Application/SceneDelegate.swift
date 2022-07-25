@@ -19,8 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = BaseNavigationController()
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor.white
-        appearance.shadowColor = UIColor.white
+        appearance.backgroundColor = UIColor.clear
+        appearance.shadowColor = UIColor.clear
+        appearance.backgroundEffect = UIBlurEffect(style: .light)
         
         navigationController.navigationBar.standardAppearance = appearance
         navigationController.navigationBar.scrollEdgeAppearance = appearance
@@ -29,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         window?.overrideUserInterfaceStyle = .light
     
-        self.coordinator = AppCoordinator(navigationController: navigationController)
+        self.coordinator = MainCoordinator(navigationController: navigationController)
         self.coordinator?.start()
     }
 
