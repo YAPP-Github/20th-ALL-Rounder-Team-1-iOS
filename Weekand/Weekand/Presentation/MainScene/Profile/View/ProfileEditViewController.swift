@@ -41,8 +41,8 @@ class ProfileEditViewController: BaseViewController {
     
     lazy var nickNameField = ProfileEditFieldView(title: "닉네임", validation: 12)
     lazy var goalField = ProfileEditFieldView(title: "한줄목표", validation: 20)
-    lazy var jobField = ProfileEditFieldView(title: "직업", validation: nil)
-    lazy var interestField = ProfileEditFieldView(title: "관심사", validation: nil)
+    lazy var jobField = ProfileEditSelectionView(title: "직업")
+    lazy var interestField = ProfileEditSelectionView(title: "관심사")
     
     lazy var textFieldStack = UIStackView().then {
         $0.axis = .vertical
@@ -58,6 +58,7 @@ class ProfileEditViewController: BaseViewController {
         setUpView()
         configureUI()
         bindViewModel()
+        
     }
     
     private func setUpView() {
@@ -77,7 +78,7 @@ class ProfileEditViewController: BaseViewController {
         
         [nickNameField, goalField, jobField, interestField].forEach { textFieldStack.addArrangedSubview($0) }
         
-        [profileImageView, textFieldStack, bottomButton].forEach { self.contentView.addSubview($0) }
+        [profileImageView, textFieldStack].forEach { self.contentView.addSubview($0) }
         profileImageView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(24)
             make.height.equalTo(80)
@@ -90,6 +91,8 @@ class ProfileEditViewController: BaseViewController {
             make.left.right.equalToSuperview().inset(24)
         }
 
+//        self.view.addSubview(bottomButton)
+        self.contentView.addSubview(bottomButton)
         bottomButton.enable(string: "완료")
         bottomButton.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-WBottmButton.buttonOffset)
@@ -103,8 +106,8 @@ class ProfileEditViewController: BaseViewController {
         
         let input = ProfileEditViewModel.Input(
             didImageTap: profileImageView.rx.tapGesture().asObservable(),
-            didJobTap: jobField.textField.rx.tapGesture().asObservable(),
-            didInterestTap: interestField.textField.rx.tapGesture().asObservable(),
+            didJobTap: jobField.labelBackground.rx.tapGesture().asObservable(),
+            didInterestTap: interestField.labelBackground.rx.tapGesture().asObservable(),
             didButtonTap: bottomButton.rx.tap.asObservable()
         )
         
@@ -149,15 +152,15 @@ extension ProfileEditViewController {
         
         nickNameField.textField.text = user.name
         goalField.textField.text = user.goal
-        jobField.textField.text = user.job.joined(separator: ", ")
-        interestField.textField.text = user.interest.joined(separator: ", ")
+        jobField.selectedLabel.text = user.job.joined(separator: ", ")
+        interestField.selectedLabel.text = user.interest.joined(separator: ", ")
     }
     
     func setJob(selected: [String]) {
-        self.jobField.textField.text = selected.joined(separator: ", ")
+        self.jobField.selectedLabel.text = selected.joined(separator: ", ")
     }
     
     func setInterest(selected: [String]) {
-        self.interestField.textField.text = selected.joined(separator: ", ")
+        self.interestField.selectedLabel.text = selected.joined(separator: ", ")
     }
 }
