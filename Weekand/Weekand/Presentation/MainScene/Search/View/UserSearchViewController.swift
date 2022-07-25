@@ -194,7 +194,7 @@ extension UserSearchViewController {
     func setUserList(searchQuery: String, jobs: [String], interests: [String]) {
         self.page = 0
         self.list = []
-        guard searchQuery != "" && jobs != [] && interests != [] else {
+        guard searchQuery != "" || jobs != [] || interests != [] else {
             return
         }
         self.viewModel?.searchUsers(
