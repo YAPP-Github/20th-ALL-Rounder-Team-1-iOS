@@ -33,7 +33,7 @@ class PasswordFindViewModel: ViewModelType {
         
         input.confirmButtonDidTapEvent
             .withLatestFrom(input.emailTextFieldDidEditEvent)
-            .distinctUntilChanged { $0 == $1 }
+            .throttle(.seconds(4), latest: false, scheduler: MainScheduler.instance)
             .map(vaildEmail)
             .subscribe(onNext: { email, isVaild in
                 if isVaild {
@@ -77,16 +77,16 @@ extension PasswordFindViewModel {
     func issueTempPassword(email: String) {
         self.signInUseCase.issueTempPassword(email: email)
             .subscribe(onSuccess: { isSucceed in
-                if isSucceed {
-                    self.coordinator?.presentPopViewController(
-                                        titleText: "안내",
-                                        informText: "임시비밀번호가 발급되었습니다.",
-                                        dismissParentCoordinator: true)
-                } else {
-                    self.coordinator?.showToastMessage(text: "가입되지 않은 이메일입니다")
-                }
-        }, onFailure: { _ in
-            self.coordinator?.showToastMessage(text: "네트워크 요청에 실패하였습니다")
+                self.coordinator?.presentPopViewController(
+                                    titleText: "안내",
+                                    informText: "임시비밀번호가 발급되었습니다.",
+                                    dismissParentCoordinator: true)
+        }, onFailure: { error in
+            if error.localizedDescription == SignInError.noExistUser.serverDescription {
+                self.coordinator?.showToastMessage(text: "가입되지 않은 이메일입니다")
+            } else {
+                self.coordinator?.showToastMessage(text: "네트워크 요청에 실패하였습니다")
+            }
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     }
