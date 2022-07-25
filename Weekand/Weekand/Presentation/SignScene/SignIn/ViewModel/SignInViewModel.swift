@@ -84,7 +84,7 @@ extension SignInViewModel {
             ToeknManager.shared.createTokens(accessToken: tokenData.accessToken, refreshToken: tokenData.refreshToken)
             self.userID()
         }, onFailure: { _ in
-            self.coordinator?.showToastMessage()
+            self.coordinator?.showToastMessage(text: "네트워크 요청에 실패하였습니다")
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     }
@@ -94,7 +94,7 @@ extension SignInViewModel {
             UserDataStorage.shared.setUserID(id: id)
             self.coordinator?.showMainScene()
         }, onFailure: { _ in
-            self.coordinator?.showToastMessage()
+            self.coordinator?.showToastMessage(text: "네트워크 요청에 실패하였습니다")
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     }
