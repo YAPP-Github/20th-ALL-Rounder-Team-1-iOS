@@ -67,7 +67,7 @@ extension CategoryDetailViewModel {
                     self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")
                 }
             }, onFailure: { error in
-                if error.localizedDescription == CategoryError.minimumCategoryCount.localizedDescription {
+                if error.localizedDescription == CategoryError.minimumCategoryCount.serverDescription {
                     self.coordinator?.showToastMessage(text: error.localizedDescription)
                 } else {
                     self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")

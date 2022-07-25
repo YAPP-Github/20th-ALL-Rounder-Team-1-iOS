@@ -87,8 +87,8 @@ extension CategoryListViewModel {
                     self.coordinator?.showToastMessage(text: "카테고리 삭제에 실패하였습니다.")
                 }
             }, onFailure: { error in
-                if error.localizedDescription == CategoryError.minimumCategoryCount.localizedDescription {
-                    self.coordinator?.showToastMessage(text: error.localizedDescription)
+                if error.localizedDescription == CategoryError.minimumCategoryCount.serverDescription {
+                    self.coordinator?.showToastMessage(text: "최소 1개 이상의 카테고리가 존재해야 합니다.")
                 } else {
                     self.coordinator?.showToastMessage(text: "카테고리 삭제에 실패하였습니다.")
                 }
