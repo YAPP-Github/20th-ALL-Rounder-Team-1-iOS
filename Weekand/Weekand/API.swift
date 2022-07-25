@@ -49,6 +49,215 @@ public enum ScheduleCategoryOpenType: RawRepresentable, Equatable, Hashable, Cas
   }
 }
 
+public struct ScheduleInput: GraphQLMapConvertible {
+  public var graphQLMap: GraphQLMap
+
+  /// - Parameters:
+  ///   - name
+  ///   - categoryId
+  ///   - dateTimeStart
+  ///   - dateTimeEnd
+  ///   - repeatType
+  ///   - repeatSelectedValue
+  ///   - repeatEnd
+  ///   - memo
+  public init(name: String, categoryId: GraphQLID, dateTimeStart: Timestamp, dateTimeEnd: Timestamp, repeatType: RepeatType, repeatSelectedValue: Swift.Optional<[Week]?> = nil, repeatEnd: Swift.Optional<Timestamp?> = nil, memo: Swift.Optional<String?> = nil) {
+    graphQLMap = ["name": name, "categoryId": categoryId, "dateTimeStart": dateTimeStart, "dateTimeEnd": dateTimeEnd, "repeatType": repeatType, "repeatSelectedValue": repeatSelectedValue, "repeatEnd": repeatEnd, "memo": memo]
+  }
+
+  public var name: String {
+    get {
+      return graphQLMap["name"] as! String
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "name")
+    }
+  }
+
+  public var categoryId: GraphQLID {
+    get {
+      return graphQLMap["categoryId"] as! GraphQLID
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "categoryId")
+    }
+  }
+
+  public var dateTimeStart: Timestamp {
+    get {
+      return graphQLMap["dateTimeStart"] as! Timestamp
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "dateTimeStart")
+    }
+  }
+
+  public var dateTimeEnd: Timestamp {
+    get {
+      return graphQLMap["dateTimeEnd"] as! Timestamp
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "dateTimeEnd")
+    }
+  }
+
+  public var repeatType: RepeatType {
+    get {
+      return graphQLMap["repeatType"] as! RepeatType
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "repeatType")
+    }
+  }
+
+  public var repeatSelectedValue: Swift.Optional<[Week]?> {
+    get {
+      return graphQLMap["repeatSelectedValue"] as? Swift.Optional<[Week]?> ?? Swift.Optional<[Week]?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "repeatSelectedValue")
+    }
+  }
+
+  public var repeatEnd: Swift.Optional<Timestamp?> {
+    get {
+      return graphQLMap["repeatEnd"] as? Swift.Optional<Timestamp?> ?? Swift.Optional<Timestamp?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "repeatEnd")
+    }
+  }
+
+  public var memo: Swift.Optional<String?> {
+    get {
+      return graphQLMap["memo"] as? Swift.Optional<String?> ?? Swift.Optional<String?>.none
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "memo")
+    }
+  }
+}
+
+public enum RepeatType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  case daily
+  case weekly
+  case monthly
+  case yearly
+  case once
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "DAILY": self = .daily
+      case "WEEKLY": self = .weekly
+      case "MONTHLY": self = .monthly
+      case "YEARLY": self = .yearly
+      case "ONCE": self = .once
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .daily: return "DAILY"
+      case .weekly: return "WEEKLY"
+      case .monthly: return "MONTHLY"
+      case .yearly: return "YEARLY"
+      case .once: return "ONCE"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: RepeatType, rhs: RepeatType) -> Bool {
+    switch (lhs, rhs) {
+      case (.daily, .daily): return true
+      case (.weekly, .weekly): return true
+      case (.monthly, .monthly): return true
+      case (.yearly, .yearly): return true
+      case (.once, .once): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [RepeatType] {
+    return [
+      .daily,
+      .weekly,
+      .monthly,
+      .yearly,
+      .once,
+    ]
+  }
+}
+
+public enum Week: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  case monday
+  case tuesday
+  case wednesday
+  case thursday
+  case friday
+  case saturday
+  case sunday
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "MONDAY": self = .monday
+      case "TUESDAY": self = .tuesday
+      case "WEDNESDAY": self = .wednesday
+      case "THURSDAY": self = .thursday
+      case "FRIDAY": self = .friday
+      case "SATURDAY": self = .saturday
+      case "SUNDAY": self = .sunday
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .monday: return "MONDAY"
+      case .tuesday: return "TUESDAY"
+      case .wednesday: return "WEDNESDAY"
+      case .thursday: return "THURSDAY"
+      case .friday: return "FRIDAY"
+      case .saturday: return "SATURDAY"
+      case .sunday: return "SUNDAY"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: Week, rhs: Week) -> Bool {
+    switch (lhs, rhs) {
+      case (.monday, .monday): return true
+      case (.tuesday, .tuesday): return true
+      case (.wednesday, .wednesday): return true
+      case (.thursday, .thursday): return true
+      case (.friday, .friday): return true
+      case (.saturday, .saturday): return true
+      case (.sunday, .sunday): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [Week] {
+    return [
+      .monday,
+      .tuesday,
+      .wednesday,
+      .thursday,
+      .friday,
+      .saturday,
+      .sunday,
+    ]
+  }
+}
+
 public enum ScheduleCategorySort: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
   public typealias RawValue = String
   case dateCreatedAsc
@@ -102,7 +311,7 @@ public enum ScheduleCategorySort: RawRepresentable, Equatable, Hashable, CaseIte
 public enum ScheduleStatus: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
   public typealias RawValue = String
   case completed
-  case uncompleted
+  case incompleted
   case skip
   case undetermined
   /// Auto generated constant for unknown enum values
@@ -111,7 +320,7 @@ public enum ScheduleStatus: RawRepresentable, Equatable, Hashable, CaseIterable,
   public init?(rawValue: RawValue) {
     switch rawValue {
       case "COMPLETED": self = .completed
-      case "UNCOMPLETED": self = .uncompleted
+      case "INCOMPLETED": self = .incompleted
       case "SKIP": self = .skip
       case "UNDETERMINED": self = .undetermined
       default: self = .__unknown(rawValue)
@@ -121,7 +330,7 @@ public enum ScheduleStatus: RawRepresentable, Equatable, Hashable, CaseIterable,
   public var rawValue: RawValue {
     switch self {
       case .completed: return "COMPLETED"
-      case .uncompleted: return "UNCOMPLETED"
+      case .incompleted: return "INCOMPLETED"
       case .skip: return "SKIP"
       case .undetermined: return "UNDETERMINED"
       case .__unknown(let value): return value
@@ -131,7 +340,7 @@ public enum ScheduleStatus: RawRepresentable, Equatable, Hashable, CaseIterable,
   public static func == (lhs: ScheduleStatus, rhs: ScheduleStatus) -> Bool {
     switch (lhs, rhs) {
       case (.completed, .completed): return true
-      case (.uncompleted, .uncompleted): return true
+      case (.incompleted, .incompleted): return true
       case (.skip, .skip): return true
       case (.undetermined, .undetermined): return true
       case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
@@ -142,7 +351,7 @@ public enum ScheduleStatus: RawRepresentable, Equatable, Hashable, CaseIterable,
   public static var allCases: [ScheduleStatus] {
     return [
       .completed,
-      .uncompleted,
+      .incompleted,
       .skip,
       .undetermined,
     ]
@@ -464,6 +673,63 @@ public final class CreateCategoryMutation: GraphQLMutation {
       }
       set {
         resultMap.updateValue(newValue, forKey: "createCategory")
+      }
+    }
+  }
+}
+
+public final class CreateScheduleMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation CreateSchedule($input: ScheduleInput!) {
+      createSchedule(input: $input)
+    }
+    """
+
+  public let operationName: String = "CreateSchedule"
+
+  public var input: ScheduleInput
+
+  public init(input: ScheduleInput) {
+    self.input = input
+  }
+
+  public var variables: GraphQLMap? {
+    return ["input": input]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("createSchedule", arguments: ["input": GraphQLVariable("input")], type: .nonNull(.scalar(Bool.self))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(createSchedule: Bool) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "createSchedule": createSchedule])
+    }
+
+    /// 스케줄을 생성한다
+    /// [error]
+    /// 4003: 시작 일시와 종료 일시를 확인해주세요.
+    /// 4004: 반복 요일을 입력해주세요.
+    /// 4002: 해당 카테고리를 찾을 수 없습니다.
+    /// 3006: 권한이 없는 유저의 접근입니다.
+    public var createSchedule: Bool {
+      get {
+        return resultMap["createSchedule"]! as! Bool
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "createSchedule")
       }
     }
   }
@@ -913,7 +1179,7 @@ public final class MyUserDetailQuery: GraphQLQuery {
         id
         email
         nickname
-        profileUrl
+        profileImageUrl
         goal
         followerCount
         followeeCount
@@ -947,7 +1213,8 @@ public final class MyUserDetailQuery: GraphQLQuery {
       self.init(unsafeResultMap: ["__typename": "Query", "user": user.flatMap { (value: User) -> ResultMap in value.resultMap }])
     }
 
-    /// 현재 로그인 된 회원 상세 정보를 가져온다
+    /// 조건에 맞는 회원 상세 정보를 가져온다
+    /// id 인자를 입력하지 않으면, 현재 로그인 된 회원 상세 정보를 가져온다
     /// [error]
     /// 3001: 존재하지 않는 유저입니다.
     public var user: User? {
@@ -968,7 +1235,7 @@ public final class MyUserDetailQuery: GraphQLQuery {
           GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("email", type: .nonNull(.scalar(String.self))),
           GraphQLField("nickname", type: .nonNull(.scalar(String.self))),
-          GraphQLField("profileUrl", type: .nonNull(.scalar(String.self))),
+          GraphQLField("profileImageUrl", type: .nonNull(.scalar(String.self))),
           GraphQLField("goal", type: .scalar(String.self)),
           GraphQLField("followerCount", type: .nonNull(.scalar(Int.self))),
           GraphQLField("followeeCount", type: .nonNull(.scalar(Int.self))),
@@ -983,8 +1250,8 @@ public final class MyUserDetailQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: GraphQLID, email: String, nickname: String, profileUrl: String, goal: String? = nil, followerCount: Int, followeeCount: Int, jobs: [String], interests: [String]) {
-        self.init(unsafeResultMap: ["__typename": "User", "id": id, "email": email, "nickname": nickname, "profileUrl": profileUrl, "goal": goal, "followerCount": followerCount, "followeeCount": followeeCount, "jobs": jobs, "interests": interests])
+      public init(id: GraphQLID, email: String, nickname: String, profileImageUrl: String, goal: String? = nil, followerCount: Int, followeeCount: Int, jobs: [String], interests: [String]) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id, "email": email, "nickname": nickname, "profileImageUrl": profileImageUrl, "goal": goal, "followerCount": followerCount, "followeeCount": followeeCount, "jobs": jobs, "interests": interests])
       }
 
       public var __typename: String {
@@ -1023,12 +1290,12 @@ public final class MyUserDetailQuery: GraphQLQuery {
         }
       }
 
-      public var profileUrl: String {
+      public var profileImageUrl: String {
         get {
-          return resultMap["profileUrl"]! as! String
+          return resultMap["profileImageUrl"]! as! String
         }
         set {
-          resultMap.updateValue(newValue, forKey: "profileUrl")
+          resultMap.updateValue(newValue, forKey: "profileImageUrl")
         }
       }
 
@@ -1074,6 +1341,96 @@ public final class MyUserDetailQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "interests")
+        }
+      }
+    }
+  }
+}
+
+public final class ReissueQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query Reissue {
+      reissue {
+        __typename
+        accessToken
+      }
+    }
+    """
+
+  public let operationName: String = "Reissue"
+
+  public init() {
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("reissue", type: .nonNull(.object(Reissue.selections))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(reissue: Reissue) {
+      self.init(unsafeResultMap: ["__typename": "Query", "reissue": reissue.resultMap])
+    }
+
+    /// 로그인 리프레시 토큰을 발급한다
+    /// [error]
+    /// 3004: 유효하지 않은 리프레시 토큰입니다.
+    /// 3001: 존재하지 않는 유저입니다.
+    public var reissue: Reissue {
+      get {
+        return Reissue(unsafeResultMap: resultMap["reissue"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "reissue")
+      }
+    }
+
+    public struct Reissue: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["ReissueAccessTokenResponse"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("accessToken", type: .nonNull(.scalar(String.self))),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(accessToken: String) {
+        self.init(unsafeResultMap: ["__typename": "ReissueAccessTokenResponse", "accessToken": accessToken])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var accessToken: String {
+        get {
+          return resultMap["accessToken"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "accessToken")
         }
       }
     }
@@ -1561,6 +1918,330 @@ public final class ScheduleListQuery: GraphQLQuery {
   }
 }
 
+public final class SearchSchedulesQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query searchSchedules($sort: ScheduleCategorySort!, $page: Int!, $size: Int!, $searchQuery: String, $categoryId: ID!) {
+      searchSchedules(
+        sort: $sort
+        page: $page
+        size: $size
+        searchQuery: $searchQuery
+        categoryId: $categoryId
+      ) {
+        __typename
+        paginationInfo {
+          __typename
+          hasNext
+        }
+        schedules {
+          __typename
+          id
+          name
+          category {
+            __typename
+            id
+            color
+          }
+          dateTimeStart
+          dateTimeEnd
+          repeatType
+          repeatSelectedValue
+        }
+      }
+    }
+    """
+
+  public let operationName: String = "searchSchedules"
+
+  public var sort: ScheduleCategorySort
+  public var page: Int
+  public var size: Int
+  public var searchQuery: String?
+  public var categoryId: GraphQLID
+
+  public init(sort: ScheduleCategorySort, page: Int, size: Int, searchQuery: String? = nil, categoryId: GraphQLID) {
+    self.sort = sort
+    self.page = page
+    self.size = size
+    self.searchQuery = searchQuery
+    self.categoryId = categoryId
+  }
+
+  public var variables: GraphQLMap? {
+    return ["sort": sort, "page": page, "size": size, "searchQuery": searchQuery, "categoryId": categoryId]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("searchSchedules", arguments: ["sort": GraphQLVariable("sort"), "page": GraphQLVariable("page"), "size": GraphQLVariable("size"), "searchQuery": GraphQLVariable("searchQuery"), "categoryId": GraphQLVariable("categoryId")], type: .nonNull(.object(SearchSchedule.selections))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(searchSchedules: SearchSchedule) {
+      self.init(unsafeResultMap: ["__typename": "Query", "searchSchedules": searchSchedules.resultMap])
+    }
+
+    /// 일정을 검색한다
+    /// [error]
+    /// 4002: 해당 카테고리를 찾을 수 없습니다.
+    public var searchSchedules: SearchSchedule {
+      get {
+        return SearchSchedule(unsafeResultMap: resultMap["searchSchedules"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "searchSchedules")
+      }
+    }
+
+    public struct SearchSchedule: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["SearchScheduleList"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("paginationInfo", type: .nonNull(.object(PaginationInfo.selections))),
+          GraphQLField("schedules", type: .nonNull(.list(.nonNull(.object(Schedule.selections))))),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(paginationInfo: PaginationInfo, schedules: [Schedule]) {
+        self.init(unsafeResultMap: ["__typename": "SearchScheduleList", "paginationInfo": paginationInfo.resultMap, "schedules": schedules.map { (value: Schedule) -> ResultMap in value.resultMap }])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var paginationInfo: PaginationInfo {
+        get {
+          return PaginationInfo(unsafeResultMap: resultMap["paginationInfo"]! as! ResultMap)
+        }
+        set {
+          resultMap.updateValue(newValue.resultMap, forKey: "paginationInfo")
+        }
+      }
+
+      public var schedules: [Schedule] {
+        get {
+          return (resultMap["schedules"] as! [ResultMap]).map { (value: ResultMap) -> Schedule in Schedule(unsafeResultMap: value) }
+        }
+        set {
+          resultMap.updateValue(newValue.map { (value: Schedule) -> ResultMap in value.resultMap }, forKey: "schedules")
+        }
+      }
+
+      public struct PaginationInfo: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["PaginationInfo"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("hasNext", type: .nonNull(.scalar(Bool.self))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(hasNext: Bool) {
+          self.init(unsafeResultMap: ["__typename": "PaginationInfo", "hasNext": hasNext])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var hasNext: Bool {
+          get {
+            return resultMap["hasNext"]! as! Bool
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "hasNext")
+          }
+        }
+      }
+
+      public struct Schedule: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["ScheduleInfo"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("name", type: .nonNull(.scalar(String.self))),
+            GraphQLField("category", type: .nonNull(.object(Category.selections))),
+            GraphQLField("dateTimeStart", type: .nonNull(.scalar(Timestamp.self))),
+            GraphQLField("dateTimeEnd", type: .nonNull(.scalar(Timestamp.self))),
+            GraphQLField("repeatType", type: .nonNull(.scalar(RepeatType.self))),
+            GraphQLField("repeatSelectedValue", type: .scalar(String.self)),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(id: GraphQLID, name: String, category: Category, dateTimeStart: Timestamp, dateTimeEnd: Timestamp, repeatType: RepeatType, repeatSelectedValue: String? = nil) {
+          self.init(unsafeResultMap: ["__typename": "ScheduleInfo", "id": id, "name": name, "category": category.resultMap, "dateTimeStart": dateTimeStart, "dateTimeEnd": dateTimeEnd, "repeatType": repeatType, "repeatSelectedValue": repeatSelectedValue])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var id: GraphQLID {
+          get {
+            return resultMap["id"]! as! GraphQLID
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "id")
+          }
+        }
+
+        public var name: String {
+          get {
+            return resultMap["name"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "name")
+          }
+        }
+
+        public var category: Category {
+          get {
+            return Category(unsafeResultMap: resultMap["category"]! as! ResultMap)
+          }
+          set {
+            resultMap.updateValue(newValue.resultMap, forKey: "category")
+          }
+        }
+
+        public var dateTimeStart: Timestamp {
+          get {
+            return resultMap["dateTimeStart"]! as! Timestamp
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "dateTimeStart")
+          }
+        }
+
+        public var dateTimeEnd: Timestamp {
+          get {
+            return resultMap["dateTimeEnd"]! as! Timestamp
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "dateTimeEnd")
+          }
+        }
+
+        public var repeatType: RepeatType {
+          get {
+            return resultMap["repeatType"]! as! RepeatType
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "repeatType")
+          }
+        }
+
+        public var repeatSelectedValue: String? {
+          get {
+            return resultMap["repeatSelectedValue"] as? String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "repeatSelectedValue")
+          }
+        }
+
+        public struct Category: GraphQLSelectionSet {
+          public static let possibleTypes: [String] = ["ScheduleCategory"]
+
+          public static var selections: [GraphQLSelection] {
+            return [
+              GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+              GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+              GraphQLField("color", type: .nonNull(.scalar(String.self))),
+            ]
+          }
+
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public init(id: GraphQLID, color: String) {
+            self.init(unsafeResultMap: ["__typename": "ScheduleCategory", "id": id, "color": color])
+          }
+
+          public var __typename: String {
+            get {
+              return resultMap["__typename"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "__typename")
+            }
+          }
+
+          public var id: GraphQLID {
+            get {
+              return resultMap["id"]! as! GraphQLID
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "id")
+            }
+          }
+
+          public var color: String {
+            get {
+              return resultMap["color"]! as! String
+            }
+            set {
+              resultMap.updateValue(newValue, forKey: "color")
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 public final class SearchUsersQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
@@ -1582,7 +2263,7 @@ public final class SearchUsersQuery: GraphQLQuery {
         users {
           __typename
           id
-          profileUrl
+          profileImageUrl
           nickname
           goal
         }
@@ -1735,7 +2416,7 @@ public final class SearchUsersQuery: GraphQLQuery {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
             GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
-            GraphQLField("profileUrl", type: .nonNull(.scalar(String.self))),
+            GraphQLField("profileImageUrl", type: .nonNull(.scalar(String.self))),
             GraphQLField("nickname", type: .nonNull(.scalar(String.self))),
             GraphQLField("goal", type: .scalar(String.self)),
           ]
@@ -1747,8 +2428,8 @@ public final class SearchUsersQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(id: GraphQLID, profileUrl: String, nickname: String, goal: String? = nil) {
-          self.init(unsafeResultMap: ["__typename": "User", "id": id, "profileUrl": profileUrl, "nickname": nickname, "goal": goal])
+        public init(id: GraphQLID, profileImageUrl: String, nickname: String, goal: String? = nil) {
+          self.init(unsafeResultMap: ["__typename": "User", "id": id, "profileImageUrl": profileImageUrl, "nickname": nickname, "goal": goal])
         }
 
         public var __typename: String {
@@ -1769,12 +2450,12 @@ public final class SearchUsersQuery: GraphQLQuery {
           }
         }
 
-        public var profileUrl: String {
+        public var profileImageUrl: String {
           get {
-            return resultMap["profileUrl"]! as! String
+            return resultMap["profileImageUrl"]! as! String
           }
           set {
-            resultMap.updateValue(newValue, forKey: "profileUrl")
+            resultMap.updateValue(newValue, forKey: "profileImageUrl")
           }
         }
 
@@ -2027,7 +2708,7 @@ public final class UserSummaryQuery: GraphQLQuery {
         __typename
         id
         nickname
-        profileUrl
+        profileImageUrl
         goal
       }
     }
@@ -2057,7 +2738,8 @@ public final class UserSummaryQuery: GraphQLQuery {
       self.init(unsafeResultMap: ["__typename": "Query", "user": user.flatMap { (value: User) -> ResultMap in value.resultMap }])
     }
 
-    /// 현재 로그인 된 회원 상세 정보를 가져온다
+    /// 조건에 맞는 회원 상세 정보를 가져온다
+    /// id 인자를 입력하지 않으면, 현재 로그인 된 회원 상세 정보를 가져온다
     /// [error]
     /// 3001: 존재하지 않는 유저입니다.
     public var user: User? {
@@ -2077,7 +2759,7 @@ public final class UserSummaryQuery: GraphQLQuery {
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("nickname", type: .nonNull(.scalar(String.self))),
-          GraphQLField("profileUrl", type: .nonNull(.scalar(String.self))),
+          GraphQLField("profileImageUrl", type: .nonNull(.scalar(String.self))),
           GraphQLField("goal", type: .scalar(String.self)),
         ]
       }
@@ -2088,8 +2770,8 @@ public final class UserSummaryQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: GraphQLID, nickname: String, profileUrl: String, goal: String? = nil) {
-        self.init(unsafeResultMap: ["__typename": "User", "id": id, "nickname": nickname, "profileUrl": profileUrl, "goal": goal])
+      public init(id: GraphQLID, nickname: String, profileImageUrl: String, goal: String? = nil) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id, "nickname": nickname, "profileImageUrl": profileImageUrl, "goal": goal])
       }
 
       public var __typename: String {
@@ -2119,12 +2801,12 @@ public final class UserSummaryQuery: GraphQLQuery {
         }
       }
 
-      public var profileUrl: String {
+      public var profileImageUrl: String {
         get {
-          return resultMap["profileUrl"]! as! String
+          return resultMap["profileImageUrl"]! as! String
         }
         set {
-          resultMap.updateValue(newValue, forKey: "profileUrl")
+          resultMap.updateValue(newValue, forKey: "profileImageUrl")
         }
       }
 

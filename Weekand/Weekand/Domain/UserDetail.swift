@@ -30,7 +30,7 @@ extension UserDetail {
         email = model.email
         name = model.nickname
         goal = model.goal ?? ""
-        imagePath = model.profileUrl
+        imagePath = model.profileImageUrl
         followee = model.followeeCount
         follower = model.followerCount
         job = model.jobs

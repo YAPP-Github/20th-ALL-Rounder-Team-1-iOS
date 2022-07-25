@@ -3,7 +3,7 @@ query MyUserDetail {
     id
     email
     nickname
-    profileUrl
+    profileImageUrl
     goal
     followerCount
     followeeCount
