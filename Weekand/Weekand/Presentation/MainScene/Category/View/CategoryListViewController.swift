@@ -50,6 +50,7 @@ class CategoryListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        configureSnapshot(list: list)
         setCategoryList(sort: selectedSort)
     }
     

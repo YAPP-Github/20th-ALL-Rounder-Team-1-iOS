@@ -25,6 +25,7 @@ class CategoryDetailViewController: UIViewController {
     let tableView = UITableView()
     let headerView = CategoryDetailHeaderView()
     let toolBar = CategoryDetailToolBar()
+    lazy var backgroundEmtpyView = WEmptyView(type: .schedule)
     
     var searchText: String = ""
     var selectedSort: ScheduleSort = .dateCreatedDESC {
@@ -75,6 +76,8 @@ class CategoryDetailViewController: UIViewController {
         tableView.bounces = false
         tableView.register(CategoryDetailTableViewCell.self, forCellReuseIdentifier: CategoryDetailTableViewCell.cellIdentifier)
         tableView.register(CategoryDetailHeaderView.self, forHeaderFooterViewReuseIdentifier: CategoryDetailHeaderView.cellIdentifier)
+        tableView.backgroundView = backgroundEmtpyView
+        tableView.backgroundView?.isHidden = true
         
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
@@ -164,6 +167,12 @@ extension CategoryDetailViewController {
         snapshot.appendSections([.main])
         snapshot.appendItems(list, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+        
+        if self.list.isEmpty {
+            tableView.backgroundView?.isHidden = false
+        } else {
+            tableView.backgroundView?.isHidden = true
+        }
     }
     
 }
