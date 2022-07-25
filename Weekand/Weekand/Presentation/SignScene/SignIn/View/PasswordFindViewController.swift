@@ -63,13 +63,13 @@ class PasswordFindViewController: UIViewController {
     private func configureUI() {
         self.view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(50)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(30)
             make.leading.equalToSuperview().offset(24)
         }
         
         self.view.addSubview(informLabel)
         informLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(20)
+            make.top.equalTo(titleLabel.snp.bottom).offset(15)
             make.leading.equalToSuperview().offset(24)
         }
         
