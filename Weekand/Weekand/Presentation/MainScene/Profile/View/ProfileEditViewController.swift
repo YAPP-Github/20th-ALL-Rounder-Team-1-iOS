@@ -28,6 +28,7 @@ class ProfileEditViewController: BaseViewController {
         }
     }
     
+    // MARK: profile image
     lazy var profileImageView = UIImageView().then {
         $0.layer.cornerRadius = 20
         $0.clipsToBounds = true
@@ -40,6 +41,9 @@ class ProfileEditViewController: BaseViewController {
         $0.textAlignment = .center
     }
     
+    lazy var profileImageContainerView = UIView()
+    
+    // MARK: Fields
     lazy var nickNameField = ProfileEditFieldView(title: "닉네임", validation: 12)
     lazy var goalField = ProfileEditFieldView(title: "한줄목표", validation: 20)
     lazy var jobField = ProfileEditSelectionView(title: "직업")
@@ -51,6 +55,7 @@ class ProfileEditViewController: BaseViewController {
         $0.spacing = 24
     }
     
+    // MARK: Button
     lazy var bottomButton = WBottmButton(title: "완료")
     
     override func viewDidLoad() {
@@ -65,7 +70,6 @@ class ProfileEditViewController: BaseViewController {
     private func setUpView() {
         self.title = "프로필 수정"
         self.view.backgroundColor = .backgroundColor
-        
     }
     
     private func configureUI() {
@@ -78,20 +82,26 @@ class ProfileEditViewController: BaseViewController {
 //            make.bottom.equalToSuperview()
 //        }
         
-        [nickNameField, goalField, jobField, interestField].forEach { textFieldStack.addArrangedSubview($0) }
-        
-        [profileImageView, textFieldStack].forEach { self.view.addSubview($0) }
+        profileImageContainerView.addSubview(profileImageView)
         profileImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(24)
+            make.center.equalToSuperview()
+            make.top.bottom.equalToSuperview().inset(24)
             make.height.equalTo(80)
             make.width.equalTo(80)
-            make.centerX.equalToSuperview()
         }
         
-        textFieldStack.snp.makeConstraints { make in
-            make.top.equalTo(profileImageView.snp.bottom).offset(24)
-            make.left.right.equalToSuperview().inset(24)
+        [nickNameField, goalField, jobField, interestField].forEach { textFieldStack.addArrangedSubview($0) }
+        
+        [profileImageContainerView, textFieldStack].forEach { self.stackView.addArrangedSubview($0) }
+        
+        stackView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(24)
+            make.bottom.equalToSuperview().offset(-WBottmButton.buttonOffset - 64)
+            make.trailing.leading.equalToSuperview().inset(24)
         }
+        
+        self.contentView.addSubview(stackView)
+        
 
         self.view.addSubview(bottomButton)
         bottomButton.enable(string: "완료")
