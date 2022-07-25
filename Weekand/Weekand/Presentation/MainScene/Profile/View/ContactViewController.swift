@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import UIKit
+import RxRelay
 
 class ContactViewController: BaseViewController {
     
@@ -100,6 +101,12 @@ class ContactViewController: BaseViewController {
     
     private func bindViewModel() {
         
+        let input = ContactViewModel.Input(
+            contactString: textView.rx.text.asObservable(),
+            didButtonTap: bottomButton.rx.tap.asObservable()
+        )
+        
+        let output = viewModel?.transform(input: input)
     }
 }
 
