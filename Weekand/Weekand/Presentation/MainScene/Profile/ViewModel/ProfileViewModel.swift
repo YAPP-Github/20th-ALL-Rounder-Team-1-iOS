@@ -94,7 +94,7 @@ extension ProfileViewModel {
         }).disposed(by: disposeBag)
 
         input.didPasswordTap.when(.recognized).subscribe(onNext: { _ in
-            print("비밀번호")
+            self.coordinator?.pushPasswordChangeViewController()
         }).disposed(by: disposeBag)
         
         input.didLogoutTap.when(.recognized).subscribe(onNext: { _ in

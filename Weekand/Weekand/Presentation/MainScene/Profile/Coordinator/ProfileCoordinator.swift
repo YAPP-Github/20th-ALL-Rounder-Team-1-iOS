@@ -55,6 +55,15 @@ class ProfileCoordinator: Coordinator {
         self.navigationController.pushViewController(contactCompleteViewController, animated: true)
     }
     
+    func pushPasswordChangeViewController() {
+        let passwordChangeViewController = PasswordChangeViewController()
+        passwordChangeViewController.viewModel = PasswordChangeViewModel(coordinator: self, useCase: profileUseCase)
+        self.navigationController.pushViewController(passwordChangeViewController, animated: true)
+    }
+    
+    
+    // MARK: Bottom Sheet
+    
     /// 프로필설정 - 직업선택 Sheet
     func presentJobInformationSheet() {
         let jobSelectionSheetController = SelectionSheetViewController(informationType: .job)
