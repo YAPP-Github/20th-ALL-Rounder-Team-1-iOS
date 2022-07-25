@@ -54,6 +54,7 @@
 		7D8129FC288C60A2006C0A5D /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129FB288C60A1006C0A5D /* ContactViewModel.swift */; };
 		7D8129FE288C60BF006C0A5D /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129FD288C60BF006C0A5D /* ContactViewController.swift */; };
 		7D812A02288E1CCC006C0A5D /* ProfileEditSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D812A01288E1CCC006C0A5D /* ProfileEditSelectionView.swift */; };
+		7D812A05288E8143006C0A5D /* ContactCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D812A04288E8143006C0A5D /* ContactCompleteViewController.swift */; };
 		7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */; };
 		7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */; };
 		7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */; };
@@ -290,6 +291,7 @@
 		7D8129FB288C60A1006C0A5D /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
 		7D8129FD288C60BF006C0A5D /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		7D812A01288E1CCC006C0A5D /* ProfileEditSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditSelectionView.swift; sourceTree = "<group>"; };
+		7D812A04288E8143006C0A5D /* ContactCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCompleteViewController.swift; sourceTree = "<group>"; };
 		7D8E4E832882A9D70035FB7E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCoordinator.swift; sourceTree = "<group>"; };
@@ -671,6 +673,7 @@
 				7D8129F0288AD92A006C0A5D /* ProfileEditViewController.swift */,
 				7D8129F7288BDE3C006C0A5D /* SelectionSheetViewController.swift */,
 				7D8129FD288C60BF006C0A5D /* ContactViewController.swift */,
+				7D812A04288E8143006C0A5D /* ContactCompleteViewController.swift */,
 				7D8129DD28894693006C0A5D /* SubView */,
 			);
 			path = View;
@@ -1659,6 +1662,7 @@
 				7D7178ED283E1ED500D7E5F2 /* WTextButton.swift in Sources */,
 				F323FF1D2879A30100DFD8FD /* SimplePopupCoordinator.swift in Sources */,
 				7DF9688A284DF2EB00CE077E /* MainViewHeader.swift in Sources */,
+				7D812A05288E8143006C0A5D /* ContactCompleteViewController.swift in Sources */,
 				7DEA177A2845E7C500F6B990 /* WEmojiView.swift in Sources */,
 				7DBC38AE2875A92400EFE704 /* Key.swift in Sources */,
 				7D8129DB288928ED006C0A5D /* ProfileDetailInteractoinBlockView.swift in Sources */,

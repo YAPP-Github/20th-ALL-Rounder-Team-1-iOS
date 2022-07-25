@@ -134,6 +134,4 @@ extension ContactViewController: UITextViewDelegate {
         return textView.text.count - range.length + text.count > maxCount ? false : true
     }
     
-    
-
 }

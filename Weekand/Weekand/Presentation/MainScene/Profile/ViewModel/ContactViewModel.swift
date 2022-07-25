@@ -47,6 +47,7 @@ extension ContactViewModel {
         input.didButtonTap.subscribe(onNext: { _ in
             // TODO: 문의 완료 화면으로 이동
             print("Text: \(self.contactText)")
+            self.coordinator?.pushContactCompleteViewController()
         }).disposed(by: disposeBag)
                 
         return Output()
