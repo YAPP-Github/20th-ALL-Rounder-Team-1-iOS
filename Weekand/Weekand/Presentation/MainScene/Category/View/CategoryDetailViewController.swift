@@ -156,7 +156,11 @@ extension CategoryDetailViewController {
                 return UITableViewCell()
             }
             cell.selectionStyle = .none
-            cell.configure(color: .wred, title: list.name, startDate: "2022.05.21 06:00", endDate: "2022.05.28 08:00", repeatText: "매주 화요일 반복")
+            cell.configure(color: UIColor(hex: list.color) ?? .mainColor,
+                           title: list.name,
+                           date: "2022.07.26.",
+                           time: "19:00 - 20:00",
+                           repeatText: list.repeatSelectedValue)
             return cell
         })
     }
