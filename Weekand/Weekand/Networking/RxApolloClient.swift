@@ -34,8 +34,9 @@ class RxApolloClient {
                 print(result)
                 switch result {
                 case .success(let graphQLResult):
-                    if let errors = graphQLResult.errors {
-                        maybe(.error(errors.first ?? ApolloError.fetchError))
+                    if let errors = graphQLResult.errors,
+                       let error = errors.first {
+                        maybe(.error(error))
                     } else if let data = graphQLResult.data {
                         maybe(.success(data))
                     } else {
@@ -66,8 +67,9 @@ class RxApolloClient {
                 print(result)
                 switch result {
                 case .success(let graphQLResult):
-                    if let errors = graphQLResult.errors {
-                        maybe(.error(errors.first ?? ApolloError.performError))
+                    if let errors = graphQLResult.errors,
+                       let error = errors.first {
+                        maybe(.error(error))
                     } else if let data = graphQLResult.data {
                         maybe(.success(data))
                     } else {
