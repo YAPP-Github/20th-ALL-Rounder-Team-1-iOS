@@ -13,7 +13,7 @@ import Apollo
 class ScheduleEditViewModel: ViewModelType {
     
     enum DateTime {
-        case startDate, startTime, endDate, endTime
+        case date, startTime, endTime
     }
 
     weak var coordinator: ScheduleEditCoordinator?
@@ -34,19 +34,18 @@ class ScheduleEditViewModel: ViewModelType {
         let closeButtonDidTapEvent: Observable<Void>
         let confirmButtonDidTapEvent: Observable<Void>
         let categoryArrowDidTapEvent: Observable<Void>
-        let isSelectedStartDate: BehaviorRelay<Bool>
+        let isSelectedDate: BehaviorRelay<Bool>
         let isSelectedStartTime: BehaviorRelay<Bool>
-        let isSelectedEndDate: BehaviorRelay<Bool>
         let isSelectedEndTime: BehaviorRelay<Bool>
-        let startDateButtonDidTapEvent: Observable<Void>
+        let dateButtonDidTapEvent: Observable<Void>
         let startTimeButtonDidTapEvent: Observable<Void>
-        let endDateButtonDidTapEvent: Observable<Void>
         let endTimeButtonDidTapEvent: Observable<Void>
-        let startDateDidSelectEvent: Observable<Date>
-        let endDateDidSelectEvent: Observable<Date>
+        let dateDidSelectEvent: Observable<Date>
         let repeatButtonDidTapEvent: Observable<Void>
         let nameTextFieldDidEditEvent: Observable<String?>
-        let selectedDateTimes: [BehaviorRelay<Date>]
+        let selectedDate: BehaviorRelay<Date>
+        let selectedStartTime: BehaviorRelay<Date>
+        let selectedEndTime: BehaviorRelay<Date>
         let selectedCategory: BehaviorRelay<Category?>
         let selectedRepeatType: BehaviorRelay<ScheduleRepeatType>
         let selectedRepeatSelectedValue: BehaviorRelay<[ScheduleWeek]>
@@ -55,14 +54,15 @@ class ScheduleEditViewModel: ViewModelType {
     }
     
     struct Output {
-        var startDateDidSelectEvent: Driver<Date>
-        var endDateDidSelectEvent: Driver<Date>
+        var dateDidSelectEvent: Driver<Date>
         var validNameInput: Driver<Bool>
     }
     
     func transform(input: Input) -> Output {
         
-        let combinedDateTimes = Observable.combineLatest(input.selectedDateTimes)
+        let combinedDateTimes = Observable.combineLatest(input.selectedDate,
+                                                         input.selectedStartTime,
+                                                         input.selectedEndTime)
         let validNameInput = input.nameTextFieldDidEditEvent.map(vaildInput)
         
         let combinedInputs = Observable.combineLatest(
@@ -75,8 +75,8 @@ class ScheduleEditViewModel: ViewModelType {
              input.memoTextViewDidEditEvent)
         
         input.confirmButtonDidTapEvent.withLatestFrom(combinedInputs)
-            .subscribe(onNext: { [weak self] dates, nameText, category, repeatType, repeatSelectValue, repeatEnd, memo in
-                print(dates[1], nameText, category, repeatType, repeatSelectValue, repeatEnd, memo)
+            .subscribe(onNext: { [weak self] dates, nameText, category,
+                                             repeatType, repeatSelectValue, repeatEnd, memo in
                 guard let nameText = nameText,
                       let category = category,
                       let memo = memo else {
@@ -91,8 +91,8 @@ class ScheduleEditViewModel: ViewModelType {
                 let scheduleInputModel = ScheduleInputModel(
                     name: nameText,
                     categoryId: category.serverID,
-                    dateStart: dates[0],
-                    dateEnd: dates[2],
+                    dateStart: dates.1,
+                    dateEnd: dates.2,
                     repeatType: repeatType,
                     repeatSelectedValue: repeatSelectValue,
                     repeatEnd: repeatEnd,
@@ -117,28 +117,21 @@ class ScheduleEditViewModel: ViewModelType {
         .disposed(by: disposeBag)
         
         return Output(
-            startDateDidSelectEvent: input.startDateDidSelectEvent.asDriver(onErrorJustReturn: Date()),
-            endDateDidSelectEvent: input.endDateDidSelectEvent.asDriver(onErrorJustReturn: Date()),
+            dateDidSelectEvent: input.dateDidSelectEvent.asDriver(onErrorJustReturn: Date()),
             validNameInput: validNameInput.asDriver(onErrorJustReturn: false)
         )
     }
     
     private func bindDateTime(input: Input) {
-        input.startDateButtonDidTapEvent
+        input.dateButtonDidTapEvent
             .subscribe(onNext: { _ in
-                input.isSelectedStartDate.accept(!input.isSelectedStartDate.value)
+                input.isSelectedDate.accept(!input.isSelectedDate.value)
             })
             .disposed(by: disposeBag)
         
         input.startTimeButtonDidTapEvent
             .subscribe(onNext: { _ in
                 input.isSelectedStartTime.accept(!input.isSelectedStartTime.value)
-            })
-            .disposed(by: disposeBag)
-        
-        input.endDateButtonDidTapEvent
-            .subscribe(onNext: { _ in
-                input.isSelectedEndDate.accept(!input.isSelectedEndDate.value)
             })
             .disposed(by: disposeBag)
         
@@ -155,21 +148,18 @@ class ScheduleEditViewModel: ViewModelType {
         var previousTag: DateTime? = nil
         
         Observable.of(
-            input.startDateButtonDidTapEvent.map { _ in DateTime.startDate },
+            input.dateButtonDidTapEvent.map { _ in DateTime.date },
             input.startTimeButtonDidTapEvent.map { _ in DateTime.startTime },
-            input.endDateButtonDidTapEvent.map { _ in DateTime.endDate },
             input.endTimeButtonDidTapEvent.map { _ in DateTime.endTime }
         )
         .merge()
         .distinctUntilChanged()
         .subscribe(onNext: { tag in
             switch previousTag {
-            case .startDate:
-                input.isSelectedStartDate.accept(false)
+            case .date:
+                input.isSelectedDate.accept(false)
             case .startTime:
                 input.isSelectedStartTime.accept(false)
-            case .endDate:
-                input.isSelectedEndDate.accept(false)
             case .endTime:
                 input.isSelectedEndTime.accept(false)
             default:
