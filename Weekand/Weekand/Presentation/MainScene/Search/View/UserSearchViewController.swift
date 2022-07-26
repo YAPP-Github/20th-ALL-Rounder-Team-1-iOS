@@ -24,6 +24,7 @@ class UserSearchViewController: UIViewController {
     
     var headerView = SearchHeaderView()
     let tableView = UITableView()
+    let backgroundEmtpyView = WEmptyView(type: .search)
     
     var list: [UserSummaryTemp] = []
     var UserCount: Int = 20
@@ -123,6 +124,12 @@ class UserSearchViewController: UIViewController {
             .subscribe(onNext: { [weak self] userList in
                 userList.forEach { self?.list.append($0) }
                 self?.configureSnapshot(list: self?.list ?? [])
+                if let searchList = self?.list,
+                   searchList.isEmpty {
+                    self?.tableView.backgroundView?.isHidden = false
+                } else {
+                    self?.tableView.backgroundView?.isHidden = true
+                }
         })
         .disposed(by: self.disposeBag)
     }
@@ -133,6 +140,8 @@ class UserSearchViewController: UIViewController {
         tableView.bounces = false
         tableView.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.cellIdentifier)
         tableView.register(SearchHeaderView.self, forHeaderFooterViewReuseIdentifier: SearchHeaderView.cellIdentifier)
+        tableView.backgroundView = backgroundEmtpyView
+        tableView.backgroundView?.isHidden = true
         
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0

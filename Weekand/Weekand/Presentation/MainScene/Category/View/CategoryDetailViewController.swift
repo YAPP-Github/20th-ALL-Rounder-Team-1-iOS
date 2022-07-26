@@ -25,7 +25,7 @@ class CategoryDetailViewController: UIViewController {
     let tableView = UITableView()
     let headerView = CategoryDetailHeaderView()
     let toolBar = CategoryDetailToolBar()
-    lazy var backgroundEmtpyView = WEmptyView(type: .schedule)
+    let backgroundEmtpyView = WEmptyView(type: .schedule)
     
     var searchText: String = ""
     var selectedSort: ScheduleSort = .dateCreatedDESC {

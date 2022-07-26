@@ -22,13 +22,13 @@ enum EmptySceneType {
         case .followerSchedule:
             return "scheduleEmoji.empty"
         case .search:
-            return "scheduleEmoji.empty"
+            return "searchEmoji.empty"
         case .folloewr:
-            return "scheduleEmoji.empty"
+            return "followersEmoji.empty"
         case .following:
-            return "scheduleEmoji.empty"
+            return "followingEmoji.empty"
         case .alarm:
-            return "scheduleEmoji.empty"
+            return "alarmEmoji.empty"
         }
     }
     
