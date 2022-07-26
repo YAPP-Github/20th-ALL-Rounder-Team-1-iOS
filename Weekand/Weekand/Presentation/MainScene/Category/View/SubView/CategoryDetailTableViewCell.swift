@@ -62,7 +62,7 @@ class CategoryDetailTableViewCell: UITableViewCell {
     private func configureUI() {
         self.addSubview(cellStack)
         cellStack.snp.makeConstraints { make in
-            make.edges.equalTo(UIEdgeInsets(top: 10, left: 24, bottom: 10, right: 24))
+            make.edges.equalTo(UIEdgeInsets(top: 12, left: 24, bottom: 12, right: 24))
         }
     }
     

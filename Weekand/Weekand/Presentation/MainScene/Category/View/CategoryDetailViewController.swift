@@ -96,7 +96,7 @@ class CategoryDetailViewController: UIViewController {
         
         tableView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(self.toolBar.viewHeight)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-self.toolBar.viewHeight)
             make.trailing.leading.equalToSuperview()
         }
         
@@ -189,7 +189,7 @@ extension CategoryDetailViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 120
+        return 110
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

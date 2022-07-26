@@ -146,7 +146,7 @@ class ScheduleEditViewController: BaseViewController {
             .subscribe(onNext: { [weak self] repeatType, repeatEndDate in
                 var repeatText = ""
                 if let date = repeatEndDate {
-                    let dateString = WDateFormatter.dateFormatter.string(from: date) ?? ""
+                    let dateString = WDateFormatter.dateFormatter.string(from: date)
                     repeatText = "\(dateString)까지 \(repeatType.description)"
                 } else {
                     repeatText = "\(repeatType.description)"
@@ -165,7 +165,7 @@ class ScheduleEditViewController: BaseViewController {
                 var repeatText = ""
                 let repeatSelectedValueText = repeatSelectedValue.map { $0.description }.joined(separator: ",")
                 if let date = repeatEndDate {
-                    let dateString = WDateFormatter.dateFormatter.string(from: date) ?? ""
+                    let dateString = WDateFormatter.dateFormatter.string(from: date)
                     repeatText = "\(dateString)까지 \(repeatType.description) \(repeatSelectedValueText)"
                 } else {
                     repeatText = "\(repeatType.description) \(repeatSelectedValueText)"
@@ -228,6 +228,9 @@ class ScheduleEditViewController: BaseViewController {
     }
     
     func bindDateTimeView() {
+        selectedStartTime.accept(defaultStartTime)
+        selectedEndTime.accept(defaultEndTime)
+        
         isSelectedDate.asObservable()
             .bind(to: timeStackView.startTimeButton.rx.isSelected)
             .disposed(by: disposeBag)
@@ -294,7 +297,7 @@ extension ScheduleEditViewController {
     @objc private func endTimePickerValueDidChange(_ datePicker: UIDatePicker) {
         let selectedTime = WDateFormatter.timeFormatter.string(from: datePicker.date)
         self.timeStackView.endTimeButton.setTitle(selectedTime, for: .normal, font: WFont.body1())
-        self.selectedDate.accept(datePicker.date)
+        self.selectedEndTime.accept(datePicker.date)
     }
 }
 

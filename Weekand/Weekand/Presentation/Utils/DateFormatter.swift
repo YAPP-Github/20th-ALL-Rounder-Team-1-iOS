@@ -25,7 +25,7 @@ struct WDateFormatter {
     
     static func combineDate(date: Date, time: Date) -> Date {
         let dateString = dateFormatter.string(from: date)
-        let timeString = dateFormatter.string(from: time)
+        let timeString = timeFormatter.string(from: time)
         
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY.MM.dd.HH:mm"
