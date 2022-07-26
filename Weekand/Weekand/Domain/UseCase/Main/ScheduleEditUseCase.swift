@@ -32,4 +32,10 @@ final class ScheduleEditUseCase {
             .map { $0.createSchedule }
             .asSingle()
         }
+    
+    func schduleRule(scheduleId: String) -> Single<ScehduleRuleQuery.Data.ScheduleRule> {
+        NetWork.shared.fetch(query: ScehduleRuleQuery(scheduleId: scheduleId))
+            .map { $0.scheduleRule }
+            .asSingle()
+    }
 }

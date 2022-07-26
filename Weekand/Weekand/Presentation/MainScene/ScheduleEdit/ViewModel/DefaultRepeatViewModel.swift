@@ -12,12 +12,12 @@ import RxCocoa
 
 class DefaultRepeatViewModel: ViewModelType {
     
-    weak var coordinator: ScheduleEditCoordinator?
+    weak var coordinator: ScheduleCoordinatorType?
     private var disposeBag = DisposeBag()
     
     var repeatType: ScheduleRepeatType?
     
-    init(coordinator: ScheduleEditCoordinator, repeatType: ScheduleRepeatType) {
+    init(coordinator: ScheduleCoordinatorType, repeatType: ScheduleRepeatType) {
         self.coordinator = coordinator
         self.repeatType = repeatType
     }
@@ -39,7 +39,11 @@ extension DefaultRepeatViewModel {
     @discardableResult
     func transform(input: Input) -> Output {
         input.cancelButtonDidTapEvent.subscribe(onNext: {
-            self.coordinator?.finish()
+            if let coordinator = self.coordinator as? ScheduleEditCoordinator {
+                coordinator.finish()
+            } else if let coordinator = self.coordinator as? ScheduleModifyCoordinator {
+                coordinator.finish()
+            }
         })
         .disposed(by: disposeBag)
         
@@ -49,8 +53,13 @@ extension DefaultRepeatViewModel {
             .withLatestFrom(selectRepeatEndDate)
             .subscribe(onNext: { [weak self] date, isRepeat in
                 let repeatEndDate = isRepeat ? date : nil
-                self?.coordinator?.sendRepeatTypeFromSheet(repeatType: self?.repeatType ?? .once, repeatEndDate: repeatEndDate)
-                self?.coordinator?.finish()
+                if let coordinator = self?.coordinator as? ScheduleEditCoordinator {
+                    coordinator.sendRepeatTypeFromSheet(repeatType: self?.repeatType ?? .once, repeatEndDate: repeatEndDate)
+                    coordinator.finish()
+                } else if let coordinator = self?.coordinator as? ScheduleModifyCoordinator {
+                    coordinator.sendRepeatTypeFromSheet(repeatType: self?.repeatType ?? .once, repeatEndDate: repeatEndDate)
+                    coordinator.finish()
+                }
             })
             .disposed(by: disposeBag)
         

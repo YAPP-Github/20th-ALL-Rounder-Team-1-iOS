@@ -33,6 +33,8 @@ extension CategoryDetailViewModel {
     struct Input {
         let didEditSearchBar: Observable<String>
         let didTapUpdateCategoryButton: Observable<Void>
+        let scheduleCellDidSelected: PublishRelay<String>
+        let scheduleCellDidSwipeEvent: PublishRelay<String>
         let selectedCategory: Category?
     }
     
@@ -52,6 +54,10 @@ extension CategoryDetailViewModel {
             self.coordinator?.showScheduleAddScene(category: category)
         })
         .disposed(by: disposeBag)
+        
+        input.scheduleCellDidSwipeEvent.subscribe(onNext: { [weak self] scheduleId in
+            self?.coordinator?.showScheduleModifyScene(scheduleId: scheduleId)
+        }).disposed(by: disposeBag)
         
         return Output(searchWithQueryInformation: searchBarEdit)
     }

@@ -1,26 +1,27 @@
 //
-//  ScheduleEditCoordinator.swift
+//  ScheduleModifyCoordinator.swift
 //  Weekand
 //
-//  Created by 이호영 on 2022/07/05.
+//  Created by 이호영 on 2022/07/26.
 //
 
-import Foundation
 import UIKit
 
-class ScheduleEditCoordinator: Coordinator, ScheduleCoordinatorType {
+class ScheduleModifyCoordinator: ScheduleCoordinatorType {
     weak var finishDelegate: CoordinatorDidFinishDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
-    var scheduleEditViewController: ScheduleEditViewController
-    var type: CoordinatorType = .scheduleEdit
+    var scheduleModifyViewController: ScheduleModifyViewController
+    var type: CoordinatorType = .scheduleModify
     var scheduleEditUseCase: ScheduleEditUseCase
+    var scheduleId: String
     
-    required init() {
-        self.scheduleEditViewController = ScheduleEditViewController()
-        self.navigationController = UINavigationController(rootViewController: scheduleEditViewController)
+    required init(selectedScheduleId: String) {
+        self.scheduleModifyViewController = ScheduleModifyViewController()
+        self.navigationController = UINavigationController(rootViewController: scheduleModifyViewController)
         self.navigationController.modalPresentationStyle = .fullScreen
         self.scheduleEditUseCase = ScheduleEditUseCase()
+        self.scheduleId = selectedScheduleId
     }
     
     func start() {
@@ -33,8 +34,8 @@ class ScheduleEditCoordinator: Coordinator, ScheduleCoordinatorType {
                                         repeatSelectedValue: nil,
                                         repeatEnd: nil,
                                         memo: nil)
-        self.scheduleEditViewController.viewModel = ScheduleEditViewModel(coordinator: self, scheduleEditUseCase: scheduleEditUseCase, scheduleInputModel: scheduleInputModel)
-        
+        self.scheduleModifyViewController.viewModel = ScheduleModifyViewModel(coordinator: self, scheduleEditUseCase: scheduleEditUseCase, scheduleInputModel: scheduleInputModel)
+        self.scheduleModifyViewController.setSchedule(scheduleId: scheduleId)
     }
     
     func presentRepeatSheet() {
@@ -68,18 +69,18 @@ class ScheduleEditCoordinator: Coordinator, ScheduleCoordinatorType {
     }
     
     func sendCategoryFromSheet(category: Category) {
-        scheduleEditViewController.category = category
+        scheduleModifyViewController.category = category
     }
     
     func sendRepeatTypeFromSheet(repeatType: ScheduleRepeatType, repeatEndDate: Date?) {
-        scheduleEditViewController.repeatType = repeatType
-        scheduleEditViewController.repeatEnd = repeatEndDate
+        scheduleModifyViewController.repeatType = repeatType
+        scheduleModifyViewController.repeatEnd = repeatEndDate
     }
     
     func sendWeekRepeatTypeFromSheet(repeatType: ScheduleRepeatType, repeatEndDate: Date?, repeatSelectedValue: [ScheduleWeek]) {
-        scheduleEditViewController.repeatType = repeatType
-        scheduleEditViewController.repeatSelectedValue = repeatSelectedValue
-        scheduleEditViewController.repeatEnd = repeatEndDate
+        scheduleModifyViewController.repeatType = repeatType
+        scheduleModifyViewController.repeatSelectedValue = repeatSelectedValue
+        scheduleModifyViewController.repeatEnd = repeatEndDate
     }
     
     func finish() {

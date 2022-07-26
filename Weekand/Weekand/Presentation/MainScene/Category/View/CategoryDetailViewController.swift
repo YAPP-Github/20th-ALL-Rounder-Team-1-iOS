@@ -48,6 +48,9 @@ class CategoryDetailViewController: UIViewController {
     var refreshListCount: Int = 15
     var page: Int = 0
     
+    let scheduleCellDidSelected = PublishRelay<String>()
+    let scheduleCellDidSwipeEvent = PublishRelay<String>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -111,6 +114,8 @@ class CategoryDetailViewController: UIViewController {
         let input = CategoryDetailViewModel.Input(
             didEditSearchBar: self.headerView.searchBar.rx.text.orEmpty.asObservable(),
             didTapUpdateCategoryButton: self.toolBar.updateCategoryButton.rx.tap.asObservable(),
+            scheduleCellDidSelected: scheduleCellDidSelected,
+            scheduleCellDidSwipeEvent: scheduleCellDidSwipeEvent,
             selectedCategory: selectedCategory
         )
         
@@ -204,7 +209,7 @@ extension CategoryDetailViewController {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let update = UIContextualAction(style: .normal, title: "수정") { _, _, _ in
-            print("수정 클릭 됨")
+            self.scheduleCellDidSwipeEvent.accept(self.list[indexPath.item].scheduleId)
         }
         update.backgroundColor = .mainColor
         

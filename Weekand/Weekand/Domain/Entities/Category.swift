@@ -22,4 +22,20 @@ struct Category: Hashable {
     let color: String
     let name: String
     let openType: CategoryOpenType
+    
+    init(serverID: String, color: String, name: String, openType: CategoryOpenType) {
+        
+        self.serverID = serverID
+        self.color = color
+        self.name = name
+        self.openType = openType
+    }
+    
+    init(model: ScehduleRuleQuery.Data.ScheduleRule.Category) {
+        
+        self.serverID = model.id
+        self.color = model.color
+        self.name = model.name
+        self.openType = model.openType.toEntity()
+    }
 }

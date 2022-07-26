@@ -59,6 +59,14 @@ class CategoryCoordinator: Coordinator {
         scheduleEditCoordinator.start()
     }
     
+    func showScheduleModifyScene(scheduleId: String) {
+        let scheduleModifyCoordinator = ScheduleModifyCoordinator(selectedScheduleId: scheduleId)
+        scheduleModifyCoordinator.finishDelegate = self
+        childCoordinators.append(scheduleModifyCoordinator)
+        navigationController.present(scheduleModifyCoordinator.navigationController, animated: true, completion: nil)
+        scheduleModifyCoordinator.start()
+    }
+    
     func showToastMessage(text: String) {
         categoryListViewController.showToast(message: text)
     }

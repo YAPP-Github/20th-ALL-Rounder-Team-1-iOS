@@ -12,10 +12,10 @@ import RxCocoa
 
 class WeekRepeatViewModel: ViewModelType {
     
-    weak var coordinator: ScheduleEditCoordinator?
+    weak var coordinator: ScheduleCoordinatorType?
     private var disposeBag = DisposeBag()
     
-    init(coordinator: ScheduleEditCoordinator) {
+    init(coordinator: ScheduleCoordinatorType) {
         self.coordinator = coordinator
     }
 
@@ -37,7 +37,11 @@ extension WeekRepeatViewModel {
     @discardableResult
     func transform(input: Input) -> Output {
         input.cancelButtonDidTapEvent.subscribe(onNext: {
-            self.coordinator?.finish()
+            if let coordinator = self.coordinator as? ScheduleEditCoordinator {
+                coordinator.finish()
+            } else if let coordinator = self.coordinator as? ScheduleModifyCoordinator {
+                coordinator.finish()
+            }
         })
         .disposed(by: disposeBag)
         
@@ -47,12 +51,23 @@ extension WeekRepeatViewModel {
             .withLatestFrom(selectRepeatEndDate)
             .subscribe(onNext: { [weak self] isRepeat, date, weeks in
                 let repeatEndDate = isRepeat ? date : nil
-                if weeks.count == 7 {
-                    self?.coordinator?.sendRepeatTypeFromSheet(repeatType: .daily, repeatEndDate: repeatEndDate)
-                } else {
-                    self?.coordinator?.sendWeekRepeatTypeFromSheet(repeatType: .weekly, repeatEndDate: repeatEndDate, repeatSelectedValue: weeks)
+                
+                if let coordinator = self?.coordinator as? ScheduleEditCoordinator {
+                    if weeks.count == 7 {
+                        coordinator.sendRepeatTypeFromSheet(repeatType: .daily, repeatEndDate: repeatEndDate)
+                    } else {
+                        coordinator.sendWeekRepeatTypeFromSheet(repeatType: .weekly, repeatEndDate: repeatEndDate, repeatSelectedValue: weeks)
+                    }
+                    coordinator.finish()
+                } else if let coordinator = self?.coordinator as? ScheduleModifyCoordinator {
+                    if weeks.count == 7 {
+                        coordinator.sendRepeatTypeFromSheet(repeatType: .daily, repeatEndDate: repeatEndDate)
+                    } else {
+                        coordinator.sendWeekRepeatTypeFromSheet(repeatType: .weekly, repeatEndDate: repeatEndDate, repeatSelectedValue: weeks)
+                    }
+                    coordinator.finish()
                 }
-                self?.coordinator?.finish()
+                
             })
             .disposed(by: disposeBag)
         
