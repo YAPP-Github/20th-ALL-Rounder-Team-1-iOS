@@ -91,8 +91,8 @@ class ScheduleEditViewModel: ViewModelType {
                 let scheduleInputModel = ScheduleInputModel(
                     name: nameText,
                     categoryId: category.serverID,
-                    dateStart: dates.1,
-                    dateEnd: dates.2,
+                    dateStart: WDateFormatter.combineDate(date: dates.0, time: dates.1),
+                    dateEnd: WDateFormatter.combineDate(date: dates.0, time: dates.2),
                     repeatType: repeatType,
                     repeatSelectedValue: repeatSelectValue,
                     repeatEnd: repeatEnd,

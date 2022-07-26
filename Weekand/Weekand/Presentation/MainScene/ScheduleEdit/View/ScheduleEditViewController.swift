@@ -29,22 +29,12 @@ class ScheduleEditViewController: BaseViewController {
     }
     let nameStackView = WTextFieldStackView(fieldPlaceholder: "일정명을 입력해주세요.", nameText: "일정")
     let categoryStackView = CategoryStackView()
-    lazy var calendarStackView = DateStackView(dateText: dateFormatter.string(from: Date()))
-    lazy var timeStackView = TimeStackView(startTimeText: timeFormatter.string(from: defaultStartTime),
-                                           endTimeText: timeFormatter.string(from: defaultEndTime))
+    lazy var calendarStackView = DateStackView(dateText: WDateFormatter.dateFormatter.string(from: Date()))
+    lazy var timeStackView = TimeStackView(startTimeText: WDateFormatter.timeFormatter.string(from: defaultStartTime),
+                                           endTimeText: WDateFormatter.timeFormatter.string(from: defaultEndTime))
     let addInformationContainerView = AddInformationContainerView()
     let repeatStackView = RepeatStackView()
     let memoStackView = MemoStackView(placeholder: "메모를 입력해주세요", nameText: "메모")
-    
-    lazy var dateFormatter = DateFormatter().then {
-        $0.dateFormat = "YYYY.MM.dd."
-        $0.locale = Locale(identifier: "Ko_KR")
-    }
-    
-    lazy var timeFormatter = DateFormatter().then {
-        $0.dateFormat = "HH:mm"
-        $0.locale = Locale(identifier: "Ko_KR")
-    }
     
     var defaultStartTime: Date {
         let currentTime = Date()
@@ -156,7 +146,7 @@ class ScheduleEditViewController: BaseViewController {
             .subscribe(onNext: { [weak self] repeatType, repeatEndDate in
                 var repeatText = ""
                 if let date = repeatEndDate {
-                    let dateString = self?.dateFormatter.string(from: date) ?? ""
+                    let dateString = WDateFormatter.dateFormatter.string(from: date) ?? ""
                     repeatText = "\(dateString)까지 \(repeatType.description)"
                 } else {
                     repeatText = "\(repeatType.description)"
@@ -175,7 +165,7 @@ class ScheduleEditViewController: BaseViewController {
                 var repeatText = ""
                 let repeatSelectedValueText = repeatSelectedValue.map { $0.description }.joined(separator: ",")
                 if let date = repeatEndDate {
-                    let dateString = self?.dateFormatter.string(from: date) ?? ""
+                    let dateString = WDateFormatter.dateFormatter.string(from: date) ?? ""
                     repeatText = "\(dateString)까지 \(repeatType.description) \(repeatSelectedValueText)"
                 } else {
                     repeatText = "\(repeatType.description) \(repeatSelectedValueText)"
@@ -219,7 +209,7 @@ class ScheduleEditViewController: BaseViewController {
         }).disposed(by: disposeBag)
         
         output?.dateDidSelectEvent.drive(onNext: { date in
-            let dateString = self.dateFormatter.string(from: date)
+            let dateString = WDateFormatter.dateFormatter.string(from: date)
             self.calendarStackView.dateButton.setTitle(dateString, for: .normal, font: WFont.body1())
             self.selectedDate.accept(date)
         }).disposed(by: disposeBag)
@@ -296,13 +286,13 @@ class ScheduleEditViewController: BaseViewController {
 
 extension ScheduleEditViewController {
     @objc private func startTimePickerValueDidChange(_ datePicker: UIDatePicker) {
-        let selectedTime = timeFormatter.string(from: datePicker.date)
+        let selectedTime = WDateFormatter.timeFormatter.string(from: datePicker.date)
         self.timeStackView.startTimeButton.setTitle(selectedTime, for: .normal, font: WFont.body1())
         self.selectedStartTime.accept(datePicker.date)
     }
     
     @objc private func endTimePickerValueDidChange(_ datePicker: UIDatePicker) {
-        let selectedTime = timeFormatter.string(from: datePicker.date)
+        let selectedTime = WDateFormatter.timeFormatter.string(from: datePicker.date)
         self.timeStackView.endTimeButton.setTitle(selectedTime, for: .normal, font: WFont.body1())
         self.selectedDate.accept(datePicker.date)
     }
