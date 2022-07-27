@@ -13,7 +13,7 @@ import Then
 class ContactCompleteViewController: UIViewController {
     
     lazy var imageView = UIImageView().then {
-        $0.image = UIImage(named: "SmileEmoji")
+        $0.image = UIImage(named: "ContactBanner")
     }
     
     lazy var titleLabel = UILabel().then {
@@ -47,6 +47,7 @@ class ContactCompleteViewController: UIViewController {
     
     private func setUpView() {
         self.title = "문의하기"
+        self.view.backgroundColor = .backgroundColor
     }
     
     private func configureUI() {

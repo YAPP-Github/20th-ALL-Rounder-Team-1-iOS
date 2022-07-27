@@ -106,7 +106,7 @@ class ContactViewController: BaseViewController {
             didButtonTap: bottomButton.rx.tap.asObservable()
         )
         
-        let output = viewModel?.transform(input: input)
+        _ = viewModel?.transform(input: input)
     }
 }
 
