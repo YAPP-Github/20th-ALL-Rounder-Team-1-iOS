@@ -43,7 +43,7 @@ class ScheduleModifyViewModel: ViewModelType {
         let endTimeButtonDidTapEvent: Observable<Void>
         let dateDidSelectEvent: Observable<Date>
         let repeatButtonDidTapEvent: Observable<Void>
-        let nameTextFieldDidEditEvent: Observable<String?>
+        let selectedScheduleName: BehaviorRelay<String>
         let selectedDate: BehaviorRelay<Date>
         let selectedStartTime: BehaviorRelay<Date>
         let selectedEndTime: BehaviorRelay<Date>
@@ -51,7 +51,7 @@ class ScheduleModifyViewModel: ViewModelType {
         let selectedRepeatType: BehaviorRelay<ScheduleRepeatType>
         let selectedRepeatSelectedValue: BehaviorRelay<[ScheduleWeek]>
         let selectedRepeatEnd: BehaviorRelay<Date?>
-        let memoTextViewDidEditEvent: Observable<String?>
+        let selectedMemo: BehaviorRelay<String>
     }
     
     struct Output {
@@ -64,23 +64,20 @@ class ScheduleModifyViewModel: ViewModelType {
         let combinedDateTimes = Observable.combineLatest(input.selectedDate,
                                                          input.selectedStartTime,
                                                          input.selectedEndTime)
-        let validNameInput = input.nameTextFieldDidEditEvent.map(vaildInput)
+        let validNameInput = input.selectedScheduleName.map(vaildInput)
         
         let combinedInputs = Observable.combineLatest(
              combinedDateTimes,
-             input.nameTextFieldDidEditEvent,
+             input.selectedScheduleName,
              input.selectedCategory,
              input.selectedRepeatType,
              input.selectedRepeatSelectedValue,
              input.selectedRepeatEnd,
-             input.memoTextViewDidEditEvent)
+             input.selectedMemo)
         
         input.confirmButtonDidTapEvent.withLatestFrom(combinedInputs)
-            .subscribe(onNext: { [weak self] dates, nameText, category,
-                                             repeatType, repeatSelectValue, repeatEnd, memo in
-                guard let nameText = nameText,
-                      let category = category,
-                      let memo = memo else {
+            .subscribe(onNext: { dates, nameText, category, repeatType, repeatSelectValue, repeatEnd, memo in
+                guard let category = category else {
                     return
                 }
                 
@@ -97,9 +94,8 @@ class ScheduleModifyViewModel: ViewModelType {
                     repeatType: repeatType,
                     repeatSelectedValue: repeatSelectValue,
                     repeatEnd: repeatEnd,
-                    memo: memo
+                    memo: memo == "메모를 입력해주세요" ? "" : memo
                 )
-            
             })
             .disposed(by: disposeBag)
         
@@ -184,29 +180,13 @@ class ScheduleModifyViewModel: ViewModelType {
 }
 
 extension ScheduleModifyViewModel {
-    func searchCategories() {
-        self.scheduleEditUseCase.ScheduleCategories(sort: .dateCreatedDESC, page: 0, size: 1)
-            .subscribe(onSuccess: { data in
-                let list = data.scheduleCategories.map { category in
-                    Category(serverID: category.id, color: category.color, name: category.name, openType: category.openType.toEntity())
-                }
-                
-                guard let category = list.first else {
-                    // error
-                    return
-                }
-                self.defaultCategory.accept(category)
-            }, onFailure: { error in
-                print(error)
-            }, onDisposed: nil)
-            .disposed(by: disposeBag)
-    }
     
     func schedule(scheduleId: String) {
         self.scheduleEditUseCase.schduleRule(scheduleId: scheduleId)
             .subscribe(onSuccess: { schedule in
                 let scheduleRule = ScheduleRule(model: schedule)
                 self.schedule.accept(scheduleRule)
+                self.defaultCategory.accept(scheduleRule.category)
             }, onFailure: { error in
                 print(error)
             }, onDisposed: nil)

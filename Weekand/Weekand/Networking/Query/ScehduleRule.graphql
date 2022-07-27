@@ -12,6 +12,7 @@ query ScehduleRule($scheduleId: ID!) {
     dateTimeEnd
     repeatType
     repeatSelectedValue
+    dateRepeatEnd
     memo
   }
 }
