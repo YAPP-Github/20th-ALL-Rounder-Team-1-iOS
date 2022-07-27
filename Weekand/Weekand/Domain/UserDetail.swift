@@ -9,7 +9,7 @@ import Foundation
 
 struct UserDetail {
     
-    static let defaultData = UserDetail(userId: "", email: "", name: "", goal: "", imagePath: "", followee: -1, follower: -1, job: [], interest: [])
+    static let defaultData = UserDetail(userId: "", email: "", name: "", goal: "", imagePath: "", followee: -1, follower: -1, job: [], interest: [], followed: false)
         
     let userId: String      // 유저 id
     let email: String       // 유저 이메일
@@ -20,12 +20,12 @@ struct UserDetail {
     let follower: Int       // 팔로잉
     let job: [String]       // 직업
     let interest: [String]  // 관심사
-            
+    let followed: Bool      // 팔로우 여부
 }
 
 extension UserDetail {
     
-    init (model: MyUserDetailQuery.Data.User) {
+    init (model: UserDetailQuery.Data.User) {
         userId = model.id
         email = model.email
         name = model.nickname
@@ -35,5 +35,6 @@ extension UserDetail {
         follower = model.followerCount
         job = model.jobs
         interest = model.interests
+        followed = model.followed
     }
 }

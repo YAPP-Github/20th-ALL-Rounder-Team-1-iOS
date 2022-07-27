@@ -1174,184 +1174,6 @@ public final class LoginQuery: GraphQLQuery {
   }
 }
 
-public final class MyUserDetailQuery: GraphQLQuery {
-  /// The raw GraphQL definition of this operation.
-  public let operationDefinition: String =
-    """
-    query MyUserDetail {
-      user {
-        __typename
-        id
-        email
-        nickname
-        profileImageUrl
-        goal
-        followerCount
-        followeeCount
-        jobs
-        interests
-      }
-    }
-    """
-
-  public let operationName: String = "MyUserDetail"
-
-  public init() {
-  }
-
-  public struct Data: GraphQLSelectionSet {
-    public static let possibleTypes: [String] = ["Query"]
-
-    public static var selections: [GraphQLSelection] {
-      return [
-        GraphQLField("user", type: .object(User.selections)),
-      ]
-    }
-
-    public private(set) var resultMap: ResultMap
-
-    public init(unsafeResultMap: ResultMap) {
-      self.resultMap = unsafeResultMap
-    }
-
-    public init(user: User? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Query", "user": user.flatMap { (value: User) -> ResultMap in value.resultMap }])
-    }
-
-    /// 조건에 맞는 회원 상세 정보를 가져온다
-    /// id 인자를 입력하지 않으면, 현재 로그인 된 회원 상세 정보를 가져온다
-    /// [error]
-    /// 3001: 존재하지 않는 유저입니다.
-    public var user: User? {
-      get {
-        return (resultMap["user"] as? ResultMap).flatMap { User(unsafeResultMap: $0) }
-      }
-      set {
-        resultMap.updateValue(newValue?.resultMap, forKey: "user")
-      }
-    }
-
-    public struct User: GraphQLSelectionSet {
-      public static let possibleTypes: [String] = ["User"]
-
-      public static var selections: [GraphQLSelection] {
-        return [
-          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
-          GraphQLField("email", type: .nonNull(.scalar(String.self))),
-          GraphQLField("nickname", type: .nonNull(.scalar(String.self))),
-          GraphQLField("profileImageUrl", type: .nonNull(.scalar(String.self))),
-          GraphQLField("goal", type: .scalar(String.self)),
-          GraphQLField("followerCount", type: .nonNull(.scalar(Int.self))),
-          GraphQLField("followeeCount", type: .nonNull(.scalar(Int.self))),
-          GraphQLField("jobs", type: .nonNull(.list(.nonNull(.scalar(String.self))))),
-          GraphQLField("interests", type: .nonNull(.list(.nonNull(.scalar(String.self))))),
-        ]
-      }
-
-      public private(set) var resultMap: ResultMap
-
-      public init(unsafeResultMap: ResultMap) {
-        self.resultMap = unsafeResultMap
-      }
-
-      public init(id: GraphQLID, email: String, nickname: String, profileImageUrl: String, goal: String? = nil, followerCount: Int, followeeCount: Int, jobs: [String], interests: [String]) {
-        self.init(unsafeResultMap: ["__typename": "User", "id": id, "email": email, "nickname": nickname, "profileImageUrl": profileImageUrl, "goal": goal, "followerCount": followerCount, "followeeCount": followeeCount, "jobs": jobs, "interests": interests])
-      }
-
-      public var __typename: String {
-        get {
-          return resultMap["__typename"]! as! String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "__typename")
-        }
-      }
-
-      public var id: GraphQLID {
-        get {
-          return resultMap["id"]! as! GraphQLID
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "id")
-        }
-      }
-
-      public var email: String {
-        get {
-          return resultMap["email"]! as! String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "email")
-        }
-      }
-
-      public var nickname: String {
-        get {
-          return resultMap["nickname"]! as! String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "nickname")
-        }
-      }
-
-      public var profileImageUrl: String {
-        get {
-          return resultMap["profileImageUrl"]! as! String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "profileImageUrl")
-        }
-      }
-
-      public var goal: String? {
-        get {
-          return resultMap["goal"] as? String
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "goal")
-        }
-      }
-
-      public var followerCount: Int {
-        get {
-          return resultMap["followerCount"]! as! Int
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "followerCount")
-        }
-      }
-
-      public var followeeCount: Int {
-        get {
-          return resultMap["followeeCount"]! as! Int
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "followeeCount")
-        }
-      }
-
-      public var jobs: [String] {
-        get {
-          return resultMap["jobs"]! as! [String]
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "jobs")
-        }
-      }
-
-      public var interests: [String] {
-        get {
-          return resultMap["interests"]! as! [String]
-        }
-        set {
-          resultMap.updateValue(newValue, forKey: "interests")
-        }
-      }
-    }
-  }
-}
-
 public final class ReissueQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
@@ -2698,6 +2520,202 @@ public final class UpdateCategoryMutation: GraphQLMutation {
         }
         set {
           resultMap.updateValue(newValue, forKey: "name")
+        }
+      }
+    }
+  }
+}
+
+public final class UserDetailQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query UserDetail($id: ID) {
+      user(id: $id) {
+        __typename
+        id
+        email
+        nickname
+        profileImageUrl
+        goal
+        followerCount
+        followeeCount
+        jobs
+        interests
+        followed
+      }
+    }
+    """
+
+  public let operationName: String = "UserDetail"
+
+  public var id: GraphQLID?
+
+  public init(id: GraphQLID? = nil) {
+    self.id = id
+  }
+
+  public var variables: GraphQLMap? {
+    return ["id": id]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("user", arguments: ["id": GraphQLVariable("id")], type: .object(User.selections)),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(user: User? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Query", "user": user.flatMap { (value: User) -> ResultMap in value.resultMap }])
+    }
+
+    /// 조건에 맞는 회원 상세 정보를 가져온다
+    /// id 인자를 입력하지 않으면, 현재 로그인 된 회원 상세 정보를 가져온다
+    /// [error]
+    /// 3001: 존재하지 않는 유저입니다.
+    public var user: User? {
+      get {
+        return (resultMap["user"] as? ResultMap).flatMap { User(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "user")
+      }
+    }
+
+    public struct User: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["User"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+          GraphQLField("email", type: .nonNull(.scalar(String.self))),
+          GraphQLField("nickname", type: .nonNull(.scalar(String.self))),
+          GraphQLField("profileImageUrl", type: .nonNull(.scalar(String.self))),
+          GraphQLField("goal", type: .scalar(String.self)),
+          GraphQLField("followerCount", type: .nonNull(.scalar(Int.self))),
+          GraphQLField("followeeCount", type: .nonNull(.scalar(Int.self))),
+          GraphQLField("jobs", type: .nonNull(.list(.nonNull(.scalar(String.self))))),
+          GraphQLField("interests", type: .nonNull(.list(.nonNull(.scalar(String.self))))),
+          GraphQLField("followed", type: .nonNull(.scalar(Bool.self))),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: GraphQLID, email: String, nickname: String, profileImageUrl: String, goal: String? = nil, followerCount: Int, followeeCount: Int, jobs: [String], interests: [String], followed: Bool) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id, "email": email, "nickname": nickname, "profileImageUrl": profileImageUrl, "goal": goal, "followerCount": followerCount, "followeeCount": followeeCount, "jobs": jobs, "interests": interests, "followed": followed])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var email: String {
+        get {
+          return resultMap["email"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "email")
+        }
+      }
+
+      public var nickname: String {
+        get {
+          return resultMap["nickname"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "nickname")
+        }
+      }
+
+      public var profileImageUrl: String {
+        get {
+          return resultMap["profileImageUrl"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "profileImageUrl")
+        }
+      }
+
+      public var goal: String? {
+        get {
+          return resultMap["goal"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "goal")
+        }
+      }
+
+      public var followerCount: Int {
+        get {
+          return resultMap["followerCount"]! as! Int
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "followerCount")
+        }
+      }
+
+      public var followeeCount: Int {
+        get {
+          return resultMap["followeeCount"]! as! Int
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "followeeCount")
+        }
+      }
+
+      public var jobs: [String] {
+        get {
+          return resultMap["jobs"]! as! [String]
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "jobs")
+        }
+      }
+
+      public var interests: [String] {
+        get {
+          return resultMap["interests"]! as! [String]
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "interests")
+        }
+      }
+
+      public var followed: Bool {
+        get {
+          return resultMap["followed"]! as! Bool
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "followed")
         }
       }
     }

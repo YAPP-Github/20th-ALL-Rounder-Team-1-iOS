@@ -23,7 +23,7 @@ class ProfileEditViewModel: ViewModelType {
         self.coordinator = coordinator
         self.profileUseCase = useCase
         
-        getMyUserProfile()
+        getMyUserProfile(id: UserDataStorage.shared.userID)
         
         userUpdate.subscribe(onNext: { update in
             print(update)
@@ -79,9 +79,9 @@ extension ProfileEditViewModel {
 
 extension ProfileEditViewModel {
     
-    private func getMyUserProfile() {
+    private func getMyUserProfile(id: String?) {
         
-        self.profileUseCase.myProfileDetail().debug()
+        self.profileUseCase.profileDetail(id: id)
             .subscribe(onSuccess: { userData in
                 BehaviorRelay<UserDetail>.just(userData).bind(to: self.userDetail).disposed(by: self.disposeBag)
         }, onFailure: { error in

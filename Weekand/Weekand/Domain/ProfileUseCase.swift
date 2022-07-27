@@ -10,8 +10,8 @@ import RxSwift
 
 final class ProfileUseCase {
     
-    func myProfileDetail() -> Single<UserDetail> {
-        return NetWork.shared.fetch(query: MyUserDetailQuery())
+    func profileDetail(id: String?) -> Single<UserDetail> {
+        return NetWork.shared.fetch(query: UserDetailQuery(id: id))
             .map {
                 if let userData = $0.user {
                     return UserDetail(model: userData)
