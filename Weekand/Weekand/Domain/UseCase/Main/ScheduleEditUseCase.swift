@@ -33,6 +33,22 @@ final class ScheduleEditUseCase {
             .asSingle()
         }
     
+    func updateSchedule(input: ScheduleUpdateModel) -> Single<Bool> {
+        let scheduleUpdateModel = UpdateScheduleInput(id: input.scheduleId,
+                                                      requestDateTime: input.requestDateTime.toTimestamp(),
+                                                      name: input.name,
+                                                      categoryId: input.categoryId,
+                                                      dateTimeStart: input.dateStart.toTimestamp(),
+                                                      dateTimeEnd: input.dateEnd.toTimestamp(),
+                                                      repeatType: input.repeatType.toModel(),
+                                                      repeatSelectedValue: input.repeatSelectedValue?.map { $0.toModel() },
+                                                      repeatEnd: input.repeatEnd?.toTimestamp(),
+                                                      memo: input.memo)
+        return NetWork.shared.perform(mutation: UpdateScheduleMutation(input: scheduleUpdateModel))
+            .map { $0.updateSchedule }
+            .asSingle()
+        }
+    
     func schduleRule(scheduleId: String) -> Single<ScehduleRuleQuery.Data.ScheduleRule> {
         NetWork.shared.fetch(query: ScehduleRuleQuery(scheduleId: scheduleId))
             .map { $0.scheduleRule }

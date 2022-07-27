@@ -22,13 +22,12 @@ class ScheduleModifyViewModel: ViewModelType {
     
     let defaultCategory = PublishRelay<Category>()
     let schedule = PublishRelay<ScheduleRule>()
+    let scheduleId: String
     
-    let scheduleInputModel: ScheduleInputModel?
-    
-    init(coordinator: ScheduleModifyCoordinator?, scheduleEditUseCase: ScheduleEditUseCase, scheduleInputModel: ScheduleInputModel) {
+    init(coordinator: ScheduleModifyCoordinator?, scheduleEditUseCase: ScheduleEditUseCase, scheduleId: String) {
         self.coordinator = coordinator
         self.scheduleEditUseCase = scheduleEditUseCase
-        self.scheduleInputModel = scheduleInputModel
+        self.scheduleId = scheduleId
     }
     
     struct Input {
@@ -86,7 +85,9 @@ class ScheduleModifyViewModel: ViewModelType {
                     return
                 }
                 
-                let scheduleInputModel = ScheduleInputModel(
+                let scheduleUpdateModel = ScheduleUpdateModel(
+                    scheduleId: self.scheduleId,
+                    requestDateTime: dates.0,
                     name: nameText,
                     categoryId: category.serverID,
                     dateStart: WDateFormatter.combineDate(date: dates.0, time: dates.1),
@@ -96,6 +97,8 @@ class ScheduleModifyViewModel: ViewModelType {
                     repeatEnd: repeatEnd,
                     memo: memo == "메모를 입력해주세요" ? "" : memo
                 )
+                
+                self.updateSchedule(input: scheduleUpdateModel)
             })
             .disposed(by: disposeBag)
         
@@ -180,13 +183,26 @@ class ScheduleModifyViewModel: ViewModelType {
 }
 
 extension ScheduleModifyViewModel {
-    
-    func schedule(scheduleId: String) {
-        self.scheduleEditUseCase.schduleRule(scheduleId: scheduleId)
+    func getSchedule() {
+        self.scheduleEditUseCase.schduleRule(scheduleId: self.scheduleId)
             .subscribe(onSuccess: { schedule in
                 let scheduleRule = ScheduleRule(model: schedule)
                 self.schedule.accept(scheduleRule)
                 self.defaultCategory.accept(scheduleRule.category)
+            }, onFailure: { error in
+                print(error)
+            }, onDisposed: nil)
+            .disposed(by: disposeBag)
+    }
+    
+    func updateSchedule(input: ScheduleUpdateModel) {
+        self.scheduleEditUseCase.updateSchedule(input: input)
+            .subscribe(onSuccess: { isSucceed in
+                if isSucceed {
+                    self.coordinator?.finish()
+                } else {
+                    print("error")
+                }
             }, onFailure: { error in
                 print(error)
             }, onDisposed: nil)

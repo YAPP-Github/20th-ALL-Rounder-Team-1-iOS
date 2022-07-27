@@ -181,6 +181,8 @@
 		F336F3FA28902D99005B57A0 /* ScheduleRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3F928902D99005B57A0 /* ScheduleRule.swift */; };
 		F336F4002890312C005B57A0 /* ScheduleModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3FF2890312C005B57A0 /* ScheduleModifyViewController.swift */; };
 		F336F40228903BCB005B57A0 /* ScheduleCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F40128903BCB005B57A0 /* ScheduleCoordinatorType.swift */; };
+		F336F40628910E03005B57A0 /* UpdateSchedule.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F336F40528910E03005B57A0 /* UpdateSchedule.graphql */; };
+		F336F40828910E5B005B57A0 /* ScheduleUpdateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F40728910E5B005B57A0 /* ScheduleUpdateModel.swift */; };
 		F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAB28533D0A005B493A /* WSortButton.swift */; };
 		F33C6EAE28535021005B493A /* UIVIewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAD28535021005B493A /* UIVIewController+extension.swift */; };
 		F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */; };
@@ -431,6 +433,8 @@
 		F336F3F928902D99005B57A0 /* ScheduleRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleRule.swift; sourceTree = "<group>"; };
 		F336F3FF2890312C005B57A0 /* ScheduleModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModifyViewController.swift; sourceTree = "<group>"; };
 		F336F40128903BCB005B57A0 /* ScheduleCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCoordinatorType.swift; sourceTree = "<group>"; };
+		F336F40528910E03005B57A0 /* UpdateSchedule.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UpdateSchedule.graphql; sourceTree = "<group>"; };
+		F336F40728910E5B005B57A0 /* ScheduleUpdateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleUpdateModel.swift; sourceTree = "<group>"; };
 		F33C6EAB28533D0A005B493A /* WSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSortButton.swift; sourceTree = "<group>"; };
 		F33C6EAD28535021005B493A /* UIVIewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+extension.swift"; sourceTree = "<group>"; };
 		F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputGroupStackView.swift; sourceTree = "<group>"; };
@@ -781,6 +785,7 @@
 				F30EBCED2881A4D900ECB48D /* UserSummaryTemp.swift */,
 				F336F3B7288A958C005B57A0 /* ScheduleInputModel.swift */,
 				F336F3F928902D99005B57A0 /* ScheduleRule.swift */,
+				F336F40728910E5B005B57A0 /* ScheduleUpdateModel.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -1282,6 +1287,7 @@
 				F336F3C1288AFD67005B57A0 /* CreateSchedule.graphql */,
 				F336F3CC288BDB44005B57A0 /* Reissue.graphql */,
 				F336F3F728902A92005B57A0 /* ScehduleRule.graphql */,
+				F336F40528910E03005B57A0 /* UpdateSchedule.graphql */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1458,6 +1464,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F336F40628910E03005B57A0 /* UpdateSchedule.graphql in Resources */,
 				7DF8B7A928361FB100B224CA /* PretendardVariable.ttf in Resources */,
 				F323FEF1287636B500DFD8FD /* SortDropDownCell.xib in Resources */,
 				F336F36028867ECF005B57A0 /* deleteCategory.graphql in Resources */,
@@ -1767,6 +1774,7 @@
 				F30EBCF028828C3C00ECB48D /* WFilterButtton.swift in Sources */,
 				F3B00274287D68FA00D6BB1D /* ScheduleSort.swift in Sources */,
 				7D8129F4288AE277006C0A5D /* ProfileEditFieldView.swift in Sources */,
+				F336F40828910E5B005B57A0 /* ScheduleUpdateModel.swift in Sources */,
 				F30EBCD328807B2600ECB48D /* API.swift in Sources */,
 				7D6B911528449A760044E217 /* WIconLabel.swift in Sources */,
 				F336F3D1288C5239005B57A0 /* RefreshTokenInterceptor.swift in Sources */,

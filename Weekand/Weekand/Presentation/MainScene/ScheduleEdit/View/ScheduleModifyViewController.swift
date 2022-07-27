@@ -261,6 +261,9 @@ class ScheduleModifyViewController: BaseViewController {
             .bind(to: nameStackView.textField.rx.text.orEmpty)
             .disposed(by: disposeBag)
         
+        nameStackView.textField.rx.text.orEmpty.bind(to: selectedScheduleName)
+            .disposed(by: disposeBag)
+        
         calendarStackView.calendarView.calendar.rx.didSelect
             .subscribe(onNext: { [weak self] date in
                 let dateString = WDateFormatter.dateFormatter.string(from: date)
@@ -357,13 +360,5 @@ extension ScheduleModifyViewController: UITextViewDelegate {
             textView.text = memoStackView.textView.placeHolder
             textView.textColor = .gray400
         }
-    }
-}
-
-// MARK: Network
-
-extension ScheduleModifyViewController {
-    func setSchedule(scheduleId: String) {
-        self.viewModel?.schedule(scheduleId: scheduleId)
     }
 }

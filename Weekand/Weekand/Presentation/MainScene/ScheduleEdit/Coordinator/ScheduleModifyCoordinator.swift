@@ -25,17 +25,9 @@ class ScheduleModifyCoordinator: ScheduleCoordinatorType {
     }
     
     func start() {
-        let scheduleInputModel = ScheduleInputModel(
-                                        name: "",
-                                        categoryId: "",
-                                        dateStart: Date(),
-                                        dateEnd: Date(),
-                                        repeatType: .once,
-                                        repeatSelectedValue: nil,
-                                        repeatEnd: nil,
-                                        memo: nil)
-        self.scheduleModifyViewController.viewModel = ScheduleModifyViewModel(coordinator: self, scheduleEditUseCase: scheduleEditUseCase, scheduleInputModel: scheduleInputModel)
-        self.scheduleModifyViewController.setSchedule(scheduleId: scheduleId)
+        let scheduleModifyViewModel = ScheduleModifyViewModel(coordinator: self, scheduleEditUseCase: scheduleEditUseCase, scheduleId: scheduleId)
+        scheduleModifyViewModel.getSchedule()
+        self.scheduleModifyViewController.viewModel = scheduleModifyViewModel
     }
     
     func presentRepeatSheet() {
