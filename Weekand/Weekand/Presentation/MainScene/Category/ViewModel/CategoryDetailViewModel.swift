@@ -64,8 +64,8 @@ extension CategoryDetailViewModel {
 }
 
 extension CategoryDetailViewModel {
-    func searchSchedules(id: String, completion: @escaping () -> Void) {
-        self.categoryUseCase.deleteCategory(id: id)
+    func deleteScheduleFromDate(schedule: ScheduleSummary, completion: @escaping () -> Void) {
+        self.categoryUseCase.deleteScheduleFromDate(scheduleId: schedule.scheduleId, date: schedule.dateStart)
             .subscribe(onSuccess: { isSucceed in
                 if isSucceed {
                     completion()
@@ -73,11 +73,7 @@ extension CategoryDetailViewModel {
                     self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")
                 }
             }, onFailure: { error in
-                if error.localizedDescription == CategoryError.minimumCategoryCount.serverDescription {
-                    self.coordinator?.showToastMessage(text: error.localizedDescription)
-                } else {
-                    self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")
-                }
+                self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }

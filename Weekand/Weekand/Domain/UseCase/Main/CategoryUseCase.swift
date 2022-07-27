@@ -45,4 +45,10 @@ final class CategoryUseCase {
         .map { $0.searchSchedules }
         .asSingle()
     }
+    
+    func deleteScheduleFromDate(scheduleId: String, date: Date) -> Single<Bool> {
+        NetWork.shared.perform(mutation: DeleteScheduleFromDateMutation(scheduleId: scheduleId, date: date.toTimestamp()), queue: .main)
+            .map { $0.deleteScheduleFromDate }
+            .asSingle()
+    }
 }

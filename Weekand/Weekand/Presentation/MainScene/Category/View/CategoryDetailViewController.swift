@@ -186,6 +186,13 @@ extension CategoryDetailViewController {
         }
     }
     
+    func deleteItem(_ indexPath: IndexPath) {
+        var snapshot = self.dataSource.snapshot()
+        snapshot.deleteItems([self.list[indexPath.item]])
+        self.list.remove(at: indexPath.item)
+        self.dataSource.apply(snapshot)
+    }
+    
 }
 
 extension CategoryDetailViewController: UITableViewDelegate {
@@ -210,15 +217,18 @@ extension CategoryDetailViewController: UITableViewDelegate {
 extension CategoryDetailViewController {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let update = UIContextualAction(style: .normal, title: "수정") { _, _, _ in
+        let update = UIContextualAction(style: .normal, title: "수정") { _, _, completionHandler in
             self.scheduleCellDidSwipeEvent.accept(self.list[indexPath.item].scheduleId)
+            completionHandler(true)
         }
         update.backgroundColor = .mainColor
         
         
         let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, _ in
             self.showActionSheet(titles: "삭제", message: "이 기간의 모든 일정을 삭제하시겠어요?") { _ in
-                print("삭제~~")
+                self.viewModel?.deleteScheduleFromDate(schedule: self.list[indexPath.item], completion: {
+                    self.deleteItem(indexPath)
+                })
             }
 
         }
