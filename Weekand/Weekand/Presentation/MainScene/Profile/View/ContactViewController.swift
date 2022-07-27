@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import UIKit
+import RxRelay
 
 class ContactViewController: BaseViewController {
     
@@ -17,6 +18,7 @@ class ContactViewController: BaseViewController {
     let placeholder = "내용을 입력해주세요."
     let maxCount = 500
     
+    // MARK: Label
     lazy var titleLabel = UILabel().then {
         $0.font = WFont.title()
         $0.textColor = .gray900
@@ -40,6 +42,7 @@ class ContactViewController: BaseViewController {
         $0.axis = .vertical
     }
     
+    // MARK: TextField
     lazy var textView = UITextView().then {
         $0.delegate = self
         
@@ -53,6 +56,9 @@ class ContactViewController: BaseViewController {
         $0.text = placeholder
         $0.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
     }
+    
+    // MARK: Button
+    lazy var bottomButton = WBottmButton(title: "문의하기")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,12 +85,28 @@ class ContactViewController: BaseViewController {
         stackView.layoutMargins = UIEdgeInsets(top: 20, left: 24, bottom: 0, right: 24)
         
         stackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.left.right.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-WBottmButton.buttonOffset - 64)
         }
+        
+        self.view.addSubview(bottomButton)
+        bottomButton.enable(string: "문의하기")
+        bottomButton.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-WBottmButton.buttonOffset)
+            make.bottom.equalToSuperview()
+            make.left.right.equalToSuperview()
+        }
+
     }
     
     private func bindViewModel() {
         
+        let input = ContactViewModel.Input(
+            contactString: textView.rx.text.asObservable(),
+            didButtonTap: bottomButton.rx.tap.asObservable()
+        )
+        
+        _ = viewModel?.transform(input: input)
     }
 }
 
@@ -112,6 +134,4 @@ extension ContactViewController: UITextViewDelegate {
         return textView.text.count - range.length + text.count > maxCount ? false : true
     }
     
-    
-
 }

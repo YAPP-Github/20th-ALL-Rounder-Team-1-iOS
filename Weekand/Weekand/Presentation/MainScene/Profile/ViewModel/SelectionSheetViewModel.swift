@@ -27,7 +27,7 @@ class SelectionSheetViewModel: ViewModelType {
     }
     
     struct Input {
-        let selectedInformations: PublishRelay<[String]>
+        let selectedInformations: BehaviorRelay<[String]>
         let didTapConfirmButton: Observable<Void>
     }
     
@@ -36,6 +36,7 @@ class SelectionSheetViewModel: ViewModelType {
     func transform(input: Input) -> Output {
         
         input.didTapConfirmButton.withLatestFrom(input.selectedInformations).subscribe(onNext: { informations in
+            
             if self.informationType == .job {
                 self.coordinator?.setJobInformations(informations)
             } else {
