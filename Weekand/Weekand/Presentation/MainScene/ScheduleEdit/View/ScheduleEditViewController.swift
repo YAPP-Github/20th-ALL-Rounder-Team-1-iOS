@@ -144,14 +144,9 @@ class ScheduleEditViewController: BaseViewController {
                 repeatType != .once
             })
             .subscribe(onNext: { [weak self] repeatType, repeatEndDate in
-                var repeatText = ""
-                if let date = repeatEndDate {
-                    let dateString = WDateFormatter.dateFormatter.string(from: date)
-                    repeatText = "\(dateString)까지 \(repeatType.description)"
-                } else {
-                    repeatText = "\(repeatType.description)"
-                }
-                
+                let repeatText = WRepeatTextManager.combineTimeDate(repeatType: repeatType,
+                                                                    repeatSelectedValue: nil,
+                                                                    repeatEndDate: repeatEndDate)
                 self?.repeatStackView.setRepeatText(repeatText)
                 self?.repeatStackView.isHidden = false
             })
@@ -162,14 +157,9 @@ class ScheduleEditViewController: BaseViewController {
                 repeatType == .weekly
             })
             .subscribe(onNext: { [weak self] repeatType, repeatSelectedValue, repeatEndDate in
-                var repeatText = ""
-                let repeatSelectedValueText = repeatSelectedValue.map { $0.description }.joined(separator: ",")
-                if let date = repeatEndDate {
-                    let dateString = WDateFormatter.dateFormatter.string(from: date)
-                    repeatText = "\(dateString)까지 \(repeatType.description) \(repeatSelectedValueText)"
-                } else {
-                    repeatText = "\(repeatType.description) \(repeatSelectedValueText)"
-                }
+                let repeatText = WRepeatTextManager.combineTimeDate(repeatType: repeatType,
+                                                                    repeatSelectedValue: repeatSelectedValue,
+                                                                    repeatEndDate: repeatEndDate)
                 self?.repeatStackView.setRepeatText(repeatText)
                 self?.repeatStackView.isHidden = false
             })
