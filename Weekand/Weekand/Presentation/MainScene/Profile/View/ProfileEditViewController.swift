@@ -101,7 +101,6 @@ class ProfileEditViewController: BaseViewController {
         }
         
         self.contentView.addSubview(stackView)
-        
 
         self.view.addSubview(bottomButton)
         bottomButton.enable(string: "완료")
