@@ -19,8 +19,6 @@ class BaseViewController: UIViewController {
         $0.distribution = .fill
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

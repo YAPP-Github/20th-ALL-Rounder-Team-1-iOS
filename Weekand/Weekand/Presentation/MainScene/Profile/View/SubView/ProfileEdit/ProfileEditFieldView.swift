@@ -43,7 +43,6 @@ class ProfileEditFieldView: UIView {
         if validation == nil {
             validationLabel.isHidden = true
             textField.allowsEditingTextAttributes = false
-            textField.tintColor = .clear
         } else {
             maxLength = validation
         }
@@ -80,8 +79,9 @@ extension ProfileEditFieldView: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
+        
         guard let text = textField.text else { return false }
-        guard let limit = maxLength else { return false }
+        guard let limit = maxLength else { return true }
         
         if let input = string.cString(using: String.Encoding.utf8) {
             let isBackSpace = strcmp(input, "\\b")

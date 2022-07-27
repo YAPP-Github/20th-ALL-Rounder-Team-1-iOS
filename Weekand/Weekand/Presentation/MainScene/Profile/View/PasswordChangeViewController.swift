@@ -9,11 +9,17 @@ import UIKit
 import SnapKit
 import Then
 import RxSwift
+import RxCocoa
+import RxRelay
 
 class PasswordChangeViewController: BaseViewController {
     
     var viewModel: PasswordChangeViewModel?
     private let disposeBag = DisposeBag()
+    
+    var currentPassword = BehaviorSubject<String>(value: "")
+    var newPassword = BehaviorSubject<String>(value: "")
+    var checkPassword = BehaviorSubject<String>(value: "")
     
     lazy var titleLabel = UILabel().then {
         $0.font = WFont.title()
@@ -37,7 +43,7 @@ class PasswordChangeViewController: BaseViewController {
         $0.textField.isSecureTextEntry = true
     }
     
-    lazy var validationField = UILabel().then {
+    lazy var validationLabel = UILabel().then {
         $0.font = WFont.body2()
         $0.textColor = .wred
         $0.text = "비밀번호가 일치하지 않습니다"
@@ -64,9 +70,9 @@ class PasswordChangeViewController: BaseViewController {
     
     private func configureUI() {
         
-        checkPasswordField.addSubview(validationField)
+        checkPasswordField.addSubview(validationLabel)
         checkPasswordField.titleLabel.setContentHuggingPriority(.required, for: .horizontal)
-        validationField.snp.makeConstraints { make in
+        validationLabel.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-8)
             make.height.equalTo(checkPasswordField.titleLabel.snp.height)
             make.centerY.equalTo(checkPasswordField.titleLabel.snp.centerY)
@@ -77,7 +83,6 @@ class PasswordChangeViewController: BaseViewController {
         }
         stackView.setCustomSpacing(40, after: titleLabel)
         
-        self.contentView.addSubview(stackView)
         stackView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
             make.bottom.equalToSuperview().offset(-WBottmButton.buttonOffset - 64)
@@ -95,5 +100,63 @@ class PasswordChangeViewController: BaseViewController {
     
     private func bindViewModel() {
         
+        currentPasswordField.textField.rx.text.orEmpty
+            .distinctUntilChanged()
+            .bind(to: currentPassword)
+            .disposed(by: disposeBag)
+        
+        newPasswordField.textField.rx.text.orEmpty
+            .distinctUntilChanged()
+            .bind(to: newPassword)
+            .disposed(by: disposeBag)
+        
+        checkPasswordField.textField.rx.text.orEmpty
+            .distinctUntilChanged()
+            .bind(to: checkPassword)
+            .disposed(by: disposeBag)
+        
+        let input = PasswordChangeViewModel.Input(
+            currentPassword: currentPassword.asObservable(),
+            newPassword: newPassword.asObservable(),
+            checkPassword: checkPassword.asObservable(),
+            didConfirmButtonTap: confirmButton.rx.tap.asObservable()
+        )
+        
+        let output = viewModel?.transform(input: input)
+        
+        output?.passwordInvalid.subscribe(onNext: { _ in
+            self.passwordInvalidAction()
+        }).disposed(by: disposeBag)
+        
+        output?.passwordIdentical.subscribe(onNext: { isIdentical in
+            self.passwordIdenticalAction(isIdentical: isIdentical)
+        }).disposed(by: disposeBag)
+    }
+}
+
+extension PasswordChangeViewController {
+    
+    func passwordInvalidAction() {
+        showToast(message: "비밀번호가 일치하지 않습니다.")
+    }
+    
+    func passwordIdenticalAction(isIdentical: Bool) {
+        self.validationLabel.isHidden = isIdentical
+        
+        switchConfirmButtonState(isIdentical: isIdentical)
+    }
+    
+    func switchConfirmButtonState(isIdentical: Bool) {
+        
+        var isFieldsFilled = true
+        [currentPasswordField, newPasswordField, checkPasswordField].forEach {
+            if ($0.textField.text ?? "").isEmpty  { isFieldsFilled = false }
+        }
+        
+        if isFieldsFilled && isIdentical {
+            confirmButton.enable(string: "완료")
+        } else {
+            confirmButton.disable(string: "완료")
+        }
     }
 }
