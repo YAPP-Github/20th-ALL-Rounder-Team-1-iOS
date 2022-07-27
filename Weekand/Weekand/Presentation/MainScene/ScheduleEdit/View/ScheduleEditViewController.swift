@@ -247,6 +247,7 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
                     self?.selectedEndTime.accept(schedule.dateEnd)
                     self?.selectedDate.accept(schedule.dateStart)
                     self?.selectedRepeatType.accept(schedule.repeatType)
+                    self?.selectedRepeatSelectedValue.accept(schedule.repeatSelectedValue)
                     self?.selectedRepeatEnd.accept(schedule.repeatEnd)
                     
                     if schedule.memo != "" {

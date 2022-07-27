@@ -166,7 +166,7 @@ extension CategoryDetailViewController {
                            date: WDateFormatter.dateFormatter.string(from: list.dateStart),
                            time: WDateFormatter.combineTimeDate(startTime: list.dateStart, endTime: list.dateEnd),
                            repeatText: WRepeatTextManager.combineTimeDate(repeatType: list.repeatType,
-                                                                          repeatSelectedValue: nil,
+                                                                          repeatSelectedValue: list.repeatSelectedValue,
                                                                           repeatEndDate: nil))
             return cell
         })

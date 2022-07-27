@@ -16,7 +16,7 @@ struct ScheduleRule {
     let dateStart: Date
     let dateEnd: Date
     let repeatType: ScheduleRepeatType
-    let repeatSelectedValue: String
+    let repeatSelectedValue: [ScheduleWeek]
     let repeatEnd: Date?
     let memo: String
     
@@ -28,7 +28,7 @@ struct ScheduleRule {
         self.dateStart = model.dateTimeStart.toDate()
         self.dateEnd = model.dateTimeEnd.toDate()
         self.repeatType = model.repeatType.toEntity()
-        self.repeatSelectedValue = model.repeatSelectedValue ?? ""
+        self.repeatSelectedValue = model.repeatSelectedValue.map { $0.toEntity() }
         self.repeatEnd = model.repeatEnd?.toDate()
         self.memo = model.memo ?? ""
     }

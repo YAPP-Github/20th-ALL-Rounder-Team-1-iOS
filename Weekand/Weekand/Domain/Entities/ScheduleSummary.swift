@@ -26,9 +26,9 @@ struct ScheduleSummary: Hashable {
     let dateStart: Date
     let dateEnd: Date
     let repeatType: ScheduleRepeatType
-    let repeatSelectedValue: String
+    let repeatSelectedValue: [ScheduleWeek]
     
-    init(scheduleId: String, color: String, name: String, dateStart: Date, dateEnd: Date, repeatType: ScheduleRepeatType, repeatSelectedValue: String) {
+    init(scheduleId: String, color: String, name: String, dateStart: Date, dateEnd: Date, repeatType: ScheduleRepeatType, repeatSelectedValue: [ScheduleWeek]) {
         
         self.scheduleId = scheduleId
         self.color = color
@@ -47,6 +47,6 @@ struct ScheduleSummary: Hashable {
         self.dateStart = model.dateTimeStart.toDate()
         self.dateEnd = model.dateTimeEnd.toDate()
         self.repeatType = model.repeatType.toEntity()
-        self.repeatSelectedValue = model.repeatSelectedValue ?? ""
+        self.repeatSelectedValue = model.repeatSelectedValue.map { $0.toEntity() }
     }
 }

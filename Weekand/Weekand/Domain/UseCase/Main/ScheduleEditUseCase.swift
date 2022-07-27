@@ -23,7 +23,7 @@ final class ScheduleEditUseCase {
             dateTimeStart: input.dateStart.toTimestamp(),
             dateTimeEnd: input.dateEnd.toTimestamp(),
             repeatType: input.repeatType.toModel(),
-            repeatSelectedValue: input.repeatSelectedValue?.map { $0.toModel() },
+            repeatSelectedValue: input.repeatSelectedValue?.map { $0.toModel() } ?? [],
             repeatEnd: input.repeatEnd?.toTimestamp(),
             memo: input.memo
         )
@@ -41,7 +41,7 @@ final class ScheduleEditUseCase {
                                                       dateTimeStart: input.dateStart.toTimestamp(),
                                                       dateTimeEnd: input.dateEnd.toTimestamp(),
                                                       repeatType: input.repeatType.toModel(),
-                                                      repeatSelectedValue: input.repeatSelectedValue?.map { $0.toModel() },
+                                                      repeatSelectedValue: input.repeatSelectedValue?.map { $0.toModel() } ?? [],
                                                       repeatEnd: input.repeatEnd?.toTimestamp(),
                                                       memo: input.memo)
         return NetWork.shared.perform(mutation: UpdateScheduleMutation(input: scheduleUpdateModel))
@@ -50,7 +50,7 @@ final class ScheduleEditUseCase {
         }
     
     func schduleRule(scheduleId: String) -> Single<ScehduleRuleQuery.Data.ScheduleRule> {
-        NetWork.shared.fetch(query: ScehduleRuleQuery(scheduleId: scheduleId))
+        NetWork.shared.fetch(query: ScehduleRuleQuery(scheduleId: scheduleId), cachePolicy: .fetchIgnoringCacheCompletely, queue: .main)
             .map { $0.scheduleRule }
             .asSingle()
     }

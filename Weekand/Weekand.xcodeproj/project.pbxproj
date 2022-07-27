@@ -185,6 +185,7 @@
 		F336F40828910E5B005B57A0 /* ScheduleUpdateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F40728910E5B005B57A0 /* ScheduleUpdateModel.swift */; };
 		F336F40A2891239A005B57A0 /* WRepeatTextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F4092891239A005B57A0 /* WRepeatTextManager.swift */; };
 		F336F40C28912BDE005B57A0 /* ScheduleEditViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F40B28912BDE005B57A0 /* ScheduleEditViewModelType.swift */; };
+		F336F40E2891994F005B57A0 /* Week+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F40D2891994F005B57A0 /* Week+extension.swift */; };
 		F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAB28533D0A005B493A /* WSortButton.swift */; };
 		F33C6EAE28535021005B493A /* UIVIewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAD28535021005B493A /* UIVIewController+extension.swift */; };
 		F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */; };
@@ -438,6 +439,7 @@
 		F336F40728910E5B005B57A0 /* ScheduleUpdateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleUpdateModel.swift; sourceTree = "<group>"; };
 		F336F4092891239A005B57A0 /* WRepeatTextManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WRepeatTextManager.swift; sourceTree = "<group>"; };
 		F336F40B28912BDE005B57A0 /* ScheduleEditViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditViewModelType.swift; sourceTree = "<group>"; };
+		F336F40D2891994F005B57A0 /* Week+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Week+extension.swift"; sourceTree = "<group>"; };
 		F33C6EAB28533D0A005B493A /* WSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSortButton.swift; sourceTree = "<group>"; };
 		F33C6EAD28535021005B493A /* UIVIewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+extension.swift"; sourceTree = "<group>"; };
 		F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputGroupStackView.swift; sourceTree = "<group>"; };
@@ -1030,6 +1032,7 @@
 			children = (
 				F336F3A928893A12005B57A0 /* RepeatType+extension.swift */,
 				F30EBCCC288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift */,
+				F336F40D2891994F005B57A0 /* Week+extension.swift */,
 			);
 			path = APIModelExtensions;
 			sourceTree = "<group>";
@@ -1663,6 +1666,7 @@
 				7D8129E32889A2E7006C0A5D /* ProfileDetailJobInterestView.swift in Sources */,
 				F32F72542853C2200056B189 /* CategoryDetailHeaderView.swift in Sources */,
 				F323FF1928799B6D00DFD8FD /* SimplePopupViewController.swift in Sources */,
+				F336F40E2891994F005B57A0 /* Week+extension.swift in Sources */,
 				F3DD021A2846629100AD9240 /* Coordinator.swift in Sources */,
 				F392A1C7284F51B100512A42 /* CategoryListViewController.swift in Sources */,
 				F336F3AA28893A12005B57A0 /* RepeatType+extension.swift in Sources */,
