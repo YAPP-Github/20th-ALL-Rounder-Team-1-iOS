@@ -80,6 +80,8 @@ class ProfileViewController: UIViewController {
         setUpView()
         configureUI()
         bindViewModel()
+        
+        accessibilityLink.isHidden = true   // TODO: 이후 업데이트
     }
     
     private func setUpView() {
