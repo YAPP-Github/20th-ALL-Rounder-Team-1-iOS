@@ -7,18 +7,18 @@
 
 import UIKit
 
-class ScheduleModifyCoordinator: ScheduleCoordinatorType {
+class ScheduleModifyCoordinator: ScheduleEditCoordinatorType {
     weak var finishDelegate: CoordinatorDidFinishDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
-    var scheduleModifyViewController: ScheduleModifyViewController
+    var scheduleEditViewController: ScheduleEditViewController<ScheduleModifyViewModel>
     var type: CoordinatorType = .scheduleModify
     var scheduleEditUseCase: ScheduleEditUseCase
     var scheduleId: String
     
     required init(selectedScheduleId: String) {
-        self.scheduleModifyViewController = ScheduleModifyViewController()
-        self.navigationController = UINavigationController(rootViewController: scheduleModifyViewController)
+        self.scheduleEditViewController = ScheduleEditViewController()
+        self.navigationController = UINavigationController(rootViewController: scheduleEditViewController)
         self.navigationController.modalPresentationStyle = .fullScreen
         self.scheduleEditUseCase = ScheduleEditUseCase()
         self.scheduleId = selectedScheduleId
@@ -27,7 +27,7 @@ class ScheduleModifyCoordinator: ScheduleCoordinatorType {
     func start() {
         let scheduleModifyViewModel = ScheduleModifyViewModel(coordinator: self, scheduleEditUseCase: scheduleEditUseCase, scheduleId: scheduleId)
         scheduleModifyViewModel.getSchedule()
-        self.scheduleModifyViewController.viewModel = scheduleModifyViewModel
+        self.scheduleEditViewController.viewModel = scheduleModifyViewModel
     }
     
     func presentRepeatSheet() {
@@ -61,18 +61,18 @@ class ScheduleModifyCoordinator: ScheduleCoordinatorType {
     }
     
     func sendCategoryFromSheet(category: Category) {
-        scheduleModifyViewController.category = category
+        scheduleEditViewController.category = category
     }
     
     func sendRepeatTypeFromSheet(repeatType: ScheduleRepeatType, repeatEndDate: Date?) {
-        scheduleModifyViewController.repeatType = repeatType
-        scheduleModifyViewController.repeatEnd = repeatEndDate
+        scheduleEditViewController.repeatType = repeatType
+        scheduleEditViewController.repeatEnd = repeatEndDate
     }
     
     func sendWeekRepeatTypeFromSheet(repeatType: ScheduleRepeatType, repeatEndDate: Date?, repeatSelectedValue: [ScheduleWeek]) {
-        scheduleModifyViewController.repeatType = repeatType
-        scheduleModifyViewController.repeatSelectedValue = repeatSelectedValue
-        scheduleModifyViewController.repeatEnd = repeatEndDate
+        scheduleEditViewController.repeatType = repeatType
+        scheduleEditViewController.repeatSelectedValue = repeatSelectedValue
+        scheduleEditViewController.repeatEnd = repeatEndDate
     }
     
     func finish() {

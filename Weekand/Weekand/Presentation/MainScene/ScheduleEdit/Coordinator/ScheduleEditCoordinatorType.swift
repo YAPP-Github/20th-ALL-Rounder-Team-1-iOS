@@ -7,4 +7,4 @@
 
 import Foundation
 
-protocol ScheduleCoordinatorType: AnyObject, Coordinator { }
+protocol ScheduleEditCoordinatorType: AnyObject, Coordinator { }

@@ -12,14 +12,14 @@ import RxCocoa
 
 class CategoryListSheetViewModel: ViewModelType {
     
-    weak var coordinator: ScheduleCoordinatorType?
+    weak var coordinator: ScheduleEditCoordinatorType?
     private let scheduleEditUseCase: ScheduleEditUseCase
     private var disposeBag = DisposeBag()
     
     let categoryList = PublishRelay<[Category]>()
     var hasNext: Bool = false
     
-    init(coordinator: ScheduleCoordinatorType, scheduleEditUseCase: ScheduleEditUseCase) {
+    init(coordinator: ScheduleEditCoordinatorType, scheduleEditUseCase: ScheduleEditUseCase) {
         self.coordinator = coordinator
         self.scheduleEditUseCase = scheduleEditUseCase
     }
@@ -39,7 +39,7 @@ extension CategoryListSheetViewModel {
     func transform(input: Input) -> Output {
         
         input.selectedCategory.subscribe(onNext: { [weak self] category in
-            if let coordinator = self?.coordinator as? ScheduleEditCoordinator {
+            if let coordinator = self?.coordinator as? ScheduleAddCoordinator {
                 coordinator.sendCategoryFromSheet(category: category)
                 coordinator.finish()
             } else if let coordinator = self?.coordinator as? ScheduleModifyCoordinator {

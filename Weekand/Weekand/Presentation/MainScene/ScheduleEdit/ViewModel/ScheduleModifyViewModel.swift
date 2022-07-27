@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import Apollo
 
-class ScheduleModifyViewModel: ViewModelType {
+class ScheduleModifyViewModel: ScheduleEditViewModelType {
     
     enum DateTime {
         case date, startTime, endTime

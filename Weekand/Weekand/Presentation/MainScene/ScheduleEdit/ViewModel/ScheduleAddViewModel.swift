@@ -10,24 +10,21 @@ import RxSwift
 import RxCocoa
 import Apollo
 
-class ScheduleEditViewModel: ViewModelType {
+class ScheduleAddViewModel: ScheduleEditViewModelType {
     
     enum DateTime {
         case date, startTime, endTime
     }
 
-    weak var coordinator: ScheduleEditCoordinator?
+    weak var coordinator: ScheduleAddCoordinator?
     var scheduleEditUseCase: ScheduleEditUseCase
     private let disposeBag = DisposeBag()
     
     let defaultCategory = PublishRelay<Category>()
     
-    let scheduleInputModel: ScheduleInputModel?
-    
-    init(coordinator: ScheduleEditCoordinator?, scheduleEditUseCase: ScheduleEditUseCase, scheduleInputModel: ScheduleInputModel) {
+    init(coordinator: ScheduleAddCoordinator?, scheduleEditUseCase: ScheduleEditUseCase) {
         self.coordinator = coordinator
         self.scheduleEditUseCase = scheduleEditUseCase
-        self.scheduleInputModel = scheduleInputModel
     }
     
     struct Input {
@@ -42,7 +39,7 @@ class ScheduleEditViewModel: ViewModelType {
         let endTimeButtonDidTapEvent: Observable<Void>
         let dateDidSelectEvent: Observable<Date>
         let repeatButtonDidTapEvent: Observable<Void>
-        let nameTextFieldDidEditEvent: Observable<String?>
+        let selectedScheduleName: BehaviorRelay<String>
         let selectedDate: BehaviorRelay<Date>
         let selectedStartTime: BehaviorRelay<Date>
         let selectedEndTime: BehaviorRelay<Date>
@@ -50,7 +47,7 @@ class ScheduleEditViewModel: ViewModelType {
         let selectedRepeatType: BehaviorRelay<ScheduleRepeatType>
         let selectedRepeatSelectedValue: BehaviorRelay<[ScheduleWeek]>
         let selectedRepeatEnd: BehaviorRelay<Date?>
-        let memoTextViewDidEditEvent: Observable<String?>
+        let selectedMemo: BehaviorRelay<String>
     }
     
     struct Output {
@@ -63,23 +60,21 @@ class ScheduleEditViewModel: ViewModelType {
         let combinedDateTimes = Observable.combineLatest(input.selectedDate,
                                                          input.selectedStartTime,
                                                          input.selectedEndTime)
-        let validNameInput = input.nameTextFieldDidEditEvent.map(vaildInput)
+        let validNameInput = input.selectedScheduleName.map(vaildInput)
         
         let combinedInputs = Observable.combineLatest(
              combinedDateTimes,
-             input.nameTextFieldDidEditEvent,
+             input.selectedScheduleName,
              input.selectedCategory,
              input.selectedRepeatType,
              input.selectedRepeatSelectedValue,
              input.selectedRepeatEnd,
-             input.memoTextViewDidEditEvent)
+             input.selectedMemo)
         
         input.confirmButtonDidTapEvent.withLatestFrom(combinedInputs)
             .subscribe(onNext: { [weak self] dates, nameText, category,
                                              repeatType, repeatSelectValue, repeatEnd, memo in
-                guard let nameText = nameText,
-                      let category = category,
-                      let memo = memo else {
+                guard let category = category else {
                     return
                 }
                 
@@ -183,7 +178,7 @@ class ScheduleEditViewModel: ViewModelType {
     }
 }
 
-extension ScheduleEditViewModel {
+extension ScheduleAddViewModel {
     func searchCategories() {
         self.scheduleEditUseCase.ScheduleCategories(sort: .dateCreatedDESC, page: 0, size: 1)
             .subscribe(onSuccess: { data in

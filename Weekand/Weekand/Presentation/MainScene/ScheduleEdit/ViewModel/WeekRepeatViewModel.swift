@@ -12,10 +12,10 @@ import RxCocoa
 
 class WeekRepeatViewModel: ViewModelType {
     
-    weak var coordinator: ScheduleCoordinatorType?
+    weak var coordinator: ScheduleEditCoordinatorType?
     private var disposeBag = DisposeBag()
     
-    init(coordinator: ScheduleCoordinatorType) {
+    init(coordinator: ScheduleEditCoordinatorType) {
         self.coordinator = coordinator
     }
 
@@ -37,7 +37,7 @@ extension WeekRepeatViewModel {
     @discardableResult
     func transform(input: Input) -> Output {
         input.cancelButtonDidTapEvent.subscribe(onNext: {
-            if let coordinator = self.coordinator as? ScheduleEditCoordinator {
+            if let coordinator = self.coordinator as? ScheduleAddCoordinator {
                 coordinator.finish()
             } else if let coordinator = self.coordinator as? ScheduleModifyCoordinator {
                 coordinator.finish()
@@ -52,7 +52,7 @@ extension WeekRepeatViewModel {
             .subscribe(onNext: { [weak self] isRepeat, date, weeks in
                 let repeatEndDate = isRepeat ? date : nil
                 
-                if let coordinator = self?.coordinator as? ScheduleEditCoordinator {
+                if let coordinator = self?.coordinator as? ScheduleAddCoordinator {
                     if weeks.count == 7 {
                         coordinator.sendRepeatTypeFromSheet(repeatType: .daily, repeatEndDate: repeatEndDate)
                     } else {
