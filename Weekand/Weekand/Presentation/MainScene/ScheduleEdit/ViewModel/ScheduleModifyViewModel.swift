@@ -95,7 +95,7 @@ class ScheduleModifyViewModel: ScheduleEditViewModelType {
                     repeatType: repeatType,
                     repeatSelectedValue: repeatSelectValue,
                     repeatEnd: repeatEnd,
-                    memo: memo == "메모를 입력해주세요" ? "" : memo
+                    memo: memo == "" ? nil : memo
                 )
                 
                 self.updateSchedule(input: scheduleUpdateModel)

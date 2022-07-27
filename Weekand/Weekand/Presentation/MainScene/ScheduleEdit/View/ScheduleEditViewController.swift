@@ -34,7 +34,7 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
                                            endTimeText: WDateFormatter.timeFormatter.string(from: defaultEndTime))
     let addInformationContainerView = AddInformationContainerView()
     let repeatStackView = RepeatStackView()
-    let memoStackView = MemoStackView(placeholder: "메모를 입력해주세요", nameText: "메모")
+    let memoStackView = MemoStackView(nameText: "메모")
     
     var defaultStartTime: Date {
         let currentTime = Date()
@@ -102,7 +102,6 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
         
         repeatStackView.isHidden = true
         memoStackView.isHidden = true
-        memoStackView.textView.delegate = self
     }
     
     private func configureUI() {
@@ -251,7 +250,7 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
                     self?.selectedRepeatEnd.accept(schedule.repeatEnd)
                     
                     if schedule.memo != "" {
-                        self?.memoStackView.textView.text = schedule.memo
+                        self?.selectedMemo.accept(schedule.memo)
                         self?.memoStackView.isHidden = false
                     }
                     let dateString = WDateFormatter.dateFormatter.string(from: schedule.dateStart)
@@ -371,7 +370,11 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
         .disposed(by: disposeBag)
         
         selectedMemo
-            .bind(to: memoStackView.textView.rx.text)
+            .bind(to: memoStackView.textView.rx.text.orEmpty)
+            .disposed(by: disposeBag)
+        
+        memoStackView.textView.rx.text.orEmpty
+            .bind(to: selectedMemo)
             .disposed(by: disposeBag)
     }
     
@@ -401,21 +404,5 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
                 self?.repeatStackView.isHidden = false
             })
             .disposed(by: disposeBag)
-    }
-    
-    // MARK: TextView
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == memoStackView.textView.placeHolder {
-            textView.text = nil
-            textView.textColor = .gray900
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            textView.text = memoStackView.textView.placeHolder
-            textView.textColor = .gray400
-        }
     }
 }
