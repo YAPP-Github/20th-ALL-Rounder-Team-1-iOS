@@ -57,6 +57,7 @@ class CategoryCoordinator: Coordinator {
         childCoordinators.append(scheduleAddCoordinator)
         navigationController.present(scheduleAddCoordinator.navigationController, animated: true, completion: nil)
         scheduleAddCoordinator.start()
+        scheduleAddCoordinator.sendCategoryFromCategoryScene(category: category)
     }
     
     func showScheduleModifyScene(scheduleId: String) {

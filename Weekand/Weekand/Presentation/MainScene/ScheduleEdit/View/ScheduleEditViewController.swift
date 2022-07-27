@@ -49,7 +49,6 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
     
     var category: Category? {
         didSet {
-            // TODO: forced optional
             self.categoryStackView.setCategory(self.category!)
             self.selectedCategory.accept(self.category!)
         }
@@ -184,12 +183,14 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
         )
         
         if let viewModel = viewModel as? ScheduleAddViewModel {
-            let output = viewModel.transform(input: editInput as! ScheduleAddViewModel.Input)
+            let output = viewModel.transform(input: editInput)
             
             viewModel.defaultCategory
                 .observe(on: MainScheduler.asyncInstance)
                 .subscribe(onNext: { [weak self] category in
-                    self?.category = category
+                    if self?.category == nil {
+                        self?.category = category
+                    }
             })
             .disposed(by: self.disposeBag)
             
@@ -210,7 +211,7 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
             }).disposed(by: disposeBag)
             
         } else if let viewModel = viewModel as? ScheduleModifyViewModel {
-            let output = viewModel.transform(input: modifyInput as! ScheduleModifyViewModel.Input)
+            let output = viewModel.transform(input: modifyInput)
             
             viewModel.defaultCategory
                 .observe(on: MainScheduler.asyncInstance)
@@ -365,7 +366,8 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
         addInformationContainerView.memoButton.rx.tap.subscribe(onNext: {
             self.memoStackView.isHidden = false
             self.addInformationContainerView.memoButton.isHidden = true
-        }).disposed(by: disposeBag)
+        })
+        .disposed(by: disposeBag)
         
         selectedMemo
             .bind(to: memoStackView.textView.rx.text)
