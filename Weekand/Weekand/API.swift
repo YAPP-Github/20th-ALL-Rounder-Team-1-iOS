@@ -314,6 +314,7 @@ public enum ScheduleStatus: RawRepresentable, Equatable, Hashable, CaseIterable,
   case incompleted
   case skip
   case undetermined
+  case notYet
   /// Auto generated constant for unknown enum values
   case __unknown(RawValue)
 
@@ -323,6 +324,7 @@ public enum ScheduleStatus: RawRepresentable, Equatable, Hashable, CaseIterable,
       case "INCOMPLETED": self = .incompleted
       case "SKIP": self = .skip
       case "UNDETERMINED": self = .undetermined
+      case "NOT_YET": self = .notYet
       default: self = .__unknown(rawValue)
     }
   }
@@ -333,6 +335,7 @@ public enum ScheduleStatus: RawRepresentable, Equatable, Hashable, CaseIterable,
       case .incompleted: return "INCOMPLETED"
       case .skip: return "SKIP"
       case .undetermined: return "UNDETERMINED"
+      case .notYet: return "NOT_YET"
       case .__unknown(let value): return value
     }
   }
@@ -343,6 +346,7 @@ public enum ScheduleStatus: RawRepresentable, Equatable, Hashable, CaseIterable,
       case (.incompleted, .incompleted): return true
       case (.skip, .skip): return true
       case (.undetermined, .undetermined): return true
+      case (.notYet, .notYet): return true
       case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
       default: return false
     }
@@ -354,6 +358,7 @@ public enum ScheduleStatus: RawRepresentable, Equatable, Hashable, CaseIterable,
       .incompleted,
       .skip,
       .undetermined,
+      .notYet,
     ]
   }
 }
@@ -2092,7 +2097,7 @@ public final class SearchSchedulesQuery: GraphQLQuery {
       }
 
       public struct Schedule: GraphQLSelectionSet {
-        public static let possibleTypes: [String] = ["ScheduleInfo"]
+        public static let possibleTypes: [String] = ["ScheduleRule"]
 
         public static var selections: [GraphQLSelection] {
           return [
@@ -2114,7 +2119,7 @@ public final class SearchSchedulesQuery: GraphQLQuery {
         }
 
         public init(id: GraphQLID, name: String, category: Category, dateTimeStart: Timestamp, dateTimeEnd: Timestamp, repeatType: RepeatType, repeatSelectedValue: String? = nil) {
-          self.init(unsafeResultMap: ["__typename": "ScheduleInfo", "id": id, "name": name, "category": category.resultMap, "dateTimeStart": dateTimeStart, "dateTimeEnd": dateTimeEnd, "repeatType": repeatType, "repeatSelectedValue": repeatSelectedValue])
+          self.init(unsafeResultMap: ["__typename": "ScheduleRule", "id": id, "name": name, "category": category.resultMap, "dateTimeStart": dateTimeStart, "dateTimeEnd": dateTimeEnd, "repeatType": repeatType, "repeatSelectedValue": repeatSelectedValue])
         }
 
         public var __typename: String {

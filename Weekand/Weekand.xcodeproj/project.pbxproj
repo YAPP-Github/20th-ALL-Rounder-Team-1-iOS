@@ -551,6 +551,7 @@
 				7DC166B6283714EE00F1A8F1 /* Common */,
 				7DC166A72837139300F1A8F1 /* SignScene */,
 				7D76AEAF28445878001C668D /* MainScene */,
+				7D8B0A1828911E390028D83B /* ProfileScene */,
 				7DC166B72837157500F1A8F1 /* Utils */,
 			);
 			path = Presentation;
@@ -564,7 +565,6 @@
 				F30EBCDE288197BA00ECB48D /* Search */,
 				F3C8E0972872E10F00B0916A /* ScheduleEdit */,
 				F392A1C2284F508600512A42 /* Category */,
-				7D8129CC2886F679006C0A5D /* Profile */,
 			);
 			path = MainScene;
 			sourceTree = "<group>";
@@ -715,6 +715,14 @@
 				7D812A01288E1CCC006C0A5D /* ProfileEditSelectionView.swift */,
 			);
 			path = ProfileEdit;
+			sourceTree = "<group>";
+		};
+		7D8B0A1828911E390028D83B /* ProfileScene */ = {
+			isa = PBXGroup;
+			children = (
+				7D8129CC2886F679006C0A5D /* Profile */,
+			);
+			path = ProfileScene;
 			sourceTree = "<group>";
 		};
 		7DA4AB6E28586602009E91FB /* ViewModel */ = {
