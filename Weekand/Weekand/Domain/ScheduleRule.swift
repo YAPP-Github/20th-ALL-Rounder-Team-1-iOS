@@ -17,6 +17,7 @@ struct ScheduleRule {
     let dateEnd: Date
     let repeatType: ScheduleRepeatType
     let repeatSelectedValue: String
+    let repeatEnd: Date?
     let memo: String
     
     init(model: ScehduleRuleQuery.Data.ScheduleRule) {
@@ -28,6 +29,7 @@ struct ScheduleRule {
         self.dateEnd = model.dateTimeEnd.toDate()
         self.repeatType = model.repeatType.toEntity()
         self.repeatSelectedValue = model.repeatSelectedValue ?? ""
+        self.repeatEnd = model.repeatEnd?.toDate()
         self.memo = model.memo ?? ""
     }
 }

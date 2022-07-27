@@ -183,6 +183,7 @@ class ScheduleModifyViewController: BaseViewController {
                 self?.selectedEndTime.accept(schedule.dateEnd)
                 self?.selectedDate.accept(schedule.dateStart)
                 self?.selectedRepeatType.accept(schedule.repeatType)
+                self?.selectedRepeatEnd.accept(schedule.repeatEnd)
                 
                 if schedule.memo != "" {
                     self?.memoStackView.textView.text = schedule.memo
