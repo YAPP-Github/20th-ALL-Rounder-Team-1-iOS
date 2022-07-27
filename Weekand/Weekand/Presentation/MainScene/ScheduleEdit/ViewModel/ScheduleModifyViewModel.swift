@@ -101,8 +101,7 @@ class ScheduleModifyViewModel: ViewModelType {
                 self.updateSchedule(input: scheduleUpdateModel)
             })
             .disposed(by: disposeBag)
-        
-        
+
         self.bindDateTime(input: input)
         
         input.repeatButtonDidTapEvent.subscribe(onNext: {

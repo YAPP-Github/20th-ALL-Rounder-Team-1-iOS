@@ -35,4 +35,11 @@ struct WDateFormatter {
         
         return convertDate
     }
+    
+    static func combineTimeDate(startTime: Date, endTime: Date) -> String {
+        let startTimeString = timeFormatter.string(from: startTime)
+        let endTimeString = timeFormatter.string(from: endTime)
+        
+        return "\(startTimeString) - \(endTimeString)"
+    }
 }
