@@ -17,16 +17,16 @@ final class MainUseCase {
             }.asSingle()
     }
     
-    func userSummary() -> Single<UserSummary> {
-        return NetWork.shared.fetch(query: UserSummaryQuery())
+    func userSummary(id: String?) -> Single<UserSummary?> {
+        
+        return NetWork.shared.fetch(query: UserSummaryQuery(id: id))
             .map {
                 if let user = $0.user {
                     return UserSummary(model: user)
                 } else {
-                    return UserSummary.defaultData
+                    return nil
                 }
-            }
-            .asSingle()
+            }.asSingle()
     }
     
     func scheduleList(date: Date) -> Single<[ScheduleMain]> {

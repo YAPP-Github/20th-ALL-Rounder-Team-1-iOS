@@ -2708,8 +2708,8 @@ public final class UserSummaryQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query UserSummary {
-      user {
+    query UserSummary($id: ID) {
+      user(id: $id) {
         __typename
         id
         nickname
@@ -2721,7 +2721,14 @@ public final class UserSummaryQuery: GraphQLQuery {
 
   public let operationName: String = "UserSummary"
 
-  public init() {
+  public var id: GraphQLID?
+
+  public init(id: GraphQLID? = nil) {
+    self.id = id
+  }
+
+  public var variables: GraphQLMap? {
+    return ["id": id]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -2729,7 +2736,7 @@ public final class UserSummaryQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("user", type: .object(User.selections)),
+        GraphQLField("user", arguments: ["id": GraphQLVariable("id")], type: .object(User.selections)),
       ]
     }
 

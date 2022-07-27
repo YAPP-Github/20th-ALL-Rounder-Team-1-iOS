@@ -1,5 +1,5 @@
-query UserSummary {
-  user {
+query UserSummary($id: ID) {
+  user(id: $id) {
     id
     nickname
     profileImageUrl
