@@ -46,6 +46,9 @@ class ScheduleDetailViewController: BaseViewController {
     lazy var skipStackView = ScheduleInformationStackView(title: "스킵")
     lazy var memoStackView = ScheduleInformationStackView(title: "메모")
     
+    let selectedComplete = BehaviorRelay<Bool>(value: false)
+    let selectedIncomplete = BehaviorRelay<Bool>(value: false)
+    
     let name = PublishRelay<String>()
     let date = PublishRelay<String>()
     let time = PublishRelay<String>()
@@ -77,6 +80,8 @@ class ScheduleDetailViewController: BaseViewController {
     private func setupView() {
         view.backgroundColor = .white
         stackView.spacing = 20
+        
+        scheduleCompleteToolBar.completeCollecitonView.delegate = self
         
         if isStatusEditing == false {
             self.scheduleCompleteToolBar.isHidden = true
@@ -178,6 +183,8 @@ class ScheduleDetailViewController: BaseViewController {
         .disposed(by: disposeBag)
         
         let input = ScheduleDetailViewModel.Input(
+            selectedComplete: selectedComplete,
+            selectedInComplete: selectedIncomplete
         )
 
         let _ = viewModel?.transform(input: input)
@@ -196,5 +203,17 @@ class ScheduleDetailViewController: BaseViewController {
             self?.memo.accept(schedule.memo)
         })
         .disposed(by: disposeBag)
+    }
+}
+
+extension ScheduleDetailViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.item == 0 {
+            selectedIncomplete.accept(true)
+            selectedComplete.accept(false)
+        } else {
+            selectedComplete.accept(true)
+            selectedIncomplete.accept(false)
+        }
     }
 }

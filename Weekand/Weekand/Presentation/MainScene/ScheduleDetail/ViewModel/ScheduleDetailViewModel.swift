@@ -23,11 +23,27 @@ class ScheduleDetailViewModel: ViewModelType {
     }
     
     struct Input {
+        let selectedComplete: BehaviorRelay<Bool>
+        let selectedInComplete: BehaviorRelay<Bool>
     }
     
     struct Output { }
     
     func transform(input: Input) -> Output {
+        
+        input.selectedComplete.subscribe(onNext: { [weak self] isTrue in
+            if isTrue {
+                print("완료")
+            }
+        })
+        .disposed(by: disposeBag)
+        
+        input.selectedInComplete.subscribe(onNext: { [weak self] isTrue in
+            if isTrue {
+                print("미완료")
+            }
+        })
+        .disposed(by: disposeBag)
         
         return Output()
     }
