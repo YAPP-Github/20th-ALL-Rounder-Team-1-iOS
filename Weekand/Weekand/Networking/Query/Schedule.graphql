@@ -1,0 +1,20 @@
+query Schedule($scheduleId: ID!, $date: Timestamp!) {
+  schedule(scheduleId: $scheduleId, date: $date) {
+    id
+    name
+    category {
+      id
+      name
+      color
+      openType
+    }
+    dateTimeStart
+    dateTimeEnd
+    repeatType
+    repeatSelectedValue
+    repeatEnd
+    memo
+    dateSkip
+    status
+  }
+}

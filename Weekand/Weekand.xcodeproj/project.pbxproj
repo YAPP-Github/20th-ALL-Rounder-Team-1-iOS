@@ -213,6 +213,9 @@
 		F378685728621BD200BEEC81 /* CategoryModifyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F378685628621BD200BEEC81 /* CategoryModifyCoordinator.swift */; };
 		F378685928621C2C00BEEC81 /* CategoryModifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F378685828621C2C00BEEC81 /* CategoryModifyViewModel.swift */; };
 		F378685B28621C8F00BEEC81 /* CategoryEditViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F378685A28621C8F00BEEC81 /* CategoryEditViewModelType.swift */; };
+		F38AE45428926B7300E5E261 /* ScheduleDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE45328926B7300E5E261 /* ScheduleDetail.swift */; };
+		F38AE45628926C1200E5E261 /* Schedule.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F38AE45528926C1200E5E261 /* Schedule.graphql */; };
+		F38AE45828926E8700E5E261 /* ScheduleStatus+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE45728926E8700E5E261 /* ScheduleStatus+extension.swift */; };
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
@@ -480,6 +483,9 @@
 		F378685628621BD200BEEC81 /* CategoryModifyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModifyCoordinator.swift; sourceTree = "<group>"; };
 		F378685828621C2C00BEEC81 /* CategoryModifyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModifyViewModel.swift; sourceTree = "<group>"; };
 		F378685A28621C8F00BEEC81 /* CategoryEditViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEditViewModelType.swift; sourceTree = "<group>"; };
+		F38AE45328926B7300E5E261 /* ScheduleDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetail.swift; sourceTree = "<group>"; };
+		F38AE45528926C1200E5E261 /* Schedule.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Schedule.graphql; sourceTree = "<group>"; };
+		F38AE45728926E8700E5E261 /* ScheduleStatus+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleStatus+extension.swift"; sourceTree = "<group>"; };
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
@@ -754,6 +760,7 @@
 				F336F3B7288A958C005B57A0 /* ScheduleInputModel.swift */,
 				F336F3F928902D99005B57A0 /* ScheduleRule.swift */,
 				F336F40728910E5B005B57A0 /* ScheduleUpdateModel.swift */,
+				F38AE45328926B7300E5E261 /* ScheduleDetail.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -1081,6 +1088,7 @@
 				F336F3A928893A12005B57A0 /* RepeatType+extension.swift */,
 				F30EBCCC288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift */,
 				F336F40D2891994F005B57A0 /* Week+extension.swift */,
+				F38AE45728926E8700E5E261 /* ScheduleStatus+extension.swift */,
 			);
 			path = APIModelExtensions;
 			sourceTree = "<group>";
@@ -1389,6 +1397,7 @@
 				F336F40528910E03005B57A0 /* UpdateSchedule.graphql */,
 				F336F40F2891AA97005B57A0 /* DeleteScheduleFromDate.graphql */,
 				F336F4202892422D005B57A0 /* DeleteSchedule.graphql */,
+				F38AE45528926C1200E5E261 /* Schedule.graphql */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1584,6 +1593,7 @@
 				F3B00277287D700D00D6BB1D /* ScheduleCategories.graphql in Resources */,
 				7D0A6A402881C61F00CFE61D /* Followers.graphql in Resources */,
 				F30EBCD1288078DF00ECB48D /* CreateCategory.graphql in Resources */,
+				F38AE45628926C1200E5E261 /* Schedule.graphql in Resources */,
 				F336F3C4288B11CC005B57A0 /* SearchSchedules.graphql in Resources */,
 				F323FF1F2879AD5600DFD8FD /* sendAuthKey.graphql in Resources */,
 				F336F4212892422D005B57A0 /* DeleteSchedule.graphql in Resources */,
@@ -1853,6 +1863,7 @@
 				7D7178EB283E1C9D00D7E5F2 /* WCheckBox.swift in Sources */,
 				F3C8E087286DC71300B0916A /* RxApolloClient.swift in Sources */,
 				F32F72602854BB730056B189 /* ColorStackView.swift in Sources */,
+				F38AE45428926B7300E5E261 /* ScheduleDetail.swift in Sources */,
 				7DE60AE22892539F00F85A05 /* PasswordChangeViewModel.swift in Sources */,
 				F30EBCF7288532F800ECB48D /* InformationSheetViewModel.swift in Sources */,
 				7DE60AEF2892539F00F85A05 /* ProfileDetailCollectionStackView.swift in Sources */,
@@ -1866,6 +1877,7 @@
 				F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */,
 				F32F725C28549B650056B189 /* WTextFieldStackView.swift in Sources */,
 				F336F40228903BCB005B57A0 /* ScheduleEditCoordinatorType.swift in Sources */,
+				F38AE45828926E8700E5E261 /* ScheduleStatus+extension.swift in Sources */,
 				7DBC4C632876AEA200F0AC86 /* MonthlyCalendarSheetViewModel.swift in Sources */,
 				7DE60AE62892539F00F85A05 /* ProfileCoordinator.swift in Sources */,
 				F336F3B028895EDA005B57A0 /* CategoryListSheetViewController.swift in Sources */,

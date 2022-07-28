@@ -15,8 +15,12 @@ class ScheduleDetailViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     var viewModel: ScheduleDetailViewModel?
     
+    lazy var nameStackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = 10
+    }
+    
     lazy var nameLabel = WTextLabel().then {
-        $0.text = "Yapp 20기 회의"
         $0.font = WFont.head1()
         $0.textColor = .gray900
     }
@@ -27,14 +31,22 @@ class ScheduleDetailViewController: BaseViewController {
     
     lazy var informationStackView = UIStackView().then {
         $0.axis = .vertical
-        $0.spacing = 20
+        $0.spacing = 30
     }
     
-    lazy var dateStackView = ScheduleInformationStackView(title: "일자", text: "2022.05.22.")
-    lazy var timeStackView = ScheduleInformationStackView(title: "시간", text: "10:00 - 21:00")
-    lazy var repeatStackView = ScheduleInformationStackView(title: "반복", text: "매월 7일 반복")
-    lazy var skipStackView = ScheduleInformationStackView(title: "스킵", text: "2022.05.22.")
-    lazy var memoStackView = ScheduleInformationStackView(title: "메모", text:  "“뭘 써야 할지 모르겠어요.” 글쓰기 모임 첫날, 어떤 분이 이런 말을 한 적이 있다. 여태껏 글을 쓸 일이 없었기 때문에 막상 글을 쓰려니 뭘 써야 하나 막막하다는 것이다. 책방에 모여 한 시간 반 동안 각자 쓰고 싶은 글을 쓴 뒤에 그날 어떤 글을 썼는지 간략히 나누고 헤어지는 모임이었다. ")
+    lazy var dateStackView = ScheduleInformationStackView(title: "일자")
+    lazy var timeStackView = ScheduleInformationStackView(title: "시간")
+    lazy var repeatStackView = ScheduleInformationStackView(title: "반복")
+    lazy var skipStackView = ScheduleInformationStackView(title: "스킵")
+    lazy var memoStackView = ScheduleInformationStackView(title: "메모")
+    
+    let name = PublishRelay<String>()
+    let date = PublishRelay<String>()
+    let time = PublishRelay<String>()
+    let category = PublishRelay<Category>()
+    let repeatText = PublishRelay<String>()
+    let skip = PublishRelay<[Date]?>()
+    let memo = PublishRelay<String>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,40 +58,106 @@ class ScheduleDetailViewController: BaseViewController {
     
     private func setupView() {
         view.backgroundColor = .white
+        stackView.spacing = 20
         navigationItem.title = "일정 제목"
     }
     
     private func configureUI() {
-        [
-            nameLabel,
-            dividerLine,
-            informationStackView
+        [nameStackView,
+         dividerLine,
+         informationStackView
         ].forEach { stackView.addArrangedSubview($0) }
         
-        [
-            dateStackView,
-            timeStackView,
-            repeatStackView,
-            skipStackView,
-            memoStackView
+        [nameLabel
+        ].forEach { nameStackView.addArrangedSubview($0) }
+        
+        [dateStackView,
+         timeStackView,
+         repeatStackView,
+         skipStackView,
+         memoStackView
         ].forEach { informationStackView.addArrangedSubview($0) }
         
         dividerLine.snp.makeConstraints { make in
             make.height.equalTo(10)
+            make.leading.trailing.equalToSuperview()
         }
         
         stackView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(50)
+            make.top.equalToSuperview().offset(30)
             make.bottom.equalToSuperview().offset(-64)
             make.trailing.leading.equalToSuperview()
+        }
+        
+        informationStackView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(24)
+            make.trailing.equalToSuperview().offset(-24)
+        }
+        
+        nameStackView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(24)
+            make.trailing.equalToSuperview().offset(-22)
         }
     }
     
     private func bindViewModel() {
         
+        self.name.bind(to: nameLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        self.date.bind(to: dateStackView.textLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        self.time.bind(to: timeStackView.textLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        self.repeatText.bind { repeatText in
+            if repeatText != "" {
+                self.repeatStackView.textLabel.text = repeatText
+            } else {
+                self.repeatStackView.isHidden = true
+            }
+        }
+        .disposed(by: disposeBag)
+        
+        self.skip.bind { skip in
+            if let skip = skip,
+               skip != [] {
+                let skipText = skip.map({ date in
+                    WDateFormatter.dateFormatter.string(from: date)
+                }).joined(separator: "\n")
+                self.skipStackView.textLabel.text = skipText
+            } else {
+                self.skipStackView.isHidden = true
+            }
+        }
+        .disposed(by: disposeBag)
+        
+        self.memo.bind { memoText in
+            if memoText != "" {
+                self.memoStackView.textLabel.text = memoText
+            } else {
+                self.memoStackView.isHidden = true
+            }
+        }
+        .disposed(by: disposeBag)
+        
         let input = ScheduleDetailViewModel.Input(
         )
 
         let _ = viewModel?.transform(input: input)
+        
+        self.viewModel?.schedule.subscribe(onNext: { [weak self] schedule in
+            let repeatText = WRepeatTextManager.combineTimeDate(repeatType: schedule.repeatType,
+                                                                repeatSelectedValue: schedule.repeatSelectedValue, repeatEndDate: schedule.repeatEnd)
+            self?.name.accept(schedule.name)
+            self?.date.accept(WDateFormatter.dateFormatter.string(from: schedule.dateStart))
+            self?.time.accept(WDateFormatter.combineTimeDate(startTime: schedule.dateStart,
+                                                             endTime: schedule.dateEnd))
+            self?.repeatText.accept(repeatText)
+            self?.skip.accept(schedule.dateSkip)
+            self?.memo.accept(schedule.memo)
+        })
+        .disposed(by: disposeBag)
     }
 }

@@ -48,7 +48,7 @@ class CategoryDetailViewController: UIViewController {
     var refreshListCount: Int = 15
     var page: Int = 0
     
-    let scheduleCellDidSelected = PublishRelay<String>()
+    let scheduleCellDidSelected = PublishRelay<ScheduleSummary>()
     let scheduleCellDidSwipeEvent = PublishRelay<String>()
     
     override func viewDidLoad() {
@@ -214,7 +214,7 @@ extension CategoryDetailViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        scheduleCellDidSelected.accept(list[indexPath.item].scheduleId)
+        scheduleCellDidSelected.accept(list[indexPath.item])
     }
 }
 

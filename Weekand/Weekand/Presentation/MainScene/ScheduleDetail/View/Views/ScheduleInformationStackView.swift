@@ -39,12 +39,15 @@ class ScheduleInformationStackView: UIStackView {
         [titleLabel, textLabel].forEach { self.addArrangedSubview($0) }
     }
     
-    init(title: String, text: String) {
+    init(title: String) {
         super.init(frame: CGRect.zero)
         
         self.titleLabel.text = title
-        self.textLabel.text = text
         setupView()
+    }
+    
+    func configure(text: String) {
+        self.textLabel.text = text
     }
 
 }
