@@ -30,8 +30,6 @@ final class MainUseCase {
     }
     
     func scheduleList(date: Date) -> Single<[ScheduleMain]> {
-        print("Timestamp:")
-        print(date.toTimestamp())
         return NetWork.shared
             .fetch(query: ScheduleListQuery(date: date.toTimestamp()))
             .map {
@@ -41,4 +39,13 @@ final class MainUseCase {
             }
             .asSingle()
     }
+    
+    func stickerSummary(id: String, date: Date) -> Single<StickerSummary> {
+        return NetWork.shared.fetch(query: StickerSummaryQuery(id: id, date: date.toTimestamp()))
+            .map {
+                StickerSummary(model: $0.scheduleStickerSummary)
+            }
+            .asSingle()
+    }
+    
 }

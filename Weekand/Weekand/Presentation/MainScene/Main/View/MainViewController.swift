@@ -261,7 +261,10 @@ extension MainViewController: MainTableViewCellDelegate {
     
     func emojiViewTapped(id: String?) {
         print("\(#function), id: \(String(describing: id))")
-        self.viewModel?.coordinator?.pushEmojiSheet()
+        
+        if let scheduleId = id {
+            self.viewModel?.coordinator?.pushEmojiSheet(id: scheduleId, date: currentDate)
+        }
     }
     
     func stickerButtonTapped(id: String?) {

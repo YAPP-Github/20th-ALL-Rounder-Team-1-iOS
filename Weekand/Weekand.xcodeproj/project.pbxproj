@@ -57,6 +57,8 @@
 		7D812A07288E91AD006C0A5D /* PasswordChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D812A06288E91AD006C0A5D /* PasswordChangeViewController.swift */; };
 		7D812A09288EC517006C0A5D /* PasswordChangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D812A08288EC517006C0A5D /* PasswordChangeViewModel.swift */; };
 		7D8B0A1A28917AFF0028D83B /* UserDetail.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D8B0A1928917AFF0028D83B /* UserDetail.graphql */; };
+		7D8B0A1C28920BDF0028D83B /* StickerSummary.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D8B0A1B28920BDF0028D83B /* StickerSummary.graphql */; };
+		7D8B0A202892218B0028D83B /* StickerSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8B0A1F2892218B0028D83B /* StickerSummary.swift */; };
 		7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */; };
 		7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */; };
 		7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */; };
@@ -296,6 +298,8 @@
 		7D812A06288E91AD006C0A5D /* PasswordChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeViewController.swift; sourceTree = "<group>"; };
 		7D812A08288EC517006C0A5D /* PasswordChangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeViewModel.swift; sourceTree = "<group>"; };
 		7D8B0A1928917AFF0028D83B /* UserDetail.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UserDetail.graphql; sourceTree = "<group>"; };
+		7D8B0A1B28920BDF0028D83B /* StickerSummary.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = StickerSummary.graphql; sourceTree = "<group>"; };
+		7D8B0A1F2892218B0028D83B /* StickerSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerSummary.swift; sourceTree = "<group>"; };
 		7D8E4E832882A9D70035FB7E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCoordinator.swift; sourceTree = "<group>"; };
@@ -776,6 +780,7 @@
 				F3B00266287D68E700D6BB1D /* Category.swift */,
 				F3B00268287D68F100D6BB1D /* Color.swift */,
 				F3B0026B287D68F100D6BB1D /* EmojiGiver.swift */,
+				7D8B0A1F2892218B0028D83B /* StickerSummary.swift */,
 				F3B00272287D68FA00D6BB1D /* SignUpModel.swift */,
 				F3B00270287D68FA00D6BB1D /* UserSummary.swift */,
 				7D8129E8288A4331006C0A5D /* UserDetail.swift */,
@@ -1269,6 +1274,7 @@
 				7D0A6A312881330E00CFE61D /* scheduleList.graphql */,
 				F323FF2F287A276100DFD8FD /* issueTempPassword.graphql */,
 				F323FF37287B13F900DFD8FD /* SignUp.graphql */,
+				7D8B0A1B28920BDF0028D83B /* StickerSummary.graphql */,
 				F3B00276287D700D00D6BB1D /* ScheduleCategories.graphql */,
 				F30EBCD0288078DF00ECB48D /* CreateCategory.graphql */,
 				F30EBCDC28817CFD00ECB48D /* UpdateCategory.graphql */,
@@ -1461,6 +1467,7 @@
 				F323FF2B287A036E00DFD8FD /* checkDuplicateNickname.graphql in Resources */,
 				7D0A6A322881330E00CFE61D /* scheduleList.graphql in Resources */,
 				F336F3CD288BDB44005B57A0 /* Reissue.graphql in Resources */,
+				7D8B0A1C28920BDF0028D83B /* StickerSummary.graphql in Resources */,
 				7D0ED2C8287D547000DE3215 /* schema.json in Resources */,
 				F323FF30287A276100DFD8FD /* issueTempPassword.graphql in Resources */,
 				F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */,
@@ -1728,6 +1735,7 @@
 				F30EBCE62881993100ECB48D /* SearchHeaderView.swift in Sources */,
 				7D8129CB2886F66E006C0A5D /* ProfileViewController.swift in Sources */,
 				7DC166C02837234200F1A8F1 /* WButtonTextField.swift in Sources */,
+				7D8B0A202892218B0028D83B /* StickerSummary.swift in Sources */,
 				F336F3B62889828D005B57A0 /* WeekCollectionViewCell.swift in Sources */,
 				F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */,
 				F32F725C28549B650056B189 /* WTextFieldStackView.swift in Sources */,
