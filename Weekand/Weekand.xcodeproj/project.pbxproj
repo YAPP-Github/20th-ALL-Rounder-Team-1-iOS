@@ -52,6 +52,10 @@
 		7D8129FA288BF130006C0A5D /* UserUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129F9288BF130006C0A5D /* UserUpdate.swift */; };
 		7D8129FC288C60A2006C0A5D /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129FB288C60A1006C0A5D /* ContactViewModel.swift */; };
 		7D8129FE288C60BF006C0A5D /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129FD288C60BF006C0A5D /* ContactViewController.swift */; };
+		7D812A02288E1CCC006C0A5D /* ProfileEditSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D812A01288E1CCC006C0A5D /* ProfileEditSelectionView.swift */; };
+		7D812A05288E8143006C0A5D /* ContactCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D812A04288E8143006C0A5D /* ContactCompleteViewController.swift */; };
+		7D812A07288E91AD006C0A5D /* PasswordChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D812A06288E91AD006C0A5D /* PasswordChangeViewController.swift */; };
+		7D812A09288EC517006C0A5D /* PasswordChangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D812A08288EC517006C0A5D /* PasswordChangeViewModel.swift */; };
 		7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */; };
 		7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */; };
 		7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */; };
@@ -310,6 +314,10 @@
 		7D8129F9288BF130006C0A5D /* UserUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUpdate.swift; sourceTree = "<group>"; };
 		7D8129FB288C60A1006C0A5D /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
 		7D8129FD288C60BF006C0A5D /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		7D812A01288E1CCC006C0A5D /* ProfileEditSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditSelectionView.swift; sourceTree = "<group>"; };
+		7D812A04288E8143006C0A5D /* ContactCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCompleteViewController.swift; sourceTree = "<group>"; };
+		7D812A06288E91AD006C0A5D /* PasswordChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeViewController.swift; sourceTree = "<group>"; };
+		7D812A08288EC517006C0A5D /* PasswordChangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeViewModel.swift; sourceTree = "<group>"; };
 		7D8E4E832882A9D70035FB7E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCoordinator.swift; sourceTree = "<group>"; };
@@ -697,6 +705,7 @@
 				7D8129EE288AD914006C0A5D /* ProfileEditViewModel.swift */,
 				7D8129F5288BDE30006C0A5D /* SelectionSheetViewModel.swift */,
 				7D8129FB288C60A1006C0A5D /* ContactViewModel.swift */,
+				7D812A08288EC517006C0A5D /* PasswordChangeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -716,6 +725,8 @@
 				7D8129F0288AD92A006C0A5D /* ProfileEditViewController.swift */,
 				7D8129F7288BDE3C006C0A5D /* SelectionSheetViewController.swift */,
 				7D8129FD288C60BF006C0A5D /* ContactViewController.swift */,
+				7D812A04288E8143006C0A5D /* ContactCompleteViewController.swift */,
+				7D812A06288E91AD006C0A5D /* PasswordChangeViewController.swift */,
 				7D8129DD28894693006C0A5D /* SubView */,
 			);
 			path = View;
@@ -725,7 +736,7 @@
 			isa = PBXGroup;
 			children = (
 				7D8129F2288AE261006C0A5D /* ProfileDetail */,
-				7D8129F3288AE277006C0A5D /* ProfileEditFieldView.swift */,
+				7D812A03288E7299006C0A5D /* ProfileEdit */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -742,6 +753,15 @@
 				7D8129DE2889484F006C0A5D /* ProfileDetailHelperView.swift */,
 			);
 			path = ProfileDetail;
+			sourceTree = "<group>";
+		};
+		7D812A03288E7299006C0A5D /* ProfileEdit */ = {
+			isa = PBXGroup;
+			children = (
+				7D8129F3288AE277006C0A5D /* ProfileEditFieldView.swift */,
+				7D812A01288E1CCC006C0A5D /* ProfileEditSelectionView.swift */,
+			);
+			path = ProfileEdit;
 			sourceTree = "<group>";
 		};
 		7DA4AB6E28586602009E91FB /* ViewModel */ = {
@@ -1752,7 +1772,8 @@
 				7D76AEB628445AA5001C668D /* MainTableViewCell.swift in Sources */,
 				F3B0025D287D686200D6BB1D /* ScheduleMain.swift in Sources */,
 				F336F36B2886EF56005B57A0 /* WeekRepeatViewController.swift in Sources */,
-				F336F3EE289014CB005B57A0 /* DateTimeLabel.swift in Sources */,
+        7D812A02288E1CCC006C0A5D /* ProfileEditSelectionView.swift in Sources */
+        7D812A02288E1CCC006C0A5D /* ProfileEditSelectionView.swift in Sources */,
 				F30EBCEA2881A04D00ECB48D /* UserSearchViewModel.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
 				7D8129D52887100F006C0A5D /* Timestamp.swift in Sources */,
@@ -1772,8 +1793,10 @@
 				7D7178ED283E1ED500D7E5F2 /* WTextButton.swift in Sources */,
 				F323FF1D2879A30100DFD8FD /* SimplePopupCoordinator.swift in Sources */,
 				7DF9688A284DF2EB00CE077E /* MainViewHeader.swift in Sources */,
+				7D812A05288E8143006C0A5D /* ContactCompleteViewController.swift in Sources */,
 				7DEA177A2845E7C500F6B990 /* WEmojiView.swift in Sources */,
 				7DBC38AE2875A92400EFE704 /* Key.swift in Sources */,
+				7D812A07288E91AD006C0A5D /* PasswordChangeViewController.swift in Sources */,
 				7D8129DB288928ED006C0A5D /* ProfileDetailInteractoinBlockView.swift in Sources */,
 				F378685928621C2C00BEEC81 /* CategoryModifyViewModel.swift in Sources */,
 				7DA4AB7828586FA7009E91FB /* CategoryAddViewModel.swift in Sources */,
@@ -1842,6 +1865,7 @@
 				F3F731E32869918E00C8B778 /* FilterTableViewCell.swift in Sources */,
 				F336F3C9288BA6A4005B57A0 /* NetworkError.swift in Sources */,
 				F3DD022428466E0C00AD9240 /* SignInCoordinator.swift in Sources */,
+				7D812A09288EC517006C0A5D /* PasswordChangeViewModel.swift in Sources */,
 				7D8033D6286034BB0039F73E /* MainCollectionViewCell.swift in Sources */,
 				7D8129E52889A5DE006C0A5D /* ProfileDetailCollectionStackView.swift in Sources */,
 				F30EBCDB28817A2400ECB48D /* CategoryEditCoordinatorType.swift in Sources */,

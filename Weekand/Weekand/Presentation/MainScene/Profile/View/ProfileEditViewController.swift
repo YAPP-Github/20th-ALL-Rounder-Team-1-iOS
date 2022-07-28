@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import Then
 import RxSwift
+import RxRelay
 import RxGesture
 
 class ProfileEditViewController: BaseViewController {
@@ -27,6 +28,7 @@ class ProfileEditViewController: BaseViewController {
         }
     }
     
+    // MARK: profile image
     lazy var profileImageView = UIImageView().then {
         $0.layer.cornerRadius = 20
         $0.clipsToBounds = true
@@ -39,10 +41,13 @@ class ProfileEditViewController: BaseViewController {
         $0.textAlignment = .center
     }
     
+    lazy var profileImageContainerView = UIView()
+    
+    // MARK: Fields
     lazy var nickNameField = ProfileEditFieldView(title: "닉네임", validation: 12)
     lazy var goalField = ProfileEditFieldView(title: "한줄목표", validation: 20)
-    lazy var jobField = ProfileEditFieldView(title: "직업", validation: nil)
-    lazy var interestField = ProfileEditFieldView(title: "관심사", validation: nil)
+    lazy var jobField = ProfileEditSelectionView(title: "직업")
+    lazy var interestField = ProfileEditSelectionView(title: "관심사")
     
     lazy var textFieldStack = UIStackView().then {
         $0.axis = .vertical
@@ -50,6 +55,7 @@ class ProfileEditViewController: BaseViewController {
         $0.spacing = 24
     }
     
+    // MARK: Button
     lazy var bottomButton = WBottmButton(title: "완료")
     
     override func viewDidLoad() {
@@ -58,6 +64,7 @@ class ProfileEditViewController: BaseViewController {
         setUpView()
         configureUI()
         bindViewModel()
+        
     }
     
     private func setUpView() {
@@ -75,21 +82,27 @@ class ProfileEditViewController: BaseViewController {
 //            make.bottom.equalToSuperview()
 //        }
         
-        [nickNameField, goalField, jobField, interestField].forEach { textFieldStack.addArrangedSubview($0) }
-        
-        [profileImageView, textFieldStack, bottomButton].forEach { self.contentView.addSubview($0) }
+        profileImageContainerView.addSubview(profileImageView)
         profileImageView.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(24)
+            make.center.equalToSuperview()
+            make.top.bottom.equalToSuperview().inset(24)
             make.height.equalTo(80)
             make.width.equalTo(80)
-            make.centerX.equalToSuperview()
         }
         
-        textFieldStack.snp.makeConstraints { make in
-            make.top.equalTo(profileImageView.snp.bottom).offset(24)
-            make.left.right.equalToSuperview().inset(24)
+        [nickNameField, goalField, jobField, interestField].forEach { textFieldStack.addArrangedSubview($0) }
+        
+        [profileImageContainerView, textFieldStack].forEach { self.stackView.addArrangedSubview($0) }
+        
+        stackView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(24)
+            make.bottom.equalToSuperview().offset(-WBottmButton.buttonOffset - 64)
+            make.trailing.leading.equalToSuperview().inset(24)
         }
+        
+        self.contentView.addSubview(stackView)
 
+        self.view.addSubview(bottomButton)
         bottomButton.enable(string: "완료")
         bottomButton.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-WBottmButton.buttonOffset)
@@ -103,8 +116,8 @@ class ProfileEditViewController: BaseViewController {
         
         let input = ProfileEditViewModel.Input(
             didImageTap: profileImageView.rx.tapGesture().asObservable(),
-            didJobTap: jobField.textField.rx.tapGesture().asObservable(),
-            didInterestTap: interestField.textField.rx.tapGesture().asObservable(),
+            didJobTap: jobField.labelBackground.rx.tapGesture().asObservable(),
+            didInterestTap: interestField.labelBackground.rx.tapGesture().asObservable(),
             didButtonTap: bottomButton.rx.tap.asObservable()
         )
         
@@ -130,7 +143,7 @@ class ProfileEditViewController: BaseViewController {
                 interest: self.selectedInterests
             )
             
-            PublishSubject<UserUpdate>.just(update).bind(to: self.viewModel!.userUpdate).disposed(by: self.disposeBag)
+            PublishRelay<UserUpdate>.just(update).bind(to: self.viewModel!.userUpdate).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
     }
 }
@@ -149,15 +162,15 @@ extension ProfileEditViewController {
         
         nickNameField.textField.text = user.name
         goalField.textField.text = user.goal
-        jobField.textField.text = user.job.joined(separator: ", ")
-        interestField.textField.text = user.interest.joined(separator: ", ")
+        jobField.selectedLabel.text = user.job.joined(separator: ", ")
+        interestField.selectedLabel.text = user.interest.joined(separator: ", ")
     }
     
     func setJob(selected: [String]) {
-        self.jobField.textField.text = selected.joined(separator: ", ")
+        self.jobField.selectedLabel.text = selected.joined(separator: ", ")
     }
     
     func setInterest(selected: [String]) {
-        self.interestField.textField.text = selected.joined(separator: ", ")
+        self.interestField.selectedLabel.text = selected.joined(separator: ", ")
     }
 }

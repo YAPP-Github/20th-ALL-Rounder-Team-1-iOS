@@ -78,6 +78,7 @@ class SignUpAddInfomationViewController: BaseViewController {
             make.centerX.equalToSuperview()
             make.width.equalTo(view)
         }
+        
     }
     
     private func bindViewModel() {

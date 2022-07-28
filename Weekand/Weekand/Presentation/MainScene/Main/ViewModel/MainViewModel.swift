@@ -106,12 +106,6 @@ extension MainViewModel {
             
                 print("To \(self?.currentUserId ?? "") Profile")
                 self?.coordinator?.showProfileScene(id: self?.currentUserId)
-                
-//            if self?.isMySchedule ?? true {
-//                print("To my Profile")
-//            } else {
-//                print("To \(self?.currentUserId ?? "") Profile")
-//            }
             
         }).disposed(by: disposeBag)
 
