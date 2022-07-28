@@ -224,6 +224,7 @@
 		F38AE4662892D22500E5E261 /* ResignWarningPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4652892D22500E5E261 /* ResignWarningPopupViewController.swift */; };
 		F38AE4682892D24800E5E261 /* WarningPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4672892D24800E5E261 /* WarningPopupViewModel.swift */; };
 		F38AE46A2892D47000E5E261 /* ResignWarningPopupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4692892D47000E5E261 /* ResignWarningPopupCoordinator.swift */; };
+		F38AE46E2892EDBE00E5E261 /* ScheduleCompleteToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE46D2892EDBE00E5E261 /* ScheduleCompleteToolBar.swift */; };
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
@@ -502,6 +503,7 @@
 		F38AE4652892D22500E5E261 /* ResignWarningPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResignWarningPopupViewController.swift; sourceTree = "<group>"; };
 		F38AE4672892D24800E5E261 /* WarningPopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningPopupViewModel.swift; sourceTree = "<group>"; };
 		F38AE4692892D47000E5E261 /* ResignWarningPopupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResignWarningPopupCoordinator.swift; sourceTree = "<group>"; };
+		F38AE46D2892EDBE00E5E261 /* ScheduleCompleteToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCompleteToolBar.swift; sourceTree = "<group>"; };
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
@@ -1288,6 +1290,7 @@
 			children = (
 				F336F41E2891B9C6005B57A0 /* ScheduleInformationStackView.swift */,
 				F38AE45928927BBB00E5E261 /* ScheduleCategoryStackView.swift */,
+				F38AE46D2892EDBE00E5E261 /* ScheduleCompleteToolBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1752,6 +1755,7 @@
 				F3B00267287D68E700D6BB1D /* Category.swift in Sources */,
 				F323FF0C2877E87900DFD8FD /* WToastLabel.swift in Sources */,
 				F336F41A2891B3B2005B57A0 /* ScheduleDetailCoordinator.swift in Sources */,
+				F38AE46E2892EDBE00E5E261 /* ScheduleCompleteToolBar.swift in Sources */,
 				F32F72642854EC890056B189 /* InformationCollectionViewCell.swift in Sources */,
 				F336F3632886C4A9005B57A0 /* CategoryError.swift in Sources */,
 				F3C8E094286F598600B0916A /* Network.swift in Sources */,

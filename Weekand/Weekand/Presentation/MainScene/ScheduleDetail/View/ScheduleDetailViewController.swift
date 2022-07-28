@@ -38,6 +38,8 @@ class ScheduleDetailViewController: BaseViewController {
         $0.spacing = 30
     }
     
+    let scheduleCompleteToolBar = ScheduleCompleteToolBar()
+    
     lazy var dateStackView = ScheduleInformationStackView(title: "일자")
     lazy var timeStackView = ScheduleInformationStackView(title: "시간")
     lazy var repeatStackView = ScheduleInformationStackView(title: "반복")
@@ -51,6 +53,18 @@ class ScheduleDetailViewController: BaseViewController {
     let repeatText = PublishRelay<String>()
     let skip = PublishRelay<[Date]?>()
     let memo = PublishRelay<String>()
+    
+    var isStatusEditing: Bool
+    
+    init(isStatusEditing: Bool) {
+        self.isStatusEditing = isStatusEditing
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) is not supported")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,9 +77,15 @@ class ScheduleDetailViewController: BaseViewController {
     private func setupView() {
         view.backgroundColor = .white
         stackView.spacing = 20
+        
+        if isStatusEditing == false {
+            self.scheduleCompleteToolBar.isHidden = true
+        }
     }
     
     private func configureUI() {
+        self.view.addSubview(scheduleCompleteToolBar)
+        
         [nameStackView,
          dividerLine,
          informationStackView
@@ -89,7 +109,7 @@ class ScheduleDetailViewController: BaseViewController {
         
         stackView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(30)
-            make.bottom.equalToSuperview().offset(-64)
+            make.bottom.equalToSuperview().offset(-self.scheduleCompleteToolBar.viewHeight - 64)
             make.trailing.leading.equalToSuperview()
         }
         
@@ -101,6 +121,12 @@ class ScheduleDetailViewController: BaseViewController {
         nameStackView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(24)
             make.trailing.equalToSuperview().offset(-22)
+        }
+        
+        scheduleCompleteToolBar.snp.makeConstraints { make in
+            make.trailing.leading.equalToSuperview()
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
+            make.height.equalTo(self.scheduleCompleteToolBar.viewHeight)
         }
     }
     
