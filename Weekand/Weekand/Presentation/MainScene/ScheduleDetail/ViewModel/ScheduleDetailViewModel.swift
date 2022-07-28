@@ -15,6 +15,8 @@ class ScheduleDetailViewModel: ViewModelType {
     private let scheduleDetailUseCase: ScheduleDetailUseCase
     private let disposeBag = DisposeBag()
     
+    let schedule = PublishRelay<ScheduleDetail>()
+    
     init(coordinator: ScheduleDetailCoordinator?, scheduleDetailUseCase: ScheduleDetailUseCase) {
         self.coordinator = coordinator
         self.scheduleDetailUseCase = scheduleDetailUseCase
@@ -28,5 +30,18 @@ class ScheduleDetailViewModel: ViewModelType {
     func transform(input: Input) -> Output {
         
         return Output()
+    }
+}
+
+extension ScheduleDetailViewModel {
+    func schedule(scheduleId: String, requestDate: Date) {
+        self.scheduleDetailUseCase.schedule(scheduleId: scheduleId, requestDate: requestDate)
+            .subscribe(onSuccess: { schedule in
+                let scheduleDetail = ScheduleDetail(model: schedule)
+                self.schedule.accept(scheduleDetail)
+            }, onFailure: { error in
+                print(error)
+            }, onDisposed: nil)
+            .disposed(by: disposeBag)
     }
 }

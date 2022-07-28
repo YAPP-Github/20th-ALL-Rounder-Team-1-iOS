@@ -38,4 +38,12 @@ struct Category: Hashable {
         self.name = model.name
         self.openType = model.openType.toEntity()
     }
+    
+    init(model: ScheduleQuery.Data.Schedule.Category) {
+        
+        self.serverID = model.id
+        self.color = model.color
+        self.name = model.name
+        self.openType = model.openType.toEntity()
+    }
 }

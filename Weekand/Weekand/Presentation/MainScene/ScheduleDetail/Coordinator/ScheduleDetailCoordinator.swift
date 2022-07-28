@@ -16,16 +16,20 @@ class ScheduleDetailCoordinator: Coordinator {
     var scheduleDetailViewController: ScheduleDetailViewController
     var scheduleDetailUseCase: ScheduleDetailUseCase
     var type: CoordinatorType = .scheduleDetail
+    var schedule: ScheduleSummary
     
-    required init() {
+    required init(navigationController: UINavigationController, schedule: ScheduleSummary) {
         self.scheduleDetailUseCase = ScheduleDetailUseCase()
         self.scheduleDetailViewController = ScheduleDetailViewController()
-        self.navigationController = UINavigationController(rootViewController: scheduleDetailViewController)
-        self.navigationController.modalPresentationStyle = .fullScreen
+        self.navigationController = navigationController
+        self.schedule = schedule
     }
     
     func start() {
-        self.scheduleDetailViewController.viewModel = ScheduleDetailViewModel(coordinator: self, scheduleDetailUseCase: scheduleDetailUseCase)
+        let scheduleDetailViewModel = ScheduleDetailViewModel(coordinator: self, scheduleDetailUseCase: scheduleDetailUseCase)
+        self.scheduleDetailViewController.viewModel = scheduleDetailViewModel
+        scheduleDetailViewModel.schedule(scheduleId: schedule.scheduleId, requestDate: schedule.dateStart)
+        self.navigationController.pushViewController(scheduleDetailViewController, animated: true)
     }
     
     func finish() {
