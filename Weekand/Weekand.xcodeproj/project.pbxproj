@@ -1772,8 +1772,8 @@
 				7D76AEB628445AA5001C668D /* MainTableViewCell.swift in Sources */,
 				F3B0025D287D686200D6BB1D /* ScheduleMain.swift in Sources */,
 				F336F36B2886EF56005B57A0 /* WeekRepeatViewController.swift in Sources */,
-        7D812A02288E1CCC006C0A5D /* ProfileEditSelectionView.swift in Sources */
-        7D812A02288E1CCC006C0A5D /* ProfileEditSelectionView.swift in Sources */,
+                F336F3EE289014CB005B57A0 /* DateTimeLabel.swift in Sources */,
+                7D812A02288E1CCC006C0A5D /* ProfileEditSelectionView.swift in Sources */,
 				F30EBCEA2881A04D00ECB48D /* UserSearchViewModel.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
 				7D8129D52887100F006C0A5D /* Timestamp.swift in Sources */,
