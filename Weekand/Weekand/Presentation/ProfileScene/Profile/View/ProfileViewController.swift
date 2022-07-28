@@ -12,7 +12,6 @@ import RxGesture
 import Then
 import SnapKit
 
-
 class ProfileViewController: UIViewController {
     
     var viewModel: ProfileViewModel?
@@ -55,7 +54,7 @@ class ProfileViewController: UIViewController {
     }
     
     // 프로필 수정 or 팔로우 버튼
-    lazy var profileButton = WDefaultButton(title: "프로필 수정", style: .tint, font: WFont.subHead1())
+    lazy var profileButton = WDefaultButton(title: ProfileButtonType.edit.rawValue, style: .tint, font: WFont.subHead1())
     
     // 회색 부분 (목표, 직업 & 관심사, 팔로워 & 팔로잉)
     lazy var detailBar = ProfileDetailView()
@@ -145,7 +144,9 @@ class ProfileViewController: UIViewController {
         
         let input = ProfileViewModel.Input(
             
-            didProfileButton: profileButton.rx.tap.asObservable(),
+            didProfileButton: profileButton.rx.tap.map {
+                self.profileButton.titleLabel?.text
+            }.asObservable(),
             
             didJobTap: detailBar.jobInterestView.jobView.rx.tapGesture().asObservable(),
             
@@ -198,9 +199,9 @@ extension ProfileViewController {
             bottomStack.isHidden = true
             
             if user.followed {
-                profileButton.setUpStyle("팔로잉", font: WFont.subHead1(), style: .tint)
+                profileButton.setUpStyle(ProfileButtonType.following.rawValue, font: WFont.subHead1(), style: .tint)
             } else {
-                profileButton.setUpStyle("팔로우", font: WFont.subHead1(), style: .filled)
+                profileButton.setUpStyle(ProfileButtonType.follow.rawValue, font: WFont.subHead1(), style: .filled)
             }
             
             

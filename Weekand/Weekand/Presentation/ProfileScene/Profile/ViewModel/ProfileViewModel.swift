@@ -9,6 +9,13 @@ import Foundation
 import RxSwift
 import RxRelay
 
+enum ProfileButtonType: String {
+    case edit = "프로필 수정"
+    case following = "팔로잉"
+    case follow = "팔로우"
+}
+
+
 class ProfileViewModel: ViewModelType {
     
     weak var coordinator: ProfileCoordinator?
@@ -39,7 +46,7 @@ class ProfileViewModel: ViewModelType {
 extension ProfileViewModel {
     
     struct Input {
-        let didProfileButton: Observable<Void>
+        let didProfileButton: Observable<String?>
         
         let didJobTap: Observable<UITapGestureRecognizer>
         let didInterestTap: Observable<UITapGestureRecognizer>
@@ -62,8 +69,20 @@ extension ProfileViewModel {
     func transform(input: Input) -> Output {
         
         // 프로필 수정 버튼
-        input.didProfileButton.subscribe(onNext: { _ in
-            self.coordinator?.pushProfileEditViewController()
+        input.didProfileButton.subscribe(onNext: { text in
+            
+            guard let text = text else { return }
+            guard let type = ProfileButtonType(rawValue: text) else { return }
+            
+            switch type {
+            case .edit:
+                self.coordinator?.pushProfileEditViewController()
+            case .following:
+                print("팔로우 취소")
+            case .follow:
+                print("팔로우")
+            }
+
         }).disposed(by: disposeBag)
         
         // 직업 관심사
