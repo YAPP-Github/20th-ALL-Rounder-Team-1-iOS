@@ -187,6 +187,11 @@
 		F336F40C28912BDE005B57A0 /* ScheduleEditViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F40B28912BDE005B57A0 /* ScheduleEditViewModelType.swift */; };
 		F336F40E2891994F005B57A0 /* Week+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F40D2891994F005B57A0 /* Week+extension.swift */; };
 		F336F4102891AA97005B57A0 /* DeleteScheduleFromDate.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F336F40F2891AA97005B57A0 /* DeleteScheduleFromDate.graphql */; };
+		F336F4162891B235005B57A0 /* ScheduleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F4152891B235005B57A0 /* ScheduleDetailViewController.swift */; };
+		F336F4182891B399005B57A0 /* ScheduleDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F4172891B399005B57A0 /* ScheduleDetailViewModel.swift */; };
+		F336F41A2891B3B2005B57A0 /* ScheduleDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F4192891B3B2005B57A0 /* ScheduleDetailCoordinator.swift */; };
+		F336F41C2891B437005B57A0 /* ScheduleDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F41B2891B437005B57A0 /* ScheduleDetailUseCase.swift */; };
+		F336F41F2891B9C6005B57A0 /* ScheduleInformationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F41E2891B9C6005B57A0 /* ScheduleInformationStackView.swift */; };
 		F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAB28533D0A005B493A /* WSortButton.swift */; };
 		F33C6EAE28535021005B493A /* UIVIewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAD28535021005B493A /* UIVIewController+extension.swift */; };
 		F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */; };
@@ -442,6 +447,11 @@
 		F336F40B28912BDE005B57A0 /* ScheduleEditViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditViewModelType.swift; sourceTree = "<group>"; };
 		F336F40D2891994F005B57A0 /* Week+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Week+extension.swift"; sourceTree = "<group>"; };
 		F336F40F2891AA97005B57A0 /* DeleteScheduleFromDate.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = DeleteScheduleFromDate.graphql; sourceTree = "<group>"; };
+		F336F4152891B235005B57A0 /* ScheduleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailViewController.swift; sourceTree = "<group>"; };
+		F336F4172891B399005B57A0 /* ScheduleDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailViewModel.swift; sourceTree = "<group>"; };
+		F336F4192891B3B2005B57A0 /* ScheduleDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailCoordinator.swift; sourceTree = "<group>"; };
+		F336F41B2891B437005B57A0 /* ScheduleDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailUseCase.swift; sourceTree = "<group>"; };
+		F336F41E2891B9C6005B57A0 /* ScheduleInformationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleInformationStackView.swift; sourceTree = "<group>"; };
 		F33C6EAB28533D0A005B493A /* WSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSortButton.swift; sourceTree = "<group>"; };
 		F33C6EAD28535021005B493A /* UIVIewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+extension.swift"; sourceTree = "<group>"; };
 		F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputGroupStackView.swift; sourceTree = "<group>"; };
@@ -585,6 +595,7 @@
 		7D76AEAF28445878001C668D /* MainScene */ = {
 			isa = PBXGroup;
 			children = (
+				F336F4112891AEA2005B57A0 /* ScheduleDetail */,
 				7DAA8620284BAF9500F21E35 /* Common */,
 				7D76AEB02844588E001C668D /* Main */,
 				F30EBCDE288197BA00ECB48D /* Search */,
@@ -1175,6 +1186,49 @@
 			path = KeyChain;
 			sourceTree = "<group>";
 		};
+		F336F4112891AEA2005B57A0 /* ScheduleDetail */ = {
+			isa = PBXGroup;
+			children = (
+				F336F4142891B14C005B57A0 /* Coordinator */,
+				F336F4132891B145005B57A0 /* ViewModel */,
+				F336F4122891AEB0005B57A0 /* View */,
+			);
+			path = ScheduleDetail;
+			sourceTree = "<group>";
+		};
+		F336F4122891AEB0005B57A0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F336F4152891B235005B57A0 /* ScheduleDetailViewController.swift */,
+				F336F41D2891B8FF005B57A0 /* Views */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F336F4132891B145005B57A0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F336F4172891B399005B57A0 /* ScheduleDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F336F4142891B14C005B57A0 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				F336F4192891B3B2005B57A0 /* ScheduleDetailCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		F336F41D2891B8FF005B57A0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F336F41E2891B9C6005B57A0 /* ScheduleInformationStackView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		F33C6EAF2853530B005B493A /* SubView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1254,6 +1308,7 @@
 				F3B00260287D68BD00D6BB1D /* CategoryUseCase.swift */,
 				F3A4D95C2885B28600DDE03B /* SearchUseCase.swift */,
 				F336F3A7288939F6005B57A0 /* ScheduleEditUseCase.swift */,
+				F336F41B2891B437005B57A0 /* ScheduleDetailUseCase.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -1620,11 +1675,13 @@
 				F3B00267287D68E700D6BB1D /* Category.swift in Sources */,
 				F323FF0C2877E87900DFD8FD /* WToastLabel.swift in Sources */,
 				7D8129D9288920F5006C0A5D /* ProfileDetailBlockView.swift in Sources */,
+				F336F41A2891B3B2005B57A0 /* ScheduleDetailCoordinator.swift in Sources */,
 				F32F72642854EC890056B189 /* InformationCollectionViewCell.swift in Sources */,
 				F336F3632886C4A9005B57A0 /* CategoryError.swift in Sources */,
 				F3C8E094286F598600B0916A /* Network.swift in Sources */,
 				F30EBCE32881983100ECB48D /* UserSearchViewController.swift in Sources */,
 				7DC166B12837145200F1A8F1 /* SignUpViewModel.swift in Sources */,
+				F336F41F2891B9C6005B57A0 /* ScheduleInformationStackView.swift in Sources */,
 				F3C8E0A12872EFF400B0916A /* CategoryStackView.swift in Sources */,
 				7DBC4C612876AE7800F0AC86 /* StickerAddSheetViewModel.swift in Sources */,
 				F3B00275287D68FA00D6BB1D /* SignUpModel.swift in Sources */,
@@ -1655,6 +1712,7 @@
 				F3DD0229284670E900AD9240 /* AppCoordinator.swift in Sources */,
 				F32ACC0628235D500082AF30 /* ViewController.swift in Sources */,
 				F3B00263287D68C600D6BB1D /* SignInUseCase.swift in Sources */,
+				F336F4182891B399005B57A0 /* ScheduleDetailViewModel.swift in Sources */,
 				F30EBCEE2881A4D900ECB48D /* UserSummaryTemp.swift in Sources */,
 				F3C8E0B52873578300B0916A /* WTextView.swift in Sources */,
 				F336F3BC288ABF05005B57A0 /* DefaultRepeatViewModel.swift in Sources */,
@@ -1662,6 +1720,7 @@
 				F30EBCD528807C9400ECB48D /* CategoryOpenType.swift in Sources */,
 				7D6E9972283BA18E006F5FC7 /* WBottmButton.swift in Sources */,
 				F3C8E0B72873598A00B0916A /* MemoStackView.swift in Sources */,
+				F336F41C2891B437005B57A0 /* ScheduleDetailUseCase.swift in Sources */,
 				7D0ED2BE287D064400DE3215 /* EmojiTableViewCell.swift in Sources */,
 				F37868552861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift in Sources */,
 				F3CC76AE2866CD1200A3FBBE /* BottomSheetViewController.swift in Sources */,
@@ -1775,6 +1834,7 @@
 				F3DD0231284A36D300AD9240 /* BaseNavigationController.swift in Sources */,
 				F336F3DE288E842E005B57A0 /* WMultiLineTextLabel.swift in Sources */,
 				F354C3E5283D3BF0008929FD /* InformationGroupStackView.swift in Sources */,
+				F336F4162891B235005B57A0 /* ScheduleDetailViewController.swift in Sources */,
 				F3F731E32869918E00C8B778 /* FilterTableViewCell.swift in Sources */,
 				F336F3C9288BA6A4005B57A0 /* NetworkError.swift in Sources */,
 				F3DD022428466E0C00AD9240 /* SignInCoordinator.swift in Sources */,

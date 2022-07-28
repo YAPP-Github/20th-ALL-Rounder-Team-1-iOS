@@ -59,6 +59,11 @@ extension CategoryDetailViewModel {
             self?.coordinator?.showScheduleModifyScene(scheduleId: scheduleId)
         }).disposed(by: disposeBag)
         
+        input.scheduleCellDidSelected.subscribe(onNext: { [weak self] scheduleId in
+            self?.coordinator?.showScheduleDetailScene(scheduleId: scheduleId)
+        })
+        .disposed(by: disposeBag)
+        
         return Output(searchWithQueryInformation: searchBarEdit)
     }
 }
@@ -72,7 +77,7 @@ extension CategoryDetailViewModel {
                 } else {
                     self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")
                 }
-            }, onFailure: { error in
+            }, onFailure: { _ in
                 self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")
             }, onDisposed: nil)
             .disposed(by: disposeBag)

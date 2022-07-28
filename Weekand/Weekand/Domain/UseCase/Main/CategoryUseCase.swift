@@ -12,7 +12,8 @@ typealias Categories = [ScheduleCategoriesQuery.Data.ScheduleCategory.ScheduleCa
 final class CategoryUseCase {
     func ScheduleCategories(sort: ScheduleSort, page: Int, size: Int) -> Single<ScheduleCategoriesQuery.Data.ScheduleCategory> {
             NetWork.shared.fetch(query: ScheduleCategoriesQuery(sort: sort.toModel(), page: page, size: size),
-                                 cachePolicy: .fetchIgnoringCacheCompletely, queue: DispatchQueue.main)
+                                 cachePolicy: .fetchIgnoringCacheCompletely,
+                                 queue: DispatchQueue.main)
             .map { $0.scheduleCategories }
             .asSingle()
         }
@@ -40,7 +41,7 @@ final class CategoryUseCase {
     func searchSchedules(sort: ScheduleSort, page: Int, size: Int, searchQuery: String, categoryId: String) -> Single<SearchSchedulesQuery.Data.SearchSchedule> {
         NetWork.shared.fetch(
             query: SearchSchedulesQuery(sort: sort.toModel(), page: page, size: size, searchQuery: searchQuery, categoryId: categoryId),
-            cachePolicy: .fetchIgnoringCacheCompletely,
+            cachePolicy: .fetchIgnoringCacheData,
             queue: DispatchQueue.main)
         .map { $0.searchSchedules }
         .asSingle()

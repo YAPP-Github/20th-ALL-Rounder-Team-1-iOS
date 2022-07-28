@@ -212,6 +212,10 @@ extension CategoryDetailViewController: UITableViewDelegate {
             self.appendUserList()
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        scheduleCellDidSelected.accept(list[indexPath.item].scheduleId)
+    }
 }
 
 extension CategoryDetailViewController {
