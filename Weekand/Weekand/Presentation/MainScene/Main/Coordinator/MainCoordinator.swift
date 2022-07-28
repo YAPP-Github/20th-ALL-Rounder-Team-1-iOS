@@ -71,7 +71,7 @@ class MainCoordinator: Coordinator {
     /// 받은 스티커 현황 Sheet
     func pushEmojiSheet(id: String, date: Date) {
         // TODO: id, date값 넘겨줘서 서버 통신
-        let emojiViewController = EmojiSheetViewController()
+        let emojiViewController = EmojiSheetViewController(id: id, date: date)
         emojiViewController.modalPresentationStyle = .overFullScreen
         self.navigationController.present(emojiViewController, animated: true, completion: nil)
     }

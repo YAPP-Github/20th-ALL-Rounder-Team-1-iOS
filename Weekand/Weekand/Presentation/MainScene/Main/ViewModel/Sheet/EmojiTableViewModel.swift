@@ -18,22 +18,13 @@ class EmojiTableViewModel {
     
     let targetEmoji: Emoji?
     
-    let sampleData = [
-        EmojiGiver(userId: "0", name: "dafd", imagePath: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60", emoji: .good),
-        EmojiGiver(userId: "0", name: "dafd", imagePath: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60", emoji: .awesome),
-        EmojiGiver(userId: "0", name: "dafd", imagePath: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60", emoji: .good),
-        EmojiGiver(userId: "0", name: "dafd", imagePath: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60", emoji: .support),
-        EmojiGiver(userId: "0", name: "dafd", imagePath: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60", emoji: .good)
-    ]
-    
     let disposeBag = DisposeBag()
 
     var tableViewDataSource: UITableViewDiffableDataSource<EmojiSection, EmojiGiver>!
+    var targetEmojiList = BehaviorRelay<[EmojiGiver]>(value: [])
     
-    private var targetEmojiList = BehaviorRelay<[EmojiGiver]>(value: [])
-    
-    init(emoji: Emoji?) {
-        BehaviorRelay<[EmojiGiver]>.just(sampleData).bind(to: targetEmojiList).disposed(by: disposeBag)
+    init(emoji: Emoji?, list: [EmojiGiver]) {
+        BehaviorRelay<[EmojiGiver]>.just(list).bind(to: targetEmojiList).disposed(by: disposeBag)
         targetEmoji = emoji
     }
 

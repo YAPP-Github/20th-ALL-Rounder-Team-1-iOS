@@ -15,7 +15,6 @@ class EmojiTableViewController: UIViewController {
     
     init(emoji: Emoji?) {
         super.init(nibName: nil, bundle: nil)
-        viewModel = EmojiTableViewModel(emoji: emoji)
     }
     
     required init?(coder: NSCoder) {
