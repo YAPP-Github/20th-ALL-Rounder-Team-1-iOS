@@ -12,7 +12,6 @@ import RxGesture
 import Then
 import SnapKit
 
-
 class ProfileViewController: UIViewController {
     
     var viewModel: ProfileViewModel?
@@ -55,7 +54,7 @@ class ProfileViewController: UIViewController {
     }
     
     // 프로필 수정 or 팔로우 버튼
-    lazy var profileButton = WDefaultButton(title: "프로필 수정", style: .tint, font: WFont.subHead1())
+    lazy var profileButton = WDefaultButton(title: ProfileButtonType.edit.rawValue, style: .tint, font: WFont.subHead1())
     
     // 회색 부분 (목표, 직업 & 관심사, 팔로워 & 팔로잉)
     lazy var detailBar = ProfileDetailView()
@@ -145,7 +144,9 @@ class ProfileViewController: UIViewController {
         
         let input = ProfileViewModel.Input(
             
-            didProfileButton: profileButton.rx.tap.asObservable(),
+            didProfileButton: profileButton.rx.tap.map {
+                self.profileButton.titleLabel?.text
+            }.asObservable(),
             
             didJobTap: detailBar.jobInterestView.jobView.rx.tapGesture().asObservable(),
             
@@ -164,6 +165,20 @@ class ProfileViewController: UIViewController {
         
         output?.userDetail.subscribe(onNext: { userData in
             self.setData(user: userData)
+        }).disposed(by: disposeBag)
+        
+        output?.buttonState.subscribe(onNext: { state in
+            
+            switch state {
+            case .edit: break
+            case .following: self.profileButton.setUpStyle("팔로잉", font: WFont.subHead1(), style: .tint)
+            case .follow: self.profileButton.setUpStyle("팔로우", font: WFont.subHead1(), style: .filled)
+            }
+        }).disposed(by: disposeBag)
+        
+        output?.errorMessage.subscribe(onNext: { message in
+            guard let text = message else { return }
+            self.showToast(message: text)
         }).disposed(by: disposeBag)
     }
     
@@ -197,11 +212,12 @@ extension ProfileViewController {
             
             bottomStack.isHidden = true
             
-            // TODO: 내가 팔로우하고 있는지 request -> 버튼 변경
-            let isFollowing = Bool.random()
-            let followButton = WDefaultButton(title: "팔로우", style: .filled, font: WFont.subHead1())
-            let followingButton = WDefaultButton(title: "팔로잉", style: .tint, font: WFont.subHead1())
-            profileButton = isFollowing ? followingButton : followButton
+            if user.followed {
+                profileButton.setUpStyle(ProfileButtonType.following.rawValue, font: WFont.subHead1(), style: .tint)
+            } else {
+                profileButton.setUpStyle(ProfileButtonType.follow.rawValue, font: WFont.subHead1(), style: .filled)
+            }
+            
             
             if user.job.isEmpty {
                 

@@ -21,4 +21,18 @@ final class ProfileUseCase {
                 
             }.asSingle()
     }
+    
+    /// 유저 팔로우하기
+    func createFollowee(id: String) -> Single<Bool> {
+        return NetWork.shared.perform(mutation: CreateFolloweeMutation(id: id))
+            .map { $0.createFollow }
+            .asSingle()
+    }
+    
+    /// 유저 팔로우 취소하기
+    func deleteFollowee(id: String) -> Single<Bool> {
+        return NetWork.shared.perform(mutation: DeleteFolloweeMutation(id: id))
+            .map { $0.deleteFollowee }
+            .asSingle()
+    }
 }
