@@ -36,9 +36,6 @@ enum StatusIcon: String {
     case skipped = "state.start"
     case undetermined = "state.hold"
     
-    case start = "date.start"
-    case end = "date.end"
-    
     var tintColor: UIColor {
         switch self {
         case .upcoming:      return .gray600
@@ -46,9 +43,6 @@ enum StatusIcon: String {
         case .completed:     return .mainColor
         case .skipped:       return .gray600
         case .undetermined:  return .gray300
-
-        case .start:         return .gray500
-        case .end:           return .gray500
         }
     }
 }

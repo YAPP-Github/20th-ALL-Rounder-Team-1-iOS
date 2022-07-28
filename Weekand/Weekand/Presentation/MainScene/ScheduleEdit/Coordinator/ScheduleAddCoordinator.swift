@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-class ScheduleEditCoordinator: Coordinator {
+class ScheduleAddCoordinator: Coordinator, ScheduleEditCoordinatorType {
     weak var finishDelegate: CoordinatorDidFinishDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
-    var scheduleEditViewController: ScheduleEditViewController
+    var scheduleEditViewController: ScheduleEditViewController<ScheduleAddViewModel>
     var type: CoordinatorType = .scheduleEdit
     var scheduleEditUseCase: ScheduleEditUseCase
     
@@ -24,17 +24,9 @@ class ScheduleEditCoordinator: Coordinator {
     }
     
     func start() {
-        let scheduleInputModel = ScheduleInputModel(
-                                        name: "",
-                                        categoryId: "",
-                                        dateStart: Date(),
-                                        dateEnd: Date(),
-                                        repeatType: .once,
-                                        repeatSelectedValue: nil,
-                                        repeatEnd: nil,
-                                        memo: nil)
-        self.scheduleEditViewController.viewModel = ScheduleEditViewModel(coordinator: self, scheduleEditUseCase: scheduleEditUseCase, scheduleInputModel: scheduleInputModel)
-        
+        let scheduleAddViewModel = ScheduleAddViewModel(coordinator: self, scheduleEditUseCase: scheduleEditUseCase)
+        scheduleAddViewModel.searchCategories()
+        self.scheduleEditViewController.viewModel = scheduleAddViewModel
     }
     
     func presentRepeatSheet() {
@@ -65,6 +57,10 @@ class ScheduleEditCoordinator: Coordinator {
         categoryListSheetViewController.viewModel = categoryListSheetViewModel
         categoryListSheetViewController.modalPresentationStyle = .overFullScreen
         self.navigationController.present(categoryListSheetViewController, animated: true, completion: nil)
+    }
+    
+    func sendCategoryFromCategoryScene(category: Category) {
+        scheduleEditViewController.category = category
     }
     
     func sendCategoryFromSheet(category: Category) {

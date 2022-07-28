@@ -47,8 +47,8 @@ class SignInCoordinator: Coordinator {
         passwordFindCoordinator.start()
     }
     
-    func showToastMessage() {
-        signInViewController.showToast(message: "이메일·비밀번호가 일치하지 않습니다.")
+    func showToastMessage(text: String) {
+        signInViewController.showToast(message: text)
     }
 }
 

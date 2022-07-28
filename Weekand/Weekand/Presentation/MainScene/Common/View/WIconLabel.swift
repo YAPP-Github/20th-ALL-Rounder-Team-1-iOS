@@ -33,7 +33,7 @@ class WIconLabel: UIView {
         $0.axis = .horizontal
         $0.distribution = .fill
         $0.alignment = .center
-        $0.spacing = 3
+        $0.spacing = 5
     }
     
     override init(frame: CGRect) {

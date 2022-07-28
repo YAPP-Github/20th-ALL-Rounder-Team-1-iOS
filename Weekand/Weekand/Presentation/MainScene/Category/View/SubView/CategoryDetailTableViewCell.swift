@@ -14,14 +14,14 @@ class CategoryDetailTableViewCell: UITableViewCell {
     
     lazy var scheduelNameLabel = WCategoryTitleLabel()
     
-    lazy var startDateLabel = WStatusTimeLabel()
-    lazy var endDateLabel = WStatusTimeLabel()
+    let dateLabel = DateTimeLabel()
+    let timeLabel = DateTimeLabel()
     lazy var repeatLabel = WTextLabel().then {
         $0.textColor = .gray500
     }
     
     lazy var bottomStack = UIStackView().then {
-        $0.addArrangedSubview(endDateLabel)
+        $0.addArrangedSubview(timeLabel)
         $0.addArrangedSubview(repeatLabel)
         
         $0.axis = .horizontal
@@ -30,7 +30,7 @@ class CategoryDetailTableViewCell: UITableViewCell {
     
     lazy var cellStack = UIStackView().then {
         $0.addArrangedSubview(scheduelNameLabel)
-        $0.addArrangedSubview(startDateLabel)
+        $0.addArrangedSubview(dateLabel)
         $0.addArrangedSubview(bottomStack)
         
         $0.axis = .vertical
@@ -62,20 +62,16 @@ class CategoryDetailTableViewCell: UITableViewCell {
     private func configureUI() {
         self.addSubview(cellStack)
         cellStack.snp.makeConstraints { make in
-            make.edges.equalTo(UIEdgeInsets(top: 12, left: 24, bottom: 19, right: 24))
+            make.edges.equalTo(UIEdgeInsets(top: 12, left: 24, bottom: 12, right: 24))
         }
     }
     
     private func setupView() { }
 
-    public func configure(color: UIColor, title: String, startDate: String, endDate: String, repeatText: String?) {
+    public func configure(color: UIColor, title: String, date: String, time: String, repeatText: String?) {
         self.scheduelNameLabel.editValue(color: color, title: title)
-        self.startDateLabel.configureValue(status: .start, title: startDate)
-        self.endDateLabel.configureValue(status: .end, title: endDate)
-        if let repeatText = repeatText {
-            self.repeatLabel.text = repeatText
-        } else {
-            self.repeatLabel.text = ""
-        }
+        self.dateLabel.configureValue(type: .date, title: date)
+        self.timeLabel.configureValue(type: .time, title: time)
+        self.repeatLabel.text = repeatText ?? ""
     }
 }

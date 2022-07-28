@@ -138,16 +138,14 @@ extension SignUpAddInfomationViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         if collectionView == jobStackView.collectionView {
             if let jobs = jobStackView.collectionView.indexPathsForSelectedItems,
-               jobs.count <= 2
-            {
+               jobs.count <= 2 {
                 return true
             } else {
                 return false
             }
         } else {
             if let interests = interestsStackView.collectionView.indexPathsForSelectedItems,
-               interests.count <= 2
-            {
+               interests.count <= 2 {
                 return true
             } else {
                 return false

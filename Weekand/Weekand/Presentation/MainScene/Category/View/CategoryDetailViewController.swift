@@ -25,6 +25,7 @@ class CategoryDetailViewController: UIViewController {
     let tableView = UITableView()
     let headerView = CategoryDetailHeaderView()
     let toolBar = CategoryDetailToolBar()
+    let backgroundEmtpyView = WEmptyView(type: .schedule)
     
     var searchText: String = ""
     var selectedSort: ScheduleSort = .dateCreatedDESC {
@@ -46,6 +47,9 @@ class CategoryDetailViewController: UIViewController {
     var scheduleCount: Int = 20
     var refreshListCount: Int = 15
     var page: Int = 0
+    
+    let scheduleCellDidSelected = PublishRelay<String>()
+    let scheduleCellDidSwipeEvent = PublishRelay<String>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +79,8 @@ class CategoryDetailViewController: UIViewController {
         tableView.bounces = false
         tableView.register(CategoryDetailTableViewCell.self, forCellReuseIdentifier: CategoryDetailTableViewCell.cellIdentifier)
         tableView.register(CategoryDetailHeaderView.self, forHeaderFooterViewReuseIdentifier: CategoryDetailHeaderView.cellIdentifier)
+        tableView.backgroundView = backgroundEmtpyView
+        tableView.backgroundView?.isHidden = true
         
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
@@ -93,7 +99,7 @@ class CategoryDetailViewController: UIViewController {
         
         tableView.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(self.toolBar.viewHeight)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide).offset(-self.toolBar.viewHeight)
             make.trailing.leading.equalToSuperview()
         }
         
@@ -108,6 +114,8 @@ class CategoryDetailViewController: UIViewController {
         let input = CategoryDetailViewModel.Input(
             didEditSearchBar: self.headerView.searchBar.rx.text.orEmpty.asObservable(),
             didTapUpdateCategoryButton: self.toolBar.updateCategoryButton.rx.tap.asObservable(),
+            scheduleCellDidSelected: scheduleCellDidSelected,
+            scheduleCellDidSwipeEvent: scheduleCellDidSwipeEvent,
             selectedCategory: selectedCategory
         )
         
@@ -153,7 +161,13 @@ extension CategoryDetailViewController {
                 return UITableViewCell()
             }
             cell.selectionStyle = .none
-            cell.configure(color: .wred, title: list.name, startDate: "2022.05.21 06:00", endDate: "2022.05.28 08:00", repeatText: "매주 화요일 반복")
+            cell.configure(color: UIColor(hex: list.color) ?? .mainColor,
+                           title: list.name,
+                           date: WDateFormatter.dateFormatter.string(from: list.dateStart),
+                           time: WDateFormatter.combineTimeDate(startTime: list.dateStart, endTime: list.dateEnd),
+                           repeatText: WRepeatTextManager.combineTimeDate(repeatType: list.repeatType,
+                                                                          repeatSelectedValue: list.repeatSelectedValue,
+                                                                          repeatEndDate: nil))
             return cell
         })
     }
@@ -164,6 +178,19 @@ extension CategoryDetailViewController {
         snapshot.appendSections([.main])
         snapshot.appendItems(list, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+        
+        if self.list.isEmpty {
+            tableView.backgroundView?.isHidden = false
+        } else {
+            tableView.backgroundView?.isHidden = true
+        }
+    }
+    
+    func deleteItem(_ indexPath: IndexPath) {
+        var snapshot = self.dataSource.snapshot()
+        snapshot.deleteItems([self.list[indexPath.item]])
+        self.list.remove(at: indexPath.item)
+        self.dataSource.apply(snapshot)
     }
     
 }
@@ -176,7 +203,7 @@ extension CategoryDetailViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 120
+        return 110
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -185,20 +212,27 @@ extension CategoryDetailViewController: UITableViewDelegate {
             self.appendUserList()
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        scheduleCellDidSelected.accept(list[indexPath.item].scheduleId)
+    }
 }
 
 extension CategoryDetailViewController {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let update = UIContextualAction(style: .normal, title: "수정") { _, _, _ in
-            print("수정 클릭 됨")
+        let update = UIContextualAction(style: .normal, title: "수정") { _, _, completionHandler in
+            self.scheduleCellDidSwipeEvent.accept(self.list[indexPath.item].scheduleId)
+            completionHandler(true)
         }
         update.backgroundColor = .mainColor
         
         
         let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, _ in
             self.showActionSheet(titles: "삭제", message: "이 기간의 모든 일정을 삭제하시겠어요?") { _ in
-                print("삭제~~")
+                self.viewModel?.deleteSchedule(schedule: self.list[indexPath.item], completion: {
+                    self.deleteItem(indexPath)
+                })
             }
 
         }

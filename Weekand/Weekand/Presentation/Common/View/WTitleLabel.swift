@@ -20,16 +20,14 @@ class WTitleLabel: UILabel {
     }
 
     func setupView() {
-        font = UIFont(name: "PretendardVariable-Bold", size: 24)
+        font = WFont.title()
         numberOfLines = 0
     }
     
     func setText(string: String) {
-        let attrString = NSMutableAttributedString(string: string)
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 5
-        // legacy code
-        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
+        paragraphStyle.lineHeightMultiple = 1.25
+        let attrString = NSMutableAttributedString(string: string, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
         attributedText = attrString
     }
 

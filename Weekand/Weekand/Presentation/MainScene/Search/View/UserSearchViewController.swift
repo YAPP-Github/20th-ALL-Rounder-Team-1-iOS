@@ -24,6 +24,7 @@ class UserSearchViewController: UIViewController {
     
     var headerView = SearchHeaderView()
     let tableView = UITableView()
+    let backgroundEmtpyView = WEmptyView(type: .search)
     
     var list: [UserSummaryTemp] = []
     var UserCount: Int = 20
@@ -63,6 +64,7 @@ class UserSearchViewController: UIViewController {
         configureUI()
         configureDataSource()
         bindViewModel()
+        setupEndEditing()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,7 +100,7 @@ class UserSearchViewController: UIViewController {
         )
         
         self.headerView.dropDown.selectionAction = { [unowned self] (_ : Int, item: String) in
-            guard let sort = UserSort.allCases.filter { $0.description == item }.first else {
+            guard let sort = UserSort.allCases.filter({ $0.description == item }).first else {
                 return
             }
             selectedSort = sort
@@ -112,7 +114,6 @@ class UserSearchViewController: UIViewController {
         let output = viewModel?.transform(input: input)
         
         output?.searchWithQueryInformation
-            .filter { $0 != "" || $1.0 != [] || $1.1 != [] }
             .subscribe(onNext: { (searchText, informations) in
                 self.setUserList(searchQuery: searchText, jobs: informations.0, interests: informations.1)
             })
@@ -123,6 +124,12 @@ class UserSearchViewController: UIViewController {
             .subscribe(onNext: { [weak self] userList in
                 userList.forEach { self?.list.append($0) }
                 self?.configureSnapshot(list: self?.list ?? [])
+                if let searchList = self?.list,
+                   searchList.isEmpty {
+                    self?.tableView.backgroundView?.isHidden = false
+                } else {
+                    self?.tableView.backgroundView?.isHidden = true
+                }
         })
         .disposed(by: self.disposeBag)
     }
@@ -133,6 +140,8 @@ class UserSearchViewController: UIViewController {
         tableView.bounces = false
         tableView.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.cellIdentifier)
         tableView.register(SearchHeaderView.self, forHeaderFooterViewReuseIdentifier: SearchHeaderView.cellIdentifier)
+        tableView.backgroundView = backgroundEmtpyView
+        tableView.backgroundView?.isHidden = true
         
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
@@ -150,6 +159,7 @@ class UserSearchViewController: UIViewController {
 }
 
 // MARK: TableView
+
 extension UserSearchViewController {
     
     private func configureDataSource() {
@@ -183,29 +193,63 @@ extension UserSearchViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print(indexPath.item)
         if indexPath.item == refreshListCount * (page + 1) - 1 {
             page += 1
-            self.appendUserList(searchQuery: self.searchText, jobs: self.selectedJobs, interests: selectedInterests)
+            self.appendUserList(searchQuery: self.searchText,
+                                jobs: self.selectedJobs,
+                                interests: selectedInterests)
         }
     }
 }
 
+// MARK: Network
+
 extension UserSearchViewController {
-    func setUserList(searchQuery: String, jobs: [String], interests: [String]) {
+    func setUserList(searchQuery: String,
+                     jobs: [String],
+                     interests: [String]
+    ) {
         self.page = 0
         self.list = []
-        self.viewModel?.searchUsers(
-                            searchQuery: searchQuery,
-                            jobs: jobs,
-                            interests: interests,
-                            sort: self.selectedSort,
-                            page: self.page,
-                            size: self.UserCount)
+        guard searchQuery != "" || jobs != [] || interests != [] else {
+            return
+        }
+        self.viewModel?.searchUsers(searchQuery: searchQuery,
+                                    jobs: jobs,
+                                    interests: interests,
+                                    sort: self.selectedSort,
+                                    page: self.page,
+                                    size: self.UserCount)
         self.tableView.scrollToTop()
     }
     
-    func appendUserList(searchQuery: String, jobs: [String], interests: [String]) {
-        self.viewModel?.loadMoreUserList(searchQuery: searchQuery, jobs: jobs, interests: interests, sort: self.selectedSort, page: page, size: UserCount)
+    func appendUserList(searchQuery: String,
+                        jobs: [String],
+                        interests: [String]
+    ) {
+        self.viewModel?.loadMoreUserList(searchQuery: searchQuery,
+                                         jobs: jobs,
+                                         interests: interests,
+                                         sort: self.selectedSort,
+                                         page: page,
+                                         size: UserCount)
+    }
+}
+
+// MARK: Keyboard tap action
+
+extension UserSearchViewController {
+    private func setupEndEditing() {
+        let singleTapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(tapAction))
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.isEnabled = true
+        singleTapGestureRecognizer.cancelsTouchesInView = false
+        tableView.addGestureRecognizer(singleTapGestureRecognizer)
+    }
+    
+    @objc func tapAction(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
 }

@@ -16,13 +16,11 @@ class SignInViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     var viewModel: SignInViewModel?
     
-    lazy var titleLabel = UILabel().then {
-        $0.text = """
-                    반가워요!
-                    함께 일정 관리해요 :)
-                  """
-        $0.font = UIFont(name: "PretendardVariable-Bold", size: 24)
-        $0.numberOfLines = 0
+    lazy var titleLabel = WTitleLabel().then {
+        $0.setText(string: """
+                            반가워요!
+                            함께 일정 관리해요 :)
+                           """)
     }
     
     let spacerView = UIView()

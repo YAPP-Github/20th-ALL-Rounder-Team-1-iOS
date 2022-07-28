@@ -33,6 +33,8 @@ extension CategoryDetailViewModel {
     struct Input {
         let didEditSearchBar: Observable<String>
         let didTapUpdateCategoryButton: Observable<Void>
+        let scheduleCellDidSelected: PublishRelay<String>
+        let scheduleCellDidSwipeEvent: PublishRelay<String>
         let selectedCategory: Category?
     }
     
@@ -53,25 +55,30 @@ extension CategoryDetailViewModel {
         })
         .disposed(by: disposeBag)
         
+        input.scheduleCellDidSwipeEvent.subscribe(onNext: { [weak self] scheduleId in
+            self?.coordinator?.showScheduleModifyScene(scheduleId: scheduleId)
+        }).disposed(by: disposeBag)
+        
+        input.scheduleCellDidSelected.subscribe(onNext: { [weak self] scheduleId in
+            self?.coordinator?.showScheduleDetailScene(scheduleId: scheduleId)
+        })
+        .disposed(by: disposeBag)
+        
         return Output(searchWithQueryInformation: searchBarEdit)
     }
 }
 
 extension CategoryDetailViewModel {
-    func searchSchedules(id: String, completion: @escaping () -> Void) {
-        self.categoryUseCase.deleteCategory(id: id)
+    func deleteSchedule(schedule: ScheduleSummary, completion: @escaping () -> Void) {
+        self.categoryUseCase.deleteSchedule(scheduleId: schedule.scheduleId)
             .subscribe(onSuccess: { isSucceed in
                 if isSucceed {
                     completion()
                 } else {
                     self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")
                 }
-            }, onFailure: { error in
-                if error.localizedDescription == CategoryError.minimumCategoryCount.localizedDescription {
-                    self.coordinator?.showToastMessage(text: error.localizedDescription)
-                } else {
-                    self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")
-                }
+            }, onFailure: { _ in
+                self.coordinator?.showToastMessage(text: "일정 삭제에 실패하였습니다.")
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }

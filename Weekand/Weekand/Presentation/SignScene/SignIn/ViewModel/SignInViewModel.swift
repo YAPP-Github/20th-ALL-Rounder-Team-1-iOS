@@ -56,7 +56,7 @@ class SignInViewModel: ViewModelType {
                         
         input.nextButtonDidTapEvent
                 .withLatestFrom(isCheckEmailPassword)
-                .distinctUntilChanged { $0 == $1 }
+                .throttle(.seconds(4), latest: false, scheduler: MainScheduler.instance)
                 .subscribe(onNext: { [weak self] email, password in
                     self?.login(email: email, password: password)
                 }).disposed(by: disposeBag)
@@ -83,8 +83,12 @@ extension SignInViewModel {
         self.signInUseCase.login(email: emailText, password: passwordText).subscribe(onSuccess: { tokenData in
             ToeknManager.shared.createTokens(accessToken: tokenData.accessToken, refreshToken: tokenData.refreshToken)
             self.userID()
-        }, onFailure: { _ in
-            self.coordinator?.showToastMessage()
+        }, onFailure: { error in
+            if error.localizedDescription == SignInError.notMatchIdPassword.serverDescription {
+                self.coordinator?.showToastMessage(text: "이메일·비밀번호가 일치하지 않습니다.")
+            } else {
+                self.coordinator?.showToastMessage(text: "네트워크 요청에 실패하였습니다")
+            }
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     }
@@ -94,7 +98,7 @@ extension SignInViewModel {
             UserDataStorage.shared.setUserID(id: id)
             self.coordinator?.showMainScene()
         }, onFailure: { _ in
-            self.coordinator?.showToastMessage()
+            self.coordinator?.showToastMessage(text: "네트워크 요청에 실패하였습니다")
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     }

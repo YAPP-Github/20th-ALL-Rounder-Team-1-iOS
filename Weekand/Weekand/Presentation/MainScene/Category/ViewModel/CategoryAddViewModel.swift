@@ -63,7 +63,7 @@ extension CategoryAddViewModel {
                     self.coordinator?.showToastMessage(text: "일정 추가에 실패하였습니다.")
                 }
             }, onFailure: { error in
-                if error.localizedDescription == CategoryError.duplicatedName.localizedDescription {
+                if error.localizedDescription == CategoryError.duplicatedName.serverDescription {
                     self.coordinator?.showToastMessage(text: error.localizedDescription)
                 } else {
                     self.coordinator?.showToastMessage(text: "일정 추가에 실패하였습니다.")

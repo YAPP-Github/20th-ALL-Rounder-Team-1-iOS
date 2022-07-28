@@ -50,6 +50,7 @@ class CategoryListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        configureSnapshot(list: list)
         setCategoryList(sort: selectedSort)
     }
     
@@ -180,9 +181,7 @@ extension CategoryListViewController {
         let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, _ in
             self.showActionSheet(titles: "삭제", message: "카테고리를 삭제하시겠어요?") { _ in
                 self.viewModel?.deleteCategory(id: self.list[indexPath.item].serverID) {
-                    DispatchQueue.main.async {
-                        self.setCategoryList(sort: self.selectedSort)
-                    }
+                    self.deleteItem(indexPath)
                 }
             }
         }
@@ -204,16 +203,3 @@ extension CategoryListViewController {
         self.viewModel?.searchCategories(sort: selectedSort, page: page, size: categoryCount)
     }
 }
-
-
-import SwiftUI
-#if canImport(SwiftUI) && DEBUG
-
-struct CategoryListViewControllerPreview: PreviewProvider {
-    static var previews: some View {
-        Group {
-            CategoryListViewController().showPreview(.iPhone11Pro)
-        }
-    }
-}
-#endif

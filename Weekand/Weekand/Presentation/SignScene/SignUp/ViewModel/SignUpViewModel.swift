@@ -143,7 +143,7 @@ class SignUpViewModel: ViewModelType {
     }
     
     private func vaildNickname(_ nickName: String) -> (String, Bool) {
-        if nickName.count >= 2 && nickName.count < 11 {
+        if nickName.count >= 2 && nickName.count < 13 {
             return (nickName, true)
         }
         return (nickName, false)
