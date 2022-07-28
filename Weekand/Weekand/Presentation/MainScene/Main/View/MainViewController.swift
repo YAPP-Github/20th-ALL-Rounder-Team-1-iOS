@@ -209,6 +209,8 @@ extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! MainCollectionViewCell
         viewModel?.userChanged(id: cell.dataId)
+        
+        self.headerView.calendarView.editButton.isHidden = !(UserDataStorage.shared.userID == viewModel?.currentUserId)
     }
 }
 
