@@ -35,4 +35,11 @@ final class ProfileUseCase {
             .map { $0.deleteFollowee }
             .asSingle()
     }
+    
+    /// 로그아웃 하기
+    func logout() -> Single<Bool> {
+        return NetWork.shared.perform(mutation: LogoutMutation())
+            .map { $0.logout }
+            .asSingle()
+    }
 }

@@ -90,6 +90,10 @@ class ProfileCoordinator: Coordinator {
         profileEditViewController.selectedInterests = selectedInterests
     }
     
+    func logoutFinsh() {
+        self.finishDelegate?.childDidFinish(self)
+    }
+    
     func finish() {
         self.navigationController.dismiss(animated: true)
     }

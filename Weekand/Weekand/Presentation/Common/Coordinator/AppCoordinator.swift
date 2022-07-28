@@ -15,12 +15,12 @@ class AppCoordinator: Coordinator {
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        self.setNotificationCenter()
     }
 
     func start() {
         if UserDefaults.standard.bool(forKey: "autoSign") {
-//            showMainScene()
-            showWelcomeScene()
+            showMainScene()
         } else {
             showWelcomeScene()
         }
@@ -36,5 +36,19 @@ class AppCoordinator: Coordinator {
         let mainCoordinator = MainCoordinator(navigationController: self.navigationController)
         childCoordinators.append(mainCoordinator)
         mainCoordinator.start()
+    }
+}
+
+extension AppCoordinator {
+    func setNotificationCenter() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(showWelcomSceneFromLogout(_:)),
+                                               name: NSNotification.Name("showWeclomeScene"),
+                                               object: nil)
+    }
+    
+    @objc func showWelcomSceneFromLogout(_ notification: Notification) {
+        self.navigationController.setViewControllers([], animated: false)
+        self.showWelcomeScene()
     }
 }

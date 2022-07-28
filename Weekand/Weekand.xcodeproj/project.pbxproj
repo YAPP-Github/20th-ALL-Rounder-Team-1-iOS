@@ -172,7 +172,7 @@
 		F336F3CB288BCD59005B57A0 /* TokenAddingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3CA288BCD59005B57A0 /* TokenAddingInterceptor.swift */; };
 		F336F3CD288BDB44005B57A0 /* Reissue.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F336F3CC288BDB44005B57A0 /* Reissue.graphql */; };
 		F336F3D1288C5239005B57A0 /* RefreshTokenInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3D0288C5239005B57A0 /* RefreshTokenInterceptor.swift */; };
-		F336F3D3288CF63D005B57A0 /* ToeknManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3D2288CF63D005B57A0 /* ToeknManager.swift */; };
+		F336F3D3288CF63D005B57A0 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3D2288CF63D005B57A0 /* TokenManager.swift */; };
 		F336F3D6288D1626005B57A0 /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3D5288D1626005B57A0 /* KeyChainManager.swift */; };
 		F336F3D8288D2308005B57A0 /* KeyChainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3D7288D2308005B57A0 /* KeyChainError.swift */; };
 		F336F3DA288D30FB005B57A0 /* KeyChainAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3D9288D30FB005B57A0 /* KeyChainAccount.swift */; };
@@ -219,6 +219,7 @@
 		F38AE45628926C1200E5E261 /* Schedule.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F38AE45528926C1200E5E261 /* Schedule.graphql */; };
 		F38AE45828926E8700E5E261 /* ScheduleStatus+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE45728926E8700E5E261 /* ScheduleStatus+extension.swift */; };
 		F38AE45A28927BBB00E5E261 /* ScheduleCategoryStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE45928927BBB00E5E261 /* ScheduleCategoryStackView.swift */; };
+		F38AE45C2892B65E00E5E261 /* Logout.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F38AE45B2892B65E00E5E261 /* Logout.graphql */; };
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
@@ -445,7 +446,7 @@
 		F336F3CA288BCD59005B57A0 /* TokenAddingInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAddingInterceptor.swift; sourceTree = "<group>"; };
 		F336F3CC288BDB44005B57A0 /* Reissue.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Reissue.graphql; sourceTree = "<group>"; };
 		F336F3D0288C5239005B57A0 /* RefreshTokenInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenInterceptor.swift; sourceTree = "<group>"; };
-		F336F3D2288CF63D005B57A0 /* ToeknManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToeknManager.swift; sourceTree = "<group>"; };
+		F336F3D2288CF63D005B57A0 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		F336F3D5288D1626005B57A0 /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
 		F336F3D7288D2308005B57A0 /* KeyChainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainError.swift; sourceTree = "<group>"; };
 		F336F3D9288D30FB005B57A0 /* KeyChainAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainAccount.swift; sourceTree = "<group>"; };
@@ -492,6 +493,7 @@
 		F38AE45528926C1200E5E261 /* Schedule.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Schedule.graphql; sourceTree = "<group>"; };
 		F38AE45728926E8700E5E261 /* ScheduleStatus+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleStatus+extension.swift"; sourceTree = "<group>"; };
 		F38AE45928927BBB00E5E261 /* ScheduleCategoryStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCategoryStackView.swift; sourceTree = "<group>"; };
+		F38AE45B2892B65E00E5E261 /* Logout.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Logout.graphql; sourceTree = "<group>"; };
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
@@ -1082,7 +1084,7 @@
 			children = (
 				F336F3D4288D1609005B57A0 /* KeyChain */,
 				F3B0025E287D68A800D6BB1D /* UserDataStorage.swift */,
-				F336F3D2288CF63D005B57A0 /* ToeknManager.swift */,
+				F336F3D2288CF63D005B57A0 /* TokenManager.swift */,
 			);
 			name = Data;
 			path = Domain;
@@ -1407,6 +1409,7 @@
 				F38AE45528926C1200E5E261 /* Schedule.graphql */,
 				7D67F4AC28927A3A00A1D7CD /* DeleteFollowee.graphql */,
 				7D67F4AE28927A4F00A1D7CD /* CreateFollowee.graphql */,
+				F38AE45B2892B65E00E5E261 /* Logout.graphql */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1588,6 +1591,7 @@
 				F336F4102891AA97005B57A0 /* DeleteScheduleFromDate.graphql in Resources */,
 				7DF8B7A928361FB100B224CA /* PretendardVariable.ttf in Resources */,
 				F323FEF1287636B500DFD8FD /* SortDropDownCell.xib in Resources */,
+				F38AE45C2892B65E00E5E261 /* Logout.graphql in Resources */,
 				F336F36028867ECF005B57A0 /* deleteCategory.graphql in Resources */,
 				7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */,
 				7D67F4AD28927A3A00A1D7CD /* DeleteFollowee.graphql in Resources */,
@@ -1897,7 +1901,7 @@
 				F378685B28621C8F00BEEC81 /* CategoryEditViewModelType.swift in Sources */,
 				F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */,
 				7DBC4C5D28769C3900F0AC86 /* MonthlyCalendarSheet.swift in Sources */,
-				F336F3D3288CF63D005B57A0 /* ToeknManager.swift in Sources */,
+				F336F3D3288CF63D005B57A0 /* TokenManager.swift in Sources */,
 				7DE60AEA2892539F00F85A05 /* PasswordChangeViewController.swift in Sources */,
 				F3CC76B42867264200A3FBBE /* WTagToggleButton.swift in Sources */,
 				F3DD0231284A36D300AD9240 /* BaseNavigationController.swift in Sources */,

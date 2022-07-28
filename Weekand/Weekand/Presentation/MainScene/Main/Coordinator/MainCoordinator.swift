@@ -103,6 +103,10 @@ extension MainCoordinator: CoordinatorDidFinishDelegate {
     
     func childDidFinish(_ child: Coordinator) {
         self.childCoordinators = self.childCoordinators.filter({ $0.type != child.type })
-        navigationController.popToRootViewController(animated: true)
+        if UserDefaults.standard.bool(forKey: "autoSign") {
+            NotificationCenter.default.post(name: NSNotification.Name("showWeclomeScene"), object: nil, userInfo: nil)
+        } else {
+            navigationController.popToRootViewController(animated: true)
+        }
     }
 }
