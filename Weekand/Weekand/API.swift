@@ -258,6 +258,56 @@ public enum Week: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JS
   }
 }
 
+public enum ScheduleStickerName: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  case like
+  case cool
+  case good
+  case cheerUp
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "LIKE": self = .like
+      case "COOL": self = .cool
+      case "GOOD": self = .good
+      case "CHEER_UP": self = .cheerUp
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .like: return "LIKE"
+      case .cool: return "COOL"
+      case .good: return "GOOD"
+      case .cheerUp: return "CHEER_UP"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: ScheduleStickerName, rhs: ScheduleStickerName) -> Bool {
+    switch (lhs, rhs) {
+      case (.like, .like): return true
+      case (.cool, .cool): return true
+      case (.good, .good): return true
+      case (.cheerUp, .cheerUp): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [ScheduleStickerName] {
+    return [
+      .like,
+      .cool,
+      .good,
+      .cheerUp,
+    ]
+  }
+}
+
 public enum ScheduleCategorySort: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
   public typealias RawValue = String
   case dateCreatedAsc
@@ -359,56 +409,6 @@ public enum ScheduleStatus: RawRepresentable, Equatable, Hashable, CaseIterable,
       .skip,
       .undetermined,
       .notYet,
-    ]
-  }
-}
-
-public enum ScheduleStickerName: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
-  public typealias RawValue = String
-  case like
-  case cool
-  case good
-  case cheerUp
-  /// Auto generated constant for unknown enum values
-  case __unknown(RawValue)
-
-  public init?(rawValue: RawValue) {
-    switch rawValue {
-      case "LIKE": self = .like
-      case "COOL": self = .cool
-      case "GOOD": self = .good
-      case "CHEER_UP": self = .cheerUp
-      default: self = .__unknown(rawValue)
-    }
-  }
-
-  public var rawValue: RawValue {
-    switch self {
-      case .like: return "LIKE"
-      case .cool: return "COOL"
-      case .good: return "GOOD"
-      case .cheerUp: return "CHEER_UP"
-      case .__unknown(let value): return value
-    }
-  }
-
-  public static func == (lhs: ScheduleStickerName, rhs: ScheduleStickerName) -> Bool {
-    switch (lhs, rhs) {
-      case (.like, .like): return true
-      case (.cool, .cool): return true
-      case (.good, .good): return true
-      case (.cheerUp, .cheerUp): return true
-      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
-      default: return false
-    }
-  }
-
-  public static var allCases: [ScheduleStickerName] {
-    return [
-      .like,
-      .cool,
-      .good,
-      .cheerUp,
     ]
   }
 }
@@ -899,6 +899,66 @@ public final class CreateScheduleMutation: GraphQLMutation {
       }
       set {
         resultMap.updateValue(newValue, forKey: "createSchedule")
+      }
+    }
+  }
+}
+
+public final class CreateStickerMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation CreateSticker($id: ID!, $sticker: ScheduleStickerName!, $date: Timestamp!) {
+      createScheduleSticker(
+        input: {scheduleId: $id, scheduleStickerName: $sticker, scheduleDate: $date}
+      )
+    }
+    """
+
+  public let operationName: String = "CreateSticker"
+
+  public var id: GraphQLID
+  public var sticker: ScheduleStickerName
+  public var date: Timestamp
+
+  public init(id: GraphQLID, sticker: ScheduleStickerName, date: Timestamp) {
+    self.id = id
+    self.sticker = sticker
+    self.date = date
+  }
+
+  public var variables: GraphQLMap? {
+    return ["id": id, "sticker": sticker, "date": date]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("createScheduleSticker", arguments: ["input": ["scheduleId": GraphQLVariable("id"), "scheduleStickerName": GraphQLVariable("sticker"), "scheduleDate": GraphQLVariable("date")]], type: .nonNull(.scalar(Bool.self))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(createScheduleSticker: Bool) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "createScheduleSticker": createScheduleSticker])
+    }
+
+    /// 스티커를 추가한다
+    /// [error]
+    /// 4001: 해당 스케줄을 찾을 수 없습니다.
+    public var createScheduleSticker: Bool {
+      get {
+        return resultMap["createScheduleSticker"]! as! Bool
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "createScheduleSticker")
       }
     }
   }
