@@ -96,7 +96,6 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
     
     private func setupView() {
         view.backgroundColor = .white
-        navigationItem.title = "일정 수정"
         navigationItem.leftBarButtonItem = closeButton
         stackView.spacing = 25
         

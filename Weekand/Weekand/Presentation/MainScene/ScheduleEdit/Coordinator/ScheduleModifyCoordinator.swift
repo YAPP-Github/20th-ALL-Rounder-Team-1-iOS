@@ -20,6 +20,7 @@ class ScheduleModifyCoordinator: ScheduleEditCoordinatorType {
         self.scheduleEditViewController = ScheduleEditViewController()
         self.navigationController = UINavigationController(rootViewController: scheduleEditViewController)
         self.navigationController.modalPresentationStyle = .fullScreen
+        self.scheduleEditViewController.navigationItem.title = "일정 수정"
         self.scheduleEditUseCase = ScheduleEditUseCase()
         self.scheduleId = selectedScheduleId
     }

@@ -20,6 +20,7 @@ class ScheduleAddCoordinator: Coordinator, ScheduleEditCoordinatorType {
         self.scheduleEditViewController = ScheduleEditViewController()
         self.navigationController = UINavigationController(rootViewController: scheduleEditViewController)
         self.navigationController.modalPresentationStyle = .fullScreen
+        self.scheduleEditViewController.navigationItem.title = "일정 추가"
         self.scheduleEditUseCase = ScheduleEditUseCase()
     }
     
