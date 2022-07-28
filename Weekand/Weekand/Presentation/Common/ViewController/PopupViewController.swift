@@ -17,7 +17,8 @@ class PopupViewController: UIViewController {
     lazy var popupStackView = UIStackView().then {
         $0.axis = .vertical
         $0.alignment = .fill
-        $0.spacing = 14
+        $0.distribution = .equalSpacing
+        $0.spacing = 10
     }
     
     override func viewDidLoad() {
@@ -36,7 +37,7 @@ class PopupViewController: UIViewController {
 
         popupView.snp.makeConstraints {
             $0.width.equalTo(300)
-            $0.height.equalTo(177)
+            $0.height.equalTo(210)
             $0.centerX.centerY.equalToSuperview()
         }
         

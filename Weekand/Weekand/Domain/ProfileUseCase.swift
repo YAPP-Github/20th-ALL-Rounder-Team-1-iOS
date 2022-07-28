@@ -42,4 +42,11 @@ final class ProfileUseCase {
             .map { $0.logout }
             .asSingle()
     }
+    
+    /// 탈퇴 하기
+    func deleteUser() -> Single<Bool> {
+        return NetWork.shared.perform(mutation: DeleteUserMutation())
+            .map { $0.deleteUser }
+            .asSingle()
+    }
 }

@@ -129,7 +129,7 @@ extension ProfileViewModel {
         }).disposed(by: disposeBag)
         
         input.didSignOutTap.when(.recognized).subscribe(onNext: { _ in
-            print("회원탈퇴")
+            self.coordinator?.presentWarningPopViewController()
         }).disposed(by: disposeBag)
 
         return Output(

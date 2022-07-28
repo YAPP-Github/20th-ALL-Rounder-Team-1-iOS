@@ -220,6 +220,10 @@
 		F38AE45828926E8700E5E261 /* ScheduleStatus+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE45728926E8700E5E261 /* ScheduleStatus+extension.swift */; };
 		F38AE45A28927BBB00E5E261 /* ScheduleCategoryStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE45928927BBB00E5E261 /* ScheduleCategoryStackView.swift */; };
 		F38AE45C2892B65E00E5E261 /* Logout.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F38AE45B2892B65E00E5E261 /* Logout.graphql */; };
+		F38AE45E2892CD0D00E5E261 /* DeleteUser.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F38AE45D2892CD0D00E5E261 /* DeleteUser.graphql */; };
+		F38AE4662892D22500E5E261 /* ResignWarningPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4652892D22500E5E261 /* ResignWarningPopupViewController.swift */; };
+		F38AE4682892D24800E5E261 /* WarningPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4672892D24800E5E261 /* WarningPopupViewModel.swift */; };
+		F38AE46A2892D47000E5E261 /* ResignWarningPopupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4692892D47000E5E261 /* ResignWarningPopupCoordinator.swift */; };
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
@@ -494,6 +498,10 @@
 		F38AE45728926E8700E5E261 /* ScheduleStatus+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleStatus+extension.swift"; sourceTree = "<group>"; };
 		F38AE45928927BBB00E5E261 /* ScheduleCategoryStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCategoryStackView.swift; sourceTree = "<group>"; };
 		F38AE45B2892B65E00E5E261 /* Logout.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Logout.graphql; sourceTree = "<group>"; };
+		F38AE45D2892CD0D00E5E261 /* DeleteUser.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = DeleteUser.graphql; sourceTree = "<group>"; };
+		F38AE4652892D22500E5E261 /* ResignWarningPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResignWarningPopupViewController.swift; sourceTree = "<group>"; };
+		F38AE4672892D24800E5E261 /* WarningPopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningPopupViewModel.swift; sourceTree = "<group>"; };
+		F38AE4692892D47000E5E261 /* ResignWarningPopupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResignWarningPopupCoordinator.swift; sourceTree = "<group>"; };
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
@@ -1000,6 +1008,7 @@
 				7DE60AC92892539F00F85A05 /* SelectionSheetViewModel.swift */,
 				7DE60AC72892539F00F85A05 /* ContactViewModel.swift */,
 				7DE60AC82892539F00F85A05 /* PasswordChangeViewModel.swift */,
+				F38AE4672892D24800E5E261 /* WarningPopupViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1008,6 +1017,7 @@
 			isa = PBXGroup;
 			children = (
 				7DE60ACD2892539F00F85A05 /* ProfileCoordinator.swift */,
+				F38AE4692892D47000E5E261 /* ResignWarningPopupCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -1021,6 +1031,7 @@
 				7DE60AD22892539F00F85A05 /* PasswordChangeViewController.swift */,
 				7DE60AE02892539F00F85A05 /* ContactViewController.swift */,
 				7DE60ACF2892539F00F85A05 /* ContactCompleteViewController.swift */,
+				F38AE4652892D22500E5E261 /* ResignWarningPopupViewController.swift */,
 				7DE60AD32892539F00F85A05 /* SubView */,
 			);
 			path = View;
@@ -1410,6 +1421,7 @@
 				7D67F4AC28927A3A00A1D7CD /* DeleteFollowee.graphql */,
 				7D67F4AE28927A4F00A1D7CD /* CreateFollowee.graphql */,
 				F38AE45B2892B65E00E5E261 /* Logout.graphql */,
+				F38AE45D2892CD0D00E5E261 /* DeleteUser.graphql */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1602,6 +1614,7 @@
 				F323FF38287B13F900DFD8FD /* SignUp.graphql in Resources */,
 				F323FF2B287A036E00DFD8FD /* checkDuplicateNickname.graphql in Resources */,
 				7D0A6A322881330E00CFE61D /* scheduleList.graphql in Resources */,
+				F38AE45E2892CD0D00E5E261 /* DeleteUser.graphql in Resources */,
 				F336F3CD288BDB44005B57A0 /* Reissue.graphql in Resources */,
 				F323FF30287A276100DFD8FD /* issueTempPassword.graphql in Resources */,
 				F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */,
@@ -1762,6 +1775,7 @@
 				7D76AEB4284458C2001C668D /* MainViewController.swift in Sources */,
 				F3C8E0A32872F29000B0916A /* WArrowButton.swift in Sources */,
 				F336F3AC288946B0005B57A0 /* RepeatTableViewCell.swift in Sources */,
+				F38AE46A2892D47000E5E261 /* ResignWarningPopupCoordinator.swift in Sources */,
 				7DB1D5BF287C1C4C0032C209 /* EmojiTabViewController.swift in Sources */,
 				7D0ED2C0287D065800DE3215 /* EmojiTableViewController.swift in Sources */,
 				7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */,
@@ -1891,6 +1905,7 @@
 				7DC166C02837234200F1A8F1 /* WButtonTextField.swift in Sources */,
 				F336F3B62889828D005B57A0 /* WeekCollectionViewCell.swift in Sources */,
 				F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */,
+				F38AE4682892D24800E5E261 /* WarningPopupViewModel.swift in Sources */,
 				F32F725C28549B650056B189 /* WTextFieldStackView.swift in Sources */,
 				F336F40228903BCB005B57A0 /* ScheduleEditCoordinatorType.swift in Sources */,
 				F38AE45828926E8700E5E261 /* ScheduleStatus+extension.swift in Sources */,
@@ -1931,6 +1946,7 @@
 				F336F3722886F4A4005B57A0 /* RepeatSheetViewController.swift in Sources */,
 				F336F3A4288939DC005B57A0 /* ScheduleSummary.swift in Sources */,
 				7DBC4C672876B66E00F0AC86 /* StickerCollectionViewCell.swift in Sources */,
+				F38AE4662892D22500E5E261 /* ResignWarningPopupViewController.swift in Sources */,
 				F336F4002890312C005B57A0 /* ScheduleEditViewController.swift in Sources */,
 				F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */,
 				F3DD022728466E3300AD9240 /* SignUpCoordinator.swift in Sources */,

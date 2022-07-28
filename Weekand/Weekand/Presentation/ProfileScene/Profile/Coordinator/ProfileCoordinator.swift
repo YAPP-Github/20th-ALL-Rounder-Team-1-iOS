@@ -61,6 +61,13 @@ class ProfileCoordinator: Coordinator {
         self.navigationController.pushViewController(passwordChangeViewController, animated: true)
     }
     
+    func presentWarningPopViewController() {
+        let warningPopupCoordinator = ResignWarningPopupCoordinator(useCase: profileUseCase)
+        childCoordinators.append(warningPopupCoordinator)
+        navigationController.present(warningPopupCoordinator.navigationController, animated: true, completion: nil)
+        warningPopupCoordinator.start()
+    }
+    
     
     // MARK: Bottom Sheet
     
@@ -96,5 +103,12 @@ class ProfileCoordinator: Coordinator {
     
     func finish() {
         self.navigationController.dismiss(animated: true)
+    }
+}
+
+extension ProfileCoordinator: CoordinatorDidFinishDelegate {
+    func childDidFinish(_ child: Coordinator) {
+        self.childCoordinators = self.childCoordinators.filter({ $0.type != child.type })
+        navigationController.dismiss(animated: true, completion: nil)
     }
 }
