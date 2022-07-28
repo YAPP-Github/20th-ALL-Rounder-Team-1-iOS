@@ -17,23 +17,21 @@ final class MainUseCase {
             }.asSingle()
     }
     
-    func userSummary() -> Single<UserSummary> {
-        return NetWork.shared.fetch(query: UserSummaryQuery())
+    func userSummary(id: String?) -> Single<UserSummary?> {
+        
+        return NetWork.shared.fetch(query: UserSummaryQuery(id: id))
             .map {
                 if let user = $0.user {
                     return UserSummary(model: user)
                 } else {
-                    return UserSummary.defaultData
+                    return nil
                 }
-            }
-            .asSingle()
+            }.asSingle()
     }
     
-    func scheduleList(date: Date) -> Single<[ScheduleMain]> {
-        print("Timestamp:")
-        print(date.toTimestamp())
+    func scheduleList(date: Date, id: String?) -> Single<[ScheduleMain]> {
         return NetWork.shared
-            .fetch(query: ScheduleListQuery(date: date.toTimestamp()))
+            .fetch(query: ScheduleListQuery(date: date.toTimestamp(), id: id), cachePolicy: .fetchIgnoringCacheCompletely)
             .map {
                 $0.schedules.schedules.map {
                     ScheduleMain(model: $0)
@@ -41,4 +39,13 @@ final class MainUseCase {
             }
             .asSingle()
     }
+    
+    func stickerSummary(id: String, date: Date) -> Single<StickerSummary> {
+        return NetWork.shared.fetch(query: StickerSummaryQuery(id: id, date: date.toTimestamp()))
+            .map {
+                StickerSummary(model: $0.scheduleStickerSummary)
+            }
+            .asSingle()
+    }
+    
 }

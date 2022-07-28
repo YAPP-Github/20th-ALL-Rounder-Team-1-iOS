@@ -31,7 +31,7 @@ class ProfileViewModel: ViewModelType {
             isMyPage = false
         }
         
-        getMyUserProfile()
+        getUserProfile(id: userId)
     }
     
 }
@@ -113,9 +113,9 @@ extension ProfileViewModel {
 extension ProfileViewModel {
     
     /// 내 프로필 가져오기
-    private func getMyUserProfile() {
+    private func getUserProfile(id: String?) {
         
-        self.profileUseCase.myProfileDetail().debug()
+        self.profileUseCase.profileDetail(id: id)
             .subscribe(onSuccess: { userData in
             PublishRelay<UserDetail>.just(userData).bind(to: self.userDeatil).disposed(by: self.disposeBag)
         }, onFailure: { error in

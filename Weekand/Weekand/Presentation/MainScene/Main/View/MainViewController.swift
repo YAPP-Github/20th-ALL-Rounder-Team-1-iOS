@@ -47,6 +47,12 @@ class MainViewController: UIViewController, UITableViewDelegate {
         bindViewModel()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel?.reloadData()
+    }
+    
     private func setUpView() {
         configureCollectionView()
         configureTableView()
@@ -142,7 +148,10 @@ class MainViewController: UIViewController, UITableViewDelegate {
         
         output?.userSummary.subscribe(onNext: { data in
             self.headerView.profileView.setUpView(data)
-            self.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .init())
+            
+            if data.userId == UserDataStorage.shared.userID {
+                self.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .init())
+            }
         }).disposed(by: disposeBag)
         
     }
@@ -261,7 +270,10 @@ extension MainViewController: MainTableViewCellDelegate {
     
     func emojiViewTapped(id: String?) {
         print("\(#function), id: \(String(describing: id))")
-        self.viewModel?.coordinator?.pushEmojiSheet()
+        
+        if let scheduleId = id {
+            self.viewModel?.coordinator?.pushEmojiSheet(id: scheduleId, date: currentDate)
+        }
     }
     
     func stickerButtonTapped(id: String?) {

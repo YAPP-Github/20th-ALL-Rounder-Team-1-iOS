@@ -28,6 +28,8 @@ class MainViewModel: ViewModelType {
     private var userFollowingList = BehaviorRelay<[FollowingUser]>(value: [])
     private var scheduleList = BehaviorRelay<[ScheduleMain]>(value: [])
     
+    private var isMyProfileAdded: Bool = false  // 내 정보가 팔로잉 CollectionView에 추가되었는지 식별
+    
     // Calendar 버튼 관련 Obsrvables
     private let calendarDate = BehaviorRelay<Date>(value: Date())
     private let scrollWeek = PublishRelay<Bool>()
@@ -47,8 +49,9 @@ class MainViewModel: ViewModelType {
         self.mainUseCase = mainUseCase
         
         self.getFollowingUser()
-        self.getUserSummary()
-        self.getScheduleList(date: currentDate)
+        self.getUserSummary(id: nil)
+        self.getScheduleList(date: currentDate, id: nil)
+        
     }
     
 }
@@ -143,33 +146,28 @@ extension MainViewModel {
 
 }
 
-// MARK: User Switch Actions
+// MARK: User/Date Switch Actions
 extension MainViewModel {
+    
+    /// 새로고침
+    func reloadData() {
+        
+        guard let id = currentUserId else { return }
+        switchUser(id: id)
+    }
     
     /// 유저 전환
     func switchUser(id: String?) {
         
-        if isMySchedule {
-            print("Switch to my Schedule")
-            getUserSummary()
-            getScheduleList(date: currentDate)
-        } else {
-            print("Switch to \(id) Schedule")
-            // TODO: id 소유자의 프로필 불러오기
-            getScheduleList(date: currentDate) // TODO: id 소유자의 일정 불러오기
-        }
+        getUserSummary(id: currentUserId)
+        getScheduleList(date: currentDate, id: id)
     }
     
     /// 날짜 전환
     func switchDate(id: String?) {
         
-        if isMySchedule {
-            print("Get my Schedule on \(currentDate)")
-            getScheduleList(date: currentDate)
-        } else {
-            print("Get \(String(describing: id)) Schedule on \(currentDate)")
-            getScheduleList(date: currentDate) // TODO: id 소유자의 일정 불러오기
-        }
+        getScheduleList(date: currentDate, id: id)
+        
     }
     
     /// id가 로그인한 유저인지 식별 후 저장
@@ -217,7 +215,8 @@ extension MainViewModel {
         // 로그인한 유저 정보 (내정보)
         self.userSummary.subscribe(onNext: { data in
             
-            if data.userId != "" {
+            // 최초 1회만 실행
+            if data.userId != "" && !self.isMyProfileAdded {
                 var snapshot = self.collectionViewDataSource.snapshot()
                 
                 if let first = snapshot.itemIdentifiers.first {
@@ -230,7 +229,10 @@ extension MainViewModel {
                     self.collectionViewDataSource.apply(snapshot)
                 }
                 
+                UserDataStorage.shared.setUserID(id: data.userId)
+                
                 self.currentUserId = data.userId
+                self.isMyProfileAdded = true
             }
             
         }).disposed(by: disposeBag)
@@ -252,16 +254,15 @@ extension MainViewModel {
         }).disposed(by: disposeBag)
     }
     
-    func configureTableViewSnapshot(animatingDifferences: Bool = true) {
+    func configureTableViewSnapshot(animatingDifferences: Bool = false) {
         
         self.scheduleList.subscribe(onNext: { data in
             
-            if data.count != 0 {
-                var snapshot = NSDiffableDataSourceSnapshot<MainSection, ScheduleMain>()
-                snapshot.appendSections([.main])
-                snapshot.appendItems(data, toSection: .main)
-                self.tableViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
-            }
+            var snapshot = NSDiffableDataSourceSnapshot<MainSection, ScheduleMain>()
+            snapshot.appendSections([.main])
+            snapshot.appendItems(data, toSection: .main)
+            self.tableViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+            
         }).disposed(by: disposeBag)
     }
 
@@ -279,8 +280,11 @@ extension MainViewModel {
         .disposed(by: disposeBag)
     }
     
-    private func getUserSummary() {
-        self.mainUseCase.userSummary().subscribe(onSuccess: { userData in
+    private func getUserSummary(id: String?) {
+        self.mainUseCase.userSummary(id: id).subscribe(onSuccess: { userData in
+            
+            guard let userData = userData else { return }
+            
             PublishRelay<UserSummary>.just(userData).bind(to: self.userSummary).disposed(by: self.disposeBag)
             
         }, onFailure: { error in
@@ -289,9 +293,9 @@ extension MainViewModel {
         .disposed(by: disposeBag)
     }
     
-    private func getScheduleList(date: Date) {
+    private func getScheduleList(date: Date, id: String?) {
         
-        self.mainUseCase.scheduleList(date: date).subscribe(onSuccess: { scheduleData in
+        self.mainUseCase.scheduleList(date: date, id: id).subscribe(onSuccess: { scheduleData in
             PublishRelay<[ScheduleMain]>.just(scheduleData).bind(to: self.scheduleList).disposed(by: self.disposeBag)
             print("Schedule: \(scheduleData)")
 
