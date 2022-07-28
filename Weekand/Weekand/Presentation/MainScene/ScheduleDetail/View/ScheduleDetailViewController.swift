@@ -17,13 +17,17 @@ class ScheduleDetailViewController: BaseViewController {
     
     lazy var nameStackView = UIStackView().then {
         $0.axis = .vertical
+        $0.alignment = .leading
         $0.spacing = 10
     }
     
     lazy var nameLabel = WTextLabel().then {
         $0.font = WFont.head1()
         $0.textColor = .gray900
+        $0.numberOfLines = 0
     }
+    
+    lazy var categoryStackView = ScheduleCategoryStackView()
     
     lazy var dividerLine = UIView().then {
         $0.backgroundColor = .gray100
@@ -59,7 +63,6 @@ class ScheduleDetailViewController: BaseViewController {
     private func setupView() {
         view.backgroundColor = .white
         stackView.spacing = 20
-        navigationItem.title = "일정 제목"
     }
     
     private func configureUI() {
@@ -68,7 +71,8 @@ class ScheduleDetailViewController: BaseViewController {
          informationStackView
         ].forEach { stackView.addArrangedSubview($0) }
         
-        [nameLabel
+        [nameLabel,
+         categoryStackView
         ].forEach { nameStackView.addArrangedSubview($0) }
         
         [dateStackView,
@@ -111,6 +115,11 @@ class ScheduleDetailViewController: BaseViewController {
         self.time.bind(to: timeStackView.textLabel.rx.text)
             .disposed(by: disposeBag)
         
+        self.category.bind { category in
+            self.categoryStackView.setCategory(category)
+        }
+        .disposed(by: disposeBag)
+        
         self.repeatText.bind { repeatText in
             if repeatText != "" {
                 self.repeatStackView.textLabel.text = repeatText
@@ -150,7 +159,9 @@ class ScheduleDetailViewController: BaseViewController {
         self.viewModel?.schedule.subscribe(onNext: { [weak self] schedule in
             let repeatText = WRepeatTextManager.combineTimeDate(repeatType: schedule.repeatType,
                                                                 repeatSelectedValue: schedule.repeatSelectedValue, repeatEndDate: schedule.repeatEnd)
+            self?.navigationItem.title = schedule.name
             self?.name.accept(schedule.name)
+            self?.category.accept(schedule.category)
             self?.date.accept(WDateFormatter.dateFormatter.string(from: schedule.dateStart))
             self?.time.accept(WDateFormatter.combineTimeDate(startTime: schedule.dateStart,
                                                              endTime: schedule.dateEnd))
