@@ -166,6 +166,20 @@ class ProfileViewController: UIViewController {
         output?.userDetail.subscribe(onNext: { userData in
             self.setData(user: userData)
         }).disposed(by: disposeBag)
+        
+        output?.buttonState.subscribe(onNext: { state in
+            
+            switch state {
+            case .edit: break
+            case .following: self.profileButton.setUpStyle("팔로잉", font: WFont.subHead1(), style: .tint)
+            case .follow: self.profileButton.setUpStyle("팔로우", font: WFont.subHead1(), style: .filled)
+            }
+        }).disposed(by: disposeBag)
+        
+        output?.errorMessage.subscribe(onNext: { message in
+            guard let text = message else { return }
+            self.showToast(message: text)
+        }).disposed(by: disposeBag)
     }
     
     

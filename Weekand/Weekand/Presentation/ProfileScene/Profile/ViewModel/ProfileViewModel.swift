@@ -15,7 +15,6 @@ enum ProfileButtonType: String {
     case follow = "팔로우"
 }
 
-
 class ProfileViewModel: ViewModelType {
     
     weak var coordinator: ProfileCoordinator?
@@ -23,6 +22,8 @@ class ProfileViewModel: ViewModelType {
     private let disposeBag = DisposeBag()
     
     var userDeatil = BehaviorRelay<UserDetail>(value: UserDetail.defaultData)
+    var buttonState = BehaviorRelay<ProfileButtonType>(value: ProfileButtonType.edit)
+    var errorMessage = BehaviorRelay<String?>(value: nil)
     
     var userId: String?
     var isMyPage: Bool
@@ -63,6 +64,8 @@ extension ProfileViewModel {
     
     struct Output {
         let userDetail: Observable<UserDetail>
+        let buttonState: Observable<ProfileButtonType>
+        let errorMessage: Observable<String?>
     }
     
     @discardableResult
@@ -77,10 +80,15 @@ extension ProfileViewModel {
             switch type {
             case .edit:
                 self.coordinator?.pushProfileEditViewController()
-            case .following:
-                print("팔로우 취소")
+            // 팔로우 버튼 터치 -> 팔로우 추가 동작
             case .follow:
-                print("팔로우")
+                guard let id = self.userId else { return }
+                self.followUser(id: id)
+                   
+            // 팔로잉 버튼 터치 -> 팔로우 취소 동작
+            case .following:
+                guard let id = self.userId else { return }
+                self.unfollowUser(id: id) 
             }
 
         }).disposed(by: disposeBag)
@@ -124,14 +132,18 @@ extension ProfileViewModel {
             print("회원탈퇴")
         }).disposed(by: disposeBag)
 
-        return Output(userDetail: userDeatil.asObservable())
+        return Output(
+            userDetail: userDeatil.asObservable(),
+            buttonState: buttonState.asObservable(),
+            errorMessage: errorMessage.asObservable()
+        )
     }
     
 }
 
 extension ProfileViewModel {
     
-    /// 내 프로필 가져오기
+    /// 유저 프로필 가져오기
     private func getUserProfile(id: String?) {
         
         self.profileUseCase.profileDetail(id: id)
@@ -143,8 +155,30 @@ extension ProfileViewModel {
         .disposed(by: disposeBag)
     }
     
-    /// 남의 프로필 가져오기
-    private func getUserProfile(id: String) {
-        PublishRelay<UserDetail>.just(UserDetail.defaultData).bind(to: self.userDeatil).disposed(by: self.disposeBag)
+    
+    private func followUser(id: String) {
+        
+        self.profileUseCase.createFollowee(id: id).subscribe(onSuccess: { result in
+            BehaviorRelay<ProfileButtonType>.just(.following).bind(to: self.buttonState).disposed(by: self.disposeBag)
+        }, onFailure: { error in
+            print("\(#function) Error: \(error)")
+            BehaviorRelay<String?>.just("\(error)").bind(to: self.errorMessage).disposed(by: self.disposeBag)
+        }, onDisposed: nil)
+        .disposed(by: disposeBag)
+
     }
+    
+    private func unfollowUser(id: String) {
+        
+        self.profileUseCase.deleteFollowee(id: id).subscribe(onSuccess: { result in
+            BehaviorRelay<ProfileButtonType>.just(.follow).bind(to: self.buttonState).disposed(by: self.disposeBag)
+
+        }, onFailure: { error in
+            print("\(#function) Error: \(error)")
+            BehaviorRelay<String?>.just("\(error)").bind(to: self.errorMessage).disposed(by: self.disposeBag)
+        }, onDisposed: nil)
+        .disposed(by: disposeBag)
+    
+    }
+    
 }
