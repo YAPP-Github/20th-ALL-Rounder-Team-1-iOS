@@ -30,7 +30,7 @@ struct FollowingUser: Hashable {
         self.imagePath = imagePath
     }
     
-    init (model: FollowersQuery.Data.Follower.Follower) {
+    init (model: FolloweesQuery.Data.Followee.Followee) {
         self.userId = model.id ?? ""
         self.name = model.nickname ?? ""
         self.imagePath = model.profileUrl ?? ""

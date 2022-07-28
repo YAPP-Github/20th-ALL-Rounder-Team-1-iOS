@@ -1017,6 +1017,219 @@ public final class DeleteScheduleFromDateMutation: GraphQLMutation {
   }
 }
 
+public final class FolloweesQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query Followees($page: Int!, $size: Int!) {
+      followees(page: $page, size: $size) {
+        __typename
+        paginationInfo {
+          __typename
+          hasNext
+        }
+        followees {
+          __typename
+          id
+          nickname
+          profileUrl
+        }
+      }
+    }
+    """
+
+  public let operationName: String = "Followees"
+
+  public var page: Int
+  public var size: Int
+
+  public init(page: Int, size: Int) {
+    self.page = page
+    self.size = size
+  }
+
+  public var variables: GraphQLMap? {
+    return ["page": page, "size": size]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("followees", arguments: ["page": GraphQLVariable("page"), "size": GraphQLVariable("size")], type: .nonNull(.object(Followee.selections))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(followees: Followee) {
+      self.init(unsafeResultMap: ["__typename": "Query", "followees": followees.resultMap])
+    }
+
+    /// 자신을 팔로우 하고 있는 유저 목록을 가져온다
+    public var followees: Followee {
+      get {
+        return Followee(unsafeResultMap: resultMap["followees"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "followees")
+      }
+    }
+
+    public struct Followee: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["FolloweeList"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("paginationInfo", type: .object(PaginationInfo.selections)),
+          GraphQLField("followees", type: .nonNull(.list(.nonNull(.object(Followee.selections))))),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(paginationInfo: PaginationInfo? = nil, followees: [Followee]) {
+        self.init(unsafeResultMap: ["__typename": "FolloweeList", "paginationInfo": paginationInfo.flatMap { (value: PaginationInfo) -> ResultMap in value.resultMap }, "followees": followees.map { (value: Followee) -> ResultMap in value.resultMap }])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var paginationInfo: PaginationInfo? {
+        get {
+          return (resultMap["paginationInfo"] as? ResultMap).flatMap { PaginationInfo(unsafeResultMap: $0) }
+        }
+        set {
+          resultMap.updateValue(newValue?.resultMap, forKey: "paginationInfo")
+        }
+      }
+
+      public var followees: [Followee] {
+        get {
+          return (resultMap["followees"] as! [ResultMap]).map { (value: ResultMap) -> Followee in Followee(unsafeResultMap: value) }
+        }
+        set {
+          resultMap.updateValue(newValue.map { (value: Followee) -> ResultMap in value.resultMap }, forKey: "followees")
+        }
+      }
+
+      public struct PaginationInfo: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["PaginationInfo"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("hasNext", type: .nonNull(.scalar(Bool.self))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(hasNext: Bool) {
+          self.init(unsafeResultMap: ["__typename": "PaginationInfo", "hasNext": hasNext])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var hasNext: Bool {
+          get {
+            return resultMap["hasNext"]! as! Bool
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "hasNext")
+          }
+        }
+      }
+
+      public struct Followee: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["FollowUser"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("id", type: .scalar(GraphQLID.self)),
+            GraphQLField("nickname", type: .scalar(String.self)),
+            GraphQLField("profileUrl", type: .scalar(String.self)),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(id: GraphQLID? = nil, nickname: String? = nil, profileUrl: String? = nil) {
+          self.init(unsafeResultMap: ["__typename": "FollowUser", "id": id, "nickname": nickname, "profileUrl": profileUrl])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var id: GraphQLID? {
+          get {
+            return resultMap["id"] as? GraphQLID
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "id")
+          }
+        }
+
+        public var nickname: String? {
+          get {
+            return resultMap["nickname"] as? String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "nickname")
+          }
+        }
+
+        public var profileUrl: String? {
+          get {
+            return resultMap["profileUrl"] as? String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "profileUrl")
+          }
+        }
+      }
+    }
+  }
+}
+
 public final class FollowersQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
