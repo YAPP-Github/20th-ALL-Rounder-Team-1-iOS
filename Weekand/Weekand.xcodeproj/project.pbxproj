@@ -20,7 +20,6 @@
 		7D67F4AB289263F500A1D7CD /* Followees.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4AA289263F500A1D7CD /* Followees.graphql */; };
 		7D67F4AD28927A3A00A1D7CD /* DeleteFollowee.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4AC28927A3A00A1D7CD /* DeleteFollowee.graphql */; };
 		7D67F4AF28927A4F00A1D7CD /* CreateFollowee.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4AE28927A4F00A1D7CD /* CreateFollowee.graphql */; };
-		7D67F4B12892BA9800A1D7CD /* EmojiTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67F4B02892BA9800A1D7CD /* EmojiTabViewModel.swift */; };
 		7D67F4B32892CA3F00A1D7CD /* CreateSticker.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4B22892CA3F00A1D7CD /* CreateSticker.graphql */; };
 		7D6B911528449A760044E217 /* WIconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B911428449A760044E217 /* WIconLabel.swift */; };
 		7D6B911728449F610044E217 /* WCategoryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B911628449F610044E217 /* WCategoryTitleLabel.swift */; };
@@ -288,7 +287,6 @@
 		7D67F4AA289263F500A1D7CD /* Followees.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Followees.graphql; sourceTree = "<group>"; };
 		7D67F4AC28927A3A00A1D7CD /* DeleteFollowee.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = DeleteFollowee.graphql; sourceTree = "<group>"; };
 		7D67F4AE28927A4F00A1D7CD /* CreateFollowee.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CreateFollowee.graphql; sourceTree = "<group>"; };
-		7D67F4B02892BA9800A1D7CD /* EmojiTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTabViewModel.swift; sourceTree = "<group>"; };
 		7D67F4B22892CA3F00A1D7CD /* CreateSticker.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CreateSticker.graphql; sourceTree = "<group>"; };
 		7D6B911428449A760044E217 /* WIconLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WIconLabel.swift; sourceTree = "<group>"; };
 		7D6B911628449F610044E217 /* WCategoryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCategoryTitleLabel.swift; sourceTree = "<group>"; };
@@ -829,7 +827,6 @@
 		7DBC4C6B2876B75C00F0AC86 /* Sheet */ = {
 			isa = PBXGroup;
 			children = (
-				7D67F4B02892BA9800A1D7CD /* EmojiTabViewModel.swift */,
 				7DBC4C5E2876AE1800F0AC86 /* EmojiTableViewModel.swift */,
 				7DBC4C602876AE7800F0AC86 /* StickerAddSheetViewModel.swift */,
 				7DBC4C622876AEA200F0AC86 /* MonthlyCalendarSheetViewModel.swift */,
@@ -1703,7 +1700,6 @@
 				F3C8E0B32873500900B0916A /* AddInformationContainerView.swift in Sources */,
 				7DBC4C5F2876AE1800F0AC86 /* EmojiTableViewModel.swift in Sources */,
 				F3B0026C287D68F100D6BB1D /* Color.swift in Sources */,
-				7D67F4B12892BA9800A1D7CD /* EmojiTabViewModel.swift in Sources */,
 				F336F3D6288D1626005B57A0 /* KeyChainManager.swift in Sources */,
 				F336F3B8288A958C005B57A0 /* ScheduleInputModel.swift in Sources */,
 				F3DD022B284678CF00AD9240 /* WelcomeViewModel.swift in Sources */,

@@ -9,12 +9,17 @@ import UIKit
 
 class EmojiTableViewController: UIViewController {
     
-    var viewModel: EmojiTableViewModel?
+    var viewModel: EmojiTableViewModel? {
+        didSet {
+            configureTableViewDataSource()
+        }
+    }
     
     var tableView: UITableView!
     
     init(emoji: Emoji?) {
         super.init(nibName: nil, bundle: nil)
+        setUpView()
     }
     
     required init?(coder: NSCoder) {
@@ -24,12 +29,10 @@ class EmojiTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpView()
+        
         configureUI()
-        bindViewModel()
     }
-    
-    
+        
     private func setUpView() {
         configureTableView()
     }
@@ -43,15 +46,12 @@ class EmojiTableViewController: UIViewController {
         }
     }
     
-    private func bindViewModel() {
-        
-    }
 }
 
 // MARK: TableView DataSource
 extension EmojiTableViewController {
     
-    private func configureTableView() {
+    func configureTableView() {
         setUpTableView()
         configureTableViewDataSource()
     }
@@ -62,7 +62,7 @@ extension EmojiTableViewController {
         tableView.register(EmojiTableViewCell.self, forCellReuseIdentifier: EmojiTableViewCell.identifier)
         
         tableView.separatorStyle = .none
-         
+        tableView.allowsSelection = false
             
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0

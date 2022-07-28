@@ -13,10 +13,14 @@ import RxSwift
 
 class EmojiTabViewController: TabmanViewController {
     
-    
-    
     let emojis: [Emoji?] = [nil, .good, .awesome, .cool, .support]
-    private var viewControllers: [EmojiTableViewController] = []
+    private var viewControllers = [
+        EmojiTableViewController(emoji: nil),
+        EmojiTableViewController(emoji: .good),
+        EmojiTableViewController(emoji: .awesome),
+        EmojiTableViewController(emoji: .cool),
+        EmojiTableViewController(emoji: .support)
+    ]
     
     private let mainUseCase = MainUseCase()
     private let disposeBag = DisposeBag()
@@ -29,7 +33,7 @@ class EmojiTabViewController: TabmanViewController {
         
         setUpView()
     }
-    
+        
     init(id: String, date: Date) {
         super.init(nibName: nil, bundle: nil)
         getStickerSummary(id: id, date: date)
@@ -78,12 +82,8 @@ extension EmojiTabViewController: PageboyViewControllerDataSource, TMBarDataSour
     
     func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
         
-        var title = (index == 0) ? "총\(totalCount)개" : String(emojiCount[emojis[index]!] ?? 0)
+        var title = (index == 0) ? "총\(totalCount)개" : "\(emojis[index]!.emojiName) \(emojiCount[emojis[index]!] ?? 0)"
         var barItem = TMBarItem(title: title)
-        if index != 0 {
-            barItem.image = UIImage(named: emojis[index]!.imageName)
-        }
-        
         
         return barItem
     }
@@ -96,16 +96,17 @@ extension EmojiTabViewController {
         self.mainUseCase.stickerSummary(id: id, date: date).subscribe(onSuccess: { stickerData in
             
             let list = stickerData.scheduleStickerUser
-            self.emojis.forEach { value in
-                let viewController = EmojiTableViewController(emoji: value)
-                viewController.viewModel = EmojiTableViewModel(emoji: value, list: list)
-                self.viewControllers.append(viewController)
+            
+            self.emojis.enumerated().forEach { idx, value in
+                self.viewControllers[idx].viewModel = EmojiTableViewModel(emoji: value, list: list)
             }
             
             self.totalCount = stickerData.totalCount
             self.emojiCount = stickerData.scheduleStickers
 
             self.bars.forEach({ $0.reloadData(at: 0...4, context: .full) })
+            
+            
             
         }, onFailure: { error in
             print("\(#function) Error: \(error)")

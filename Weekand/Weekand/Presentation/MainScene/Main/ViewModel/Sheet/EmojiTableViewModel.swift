@@ -21,10 +21,10 @@ class EmojiTableViewModel {
     let disposeBag = DisposeBag()
 
     var tableViewDataSource: UITableViewDiffableDataSource<EmojiSection, EmojiGiver>!
-    var targetEmojiList = BehaviorRelay<[EmojiGiver]>(value: [])
+    var targetEmojiList: [EmojiGiver]
     
     init(emoji: Emoji?, list: [EmojiGiver]) {
-        BehaviorRelay<[EmojiGiver]>.just(list).bind(to: targetEmojiList).disposed(by: disposeBag)
+        targetEmojiList = list
         targetEmoji = emoji
     }
 
@@ -35,18 +35,15 @@ extension EmojiTableViewModel {
     
     func configureTableViewSnapshot(animatingDifferences: Bool = true) {
         
-        self.targetEmojiList.subscribe(onNext: { data in
-            
-            var list = data
-            if let emoji = self.targetEmoji {
-                list = data.filter { $0.emoji == emoji }
-            }
-            
-            var snapshot = NSDiffableDataSourceSnapshot<EmojiSection, EmojiGiver>()
-            snapshot.appendSections([.main])
-            snapshot.appendItems(list, toSection: .main)
-            self.tableViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
-        }).disposed(by: self.disposeBag)
+        var list = targetEmojiList
+        if let emoji = self.targetEmoji {
+            list = targetEmojiList.filter { $0.emoji == emoji }
+        }
+        
+        var snapshot = NSDiffableDataSourceSnapshot<EmojiSection, EmojiGiver>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(list, toSection: .main)
+        self.tableViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 
 }
