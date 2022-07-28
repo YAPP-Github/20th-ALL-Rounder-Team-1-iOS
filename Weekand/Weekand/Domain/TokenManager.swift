@@ -8,9 +8,9 @@
 import Foundation
 import RxSwift
 
-class ToeknManager {
+class TokenManager {
   
-    static let shared = ToeknManager()
+    static let shared = TokenManager()
     private let disposeBag = DisposeBag()
 
     var isExpired: Bool = false
@@ -21,7 +21,7 @@ class ToeknManager {
         NetWork.shared.fetch(query: ReissueQuery())
             .subscribe(onNext: { result in
                 let accessToken = result.reissue.accessToken
-                ToeknManager.shared.setAccessToken(accessToken)
+                TokenManager.shared.setAccessToken(accessToken)
                 completion(.success(accessToken))
             }, onError: { error in
                 completion(.failure(error))

@@ -15,8 +15,8 @@ class RefreshTokenInterceptor: ApolloInterceptor {
             
             if let error = response.parsedResponse?.errors?.first,
                error.description == NetworkError.expiredToken.errorDescription {
-                ToeknManager.shared.isExpired = true
-                ToeknManager.shared.reissue { result in
+                TokenManager.shared.isExpired = true
+                TokenManager.shared.reissue { result in
                     switch result {
                     case .success:
                         chain.retry(request: request, completion: completion)

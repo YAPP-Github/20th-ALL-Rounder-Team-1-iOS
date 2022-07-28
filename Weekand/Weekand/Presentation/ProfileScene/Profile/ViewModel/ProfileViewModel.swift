@@ -125,11 +125,11 @@ extension ProfileViewModel {
         }).disposed(by: disposeBag)
         
         input.didLogoutTap.when(.recognized).subscribe(onNext: { _ in
-            print("로그아웃")
+            self.logout()
         }).disposed(by: disposeBag)
         
         input.didSignOutTap.when(.recognized).subscribe(onNext: { _ in
-            print("회원탈퇴")
+            self.coordinator?.presentWarningPopViewController()
         }).disposed(by: disposeBag)
 
         return Output(
@@ -181,4 +181,16 @@ extension ProfileViewModel {
     
     }
     
+    private func logout() {
+        self.profileUseCase.logout().subscribe(onSuccess: { isSucceed in
+            if isSucceed {
+                self.coordinator?.logoutFinsh()
+                TokenManager.shared.deleteTokens()
+                UserDefaults.standard.set(false, forKey: "autoSign")
+            }
+        }, onFailure: { error in
+            print(error)
+        })
+        .disposed(by: disposeBag)
+    }
 }

@@ -33,7 +33,7 @@ extension CategoryDetailViewModel {
     struct Input {
         let didEditSearchBar: Observable<String>
         let didTapUpdateCategoryButton: Observable<Void>
-        let scheduleCellDidSelected: PublishRelay<String>
+        let scheduleCellDidSelected: PublishRelay<ScheduleSummary>
         let scheduleCellDidSwipeEvent: PublishRelay<String>
         let selectedCategory: Category?
     }
@@ -59,8 +59,8 @@ extension CategoryDetailViewModel {
             self?.coordinator?.showScheduleModifyScene(scheduleId: scheduleId)
         }).disposed(by: disposeBag)
         
-        input.scheduleCellDidSelected.subscribe(onNext: { [weak self] scheduleId in
-            self?.coordinator?.showScheduleDetailScene(scheduleId: scheduleId)
+        input.scheduleCellDidSelected.subscribe(onNext: { [weak self] schedule in
+            self?.coordinator?.showScheduleDetailScene(schedule: schedule)
         })
         .disposed(by: disposeBag)
         

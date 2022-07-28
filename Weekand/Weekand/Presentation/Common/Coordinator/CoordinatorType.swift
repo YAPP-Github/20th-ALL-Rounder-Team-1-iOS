@@ -11,6 +11,7 @@ enum CoordinatorType {
     // Common
     case app
     case simplePopup
+    case warningPopup
     
     // Sign Scene
     case welcome

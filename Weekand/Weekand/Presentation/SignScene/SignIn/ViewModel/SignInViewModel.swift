@@ -81,7 +81,7 @@ extension SignInViewModel {
         let passwordText = password.trimmingCharacters(in: [" "])
         
         self.signInUseCase.login(email: emailText, password: passwordText).subscribe(onSuccess: { tokenData in
-            ToeknManager.shared.createTokens(accessToken: tokenData.accessToken, refreshToken: tokenData.refreshToken)
+            TokenManager.shared.createTokens(accessToken: tokenData.accessToken, refreshToken: tokenData.refreshToken)
             self.userID()
         }, onFailure: { error in
             if error.localizedDescription == SignInError.notMatchIdPassword.serverDescription {
