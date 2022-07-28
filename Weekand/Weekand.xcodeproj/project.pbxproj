@@ -216,6 +216,7 @@
 		F38AE45428926B7300E5E261 /* ScheduleDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE45328926B7300E5E261 /* ScheduleDetail.swift */; };
 		F38AE45628926C1200E5E261 /* Schedule.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F38AE45528926C1200E5E261 /* Schedule.graphql */; };
 		F38AE45828926E8700E5E261 /* ScheduleStatus+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE45728926E8700E5E261 /* ScheduleStatus+extension.swift */; };
+		F38AE45A28927BBB00E5E261 /* ScheduleCategoryStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE45928927BBB00E5E261 /* ScheduleCategoryStackView.swift */; };
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
@@ -486,6 +487,7 @@
 		F38AE45328926B7300E5E261 /* ScheduleDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetail.swift; sourceTree = "<group>"; };
 		F38AE45528926C1200E5E261 /* Schedule.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Schedule.graphql; sourceTree = "<group>"; };
 		F38AE45728926E8700E5E261 /* ScheduleStatus+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleStatus+extension.swift"; sourceTree = "<group>"; };
+		F38AE45928927BBB00E5E261 /* ScheduleCategoryStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCategoryStackView.swift; sourceTree = "<group>"; };
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
@@ -1268,6 +1270,7 @@
 			isa = PBXGroup;
 			children = (
 				F336F41E2891B9C6005B57A0 /* ScheduleInformationStackView.swift */,
+				F38AE45928927BBB00E5E261 /* ScheduleCategoryStackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1851,6 +1854,7 @@
 				F3AA9E1B2869FEFC00F71559 /* PasswordFindViewModel.swift in Sources */,
 				F3AA9E1D2869FF1E00F71559 /* PasswordFindCoordinator.swift in Sources */,
 				7DE60AF12892539F00F85A05 /* ProfileDetailBlockView.swift in Sources */,
+				F38AE45A28927BBB00E5E261 /* ScheduleCategoryStackView.swift in Sources */,
 				7D8129FA288BF130006C0A5D /* UserUpdate.swift in Sources */,
 				F30EBCCD288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift in Sources */,
 				F336F3F42890260A005B57A0 /* ScheduleModifyViewModel.swift in Sources */,

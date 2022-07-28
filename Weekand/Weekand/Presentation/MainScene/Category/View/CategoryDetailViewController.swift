@@ -134,9 +134,9 @@ class CategoryDetailViewController: UIViewController {
         let output = viewModel?.transform(input: input)
         
         output?.searchWithQueryInformation
-            .filter { $0 != "" }
             .subscribe(onNext: { (searchText) in
                 self.searchText = searchText
+                self.setScheduleList()
             })
             .disposed(by: disposeBag)
         
