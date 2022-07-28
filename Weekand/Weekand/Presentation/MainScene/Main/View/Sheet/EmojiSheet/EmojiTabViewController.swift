@@ -9,24 +9,42 @@ import UIKit
 import SnapKit
 import Tabman
 import Pageboy
+import RxSwift
 
 class EmojiTabViewController: TabmanViewController {
     
     let emojis: [Emoji?] = [nil, .good, .awesome, .cool, .support]
-    private var viewControllers: [UIViewController] = []
+    private var viewControllers = [
+        EmojiTableViewController(emoji: nil),
+        EmojiTableViewController(emoji: .good),
+        EmojiTableViewController(emoji: .awesome),
+        EmojiTableViewController(emoji: .cool),
+        EmojiTableViewController(emoji: .support)
+    ]
+    
+    private let mainUseCase = MainUseCase()
+    private let disposeBag = DisposeBag()
+    
+    var totalCount = 0
+    var emojiCount: [Emoji: Int] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpView()
-        configureUI()
+    }
+        
+    init(id: String, date: Date) {
+        super.init(nibName: nil, bundle: nil)
+        getStickerSummary(id: id, date: date)
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     private func setUpView() {
-        
-        emojis.forEach { value in
-            viewControllers.append(EmojiTableViewController(emoji: value))
-        }
         
         self.dataSource = self
 
@@ -44,10 +62,7 @@ class EmojiTabViewController: TabmanViewController {
         bar.layout.transitionStyle = .snap // Customize
         addBar(bar, dataSource: self, at: .top)
     }
-    
-    private func configureUI() {
         
-    }
 }
 
 extension EmojiTabViewController: PageboyViewControllerDataSource, TMBarDataSource {
@@ -67,11 +82,36 @@ extension EmojiTabViewController: PageboyViewControllerDataSource, TMBarDataSour
     
     func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
         
-        var title = (index == 0) ? "전체" : String(describing: emojis[index]!.emojiName)
+        var title = (index == 0) ? "총\(totalCount)개" : "\(emojis[index]!.emojiName) \(emojiCount[emojis[index]!] ?? 0)"
         var barItem = TMBarItem(title: title)
         
         return barItem
     }
     
+}
+
+extension EmojiTabViewController {
     
+    func getStickerSummary(id: String, date: Date) {
+        self.mainUseCase.stickerSummary(id: id, date: date).subscribe(onSuccess: { stickerData in
+            
+            let list = stickerData.scheduleStickerUser
+            
+            self.emojis.enumerated().forEach { idx, value in
+                self.viewControllers[idx].viewModel = EmojiTableViewModel(emoji: value, list: list)
+            }
+            
+            self.totalCount = stickerData.totalCount
+            self.emojiCount = stickerData.scheduleStickers
+
+            self.bars.forEach({ $0.reloadData(at: 0...4, context: .full) })
+            
+            
+            
+        }, onFailure: { error in
+            print("\(#function) Error: \(error)")
+        }, onDisposed: nil)
+        .disposed(by: disposeBag)
+
+    }
 }

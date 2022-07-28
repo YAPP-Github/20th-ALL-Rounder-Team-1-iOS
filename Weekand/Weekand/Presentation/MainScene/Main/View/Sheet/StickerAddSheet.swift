@@ -14,7 +14,8 @@ class StickerAddSheetViewController: BottomSheetViewController {
     var viewModel: StickerAddSheetViewModel?
     let disposeBag = DisposeBag()
     
-    var selectedEmoji: Emoji?
+    var existingEmoji: Emoji?
+    var selectedEmoji = PublishSubject<Emoji>()
     
     // MARK: UI Properties
     lazy var titleLabel = UILabel().then {
@@ -30,9 +31,10 @@ class StickerAddSheetViewController: BottomSheetViewController {
         }
     }
     
-    init(existingEmoji existing: Emoji?) {
+    init() {
         super.init(nibName: nil, bundle: nil)
-        selectedEmoji = existing
+        
+        
     }
     
     required init?(coder: NSCoder) {
@@ -44,6 +46,7 @@ class StickerAddSheetViewController: BottomSheetViewController {
         
         setUpView()
         configureUI()
+        bindViewModel()
     }
     
     private func setUpView() {
@@ -62,6 +65,23 @@ class StickerAddSheetViewController: BottomSheetViewController {
             make.centerX.equalToSuperview()
             make.width.equalTo(375)
         }
+    }
+    
+    private func bindViewModel() {
+        
+        let input = StickerAddSheetViewModel.Input(stickerSelected: selectedEmoji.asObservable())
+        
+        let output = viewModel?.transform(input: input)
+        
+        output?.stickerCreated.subscribe(onNext: { created in
+            
+            if created {
+                self.dismiss(animated: true)
+            } else {
+                self.showToast(message: "스티커 추가를 실패했습니다.")
+            }
+            
+        }).disposed(by: disposeBag)
     }
     
 }
@@ -105,7 +125,7 @@ extension StickerAddSheetViewController {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StickerCollectionViewCell.identifier, for: indexPath) as! StickerCollectionViewCell
             
             cell.setUpCell(emoji: emoji)
-            if self.selectedEmoji == emoji {
+            if self.existingEmoji == emoji {
                 self.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
             }
             
@@ -122,8 +142,9 @@ extension StickerAddSheetViewController {
 extension StickerAddSheetViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
-        selectedEmoji = self.viewModel?.emojiList[indexPath.item]
-        print(selectedEmoji!)
+    
+        guard let emoji = self.viewModel?.emojiList[indexPath.item] else { return }
+        PublishSubject<Emoji>.just(emoji).bind(to: selectedEmoji).disposed(by: disposeBag)
+        
     }
 }

@@ -280,7 +280,10 @@ extension MainViewController: MainTableViewCellDelegate {
     
     func stickerButtonTapped(id: String?) {
         print("\(#function), id: \(String(describing: id))")
-        self.viewModel?.coordinator?.pushStickerAddSheet(id: id ?? "")
+        
+        guard let id = id else { return }
+        
+        self.viewModel?.coordinator?.pushStickerAddSheet(id: id, date: currentDate)
     }
 }
 
