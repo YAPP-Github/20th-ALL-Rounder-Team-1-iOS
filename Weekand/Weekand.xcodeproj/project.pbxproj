@@ -17,6 +17,7 @@
 		7D0ED2C0287D065800DE3215 /* EmojiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0ED2BF287D065800DE3215 /* EmojiTableViewController.swift */; };
 		7D3B1F54283630A50037504A /* WTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B1F53283630A50037504A /* WTextField.swift */; };
 		7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7D648FBC282367F600F5D0B5 /* .swiftlint.yml */; };
+		7D67F4AB289263F500A1D7CD /* Followees.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4AA289263F500A1D7CD /* Followees.graphql */; };
 		7D6B911528449A760044E217 /* WIconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B911428449A760044E217 /* WIconLabel.swift */; };
 		7D6B911728449F610044E217 /* WCategoryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B911628449F610044E217 /* WCategoryTitleLabel.swift */; };
 		7D6B91192844A8D50044E217 /* WStatusTimeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B91182844A8D50044E217 /* WStatusTimeLabel.swift */; };
@@ -280,6 +281,7 @@
 		7D0ED2BF287D065800DE3215 /* EmojiTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTableViewController.swift; sourceTree = "<group>"; };
 		7D3B1F53283630A50037504A /* WTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTextField.swift; sourceTree = "<group>"; };
 		7D648FBC282367F600F5D0B5 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		7D67F4AA289263F500A1D7CD /* Followees.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Followees.graphql; sourceTree = "<group>"; };
 		7D6B911428449A760044E217 /* WIconLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WIconLabel.swift; sourceTree = "<group>"; };
 		7D6B911628449F610044E217 /* WCategoryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCategoryTitleLabel.swift; sourceTree = "<group>"; };
 		7D6B91182844A8D50044E217 /* WStatusTimeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WStatusTimeLabel.swift; sourceTree = "<group>"; };
@@ -1379,6 +1381,7 @@
 				F3A4D95A2885A94500DDE03B /* SearchUsers.graphql */,
 				7D0A6A3B2881C4C100CFE61D /* UserSummary.graphql */,
 				7D0A6A3F2881C61F00CFE61D /* Followers.graphql */,
+				7D67F4AA289263F500A1D7CD /* Followees.graphql */,
 				F336F35F28867ECF005B57A0 /* deleteCategory.graphql */,
 				F336F3C1288AFD67005B57A0 /* CreateSchedule.graphql */,
 				F336F3CC288BDB44005B57A0 /* Reissue.graphql */,
@@ -1584,6 +1587,7 @@
 				F336F3C4288B11CC005B57A0 /* SearchSchedules.graphql in Resources */,
 				F323FF1F2879AD5600DFD8FD /* sendAuthKey.graphql in Resources */,
 				F336F4212892422D005B57A0 /* DeleteSchedule.graphql in Resources */,
+				7D67F4AB289263F500A1D7CD /* Followees.graphql in Resources */,
 				F336F3F828902A92005B57A0 /* ScehduleRule.graphql in Resources */,
 				F336F3C2288AFD67005B57A0 /* CreateSchedule.graphql in Resources */,
 				F3A4D95B2885A94500DDE03B /* SearchUsers.graphql in Resources */,

@@ -272,7 +272,7 @@ extension MainViewModel {
 extension MainViewModel {
     
     private func getFollowingUser() {
-        self.mainUseCase.followers(page: 0, size: 20).subscribe(onSuccess: { following in
+        self.mainUseCase.followees(page: 0, size: 20).subscribe(onSuccess: { following in
             PublishRelay<[FollowingUser]>.just(following).bind(to: self.userFollowingList).disposed(by: self.disposeBag)
         }, onFailure: { error in
             print("\(#function) Error: \(error)")

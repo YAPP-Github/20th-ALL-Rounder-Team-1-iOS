@@ -1,0 +1,12 @@
+query Followees($page: Int!, $size: Int!) {
+  followees(page: $page, size: $size) {
+    paginationInfo {
+      hasNext
+    }
+    followees {
+      id
+      nickname
+      profileUrl
+    }
+  }
+}
