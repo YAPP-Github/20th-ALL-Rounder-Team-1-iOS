@@ -192,6 +192,7 @@
 		F336F41A2891B3B2005B57A0 /* ScheduleDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F4192891B3B2005B57A0 /* ScheduleDetailCoordinator.swift */; };
 		F336F41C2891B437005B57A0 /* ScheduleDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F41B2891B437005B57A0 /* ScheduleDetailUseCase.swift */; };
 		F336F41F2891B9C6005B57A0 /* ScheduleInformationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F41E2891B9C6005B57A0 /* ScheduleInformationStackView.swift */; };
+		F336F4212892422D005B57A0 /* DeleteSchedule.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F336F4202892422D005B57A0 /* DeleteSchedule.graphql */; };
 		F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAB28533D0A005B493A /* WSortButton.swift */; };
 		F33C6EAE28535021005B493A /* UIVIewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAD28535021005B493A /* UIVIewController+extension.swift */; };
 		F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */; };
@@ -452,6 +453,7 @@
 		F336F4192891B3B2005B57A0 /* ScheduleDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailCoordinator.swift; sourceTree = "<group>"; };
 		F336F41B2891B437005B57A0 /* ScheduleDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailUseCase.swift; sourceTree = "<group>"; };
 		F336F41E2891B9C6005B57A0 /* ScheduleInformationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleInformationStackView.swift; sourceTree = "<group>"; };
+		F336F4202892422D005B57A0 /* DeleteSchedule.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = DeleteSchedule.graphql; sourceTree = "<group>"; };
 		F33C6EAB28533D0A005B493A /* WSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSortButton.swift; sourceTree = "<group>"; };
 		F33C6EAD28535021005B493A /* UIVIewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+extension.swift"; sourceTree = "<group>"; };
 		F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputGroupStackView.swift; sourceTree = "<group>"; };
@@ -1352,6 +1354,7 @@
 				F336F3F728902A92005B57A0 /* ScehduleRule.graphql */,
 				F336F40528910E03005B57A0 /* UpdateSchedule.graphql */,
 				F336F40F2891AA97005B57A0 /* DeleteScheduleFromDate.graphql */,
+				F336F4202892422D005B57A0 /* DeleteSchedule.graphql */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1548,6 +1551,7 @@
 				F30EBCD1288078DF00ECB48D /* CreateCategory.graphql in Resources */,
 				F336F3C4288B11CC005B57A0 /* SearchSchedules.graphql in Resources */,
 				F323FF1F2879AD5600DFD8FD /* sendAuthKey.graphql in Resources */,
+				F336F4212892422D005B57A0 /* DeleteSchedule.graphql in Resources */,
 				7D8129EB288A6C0E006C0A5D /* MyUserDetail.graphql in Resources */,
 				F336F3F828902A92005B57A0 /* ScehduleRule.graphql in Resources */,
 				F336F3C2288AFD67005B57A0 /* CreateSchedule.graphql in Resources */,

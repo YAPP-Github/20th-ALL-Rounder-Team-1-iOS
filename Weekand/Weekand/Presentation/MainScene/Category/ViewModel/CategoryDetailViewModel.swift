@@ -69,8 +69,8 @@ extension CategoryDetailViewModel {
 }
 
 extension CategoryDetailViewModel {
-    func deleteScheduleFromDate(schedule: ScheduleSummary, completion: @escaping () -> Void) {
-        self.categoryUseCase.deleteScheduleFromDate(scheduleId: schedule.scheduleId, date: schedule.dateStart)
+    func deleteSchedule(schedule: ScheduleSummary, completion: @escaping () -> Void) {
+        self.categoryUseCase.deleteSchedule(scheduleId: schedule.scheduleId)
             .subscribe(onSuccess: { isSucceed in
                 if isSucceed {
                     completion()

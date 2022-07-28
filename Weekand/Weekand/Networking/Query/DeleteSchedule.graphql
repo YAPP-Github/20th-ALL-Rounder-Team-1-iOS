@@ -1,0 +1,5 @@
+mutation DeleteSchedule($scheduleId: ID!) {
+  deleteSchedule(input: {
+    scheduleId: $scheduleId
+  })
+}
