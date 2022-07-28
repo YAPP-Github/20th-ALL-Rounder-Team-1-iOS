@@ -85,7 +85,6 @@ class MainCoordinator: Coordinator {
         self.navigationController.present(stickerAddViewController, animated: true, completion: nil)
     }
     
-    // TODO: 검색 화면 구현 후 개발
     func showSearchScene() {
         let userSearchCoordinator = UserSearchCoordinator(navigationController: self.navigationController)
         userSearchCoordinator.finishDelegate = self

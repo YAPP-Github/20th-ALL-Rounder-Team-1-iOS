@@ -197,11 +197,12 @@ extension ProfileViewController {
             
             bottomStack.isHidden = true
             
-            // TODO: 내가 팔로우하고 있는지 request -> 버튼 변경
-            let isFollowing = Bool.random()
-            let followButton = WDefaultButton(title: "팔로우", style: .filled, font: WFont.subHead1())
-            let followingButton = WDefaultButton(title: "팔로잉", style: .tint, font: WFont.subHead1())
-            profileButton = isFollowing ? followingButton : followButton
+            if user.followed {
+                profileButton.setUpStyle("팔로잉", font: WFont.subHead1(), style: .tint)
+            } else {
+                profileButton.setUpStyle("팔로우", font: WFont.subHead1(), style: .filled)
+            }
+            
             
             if user.job.isEmpty {
                 

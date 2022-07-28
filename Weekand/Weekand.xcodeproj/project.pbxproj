@@ -970,8 +970,8 @@
 		7DE60AC52892539F00F85A05 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				7DE60AC62892539F00F85A05 /* ViewModel */,
 				7DE60ACC2892539F00F85A05 /* Coordinator */,
+				7DE60AC62892539F00F85A05 /* ViewModel */,
 				7DE60ACE2892539F00F85A05 /* View */,
 			);
 			path = Profile;
@@ -980,11 +980,11 @@
 		7DE60AC62892539F00F85A05 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				7DE60ACB2892539F00F85A05 /* ProfileViewModel.swift */,
+				7DE60ACA2892539F00F85A05 /* ProfileEditViewModel.swift */,
+				7DE60AC92892539F00F85A05 /* SelectionSheetViewModel.swift */,
 				7DE60AC72892539F00F85A05 /* ContactViewModel.swift */,
 				7DE60AC82892539F00F85A05 /* PasswordChangeViewModel.swift */,
-				7DE60AC92892539F00F85A05 /* SelectionSheetViewModel.swift */,
-				7DE60ACA2892539F00F85A05 /* ProfileEditViewModel.swift */,
-				7DE60ACB2892539F00F85A05 /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1000,13 +1000,13 @@
 		7DE60ACE2892539F00F85A05 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7DE60ACF2892539F00F85A05 /* ContactCompleteViewController.swift */,
+				7DE60ADF2892539F00F85A05 /* ProfileViewController.swift */,
 				7DE60AD02892539F00F85A05 /* ProfileEditViewController.swift */,
 				7DE60AD12892539F00F85A05 /* SelectionSheetViewController.swift */,
 				7DE60AD22892539F00F85A05 /* PasswordChangeViewController.swift */,
-				7DE60AD32892539F00F85A05 /* SubView */,
-				7DE60ADF2892539F00F85A05 /* ProfileViewController.swift */,
 				7DE60AE02892539F00F85A05 /* ContactViewController.swift */,
+				7DE60ACF2892539F00F85A05 /* ContactCompleteViewController.swift */,
+				7DE60AD32892539F00F85A05 /* SubView */,
 			);
 			path = View;
 			sourceTree = "<group>";
