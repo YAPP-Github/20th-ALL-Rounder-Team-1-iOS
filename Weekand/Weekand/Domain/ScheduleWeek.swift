@@ -8,7 +8,7 @@
 import Foundation
 
 enum ScheduleWeek: CaseIterable {
-    case sunday, monday, thuesday, wednesday, thursday, friday, saturday
+    case sunday, monday, tuesday, wednesday, thursday, friday, saturday
     
     var description: String {
         switch self {
@@ -16,7 +16,7 @@ enum ScheduleWeek: CaseIterable {
             return "일"
         case .monday:
             return "월"
-        case .thuesday:
+        case .tuesday:
             return "화"
         case .wednesday:
             return "수"
@@ -37,7 +37,7 @@ extension ScheduleWeek {
             return Week.sunday
         case .monday:
             return Week.monday
-        case .thuesday:
+        case .tuesday:
             return Week.tuesday
         case .wednesday:
             return Week.wednesday

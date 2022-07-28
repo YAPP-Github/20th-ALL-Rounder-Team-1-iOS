@@ -39,11 +39,10 @@ class MemoStackView: UIStackView {
         }
     }
     
-    init(placeholder: String, nameText: String) {
+    init(nameText: String) {
         super.init(frame: CGRect.zero)
         
         self.namelabel.text = nameText
-        self.textView.setPlaceHolder(placeholder)
         setupView()
     }
 }

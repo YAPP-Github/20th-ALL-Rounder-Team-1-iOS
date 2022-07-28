@@ -39,11 +39,11 @@ class MainCoordinator: Coordinator {
     }
     
     func showEditScene() {
-        let scheduleEditCoordinator = ScheduleEditCoordinator()
-        scheduleEditCoordinator.finishDelegate = self
-        childCoordinators.append(scheduleEditCoordinator)
-        navigationController.present(scheduleEditCoordinator.navigationController, animated: true, completion: nil)
-        scheduleEditCoordinator.start()
+        let scheduleAddCoordinator = ScheduleAddCoordinator()
+        scheduleAddCoordinator.finishDelegate = self
+        childCoordinators.append(scheduleAddCoordinator)
+        navigationController.present(scheduleAddCoordinator.navigationController, animated: true, completion: nil)
+        scheduleAddCoordinator.start()
     }
     
     func showProfileScene(id: String?) {

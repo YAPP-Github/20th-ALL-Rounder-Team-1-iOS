@@ -20,7 +20,9 @@ class UserSearchViewModel: ViewModelType {
     
     let userList = PublishRelay<[UserSummaryTemp]>()
     
-    init(coordinator: UserSearchCoordinator, searchUseCase: SearchUseCase) {
+    init(coordinator: UserSearchCoordinator,
+         searchUseCase: SearchUseCase
+    ) {
         self.coordinator = coordinator
         self.searchUseCase = searchUseCase
     }
@@ -47,7 +49,8 @@ extension UserSearchViewModel {
         
         let informationEdit = Observable.combineLatest(input.selectedJobs, input.selectedInterests)
         
-        let searchBarEdit = input.didEditSearchBar.debounce(.seconds(1), scheduler: MainScheduler.instance)
+        let searchBarEdit = input.didEditSearchBar
+                                 .debounce(.seconds(1), scheduler: MainScheduler.instance)
         
         let searchWithQueryInformation = Observable.combineLatest(searchBarEdit, informationEdit)
         
@@ -64,25 +67,48 @@ extension UserSearchViewModel {
         return Output(searchWithQueryInformation: searchWithQueryInformation)
     }
     
-    func searchUsers(searchQuery: String, jobs: [String], interests: [String], sort: UserSort, page: Int, size: Int) {
-        
-        self.searchUseCase.SearchUsers(searchQuery: searchQuery, jobs: jobs, interests: interests, sort: sort, page: page, size: size)
+    func searchUsers(searchQuery: String,
+                     jobs: [String],
+                     interests: [String],
+                     sort: UserSort,
+                     page: Int,
+                     size: Int
+    ) {
+        self.searchUseCase.SearchUsers(searchQuery: searchQuery,
+                                       jobs: jobs,
+                                       interests: interests,
+                                       sort: sort,
+                                       page: page,
+                                       size: size)
             .subscribe(onSuccess: { data in
                 self.hasNext = data.paginationInfo.hasNext
                 let list = data.users.map { user in
-                    
-                    UserSummaryTemp(userSummaryId: user.id, name: user.nickname, goal: user.goal ?? "", imagePath: user.profileImageUrl)
+                    UserSummaryTemp(userSummaryId: user.id,
+                                    name: user.nickname,
+                                    goal: user.goal ?? "",
+                                    imagePath: user.profileImageUrl)
                 }
                 self.userList.accept(list)
-            }, onFailure: { error in
-                print(error)
+            }, onFailure: { _ in
+                self.coordinator?.showToastMessage(text: "네트워크 요청에 실패하였습니다.")
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }
     
-    func loadMoreUserList(searchQuery: String, jobs: [String], interests: [String], sort: UserSort, page: Int, size: Int) {
+    func loadMoreUserList(searchQuery: String,
+                          jobs: [String],
+                          interests: [String],
+                          sort: UserSort,
+                          page: Int,
+                          size: Int
+    ) {
         if hasNext {
-            self.searchUsers(searchQuery: searchQuery, jobs: jobs, interests: interests, sort: sort, page: page, size: size)
+            self.searchUsers(searchQuery: searchQuery,
+                             jobs: jobs,
+                             interests: interests,
+                             sort: sort,
+                             page: page,
+                             size: size)
         }
     }
 }

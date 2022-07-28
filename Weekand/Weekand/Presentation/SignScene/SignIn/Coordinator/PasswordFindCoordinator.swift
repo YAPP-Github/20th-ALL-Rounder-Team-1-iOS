@@ -39,6 +39,10 @@ class PasswordFindCoordinator: Coordinator {
         authPopupCoordinator.start()
     }
     
+    func showToastMessage(text: String) {
+        passwordFindViewController.showToast(message: text)
+    }
+    
     func finish() {
         self.finishDelegate?.childDidFinish(self)
     }

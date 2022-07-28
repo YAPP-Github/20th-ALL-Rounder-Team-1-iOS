@@ -31,7 +31,7 @@ class WTextView: UITextView {
         
         // Main Text
         self.font = WFont.body1()
-        self.textColor = .gray400
+        self.textColor = .gray900
         self.textContainerInset = UIEdgeInsets(top: 14, left: 14, bottom: 14, right: 14)
     }
     

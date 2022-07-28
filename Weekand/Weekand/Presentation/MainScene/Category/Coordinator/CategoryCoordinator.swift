@@ -52,11 +52,28 @@ class CategoryCoordinator: Coordinator {
     }
     
     func showScheduleAddScene(category: Category) {
-        let scheduleEditCoordinator = ScheduleEditCoordinator()
-        scheduleEditCoordinator.finishDelegate = self
-        childCoordinators.append(scheduleEditCoordinator)
-        navigationController.present(scheduleEditCoordinator.navigationController, animated: true, completion: nil)
-        scheduleEditCoordinator.start()
+        let scheduleAddCoordinator = ScheduleAddCoordinator()
+        scheduleAddCoordinator.finishDelegate = self
+        childCoordinators.append(scheduleAddCoordinator)
+        navigationController.present(scheduleAddCoordinator.navigationController, animated: true, completion: nil)
+        scheduleAddCoordinator.start()
+        scheduleAddCoordinator.sendCategoryFromCategoryScene(category: category)
+    }
+    
+    func showScheduleModifyScene(scheduleId: String) {
+        let scheduleModifyCoordinator = ScheduleModifyCoordinator(selectedScheduleId: scheduleId)
+        scheduleModifyCoordinator.finishDelegate = self
+        childCoordinators.append(scheduleModifyCoordinator)
+        navigationController.present(scheduleModifyCoordinator.navigationController, animated: true, completion: nil)
+        scheduleModifyCoordinator.start()
+    }
+    
+    func showScheduleDetailScene(scheduleId: String) {
+        let scheduleDetailCoordinator = ScheduleDetailCoordinator()
+        scheduleDetailCoordinator.finishDelegate = self
+        childCoordinators.append(scheduleDetailCoordinator)
+        navigationController.present(scheduleDetailCoordinator.navigationController, animated: true, completion: nil)
+        scheduleDetailCoordinator.start()
     }
     
     func showToastMessage(text: String) {
@@ -66,7 +83,6 @@ class CategoryCoordinator: Coordinator {
     func finish() {
         self.finishDelegate?.childDidFinish(self)
     }
-    
 }
 
 extension CategoryCoordinator: CoordinatorDidFinishDelegate {

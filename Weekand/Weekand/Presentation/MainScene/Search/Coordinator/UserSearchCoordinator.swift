@@ -51,6 +51,10 @@ class UserSearchCoordinator: Coordinator {
         userSearchViewController.selectedInterests = selectedInterests
     }
     
+    func showToastMessage(text: String) {
+        userSearchViewController.showToast(message: text)
+    }
+    
     func finish() {
         self.finishDelegate?.childDidFinish(self)
     }
