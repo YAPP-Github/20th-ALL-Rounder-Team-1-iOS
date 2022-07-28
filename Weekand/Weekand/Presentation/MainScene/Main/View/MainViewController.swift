@@ -47,6 +47,12 @@ class MainViewController: UIViewController, UITableViewDelegate {
         bindViewModel()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel?.reloadData()
+    }
+    
     private func setUpView() {
         configureCollectionView()
         configureTableView()
@@ -142,7 +148,10 @@ class MainViewController: UIViewController, UITableViewDelegate {
         
         output?.userSummary.subscribe(onNext: { data in
             self.headerView.profileView.setUpView(data)
-            self.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .init())
+            
+            if data.userId == UserDataStorage.shared.userID {
+                self.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .init())
+            }
         }).disposed(by: disposeBag)
         
     }

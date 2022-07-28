@@ -1,5 +1,5 @@
-query ScheduleList($date: Timestamp!) {
-    schedules(date: $date) {
+query ScheduleList($date: Timestamp!, $id: ID) {
+      schedules(date: $date, userId: $id) {
         schedules {
           id
         name

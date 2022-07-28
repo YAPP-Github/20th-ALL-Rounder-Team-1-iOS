@@ -1974,8 +1974,8 @@ public final class ScheduleListQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query ScheduleList($date: Timestamp!) {
-      schedules(date: $date) {
+    query ScheduleList($date: Timestamp!, $id: ID) {
+      schedules(date: $date, userId: $id) {
         __typename
         schedules {
           __typename
@@ -1998,13 +1998,15 @@ public final class ScheduleListQuery: GraphQLQuery {
   public let operationName: String = "ScheduleList"
 
   public var date: Timestamp
+  public var id: GraphQLID?
 
-  public init(date: Timestamp) {
+  public init(date: Timestamp, id: GraphQLID? = nil) {
     self.date = date
+    self.id = id
   }
 
   public var variables: GraphQLMap? {
-    return ["date": date]
+    return ["date": date, "id": id]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -2012,7 +2014,7 @@ public final class ScheduleListQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("schedules", arguments: ["date": GraphQLVariable("date")], type: .nonNull(.object(Schedule.selections))),
+        GraphQLField("schedules", arguments: ["date": GraphQLVariable("date"), "userId": GraphQLVariable("id")], type: .nonNull(.object(Schedule.selections))),
       ]
     }
 
