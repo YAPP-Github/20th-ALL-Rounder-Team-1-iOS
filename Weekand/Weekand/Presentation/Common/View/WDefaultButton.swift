@@ -115,4 +115,26 @@ extension WDefaultButton {
         self.setAttributedTitle(attributedTitle, for: .normal)
     }
     
+    func setUpStyle(_ title: String?, font: UIFont, style: WButtonStyle) {
+        self.setTitle(title, for: .normal, font: font)
+        
+        self.titleLabel?.adjustsFontSizeToFitWidth = false
+        
+        if #available(iOS 15.0, *) {
+            var configuration = UIButton.Configuration.filled()
+            configuration.background.backgroundColor = style.backGroundColor
+            configuration.baseForegroundColor = style.titleColor
+            configuration.background.cornerRadius = style.cornerRadius
+            configuration.contentInsets = NSDirectionalEdgeInsets.defaultEdgeInset
+            self.configuration = configuration
+            
+        } else {
+            self.layer.cornerRadius = style.cornerRadius
+            self.backgroundColor = style.backGroundColor
+            self.setTitleColor(style.titleColor, for: .normal)
+            self.contentEdgeInsets = UIEdgeInsets.defaultEdgeInset
+        }
+
+    }
+    
 }
