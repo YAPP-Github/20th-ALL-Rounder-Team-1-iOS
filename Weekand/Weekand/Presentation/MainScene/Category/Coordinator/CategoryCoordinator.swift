@@ -69,7 +69,7 @@ class CategoryCoordinator: Coordinator {
     }
     
     func showScheduleDetailScene(schedule: ScheduleSummary) {
-        let scheduleDetailCoordinator = ScheduleDetailCoordinator(navigationController: self.navigationController, schedule: schedule, isStatusEditing: true)
+        let scheduleDetailCoordinator = ScheduleDetailCoordinator(navigationController: self.navigationController, schedule: schedule, isStatusEditing: false, requestDate: schedule.dateStart)
         scheduleDetailCoordinator.finishDelegate = self
         childCoordinators.append(scheduleDetailCoordinator)
         scheduleDetailCoordinator.start()

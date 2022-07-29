@@ -25,25 +25,29 @@ class ScheduleDetailViewModel: ViewModelType {
     struct Input {
         let selectedComplete: BehaviorRelay<Bool>
         let selectedInComplete: BehaviorRelay<Bool>
+        let scheduleId: BehaviorRelay<String>
+        let requestDate: Date
     }
     
     struct Output { }
     
     func transform(input: Input) -> Output {
         
-        input.selectedComplete.subscribe(onNext: { isTrue in
-            if isTrue {
-                print("완료")
-            }
-        })
-        .disposed(by: disposeBag)
+        Observable.combineLatest(input.selectedComplete, input.scheduleId)
+            .subscribe(onNext: { isTrue, scheduleId in
+                if isTrue {
+                    self.completeSchedule(scheduleId: scheduleId, requestDate: input.requestDate)
+                }
+            })
+            .disposed(by: disposeBag)
         
-        input.selectedInComplete.subscribe(onNext: { isTrue in
-            if isTrue {
-                print("미완료")
-            }
-        })
-        .disposed(by: disposeBag)
+        Observable.combineLatest(input.selectedInComplete, input.scheduleId)
+            .subscribe(onNext: { isTrue, scheduleId in
+                if isTrue {
+                    self.incompleteSchedule(scheduleId: scheduleId, requestDate: input.requestDate)
+                }
+            })
+            .disposed(by: disposeBag)
         
         return Output()
     }

@@ -18,9 +18,10 @@ class ScheduleDetailCoordinator: Coordinator {
     var type: CoordinatorType = .scheduleDetail
     var schedule: ScheduleSummary
     
-    required init(navigationController: UINavigationController, schedule: ScheduleSummary, isStatusEditing: Bool) {
+    required init(navigationController: UINavigationController, schedule: ScheduleSummary, isStatusEditing: Bool, requestDate: Date) {
         self.scheduleDetailUseCase = ScheduleDetailUseCase()
-        self.scheduleDetailViewController = ScheduleDetailViewController(isStatusEditing: isStatusEditing)
+        self.scheduleDetailViewController = ScheduleDetailViewController(isStatusEditing: isStatusEditing,
+                                                                         requestDate: requestDate)
         self.navigationController = navigationController
         self.schedule = schedule
     }

@@ -49,6 +49,7 @@ class ScheduleDetailViewController: BaseViewController {
     let selectedComplete = BehaviorRelay<Bool>(value: false)
     let selectedIncomplete = BehaviorRelay<Bool>(value: false)
     
+    let scheduleId = BehaviorRelay<String>(value: "")
     let name = PublishRelay<String>()
     let date = PublishRelay<String>()
     let time = PublishRelay<String>()
@@ -58,9 +59,11 @@ class ScheduleDetailViewController: BaseViewController {
     let memo = PublishRelay<String>()
     
     var isStatusEditing: Bool
+    var requestDate: Date
     
-    init(isStatusEditing: Bool) {
+    init(isStatusEditing: Bool, requestDate: Date) {
         self.isStatusEditing = isStatusEditing
+        self.requestDate = requestDate
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -198,7 +201,9 @@ class ScheduleDetailViewController: BaseViewController {
         
         let input = ScheduleDetailViewModel.Input(
             selectedComplete: selectedComplete,
-            selectedInComplete: selectedIncomplete
+            selectedInComplete: selectedIncomplete,
+            scheduleId: scheduleId,
+            requestDate: requestDate
         )
 
         let _ = viewModel?.transform(input: input)
@@ -214,6 +219,7 @@ class ScheduleDetailViewController: BaseViewController {
             // 미완료
             
             self?.navigationItem.title = schedule.name
+            self?.scheduleId.accept(schedule.scheduleId)
             self?.name.accept(schedule.name)
             self?.category.accept(schedule.category)
             self?.date.accept(WDateFormatter.dateFormatter.string(from: schedule.dateStart))
