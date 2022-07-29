@@ -30,6 +30,7 @@ class UserSearchViewController: UIViewController {
     var UserCount: Int = 20
     var refreshListCount: Int = 15
     var page: Int = 0
+    let userCellDidSelected = PublishRelay<String>()
     
     var selectedSort: UserSort = .dateCreatedDESC {
         didSet {
@@ -96,7 +97,8 @@ class UserSearchViewController: UIViewController {
             didTapInterestsFilterButton: headerView.interestsFilterButton.rx.tap.asObservable(),
             didEditSearchBar: headerView.searchBar.rx.text.orEmpty.asObservable(),
             selectedJobs: selectedJobsObservable,
-            selectedInterests: selectedInterestsObservable
+            selectedInterests: selectedInterestsObservable,
+            userCellDidSelected: userCellDidSelected.asObservable()
         )
         
         self.headerView.dropDown.selectionAction = { [unowned self] (_ : Int, item: String) in
@@ -199,6 +201,10 @@ extension UserSearchViewController: UITableViewDelegate {
                                 jobs: self.selectedJobs,
                                 interests: selectedInterests)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        userCellDidSelected.accept(list[indexPath.item].userSummaryId)
     }
 }
 

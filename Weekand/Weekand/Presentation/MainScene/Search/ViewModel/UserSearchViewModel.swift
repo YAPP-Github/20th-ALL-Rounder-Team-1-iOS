@@ -38,6 +38,7 @@ extension UserSearchViewModel {
         let didEditSearchBar: Observable<String>
         let selectedJobs: BehaviorRelay<[String]>
         let selectedInterests: BehaviorRelay<[String]>
+        let userCellDidSelected: Observable<String>
     }
     
     struct Output {
@@ -61,6 +62,11 @@ extension UserSearchViewModel {
         
         input.didTapInterestsFilterButton.subscribe(onNext: {
             self.coordinator?.presentInterestsInformationSheet()
+        })
+        .disposed(by: disposeBag)
+        
+        input.userCellDidSelected.subscribe(onNext: { id in
+            self.coordinator?.showProfileScene(id: id)
         })
         .disposed(by: disposeBag)
         
