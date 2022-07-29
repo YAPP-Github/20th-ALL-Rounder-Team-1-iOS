@@ -24,6 +24,7 @@ class DefaultRepeatViewController: UIViewController {
     lazy var buttonStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.alignment = .fill
+        $0.distribution = .fillEqually
         $0.spacing = 10
     }
 

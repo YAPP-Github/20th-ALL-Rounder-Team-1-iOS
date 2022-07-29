@@ -34,7 +34,7 @@ class ResignWarningPopupViewController: PopupViewController {
     
     lazy var buttonStackView = UIStackView().then {
         $0.axis = .horizontal
-        $0.distribution = .fill
+        $0.distribution = .fillEqually
         $0.spacing = 10
     }
     lazy var cancelButton = WDefaultButton(title: "아니요", style: .tint, font: WFont.subHead1())
