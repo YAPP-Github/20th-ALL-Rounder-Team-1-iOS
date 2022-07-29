@@ -12,7 +12,7 @@ struct UserUpdate {
     
     let name: String?            // 유저 이름
     let goal: String?            // 한줄 목표
-    let imageFileName: String?   // 프로필 사진
+    var imageFileName: String?   // 프로필 사진
     let job: [String]           // 직업
     let interest: [String]      // 관심사
 }

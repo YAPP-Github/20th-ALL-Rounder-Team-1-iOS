@@ -23,6 +23,23 @@ final class ProfileUseCase {
             }.asSingle()
     }
     
+    /// S3 서버에 전송할 이미지 (Url, filename) 반환
+    func createImageUrl(type: ImageExtensionType) -> Single<(String, String)> {
+        
+        return NetWork.shared.perform(mutation: CreateImageUrlMutation(type: UserProfileImageExtensionType(rawValue: type.rawValue) ?? .png))
+            .map { ($0.createUserProfileImageS3PresignedUrl.url, $0.createUserProfileImageS3PresignedUrl.filename) }
+            .asSingle()
+    }
+    
+    /// 유저 업데이트
+    func updateProfile(data: UserUpdate) -> Single<UserDetail> {
+        return NetWork.shared.perform(mutation: UpdateUserDetailMutation(imageName: data.imageFileName ?? "", nickname: data.name!, goal: data.goal!, jobs: data.job, interests: data.interest))
+            .map {
+                let data = $0.updateUserProfile
+                return UserDetail(userId: data.id, email: data.email, name: data.nickname, goal: data.goal ?? "", imagePath: data.profileImageUrl, followee: data.followeeCount, follower: data.followerCount, job: data.jobs, interest: data.interests, followed: data.followed)
+            }.asSingle()
+    }
+    
     /// 유저 팔로우하기
     func createFollowee(id: String) -> Single<Bool> {
         return NetWork.shared.perform(mutation: CreateFolloweeMutation(id: id))

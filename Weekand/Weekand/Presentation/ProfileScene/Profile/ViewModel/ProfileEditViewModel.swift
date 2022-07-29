@@ -75,6 +75,7 @@ extension ProfileEditViewModel {
         
         input.didButtonTap.subscribe(onNext: { _ in
             
+            self.getImageUrl()
             
         }).disposed(by: disposeBag)
         
@@ -108,5 +109,50 @@ extension ProfileEditViewModel {
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     }
+    
+    private func getImageUrl(format: ImageExtensionType = .png) {
+        
+        self.profileUseCase.createImageUrl(type: format).subscribe(onSuccess: { data in
+            
+            let url = data.0
+            let filename = data.1
+            
+            guard let updatedata = self.updateDetail else { return }
+            self.updateUser(updateUser: updatedata, filename: filename)
+            
+            guard let image = self.updateImage else {return}
+            ImageUploader().uploadImage(image: image, url: url, filename: filename)
+            
+        }, onFailure: { error in
+            print("\(#function): \(error)")
+        }, onDisposed: nil)
+        .disposed(by: disposeBag)
+        
+    }
+    
+    private func updateUser(updateUser: UserUpdate, filename: String) {
+        
+        let updateData = UserUpdate(
+            name: updateUser.name,
+            goal: updateUser.goal,
+            imageFileName: filename,
+            job: updateUser.job,
+            interest: updateUser.interest
+        )
+        
+        self.profileUseCase.updateProfile(data: updateData).subscribe(onSuccess: { _ in
+            
+            self.coordinator?.navigationController.popViewController(animated: true)
+            self.coordinator?.profileViewController.showToast(message: "프로필이 변경되었습니다")
+            
+        }, onFailure: { error in
+            
+            PublishRelay<String>.just("\(error)").bind(to: self.alertText).disposed(by: self.disposeBag)
+            
+        }, onDisposed: nil)
+        .disposed(by: disposeBag)
+        
+    }
+    
     
 }

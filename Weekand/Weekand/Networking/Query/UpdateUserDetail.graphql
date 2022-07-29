@@ -11,7 +11,7 @@ mutation UpdateUserDetail($imageName: String!, $nickname: String!, $goal: String
     nickname
     profileImageUrl
     goal
-    followed
+    followeeCount
     followerCount
     jobs
     interests

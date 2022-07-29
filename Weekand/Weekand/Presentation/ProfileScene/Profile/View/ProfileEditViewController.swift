@@ -119,7 +119,7 @@ class ProfileEditViewController: BaseViewController {
             make.left.right.equalToSuperview()
         }
         
-        profileImageView.rx.tapGesture().bind { _ in
+        profileImageView.rx.tapGesture().when(.recognized).bind { _ in
             self.imagePickerController.sourceType = .photoLibrary
             self.present(self.imagePickerController, animated: true, completion: nil)
         }.disposed(by: disposeBag)
@@ -187,9 +187,9 @@ extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            profileImageView.image = image as? UIImage
+            profileImageView.image = image
         } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            profileImageView.image = image as? UIImage
+            profileImageView.image = image
         }
         
         dismiss(animated: true, completion: nil)

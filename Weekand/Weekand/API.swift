@@ -4776,7 +4776,7 @@ public final class UpdateUserDetailMutation: GraphQLMutation {
         nickname
         profileImageUrl
         goal
-        followed
+        followeeCount
         followerCount
         jobs
         interests
@@ -4851,7 +4851,7 @@ public final class UpdateUserDetailMutation: GraphQLMutation {
           GraphQLField("nickname", type: .nonNull(.scalar(String.self))),
           GraphQLField("profileImageUrl", type: .nonNull(.scalar(String.self))),
           GraphQLField("goal", type: .scalar(String.self)),
-          GraphQLField("followed", type: .nonNull(.scalar(Bool.self))),
+          GraphQLField("followeeCount", type: .nonNull(.scalar(Int.self))),
           GraphQLField("followerCount", type: .nonNull(.scalar(Int.self))),
           GraphQLField("jobs", type: .nonNull(.list(.nonNull(.scalar(String.self))))),
           GraphQLField("interests", type: .nonNull(.list(.nonNull(.scalar(String.self))))),
@@ -4865,8 +4865,8 @@ public final class UpdateUserDetailMutation: GraphQLMutation {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: GraphQLID, email: String, nickname: String, profileImageUrl: String, goal: String? = nil, followed: Bool, followerCount: Int, jobs: [String], interests: [String]) {
-        self.init(unsafeResultMap: ["__typename": "User", "id": id, "email": email, "nickname": nickname, "profileImageUrl": profileImageUrl, "goal": goal, "followed": followed, "followerCount": followerCount, "jobs": jobs, "interests": interests])
+      public init(id: GraphQLID, email: String, nickname: String, profileImageUrl: String, goal: String? = nil, followeeCount: Int, followerCount: Int, jobs: [String], interests: [String], followed: Bool) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id, "email": email, "nickname": nickname, "profileImageUrl": profileImageUrl, "goal": goal, "followeeCount": followeeCount, "followerCount": followerCount, "jobs": jobs, "interests": interests, "followed": followed])
       }
 
       public var __typename: String {
@@ -4923,12 +4923,12 @@ public final class UpdateUserDetailMutation: GraphQLMutation {
         }
       }
 
-      public var followed: Bool {
+      public var followeeCount: Int {
         get {
-          return resultMap["followed"]! as! Bool
+          return resultMap["followeeCount"]! as! Int
         }
         set {
-          resultMap.updateValue(newValue, forKey: "followed")
+          resultMap.updateValue(newValue, forKey: "followeeCount")
         }
       }
 
@@ -4956,6 +4956,15 @@ public final class UpdateUserDetailMutation: GraphQLMutation {
         }
         set {
           resultMap.updateValue(newValue, forKey: "interests")
+        }
+      }
+
+      public var followed: Bool {
+        get {
+          return resultMap["followed"]! as! Bool
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "followed")
         }
       }
     }
