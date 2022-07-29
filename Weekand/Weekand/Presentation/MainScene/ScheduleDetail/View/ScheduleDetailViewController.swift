@@ -182,6 +182,20 @@ class ScheduleDetailViewController: BaseViewController {
         }
         .disposed(by: disposeBag)
         
+        self.selectedComplete.bind { isTrue in
+            if isTrue {
+                self.scheduleCompleteToolBar.completeCollecitonView.selectItem(at: IndexPath(item: 1, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+            }
+        }
+        .disposed(by: disposeBag)
+        
+        self.selectedIncomplete.bind { isTrue in
+            if isTrue {
+                self.scheduleCompleteToolBar.completeCollecitonView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+            }
+        }
+        .disposed(by: disposeBag)
+        
         let input = ScheduleDetailViewModel.Input(
             selectedComplete: selectedComplete,
             selectedInComplete: selectedIncomplete
@@ -192,6 +206,13 @@ class ScheduleDetailViewController: BaseViewController {
         self.viewModel?.schedule.subscribe(onNext: { [weak self] schedule in
             let repeatText = WRepeatTextManager.combineTimeDate(repeatType: schedule.repeatType,
                                                                 repeatSelectedValue: schedule.repeatSelectedValue, repeatEndDate: schedule.repeatEnd)
+            
+            if schedule.status == .completed {
+                self?.selectedComplete.accept(true)
+            }
+            
+            // 미완료
+            
             self?.navigationItem.title = schedule.name
             self?.name.accept(schedule.name)
             self?.category.accept(schedule.category)

@@ -226,6 +226,8 @@
 		F38AE46A2892D47000E5E261 /* ResignWarningPopupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4692892D47000E5E261 /* ResignWarningPopupCoordinator.swift */; };
 		F38AE46E2892EDBE00E5E261 /* ScheduleCompleteToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE46D2892EDBE00E5E261 /* ScheduleCompleteToolBar.swift */; };
 		F38AE4722892F78200E5E261 /* CompleteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4712892F78200E5E261 /* CompleteCollectionViewCell.swift */; };
+		F38AE4762893E06E00E5E261 /* CompleteSchedule.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F38AE4752893E06E00E5E261 /* CompleteSchedule.graphql */; };
+		F38AE4782893E11100E5E261 /* IncompleteSchedule.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F38AE4772893E11100E5E261 /* IncompleteSchedule.graphql */; };
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
@@ -506,6 +508,8 @@
 		F38AE4692892D47000E5E261 /* ResignWarningPopupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResignWarningPopupCoordinator.swift; sourceTree = "<group>"; };
 		F38AE46D2892EDBE00E5E261 /* ScheduleCompleteToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCompleteToolBar.swift; sourceTree = "<group>"; };
 		F38AE4712892F78200E5E261 /* CompleteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteCollectionViewCell.swift; sourceTree = "<group>"; };
+		F38AE4752893E06E00E5E261 /* CompleteSchedule.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CompleteSchedule.graphql; sourceTree = "<group>"; };
+		F38AE4772893E11100E5E261 /* IncompleteSchedule.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = IncompleteSchedule.graphql; sourceTree = "<group>"; };
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
@@ -1428,6 +1432,8 @@
 				7D67F4AE28927A4F00A1D7CD /* CreateFollowee.graphql */,
 				F38AE45B2892B65E00E5E261 /* Logout.graphql */,
 				F38AE45D2892CD0D00E5E261 /* DeleteUser.graphql */,
+				F38AE4752893E06E00E5E261 /* CompleteSchedule.graphql */,
+				F38AE4772893E11100E5E261 /* IncompleteSchedule.graphql */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1633,10 +1639,12 @@
 				F336F4212892422D005B57A0 /* DeleteSchedule.graphql in Resources */,
 				7D67F4AB289263F500A1D7CD /* Followees.graphql in Resources */,
 				F336F3F828902A92005B57A0 /* ScehduleRule.graphql in Resources */,
+				F38AE4782893E11100E5E261 /* IncompleteSchedule.graphql in Resources */,
 				F336F3C2288AFD67005B57A0 /* CreateSchedule.graphql in Resources */,
 				F3A4D95B2885A94500DDE03B /* SearchUsers.graphql in Resources */,
 				F32ACC0B28235D530082AF30 /* Assets.xcassets in Resources */,
 				F323FF212879AF3000DFD8FD /* vaildAuthKey.graphql in Resources */,
+				F38AE4762893E06E00E5E261 /* CompleteSchedule.graphql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
