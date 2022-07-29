@@ -187,12 +187,12 @@ extension ScheduleAddViewModel {
                 }
                 
                 guard let category = list.first else {
-                    // error
+                    self.coordinator?.showToastMessage(text: "카테고리를 가져오지 못했습니다.")
                     return
                 }
                 self.defaultCategory.accept(category)
-            }, onFailure: { error in
-                print(error)
+            }, onFailure: { _ in
+                self.coordinator?.showToastMessage(text: "카테고리를 가져오지 못했습니다.")
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }
@@ -202,9 +202,15 @@ extension ScheduleAddViewModel {
             .subscribe(onSuccess: { isSucceed in
                 if isSucceed {
                     self.coordinator?.finish()
+                } else {
+                    self.coordinator?.showToastMessage(text: "일정 생성에 실패하였습니다.")
                 }
-            }, onFailure: { _ in
-                
+            }, onFailure: { error in
+                if error.localizedDescription == ScheduleEditError.startEndTimeEqually.serverDescription {
+                    self.coordinator?.showToastMessage(text: "시작 일시와 종료 일시를 확인해주세요.")
+                } else {
+                    self.coordinator?.showToastMessage(text: "일정 생성에 실패하였습니다.")
+                }
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }

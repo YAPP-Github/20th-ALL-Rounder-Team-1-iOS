@@ -51,6 +51,7 @@ class ScheduleModifyViewModel: ScheduleEditViewModelType {
         let selectedRepeatSelectedValue: BehaviorRelay<[ScheduleWeek]>
         let selectedRepeatEnd: BehaviorRelay<Date?>
         let selectedMemo: BehaviorRelay<String>
+        let requestDate: Date
     }
     
     struct Output {
@@ -87,7 +88,7 @@ class ScheduleModifyViewModel: ScheduleEditViewModelType {
                 
                 let scheduleUpdateModel = ScheduleUpdateModel(
                     scheduleId: self.scheduleId,
-                    requestDateTime: dates.0,
+                    requestDateTime: input.requestDate,
                     name: nameText,
                     categoryId: category.serverID,
                     dateStart: WDateFormatter.combineDate(date: dates.0, time: dates.1),
@@ -188,8 +189,8 @@ extension ScheduleModifyViewModel {
                 let scheduleRule = ScheduleRule(model: schedule)
                 self.schedule.accept(scheduleRule)
                 self.defaultCategory.accept(scheduleRule.category)
-            }, onFailure: { error in
-                print(error)
+            }, onFailure: { _ in
+                self.coordinator?.showToastMessage(text: "일정을 가져오지 못했습니다.")
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }
@@ -200,10 +201,14 @@ extension ScheduleModifyViewModel {
                 if isSucceed {
                     self.coordinator?.finish()
                 } else {
-                    print("error")
+                    self.coordinator?.showToastMessage(text: "일정 수정에 실패하였습니다.")
                 }
             }, onFailure: { error in
-                print(error)
+                if error.localizedDescription == ScheduleEditError.startEndTimeEqually.serverDescription {
+                    self.coordinator?.showToastMessage(text: "시작 일시와 종료 일시를 확인해주세요.")
+                } else {
+                    self.coordinator?.showToastMessage(text: "일정 수정에 실패하였습니다.")
+                }
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }

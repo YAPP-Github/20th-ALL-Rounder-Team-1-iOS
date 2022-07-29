@@ -26,6 +26,7 @@ class WeekRepeatViewController: UIViewController {
     lazy var buttonStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.alignment = .fill
+        $0.distribution = .fillEqually
         $0.spacing = 10
     }
 
@@ -95,6 +96,7 @@ class WeekRepeatViewController: UIViewController {
         }
         
         weekCollecitonView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        weekCollecitonView.backgroundColor = .clear
         weekCollecitonView.delegate = self
         weekCollecitonView.isScrollEnabled = false
         weekCollecitonView.allowsMultipleSelection = true

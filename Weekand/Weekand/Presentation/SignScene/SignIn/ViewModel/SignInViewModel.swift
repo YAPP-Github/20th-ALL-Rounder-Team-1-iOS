@@ -82,23 +82,13 @@ extension SignInViewModel {
         
         self.signInUseCase.login(email: emailText, password: passwordText).subscribe(onSuccess: { tokenData in
             TokenManager.shared.createTokens(accessToken: tokenData.accessToken, refreshToken: tokenData.refreshToken)
-            self.userID()
+            self.coordinator?.showMainScene()
         }, onFailure: { error in
             if error.localizedDescription == SignInError.notMatchIdPassword.serverDescription {
                 self.coordinator?.showToastMessage(text: "이메일·비밀번호가 일치하지 않습니다.")
             } else {
                 self.coordinator?.showToastMessage(text: "네트워크 요청에 실패하였습니다")
             }
-        }, onDisposed: nil)
-        .disposed(by: disposeBag)
-    }
-    
-    private func userID() {
-        self.signInUseCase.userID().subscribe(onSuccess: { id in
-            UserDataStorage.shared.setUserID(id: id)
-            self.coordinator?.showMainScene()
-        }, onFailure: { _ in
-            self.coordinator?.showToastMessage(text: "네트워크 요청에 실패하였습니다")
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     }

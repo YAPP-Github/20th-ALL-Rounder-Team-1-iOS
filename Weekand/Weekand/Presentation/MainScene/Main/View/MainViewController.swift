@@ -185,6 +185,7 @@ extension MainViewController {
         }
         
         collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 0), collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.isScrollEnabled = false
         collectionView.allowsMultipleSelection = false

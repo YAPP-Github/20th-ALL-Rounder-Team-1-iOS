@@ -38,12 +38,18 @@ class ScheduleDetailViewController: BaseViewController {
         $0.spacing = 30
     }
     
+    let scheduleCompleteToolBar = ScheduleCompleteToolBar()
+    
     lazy var dateStackView = ScheduleInformationStackView(title: "일자")
     lazy var timeStackView = ScheduleInformationStackView(title: "시간")
     lazy var repeatStackView = ScheduleInformationStackView(title: "반복")
     lazy var skipStackView = ScheduleInformationStackView(title: "스킵")
     lazy var memoStackView = ScheduleInformationStackView(title: "메모")
     
+    let selectedComplete = BehaviorRelay<Bool>(value: false)
+    let selectedIncomplete = BehaviorRelay<Bool>(value: false)
+    
+    let scheduleId = BehaviorRelay<String>(value: "")
     let name = PublishRelay<String>()
     let date = PublishRelay<String>()
     let time = PublishRelay<String>()
@@ -51,6 +57,20 @@ class ScheduleDetailViewController: BaseViewController {
     let repeatText = PublishRelay<String>()
     let skip = PublishRelay<[Date]?>()
     let memo = PublishRelay<String>()
+    
+    var isStatusEditing: Bool
+    var requestDate: Date
+    
+    init(isStatusEditing: Bool, requestDate: Date) {
+        self.isStatusEditing = isStatusEditing
+        self.requestDate = requestDate
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) is not supported")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,9 +83,17 @@ class ScheduleDetailViewController: BaseViewController {
     private func setupView() {
         view.backgroundColor = .white
         stackView.spacing = 20
+        
+        scheduleCompleteToolBar.completeCollecitonView.delegate = self
+        
+        if isStatusEditing == false {
+            self.scheduleCompleteToolBar.isHidden = true
+        }
     }
     
     private func configureUI() {
+        self.view.addSubview(scheduleCompleteToolBar)
+        
         [nameStackView,
          dividerLine,
          informationStackView
@@ -89,7 +117,7 @@ class ScheduleDetailViewController: BaseViewController {
         
         stackView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(30)
-            make.bottom.equalToSuperview().offset(-64)
+            make.bottom.equalToSuperview().offset(-self.scheduleCompleteToolBar.viewHeight - 64)
             make.trailing.leading.equalToSuperview()
         }
         
@@ -101,6 +129,12 @@ class ScheduleDetailViewController: BaseViewController {
         nameStackView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(24)
             make.trailing.equalToSuperview().offset(-22)
+        }
+        
+        scheduleCompleteToolBar.snp.makeConstraints { make in
+            make.trailing.leading.equalToSuperview()
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide)
+            make.height.equalTo(self.scheduleCompleteToolBar.viewHeight)
         }
     }
     
@@ -151,7 +185,25 @@ class ScheduleDetailViewController: BaseViewController {
         }
         .disposed(by: disposeBag)
         
+        self.selectedComplete.bind { isTrue in
+            if isTrue {
+                self.scheduleCompleteToolBar.completeCollecitonView.selectItem(at: IndexPath(item: 1, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+            }
+        }
+        .disposed(by: disposeBag)
+        
+        self.selectedIncomplete.bind { isTrue in
+            if isTrue {
+                self.scheduleCompleteToolBar.completeCollecitonView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+            }
+        }
+        .disposed(by: disposeBag)
+        
         let input = ScheduleDetailViewModel.Input(
+            selectedComplete: selectedComplete,
+            selectedInComplete: selectedIncomplete,
+            scheduleId: scheduleId,
+            requestDate: requestDate
         )
 
         let _ = viewModel?.transform(input: input)
@@ -159,7 +211,15 @@ class ScheduleDetailViewController: BaseViewController {
         self.viewModel?.schedule.subscribe(onNext: { [weak self] schedule in
             let repeatText = WRepeatTextManager.combineTimeDate(repeatType: schedule.repeatType,
                                                                 repeatSelectedValue: schedule.repeatSelectedValue, repeatEndDate: schedule.repeatEnd)
+            
+            if schedule.status == .completed {
+                self?.selectedComplete.accept(true)
+            } else if schedule.status == .incompleted {
+                self?.selectedIncomplete.accept(true)
+            }
+            
             self?.navigationItem.title = schedule.name
+            self?.scheduleId.accept(schedule.scheduleId)
             self?.name.accept(schedule.name)
             self?.category.accept(schedule.category)
             self?.date.accept(WDateFormatter.dateFormatter.string(from: schedule.dateStart))
@@ -170,5 +230,17 @@ class ScheduleDetailViewController: BaseViewController {
             self?.memo.accept(schedule.memo)
         })
         .disposed(by: disposeBag)
+    }
+}
+
+extension ScheduleDetailViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.item == 0 {
+            selectedIncomplete.accept(true)
+            selectedComplete.accept(false)
+        } else {
+            selectedComplete.accept(true)
+            selectedIncomplete.accept(false)
+        }
     }
 }
