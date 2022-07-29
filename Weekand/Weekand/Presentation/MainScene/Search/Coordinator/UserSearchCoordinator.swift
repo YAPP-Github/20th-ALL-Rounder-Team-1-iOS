@@ -43,6 +43,13 @@ class UserSearchCoordinator: Coordinator {
         self.navigationController.present(interestsInformationSheetController, animated: true, completion: nil)
     }
     
+    func showProfileScene(id: String?) {
+        let profileCoordinator = ProfileCoordinator(navigationController: self.navigationController, userId: id)
+        profileCoordinator.finishDelegate = self
+        childCoordinators.append(profileCoordinator)
+        profileCoordinator.start()
+    }
+    
     func setJobInformations(_ selectedJobs: [String]) {
         userSearchViewController.selectedJobs = selectedJobs
     }
