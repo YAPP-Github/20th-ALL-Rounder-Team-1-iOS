@@ -54,6 +54,8 @@ class MainViewController: UIViewController, UITableViewDelegate {
     }
     
     private func setUpView() {
+        
+        self.view.backgroundColor = .backgroundColor
         configureCollectionView()
         configureTableView()
     }

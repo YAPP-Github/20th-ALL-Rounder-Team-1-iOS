@@ -83,6 +83,12 @@ class ProfileViewController: UIViewController {
         accessibilityLink.isHidden = true   // TODO: 이후 업데이트
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel?.loadData()
+    }
+    
     private func setUpView() {
         
         self.view.backgroundColor = .backgroundColor
@@ -164,7 +170,7 @@ class ProfileViewController: UIViewController {
         let output = viewModel?.transform(input: input)
         
         output?.userDetail.subscribe(onNext: { userData in
-            self.setData(user: userData)
+            self.setData(user: userData)            
         }).disposed(by: disposeBag)
         
         output?.buttonState.subscribe(onNext: { state in

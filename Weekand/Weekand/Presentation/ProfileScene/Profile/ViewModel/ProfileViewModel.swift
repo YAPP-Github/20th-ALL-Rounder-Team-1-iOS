@@ -39,6 +39,9 @@ class ProfileViewModel: ViewModelType {
             isMyPage = false
         }
         
+    }
+    
+    func loadData() {
         getUserProfile(id: userId)
     }
     
@@ -95,11 +98,11 @@ extension ProfileViewModel {
         
         // 직업 관심사
         input.didJobTap.when(.recognized).subscribe(onNext: { _ in
-            self.coordinator?.pushProfileEditViewController()   // TODO: 직업선택 Sheet 띄우기
+            self.coordinator?.pushProfileEditViewController()
         }).disposed(by: disposeBag)
         
         input.didInterestTap.when(.recognized).subscribe(onNext: { _ in
-            self.coordinator?.pushProfileEditViewController()   // TODO: 관심사선택 Sheet 띄우기
+            self.coordinator?.pushProfileEditViewController()
         }).disposed(by: disposeBag)
 
         // 팔로워 팔로우
@@ -158,7 +161,7 @@ extension ProfileViewModel {
     
     private func followUser(id: String) {
         
-        self.profileUseCase.createFollowee(id: id).subscribe(onSuccess: { result in
+        self.profileUseCase.createFollowee(id: id).subscribe(onSuccess: { _ in
             BehaviorRelay<ProfileButtonType>.just(.following).bind(to: self.buttonState).disposed(by: self.disposeBag)
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
@@ -170,7 +173,7 @@ extension ProfileViewModel {
     
     private func unfollowUser(id: String) {
         
-        self.profileUseCase.deleteFollowee(id: id).subscribe(onSuccess: { result in
+        self.profileUseCase.deleteFollowee(id: id).subscribe(onSuccess: { _ in
             BehaviorRelay<ProfileButtonType>.just(.follow).bind(to: self.buttonState).disposed(by: self.disposeBag)
 
         }, onFailure: { error in

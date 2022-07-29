@@ -71,7 +71,7 @@ class ProfileEditViewController: BaseViewController {
         bindViewModel()
         
     }
-    
+        
     private func setUpView() {
         self.title = "프로필 수정"
         self.view.backgroundColor = .backgroundColor
