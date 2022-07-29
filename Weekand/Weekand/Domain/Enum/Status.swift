@@ -12,14 +12,14 @@ import UIKit
 enum Status: String {
     case upcoming = "UNCOMPLETED"
     case completed = "COMPLETED"
-    case skipped = "SKIP"
+    case incompleted = "INCOMPLETED"
     case undetermined = "UNDETERMINED"
 
     var icon: StatusIcon {
         switch self {
         case .upcoming:     return .upcoming
         case .completed:    return .completed
-        case .skipped:      return .skipped
+        case .incompleted:      return .incompleted
         case .undetermined: return .undetermined
         }
     }
@@ -33,7 +33,7 @@ enum StatusIcon: String {
     case upcoming = "state.upcomming"
     case proceeding = "state.proceeding"
     case completed = "state.completed"
-    case skipped = "state.start"
+    case incompleted = "state.start"
     case undetermined = "state.hold"
     
     var tintColor: UIColor {
@@ -41,7 +41,7 @@ enum StatusIcon: String {
         case .upcoming:      return .gray600
         case .proceeding:    return .gray600
         case .completed:     return .mainColor
-        case .skipped:       return .gray600
+        case .incompleted:       return .gray600
         case .undetermined:  return .gray300
         }
     }

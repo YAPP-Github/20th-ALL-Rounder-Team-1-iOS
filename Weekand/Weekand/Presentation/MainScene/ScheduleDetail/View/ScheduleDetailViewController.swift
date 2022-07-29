@@ -214,9 +214,9 @@ class ScheduleDetailViewController: BaseViewController {
             
             if schedule.status == .completed {
                 self?.selectedComplete.accept(true)
+            } else if schedule.status == .incompleted {
+                self?.selectedIncomplete.accept(true)
             }
-            
-            // 미완료
             
             self?.navigationItem.title = schedule.name
             self?.scheduleId.accept(schedule.scheduleId)

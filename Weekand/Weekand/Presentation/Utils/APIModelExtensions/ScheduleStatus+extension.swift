@@ -13,13 +13,13 @@ extension ScheduleStatus {
         case .completed:
             return Status.completed
         case .incompleted:
-            return Status.upcoming
+            return Status.incompleted
         case .skip:
-            return Status.skipped
+            return Status.incompleted
         case .undetermined:
             return Status.undetermined
         case .notYet:
-            return Status.undetermined
+            return Status.upcoming
         case .__unknown(let rawValue):
             return Status.completed
         }
