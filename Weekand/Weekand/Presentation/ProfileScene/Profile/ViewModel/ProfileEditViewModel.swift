@@ -18,6 +18,7 @@ class ProfileEditViewModel: ViewModelType {
     var alertText = PublishSubject<String>()
     var userDetail = BehaviorRelay<UserDetail>(value: UserDetail.defaultData)
     var userUpdate = PublishRelay<UserUpdate>()
+    var imageUrl: String?
     
     init (coordinator: ProfileCoordinator, useCase: ProfileUseCase) {
         self.coordinator = coordinator

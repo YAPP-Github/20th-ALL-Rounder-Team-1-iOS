@@ -16,6 +16,7 @@ class ProfileEditViewController: BaseViewController {
     
     var viewModel: ProfileEditViewModel?
     private let disposeBag = DisposeBag()
+    let imagePickerController = UIImagePickerController()
     
     var selectedJobs: [String] = [] {
         didSet {
@@ -70,6 +71,8 @@ class ProfileEditViewController: BaseViewController {
     private func setUpView() {
         self.title = "프로필 수정"
         self.view.backgroundColor = .backgroundColor
+        
+        imagePickerController.delegate = self
     }
     
     private func configureUI() {
@@ -110,6 +113,11 @@ class ProfileEditViewController: BaseViewController {
             make.left.right.equalToSuperview()
         }
         
+        profileImageView.rx.tapGesture().bind { _ in
+            self.imagePickerController.sourceType = .photoLibrary
+            self.present(self.imagePickerController, animated: true, completion: nil)
+        }.disposed(by: disposeBag)
+        
     }
     
     private func bindViewModel() {
@@ -145,6 +153,18 @@ class ProfileEditViewController: BaseViewController {
             
             PublishRelay<UserUpdate>.just(update).bind(to: self.viewModel!.userUpdate).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
+    }
+}
+
+// MARK: Photo Picker
+extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        
+        if let image = info[UIImagePickerController.InfoKey.originalImage]{
+            profileImageView.image = image as? UIImage
+        }
+        dismiss(animated: true, completion: nil)
     }
 }
 
