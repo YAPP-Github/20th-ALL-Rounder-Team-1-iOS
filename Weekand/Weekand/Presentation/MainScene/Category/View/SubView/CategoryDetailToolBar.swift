@@ -1,5 +1,5 @@
 //
-//  CategoryDetailFooterView.swift
+//  CategoryDetailToolBar.swift
 //  Weekand
 //
 //  Created by 이호영 on 2022/06/11.
@@ -35,7 +35,9 @@ class CategoryDetailToolBar: UIToolbar {
     }
     
     func setupView() {
-        self.backgroundColor = .white
+        self.barTintColor = .white
+        self.clipsToBounds = true
+        self.layer.borderWidth = 0
     }
     
     func configureUI() {

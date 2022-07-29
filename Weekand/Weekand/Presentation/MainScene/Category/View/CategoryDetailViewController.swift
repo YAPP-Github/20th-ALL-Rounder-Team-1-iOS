@@ -12,15 +12,15 @@ import RxSwift
 import RxCocoa
 import DropDown
 
+enum ScheduleSection {
+  case main
+}
+
 class CategoryDetailViewController: UIViewController {
 
-    enum Section {
-      case main
-    }
-    
     private let disposeBag = DisposeBag()
     var viewModel: CategoryDetailViewModel?
-    var dataSource: UITableViewDiffableDataSource<Section, ScheduleSummary>!
+    var dataSource: ScheduleSummaryDataSource!
     
     let tableView = UITableView()
     let headerView = CategoryDetailHeaderView()
@@ -49,7 +49,7 @@ class CategoryDetailViewController: UIViewController {
     var page: Int = 0
     
     let scheduleCellDidSelected = PublishRelay<ScheduleSummary>()
-    let scheduleCellDidSwipeEvent = PublishRelay<String>()
+    let scheduleCellDidSwipeEvent = PublishRelay<ScheduleSummary>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,7 +156,7 @@ extension CategoryDetailViewController {
     
     private func configureDataSource() {
         
-        dataSource = UITableViewDiffableDataSource<Section, ScheduleSummary>(tableView: tableView, cellProvider: { tableView, indexPath, list in
+        dataSource = ScheduleSummaryDataSource(tableView: tableView, cellProvider: { tableView, indexPath, list in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryDetailTableViewCell.cellIdentifier, for: indexPath) as? CategoryDetailTableViewCell else {
                 return UITableViewCell()
             }
@@ -174,7 +174,7 @@ extension CategoryDetailViewController {
     
     private func configureSnapshot(animatingDifferences: Bool = false, list: [ScheduleSummary]) {
 
-        var snapshot = NSDiffableDataSourceSnapshot<Section, ScheduleSummary>()
+        var snapshot = NSDiffableDataSourceSnapshot<ScheduleSection, ScheduleSummary>()
         snapshot.appendSections([.main])
         snapshot.appendItems(list, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
@@ -222,7 +222,7 @@ extension CategoryDetailViewController {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let update = UIContextualAction(style: .normal, title: "수정") { _, _, completionHandler in
-            self.scheduleCellDidSwipeEvent.accept(self.list[indexPath.item].scheduleId)
+            self.scheduleCellDidSwipeEvent.accept(self.list[indexPath.item])
             completionHandler(true)
         }
         update.backgroundColor = .mainColor

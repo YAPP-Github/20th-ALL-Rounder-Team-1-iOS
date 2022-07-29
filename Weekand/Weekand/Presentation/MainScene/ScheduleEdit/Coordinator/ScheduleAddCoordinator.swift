@@ -16,10 +16,11 @@ class ScheduleAddCoordinator: Coordinator, ScheduleEditCoordinatorType {
     var type: CoordinatorType = .scheduleEdit
     var scheduleEditUseCase: ScheduleEditUseCase
     
-    required init() {
-        self.scheduleEditViewController = ScheduleEditViewController()
+    required init(requestDate: Date) {
+        self.scheduleEditViewController = ScheduleEditViewController(requestDate: requestDate)
         self.navigationController = UINavigationController(rootViewController: scheduleEditViewController)
         self.navigationController.modalPresentationStyle = .fullScreen
+        self.scheduleEditViewController.navigationItem.title = "일정 추가"
         self.scheduleEditUseCase = ScheduleEditUseCase()
     }
     
@@ -76,6 +77,10 @@ class ScheduleAddCoordinator: Coordinator, ScheduleEditCoordinatorType {
         scheduleEditViewController.repeatType = repeatType
         scheduleEditViewController.repeatSelectedValue = repeatSelectedValue
         scheduleEditViewController.repeatEnd = repeatEndDate
+    }
+    
+    func showToastMessage(text: String) {
+        scheduleEditViewController.showToast(message: text)
     }
     
     func finish() {

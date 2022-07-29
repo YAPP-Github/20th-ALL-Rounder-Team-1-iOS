@@ -12,15 +12,15 @@ import RxSwift
 import RxCocoa
 import DropDown
 
+enum CategorySection {
+  case main
+}
+
 class CategoryListViewController: UIViewController {
-    
-    enum Section {
-      case main
-    }
     
     private let disposeBag = DisposeBag()
     var viewModel: CategoryListViewModel?
-    var dataSource: UITableViewDiffableDataSource<Section, Category>!
+    var dataSource: CategoryDataSource!
     
     var headerView = CategoryListHeaderView()
     let tableView = UITableView()
@@ -53,6 +53,7 @@ class CategoryListViewController: UIViewController {
         configureSnapshot(list: list)
         setCategoryList(sort: selectedSort)
     }
+
     
     private func setupView() {
         view.backgroundColor = .white
@@ -120,7 +121,7 @@ extension CategoryListViewController {
     
     private func configureDataSource() {
         
-        dataSource = UITableViewDiffableDataSource<Section, Category>(tableView: tableView, cellProvider: { tableView, indexPath, category in
+        dataSource = CategoryDataSource(tableView: tableView, cellProvider: { tableView, indexPath, category in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryListTableViewCell.cellIdentifier, for: indexPath) as? CategoryListTableViewCell else {
                 return UITableViewCell()
             }
@@ -132,7 +133,7 @@ extension CategoryListViewController {
     }
     
     func configureSnapshot(animatingDifferences: Bool = false, list: [Category]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Category>()
+        var snapshot = NSDiffableDataSourceSnapshot<CategorySection, Category>()
         snapshot.appendSections([.main])
         snapshot.appendItems(list, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
@@ -171,6 +172,7 @@ extension CategoryListViewController: UITableViewDelegate {
 }
 
 extension CategoryListViewController {
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let update = UIContextualAction(style: .normal, title: "수정") { _, _, _ in

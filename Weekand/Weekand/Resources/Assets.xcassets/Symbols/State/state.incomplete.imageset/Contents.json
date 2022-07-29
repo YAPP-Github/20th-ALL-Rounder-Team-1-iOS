@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "state.skipped-1.png",
+      "filename" : "state.incomplete.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "state.skipped@2x-1.png",
+      "filename" : "state.incomplete2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "state.skipped@3x-1.png",
+      "filename" : "state.incomplete3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

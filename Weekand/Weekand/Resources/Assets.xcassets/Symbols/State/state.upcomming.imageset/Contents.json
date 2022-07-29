@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "state.upcomming-1.png",
+      "filename" : "state.upcomming.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "state.upcomming@2x-1.png",
+      "filename" : "state.upcomming2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "state.upcomming@3x-1.png",
+      "filename" : "state.upcomming3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -48,6 +48,12 @@ class CategoryListHeaderView: UITableViewHeaderFooterView {
     
     func setupView() {
         sortButton.showsMenuAsPrimaryAction = true
+        if #available(iOS 14.0, *) {
+            var backgroundConfiguration = UIBackgroundConfiguration.listPlainCell()
+            backgroundConfiguration.backgroundColor = UIColor.clear
+            self.backgroundConfiguration = backgroundConfiguration
+        }
+        
     }
     
     func configureUI() {

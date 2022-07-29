@@ -14,18 +14,21 @@ class ScheduleModifyCoordinator: ScheduleEditCoordinatorType {
     var scheduleEditViewController: ScheduleEditViewController<ScheduleModifyViewModel>
     var type: CoordinatorType = .scheduleModify
     var scheduleEditUseCase: ScheduleEditUseCase
-    var scheduleId: String
+    var schedule: ScheduleSummary
     
-    required init(selectedScheduleId: String) {
-        self.scheduleEditViewController = ScheduleEditViewController()
+    required init(selectedSchedule: ScheduleSummary) {
+        self.scheduleEditViewController = ScheduleEditViewController(requestDate: selectedSchedule.dateStart)
         self.navigationController = UINavigationController(rootViewController: scheduleEditViewController)
         self.navigationController.modalPresentationStyle = .fullScreen
+        self.scheduleEditViewController.navigationItem.title = "일정 수정"
         self.scheduleEditUseCase = ScheduleEditUseCase()
-        self.scheduleId = selectedScheduleId
+        self.schedule = selectedSchedule
     }
     
     func start() {
-        let scheduleModifyViewModel = ScheduleModifyViewModel(coordinator: self, scheduleEditUseCase: scheduleEditUseCase, scheduleId: scheduleId)
+        let scheduleModifyViewModel = ScheduleModifyViewModel(coordinator: self,
+                                                              scheduleEditUseCase: scheduleEditUseCase,
+                                                              scheduleId: schedule.scheduleId)
         scheduleModifyViewModel.getSchedule()
         self.scheduleEditViewController.viewModel = scheduleModifyViewModel
     }
@@ -73,6 +76,10 @@ class ScheduleModifyCoordinator: ScheduleEditCoordinatorType {
         scheduleEditViewController.repeatType = repeatType
         scheduleEditViewController.repeatSelectedValue = repeatSelectedValue
         scheduleEditViewController.repeatEnd = repeatEndDate
+    }
+    
+    func showToastMessage(text: String) {
+        scheduleEditViewController.showToast(message: text)
     }
     
     func finish() {

@@ -18,9 +18,10 @@ class ScheduleDetailCoordinator: Coordinator {
     var type: CoordinatorType = .scheduleDetail
     var schedule: ScheduleSummary
     
-    required init(navigationController: UINavigationController, schedule: ScheduleSummary) {
+    required init(navigationController: UINavigationController, schedule: ScheduleSummary, isStatusEditing: Bool, requestDate: Date) {
         self.scheduleDetailUseCase = ScheduleDetailUseCase()
-        self.scheduleDetailViewController = ScheduleDetailViewController()
+        self.scheduleDetailViewController = ScheduleDetailViewController(isStatusEditing: isStatusEditing,
+                                                                         requestDate: requestDate)
         self.navigationController = navigationController
         self.schedule = schedule
     }
@@ -30,6 +31,10 @@ class ScheduleDetailCoordinator: Coordinator {
         self.scheduleDetailViewController.viewModel = scheduleDetailViewModel
         scheduleDetailViewModel.schedule(scheduleId: schedule.scheduleId, requestDate: schedule.dateStart)
         self.navigationController.pushViewController(scheduleDetailViewController, animated: true)
+    }
+    
+    func showToastMessage(text: String) {
+        scheduleDetailViewController.showToast(message: text)
     }
     
     func finish() {

@@ -38,8 +38,8 @@ class MainCoordinator: Coordinator {
         categoryCoordinator.start()
     }
     
-    func showEditScene() {
-        let scheduleAddCoordinator = ScheduleAddCoordinator()
+    func showEditScene(requestDate: Date) {
+        let scheduleAddCoordinator = ScheduleAddCoordinator(requestDate: requestDate)
         scheduleAddCoordinator.finishDelegate = self
         childCoordinators.append(scheduleAddCoordinator)
         navigationController.present(scheduleAddCoordinator.navigationController, animated: true, completion: nil)
