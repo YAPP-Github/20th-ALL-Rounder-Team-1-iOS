@@ -11,7 +11,7 @@ import SnapKit
 /// 스티커 현황
 class EmojiSheetViewController: BottomSheetViewController {
 
-    let viewController = EmojiTabViewController()
+    var viewController: EmojiTabViewController
     
     override var bottomSheetHeight: CGFloat {
         get {
@@ -26,6 +26,17 @@ class EmojiSheetViewController: BottomSheetViewController {
         setUpView()
         configureUI()
     }
+    
+    init(id: String, date: Date) {
+        
+        viewController = EmojiTabViewController(id: id, date: date)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     private func setUpView() {
         

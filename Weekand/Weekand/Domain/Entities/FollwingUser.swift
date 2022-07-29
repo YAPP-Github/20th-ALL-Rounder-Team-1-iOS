@@ -31,9 +31,9 @@ struct FollowingUser: Hashable {
     }
     
     init (model: FolloweesQuery.Data.Followee.Followee) {
-        self.userId = model.id ?? ""
-        self.name = model.nickname ?? ""
-        self.imagePath = model.profileUrl ?? ""
+        self.userId = model.id
+        self.name = model.nickname
+        self.imagePath = model.profileImageUrl
     }
     
     init(userSummary: UserSummary) {
