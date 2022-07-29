@@ -64,7 +64,12 @@ extension CategoryListSheetViewModel {
                 }
                 self.categoryList.accept(list)
             }, onFailure: { _ in
-                self.coordinator?.showToastMessage(text: "카테고리를 가져오지 못했습니다.")
+                if let coordinator = self.coordinator as? ScheduleAddCoordinator {
+                    coordinator.showToastMessage(text: "카테고리를 가져오지 못했습니다.")
+                } else if let coordinator = self.coordinator as? ScheduleModifyCoordinator {
+                    coordinator.showToastMessage(text: "카테고리를 가져오지 못했습니다.")
+                }
+                
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }

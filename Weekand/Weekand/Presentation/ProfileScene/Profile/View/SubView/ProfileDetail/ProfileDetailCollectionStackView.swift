@@ -44,6 +44,7 @@ class ProfileDetailCollectionStackView: UIStackView {
         
         collectionView.dataSource = self
         collectionView.isScrollEnabled = false
+        collectionView.backgroundColor = .clear
         collectionView.register(ProfileDetailCollectionCell.self, forCellWithReuseIdentifier: ProfileDetailCollectionCell.cellIdentifier)
     }
     
