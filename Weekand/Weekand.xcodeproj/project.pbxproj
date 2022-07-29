@@ -7,24 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D0A6A322881330E00CFE61D /* scheduleList.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D0A6A312881330E00CFE61D /* scheduleList.graphql */; };
 		7D0A6A3428813C7100CFE61D /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0A6A3328813C7100CFE61D /* Status.swift */; };
 		7D0A6A362881521400CFE61D /* MainUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0A6A352881521400CFE61D /* MainUseCase.swift */; };
 		7D0A6A3A2881588000CFE61D /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0A6A392881588000CFE61D /* DateExtension.swift */; };
-		7D0A6A3C2881C4C100CFE61D /* UserSummary.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D0A6A3B2881C4C100CFE61D /* UserSummary.graphql */; };
-		7D0A6A402881C61F00CFE61D /* Followers.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D0A6A3F2881C61F00CFE61D /* Followers.graphql */; };
 		7D0ED2BE287D064400DE3215 /* EmojiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0ED2BD287D064400DE3215 /* EmojiTableViewCell.swift */; };
 		7D0ED2C0287D065800DE3215 /* EmojiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0ED2BF287D065800DE3215 /* EmojiTableViewController.swift */; };
 		7D3B1F54283630A50037504A /* WTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B1F53283630A50037504A /* WTextField.swift */; };
 		7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7D648FBC282367F600F5D0B5 /* .swiftlint.yml */; };
-		7D67F4AB289263F500A1D7CD /* Followees.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4AA289263F500A1D7CD /* Followees.graphql */; };
-		7D67F4AD28927A3A00A1D7CD /* DeleteFollowee.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4AC28927A3A00A1D7CD /* DeleteFollowee.graphql */; };
-		7D67F4AF28927A4F00A1D7CD /* CreateFollowee.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4AE28927A4F00A1D7CD /* CreateFollowee.graphql */; };
-		7D67F4B32892CA3F00A1D7CD /* CreateSticker.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4B22892CA3F00A1D7CD /* CreateSticker.graphql */; };
-		7D67F4B528935E2800A1D7CD /* Notification.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4B428935E2800A1D7CD /* Notification.graphql */; };
 		7D67F4B728935F4600A1D7CD /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67F4B628935F4600A1D7CD /* Alarm.swift */; };
-		7D67F4B92893701300A1D7CD /* UpdatePassword.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4B82893701300A1D7CD /* UpdatePassword.graphql */; };
-		7D67F4BD28937A3C00A1D7CD /* SendContact.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4BC28937A3C00A1D7CD /* SendContact.graphql */; };
 		7D67F4BF2893A28700A1D7CD /* CreateImageUrl.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4BE2893A28700A1D7CD /* CreateImageUrl.graphql */; };
 		7D67F4C12893A2A600A1D7CD /* UpdateUserDetail.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4C02893A2A600A1D7CD /* UpdateUserDetail.graphql */; };
 		7D67F4C32893BAEA00A1D7CD /* ImageExtensionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67F4C22893BAEA00A1D7CD /* ImageExtensionType.swift */; };
@@ -105,11 +95,9 @@
 		7DF9688C284E019A00CE077E /* MainCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9688B284E019A00CE077E /* MainCalendarView.swift */; };
 		E8BDADFB0F95046E8D0F4BE0 /* Pods_Weekand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */; };
 		F30EBCCD288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCCC288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift */; };
-		F30EBCD1288078DF00ECB48D /* CreateCategory.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F30EBCD0288078DF00ECB48D /* CreateCategory.graphql */; };
 		F30EBCD328807B2600ECB48D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCD228807B2600ECB48D /* API.swift */; };
 		F30EBCD528807C9400ECB48D /* CategoryOpenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCD428807C9400ECB48D /* CategoryOpenType.swift */; };
 		F30EBCDB28817A2400ECB48D /* CategoryEditCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCDA28817A2400ECB48D /* CategoryEditCoordinatorType.swift */; };
-		F30EBCDD28817CFD00ECB48D /* UpdateCategory.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F30EBCDC28817CFD00ECB48D /* UpdateCategory.graphql */; };
 		F30EBCE32881983100ECB48D /* UserSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCE22881983100ECB48D /* UserSearchViewController.swift */; };
 		F30EBCE62881993100ECB48D /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCE52881993100ECB48D /* SearchHeaderView.swift */; };
 		F30EBCE828819C3E00ECB48D /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCE728819C3E00ECB48D /* UserTableViewCell.swift */; };
@@ -125,18 +113,12 @@
 		F323FEF1287636B500DFD8FD /* SortDropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F323FEEF287636B500DFD8FD /* SortDropDownCell.xib */; };
 		F323FF0A2877D21F00DFD8FD /* NetworkInterceptorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF092877D21F00DFD8FD /* NetworkInterceptorProvider.swift */; };
 		F323FF0C2877E87900DFD8FD /* WToastLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF0B2877E87900DFD8FD /* WToastLabel.swift */; };
-		F323FF102877F3B500DFD8FD /* Login.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF0F2877F3B500DFD8FD /* Login.graphql */; };
 		F323FF172879390200DFD8FD /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF162879390200DFD8FD /* PopupViewController.swift */; };
 		F323FF1928799B6D00DFD8FD /* SimplePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF1828799B6D00DFD8FD /* SimplePopupViewController.swift */; };
 		F323FF1B2879A05300DFD8FD /* SimplePopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF1A2879A05300DFD8FD /* SimplePopupViewModel.swift */; };
 		F323FF1D2879A30100DFD8FD /* SimplePopupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF1C2879A30000DFD8FD /* SimplePopupCoordinator.swift */; };
-		F323FF1F2879AD5600DFD8FD /* sendAuthKey.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF1E2879AD5600DFD8FD /* sendAuthKey.graphql */; };
-		F323FF212879AF3000DFD8FD /* vaildAuthKey.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF202879AF3000DFD8FD /* vaildAuthKey.graphql */; };
 		F323FF272879D18E00DFD8FD /* SignUpError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF262879D18E00DFD8FD /* SignUpError.swift */; };
-		F323FF2B287A036E00DFD8FD /* checkDuplicateNickname.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF2A287A036E00DFD8FD /* checkDuplicateNickname.graphql */; };
-		F323FF30287A276100DFD8FD /* issueTempPassword.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF2F287A276100DFD8FD /* issueTempPassword.graphql */; };
 		F323FF32287AB2C500DFD8FD /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF31287AB2C500DFD8FD /* BasePaddingLabel.swift */; };
-		F323FF38287B13F900DFD8FD /* SignUp.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F323FF37287B13F900DFD8FD /* SignUp.graphql */; };
 		F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0128235D500082AF30 /* AppDelegate.swift */; };
 		F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0328235D500082AF30 /* SceneDelegate.swift */; };
 		F32ACC0628235D500082AF30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0528235D500082AF30 /* ViewController.swift */; };
@@ -150,7 +132,6 @@
 		F32F725E2854ADFA0056B189 /* OpenTypeStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F725D2854ADFA0056B189 /* OpenTypeStackView.swift */; };
 		F32F72602854BB730056B189 /* ColorStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F725F2854BB730056B189 /* ColorStackView.swift */; };
 		F32F72642854EC890056B189 /* InformationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F72632854EC890056B189 /* InformationCollectionViewCell.swift */; };
-		F336F36028867ECF005B57A0 /* deleteCategory.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F336F35F28867ECF005B57A0 /* deleteCategory.graphql */; };
 		F336F3632886C4A9005B57A0 /* CategoryError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3622886C4A9005B57A0 /* CategoryError.swift */; };
 		F336F3672886ECEE005B57A0 /* RepeatTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3662886ECEE005B57A0 /* RepeatTabViewController.swift */; };
 		F336F3692886EDD4005B57A0 /* DefaultRepeatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3682886EDD4005B57A0 /* DefaultRepeatViewController.swift */; };
@@ -172,11 +153,8 @@
 		F336F3BC288ABF05005B57A0 /* DefaultRepeatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3BB288ABF05005B57A0 /* DefaultRepeatViewModel.swift */; };
 		F336F3BE288AC427005B57A0 /* WeekRepeatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3BD288AC427005B57A0 /* WeekRepeatViewModel.swift */; };
 		F336F3C0288AD597005B57A0 /* RepeatStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3BF288AD597005B57A0 /* RepeatStackView.swift */; };
-		F336F3C2288AFD67005B57A0 /* CreateSchedule.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F336F3C1288AFD67005B57A0 /* CreateSchedule.graphql */; };
-		F336F3C4288B11CC005B57A0 /* SearchSchedules.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F336F3C3288B11CC005B57A0 /* SearchSchedules.graphql */; };
 		F336F3C9288BA6A4005B57A0 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3C8288BA6A4005B57A0 /* NetworkError.swift */; };
 		F336F3CB288BCD59005B57A0 /* TokenAddingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3CA288BCD59005B57A0 /* TokenAddingInterceptor.swift */; };
-		F336F3CD288BDB44005B57A0 /* Reissue.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F336F3CC288BDB44005B57A0 /* Reissue.graphql */; };
 		F336F3D1288C5239005B57A0 /* RefreshTokenInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3D0288C5239005B57A0 /* RefreshTokenInterceptor.swift */; };
 		F336F3D3288CF63D005B57A0 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3D2288CF63D005B57A0 /* TokenManager.swift */; };
 		F336F3D6288D1626005B57A0 /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3D5288D1626005B57A0 /* KeyChainManager.swift */; };
@@ -191,22 +169,18 @@
 		F336F3EE289014CB005B57A0 /* DateTimeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3ED289014CB005B57A0 /* DateTimeLabel.swift */; };
 		F336F3F22890256E005B57A0 /* ScheduleModifyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3F12890256E005B57A0 /* ScheduleModifyCoordinator.swift */; };
 		F336F3F42890260A005B57A0 /* ScheduleModifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3F32890260A005B57A0 /* ScheduleModifyViewModel.swift */; };
-		F336F3F828902A92005B57A0 /* ScehduleRule.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F336F3F728902A92005B57A0 /* ScehduleRule.graphql */; };
 		F336F3FA28902D99005B57A0 /* ScheduleRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3F928902D99005B57A0 /* ScheduleRule.swift */; };
 		F336F4002890312C005B57A0 /* ScheduleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F3FF2890312C005B57A0 /* ScheduleEditViewController.swift */; };
 		F336F40228903BCB005B57A0 /* ScheduleEditCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F40128903BCB005B57A0 /* ScheduleEditCoordinatorType.swift */; };
-		F336F40628910E03005B57A0 /* UpdateSchedule.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F336F40528910E03005B57A0 /* UpdateSchedule.graphql */; };
 		F336F40828910E5B005B57A0 /* ScheduleUpdateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F40728910E5B005B57A0 /* ScheduleUpdateModel.swift */; };
 		F336F40A2891239A005B57A0 /* WRepeatTextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F4092891239A005B57A0 /* WRepeatTextManager.swift */; };
 		F336F40C28912BDE005B57A0 /* ScheduleEditViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F40B28912BDE005B57A0 /* ScheduleEditViewModelType.swift */; };
 		F336F40E2891994F005B57A0 /* Week+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F40D2891994F005B57A0 /* Week+extension.swift */; };
-		F336F4102891AA97005B57A0 /* DeleteScheduleFromDate.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F336F40F2891AA97005B57A0 /* DeleteScheduleFromDate.graphql */; };
 		F336F4162891B235005B57A0 /* ScheduleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F4152891B235005B57A0 /* ScheduleDetailViewController.swift */; };
 		F336F4182891B399005B57A0 /* ScheduleDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F4172891B399005B57A0 /* ScheduleDetailViewModel.swift */; };
 		F336F41A2891B3B2005B57A0 /* ScheduleDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F4192891B3B2005B57A0 /* ScheduleDetailCoordinator.swift */; };
 		F336F41C2891B437005B57A0 /* ScheduleDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F41B2891B437005B57A0 /* ScheduleDetailUseCase.swift */; };
 		F336F41F2891B9C6005B57A0 /* ScheduleInformationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336F41E2891B9C6005B57A0 /* ScheduleInformationStackView.swift */; };
-		F336F4212892422D005B57A0 /* DeleteSchedule.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F336F4202892422D005B57A0 /* DeleteSchedule.graphql */; };
 		F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C6EAB28533D0A005B493A /* WSortButton.swift */; };
 		F354C3DD283CEB3D008929FD /* InputGroupStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DC283CEB3D008929FD /* InputGroupStackView.swift */; };
 		F354C3DF283CECF5008929FD /* WTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354C3DE283CECF5008929FD /* WTextLabel.swift */; };
@@ -221,18 +195,13 @@
 		F378685928621C2C00BEEC81 /* CategoryModifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F378685828621C2C00BEEC81 /* CategoryModifyViewModel.swift */; };
 		F378685B28621C8F00BEEC81 /* CategoryEditViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F378685A28621C8F00BEEC81 /* CategoryEditViewModelType.swift */; };
 		F38AE45428926B7300E5E261 /* ScheduleDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE45328926B7300E5E261 /* ScheduleDetail.swift */; };
-		F38AE45628926C1200E5E261 /* Schedule.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F38AE45528926C1200E5E261 /* Schedule.graphql */; };
 		F38AE45828926E8700E5E261 /* ScheduleStatus+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE45728926E8700E5E261 /* ScheduleStatus+extension.swift */; };
 		F38AE45A28927BBB00E5E261 /* ScheduleCategoryStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE45928927BBB00E5E261 /* ScheduleCategoryStackView.swift */; };
-		F38AE45C2892B65E00E5E261 /* Logout.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F38AE45B2892B65E00E5E261 /* Logout.graphql */; };
-		F38AE45E2892CD0D00E5E261 /* DeleteUser.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F38AE45D2892CD0D00E5E261 /* DeleteUser.graphql */; };
 		F38AE4662892D22500E5E261 /* ResignWarningPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4652892D22500E5E261 /* ResignWarningPopupViewController.swift */; };
 		F38AE4682892D24800E5E261 /* WarningPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4672892D24800E5E261 /* WarningPopupViewModel.swift */; };
 		F38AE46A2892D47000E5E261 /* ResignWarningPopupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4692892D47000E5E261 /* ResignWarningPopupCoordinator.swift */; };
 		F38AE46E2892EDBE00E5E261 /* ScheduleCompleteToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE46D2892EDBE00E5E261 /* ScheduleCompleteToolBar.swift */; };
 		F38AE4722892F78200E5E261 /* CompleteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4712892F78200E5E261 /* CompleteCollectionViewCell.swift */; };
-		F38AE4762893E06E00E5E261 /* CompleteSchedule.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F38AE4752893E06E00E5E261 /* CompleteSchedule.graphql */; };
-		F38AE4782893E11100E5E261 /* IncompleteSchedule.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F38AE4772893E11100E5E261 /* IncompleteSchedule.graphql */; };
 		F38AE47B2894085900E5E261 /* UIVIewController+modality.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE47A2894085900E5E261 /* UIVIewController+modality.swift */; };
 		F38AE47D2894086200E5E261 /* FSCalendar+RxExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE47C2894086200E5E261 /* FSCalendar+RxExtension.swift */; };
 		F38AE47F2894086E00E5E261 /* String+trimWhiteSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE47E2894086E00E5E261 /* String+trimWhiteSpace.swift */; };
@@ -248,7 +217,6 @@
 		F392A1C7284F51B100512A42 /* CategoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1C6284F51B100512A42 /* CategoryListViewController.swift */; };
 		F392A1C9284F53A300512A42 /* CategoryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1C8284F53A300512A42 /* CategoryListTableViewCell.swift */; };
 		F392A1EF28531FC600512A42 /* CategoryListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F392A1EE28531FC400512A42 /* CategoryListHeaderView.swift */; };
-		F3A4D95B2885A94500DDE03B /* SearchUsers.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F3A4D95A2885A94500DDE03B /* SearchUsers.graphql */; };
 		F3A4D95D2885B28600DDE03B /* SearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A4D95C2885B28600DDE03B /* SearchUseCase.swift */; };
 		F3AA9E1B2869FEFC00F71559 /* PasswordFindViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA9E1A2869FEFC00F71559 /* PasswordFindViewModel.swift */; };
 		F3AA9E1D2869FF1E00F71559 /* PasswordFindCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AA9E1C2869FF1E00F71559 /* PasswordFindCoordinator.swift */; };
@@ -265,7 +233,6 @@
 		F3B00273287D68FA00D6BB1D /* UserSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B00270287D68FA00D6BB1D /* UserSummary.swift */; };
 		F3B00274287D68FA00D6BB1D /* ScheduleSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B00271287D68FA00D6BB1D /* ScheduleSort.swift */; };
 		F3B00275287D68FA00D6BB1D /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B00272287D68FA00D6BB1D /* SignUpModel.swift */; };
-		F3B00277287D700D00D6BB1D /* ScheduleCategories.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F3B00276287D700D00D6BB1D /* ScheduleCategories.graphql */; };
 		F3C8E087286DC71300B0916A /* RxApolloClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E086286DC71300B0916A /* RxApolloClient.swift */; };
 		F3C8E094286F598600B0916A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E093286F598600B0916A /* Network.swift */; };
 		F3C8E0A12872EFF400B0916A /* CategoryStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8E0A02872EFF400B0916A /* CategoryStackView.swift */; };
@@ -1383,8 +1350,6 @@
 			children = (
 				F38AE48428940AE500E5E261 /* ‌ResponseLoggingInterceptor.swift */,
 				F38AE48228940A2000E5E261 /* RequestLoggingInterceptor.swift */,
-				F336F3D0288C5239005B57A0 /* RefreshTokenInterceptor.swift */,
-				F336F3CA288BCD59005B57A0 /* TokenAddingInterceptor.swift */,
 			);
 			name = Interceptor;
 			path = ..;
@@ -1393,11 +1358,11 @@
 		F38AE48728940F6E00E5E261 /* Apollo */ = {
 			isa = PBXGroup;
 			children = (
-				F38AE48628940F4B00E5E261 /* Interceptor */,
 				F3C8E086286DC71300B0916A /* RxApolloClient.swift */,
 				F3C8E093286F598600B0916A /* Network.swift */,
-				7D8129D42887100F006C0A5D /* Timestamp.swift */,
 				F323FF092877D21F00DFD8FD /* NetworkInterceptorProvider.swift */,
+				7D8129D42887100F006C0A5D /* Timestamp.swift */,
+				F38AE48628940F4B00E5E261 /* Interceptor */,
 			);
 			path = Apollo;
 			sourceTree = "<group>";
@@ -1458,10 +1423,6 @@
 				7DE60AF82892560C00F85A05 /* schema.json */,
 				F336F3612886C49A005B57A0 /* Error */,
 				F3C8E08A286F4D8F00B0916A /* Query */,
-				F3C8E086286DC71300B0916A /* RxApolloClient.swift */,
-				F3C8E093286F598600B0916A /* Network.swift */,
-				F323FF092877D21F00DFD8FD /* NetworkInterceptorProvider.swift */,
-				7D8129D42887100F006C0A5D /* Timestamp.swift */,
 				F336F3CA288BCD59005B57A0 /* TokenAddingInterceptor.swift */,
 				F336F3D0288C5239005B57A0 /* RefreshTokenInterceptor.swift */,
 				7D67F4C42893BF9100A1D7CD /* ImageUploader.swift */,
@@ -1684,46 +1645,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DE60AF92892560C00F85A05 /* schema.json in Resources */,
-				F336F40628910E03005B57A0 /* UpdateSchedule.graphql in Resources */,
-				F336F4102891AA97005B57A0 /* DeleteScheduleFromDate.graphql in Resources */,
-				7D67F4B32892CA3F00A1D7CD /* CreateSticker.graphql in Resources */,
 				7DF8B7A928361FB100B224CA /* PretendardVariable.ttf in Resources */,
 				F323FEF1287636B500DFD8FD /* SortDropDownCell.xib in Resources */,
-				F38AE45C2892B65E00E5E261 /* Logout.graphql in Resources */,
-				F336F36028867ECF005B57A0 /* deleteCategory.graphql in Resources */,
 				7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */,
-				7D67F4AD28927A3A00A1D7CD /* DeleteFollowee.graphql in Resources */,
-				7D67F4BD28937A3C00A1D7CD /* SendContact.graphql in Resources */,
-				7D67F4B528935E2800A1D7CD /* Notification.graphql in Resources */,
-				7D67F4AF28927A4F00A1D7CD /* CreateFollowee.graphql in Resources */,
-				F323FF102877F3B500DFD8FD /* Login.graphql in Resources */,
-				F30EBCDD28817CFD00ECB48D /* UpdateCategory.graphql in Resources */,
-				7D0A6A3C2881C4C100CFE61D /* UserSummary.graphql in Resources */,
-				F323FF38287B13F900DFD8FD /* SignUp.graphql in Resources */,
-				F323FF2B287A036E00DFD8FD /* checkDuplicateNickname.graphql in Resources */,
 				7D67F4C12893A2A600A1D7CD /* UpdateUserDetail.graphql in Resources */,
-				7D0A6A322881330E00CFE61D /* scheduleList.graphql in Resources */,
 				7D67F4BF2893A28700A1D7CD /* CreateImageUrl.graphql in Resources */,
-				F38AE45E2892CD0D00E5E261 /* DeleteUser.graphql in Resources */,
-				F336F3CD288BDB44005B57A0 /* Reissue.graphql in Resources */,
-				F323FF30287A276100DFD8FD /* issueTempPassword.graphql in Resources */,
 				F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */,
-				F3B00277287D700D00D6BB1D /* ScheduleCategories.graphql in Resources */,
-				7D0A6A402881C61F00CFE61D /* Followers.graphql in Resources */,
-				F30EBCD1288078DF00ECB48D /* CreateCategory.graphql in Resources */,
-				F38AE45628926C1200E5E261 /* Schedule.graphql in Resources */,
-				F336F3C4288B11CC005B57A0 /* SearchSchedules.graphql in Resources */,
-				F323FF1F2879AD5600DFD8FD /* sendAuthKey.graphql in Resources */,
-				7D67F4B92893701300A1D7CD /* UpdatePassword.graphql in Resources */,
-				F336F4212892422D005B57A0 /* DeleteSchedule.graphql in Resources */,
-				7D67F4AB289263F500A1D7CD /* Followees.graphql in Resources */,
-				F336F3F828902A92005B57A0 /* ScehduleRule.graphql in Resources */,
-				F38AE4782893E11100E5E261 /* IncompleteSchedule.graphql in Resources */,
-				F336F3C2288AFD67005B57A0 /* CreateSchedule.graphql in Resources */,
-				F3A4D95B2885A94500DDE03B /* SearchUsers.graphql in Resources */,
 				F32ACC0B28235D530082AF30 /* Assets.xcassets in Resources */,
-				F323FF212879AF3000DFD8FD /* vaildAuthKey.graphql in Resources */,
-				F38AE4762893E06E00E5E261 /* CompleteSchedule.graphql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -822,6 +822,64 @@ public final class CheckDuplicateNicknameQuery: GraphQLQuery {
   }
 }
 
+public final class CompleteScheduleMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation CompleteSchedule($scheduleId: ID!, $date: Timestamp!) {
+      completeSchedule(input: {scheduleId: $scheduleId, date: $date})
+    }
+    """
+
+  public let operationName: String = "CompleteSchedule"
+
+  public var scheduleId: GraphQLID
+  public var date: Timestamp
+
+  public init(scheduleId: GraphQLID, date: Timestamp) {
+    self.scheduleId = scheduleId
+    self.date = date
+  }
+
+  public var variables: GraphQLMap? {
+    return ["scheduleId": scheduleId, "date": date]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("completeSchedule", arguments: ["input": ["scheduleId": GraphQLVariable("scheduleId"), "date": GraphQLVariable("date")]], type: .nonNull(.scalar(Bool.self))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(completeSchedule: Bool) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "completeSchedule": completeSchedule])
+    }
+
+    /// 스케줄을 완료 처리한다
+    /// [error]
+    /// 4001: 해당 스케줄을 찾을 수 없습니다.
+    /// 3006: 권한이 없는 유저의 접근입니다.
+    /// 4009: 상태 추가할 날짜를 확인해주세요.
+    public var completeSchedule: Bool {
+      get {
+        return resultMap["completeSchedule"]! as! Bool
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "completeSchedule")
+      }
+    }
+  }
+}
+
 public final class CreateCategoryMutation: GraphQLMutation {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
@@ -1850,6 +1908,64 @@ public final class FollowersQuery: GraphQLQuery {
             resultMap.updateValue(newValue, forKey: "profileImageUrl")
           }
         }
+      }
+    }
+  }
+}
+
+public final class IncompleteScheduleMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation IncompleteSchedule($scheduleId: ID!, $date: Timestamp!) {
+      incompleteSchedule(input: {scheduleId: $scheduleId, date: $date})
+    }
+    """
+
+  public let operationName: String = "IncompleteSchedule"
+
+  public var scheduleId: GraphQLID
+  public var date: Timestamp
+
+  public init(scheduleId: GraphQLID, date: Timestamp) {
+    self.scheduleId = scheduleId
+    self.date = date
+  }
+
+  public var variables: GraphQLMap? {
+    return ["scheduleId": scheduleId, "date": date]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("incompleteSchedule", arguments: ["input": ["scheduleId": GraphQLVariable("scheduleId"), "date": GraphQLVariable("date")]], type: .nonNull(.scalar(Bool.self))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(incompleteSchedule: Bool) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "incompleteSchedule": incompleteSchedule])
+    }
+
+    /// 스케줄 미완료 처리한다
+    /// [error]
+    /// 4001: 해당 스케줄을 찾을 수 없습니다.
+    /// 3006: 권한이 없는 유저의 접근입니다.
+    /// 4009: 상태 추가할 날짜를 확인해주세요.
+    public var incompleteSchedule: Bool {
+      get {
+        return resultMap["incompleteSchedule"]! as! Bool
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "incompleteSchedule")
       }
     }
   }
