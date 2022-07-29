@@ -18,7 +18,10 @@ class ProfileEditViewModel: ViewModelType {
     var alertText = PublishSubject<String>()
     var userDetail = BehaviorRelay<UserDetail>(value: UserDetail.defaultData)
     var userUpdate = PublishRelay<UserUpdate>()
-    var imageUrl: String?
+    
+    var updateImage: UIImage?
+    var updateDetail: UserUpdate?
+    
     
     init (coordinator: ProfileCoordinator, useCase: ProfileUseCase) {
         self.coordinator = coordinator
@@ -27,9 +30,9 @@ class ProfileEditViewModel: ViewModelType {
         getMyUserProfile(id: UserDataStorage.shared.userID)
         
         userUpdate.subscribe(onNext: { update in
-            print(update)
             
-            if update.name.count < 3 {
+            guard let name = update.name?.count else { return }
+            if name < 3 {
                 PublishRelay<String>.just("닉네임은 최소 3글자 이상이어야 합니다.").bind(to: self.alertText).disposed(by: self.disposeBag)
             }
             
@@ -45,6 +48,9 @@ extension ProfileEditViewModel {
         let didJobTap: Observable<UITapGestureRecognizer>
         let didInterestTap: Observable<UITapGestureRecognizer>
         let didButtonTap: Observable<Void>
+        
+        let profileDataChanged: Observable<UserUpdate>
+        let profileImageChanged: Observable<UIImage>
     }
     
     struct Output {
@@ -56,7 +62,7 @@ extension ProfileEditViewModel {
     func transform(input: Input) -> Output {
         
         input.didImageTap.when(.recognized).subscribe(onNext: { _ in
-            print("Image")
+            
         }).disposed(by: disposeBag)
         
         input.didJobTap.when(.recognized).subscribe(onNext: { _ in
@@ -67,8 +73,17 @@ extension ProfileEditViewModel {
             self.coordinator?.presentInterestsInformationSheet()
         }).disposed(by: disposeBag)
         
-        input.didButtonTap.subscribe(onNext: { update in
-            print(update)
+        input.didButtonTap.subscribe(onNext: { _ in
+            
+            
+        }).disposed(by: disposeBag)
+        
+        input.profileDataChanged.subscribe(onNext: { updatedDetail in
+            self.updateDetail = updatedDetail
+        }).disposed(by: disposeBag)
+        
+        input.profileImageChanged.subscribe(onNext: { updatedImage in
+            self.updateImage = updatedImage
         }).disposed(by: disposeBag)
         
         return Output(
@@ -85,6 +100,9 @@ extension ProfileEditViewModel {
         self.profileUseCase.profileDetail(id: id)
             .subscribe(onSuccess: { userData in
                 BehaviorRelay<UserDetail>.just(userData).bind(to: self.userDetail).disposed(by: self.disposeBag)
+                
+                self.updateDetail = UserUpdate(name: userData.name, goal: userData.goal, imageFileName: nil, job: userData.job, interest: userData.interest)
+                
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
         }, onDisposed: nil)
