@@ -1297,7 +1297,7 @@ public final class FolloweesQuery: GraphQLQuery {
           __typename
           id
           nickname
-          profileUrl
+          profileImageUrl
         }
       }
     }
@@ -1336,7 +1336,8 @@ public final class FolloweesQuery: GraphQLQuery {
       self.init(unsafeResultMap: ["__typename": "Query", "followees": followees.resultMap])
     }
 
-    /// 자신을 팔로우 하고 있는 유저 목록을 가져온다
+    /// 인자로 넘어온 회원의 팔로잉 목록을 가져온다
+    /// userId 인자를 주어지지 않으면, 현재 로그인 된 회원이 팔로우 하고 있는 유저 목록을 가져온다
     public var followees: Followee {
       get {
         return Followee(unsafeResultMap: resultMap["followees"]! as! ResultMap)
@@ -1439,9 +1440,9 @@ public final class FolloweesQuery: GraphQLQuery {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("id", type: .scalar(GraphQLID.self)),
-            GraphQLField("nickname", type: .scalar(String.self)),
-            GraphQLField("profileUrl", type: .scalar(String.self)),
+            GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("nickname", type: .nonNull(.scalar(String.self))),
+            GraphQLField("profileImageUrl", type: .nonNull(.scalar(String.self))),
           ]
         }
 
@@ -1451,8 +1452,8 @@ public final class FolloweesQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(id: GraphQLID? = nil, nickname: String? = nil, profileUrl: String? = nil) {
-          self.init(unsafeResultMap: ["__typename": "FollowUser", "id": id, "nickname": nickname, "profileUrl": profileUrl])
+        public init(id: GraphQLID, nickname: String, profileImageUrl: String) {
+          self.init(unsafeResultMap: ["__typename": "FollowUser", "id": id, "nickname": nickname, "profileImageUrl": profileImageUrl])
         }
 
         public var __typename: String {
@@ -1464,30 +1465,30 @@ public final class FolloweesQuery: GraphQLQuery {
           }
         }
 
-        public var id: GraphQLID? {
+        public var id: GraphQLID {
           get {
-            return resultMap["id"] as? GraphQLID
+            return resultMap["id"]! as! GraphQLID
           }
           set {
             resultMap.updateValue(newValue, forKey: "id")
           }
         }
 
-        public var nickname: String? {
+        public var nickname: String {
           get {
-            return resultMap["nickname"] as? String
+            return resultMap["nickname"]! as! String
           }
           set {
             resultMap.updateValue(newValue, forKey: "nickname")
           }
         }
 
-        public var profileUrl: String? {
+        public var profileImageUrl: String {
           get {
-            return resultMap["profileUrl"] as? String
+            return resultMap["profileImageUrl"]! as! String
           }
           set {
-            resultMap.updateValue(newValue, forKey: "profileUrl")
+            resultMap.updateValue(newValue, forKey: "profileImageUrl")
           }
         }
       }
@@ -1510,7 +1511,7 @@ public final class FollowersQuery: GraphQLQuery {
           __typename
           id
           nickname
-          profileUrl
+          profileImageUrl
         }
       }
     }
@@ -1549,7 +1550,8 @@ public final class FollowersQuery: GraphQLQuery {
       self.init(unsafeResultMap: ["__typename": "Query", "followers": followers.resultMap])
     }
 
-    /// 팔로우 하고 있는 유저 목록을 가져온다
+    /// 인자로 넘어온 회원의 팔로워 목록을 가져온다
+    /// userId 인자를 주어지지 않으면, 현재 로그인 된 회원을 팔로우 하고 있는 유저 목록을 가져온다
     public var followers: Follower {
       get {
         return Follower(unsafeResultMap: resultMap["followers"]! as! ResultMap)
@@ -1652,9 +1654,9 @@ public final class FollowersQuery: GraphQLQuery {
         public static var selections: [GraphQLSelection] {
           return [
             GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-            GraphQLField("id", type: .scalar(GraphQLID.self)),
-            GraphQLField("nickname", type: .scalar(String.self)),
-            GraphQLField("profileUrl", type: .scalar(String.self)),
+            GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("nickname", type: .nonNull(.scalar(String.self))),
+            GraphQLField("profileImageUrl", type: .nonNull(.scalar(String.self))),
           ]
         }
 
@@ -1664,8 +1666,8 @@ public final class FollowersQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(id: GraphQLID? = nil, nickname: String? = nil, profileUrl: String? = nil) {
-          self.init(unsafeResultMap: ["__typename": "FollowUser", "id": id, "nickname": nickname, "profileUrl": profileUrl])
+        public init(id: GraphQLID, nickname: String, profileImageUrl: String) {
+          self.init(unsafeResultMap: ["__typename": "FollowUser", "id": id, "nickname": nickname, "profileImageUrl": profileImageUrl])
         }
 
         public var __typename: String {
@@ -1677,30 +1679,30 @@ public final class FollowersQuery: GraphQLQuery {
           }
         }
 
-        public var id: GraphQLID? {
+        public var id: GraphQLID {
           get {
-            return resultMap["id"] as? GraphQLID
+            return resultMap["id"]! as! GraphQLID
           }
           set {
             resultMap.updateValue(newValue, forKey: "id")
           }
         }
 
-        public var nickname: String? {
+        public var nickname: String {
           get {
-            return resultMap["nickname"] as? String
+            return resultMap["nickname"]! as! String
           }
           set {
             resultMap.updateValue(newValue, forKey: "nickname")
           }
         }
 
-        public var profileUrl: String? {
+        public var profileImageUrl: String {
           get {
-            return resultMap["profileUrl"] as? String
+            return resultMap["profileImageUrl"]! as! String
           }
           set {
-            resultMap.updateValue(newValue, forKey: "profileUrl")
+            resultMap.updateValue(newValue, forKey: "profileImageUrl")
           }
         }
       }
