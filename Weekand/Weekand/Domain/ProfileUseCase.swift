@@ -10,6 +10,7 @@ import RxSwift
 
 final class ProfileUseCase {
     
+    /// 유저 상세 프로필 불러오기
     func profileDetail(id: String?) -> Single<UserDetail> {
         return NetWork.shared.fetch(query: UserDetailQuery(id: id))
             .map {
@@ -33,6 +34,20 @@ final class ProfileUseCase {
     func deleteFollowee(id: String) -> Single<Bool> {
         return NetWork.shared.perform(mutation: DeleteFolloweeMutation(id: id))
             .map { $0.deleteFollowee }
+            .asSingle()
+    }
+    
+    /// 문의 내용 전송
+    func sendContact(message: String) -> Single<Bool> {
+        return NetWork.shared.perform(mutation: SendContactMutation(message: message))
+            .map { $0.inquiry }
+            .asSingle()
+    }
+ 
+    /// 비밀번호 변경
+    func updatePassword(old: String, new: String) -> Single<Bool> {
+        return NetWork.shared.perform(mutation: UpdatePasswordMutation(old: old, new: new))
+            .map { $0.updatePassword }
             .asSingle()
     }
     

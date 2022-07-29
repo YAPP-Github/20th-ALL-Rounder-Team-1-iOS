@@ -10,6 +10,17 @@ import RxSwift
 
 final class MainUseCase {
     
+    /// 알람 목록
+    func notification(page: Int, size: Int) -> Single<[Alarm]> {
+        return NetWork.shared.fetch(query: NotificationQuery(page: page, size: size))
+            .map {
+                $0.notifications.notifications.map {
+                    Alarm(id: $0.id, message: $0.message, type: $0.type.rawValue)
+                }
+            }
+            .asSingle()
+    }
+    
     /// 내가 팔로우하는 유저 목록
     func followees(page: Int, size: Int) -> Single<[FollowingUser]> {
         return NetWork.shared.fetch(query: FolloweesQuery(page: page, size: size))

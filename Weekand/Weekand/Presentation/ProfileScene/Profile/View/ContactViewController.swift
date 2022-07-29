@@ -106,7 +106,13 @@ class ContactViewController: BaseViewController {
             didButtonTap: bottomButton.rx.tap.asObservable()
         )
         
-        _ = viewModel?.transform(input: input)
+        let output = viewModel?.transform(input: input)
+        
+        output?.serverResult.subscribe(onNext: { isSuccess in
+            if !isSuccess {
+                self.showToast(message: "잠시후 다시 시도해주세요")
+            }
+        }).disposed(by: disposeBag)
     }
 }
 

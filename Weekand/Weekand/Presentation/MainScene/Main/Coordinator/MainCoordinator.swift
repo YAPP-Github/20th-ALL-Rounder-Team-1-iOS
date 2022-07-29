@@ -56,7 +56,7 @@ class MainCoordinator: Coordinator {
     /// 알람 화면
     func pushAlarmViewController() {
         let alarmViewController = AlarmViewController()
-        alarmViewController.viewModel = AlarmViewModel()
+        alarmViewController.viewModel = AlarmViewModel(mainUseCase: mainUseCase)
         self.navigationController.pushViewController(alarmViewController, animated: true)
     }
     
