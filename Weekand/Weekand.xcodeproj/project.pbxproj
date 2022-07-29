@@ -235,6 +235,7 @@
 		F38AE4812894087800E5E261 /* UIScrollView+scrollToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4802894087800E5E261 /* UIScrollView+scrollToTop.swift */; };
 		F38AE48328940A2000E5E261 /* RequestLoggingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE48228940A2000E5E261 /* RequestLoggingInterceptor.swift */; };
 		F38AE48528940AE500E5E261 /* ‌ResponseLoggingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE48428940AE500E5E261 /* ‌ResponseLoggingInterceptor.swift */; };
+		F38AE4892894124200E5E261 /* ScheduleEditError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4882894124200E5E261 /* ScheduleEditError.swift */; };
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
@@ -524,6 +525,7 @@
 		F38AE4802894087800E5E261 /* UIScrollView+scrollToTop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+scrollToTop.swift"; sourceTree = "<group>"; };
 		F38AE48228940A2000E5E261 /* RequestLoggingInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLoggingInterceptor.swift; sourceTree = "<group>"; };
 		F38AE48428940AE500E5E261 /* ‌ResponseLoggingInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "‌ResponseLoggingInterceptor.swift"; sourceTree = "<group>"; };
+		F38AE4882894124200E5E261 /* ScheduleEditError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditError.swift; sourceTree = "<group>"; };
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
@@ -1256,6 +1258,7 @@
 				F323FF262879D18E00DFD8FD /* SignUpError.swift */,
 				F336F3C8288BA6A4005B57A0 /* NetworkError.swift */,
 				F336F3DF288EF19B005B57A0 /* SignInError.swift */,
+				F38AE4882894124200E5E261 /* ScheduleEditError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -1842,6 +1845,7 @@
 				7DB1D5BF287C1C4C0032C209 /* EmojiTabViewController.swift in Sources */,
 				7D0ED2C0287D065800DE3215 /* EmojiTableViewController.swift in Sources */,
 				7D80021B283DEAE7007874C6 /* WelcomeViewController.swift in Sources */,
+				F38AE4892894124200E5E261 /* ScheduleEditError.swift in Sources */,
 				7D8129E128894BB8006C0A5D /* ProfileSetting.swift in Sources */,
 				F3CC76B028670BA200A3FBBE /* ColorSheetViewModel.swift in Sources */,
 				F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */,

@@ -78,6 +78,10 @@ class ScheduleModifyCoordinator: ScheduleEditCoordinatorType {
         scheduleEditViewController.repeatEnd = repeatEndDate
     }
     
+    func showToastMessage(text: String) {
+        scheduleEditViewController.showToast(message: text)
+    }
+    
     func finish() {
         self.navigationController.dismiss(animated: true)
     }

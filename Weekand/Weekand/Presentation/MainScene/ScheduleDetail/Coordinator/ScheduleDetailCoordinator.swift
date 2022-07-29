@@ -33,6 +33,10 @@ class ScheduleDetailCoordinator: Coordinator {
         self.navigationController.pushViewController(scheduleDetailViewController, animated: true)
     }
     
+    func showToastMessage(text: String) {
+        scheduleDetailViewController.showToast(message: text)
+    }
+    
     func finish() {
         self.finishDelegate?.childDidFinish(self)
     }

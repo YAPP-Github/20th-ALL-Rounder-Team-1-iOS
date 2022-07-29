@@ -59,8 +59,8 @@ extension ScheduleDetailViewModel {
             .subscribe(onSuccess: { schedule in
                 let scheduleDetail = ScheduleDetail(model: schedule)
                 self.schedule.accept(scheduleDetail)
-            }, onFailure: { error in
-                print(error)
+            }, onFailure: { _ in
+                self.coordinator?.showToastMessage(text: "일정 조회에 실패하였습니다.")
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }
@@ -69,10 +69,10 @@ extension ScheduleDetailViewModel {
         self.scheduleDetailUseCase.completeSchedule(scheduleId: scheduleId, requestDate: requestDate)
             .subscribe(onSuccess: { isSucceed in
                 if isSucceed == false {
-                    print("error")
+                    self.coordinator?.showToastMessage(text: "일정 완료를 적용하지 못했습니다.")
                 }
-            }, onFailure: { error in
-                print(error)
+            }, onFailure: { _ in
+                self.coordinator?.showToastMessage(text: "일정 완료를 적용하지 못했습니다.")
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }
@@ -81,10 +81,10 @@ extension ScheduleDetailViewModel {
         self.scheduleDetailUseCase.incompleteSchedule(scheduleId: scheduleId, requestDate: requestDate)
             .subscribe(onSuccess: { isSucceed in
                 if isSucceed == false {
-                    print("error")
+                    self.coordinator?.showToastMessage(text: "일정 미완료를 적용하지 못했습니다.")
                 }
-            }, onFailure: { error in
-                print(error)
+            }, onFailure: { _ in
+                self.coordinator?.showToastMessage(text: "일정 미완료를 적용하지 못했습니다..")
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }

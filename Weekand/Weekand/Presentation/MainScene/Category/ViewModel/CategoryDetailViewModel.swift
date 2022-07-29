@@ -92,8 +92,8 @@ extension CategoryDetailViewModel {
                     ScheduleSummary(model: scedule)
                 }
                 self.scheduleList.accept(list)
-            }, onFailure: { error in
-                print(error)
+            }, onFailure: { _ in
+                self.coordinator?.showToastMessage(text: "일정 조회에 실패하였습니다.")
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }

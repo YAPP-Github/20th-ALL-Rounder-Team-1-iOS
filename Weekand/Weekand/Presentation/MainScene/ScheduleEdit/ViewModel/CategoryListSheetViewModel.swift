@@ -63,8 +63,8 @@ extension CategoryListSheetViewModel {
                     Category(serverID: category.id, color: category.color, name: category.name, openType: category.openType.toEntity())
                 }
                 self.categoryList.accept(list)
-            }, onFailure: { error in
-                print(error)
+            }, onFailure: { _ in
+                self.coordinator?.showToastMessage(text: "카테고리를 가져오지 못했습니다.")
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }
