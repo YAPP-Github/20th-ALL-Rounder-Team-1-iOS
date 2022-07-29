@@ -17,14 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene) // SceneDelegate의 프로퍼티에 설정해줌
         let navigationController = BaseNavigationController()
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor.clear
-        appearance.shadowColor = UIColor.clear
-        appearance.backgroundEffect = UIBlurEffect(style: .light)
         
-        UINavigationBar.appearance().standardAppearance = appearance
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        setNavigationAppearance()
 
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
@@ -32,6 +26,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
         self.coordinator = AppCoordinator(navigationController: navigationController)
         self.coordinator?.start()
+    }
+    
+    func setNavigationAppearance() {
+        let backButtonAppearance = UIBarButtonItemAppearance(style: .plain)
+        backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
+        
+        let backButtonImage = UIImage(named: "back")
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.clear
+        appearance.shadowColor = UIColor.clear
+        appearance.backgroundEffect = UIBlurEffect(style: .light)
+        appearance.backButtonAppearance = backButtonAppearance
+        appearance.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
+        
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
