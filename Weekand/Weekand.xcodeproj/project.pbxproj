@@ -25,6 +25,10 @@
 		7D67F4B728935F4600A1D7CD /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67F4B628935F4600A1D7CD /* Alarm.swift */; };
 		7D67F4B92893701300A1D7CD /* UpdatePassword.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4B82893701300A1D7CD /* UpdatePassword.graphql */; };
 		7D67F4BD28937A3C00A1D7CD /* SendContact.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4BC28937A3C00A1D7CD /* SendContact.graphql */; };
+		7D67F4BF2893A28700A1D7CD /* CreateImageUrl.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4BE2893A28700A1D7CD /* CreateImageUrl.graphql */; };
+		7D67F4C12893A2A600A1D7CD /* UpdateUserDetail.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4C02893A2A600A1D7CD /* UpdateUserDetail.graphql */; };
+		7D67F4C32893BAEA00A1D7CD /* ImageExtensionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67F4C22893BAEA00A1D7CD /* ImageExtensionType.swift */; };
+		7D67F4C52893BF9100A1D7CD /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67F4C42893BF9100A1D7CD /* ImageUploader.swift */; };
 		7D6B911528449A760044E217 /* WIconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B911428449A760044E217 /* WIconLabel.swift */; };
 		7D6B911728449F610044E217 /* WCategoryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B911628449F610044E217 /* WCategoryTitleLabel.swift */; };
 		7D6B91192844A8D50044E217 /* WStatusTimeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B91182844A8D50044E217 /* WStatusTimeLabel.swift */; };
@@ -314,6 +318,10 @@
 		7D67F4B628935F4600A1D7CD /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		7D67F4B82893701300A1D7CD /* UpdatePassword.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UpdatePassword.graphql; sourceTree = "<group>"; };
 		7D67F4BC28937A3C00A1D7CD /* SendContact.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SendContact.graphql; sourceTree = "<group>"; };
+		7D67F4BE2893A28700A1D7CD /* CreateImageUrl.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CreateImageUrl.graphql; sourceTree = "<group>"; };
+		7D67F4C02893A2A600A1D7CD /* UpdateUserDetail.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UpdateUserDetail.graphql; sourceTree = "<group>"; };
+		7D67F4C22893BAEA00A1D7CD /* ImageExtensionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensionType.swift; sourceTree = "<group>"; };
+		7D67F4C42893BF9100A1D7CD /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		7D6B911428449A760044E217 /* WIconLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WIconLabel.swift; sourceTree = "<group>"; };
 		7D6B911628449F610044E217 /* WCategoryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCategoryTitleLabel.swift; sourceTree = "<group>"; };
 		7D6B91182844A8D50044E217 /* WStatusTimeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WStatusTimeLabel.swift; sourceTree = "<group>"; };
@@ -731,6 +739,7 @@
 			isa = PBXGroup;
 			children = (
 				F336F3A5288939E9005B57A0 /* ScheduleRepeatType.swift */,
+				7D67F4C22893BAEA00A1D7CD /* ImageExtensionType.swift */,
 				F30EBCD428807C9400ECB48D /* CategoryOpenType.swift */,
 				F3B00271287D68FA00D6BB1D /* ScheduleSort.swift */,
 				F30EBCF22885176300ECB48D /* UserSort.swift */,
@@ -1449,6 +1458,13 @@
 				7DE60AF82892560C00F85A05 /* schema.json */,
 				F336F3612886C49A005B57A0 /* Error */,
 				F3C8E08A286F4D8F00B0916A /* Query */,
+				F3C8E086286DC71300B0916A /* RxApolloClient.swift */,
+				F3C8E093286F598600B0916A /* Network.swift */,
+				F323FF092877D21F00DFD8FD /* NetworkInterceptorProvider.swift */,
+				7D8129D42887100F006C0A5D /* Timestamp.swift */,
+				F336F3CA288BCD59005B57A0 /* TokenAddingInterceptor.swift */,
+				F336F3D0288C5239005B57A0 /* RefreshTokenInterceptor.swift */,
+				7D67F4C42893BF9100A1D7CD /* ImageUploader.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1462,6 +1478,8 @@
 				F323FF0F2877F3B500DFD8FD /* Login.graphql */,
 				F323FF1E2879AD5600DFD8FD /* sendAuthKey.graphql */,
 				F323FF202879AF3000DFD8FD /* vaildAuthKey.graphql */,
+				7D67F4BE2893A28700A1D7CD /* CreateImageUrl.graphql */,
+				7D67F4C02893A2A600A1D7CD /* UpdateUserDetail.graphql */,
 				F323FF2A287A036E00DFD8FD /* checkDuplicateNickname.graphql */,
 				7D0A6A312881330E00CFE61D /* scheduleList.graphql */,
 				F323FF2F287A276100DFD8FD /* issueTempPassword.graphql */,
@@ -1683,7 +1701,9 @@
 				7D0A6A3C2881C4C100CFE61D /* UserSummary.graphql in Resources */,
 				F323FF38287B13F900DFD8FD /* SignUp.graphql in Resources */,
 				F323FF2B287A036E00DFD8FD /* checkDuplicateNickname.graphql in Resources */,
+				7D67F4C12893A2A600A1D7CD /* UpdateUserDetail.graphql in Resources */,
 				7D0A6A322881330E00CFE61D /* scheduleList.graphql in Resources */,
+				7D67F4BF2893A28700A1D7CD /* CreateImageUrl.graphql in Resources */,
 				F38AE45E2892CD0D00E5E261 /* DeleteUser.graphql in Resources */,
 				F336F3CD288BDB44005B57A0 /* Reissue.graphql in Resources */,
 				F323FF30287A276100DFD8FD /* issueTempPassword.graphql in Resources */,
@@ -1822,6 +1842,7 @@
 				F3A4D95D2885B28600DDE03B /* SearchUseCase.swift in Sources */,
 				7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */,
 				F3B00267287D68E700D6BB1D /* Category.swift in Sources */,
+				7D67F4C52893BF9100A1D7CD /* ImageUploader.swift in Sources */,
 				F323FF0C2877E87900DFD8FD /* WToastLabel.swift in Sources */,
 				F336F41A2891B3B2005B57A0 /* ScheduleDetailCoordinator.swift in Sources */,
 				F38AE46E2892EDBE00E5E261 /* ScheduleCompleteToolBar.swift in Sources */,
@@ -2012,6 +2033,7 @@
 				F336F3D8288D2308005B57A0 /* KeyChainError.swift in Sources */,
 				F30EBCF028828C3C00ECB48D /* WFilterButtton.swift in Sources */,
 				F3B00274287D68FA00D6BB1D /* ScheduleSort.swift in Sources */,
+				7D67F4C32893BAEA00A1D7CD /* ImageExtensionType.swift in Sources */,
 				7DE60AF02892539F00F85A05 /* ProfileDetailInteractoinBlockView.swift in Sources */,
 				7DE60AF42892539F00F85A05 /* ProfileViewController.swift in Sources */,
 				7DE60AE92892539F00F85A05 /* SelectionSheetViewController.swift in Sources */,

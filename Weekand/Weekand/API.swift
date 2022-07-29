@@ -49,6 +49,46 @@ public enum ScheduleCategoryOpenType: RawRepresentable, Equatable, Hashable, Cas
   }
 }
 
+public enum UserProfileImageExtensionType: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  case jpeg
+  case png
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "JPEG": self = .jpeg
+      case "PNG": self = .png
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .jpeg: return "JPEG"
+      case .png: return "PNG"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: UserProfileImageExtensionType, rhs: UserProfileImageExtensionType) -> Bool {
+    switch (lhs, rhs) {
+      case (.jpeg, .jpeg): return true
+      case (.png, .png): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [UserProfileImageExtensionType] {
+    return [
+      .jpeg,
+      .png,
+    ]
+  }
+}
+
 public struct ScheduleInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
@@ -892,6 +932,111 @@ public final class CreateFolloweeMutation: GraphQLMutation {
       }
       set {
         resultMap.updateValue(newValue, forKey: "createFollow")
+      }
+    }
+  }
+}
+
+public final class CreateImageUrlMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation createImageUrl($type: UserProfileImageExtensionType!) {
+      createUserProfileImageS3PresignedUrl(input: {extension: $type}) {
+        __typename
+        url
+        filename
+      }
+    }
+    """
+
+  public let operationName: String = "createImageUrl"
+
+  public var type: UserProfileImageExtensionType
+
+  public init(type: UserProfileImageExtensionType) {
+    self.type = type
+  }
+
+  public var variables: GraphQLMap? {
+    return ["type": type]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("createUserProfileImageS3PresignedUrl", arguments: ["input": ["extension": GraphQLVariable("type")]], type: .nonNull(.object(CreateUserProfileImageS3PresignedUrl.selections))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(createUserProfileImageS3PresignedUrl: CreateUserProfileImageS3PresignedUrl) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "createUserProfileImageS3PresignedUrl": createUserProfileImageS3PresignedUrl.resultMap])
+    }
+
+    /// 프로필 이미지 업로드를 위한 signed url 을 생성한다
+    public var createUserProfileImageS3PresignedUrl: CreateUserProfileImageS3PresignedUrl {
+      get {
+        return CreateUserProfileImageS3PresignedUrl(unsafeResultMap: resultMap["createUserProfileImageS3PresignedUrl"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "createUserProfileImageS3PresignedUrl")
+      }
+    }
+
+    public struct CreateUserProfileImageS3PresignedUrl: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["UserProfileImageS3PresignedUrl"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("url", type: .nonNull(.scalar(String.self))),
+          GraphQLField("filename", type: .nonNull(.scalar(String.self))),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(url: String, filename: String) {
+        self.init(unsafeResultMap: ["__typename": "UserProfileImageS3PresignedUrl", "url": url, "filename": filename])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var url: String {
+        get {
+          return resultMap["url"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "url")
+        }
+      }
+
+      public var filename: String {
+        get {
+          return resultMap["filename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "filename")
+        }
       }
     }
   }
@@ -4612,6 +4757,215 @@ public final class UpdateScheduleMutation: GraphQLMutation {
       }
       set {
         resultMap.updateValue(newValue, forKey: "updateSchedule")
+      }
+    }
+  }
+}
+
+public final class UpdateUserDetailMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation UpdateUserDetail($imageName: String!, $nickname: String!, $goal: String!, $jobs: [String!]!, $interests: [String!]!) {
+      updateUserProfile(
+        input: {profileImageFilename: $imageName, nickname: $nickname, goal: $goal, jobs: $jobs, interests: $interests}
+      ) {
+        __typename
+        id
+        email
+        nickname
+        profileImageUrl
+        goal
+        followeeCount
+        followerCount
+        jobs
+        interests
+        followed
+      }
+    }
+    """
+
+  public let operationName: String = "UpdateUserDetail"
+
+  public var imageName: String
+  public var nickname: String
+  public var goal: String
+  public var jobs: [String]
+  public var interests: [String]
+
+  public init(imageName: String, nickname: String, goal: String, jobs: [String], interests: [String]) {
+    self.imageName = imageName
+    self.nickname = nickname
+    self.goal = goal
+    self.jobs = jobs
+    self.interests = interests
+  }
+
+  public var variables: GraphQLMap? {
+    return ["imageName": imageName, "nickname": nickname, "goal": goal, "jobs": jobs, "interests": interests]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("updateUserProfile", arguments: ["input": ["profileImageFilename": GraphQLVariable("imageName"), "nickname": GraphQLVariable("nickname"), "goal": GraphQLVariable("goal"), "jobs": GraphQLVariable("jobs"), "interests": GraphQLVariable("interests")]], type: .nonNull(.object(UpdateUserProfile.selections))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(updateUserProfile: UpdateUserProfile) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "updateUserProfile": updateUserProfile.resultMap])
+    }
+
+    /// 유저 프로필을 수정한다
+    /// [error]
+    /// 3016: 한 줄 목표 최대 길이를 초과하였습니다.
+    /// 3018: 닉네임 최대 길이를 초과하였습니다.
+    /// 3017: 닉네임이 최소 길이 미만입니다.
+    /// 3001: 존재하지 않는 유저입니다.
+    /// 3014: 이미 등록된 닉네임입니다.
+    public var updateUserProfile: UpdateUserProfile {
+      get {
+        return UpdateUserProfile(unsafeResultMap: resultMap["updateUserProfile"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "updateUserProfile")
+      }
+    }
+
+    public struct UpdateUserProfile: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["User"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+          GraphQLField("email", type: .nonNull(.scalar(String.self))),
+          GraphQLField("nickname", type: .nonNull(.scalar(String.self))),
+          GraphQLField("profileImageUrl", type: .nonNull(.scalar(String.self))),
+          GraphQLField("goal", type: .scalar(String.self)),
+          GraphQLField("followeeCount", type: .nonNull(.scalar(Int.self))),
+          GraphQLField("followerCount", type: .nonNull(.scalar(Int.self))),
+          GraphQLField("jobs", type: .nonNull(.list(.nonNull(.scalar(String.self))))),
+          GraphQLField("interests", type: .nonNull(.list(.nonNull(.scalar(String.self))))),
+          GraphQLField("followed", type: .nonNull(.scalar(Bool.self))),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: GraphQLID, email: String, nickname: String, profileImageUrl: String, goal: String? = nil, followeeCount: Int, followerCount: Int, jobs: [String], interests: [String], followed: Bool) {
+        self.init(unsafeResultMap: ["__typename": "User", "id": id, "email": email, "nickname": nickname, "profileImageUrl": profileImageUrl, "goal": goal, "followeeCount": followeeCount, "followerCount": followerCount, "jobs": jobs, "interests": interests, "followed": followed])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var email: String {
+        get {
+          return resultMap["email"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "email")
+        }
+      }
+
+      public var nickname: String {
+        get {
+          return resultMap["nickname"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "nickname")
+        }
+      }
+
+      public var profileImageUrl: String {
+        get {
+          return resultMap["profileImageUrl"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "profileImageUrl")
+        }
+      }
+
+      public var goal: String? {
+        get {
+          return resultMap["goal"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "goal")
+        }
+      }
+
+      public var followeeCount: Int {
+        get {
+          return resultMap["followeeCount"]! as! Int
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "followeeCount")
+        }
+      }
+
+      public var followerCount: Int {
+        get {
+          return resultMap["followerCount"]! as! Int
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "followerCount")
+        }
+      }
+
+      public var jobs: [String] {
+        get {
+          return resultMap["jobs"]! as! [String]
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "jobs")
+        }
+      }
+
+      public var interests: [String] {
+        get {
+          return resultMap["interests"]! as! [String]
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "interests")
+        }
+      }
+
+      public var followed: Bool {
+        get {
+          return resultMap["followed"]! as! Bool
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "followed")
+        }
       }
     }
   }

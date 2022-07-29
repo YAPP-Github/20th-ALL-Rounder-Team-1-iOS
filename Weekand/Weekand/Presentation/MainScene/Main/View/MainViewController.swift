@@ -50,10 +50,12 @@ class MainViewController: UIViewController, UITableViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
+        viewModel?.loadData()
     }
     
     private func setUpView() {
+        
+        self.view.backgroundColor = .backgroundColor
         configureCollectionView()
         configureTableView()
     }

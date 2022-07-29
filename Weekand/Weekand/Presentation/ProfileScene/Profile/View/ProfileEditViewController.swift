@@ -16,6 +16,11 @@ class ProfileEditViewController: BaseViewController {
     
     var viewModel: ProfileEditViewModel?
     private let disposeBag = DisposeBag()
+    let imagePickerController = UIImagePickerController()
+    
+    var updatedProfile = PublishRelay<UserUpdate>()
+    var updatedImage = PublishRelay<UIImage>()
+    var endEditing = PublishRelay<Void>()
     
     var selectedJobs: [String] = [] {
         didSet {
@@ -66,10 +71,14 @@ class ProfileEditViewController: BaseViewController {
         bindViewModel()
         
     }
-    
+        
     private func setUpView() {
         self.title = "프로필 수정"
         self.view.backgroundColor = .backgroundColor
+        
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
     }
     
     private func configureUI() {
@@ -110,15 +119,40 @@ class ProfileEditViewController: BaseViewController {
             make.left.right.equalToSuperview()
         }
         
+        profileImageView.rx.tapGesture().when(.recognized).bind { _ in
+            self.imagePickerController.sourceType = .photoLibrary
+            self.present(self.imagePickerController, animated: true, completion: nil)
+        }.disposed(by: disposeBag)
+        
     }
     
     private func bindViewModel() {
+        
+        bottomButton.rx.tap.subscribe(onNext: { _ in
+            let profile = UserUpdate(
+                name: self.nickNameField.textField.text,
+                goal: self.goalField.textField.text,
+                imageFileName: nil,
+                job: self.selectedJobs,
+                interest: self.selectedInterests
+            )
+            PublishRelay<UserUpdate>.just(profile).bind(to: self.updatedProfile).disposed(by: self.disposeBag)
+            
+            guard let image = self.profileImageView.image else { return }
+            PublishRelay<UIImage>.just(image).bind(to: self.updatedImage).disposed(by: self.disposeBag)
+            
+            PublishRelay<Void>.just(()).bind(to: self.endEditing).disposed(by: self.disposeBag)
+            
+        }).disposed(by: disposeBag)
         
         let input = ProfileEditViewModel.Input(
             didImageTap: profileImageView.rx.tapGesture().asObservable(),
             didJobTap: jobField.labelBackground.rx.tapGesture().asObservable(),
             didInterestTap: interestField.labelBackground.rx.tapGesture().asObservable(),
-            didButtonTap: bottomButton.rx.tap.asObservable()
+            didButtonTap: endEditing.asObservable(),
+            
+            profileDataChanged: updatedProfile.asObservable(),
+            profileImageChanged: updatedImage.asObservable()
         )
         
         let output = viewModel?.transform(input: input)
@@ -145,6 +179,20 @@ class ProfileEditViewController: BaseViewController {
             
             PublishRelay<UserUpdate>.just(update).bind(to: self.viewModel!.userUpdate).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
+    }
+}
+
+// MARK: Photo Picker
+extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            profileImageView.image = image
+        } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            profileImageView.image = image
+        }
+        
+        dismiss(animated: true, completion: nil)
     }
 }
 
