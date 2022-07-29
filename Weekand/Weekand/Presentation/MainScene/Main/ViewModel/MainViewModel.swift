@@ -47,11 +47,14 @@ class MainViewModel: ViewModelType {
     init(coordinator: MainCoordinator, mainUseCase: MainUseCase) {
         self.coordinator = coordinator
         self.mainUseCase = mainUseCase
-        
+                
         self.getFollowingUser()
-        self.getUserSummary(id: nil)
-        self.getScheduleList(date: currentDate, id: nil)
+    }
+    
+    func loadData() {
         
+        self.getUserSummary(id: currentUserId)
+        self.getScheduleList(date: currentDate, id: currentUserId)
     }
     
 }

@@ -12,7 +12,7 @@ final class ProfileUseCase {
     
     /// 유저 상세 프로필 불러오기
     func profileDetail(id: String?) -> Single<UserDetail> {
-        return NetWork.shared.fetch(query: UserDetailQuery(id: id))
+        return NetWork.shared.fetch(query: UserDetailQuery(id: id), cachePolicy: .fetchIgnoringCacheCompletely)
             .map {
                 if let userData = $0.user {
                     return UserDetail(model: userData)
