@@ -86,6 +86,18 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
     let selectedRepeatEnd = BehaviorRelay<Date?>(value: nil)
     let selectedMemo = BehaviorRelay<String>(value: "")
     
+    var requestDate: Date
+    
+    init(requestDate: Date) {
+        self.requestDate = requestDate
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) is not supported")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -177,11 +189,14 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
             selectedRepeatType: selectedRepeatType,
             selectedRepeatSelectedValue: selectedRepeatSelectedValue,
             selectedRepeatEnd: selectedRepeatEnd,
-            selectedMemo: selectedMemo
+            selectedMemo: selectedMemo,
+            requestDate: requestDate
         )
         
         if let viewModel = viewModel as? ScheduleAddViewModel {
             let output = viewModel.transform(input: editInput)
+            
+            self.selectedDate.accept(requestDate)
             
             viewModel.defaultCategory
                 .observe(on: MainScheduler.asyncInstance)

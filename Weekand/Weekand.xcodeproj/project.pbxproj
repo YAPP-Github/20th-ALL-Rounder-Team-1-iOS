@@ -953,8 +953,7 @@
 		7DC166B72837157500F1A8F1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				F336F3EB28900EB5005B57A0 /* WDateFormatter.swift */,
-				F336F4092891239A005B57A0 /* WRepeatTextManager.swift */,
+				F38AE4792893F75600E5E261 /* Manager */,
 				F30EBCCB2880698C00ECB48D /* APIModelExtensions */,
 				F323FF2E287A1CDA00DFD8FD /* Extensions */,
 				7DF949C6283B6D0A007F84C5 /* DesignSystem */,
@@ -1348,6 +1347,15 @@
 				7D8E4E832882A9D70035FB7E /* API.swift */,
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		F38AE4792893F75600E5E261 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				F336F3EB28900EB5005B57A0 /* WDateFormatter.swift */,
+				F336F4092891239A005B57A0 /* WRepeatTextManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		F391B432283BF0EC004E7B06 /* ViewController */ = {

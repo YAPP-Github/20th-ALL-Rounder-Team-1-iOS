@@ -16,8 +16,8 @@ class ScheduleAddCoordinator: Coordinator, ScheduleEditCoordinatorType {
     var type: CoordinatorType = .scheduleEdit
     var scheduleEditUseCase: ScheduleEditUseCase
     
-    required init() {
-        self.scheduleEditViewController = ScheduleEditViewController()
+    required init(requestDate: Date) {
+        self.scheduleEditViewController = ScheduleEditViewController(requestDate: requestDate)
         self.navigationController = UINavigationController(rootViewController: scheduleEditViewController)
         self.navigationController.modalPresentationStyle = .fullScreen
         self.scheduleEditViewController.navigationItem.title = "일정 추가"

@@ -133,7 +133,8 @@ extension MainViewModel {
         }).disposed(by: disposeBag)
         
         input.didTapFloatingButton.subscribe(onNext: { _ in
-            self.coordinator?.showEditScene()
+            // TODO: 현재 날짜로 넣었지만 메인 화면 내 선택된 날짜로 개선 필요
+            self.coordinator?.showEditScene(requestDate: Date())
         }).disposed(by: disposeBag)
         
         return Output(

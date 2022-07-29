@@ -51,6 +51,7 @@ class ScheduleModifyViewModel: ScheduleEditViewModelType {
         let selectedRepeatSelectedValue: BehaviorRelay<[ScheduleWeek]>
         let selectedRepeatEnd: BehaviorRelay<Date?>
         let selectedMemo: BehaviorRelay<String>
+        let requestDate: Date
     }
     
     struct Output {
@@ -87,7 +88,7 @@ class ScheduleModifyViewModel: ScheduleEditViewModelType {
                 
                 let scheduleUpdateModel = ScheduleUpdateModel(
                     scheduleId: self.scheduleId,
-                    requestDateTime: dates.0,
+                    requestDateTime: input.requestDate,
                     name: nameText,
                     categoryId: category.serverID,
                     dateStart: WDateFormatter.combineDate(date: dates.0, time: dates.1),
