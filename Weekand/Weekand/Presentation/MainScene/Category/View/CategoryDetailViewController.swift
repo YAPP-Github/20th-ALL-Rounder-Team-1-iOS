@@ -12,15 +12,15 @@ import RxSwift
 import RxCocoa
 import DropDown
 
+enum ScheduleSection {
+  case main
+}
+
 class CategoryDetailViewController: UIViewController {
 
-    enum Section {
-      case main
-    }
-    
     private let disposeBag = DisposeBag()
     var viewModel: CategoryDetailViewModel?
-    var dataSource: UITableViewDiffableDataSource<Section, ScheduleSummary>!
+    var dataSource: ScheduleSummaryDataSource!
     
     let tableView = UITableView()
     let headerView = CategoryDetailHeaderView()
@@ -156,7 +156,7 @@ extension CategoryDetailViewController {
     
     private func configureDataSource() {
         
-        dataSource = UITableViewDiffableDataSource<Section, ScheduleSummary>(tableView: tableView, cellProvider: { tableView, indexPath, list in
+        dataSource = ScheduleSummaryDataSource(tableView: tableView, cellProvider: { tableView, indexPath, list in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryDetailTableViewCell.cellIdentifier, for: indexPath) as? CategoryDetailTableViewCell else {
                 return UITableViewCell()
             }
@@ -174,7 +174,7 @@ extension CategoryDetailViewController {
     
     private func configureSnapshot(animatingDifferences: Bool = false, list: [ScheduleSummary]) {
 
-        var snapshot = NSDiffableDataSourceSnapshot<Section, ScheduleSummary>()
+        var snapshot = NSDiffableDataSourceSnapshot<ScheduleSection, ScheduleSummary>()
         snapshot.appendSections([.main])
         snapshot.appendItems(list, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)

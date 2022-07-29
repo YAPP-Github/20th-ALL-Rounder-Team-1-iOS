@@ -236,6 +236,8 @@
 		F38AE48328940A2000E5E261 /* RequestLoggingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE48228940A2000E5E261 /* RequestLoggingInterceptor.swift */; };
 		F38AE48528940AE500E5E261 /* ‌ResponseLoggingInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE48428940AE500E5E261 /* ‌ResponseLoggingInterceptor.swift */; };
 		F38AE4892894124200E5E261 /* ScheduleEditError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4882894124200E5E261 /* ScheduleEditError.swift */; };
+		F38AE48B28941FF900E5E261 /* CategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE48A28941FF900E5E261 /* CategoryDataSource.swift */; };
+		F38AE48D2894222D00E5E261 /* ScheduleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE48C2894222D00E5E261 /* ScheduleDataSource.swift */; };
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
@@ -526,6 +528,8 @@
 		F38AE48228940A2000E5E261 /* RequestLoggingInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLoggingInterceptor.swift; sourceTree = "<group>"; };
 		F38AE48428940AE500E5E261 /* ‌ResponseLoggingInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "‌ResponseLoggingInterceptor.swift"; sourceTree = "<group>"; };
 		F38AE4882894124200E5E261 /* ScheduleEditError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditError.swift; sourceTree = "<group>"; };
+		F38AE48A28941FF900E5E261 /* CategoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDataSource.swift; sourceTree = "<group>"; };
+		F38AE48C2894222D00E5E261 /* ScheduleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDataSource.swift; sourceTree = "<group>"; };
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
@@ -1418,6 +1422,8 @@
 				F32F724F2853AEE00056B189 /* CategoryDetailViewController.swift */,
 				F32F725928549A5D0056B189 /* CategoryEditViewController.swift */,
 				F3CC76B12867130100A3FBBE /* ColorSheetViewController.swift */,
+				F38AE48A28941FF900E5E261 /* CategoryDataSource.swift */,
+				F38AE48C2894222D00E5E261 /* ScheduleDataSource.swift */,
 				F33C6EAF2853530B005B493A /* SubView */,
 			);
 			path = View;
@@ -1794,6 +1800,7 @@
 				7DBC4C5F2876AE1800F0AC86 /* EmojiTableViewModel.swift in Sources */,
 				F3B0026C287D68F100D6BB1D /* Color.swift in Sources */,
 				F336F3D6288D1626005B57A0 /* KeyChainManager.swift in Sources */,
+				F38AE48B28941FF900E5E261 /* CategoryDataSource.swift in Sources */,
 				F336F3B8288A958C005B57A0 /* ScheduleInputModel.swift in Sources */,
 				F3DD022B284678CF00AD9240 /* WelcomeViewModel.swift in Sources */,
 				F38AE47D2894086200E5E261 /* FSCalendar+RxExtension.swift in Sources */,
@@ -1886,6 +1893,7 @@
 				F32F72522853B0930056B189 /* CategoryDetailTableViewCell.swift in Sources */,
 				F354C3E3283D3615008929FD /* SignUpAddInfomationViewController.swift in Sources */,
 				F323FF32287AB2C500DFD8FD /* BasePaddingLabel.swift in Sources */,
+				F38AE48D2894222D00E5E261 /* ScheduleDataSource.swift in Sources */,
 				7DF9688C284E019A00CE077E /* MainCalendarView.swift in Sources */,
 				7DE60AED2892539F00F85A05 /* ProfileDetailCollectionCell.swift in Sources */,
 				7DD71A8B286CA8C4002D1DCF /* AlarmViewModel.swift in Sources */,
