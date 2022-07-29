@@ -13,8 +13,8 @@ class ProfileDetailView: UIView {
     // 한줄목표 블록
     lazy var goalBlock = ProfileDetailBlockView(title: "한줄 목표")
         
-    lazy var followeeBlock = ProfileDetailInteractoinBlockView(title: "팔로워")
-    lazy var followerBlock = ProfileDetailInteractoinBlockView(title: "팔로잉")
+    lazy var followeeBlock = ProfileDetailInteractoinBlockView(title: "팔로잉")
+    lazy var followerBlock = ProfileDetailInteractoinBlockView(title: "팔로워")
     
     lazy var jobInterestView = ProfileDetailJobInterestView()
     
@@ -48,7 +48,7 @@ class ProfileDetailView: UIView {
     
     private func configureUI() {
         
-        [followeeBlock, followerBlock].forEach { followStack.addArrangedSubview($0) }
+        [followerBlock, followeeBlock].forEach { followStack.addArrangedSubview($0) }
         
         [goalBlock, jobInterestView, followStack].forEach { self.parentStack.addArrangedSubview($0)}
         

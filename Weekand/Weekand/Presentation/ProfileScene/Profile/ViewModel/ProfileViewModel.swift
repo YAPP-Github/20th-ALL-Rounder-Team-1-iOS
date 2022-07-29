@@ -107,11 +107,11 @@ extension ProfileViewModel {
 
         // 팔로워 팔로우
         input.didFolloweeTap.when(.recognized).subscribe(onNext: { _ in
-            print("팔로워")
+            print("팔로잉")
         }).disposed(by: disposeBag)
 
         input.didFollowerTap.when(.recognized).subscribe(onNext: { _ in
-            print("팔로잉")
+            print("팔로워")
         }).disposed(by: disposeBag)
 
         // 하단
