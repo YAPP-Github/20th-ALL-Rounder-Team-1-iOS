@@ -16,6 +16,7 @@ class ContactViewModel: ViewModelType {
     private let disposeBag = DisposeBag()
     
     var contactText = ""
+    var isSuccess = PublishRelay<Bool>()
     
     init (coordinator: ProfileCoordinator, useCase: ProfileUseCase) {
         self.coordinator = coordinator
@@ -32,7 +33,9 @@ extension ContactViewModel {
         let didButtonTap: Observable<Void>
     }
     
-    struct Output { }
+    struct Output {
+        let serverResult: Observable<Bool>
+    }
     
     @discardableResult
     func transform(input: Input) -> Output {
@@ -45,11 +48,30 @@ extension ContactViewModel {
         }).disposed(by: disposeBag)
         
         input.didButtonTap.subscribe(onNext: { _ in
-            // TODO: 문의 완료 화면으로 이동
-            print("Text: \(self.contactText)")
-            self.coordinator?.pushContactCompleteViewController()
+            
+            self.sendContact(message: self.contactText)
+            
         }).disposed(by: disposeBag)
                 
-        return Output()
+        return Output(
+            serverResult: isSuccess.asObservable()
+        )
     }
+}
+
+extension ContactViewModel {
+    func sendContact(message: String) {
+        self.profileUseCase.sendContact(message: message).subscribe(onSuccess: { isSucceed in
+            if isSucceed {
+                self.coordinator?.pushContactCompleteViewController()
+            } else {
+                PublishRelay<Bool>.just(false).bind(to: self.isSuccess).disposed(by: self.disposeBag)
+            }
+            
+        }, onFailure: { _ in
+            PublishRelay<Bool>.just(false).bind(to: self.isSuccess).disposed(by: self.disposeBag)
+        })
+        .disposed(by: disposeBag)
+    }
+    
 }

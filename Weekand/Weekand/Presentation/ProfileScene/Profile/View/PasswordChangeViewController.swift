@@ -134,7 +134,7 @@ class PasswordChangeViewController: BaseViewController {
         
         output?.message.subscribe(onNext: { message in
             self.showToast(message: message)
-        })
+        }).disposed(by: disposeBag)
     }
 }
 

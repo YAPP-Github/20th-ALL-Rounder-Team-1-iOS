@@ -51,8 +51,15 @@ class ProfileCoordinator: Coordinator {
     
     /// 문의완료로 이동
     func pushContactCompleteViewController() {
+        self.navigationController.popViewController(animated: false)
         let contactCompleteViewController = ContactCompleteViewController()
         self.navigationController.pushViewController(contactCompleteViewController, animated: true)
+    }
+    
+    /// 문의 완료 닫기
+    func finishContact() {
+        self.navigationController.popViewController(animated: true)
+        self.navigationController.popViewController(animated: false)
     }
     
     func pushPasswordChangeViewController() {

@@ -8,6 +8,8 @@
 import UIKit
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
 
 // 데이터 처리가 없는 뷰이기 때문에 ViewModel 생략
 class ContactCompleteViewController: UIViewController {
@@ -77,6 +79,10 @@ class ContactCompleteViewController: UIViewController {
     }
     
     private func bind() {
-        
+        button.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
+    }
+    
+    @objc func buttonTap() {
+        self.navigationController?.popViewController(animated: true)
     }
 }

@@ -24,6 +24,7 @@
 		7D67F4B528935E2800A1D7CD /* Notification.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4B428935E2800A1D7CD /* Notification.graphql */; };
 		7D67F4B728935F4600A1D7CD /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67F4B628935F4600A1D7CD /* Alarm.swift */; };
 		7D67F4B92893701300A1D7CD /* UpdatePassword.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4B82893701300A1D7CD /* UpdatePassword.graphql */; };
+		7D67F4BD28937A3C00A1D7CD /* SendContact.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4BC28937A3C00A1D7CD /* SendContact.graphql */; };
 		7D6B911528449A760044E217 /* WIconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B911428449A760044E217 /* WIconLabel.swift */; };
 		7D6B911728449F610044E217 /* WCategoryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B911628449F610044E217 /* WCategoryTitleLabel.swift */; };
 		7D6B91192844A8D50044E217 /* WStatusTimeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B91182844A8D50044E217 /* WStatusTimeLabel.swift */; };
@@ -303,6 +304,7 @@
 		7D67F4B428935E2800A1D7CD /* Notification.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Notification.graphql; sourceTree = "<group>"; };
 		7D67F4B628935F4600A1D7CD /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		7D67F4B82893701300A1D7CD /* UpdatePassword.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UpdatePassword.graphql; sourceTree = "<group>"; };
+		7D67F4BC28937A3C00A1D7CD /* SendContact.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SendContact.graphql; sourceTree = "<group>"; };
 		7D6B911428449A760044E217 /* WIconLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WIconLabel.swift; sourceTree = "<group>"; };
 		7D6B911628449F610044E217 /* WCategoryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCategoryTitleLabel.swift; sourceTree = "<group>"; };
 		7D6B91182844A8D50044E217 /* WStatusTimeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WStatusTimeLabel.swift; sourceTree = "<group>"; };
@@ -1431,6 +1433,7 @@
 				F38AE45528926C1200E5E261 /* Schedule.graphql */,
 				7D67F4AC28927A3A00A1D7CD /* DeleteFollowee.graphql */,
 				7D67F4AE28927A4F00A1D7CD /* CreateFollowee.graphql */,
+				7D67F4BC28937A3C00A1D7CD /* SendContact.graphql */,
 				7D67F4B22892CA3F00A1D7CD /* CreateSticker.graphql */,
 				F38AE45B2892B65E00E5E261 /* Logout.graphql */,
 				F38AE45D2892CD0D00E5E261 /* DeleteUser.graphql */,
@@ -1620,6 +1623,7 @@
 				F336F36028867ECF005B57A0 /* deleteCategory.graphql in Resources */,
 				7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */,
 				7D67F4AD28927A3A00A1D7CD /* DeleteFollowee.graphql in Resources */,
+				7D67F4BD28937A3C00A1D7CD /* SendContact.graphql in Resources */,
 				7D67F4B528935E2800A1D7CD /* Notification.graphql in Resources */,
 				7D67F4AF28927A4F00A1D7CD /* CreateFollowee.graphql in Resources */,
 				F323FF102877F3B500DFD8FD /* Login.graphql in Resources */,

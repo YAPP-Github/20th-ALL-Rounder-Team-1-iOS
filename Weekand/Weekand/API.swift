@@ -3866,6 +3866,61 @@ public final class SendAuthKeyQuery: GraphQLQuery {
   }
 }
 
+public final class SendContactMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation SendContact($message: String!) {
+      inquiry(contents: $message)
+    }
+    """
+
+  public let operationName: String = "SendContact"
+
+  public var message: String
+
+  public init(message: String) {
+    self.message = message
+  }
+
+  public var variables: GraphQLMap? {
+    return ["message": message]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("inquiry", arguments: ["contents": GraphQLVariable("message")], type: .nonNull(.scalar(Bool.self))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(inquiry: Bool) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "inquiry": inquiry])
+    }
+
+    /// 문의 내용을 전송한다
+    /// [error]
+    /// 6001: 이메일 내용 형식이 올바르지 않습니다.
+    /// 3008: 이메일 전송에 실패하였습니다.
+    public var inquiry: Bool {
+      get {
+        return resultMap["inquiry"]! as! Bool
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "inquiry")
+      }
+    }
+  }
+}
+
 public final class SignUpMutation: GraphQLMutation {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
