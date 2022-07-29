@@ -76,6 +76,8 @@ class ProfileEditViewController: BaseViewController {
         self.title = "프로필 수정"
         self.view.backgroundColor = .backgroundColor
         
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.allowsEditing = true
         imagePickerController.delegate = self
     }
     
@@ -184,9 +186,12 @@ class ProfileEditViewController: BaseViewController {
 extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        if let image = info[UIImagePickerController.InfoKey.originalImage]{
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            profileImageView.image = image as? UIImage
+        } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             profileImageView.image = image as? UIImage
         }
+        
         dismiss(animated: true, completion: nil)
     }
 }
