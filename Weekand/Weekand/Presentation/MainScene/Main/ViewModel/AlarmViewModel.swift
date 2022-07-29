@@ -14,22 +14,19 @@ enum AlarmSection {
 }
 
 class AlarmViewModel {
+
     
-    let sampleData = [
-        "일하기가 시작되었습니다",
-        "수근수근님이 2022.05.01 장보러 가서 우유 사오기에 스티커를 붙였습니다",
-        "수근수근님이 팔로우하였습니다",
-        "일하기가 종료되었습니다"
-    ]
-    
+    private let mainUseCase: MainUseCase
     let disposeBag = DisposeBag()
     
     var tableViewDataSource: UITableViewDiffableDataSource<AlarmSection, String>!
     
     private var alarmList = BehaviorRelay<[String]>(value: [])
     
-    init() {
-        BehaviorRelay<[String]>.just(sampleData).bind(to: alarmList).disposed(by: disposeBag)
+    init(mainUseCase: MainUseCase) {
+        
+        self.mainUseCase = mainUseCase
+        getAlarmList(page: 0, size: 20)
     }
 
 }
@@ -48,4 +45,20 @@ extension AlarmViewModel {
         }).disposed(by: self.disposeBag)
     }
 
+}
+
+// MARK: Network
+extension AlarmViewModel {
+    
+    func getAlarmList(page: Int, size: Int) {
+        self.mainUseCase.notification(page: page, size: size).subscribe(onSuccess: { notifications in
+            
+            let data = notifications.map { $0.message }
+            BehaviorRelay<[String]>.just(data).bind(to: self.alarmList).disposed(by: self.disposeBag)
+            
+        }, onFailure: { error in
+            print("\(#function) Error: \(error)")
+        }, onDisposed: nil)
+        .disposed(by: disposeBag)
+    }
 }

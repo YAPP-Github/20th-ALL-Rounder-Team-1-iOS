@@ -21,6 +21,8 @@
 		7D67F4AD28927A3A00A1D7CD /* DeleteFollowee.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4AC28927A3A00A1D7CD /* DeleteFollowee.graphql */; };
 		7D67F4AF28927A4F00A1D7CD /* CreateFollowee.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4AE28927A4F00A1D7CD /* CreateFollowee.graphql */; };
 		7D67F4B32892CA3F00A1D7CD /* CreateSticker.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4B22892CA3F00A1D7CD /* CreateSticker.graphql */; };
+		7D67F4B528935E2800A1D7CD /* Notification.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4B428935E2800A1D7CD /* Notification.graphql */; };
+		7D67F4B728935F4600A1D7CD /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67F4B628935F4600A1D7CD /* Alarm.swift */; };
 		7D6B911528449A760044E217 /* WIconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B911428449A760044E217 /* WIconLabel.swift */; };
 		7D6B911728449F610044E217 /* WCategoryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B911628449F610044E217 /* WCategoryTitleLabel.swift */; };
 		7D6B91192844A8D50044E217 /* WStatusTimeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B91182844A8D50044E217 /* WStatusTimeLabel.swift */; };
@@ -297,6 +299,8 @@
 		7D67F4AC28927A3A00A1D7CD /* DeleteFollowee.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = DeleteFollowee.graphql; sourceTree = "<group>"; };
 		7D67F4AE28927A4F00A1D7CD /* CreateFollowee.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CreateFollowee.graphql; sourceTree = "<group>"; };
 		7D67F4B22892CA3F00A1D7CD /* CreateSticker.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CreateSticker.graphql; sourceTree = "<group>"; };
+		7D67F4B428935E2800A1D7CD /* Notification.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Notification.graphql; sourceTree = "<group>"; };
+		7D67F4B628935F4600A1D7CD /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		7D6B911428449A760044E217 /* WIconLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WIconLabel.swift; sourceTree = "<group>"; };
 		7D6B911628449F610044E217 /* WCategoryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCategoryTitleLabel.swift; sourceTree = "<group>"; };
 		7D6B91182844A8D50044E217 /* WStatusTimeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WStatusTimeLabel.swift; sourceTree = "<group>"; };
@@ -779,6 +783,7 @@
 				F336F3F928902D99005B57A0 /* ScheduleRule.swift */,
 				F336F40728910E5B005B57A0 /* ScheduleUpdateModel.swift */,
 				F38AE45328926B7300E5E261 /* ScheduleDetail.swift */,
+				7D67F4B628935F4600A1D7CD /* Alarm.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -1398,6 +1403,7 @@
 			isa = PBXGroup;
 			children = (
 				F336F3C3288B11CC005B57A0 /* SearchSchedules.graphql */,
+				7D67F4B428935E2800A1D7CD /* Notification.graphql */,
 				F323FF0F2877F3B500DFD8FD /* Login.graphql */,
 				F323FF1E2879AD5600DFD8FD /* sendAuthKey.graphql */,
 				F323FF202879AF3000DFD8FD /* vaildAuthKey.graphql */,
@@ -1611,6 +1617,7 @@
 				F336F36028867ECF005B57A0 /* deleteCategory.graphql in Resources */,
 				7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */,
 				7D67F4AD28927A3A00A1D7CD /* DeleteFollowee.graphql in Resources */,
+				7D67F4B528935E2800A1D7CD /* Notification.graphql in Resources */,
 				7D67F4AF28927A4F00A1D7CD /* CreateFollowee.graphql in Resources */,
 				F323FF102877F3B500DFD8FD /* Login.graphql in Resources */,
 				F30EBCDD28817CFD00ECB48D /* UpdateCategory.graphql in Resources */,
@@ -1842,6 +1849,7 @@
 				F33C6EAC28533D0A005B493A /* WSortButton.swift in Sources */,
 				7DBC4C59287697F900F0AC86 /* EmojiSheetViewController.swift in Sources */,
 				F3F731E92869E5EC00C8B778 /* PasswordFindViewController.swift in Sources */,
+				7D67F4B728935F4600A1D7CD /* Alarm.swift in Sources */,
 				F323FEE92875FC3D00DFD8FD /* WCalendarView.swift in Sources */,
 				F392A1C9284F53A300512A42 /* CategoryListTableViewCell.swift in Sources */,
 				F336F3EA288FF7CA005B57A0 /* DateStackView.swift in Sources */,
