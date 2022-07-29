@@ -95,6 +95,7 @@ class WeekRepeatViewController: UIViewController {
         }
         
         weekCollecitonView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        weekCollecitonView.backgroundColor = .clear
         weekCollecitonView.delegate = self
         weekCollecitonView.isScrollEnabled = false
         weekCollecitonView.allowsMultipleSelection = true

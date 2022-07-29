@@ -78,6 +78,7 @@ class InformationSheetController: BottomSheetViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.allowsMultipleSelection = true
+        collectionView.backgroundColor = .clear
         collectionView.register(InformationCollectionViewCell.self, forCellWithReuseIdentifier: InformationCollectionViewCell.cellIdentifier)
         
         DispatchQueue.main.async {
