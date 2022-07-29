@@ -4446,6 +4446,63 @@ public final class UpdateCategoryMutation: GraphQLMutation {
   }
 }
 
+public final class UpdatePasswordMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation UpdatePassword($old: String!, $new: String!) {
+      updatePassword(passwordInput: {oldPassword: $old, newPassword: $new})
+    }
+    """
+
+  public let operationName: String = "UpdatePassword"
+
+  public var old: String
+  public var new: String
+
+  public init(old: String, new: String) {
+    self.old = old
+    self.new = new
+  }
+
+  public var variables: GraphQLMap? {
+    return ["old": old, "new": new]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("updatePassword", arguments: ["passwordInput": ["oldPassword": GraphQLVariable("old"), "newPassword": GraphQLVariable("new")]], type: .nonNull(.scalar(Bool.self))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(updatePassword: Bool) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "updatePassword": updatePassword])
+    }
+
+    /// 비밀번호를 수정한다
+    /// [error]
+    /// 3011: 올바른 비밀번호 형식이 아닙니다.
+    /// 3015: 비밀번호가 일치하지 않습니다.
+    public var updatePassword: Bool {
+      get {
+        return resultMap["updatePassword"]! as! Bool
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "updatePassword")
+      }
+    }
+  }
+}
+
 public final class UpdateScheduleMutation: GraphQLMutation {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =

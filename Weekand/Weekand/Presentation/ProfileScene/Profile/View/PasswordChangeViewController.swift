@@ -131,6 +131,10 @@ class PasswordChangeViewController: BaseViewController {
         output?.passwordIdentical.subscribe(onNext: { isIdentical in
             self.passwordIdenticalAction(isIdentical: isIdentical)
         }).disposed(by: disposeBag)
+        
+        output?.message.subscribe(onNext: { message in
+            self.showToast(message: message)
+        })
     }
 }
 
