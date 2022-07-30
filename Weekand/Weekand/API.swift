@@ -4243,6 +4243,64 @@ public final class SignUpMutation: GraphQLMutation {
   }
 }
 
+public final class SkipScheduleMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation SkipSchedule($scheduleId: ID!, $date: Timestamp!) {
+      skipSchedule(input: {scheduleId: $scheduleId, date: $date})
+    }
+    """
+
+  public let operationName: String = "SkipSchedule"
+
+  public var scheduleId: GraphQLID
+  public var date: Timestamp
+
+  public init(scheduleId: GraphQLID, date: Timestamp) {
+    self.scheduleId = scheduleId
+    self.date = date
+  }
+
+  public var variables: GraphQLMap? {
+    return ["scheduleId": scheduleId, "date": date]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("skipSchedule", arguments: ["input": ["scheduleId": GraphQLVariable("scheduleId"), "date": GraphQLVariable("date")]], type: .nonNull(.scalar(Bool.self))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(skipSchedule: Bool) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "skipSchedule": skipSchedule])
+    }
+
+    /// 특정 스케줄을 삭제한다
+    /// [error]
+    /// 4001: 해당 스케줄을 찾을 수 없습니다.
+    /// 3006: 권한이 없는 유저의 접근입니다.
+    /// 4009: 상태 추가할 날짜를 확인해주세요.
+    public var skipSchedule: Bool {
+      get {
+        return resultMap["skipSchedule"]! as! Bool
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "skipSchedule")
+      }
+    }
+  }
+}
+
 public final class StickerSummaryQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =

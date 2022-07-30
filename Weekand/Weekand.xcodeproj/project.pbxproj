@@ -1744,7 +1744,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Don't run this during index builds\nif [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\nSCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --passthroughCustomScalars --localSchemaFile=\"Networking/schema.json\" API.swift \n";
+			shellScript = "# Don't run this during index builds\nif [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\nSCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=https://api.server.week-and.kr/graphql schema.json\n\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --passthroughCustomScalars --localSchemaFile=\"Networking/schema.json\" API.swift \n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
