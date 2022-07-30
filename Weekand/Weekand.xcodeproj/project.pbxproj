@@ -1348,6 +1348,8 @@
 		F38AE48628940F4B00E5E261 /* Interceptor */ = {
 			isa = PBXGroup;
 			children = (
+				F336F3CA288BCD59005B57A0 /* TokenAddingInterceptor.swift */,
+				F336F3D0288C5239005B57A0 /* RefreshTokenInterceptor.swift */,
 				F38AE48428940AE500E5E261 /* ‌ResponseLoggingInterceptor.swift */,
 				F38AE48228940A2000E5E261 /* RequestLoggingInterceptor.swift */,
 			);
@@ -1423,8 +1425,6 @@
 				7DE60AF82892560C00F85A05 /* schema.json */,
 				F336F3612886C49A005B57A0 /* Error */,
 				F3C8E08A286F4D8F00B0916A /* Query */,
-				F336F3CA288BCD59005B57A0 /* TokenAddingInterceptor.swift */,
-				F336F3D0288C5239005B57A0 /* RefreshTokenInterceptor.swift */,
 				7D67F4C42893BF9100A1D7CD /* ImageUploader.swift */,
 			);
 			path = Networking;

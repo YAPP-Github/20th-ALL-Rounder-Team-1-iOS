@@ -11,7 +11,7 @@ import Then
 import RxSwift
 import RxGesture
 
-class MainViewController: UIViewController, UITableViewDelegate {
+class MainViewController: UIViewController {
         
     var viewModel: MainViewModel?
     let disposeBag = DisposeBag()
@@ -238,6 +238,7 @@ extension MainViewController {
         tableView = UITableView()
         
         tableView.separatorStyle = .none
+        tableView.delegate = self
         tableView.allowsSelection = false
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.identifier)
         
@@ -265,6 +266,25 @@ extension MainViewController {
         viewModel?.configureTableViewSnapshot()
     }
     
+}
+
+// MARK: TableView DataSource
+extension MainViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let update = UIContextualAction(style: .normal, title: "수정") { _, _, completionHandler in
+            completionHandler(true)
+        }
+        update.backgroundColor = .mainColor
+        
+        let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, completionHandler in
+            self.showActionSheet(titles: "삭제", message: "카테고리를 삭제하시겠어요?") { _ in
+                completionHandler(true)
+            }
+        }
+        delete.backgroundColor = .wred
+        
+        return UISwipeActionsConfiguration(actions: [delete, update])
+    }
 }
 
 // MARK: TableViewCell Tap Gesture

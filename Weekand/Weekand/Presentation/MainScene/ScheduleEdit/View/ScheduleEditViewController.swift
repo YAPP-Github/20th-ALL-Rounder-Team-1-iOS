@@ -196,7 +196,12 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
         if let viewModel = viewModel as? ScheduleAddViewModel {
             let output = viewModel.transform(input: editInput)
             
-            self.selectedDate.accept(requestDate)
+            DispatchQueue.main.async {
+                let dateString = WDateFormatter.dateFormatter.string(from: self.requestDate)
+                self.calendarStackView.dateButton.setTitle(dateString, for: .normal, font: WFont.body1())
+                self.calendarStackView.calendarView.calendar.select(self.requestDate)
+                self.selectedDate.accept(self.requestDate)
+            }
             
             viewModel.defaultCategory
                 .observe(on: MainScheduler.asyncInstance)
@@ -253,12 +258,8 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
                 .observe(on: MainScheduler.asyncInstance)
                 .subscribe(onNext: { [weak self] schedule in
                     self?.selectedScheduleName.accept(schedule.name)
-                    self?.selectedDate.accept(schedule.dateStart)
-                    self?.selectedStartTime.accept(schedule.dateStart)
-                    self?.selectedDate.accept(schedule.dateEnd)
                     self?.selectedStartTime.accept(schedule.dateStart)
                     self?.selectedEndTime.accept(schedule.dateEnd)
-                    self?.selectedDate.accept(schedule.dateStart)
                     self?.selectedRepeatType.accept(schedule.repeatType)
                     self?.selectedRepeatSelectedValue.accept(schedule.repeatSelectedValue)
                     self?.selectedRepeatEnd.accept(schedule.repeatEnd)
