@@ -64,11 +64,4 @@ class DateStackView: UIStackView {
             make.edges.equalToSuperview()
         }
     }
-    
-    init(dateText: String) {
-        super.init(frame: CGRect.zero)
-        
-        self.dateButton.setTitle(dateText, for: .normal, font: WFont.body1())
-        setupView()
-    }
 }

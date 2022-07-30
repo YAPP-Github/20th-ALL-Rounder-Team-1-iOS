@@ -79,13 +79,5 @@ class TimeStackView: UIStackView {
             make.height.equalTo(200)
         }
     }
-    
-    init(startTimeText: String, endTimeText: String) {
-        super.init(frame: CGRect.zero)
-        
-        self.startTimeButton.setTitle(startTimeText, for: .normal, font: WFont.body1())
-        self.endTimeButton.setTitle(endTimeText, for: .normal, font: WFont.body1())
-        setupView()
-    }
 
 }

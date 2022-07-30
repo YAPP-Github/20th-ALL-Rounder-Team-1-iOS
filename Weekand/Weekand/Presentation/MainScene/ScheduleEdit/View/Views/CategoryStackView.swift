@@ -27,14 +27,12 @@ class CategoryStackView: UIStackView {
     }
     
     lazy var colorView = UIView().then {
-        $0.backgroundColor = UIColor.mainColor
         $0.layer.cornerRadius = 3
     }
 
     lazy var nameLabel = WTextLabel().then {
         $0.backgroundColor?.withAlphaComponent(0)
         $0.font = WFont.body1()
-        $0.text = "내 일정"
     }
     
     let arrowButton = WArrowButton()
