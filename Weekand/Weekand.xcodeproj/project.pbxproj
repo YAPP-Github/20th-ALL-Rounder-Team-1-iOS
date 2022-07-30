@@ -212,6 +212,9 @@
 		F38AE48B28941FF900E5E261 /* CategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE48A28941FF900E5E261 /* CategoryDataSource.swift */; };
 		F38AE48D2894222D00E5E261 /* ScheduleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE48C2894222D00E5E261 /* ScheduleDataSource.swift */; };
 		F38AE49C2894FCAC00E5E261 /* SkipSchedule.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F38AE49B2894FCAC00E5E261 /* SkipSchedule.graphql */; };
+		F38AE49E28957A7000E5E261 /* AlertPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE49D28957A7000E5E261 /* AlertPopupViewController.swift */; };
+		F38AE4A028957ACA00E5E261 /* AlertPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE49F28957AC900E5E261 /* AlertPopupViewModel.swift */; };
+		F38AE4A228957AED00E5E261 /* AlertPopupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4A128957AED00E5E261 /* AlertPopupCoordinator.swift */; };
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
@@ -507,6 +510,9 @@
 		F38AE48A28941FF900E5E261 /* CategoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDataSource.swift; sourceTree = "<group>"; };
 		F38AE48C2894222D00E5E261 /* ScheduleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDataSource.swift; sourceTree = "<group>"; };
 		F38AE49B2894FCAC00E5E261 /* SkipSchedule.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SkipSchedule.graphql; sourceTree = "<group>"; };
+		F38AE49D28957A7000E5E261 /* AlertPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPopupViewController.swift; sourceTree = "<group>"; };
+		F38AE49F28957AC900E5E261 /* AlertPopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPopupViewModel.swift; sourceTree = "<group>"; };
+		F38AE4A128957AED00E5E261 /* AlertPopupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPopupCoordinator.swift; sourceTree = "<group>"; };
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
@@ -1379,6 +1385,7 @@
 				F3DD0230284A36D300AD9240 /* BaseNavigationController.swift */,
 				F3CC76AD2866CD1200A3FBBE /* BottomSheetViewController.swift */,
 				F323FF162879390200DFD8FD /* PopupViewController.swift */,
+				F38AE49D28957A7000E5E261 /* AlertPopupViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1547,6 +1554,7 @@
 				F3DD0228284670E900AD9240 /* AppCoordinator.swift */,
 				F3DD0232284A534C00AD9240 /* CoordinatorType.swift */,
 				F37868542861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift */,
+				F38AE4A128957AED00E5E261 /* AlertPopupCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -1581,6 +1589,7 @@
 			children = (
 				F3DD022D2846815300AD9240 /* ViewModelType.swift */,
 				F323FF1A2879A05300DFD8FD /* SimplePopupViewModel.swift */,
+				F38AE49F28957AC900E5E261 /* AlertPopupViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1761,6 +1770,7 @@
 				F336F40C28912BDE005B57A0 /* ScheduleEditViewModelType.swift in Sources */,
 				7DE60AE52892539F00F85A05 /* ProfileViewModel.swift in Sources */,
 				7D6B91192844A8D50044E217 /* WStatusTimeLabel.swift in Sources */,
+				F38AE4A228957AED00E5E261 /* AlertPopupCoordinator.swift in Sources */,
 				7DE60AEB2892539F00F85A05 /* ProfileEditFieldView.swift in Sources */,
 				F32F725A28549A5D0056B189 /* CategoryEditViewController.swift in Sources */,
 				F3B0026D287D68F100D6BB1D /* Emoji.swift in Sources */,
@@ -1800,6 +1810,7 @@
 				7DB5E13C284B4DA400DBB7EA /* MainCoordinator.swift in Sources */,
 				7D76AEB4284458C2001C668D /* MainViewController.swift in Sources */,
 				F3C8E0A32872F29000B0916A /* WArrowButton.swift in Sources */,
+				F38AE49E28957A7000E5E261 /* AlertPopupViewController.swift in Sources */,
 				F336F3AC288946B0005B57A0 /* RepeatTableViewCell.swift in Sources */,
 				F38AE46A2892D47000E5E261 /* ResignWarningPopupCoordinator.swift in Sources */,
 				7DB1D5BF287C1C4C0032C209 /* EmojiTabViewController.swift in Sources */,
@@ -1861,6 +1872,7 @@
 				F30EBCEA2881A04D00ECB48D /* UserSearchViewModel.swift in Sources */,
 				7DF8B7AC2836250400B224CA /* UIColor+hex.swift in Sources */,
 				7D8129D52887100F006C0A5D /* Timestamp.swift in Sources */,
+				F38AE4A028957ACA00E5E261 /* AlertPopupViewModel.swift in Sources */,
 				7DE60AF32892539F00F85A05 /* ProfileDetailView.swift in Sources */,
 				F30EBCEC2881A09300ECB48D /* UserSearchCoordinator.swift in Sources */,
 				F336F3A8288939F6005B57A0 /* ScheduleEditUseCase.swift in Sources */,

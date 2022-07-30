@@ -8,6 +8,12 @@
 import UIKit
 
 class PopupViewController: UIViewController {
+    
+    var popupViewHeight: CGFloat {
+        get {
+            return 180
+        }
+    }
 
     lazy var popupView = UIView().then {
         $0.backgroundColor = .white
@@ -37,7 +43,7 @@ class PopupViewController: UIViewController {
 
         popupView.snp.makeConstraints {
             $0.width.equalTo(300)
-            $0.height.equalTo(210)
+            $0.height.equalTo(self.popupViewHeight)
             $0.centerX.centerY.equalToSuperview()
         }
         
