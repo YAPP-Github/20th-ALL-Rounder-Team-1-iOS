@@ -211,6 +211,7 @@
 		F38AE4892894124200E5E261 /* ScheduleEditError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4882894124200E5E261 /* ScheduleEditError.swift */; };
 		F38AE48B28941FF900E5E261 /* CategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE48A28941FF900E5E261 /* CategoryDataSource.swift */; };
 		F38AE48D2894222D00E5E261 /* ScheduleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE48C2894222D00E5E261 /* ScheduleDataSource.swift */; };
+		F38AE49C2894FCAC00E5E261 /* SkipSchedule.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F38AE49B2894FCAC00E5E261 /* SkipSchedule.graphql */; };
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
@@ -505,6 +506,7 @@
 		F38AE4882894124200E5E261 /* ScheduleEditError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEditError.swift; sourceTree = "<group>"; };
 		F38AE48A28941FF900E5E261 /* CategoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDataSource.swift; sourceTree = "<group>"; };
 		F38AE48C2894222D00E5E261 /* ScheduleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDataSource.swift; sourceTree = "<group>"; };
+		F38AE49B2894FCAC00E5E261 /* SkipSchedule.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SkipSchedule.graphql; sourceTree = "<group>"; };
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
@@ -1468,6 +1470,7 @@
 				F38AE45D2892CD0D00E5E261 /* DeleteUser.graphql */,
 				F38AE4752893E06E00E5E261 /* CompleteSchedule.graphql */,
 				F38AE4772893E11100E5E261 /* IncompleteSchedule.graphql */,
+				F38AE49B2894FCAC00E5E261 /* SkipSchedule.graphql */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -1644,6 +1647,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F38AE49C2894FCAC00E5E261 /* SkipSchedule.graphql in Resources */,
 				7DE60AF92892560C00F85A05 /* schema.json in Resources */,
 				7DF8B7A928361FB100B224CA /* PretendardVariable.ttf in Resources */,
 				F323FEF1287636B500DFD8FD /* SortDropDownCell.xib in Resources */,

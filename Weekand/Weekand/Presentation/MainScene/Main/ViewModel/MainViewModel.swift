@@ -316,4 +316,46 @@ extension MainViewModel {
         
     }
 
+    func deleteSchedule(schedule: ScheduleSummary, completion: @escaping () -> Void) {
+        self.mainUseCase.deleteSchedule(scheduleId: schedule.scheduleId)
+            .subscribe(onSuccess: { isSucceed in
+                if isSucceed {
+                    completion()
+                } else {
+                    print("\(#function) Error: error")
+                }
+            }, onFailure: { error in
+                print("\(#function) Error: \(error)")
+            }, onDisposed: nil)
+            .disposed(by: disposeBag)
+    }
+    
+    func deleteScheduleFromDate(schedule: ScheduleSummary, requestDate: Date, completion: @escaping () -> Void) {
+        self.mainUseCase.deleteScheduleFromDate(scheduleId: schedule.scheduleId, requestDate: requestDate)
+            .subscribe(onSuccess: { isSucceed in
+                if isSucceed {
+                    completion()
+                } else {
+                    print("\(#function) Error: error")
+                }
+            }, onFailure: { error in
+                print("\(#function) Error: \(error)")
+            }, onDisposed: nil)
+            .disposed(by: disposeBag)
+    }
+    
+    func skipSchedule(schedule: ScheduleSummary, requestDate: Date, completion: @escaping () -> Void) {
+        self.mainUseCase.skipSchedule(scheduleId: schedule.scheduleId, requestDate: requestDate)
+            .subscribe(onSuccess: { isSucceed in
+                if isSucceed {
+                    completion()
+                } else {
+                    print("\(#function) Error: error")
+                }
+            }, onFailure: { error in
+                print("\(#function) Error: \(error)")
+            }, onDisposed: nil)
+            .disposed(by: disposeBag)
+    }
+
 }
