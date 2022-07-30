@@ -29,9 +29,8 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
     }
     let nameStackView = WTextFieldStackView(fieldPlaceholder: "일정명을 입력해주세요.", nameText: "일정")
     let categoryStackView = CategoryStackView()
-    lazy var calendarStackView = DateStackView(dateText: WDateFormatter.dateFormatter.string(from: Date()))
-    lazy var timeStackView = TimeStackView(startTimeText: WDateFormatter.timeFormatter.string(from: defaultStartTime),
-                                           endTimeText: WDateFormatter.timeFormatter.string(from: defaultEndTime))
+    let calendarStackView = DateStackView()
+    let timeStackView = TimeStackView()
     let addInformationContainerView = AddInformationContainerView()
     let repeatStackView = RepeatStackView()
     let memoStackView = MemoStackView(nameText: "메모")
@@ -43,8 +42,19 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
     
     var defaultEndTime: Date {
         let currentTime = Date()
-        let addedTime = Calendar.current.date(byAdding: .hour, value: 1, to: currentTime) ?? currentTime
-        return addedTime
+        let currentCalendar = Calendar.current
+        let addingTime = currentCalendar.date(byAdding: .hour, value: 1, to: currentTime) ?? Date()
+        
+        let components = currentCalendar.dateComponents([.hour, .minute], from: currentTime)
+        if let minutes = components.minute,
+           let hour = components.hour,
+           hour == 11,
+           minutes > 0 {
+            let up = 59 - minutes
+            let calculateTime = currentCalendar.date(byAdding: .minute, value: up, to: currentTime) ?? Date()
+            return calculateTime
+        }
+        return addingTime
     }
     
     var category: Category? {
