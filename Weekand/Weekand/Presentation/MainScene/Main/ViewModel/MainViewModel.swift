@@ -25,6 +25,7 @@ class MainViewModel: ViewModelType {
     
     // View와 바인딩되는 Observables
     public var userSummary = BehaviorRelay<UserSummary>(value: UserSummary.defaultData)
+    public var myUserSummary = BehaviorRelay<UserSummary>(value: UserSummary.defaultData)
     private var userFollowingList = BehaviorRelay<[FollowingUser]>(value: [])
     private var scheduleList = BehaviorRelay<[ScheduleMain]>(value: [])
     
@@ -48,13 +49,27 @@ class MainViewModel: ViewModelType {
         self.coordinator = coordinator
         self.mainUseCase = mainUseCase
                 
-        self.getFollowingUser()
+        
     }
     
     func loadData() {
         
+        self.resetCollectionViewSnapshot()
+        
+        self.getMyUserSummary()
+        self.getFollowingUser()
         self.getUserSummary(id: currentUserId)
         self.getScheduleList(date: currentDate, id: currentUserId)
+    }
+    
+    private func resetCollectionViewSnapshot(animatingDifferences: Bool = false) {
+        
+        var snapshot = NSDiffableDataSourceSnapshot<MainSection, FollowingUser>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems([])
+        self.collectionViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+        
+        isMyProfileAdded = false
     }
     
 }
@@ -223,7 +238,7 @@ extension MainViewModel {
         self.collectionViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
         
         // 로그인한 유저 정보 (내정보)
-        self.userSummary.subscribe(onNext: { data in
+        self.myUserSummary.subscribe(onNext: { data in
             
             // 최초 1회만 실행
             if data.userId != "" && !self.isMyProfileAdded {
@@ -284,6 +299,20 @@ extension MainViewModel {
     private func getFollowingUser() {
         self.mainUseCase.followees(page: 0, size: 20).subscribe(onSuccess: { following in
             PublishRelay<[FollowingUser]>.just(following).bind(to: self.userFollowingList).disposed(by: self.disposeBag)
+        }, onFailure: { error in
+            print("\(#function) Error: \(error)")
+        }, onDisposed: nil)
+        .disposed(by: disposeBag)
+    }
+    
+    /// 팔로잉 리스트에 본인 프로필을 올리기 위한 작업
+    private func getMyUserSummary() {
+        self.mainUseCase.userSummary(id: nil).subscribe(onSuccess: { userData in
+            
+            guard let userData = userData else { return }
+            
+            PublishRelay<UserSummary>.just(userData).bind(to: self.myUserSummary).disposed(by: self.disposeBag)
+            
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
         }, onDisposed: nil)
