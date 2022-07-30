@@ -287,7 +287,7 @@ extension MainViewController: UITableViewDelegate {
         let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, completionHandler in
             
             // 일반 일정인 경우
-            self.showActionSheet(titles: "삭제", message: "카테고리를 삭제하시겠어요?") { _ in
+            self.showActionSheet(titles: "삭제", message: "일정를 삭제하시겠어요?") { _ in
                 // 완전 삭제
             }
             
