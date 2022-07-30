@@ -25,8 +25,8 @@ class CategoryModifyViewModel: CategoryEditViewModelType {
         let colorButtonDidTapEvent: Observable<Void>
         let categoryNameTextFieldDidEditEvent: Observable<String>
         let confirmButtonDidTapEvent: Observable<Void>
-        let selectedOpenType: Observable<CategoryOpenType>
-        let selectedColor: Observable<Color>
+        let selectedOpenType: BehaviorRelay<CategoryOpenType>
+        let selectedColor: BehaviorRelay<Color>
         let selectedCategory: Category?
     }
     

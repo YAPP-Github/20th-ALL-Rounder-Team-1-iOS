@@ -8,14 +8,15 @@
 import UIKit
 import Then
 import RxSwift
+import RxRelay
 
-class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewController {
+class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewController, UICollectionViewDelegate {
     
     private let disposeBag = DisposeBag()
     var viewModel: T?
 
     let categoryTextFieldStackView = WTextFieldStackView(fieldPlaceholder: "카테고리명", nameText: "카테고리")
-    let openTypeStackView = OpenTypeStackView(nameText: "공개")
+    let openTypeStackView = OpenTypeStackView()
     
     lazy var colorStackView = ColorStackView(nameText: "색상").then {
         $0.setColor(UIColor(hex: selectedColor.hexCode) ?? .red)
@@ -39,19 +40,15 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
             self.selectedColor = color.first ?? Constants.colors[0][0]
         }
     }
-    var selectedOpenType: CategoryOpenType = .allOpen {
-        didSet {
-            self.openTypeObservable.onNext(selectedOpenType)
-        }
-    }
+    var selectedOpenType: CategoryOpenType = .allOpen
     var selectedColor: Color = Constants.colors[0][0] {
         didSet {
             self.colorStackView.colorView.backgroundColor = UIColor(hex: selectedColor.hexCode)
-            self.colorObservable.onNext(selectedColor)
+            self.colorObservable.accept(selectedColor)
         }
     }
-    lazy var openTypeObservable = BehaviorSubject(value: selectedOpenType)
-    lazy var colorObservable = BehaviorSubject(value: selectedColor)
+    lazy var openTypeObservable = BehaviorRelay<CategoryOpenType>(value: selectedOpenType)
+    lazy var colorObservable = BehaviorRelay<Color>(value: selectedColor)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +62,7 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
         view.backgroundColor = .white
         navigationItem.leftBarButtonItem = closeButton
         stackView.spacing = 25
+        openTypeStackView.openTypeCollecitonView.delegate = self
     }
 
     private func configureUI() {
@@ -85,6 +83,13 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
     }
     
     private func bindViewModel() {
+        
+        self.openTypeObservable.bind { openType in
+            self.openTypeStackView.openTypeCollecitonView.selectItem(at: IndexPath(item: openType.listIndex, section: 0),
+                                                                animated: false,
+                                                                scrollPosition: .centeredVertically)
+        }
+        
         let addInput = CategoryAddViewModel.Input(
             closeButtonDidTapEvent: closeButton.rx.tap.asObservable(),
             colorButtonDidTapEvent: colorStackView.colorView.rx.tap.asObservable(),
@@ -103,33 +108,6 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
             selectedColor: colorObservable,
             selectedCategory: selectedCategory 
         )
-        
-        openTypeStackView.allOpenButton.rx.tap.subscribe { _ in
-            if self.openTypeStackView.allOpenButton.isChecked == false {
-                self.openTypeStackView.allOpenButton.isChecked = true
-                self.openTypeStackView.followerOpenButton.isChecked = false
-                self.openTypeStackView.closedButton.isChecked = false
-                self.selectedOpenType = .allOpen
-            }
-        }.disposed(by: disposeBag)
-        
-        openTypeStackView.followerOpenButton.rx.tap.subscribe { _ in
-            if self.openTypeStackView.followerOpenButton.isChecked == false {
-                self.openTypeStackView.allOpenButton.isChecked = false
-                self.openTypeStackView.followerOpenButton.isChecked = true
-                self.openTypeStackView.closedButton.isChecked = false
-                self.selectedOpenType = .followerOpen
-            }
-        }.disposed(by: disposeBag)
-        
-        openTypeStackView.closedButton.rx.tap.subscribe { _ in
-            if self.openTypeStackView.closedButton.isChecked == false {
-                self.openTypeStackView.allOpenButton.isChecked = false
-                self.openTypeStackView.followerOpenButton.isChecked = false
-                self.openTypeStackView.closedButton.isChecked = true
-                self.selectedOpenType = .closed
-            }
-        }.disposed(by: disposeBag)
         
         if ((viewModel as? CategoryAddViewModel) != nil) {
             let output = viewModel?.transform(input: addInput as! T.Input)
@@ -151,16 +129,15 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
     private func checkEmptyValue(text: String) -> Bool {
         return text.trimmingCharacters(in: [" "]) != ""
     }
-
-}
-
-import SwiftUI
-#if canImport(SwiftUI) && DEBUG
-
-struct CategoryEditViewControllerPreview: PreviewProvider {
-    static var previews: some View {
-        Group {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.item == CategoryOpenType.allOpen.listIndex {
+            self.openTypeObservable.accept(.allOpen)
+        } else if indexPath.item == CategoryOpenType.followerOpen.listIndex {
+            self.openTypeObservable.accept(.followerOpen)
+        } else if indexPath.item == CategoryOpenType.closed.listIndex {
+            self.openTypeObservable.accept(.closed)
         }
     }
+
 }
-#endif
