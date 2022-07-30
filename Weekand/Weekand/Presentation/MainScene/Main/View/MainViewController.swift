@@ -10,6 +10,7 @@ import SnapKit
 import Then
 import RxSwift
 import RxGesture
+import RxCocoa
 
 class MainViewController: UIViewController {
         
@@ -38,6 +39,8 @@ class MainViewController: UIViewController {
         $0.setImage(UIImage(named: "category.update")?.withTintColor(.white), for: .normal)
         $0.imageView?.contentMode = .scaleAspectFit
     }
+    
+    let didTapScheduleCell = PublishRelay<String>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,7 +133,9 @@ class MainViewController: UIViewController {
             didTapEditButton: self.headerView.calendarView.editButton.rx.tap.asObservable(),
             
             // Floating Button
-            didTapFloatingButton: self.floatingButton.rx.tap.asObservable()
+            didTapFloatingButton: self.floatingButton.rx.tap.asObservable(),
+            
+            didTapScheduleCell: didTapScheduleCell
         )
         
         
@@ -290,7 +295,9 @@ extension MainViewController: UITableViewDelegate {
 // MARK: TableViewCell Tap Gesture
 extension MainViewController: MainTableViewCellDelegate {
     func cellTapped(id: String?) {
-        print("\(#function), id: \(String(describing: id))")
+        if let scheduleId = id {
+            self.didTapScheduleCell.accept(scheduleId)
+        }
     }
     
     func emojiViewTapped(id: String?) {

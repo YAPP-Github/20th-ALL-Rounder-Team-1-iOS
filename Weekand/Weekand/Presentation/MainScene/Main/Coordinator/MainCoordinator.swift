@@ -92,6 +92,16 @@ class MainCoordinator: Coordinator {
         userSearchCoordinator.start()
     }
     
+    func showScheduleDetailScene(scheduleId: String, requestDate: Date) {
+        let scheduleDetailCoordinator = ScheduleDetailCoordinator(navigationController: self.navigationController,
+                                                                  scheduleId: scheduleId,
+                                                                  isStatusEditing: false,
+                                                                  requestDate: requestDate)
+        scheduleDetailCoordinator.finishDelegate = self
+        childCoordinators.append(scheduleDetailCoordinator)
+        scheduleDetailCoordinator.start()
+    }
+    
     func sendDateFromMonthlyCalender(date: Date?) {
         
         guard let date = date else { return }
