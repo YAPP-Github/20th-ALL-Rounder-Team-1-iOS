@@ -40,9 +40,9 @@ extension DefaultRepeatViewModel {
     func transform(input: Input) -> Output {
         input.cancelButtonDidTapEvent.subscribe(onNext: {
             if let coordinator = self.coordinator as? ScheduleAddCoordinator {
-                coordinator.finish()
+                coordinator.navigationController.dismiss(animated: true)
             } else if let coordinator = self.coordinator as? ScheduleModifyCoordinator {
-                coordinator.finish()
+                coordinator.navigationController.dismiss(animated: true)
             }
         })
         .disposed(by: disposeBag)
@@ -55,10 +55,10 @@ extension DefaultRepeatViewModel {
                 let repeatEndDate = isRepeat ? date : nil
                 if let coordinator = self?.coordinator as? ScheduleAddCoordinator {
                     coordinator.sendRepeatTypeFromSheet(repeatType: self?.repeatType ?? .once, repeatEndDate: repeatEndDate)
-                    coordinator.finish()
+                    self?.coordinator?.navigationController.dismiss(animated: true)
                 } else if let coordinator = self?.coordinator as? ScheduleModifyCoordinator {
                     coordinator.sendRepeatTypeFromSheet(repeatType: self?.repeatType ?? .once, repeatEndDate: repeatEndDate)
-                    coordinator.finish()
+                    self?.coordinator?.navigationController.dismiss(animated: true)
                 }
             })
             .disposed(by: disposeBag)

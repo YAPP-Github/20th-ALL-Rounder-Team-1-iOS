@@ -38,9 +38,9 @@ extension WeekRepeatViewModel {
     func transform(input: Input) -> Output {
         input.cancelButtonDidTapEvent.subscribe(onNext: {
             if let coordinator = self.coordinator as? ScheduleAddCoordinator {
-                coordinator.finish()
+                coordinator.navigationController.dismiss(animated: true)
             } else if let coordinator = self.coordinator as? ScheduleModifyCoordinator {
-                coordinator.finish()
+                coordinator.navigationController.dismiss(animated: true)
             }
         })
         .disposed(by: disposeBag)
@@ -58,14 +58,14 @@ extension WeekRepeatViewModel {
                     } else {
                         coordinator.sendWeekRepeatTypeFromSheet(repeatType: .weekly, repeatEndDate: repeatEndDate, repeatSelectedValue: weeks)
                     }
-                    coordinator.finish()
+                    self?.coordinator?.navigationController.dismiss(animated: true)
                 } else if let coordinator = self?.coordinator as? ScheduleModifyCoordinator {
                     if weeks.count == 7 {
                         coordinator.sendRepeatTypeFromSheet(repeatType: .daily, repeatEndDate: repeatEndDate)
                     } else {
                         coordinator.sendWeekRepeatTypeFromSheet(repeatType: .weekly, repeatEndDate: repeatEndDate, repeatSelectedValue: weeks)
                     }
-                    coordinator.finish()
+                    self?.coordinator?.navigationController.dismiss(animated: true)
                 }
                 
             })
