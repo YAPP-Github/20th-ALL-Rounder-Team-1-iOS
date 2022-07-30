@@ -163,7 +163,7 @@ extension SignUpAddInfomationViewController: UICollectionViewDelegate {
             let interests = interestsStackView.collectionView
                         .indexPathsForSelectedItems?
                         .map { Constants.interestsDataSource[$0.section][$0.item] }
-            self.selectedJobs.accept(interests ?? [])
+            self.selectedInterests.accept(interests ?? [])
         }
     }
     
@@ -177,7 +177,7 @@ extension SignUpAddInfomationViewController: UICollectionViewDelegate {
             let interests = interestsStackView.collectionView
                         .indexPathsForSelectedItems?
                         .map { Constants.interestsDataSource[$0.section][$0.item] }
-            self.selectedJobs.accept(interests ?? [])
+            self.selectedInterests.accept(interests ?? [])
         }
     }
 }
