@@ -80,11 +80,26 @@ class ScheduleModifyCoordinator: ScheduleEditCoordinatorType {
         scheduleEditViewController.repeatEnd = repeatEndDate
     }
     
+    func presentAlertPopupViewController(titleText: String,
+                                         informText: String,
+                                         confirmButtonText: String,
+                                         cancelButtonText: String,
+                                         completionHandler: @escaping () -> Void) {
+        let alertPopupCoordinator = AlertPopupCoordinator(titleText: titleText,
+                                                            informText: informText,
+                                                            confirmButtonText: confirmButtonText,
+                                                            cancelButtonText: cancelButtonText,
+                                                            completionHandler: completionHandler)
+        childCoordinators.append(alertPopupCoordinator)
+        navigationController.present(alertPopupCoordinator.navigationController, animated: true, completion: nil)
+        alertPopupCoordinator.start()
+    }
+    
     func showToastMessage(text: String) {
         scheduleEditViewController.showToast(message: text)
     }
     
     func finish() {
-        self.navigationController.dismiss(animated: true)
+        self.finishDelegate?.childDidFinish(self)
     }
 }

@@ -141,7 +141,13 @@ class ScheduleModifyViewModel: ScheduleEditViewModelType {
             .disposed(by: disposeBag)
         
         input.closeButtonDidTapEvent.subscribe(onNext: {
-            self.coordinator?.finish()
+            self.coordinator?.presentAlertPopupViewController(titleText: "잠깐",
+                                                              informText: "뒤로 돌아가면 작성하던 내용이 모두 사라\n져요. 취소하시겠어요?",
+                                                              confirmButtonText: "취소할게요",
+                                                              cancelButtonText: "아니요",
+                                                              completionHandler: {
+                self.coordinator?.finish()
+            })
         }).disposed(by: disposeBag)
         
         var previousTag: DateTime? = nil

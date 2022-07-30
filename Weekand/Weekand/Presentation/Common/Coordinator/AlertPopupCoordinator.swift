@@ -12,7 +12,7 @@ class AlertPopupCoordinator: Coordinator {
     weak var finishDelegate: CoordinatorDidFinishDelegate?
     var childCoordinators: [Coordinator] = []
     var alertPopupViewController: AlertPopupViewController
-    var type: CoordinatorType = .warningPopup
+    var type: CoordinatorType = .alertPopup
     var completionHandler: () -> Void
     
     required init(titleText: String,
