@@ -199,7 +199,7 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
             DispatchQueue.main.async {
                 let dateString = WDateFormatter.dateFormatter.string(from: self.requestDate)
                 self.calendarStackView.dateButton.setTitle(dateString, for: .normal, font: WFont.body1())
-                self.calendarStackView.calendarView.calendar.select(self.requestDate)
+                self.calendarStackView.calendarView.selectDate(self.requestDate)
                 self.selectedDate.accept(self.requestDate)
             }
             
@@ -270,7 +270,7 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
                     }
                     let dateString = WDateFormatter.dateFormatter.string(from: schedule.dateStart)
                     self?.calendarStackView.dateButton.setTitle(dateString, for: .normal, font: WFont.body1())
-                    self?.calendarStackView.calendarView.calendar.select(schedule.dateStart)
+                    self?.calendarStackView.calendarView.selectDate(schedule.dateStart)
                     self?.selectedDate.accept(schedule.dateStart)
             })
             .disposed(by: self.disposeBag)

@@ -124,4 +124,9 @@ extension WCalendarView {
         
         titleLabel.text = dateFormatter.string(from: date)
     }
+    
+    func selectDate(_ date: Date) {
+        self.calendar.select(date)
+        titleLabel.text = dateFormatter.string(from: date)
+    }
 }
