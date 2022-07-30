@@ -37,6 +37,14 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
     
     var defaultStartTime: Date {
         let currentTime = Date()
+        let currentCalendar = Calendar.current
+        
+        let components = currentCalendar.dateComponents([.hour, .minute], from: currentTime)
+        if let minutes = components.minute,
+           minutes > 0 {
+            let calculateTime = currentCalendar.date(byAdding: .minute, value: -minutes, to: currentTime) ?? Date()
+            return calculateTime
+        }
         return currentTime
     }
     
@@ -44,14 +52,20 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
         let currentTime = Date()
         let currentCalendar = Calendar.current
         let addingTime = currentCalendar.date(byAdding: .hour, value: 1, to: currentTime) ?? Date()
-        
         let components = currentCalendar.dateComponents([.hour, .minute], from: currentTime)
-        if let minutes = components.minute,
-           let hour = components.hour,
-           hour == 11,
+        
+        guard let minutes = components.minute,
+              let hour = components.hour else {
+            return Date()
+        }
+        if hour == 11,
            minutes > 0 {
-            let up = 59 - minutes
-            let calculateTime = currentCalendar.date(byAdding: .minute, value: up, to: currentTime) ?? Date()
+            let addMinutes = 59 - minutes
+            let calculateTime = currentCalendar.date(byAdding: .minute, value: addMinutes, to: currentTime) ?? Date()
+            return calculateTime
+        } else if minutes > 0 {
+            let addMinutes = 60 - minutes
+            let calculateTime = currentCalendar.date(byAdding: .minute, value: addMinutes, to: currentTime) ?? Date()
             return calculateTime
         }
         return addingTime
