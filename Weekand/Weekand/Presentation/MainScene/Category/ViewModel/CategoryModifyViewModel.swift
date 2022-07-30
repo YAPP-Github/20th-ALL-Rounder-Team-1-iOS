@@ -15,9 +15,14 @@ class CategoryModifyViewModel: CategoryEditViewModelType {
     private let categoryUseCase: CategoryUseCase
     private var disposeBag = DisposeBag()
     
-    init(coordinator: CategoryModifyCoordinator, categoryUseCase: CategoryUseCase) {
+    let category: Category
+    
+    let selectedCategory = PublishRelay<Category>()
+    
+    init(coordinator: CategoryModifyCoordinator, categoryUseCase: CategoryUseCase, category: Category) {
         self.coordinator = coordinator
         self.categoryUseCase = categoryUseCase
+        self.category = category
     }
     
     struct Input {
@@ -27,12 +32,13 @@ class CategoryModifyViewModel: CategoryEditViewModelType {
         let confirmButtonDidTapEvent: Observable<Void>
         let selectedOpenType: BehaviorRelay<CategoryOpenType>
         let selectedColor: BehaviorRelay<Color>
-        let selectedCategory: Category?
     }
     
     struct Output { }
     
     func transform(input: Input) -> Output {
+        
+        selectedCategory.accept(category)
         
         input.closeButtonDidTapEvent.subscribe(onNext: {
             self.coordinator?.dismiss()
@@ -47,7 +53,7 @@ class CategoryModifyViewModel: CategoryEditViewModelType {
         input.confirmButtonDidTapEvent
             .withLatestFrom(categoryInput)
             .subscribe(onNext: { [weak self] name, color, openType in
-                guard let category = input.selectedCategory else {
+                guard let category = self?.category else {
                     return
                 }
                 self?.updateCategory(id: category.serverID, name: name, color: color.hexCode, openType: openType)

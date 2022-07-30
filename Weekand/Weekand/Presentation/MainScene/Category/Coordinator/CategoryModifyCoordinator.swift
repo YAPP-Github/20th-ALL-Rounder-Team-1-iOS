@@ -15,18 +15,21 @@ class CategoryModifyCoordinator: Coordinator, CategoryEditCoordinatorType {
     var type: CoordinatorType = .categoryModify
     var categoryModifyViewController: CategoryEditViewController<CategoryModifyViewModel>
     var categoryUseCase: CategoryUseCase
+    var selectedCategory: Category
     
     required init(categoryUseCase: CategoryUseCase, selectedCategory: Category) {
         self.categoryUseCase = categoryUseCase
         self.categoryModifyViewController = CategoryEditViewController<CategoryModifyViewModel>()
         self.categoryModifyViewController.title = "카테고리 수정"
-        self.categoryModifyViewController.selectedCategory = selectedCategory
         self.navigationController = UINavigationController(rootViewController: categoryModifyViewController)
         self.navigationController.modalPresentationStyle = .fullScreen
+        self.selectedCategory = selectedCategory
     }
     
     func start() {
-        self.categoryModifyViewController.viewModel = CategoryModifyViewModel(coordinator: self, categoryUseCase: categoryUseCase)
+        self.categoryModifyViewController.viewModel = CategoryModifyViewModel(coordinator: self,
+                                                                              categoryUseCase: categoryUseCase,
+                                                                              category: self.selectedCategory)
     }
     
     func pushColorBottonSheet() {
