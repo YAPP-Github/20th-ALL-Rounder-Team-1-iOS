@@ -277,16 +277,34 @@ extension MainViewController {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let update = UIContextualAction(style: .normal, title: "수정") { _, _, completionHandler in
+            // 수정
             completionHandler(true)
         }
         update.backgroundColor = .mainColor
         
+        
+        
         let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, completionHandler in
+            
+            // 일반 일정인 경우
             self.showActionSheet(titles: "삭제", message: "카테고리를 삭제하시겠어요?") { _ in
-                completionHandler(true)
+                // 완전 삭제
             }
+            
+            // 반복 일정인 경우
+//            self.showActionSheet(
+//                titles: ("이 일정에만 적용", "이후 모든 일정에도 적용"),
+//                message: "반복된 일정을 삭제하시겠어요?",
+//                deleteHandler: { _ in
+//                  // 스킵
+//                }, deleteAfterHandler: { _ in
+//                  // 완전 삭제
+//                })
+            completionHandler(true)
         }
         delete.backgroundColor = .wred
+        
+        
         
         return UISwipeActionsConfiguration(actions: [delete, update])
     }
