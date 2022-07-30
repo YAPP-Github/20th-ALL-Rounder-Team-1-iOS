@@ -55,12 +55,12 @@ class WCalendarView: UIStackView {
         
         $0.appearance.titleFont = WFont.body2()
         
-        $0.appearance.titleTodayColor = .wblue
+        $0.appearance.titleTodayColor = .mainColor
         $0.appearance.todayColor = .clear
         $0.appearance.todaySelectionColor = .none
         
         $0.appearance.titleDefaultColor = .gray900
-        $0.appearance.eventSelectionColor = .wblue
+        $0.appearance.selectionColor = .mainColor
         
         $0.select(Date())
     }
