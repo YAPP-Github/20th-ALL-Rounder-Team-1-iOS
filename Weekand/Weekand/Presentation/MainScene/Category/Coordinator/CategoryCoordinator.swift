@@ -61,7 +61,7 @@ class CategoryCoordinator: Coordinator {
     }
     
     func showScheduleModifyScene(schedule: ScheduleSummary) {
-        let scheduleModifyCoordinator = ScheduleModifyCoordinator(selectedSchedule: schedule)
+        let scheduleModifyCoordinator = ScheduleModifyCoordinator(scheduleId: schedule.scheduleId, requestDate: schedule.dateStart)
         scheduleModifyCoordinator.finishDelegate = self
         childCoordinators.append(scheduleModifyCoordinator)
         navigationController.present(scheduleModifyCoordinator.navigationController, animated: true, completion: nil)
@@ -69,7 +69,10 @@ class CategoryCoordinator: Coordinator {
     }
     
     func showScheduleDetailScene(schedule: ScheduleSummary) {
-        let scheduleDetailCoordinator = ScheduleDetailCoordinator(navigationController: self.navigationController, schedule: schedule, isStatusEditing: false, requestDate: schedule.dateStart)
+        let scheduleDetailCoordinator = ScheduleDetailCoordinator(navigationController: self.navigationController,
+                                                                  scheduleId: schedule.scheduleId,
+                                                                  isStatusEditing: false,
+                                                                  requestDate: schedule.dateStart)
         scheduleDetailCoordinator.finishDelegate = self
         childCoordinators.append(scheduleDetailCoordinator)
         scheduleDetailCoordinator.start()

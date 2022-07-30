@@ -175,15 +175,17 @@ extension CategoryListViewController {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let update = UIContextualAction(style: .normal, title: "수정") { _, _, _ in
+        let update = UIContextualAction(style: .normal, title: "수정") { _, _, completionHandler in
             self.categoryCellDidSwipeEvent.accept(self.list[indexPath.item])
+            completionHandler(true)
         }
         update.backgroundColor = .mainColor
         
-        let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, _ in
+        let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, completionHandler in
             self.showActionSheet(titles: "삭제", message: "카테고리를 삭제하시겠어요?") { _ in
                 self.viewModel?.deleteCategory(id: self.list[indexPath.item].serverID) {
                     self.deleteItem(indexPath)
+                    completionHandler(true)
                 }
             }
         }

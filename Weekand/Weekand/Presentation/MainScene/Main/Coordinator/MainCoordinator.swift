@@ -38,7 +38,7 @@ class MainCoordinator: Coordinator {
         categoryCoordinator.start()
     }
     
-    func showEditScene(requestDate: Date) {
+    func showScheduleAddScene(requestDate: Date) {
         let scheduleAddCoordinator = ScheduleAddCoordinator(requestDate: requestDate)
         scheduleAddCoordinator.finishDelegate = self
         childCoordinators.append(scheduleAddCoordinator)
@@ -90,6 +90,24 @@ class MainCoordinator: Coordinator {
         userSearchCoordinator.finishDelegate = self
         childCoordinators.append(userSearchCoordinator)
         userSearchCoordinator.start()
+    }
+    
+    func showScheduleDetailScene(scheduleId: String, requestDate: Date) {
+        let scheduleDetailCoordinator = ScheduleDetailCoordinator(navigationController: self.navigationController,
+                                                                  scheduleId: scheduleId,
+                                                                  isStatusEditing: false,
+                                                                  requestDate: requestDate)
+        scheduleDetailCoordinator.finishDelegate = self
+        childCoordinators.append(scheduleDetailCoordinator)
+        scheduleDetailCoordinator.start()
+    }
+    
+    func showScheduleModifyScene(scheduleId: String, requestDate: Date) {
+        let scheduleModifyCoordinator = ScheduleModifyCoordinator(scheduleId: scheduleId, requestDate: requestDate)
+        scheduleModifyCoordinator.finishDelegate = self
+        childCoordinators.append(scheduleModifyCoordinator)
+        navigationController.present(scheduleModifyCoordinator.navigationController, animated: true, completion: nil)
+        scheduleModifyCoordinator.start()
     }
     
     func sendDateFromMonthlyCalender(date: Date?) {

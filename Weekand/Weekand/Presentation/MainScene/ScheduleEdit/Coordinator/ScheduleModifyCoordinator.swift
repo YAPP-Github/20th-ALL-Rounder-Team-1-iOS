@@ -14,21 +14,23 @@ class ScheduleModifyCoordinator: ScheduleEditCoordinatorType {
     var scheduleEditViewController: ScheduleEditViewController<ScheduleModifyViewModel>
     var type: CoordinatorType = .scheduleModify
     var scheduleEditUseCase: ScheduleEditUseCase
-    var schedule: ScheduleSummary
+    var scheduleId: String
+    var requestDate: Date
     
-    required init(selectedSchedule: ScheduleSummary) {
-        self.scheduleEditViewController = ScheduleEditViewController(requestDate: selectedSchedule.dateStart)
+    required init(scheduleId: String, requestDate: Date) {
+        self.scheduleEditViewController = ScheduleEditViewController(requestDate: requestDate)
         self.navigationController = UINavigationController(rootViewController: scheduleEditViewController)
         self.navigationController.modalPresentationStyle = .fullScreen
         self.scheduleEditViewController.navigationItem.title = "일정 수정"
         self.scheduleEditUseCase = ScheduleEditUseCase()
-        self.schedule = selectedSchedule
+        self.scheduleId = scheduleId
+        self.requestDate = requestDate
     }
     
     func start() {
         let scheduleModifyViewModel = ScheduleModifyViewModel(coordinator: self,
                                                               scheduleEditUseCase: scheduleEditUseCase,
-                                                              scheduleId: schedule.scheduleId)
+                                                              scheduleId: self.scheduleId)
         scheduleModifyViewModel.getSchedule()
         self.scheduleEditViewController.viewModel = scheduleModifyViewModel
     }

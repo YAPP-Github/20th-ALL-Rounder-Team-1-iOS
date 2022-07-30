@@ -228,10 +228,11 @@ extension CategoryDetailViewController {
         update.backgroundColor = .mainColor
         
         
-        let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, _ in
+        let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, completionHandler in
             self.showActionSheet(titles: "삭제", message: "이 기간의 모든 일정을 삭제하시겠어요?") { _ in
                 self.viewModel?.deleteSchedule(schedule: self.list[indexPath.item], completion: {
                     self.deleteItem(indexPath)
+                    completionHandler(true)
                 })
             }
 

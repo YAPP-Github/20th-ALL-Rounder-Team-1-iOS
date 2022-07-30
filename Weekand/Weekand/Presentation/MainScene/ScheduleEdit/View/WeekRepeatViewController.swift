@@ -115,7 +115,7 @@ class WeekRepeatViewController: UIViewController {
         weekCollecitonView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(50)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(45)
+            make.height.equalTo(50)
         }
         
         repeatRadioStackView.snp.makeConstraints { make in

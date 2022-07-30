@@ -16,20 +16,22 @@ class ScheduleDetailCoordinator: Coordinator {
     var scheduleDetailViewController: ScheduleDetailViewController
     var scheduleDetailUseCase: ScheduleDetailUseCase
     var type: CoordinatorType = .scheduleDetail
-    var schedule: ScheduleSummary
+    var scheduleId: String
+    var requestDate: Date
     
-    required init(navigationController: UINavigationController, schedule: ScheduleSummary, isStatusEditing: Bool, requestDate: Date) {
+    required init(navigationController: UINavigationController, scheduleId: String, isStatusEditing: Bool, requestDate: Date) {
         self.scheduleDetailUseCase = ScheduleDetailUseCase()
         self.scheduleDetailViewController = ScheduleDetailViewController(isStatusEditing: isStatusEditing,
                                                                          requestDate: requestDate)
         self.navigationController = navigationController
-        self.schedule = schedule
+        self.scheduleId = scheduleId
+        self.requestDate = requestDate
     }
     
     func start() {
         let scheduleDetailViewModel = ScheduleDetailViewModel(coordinator: self, scheduleDetailUseCase: scheduleDetailUseCase)
         self.scheduleDetailViewController.viewModel = scheduleDetailViewModel
-        scheduleDetailViewModel.schedule(scheduleId: schedule.scheduleId, requestDate: schedule.dateStart)
+        scheduleDetailViewModel.schedule(scheduleId: self.scheduleId, requestDate: self.requestDate)
         self.navigationController.pushViewController(scheduleDetailViewController, animated: true)
     }
     

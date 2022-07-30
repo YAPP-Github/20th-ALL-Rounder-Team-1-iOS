@@ -74,4 +74,28 @@ final class MainUseCase {
             .asSingle()
     }
     
+    // 일정 완전 삭제
+    
+    func deleteSchedule(scheduleId: String) -> Single<Bool> {
+        NetWork.shared.perform(mutation: DeleteScheduleMutation(scheduleId: scheduleId))
+            .map { $0.deleteSchedule }
+            .asSingle()
+    }
+    
+    // 이후 일정 삭제
+    
+    func deleteScheduleFromDate(scheduleId: String, requestDate: Date) -> Single<Bool> {
+        NetWork.shared.perform(mutation: DeleteScheduleFromDateMutation(scheduleId: scheduleId, date: requestDate.toTimestamp()))
+            .map { $0.deleteScheduleFromDate }
+            .asSingle()
+    }
+    
+    // 일정 스킵
+    
+    func skipSchedule(scheduleId: String, requestDate: Date) -> Single<Bool> {
+        NetWork.shared.perform(mutation: SkipScheduleMutation(scheduleId: scheduleId, date: requestDate.toTimestamp()))
+            .map { $0.skipSchedule }
+            .asSingle()
+    }
+    
 }

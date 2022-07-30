@@ -80,6 +80,9 @@ extension MainViewModel {
         
         // Floating Button
         let didTapFloatingButton: Observable<Void>
+        
+        // CelltTap
+        let didTapScheduleCell: PublishRelay<String>
     }
     
     struct Output {
@@ -136,8 +139,11 @@ extension MainViewModel {
         }).disposed(by: disposeBag)
         
         input.didTapFloatingButton.subscribe(onNext: { _ in
-            // TODO: 현재 날짜로 넣었지만 메인 화면 내 선택된 날짜로 개선 필요
-            self.coordinator?.showEditScene(requestDate: Date())
+            self.coordinator?.showScheduleAddScene(requestDate: self.currentDate)
+        }).disposed(by: disposeBag)
+        
+        input.didTapScheduleCell.subscribe(onNext: { scheduleId in
+            self.coordinator?.showScheduleDetailScene(scheduleId: scheduleId, requestDate: self.currentDate)
         }).disposed(by: disposeBag)
         
         return Output(
@@ -308,6 +314,48 @@ extension MainViewModel {
         }, onDisposed: nil)
         .disposed(by: disposeBag)
         
+    }
+
+    func deleteSchedule(schedule: ScheduleSummary, completion: @escaping () -> Void) {
+        self.mainUseCase.deleteSchedule(scheduleId: schedule.scheduleId)
+            .subscribe(onSuccess: { isSucceed in
+                if isSucceed {
+                    completion()
+                } else {
+                    print("\(#function) Error: error")
+                }
+            }, onFailure: { error in
+                print("\(#function) Error: \(error)")
+            }, onDisposed: nil)
+            .disposed(by: disposeBag)
+    }
+    
+    func deleteScheduleFromDate(schedule: ScheduleSummary, requestDate: Date, completion: @escaping () -> Void) {
+        self.mainUseCase.deleteScheduleFromDate(scheduleId: schedule.scheduleId, requestDate: requestDate)
+            .subscribe(onSuccess: { isSucceed in
+                if isSucceed {
+                    completion()
+                } else {
+                    print("\(#function) Error: error")
+                }
+            }, onFailure: { error in
+                print("\(#function) Error: \(error)")
+            }, onDisposed: nil)
+            .disposed(by: disposeBag)
+    }
+    
+    func skipSchedule(schedule: ScheduleSummary, requestDate: Date, completion: @escaping () -> Void) {
+        self.mainUseCase.skipSchedule(scheduleId: schedule.scheduleId, requestDate: requestDate)
+            .subscribe(onSuccess: { isSucceed in
+                if isSucceed {
+                    completion()
+                } else {
+                    print("\(#function) Error: error")
+                }
+            }, onFailure: { error in
+                print("\(#function) Error: \(error)")
+            }, onDisposed: nil)
+            .disposed(by: disposeBag)
     }
 
 }

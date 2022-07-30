@@ -180,6 +180,7 @@ extension MainCalendarView: FSCalendarDelegate, FSCalendarDataSource {
         calendar.allowsSelection = true
         calendar.allowsMultipleSelection = false
         calendar.appearance.borderRadius = 20
+        calendar.appearance.selectionColor = .mainColor
         
         // 오늘 날짜 Select
         calendar.select(Date())

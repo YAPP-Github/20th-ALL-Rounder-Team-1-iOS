@@ -10,8 +10,9 @@ import SnapKit
 import Then
 import RxSwift
 import RxGesture
+import RxCocoa
 
-class MainViewController: UIViewController, UITableViewDelegate {
+class MainViewController: UIViewController {
         
     var viewModel: MainViewModel?
     let disposeBag = DisposeBag()
@@ -38,6 +39,8 @@ class MainViewController: UIViewController, UITableViewDelegate {
         $0.setImage(UIImage(named: "category.update")?.withTintColor(.white), for: .normal)
         $0.imageView?.contentMode = .scaleAspectFit
     }
+    
+    let didTapScheduleCell = PublishRelay<String>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,7 +133,9 @@ class MainViewController: UIViewController, UITableViewDelegate {
             didTapEditButton: self.headerView.calendarView.editButton.rx.tap.asObservable(),
             
             // Floating Button
-            didTapFloatingButton: self.floatingButton.rx.tap.asObservable()
+            didTapFloatingButton: self.floatingButton.rx.tap.asObservable(),
+            
+            didTapScheduleCell: didTapScheduleCell
         )
         
         
@@ -238,6 +243,7 @@ extension MainViewController {
         tableView = UITableView()
         
         tableView.separatorStyle = .none
+        tableView.delegate = self
         tableView.allowsSelection = false
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.identifier)
         
@@ -267,10 +273,49 @@ extension MainViewController {
     
 }
 
+// MARK: TableView DataSource
+extension MainViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let update = UIContextualAction(style: .normal, title: "수정") { _, _, completionHandler in
+            // 수정
+            completionHandler(true)
+        }
+        update.backgroundColor = .mainColor
+        
+        
+        
+        let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, completionHandler in
+            
+            // 일반 일정인 경우
+            self.showActionSheet(titles: "삭제", message: "일정를 삭제하시겠어요?") { _ in
+                // 완전 삭제
+            }
+            
+            // 반복 일정인 경우
+//            self.showActionSheet(
+//                titles: ("이 일정에만 적용", "이후 모든 일정에도 적용"),
+//                message: "반복된 일정을 삭제하시겠어요?",
+//                deleteHandler: { _ in
+//                  // 스킵
+//                }, deleteAfterHandler: { _ in
+//                  // 완전 삭제
+//                })
+            completionHandler(true)
+        }
+        delete.backgroundColor = .wred
+        
+        
+        
+        return UISwipeActionsConfiguration(actions: [delete, update])
+    }
+}
+
 // MARK: TableViewCell Tap Gesture
 extension MainViewController: MainTableViewCellDelegate {
     func cellTapped(id: String?) {
-        print("\(#function), id: \(String(describing: id))")
+        if let scheduleId = id {
+            self.didTapScheduleCell.accept(scheduleId)
+        }
     }
     
     func emojiViewTapped(id: String?) {
