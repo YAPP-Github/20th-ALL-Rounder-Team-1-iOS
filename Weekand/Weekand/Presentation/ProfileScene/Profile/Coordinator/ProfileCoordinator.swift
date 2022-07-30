@@ -75,6 +75,21 @@ class ProfileCoordinator: Coordinator {
         warningPopupCoordinator.start()
     }
     
+    func presentAlertPopupViewController(titleText: String,
+                                               informText: String,
+                                               confirmButtonText: String,
+                                               cancelButtonText: String,
+                                               completionHandler: @escaping () -> Void) {
+        let alertPopupCoordinator = AlertPopupCoordinator(titleText: titleText,
+                                                            informText: informText,
+                                                            confirmButtonText: confirmButtonText,
+                                                            cancelButtonText: cancelButtonText,
+                                                            completionHandler: completionHandler)
+        childCoordinators.append(alertPopupCoordinator)
+        navigationController.present(alertPopupCoordinator.navigationController, animated: true, completion: nil)
+        alertPopupCoordinator.start()
+    }
+    
     
     // MARK: Bottom Sheet
     
@@ -102,6 +117,10 @@ class ProfileCoordinator: Coordinator {
     
     func setInterestsInformations(_ selectedInterests: [String]) {
         profileEditViewController.selectedInterests = selectedInterests
+    }
+    
+    func showToastMessage(text: String) {
+        profileEditViewController.showToast(message: text)
     }
     
     func logoutFinsh() {

@@ -128,7 +128,14 @@ extension ProfileViewModel {
         }).disposed(by: disposeBag)
         
         input.didLogoutTap.when(.recognized).subscribe(onNext: { _ in
-            self.logout()
+            self.coordinator?.presentAlertPopupViewController(
+                titleText: "잠깐!",
+                informText: "정말로 로그아웃하시겠어요?",
+                confirmButtonText: "로그아웃",
+                cancelButtonText: "아니요",
+                completionHandler: {
+                    self.logout()
+                })
         }).disposed(by: disposeBag)
         
         input.didSignOutTap.when(.recognized).subscribe(onNext: { _ in
@@ -190,9 +197,11 @@ extension ProfileViewModel {
                 self.coordinator?.logoutFinsh()
                 TokenManager.shared.deleteTokens()
                 UserDefaults.standard.set(false, forKey: "autoSign")
+            } else {
+                self.coordinator?.showToastMessage(text: "로그아웃에 실패하였습니다.")
             }
-        }, onFailure: { error in
-            print(error)
+        }, onFailure: { _ in
+            self.coordinator?.showToastMessage(text: "로그아웃에 실패하였습니다.")
         })
         .disposed(by: disposeBag)
     }
