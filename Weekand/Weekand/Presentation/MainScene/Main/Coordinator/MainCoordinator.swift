@@ -102,6 +102,14 @@ class MainCoordinator: Coordinator {
         scheduleDetailCoordinator.start()
     }
     
+    func showScheduleModifyScene(scheduleId: String, requestDate: Date) {
+        let scheduleModifyCoordinator = ScheduleModifyCoordinator(scheduleId: scheduleId, requestDate: requestDate)
+        scheduleModifyCoordinator.finishDelegate = self
+        childCoordinators.append(scheduleModifyCoordinator)
+        navigationController.present(scheduleModifyCoordinator.navigationController, animated: true, completion: nil)
+        scheduleModifyCoordinator.start()
+    }
+    
     func sendDateFromMonthlyCalender(date: Date?) {
         
         guard let date = date else { return }
