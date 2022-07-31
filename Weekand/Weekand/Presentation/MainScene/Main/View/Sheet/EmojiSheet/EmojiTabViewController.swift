@@ -28,6 +28,7 @@ class EmojiTabViewController: TabmanViewController {
     var totalCount = 0
     var emojiCount: [Emoji: Int] = [:]
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,10 +58,18 @@ class EmojiTabViewController: TabmanViewController {
             button.selectedFont = WFont.body2()
         }
         
-        bar.indicator.weight = .custom(value: 2)
+        bar.indicator.weight = .custom(value: 4)
         bar.indicator.tintColor = .mainColor
         bar.layout.transitionStyle = .snap // Customize
         addBar(bar, dataSource: self, at: .top)
+        
+        let divider = UIView().then { $0.backgroundColor = .gray200 }
+        bar.addSubview(divider)
+        divider.snp.makeConstraints { make in
+            make.height.equalTo(1)
+            make.right.left.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
     }
         
 }
@@ -82,7 +91,18 @@ extension EmojiTabViewController: PageboyViewControllerDataSource, TMBarDataSour
     
     func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
         
-        var title = (index == 0) ? "총\(totalCount)개" : "\(emojis[index]!.emojiName) \(emojiCount[emojis[index]!] ?? 0)"
+        var title = ""
+        
+        if index == 0 {
+            title = "총\(totalCount)개"
+        } else {
+            
+            let emojiCount = emojiCount[emojis[index]!] ?? 0
+            title = (emojiCount > 0) ? "\(emojis[index]!.emojiName) \(emojiCount)" : ""
+        }
+        
+        
+        
         var barItem = TMBarItem(title: title)
         
         return barItem
