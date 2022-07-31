@@ -90,10 +90,17 @@ class MainCoordinator: Coordinator {
         userSearchCoordinator.start()
     }
     
-    func showScheduleDetailScene(scheduleId: String, requestDate: Date) {
+    func showScheduleDetailScene(scheduleId: String, schduleStatus: Status, requestDate: Date) {
+        var isStatusEditing: Bool
+        if schduleStatus == .undetermined || schduleStatus == .completed || schduleStatus == .incompleted {
+            isStatusEditing = true
+        } else {
+            isStatusEditing = false
+        }
+        
         let scheduleDetailCoordinator = ScheduleDetailCoordinator(navigationController: self.navigationController,
             scheduleId: scheduleId,
-            isStatusEditing: true,
+            isStatusEditing: isStatusEditing,
             requestDate: requestDate)
         scheduleDetailCoordinator.finishDelegate = self
         childCoordinators.append(scheduleDetailCoordinator)

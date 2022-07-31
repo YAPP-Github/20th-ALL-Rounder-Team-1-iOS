@@ -97,7 +97,7 @@ extension MainViewModel {
         let didTapFloatingButton: Observable<Void>
         
         // CelltTap
-        let didTapScheduleCell: PublishRelay<String>
+        let didTapScheduleCell: PublishRelay<(String, Status)>
     }
     
     struct Output {
@@ -157,8 +157,10 @@ extension MainViewModel {
             self.coordinator?.showScheduleAddScene(requestDate: self.currentDate)
         }).disposed(by: disposeBag)
         
-        input.didTapScheduleCell.subscribe(onNext: { scheduleId in
-            self.coordinator?.showScheduleDetailScene(scheduleId: scheduleId, requestDate: self.currentDate)
+        input.didTapScheduleCell.subscribe(onNext: { (scheduleId, schduleStatus) in
+            self.coordinator?.showScheduleDetailScene(scheduleId: scheduleId,
+                                                      schduleStatus: schduleStatus,
+                                                      requestDate: self.currentDate)
         }).disposed(by: disposeBag)
         
         return Output(
