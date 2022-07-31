@@ -37,7 +37,6 @@ class FollowViewController: UIViewController {
     
     var tableView: UITableView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,6 +74,7 @@ class FollowViewController: UIViewController {
     }
 }
 
+// MARK: TableView Configuration
 extension FollowViewController {
     private func configureTableView() {
         setUpTableView()
@@ -109,12 +109,35 @@ extension FollowViewController {
     }
 }
 
+// MARK: TableView Delegate
 extension FollowViewController: UITableViewDelegate {
     
+    // Selection
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let id = (tableView.cellForRow(at: indexPath) as? FollowTableViewCell)?.dataId {
             self.viewModel?.coordinator?.showProfileScene(id: id)
+            tableView.cellForRow(at: indexPath)?.isSelected = false
         }
+    }
+    
+    // Swipe
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        // 스와이프 비활성화 Action
+        let disabledAction = UISwipeActionsConfiguration().then {
+            $0.performsFirstActionWithFullSwipe = false
+        }
+        guard let userId = (tableView.cellForRow(at: indexPath) as? FollowTableViewCell)?.dataId else { return disabledAction }
+        if ((viewModel?.id) != nil) != (UserDataStorage.shared.userID != nil) { return disabledAction }
+        if self.viewModel?.type == .followee { return disabledAction}
+        
+        let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, completionHandler in
+            self.viewModel?.deleteFollower(userId: userId, completion: {
+                self.viewModel?.getFollowList(page: 0, size: 20)
+            })
+        }
+        delete.backgroundColor = .wred
+        return UISwipeActionsConfiguration(actions: [delete])
     }
 }

@@ -15,8 +15,6 @@
 		7D3B1F54283630A50037504A /* WTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B1F53283630A50037504A /* WTextField.swift */; };
 		7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7D648FBC282367F600F5D0B5 /* .swiftlint.yml */; };
 		7D67F4B728935F4600A1D7CD /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67F4B628935F4600A1D7CD /* Alarm.swift */; };
-		7D67F4BF2893A28700A1D7CD /* CreateImageUrl.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4BE2893A28700A1D7CD /* CreateImageUrl.graphql */; };
-		7D67F4C12893A2A600A1D7CD /* UpdateUserDetail.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 7D67F4C02893A2A600A1D7CD /* UpdateUserDetail.graphql */; };
 		7D67F4C32893BAEA00A1D7CD /* ImageExtensionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67F4C22893BAEA00A1D7CD /* ImageExtensionType.swift */; };
 		7D67F4C52893BF9100A1D7CD /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D67F4C42893BF9100A1D7CD /* ImageUploader.swift */; };
 		7D6B911528449A760044E217 /* WIconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B911428449A760044E217 /* WIconLabel.swift */; };
@@ -215,7 +213,6 @@
 		F38AE4892894124200E5E261 /* ScheduleEditError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4882894124200E5E261 /* ScheduleEditError.swift */; };
 		F38AE48B28941FF900E5E261 /* CategoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE48A28941FF900E5E261 /* CategoryDataSource.swift */; };
 		F38AE48D2894222D00E5E261 /* ScheduleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE48C2894222D00E5E261 /* ScheduleDataSource.swift */; };
-		F38AE49C2894FCAC00E5E261 /* SkipSchedule.graphql in Resources */ = {isa = PBXBuildFile; fileRef = F38AE49B2894FCAC00E5E261 /* SkipSchedule.graphql */; };
 		F38AE49E28957A7000E5E261 /* AlertPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE49D28957A7000E5E261 /* AlertPopupViewController.swift */; };
 		F38AE4A028957ACA00E5E261 /* AlertPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE49F28957AC900E5E261 /* AlertPopupViewModel.swift */; };
 		F38AE4A228957AED00E5E261 /* AlertPopupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4A128957AED00E5E261 /* AlertPopupCoordinator.swift */; };
@@ -320,6 +317,7 @@
 		7D9BC0F92896539A00AC7F11 /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
 		7D9BC0FB2896543E00AC7F11 /* FollowInformationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowInformationType.swift; sourceTree = "<group>"; };
 		7D9BC0FD28966C9500AC7F11 /* FollowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTableViewCell.swift; sourceTree = "<group>"; };
+		7D9BC0FF28969B1300AC7F11 /* DeleteFollower.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = DeleteFollower.graphql; sourceTree = "<group>"; };
 		7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCoordinator.swift; sourceTree = "<group>"; };
 		7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewModel.swift; sourceTree = "<group>"; };
@@ -1492,6 +1490,7 @@
 				F38AE45D2892CD0D00E5E261 /* DeleteUser.graphql */,
 				F38AE4752893E06E00E5E261 /* CompleteSchedule.graphql */,
 				F38AE4772893E11100E5E261 /* IncompleteSchedule.graphql */,
+				7D9BC0FF28969B1300AC7F11 /* DeleteFollower.graphql */,
 				F38AE49B2894FCAC00E5E261 /* SkipSchedule.graphql */,
 			);
 			path = Query;
@@ -1671,13 +1670,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F38AE49C2894FCAC00E5E261 /* SkipSchedule.graphql in Resources */,
 				7DE60AF92892560C00F85A05 /* schema.json in Resources */,
 				7DF8B7A928361FB100B224CA /* PretendardVariable.ttf in Resources */,
 				F323FEF1287636B500DFD8FD /* SortDropDownCell.xib in Resources */,
 				7D648FBD282367F600F5D0B5 /* .swiftlint.yml in Resources */,
-				7D67F4C12893A2A600A1D7CD /* UpdateUserDetail.graphql in Resources */,
-				7D67F4BF2893A28700A1D7CD /* CreateImageUrl.graphql in Resources */,
 				F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */,
 				F32ACC0B28235D530082AF30 /* Assets.xcassets in Resources */,
 			);
@@ -1759,7 +1755,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Don't run this during index builds\nif [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\nSCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=https://api.server.week-and.kr/graphql schema.json\n\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --passthroughCustomScalars --localSchemaFile=\"Networking/schema.json\" API.swift \n";
+			shellScript = "# Don't run this during index builds\nif [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\nSCRIPT_PATH=\"${PODS_ROOT}/Apollo/scripts\"\ncd \"${SRCROOT}/${TARGET_NAME}\"\n\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --passthroughCustomScalars --localSchemaFile=\"Networking/schema.json\" API.swift \n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
