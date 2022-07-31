@@ -66,6 +66,8 @@ class ProfileViewController: UIViewController {
     lazy var logoutLink = ProfileDetailHelperView(.logout)
     lazy var signOutLink = ProfileDetailHelperView(.signOut)
     
+    private var isFirstLoad = true
+    
     lazy var bottomStack = UIStackView().then {
         $0.spacing = 0
         $0.axis = .vertical
@@ -80,13 +82,20 @@ class ProfileViewController: UIViewController {
         configureUI()
         bindViewModel()
         
+        viewModel?.loadData()
         accessibilityLink.isHidden = true   // TODO: 이후 업데이트
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        viewModel?.loadData()
+        if isFirstLoad {
+            isFirstLoad = false
+        } else {
+            viewModel?.loadData()
+        }
+        
+        
     }
     
     private func setUpView() {
