@@ -119,7 +119,7 @@ extension MainCoordinator: CoordinatorDidFinishDelegate {
     
     func childDidFinish(_ child: Coordinator) {
         self.childCoordinators = self.childCoordinators.filter({ $0.type != child.type })
-        if child.type == .scheduleEdit {
+        if child.type == .scheduleEdit || child.type == .scheduleModify {
             navigationController.dismiss(animated: true, completion: nil)
         } else {
             navigationController.popToRootViewController(animated: true)
