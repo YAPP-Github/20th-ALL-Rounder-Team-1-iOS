@@ -10,3 +10,17 @@ query Followees($page: Int!, $size: Int!) {
     }
   }
 }
+
+query UserFollowees($id: ID, $page: Int!, $size: Int!) {
+  followees(userId: $id, page: $page, size: $size) {
+    paginationInfo {
+      hasNext
+    }
+    followees {
+      id
+      nickname
+      profileImageUrl
+      goal
+    }
+  }
+}

@@ -81,4 +81,23 @@ final class ProfileUseCase {
             .map { $0.deleteUser }
             .asSingle()
     }
+    
+    /// 특정 유저의 팔로잉 목록
+    func userFollowees(id: String, page: Int, size: Int) -> Single<[UserSummaryTemp]> {
+        return NetWork.shared.fetch(query: UserFolloweesQuery(id: id, page: page, size: size), cachePolicy: .fetchIgnoringCacheCompletely)
+            .map {
+                $0.followees.followees.map { UserSummaryTemp(model: $0) }
+            }.asSingle()
+    }
+    
+    /// 특정 유저의 팔로워 목록
+    func userFollowers(id: String, page: Int, size: Int) -> Single<[UserSummaryTemp]> {
+        return NetWork.shared.fetch(query: UserFollowersQuery(id: id, page: page, size: size), cachePolicy: .fetchIgnoringCacheCompletely)
+            .map {
+                $0.followers.followers.map { UserSummaryTemp(model: $0) }
+            }.asSingle()
+    }
+
+    
 }
+

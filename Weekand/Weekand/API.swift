@@ -1699,6 +1699,233 @@ public final class FolloweesQuery: GraphQLQuery {
   }
 }
 
+public final class UserFolloweesQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query UserFollowees($id: ID, $page: Int!, $size: Int!) {
+      followees(userId: $id, page: $page, size: $size) {
+        __typename
+        paginationInfo {
+          __typename
+          hasNext
+        }
+        followees {
+          __typename
+          id
+          nickname
+          profileImageUrl
+          goal
+        }
+      }
+    }
+    """
+
+  public let operationName: String = "UserFollowees"
+
+  public var id: GraphQLID?
+  public var page: Int
+  public var size: Int
+
+  public init(id: GraphQLID? = nil, page: Int, size: Int) {
+    self.id = id
+    self.page = page
+    self.size = size
+  }
+
+  public var variables: GraphQLMap? {
+    return ["id": id, "page": page, "size": size]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("followees", arguments: ["userId": GraphQLVariable("id"), "page": GraphQLVariable("page"), "size": GraphQLVariable("size")], type: .nonNull(.object(Followee.selections))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(followees: Followee) {
+      self.init(unsafeResultMap: ["__typename": "Query", "followees": followees.resultMap])
+    }
+
+    /// 인자로 넘어온 회원의 팔로잉 목록을 가져온다
+    /// userId 인자를 주어지지 않으면, 현재 로그인 된 회원이 팔로우 하고 있는 유저 목록을 가져온다
+    public var followees: Followee {
+      get {
+        return Followee(unsafeResultMap: resultMap["followees"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "followees")
+      }
+    }
+
+    public struct Followee: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["FolloweeList"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("paginationInfo", type: .object(PaginationInfo.selections)),
+          GraphQLField("followees", type: .nonNull(.list(.nonNull(.object(Followee.selections))))),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(paginationInfo: PaginationInfo? = nil, followees: [Followee]) {
+        self.init(unsafeResultMap: ["__typename": "FolloweeList", "paginationInfo": paginationInfo.flatMap { (value: PaginationInfo) -> ResultMap in value.resultMap }, "followees": followees.map { (value: Followee) -> ResultMap in value.resultMap }])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var paginationInfo: PaginationInfo? {
+        get {
+          return (resultMap["paginationInfo"] as? ResultMap).flatMap { PaginationInfo(unsafeResultMap: $0) }
+        }
+        set {
+          resultMap.updateValue(newValue?.resultMap, forKey: "paginationInfo")
+        }
+      }
+
+      public var followees: [Followee] {
+        get {
+          return (resultMap["followees"] as! [ResultMap]).map { (value: ResultMap) -> Followee in Followee(unsafeResultMap: value) }
+        }
+        set {
+          resultMap.updateValue(newValue.map { (value: Followee) -> ResultMap in value.resultMap }, forKey: "followees")
+        }
+      }
+
+      public struct PaginationInfo: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["PaginationInfo"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("hasNext", type: .nonNull(.scalar(Bool.self))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(hasNext: Bool) {
+          self.init(unsafeResultMap: ["__typename": "PaginationInfo", "hasNext": hasNext])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var hasNext: Bool {
+          get {
+            return resultMap["hasNext"]! as! Bool
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "hasNext")
+          }
+        }
+      }
+
+      public struct Followee: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["FollowUser"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("nickname", type: .nonNull(.scalar(String.self))),
+            GraphQLField("profileImageUrl", type: .nonNull(.scalar(String.self))),
+            GraphQLField("goal", type: .scalar(String.self)),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(id: GraphQLID, nickname: String, profileImageUrl: String, goal: String? = nil) {
+          self.init(unsafeResultMap: ["__typename": "FollowUser", "id": id, "nickname": nickname, "profileImageUrl": profileImageUrl, "goal": goal])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var id: GraphQLID {
+          get {
+            return resultMap["id"]! as! GraphQLID
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "id")
+          }
+        }
+
+        public var nickname: String {
+          get {
+            return resultMap["nickname"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "nickname")
+          }
+        }
+
+        public var profileImageUrl: String {
+          get {
+            return resultMap["profileImageUrl"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "profileImageUrl")
+          }
+        }
+
+        public var goal: String? {
+          get {
+            return resultMap["goal"] as? String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "goal")
+          }
+        }
+      }
+    }
+  }
+}
+
 public final class FollowersQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
@@ -1906,6 +2133,233 @@ public final class FollowersQuery: GraphQLQuery {
           }
           set {
             resultMap.updateValue(newValue, forKey: "profileImageUrl")
+          }
+        }
+      }
+    }
+  }
+}
+
+public final class UserFollowersQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query UserFollowers($id: ID, $page: Int!, $size: Int!) {
+      followers(userId: $id, page: $page, size: $size) {
+        __typename
+        paginationInfo {
+          __typename
+          hasNext
+        }
+        followers {
+          __typename
+          id
+          nickname
+          profileImageUrl
+          goal
+        }
+      }
+    }
+    """
+
+  public let operationName: String = "UserFollowers"
+
+  public var id: GraphQLID?
+  public var page: Int
+  public var size: Int
+
+  public init(id: GraphQLID? = nil, page: Int, size: Int) {
+    self.id = id
+    self.page = page
+    self.size = size
+  }
+
+  public var variables: GraphQLMap? {
+    return ["id": id, "page": page, "size": size]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("followers", arguments: ["userId": GraphQLVariable("id"), "page": GraphQLVariable("page"), "size": GraphQLVariable("size")], type: .nonNull(.object(Follower.selections))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(followers: Follower) {
+      self.init(unsafeResultMap: ["__typename": "Query", "followers": followers.resultMap])
+    }
+
+    /// 인자로 넘어온 회원의 팔로워 목록을 가져온다
+    /// userId 인자를 주어지지 않으면, 현재 로그인 된 회원을 팔로우 하고 있는 유저 목록을 가져온다
+    public var followers: Follower {
+      get {
+        return Follower(unsafeResultMap: resultMap["followers"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "followers")
+      }
+    }
+
+    public struct Follower: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["FollowerList"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("paginationInfo", type: .object(PaginationInfo.selections)),
+          GraphQLField("followers", type: .nonNull(.list(.nonNull(.object(Follower.selections))))),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(paginationInfo: PaginationInfo? = nil, followers: [Follower]) {
+        self.init(unsafeResultMap: ["__typename": "FollowerList", "paginationInfo": paginationInfo.flatMap { (value: PaginationInfo) -> ResultMap in value.resultMap }, "followers": followers.map { (value: Follower) -> ResultMap in value.resultMap }])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var paginationInfo: PaginationInfo? {
+        get {
+          return (resultMap["paginationInfo"] as? ResultMap).flatMap { PaginationInfo(unsafeResultMap: $0) }
+        }
+        set {
+          resultMap.updateValue(newValue?.resultMap, forKey: "paginationInfo")
+        }
+      }
+
+      public var followers: [Follower] {
+        get {
+          return (resultMap["followers"] as! [ResultMap]).map { (value: ResultMap) -> Follower in Follower(unsafeResultMap: value) }
+        }
+        set {
+          resultMap.updateValue(newValue.map { (value: Follower) -> ResultMap in value.resultMap }, forKey: "followers")
+        }
+      }
+
+      public struct PaginationInfo: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["PaginationInfo"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("hasNext", type: .nonNull(.scalar(Bool.self))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(hasNext: Bool) {
+          self.init(unsafeResultMap: ["__typename": "PaginationInfo", "hasNext": hasNext])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var hasNext: Bool {
+          get {
+            return resultMap["hasNext"]! as! Bool
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "hasNext")
+          }
+        }
+      }
+
+      public struct Follower: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["FollowUser"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+            GraphQLField("nickname", type: .nonNull(.scalar(String.self))),
+            GraphQLField("profileImageUrl", type: .nonNull(.scalar(String.self))),
+            GraphQLField("goal", type: .scalar(String.self)),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(id: GraphQLID, nickname: String, profileImageUrl: String, goal: String? = nil) {
+          self.init(unsafeResultMap: ["__typename": "FollowUser", "id": id, "nickname": nickname, "profileImageUrl": profileImageUrl, "goal": goal])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var id: GraphQLID {
+          get {
+            return resultMap["id"]! as! GraphQLID
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "id")
+          }
+        }
+
+        public var nickname: String {
+          get {
+            return resultMap["nickname"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "nickname")
+          }
+        }
+
+        public var profileImageUrl: String {
+          get {
+            return resultMap["profileImageUrl"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "profileImageUrl")
+          }
+        }
+
+        public var goal: String? {
+          get {
+            return resultMap["goal"] as? String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "goal")
           }
         }
       }

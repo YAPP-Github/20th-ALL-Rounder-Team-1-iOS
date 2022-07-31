@@ -70,7 +70,6 @@ class MainCoordinator: Coordinator {
     
     /// 받은 스티커 현황 Sheet
     func pushEmojiSheet(id: String, date: Date) {
-        // TODO: id, date값 넘겨줘서 서버 통신
         let emojiViewController = EmojiSheetViewController(id: id, date: date)
         emojiViewController.modalPresentationStyle = .overFullScreen
         self.navigationController.present(emojiViewController, animated: true, completion: nil)
@@ -78,7 +77,6 @@ class MainCoordinator: Coordinator {
     
     /// 스티커 추가 Sheet
     func pushStickerAddSheet(id: String, date: Date) {
-        // TODO: 이미 선택된 이모지 확인 후 existingEmoji에 넣어준다
         let stickerAddViewController = StickerAddSheetViewController()
         stickerAddViewController.viewModel = StickerAddSheetViewModel(mainUseCase: mainUseCase, id: id, date: date)
         stickerAddViewController.modalPresentationStyle = .overFullScreen
