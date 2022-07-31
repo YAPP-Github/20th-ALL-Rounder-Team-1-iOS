@@ -296,6 +296,7 @@ extension MainViewModel {
 // MARK: Network Request
 extension MainViewModel {
     
+    /// 팔로우하는 사람 목록
     private func getFollowingUser() {
         self.mainUseCase.followees(page: 0, size: 20).subscribe(onSuccess: { following in
             PublishRelay<[FollowingUser]>.just(following).bind(to: self.userFollowingList).disposed(by: self.disposeBag)
@@ -319,6 +320,7 @@ extension MainViewModel {
         .disposed(by: disposeBag)
     }
     
+    /// 특정 유저 정보 (이름, 사진, 목표)
     private func getUserSummary(id: String?) {
         self.mainUseCase.userSummary(id: id).subscribe(onSuccess: { userData in
             
@@ -332,6 +334,7 @@ extension MainViewModel {
         .disposed(by: disposeBag)
     }
     
+    /// 특정 유저의 일정
     private func getScheduleList(date: Date, id: String?) {
         
         self.mainUseCase.scheduleList(date: date, id: id).subscribe(onSuccess: { scheduleData in
@@ -345,8 +348,9 @@ extension MainViewModel {
         
     }
 
-    func deleteSchedule(schedule: ScheduleSummary, completion: @escaping () -> Void) {
-        self.mainUseCase.deleteSchedule(scheduleId: schedule.scheduleId)
+    // MARK: Schedule Editing
+    func deleteSchedule(scheduleId: String, completion: @escaping () -> Void) {
+        self.mainUseCase.deleteSchedule(scheduleId: scheduleId)
             .subscribe(onSuccess: { isSucceed in
                 if isSucceed {
                     completion()
@@ -359,8 +363,8 @@ extension MainViewModel {
             .disposed(by: disposeBag)
     }
     
-    func deleteScheduleFromDate(schedule: ScheduleSummary, requestDate: Date, completion: @escaping () -> Void) {
-        self.mainUseCase.deleteScheduleFromDate(scheduleId: schedule.scheduleId, requestDate: requestDate)
+    func deleteScheduleFromDate(scheduleId: String, requestDate: Date, completion: @escaping () -> Void) {
+        self.mainUseCase.deleteScheduleFromDate(scheduleId: scheduleId, requestDate: requestDate)
             .subscribe(onSuccess: { isSucceed in
                 if isSucceed {
                     completion()
@@ -373,8 +377,8 @@ extension MainViewModel {
             .disposed(by: disposeBag)
     }
     
-    func skipSchedule(schedule: ScheduleSummary, requestDate: Date, completion: @escaping () -> Void) {
-        self.mainUseCase.skipSchedule(scheduleId: schedule.scheduleId, requestDate: requestDate)
+    func skipSchedule(scheduleId: String, requestDate: Date, completion: @escaping () -> Void) {
+        self.mainUseCase.skipSchedule(scheduleId: scheduleId, requestDate: requestDate)
             .subscribe(onSuccess: { isSucceed in
                 if isSucceed {
                     completion()

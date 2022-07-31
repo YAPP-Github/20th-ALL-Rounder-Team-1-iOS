@@ -273,22 +273,26 @@ extension MainViewController {
     
 }
 
-// MARK: TableView DataSource
+// MARK: TableView Swipe
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let scheduleId = (tableView.cellForRow(at: indexPath) as? MainTableViewCell)?.dataId
+        guard let id = scheduleId else { return UISwipeActionsConfiguration(actions: []) }
+        
         let update = UIContextualAction(style: .normal, title: "수정") { _, _, completionHandler in
-            // 수정
+            self.viewModel?.coordinator?.showScheduleModifyScene(scheduleId: id, requestDate: self.currentDate)
             completionHandler(true)
         }
         update.backgroundColor = .mainColor
-        
-        
         
         let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, completionHandler in
             
             // 일반 일정인 경우
             self.showActionSheet(titles: "삭제", message: "일정를 삭제하시겠어요?") { _ in
-                // 완전 삭제
+                self.viewModel?.deleteSchedule(scheduleId: id, completion: {
+                    self.viewModel?.loadData()
+                })
             }
             
             // 반복 일정인 경우
@@ -300,7 +304,7 @@ extension MainViewController: UITableViewDelegate {
 //                }, deleteAfterHandler: { _ in
 //                  // 완전 삭제
 //                })
-            completionHandler(true)
+//            completionHandler(true)
         }
         delete.backgroundColor = .wred
         
