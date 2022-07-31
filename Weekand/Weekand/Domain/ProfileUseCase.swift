@@ -97,7 +97,5 @@ final class ProfileUseCase {
                 $0.followers.followers.map { UserSummaryTemp(model: $0) }
             }.asSingle()
     }
-
     
 }
-
