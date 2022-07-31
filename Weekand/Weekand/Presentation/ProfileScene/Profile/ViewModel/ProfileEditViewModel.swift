@@ -32,8 +32,8 @@ class ProfileEditViewModel: ViewModelType {
         userUpdate.subscribe(onNext: { update in
             
             guard let name = update.name?.count else { return }
-            if name < 3 {
-                PublishRelay<String>.just("닉네임은 최소 3글자 이상이어야 합니다.").bind(to: self.alertText).disposed(by: self.disposeBag)
+            if name < 2 {
+                PublishRelay<String>.just("닉네임은 최소 2글자 이상이어야 합니다.").bind(to: self.alertText).disposed(by: self.disposeBag)
             }
             
         }).disposed(by: disposeBag)

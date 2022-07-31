@@ -865,10 +865,11 @@ public final class CompleteScheduleMutation: GraphQLMutation {
     }
 
     /// 스케줄을 완료 처리한다
+    /// 
     /// [error]
-    /// 4001: 해당 스케줄을 찾을 수 없습니다.
-    /// 3006: 권한이 없는 유저의 접근입니다.
-    /// 4009: 상태 추가할 날짜를 확인해주세요.
+    /// - 4001: 해당 스케줄을 찾을 수 없습니다.
+    /// - 3006: 권한이 없는 유저의 접근입니다.
+    /// - 4009: 상태 추가할 날짜를 확인해주세요.
     public var completeSchedule: Bool {
       get {
         return resultMap["completeSchedule"]! as! Bool
@@ -927,8 +928,9 @@ public final class CreateCategoryMutation: GraphQLMutation {
     }
 
     /// 카테고리를 추가한다
+    /// 
     /// [error]
-    /// 4007: 해당 카테고리명은 이미 사용중입니다.
+    /// - 4007: 해당 카테고리명은 이미 사용중입니다.
     public var createCategory: Bool {
       get {
         return resultMap["createCategory"]! as! Bool
@@ -981,9 +983,10 @@ public final class CreateFolloweeMutation: GraphQLMutation {
     }
 
     /// 회원을 팔로우 한다
+    /// 
     /// [error]
-    /// 3001: 존재하지 않는 유저입니다.
-    /// 5001: 이미 등록된 팔로우 내역입니다.
+    /// - 3001: 존재하지 않는 유저입니다.
+    /// - 5001: 이미 등록된 팔로우 내역입니다.
     public var createFollow: Bool {
       get {
         return resultMap["createFollow"]! as! Bool
@@ -1141,11 +1144,12 @@ public final class CreateScheduleMutation: GraphQLMutation {
     }
 
     /// 스케줄을 생성한다
+    /// 
     /// [error]
-    /// 4003: 시작 일시와 종료 일시를 확인해주세요.
-    /// 4004: 반복 요일을 입력해주세요.
-    /// 4002: 해당 카테고리를 찾을 수 없습니다.
-    /// 3006: 권한이 없는 유저의 접근입니다.
+    /// - 4003: 시작 일시와 종료 일시를 확인해주세요.
+    /// - 4004: 반복 요일을 입력해주세요.
+    /// - 4002: 해당 카테고리를 찾을 수 없습니다.
+    /// - 3006: 권한이 없는 유저의 접근입니다.
     public var createSchedule: Bool {
       get {
         return resultMap["createSchedule"]! as! Bool
@@ -1204,8 +1208,9 @@ public final class CreateStickerMutation: GraphQLMutation {
     }
 
     /// 스티커를 추가한다
+    /// 
     /// [error]
-    /// 4001: 해당 스케줄을 찾을 수 없습니다.
+    /// - 4001: 해당 스케줄을 찾을 수 없습니다.
     public var createScheduleSticker: Bool {
       get {
         return resultMap["createScheduleSticker"]! as! Bool
@@ -1258,10 +1263,11 @@ public final class DeleteCategoryMutation: GraphQLMutation {
     }
 
     /// 카테고리를 삭제한다
+    /// 
     /// [error]
-    /// 4008: 최소 2개 이상의 카테고리가 존재할 시 삭제 가능합니다.
-    /// 4002: 해당 카테고리를 찾을 수 없습니다.
-    /// 3006: 권한이 없는 유저의 접근입니다.
+    /// - 4008: 최소 2개 이상의 카테고리가 존재할 시 삭제 가능합니다.
+    /// - 4002: 해당 카테고리를 찾을 수 없습니다.
+    /// - 3006: 권한이 없는 유저의 접근입니다.
     public var deleteCategory: Bool {
       get {
         return resultMap["deleteCategory"]! as! Bool
@@ -1314,9 +1320,10 @@ public final class DeleteFolloweeMutation: GraphQLMutation {
     }
 
     /// 내가 팔로우하는 유저를 삭제한다
+    /// 
     /// [error]
-    /// 3001: 존재하지 않는 유저입니다.
-    /// 5002: 팔로우 관계가 아닙니다.
+    /// - 3001: 존재하지 않는 유저입니다.
+    /// - 5002: 팔로우 관계가 아닙니다.
     public var deleteFollowee: Bool {
       get {
         return resultMap["deleteFollowee"]! as! Bool
@@ -1369,9 +1376,10 @@ public final class DeleteFollowerMutation: GraphQLMutation {
     }
 
     /// 나를 팔로우한 유저를 삭제한다
+    /// 
     /// [error]
-    /// 3001: 존재하지 않는 유저입니다.
-    /// 5002: 팔로우 관계가 아닙니다.
+    /// - 3001: 존재하지 않는 유저입니다.
+    /// - 5002: 팔로우 관계가 아닙니다.
     public var deleteFollower: Bool {
       get {
         return resultMap["deleteFollower"]! as! Bool
@@ -1424,9 +1432,10 @@ public final class DeleteScheduleMutation: GraphQLMutation {
     }
 
     /// 스케줄을 삭제한다
+    /// 
     /// [error]
-    /// 4001: 해당 스케줄을 찾을 수 없습니다.
-    /// 3006: 권한이 없는 유저의 접근입니다.
+    /// - 4001: 해당 스케줄을 찾을 수 없습니다.
+    /// - 3006: 권한이 없는 유저의 접근입니다.
     public var deleteSchedule: Bool {
       get {
         return resultMap["deleteSchedule"]! as! Bool
@@ -1481,9 +1490,10 @@ public final class DeleteScheduleFromDateMutation: GraphQLMutation {
     }
 
     /// 이후 모든 스케줄을 삭제한다
+    /// 
     /// [error]
-    /// 4001: 해당 스케줄을 찾을 수 없습니다.
-    /// 3006: 권한이 없는 유저의 접근입니다.
+    /// - 4001: 해당 스케줄을 찾을 수 없습니다.
+    /// - 3006: 권한이 없는 유저의 접근입니다.
     public var deleteScheduleFromDate: Bool {
       get {
         return resultMap["deleteScheduleFromDate"]! as! Bool
@@ -2465,10 +2475,11 @@ public final class IncompleteScheduleMutation: GraphQLMutation {
     }
 
     /// 스케줄 미완료 처리한다
+    /// 
     /// [error]
-    /// 4001: 해당 스케줄을 찾을 수 없습니다.
-    /// 3006: 권한이 없는 유저의 접근입니다.
-    /// 4009: 상태 추가할 날짜를 확인해주세요.
+    /// - 4001: 해당 스케줄을 찾을 수 없습니다.
+    /// - 3006: 권한이 없는 유저의 접근입니다.
+    /// - 4009: 상태 추가할 날짜를 확인해주세요.
     public var incompleteSchedule: Bool {
       get {
         return resultMap["incompleteSchedule"]! as! Bool
@@ -2521,10 +2532,11 @@ public final class IssueTempPasswordMutation: GraphQLMutation {
     }
 
     /// 임시 비밀번호를 발급한다
+    /// 
     /// [error]
-    /// 3001: 존재하지 않는 유저입니다.
-    /// 6001: 이메일 내용 형식이 올바르지 않습니다.
-    /// 3008: 이메일 전송에 실패하였습니다.
+    /// - 3001: 존재하지 않는 유저입니다.
+    /// - 6001: 이메일 내용 형식이 올바르지 않습니다.
+    /// - 3008: 이메일 전송에 실패하였습니다.
     public var issueTempPassword: Bool {
       get {
         return resultMap["issueTempPassword"]! as! Bool
@@ -2583,8 +2595,9 @@ public final class LoginQuery: GraphQLQuery {
     }
 
     /// 로그인 한다
+    /// 
     /// [error]
-    /// 3007: 이메일, 비밀번호가 일치하지 않습니다.
+    /// - 3007: 이메일, 비밀번호가 일치하지 않습니다.
     public var login: Login {
       get {
         return Login(unsafeResultMap: resultMap["login"]! as! ResultMap)
@@ -2940,9 +2953,10 @@ public final class ReissueQuery: GraphQLQuery {
     }
 
     /// 로그인 리프레시 토큰을 발급한다
+    /// 
     /// [error]
-    /// 3004: 유효하지 않은 리프레시 토큰입니다.
-    /// 3001: 존재하지 않는 유저입니다.
+    /// - 3004: 유효하지 않은 리프레시 토큰입니다.
+    /// - 3001: 존재하지 않는 유저입니다.
     public var reissue: Reissue {
       get {
         return Reissue(unsafeResultMap: resultMap["reissue"]! as! ResultMap)
@@ -3051,8 +3065,9 @@ public final class ScehduleRuleQuery: GraphQLQuery {
     }
 
     /// 일정 수정 시, 일정 상세 정보를 반환한다
+    /// 
     /// [error]
-    /// 4001: 해당 스케줄을 찾을 수 없습니다.
+    /// - 4001: 해당 스케줄을 찾을 수 없습니다.
     public var scheduleRule: ScheduleRule {
       get {
         return ScheduleRule(unsafeResultMap: resultMap["scheduleRule"]! as! ResultMap)
@@ -3315,7 +3330,7 @@ public final class ScheduleQuery: GraphQLQuery {
 
     /// 일정 상세 정보를 반환한다
     /// [error]
-    /// 4001: 해당 스케줄을 찾을 수 없습니다.
+    /// - 4001: 해당 스케줄을 찾을 수 없습니다.
     public var schedule: Schedule {
       get {
         return Schedule(unsafeResultMap: resultMap["schedule"]! as! ResultMap)
@@ -4094,8 +4109,9 @@ public final class SearchSchedulesQuery: GraphQLQuery {
     }
 
     /// 일정을 검색한다
+    /// 
     /// [error]
-    /// 4002: 해당 카테고리를 찾을 수 없습니다.
+    /// - 4002: 해당 카테고리를 찾을 수 없습니다.
     public var searchSchedules: SearchSchedule {
       get {
         return SearchSchedule(unsafeResultMap: resultMap["searchSchedules"]! as! ResultMap)
@@ -4623,10 +4639,11 @@ public final class SendAuthKeyQuery: GraphQLQuery {
     }
 
     /// 이메일 인증 키를 발급한다
+    /// 
     /// [error]
-    /// 3009: 이미 등록된 이메일입니다.
-    /// 6001: 이메일 내용 형식이 올바르지 않습니다.
-    /// 3008: 이메일 전송에 실패하였습니다.
+    /// - 3009: 이미 등록된 이메일입니다.
+    /// - 6001: 이메일 내용 형식이 올바르지 않습니다.
+    /// - 3008: 이메일 전송에 실패하였습니다.
     public var sendAuthKey: Bool {
       get {
         return resultMap["sendAuthKey"]! as! Bool
@@ -4679,9 +4696,10 @@ public final class SendContactMutation: GraphQLMutation {
     }
 
     /// 문의 내용을 전송한다
+    /// 
     /// [error]
-    /// 6001: 이메일 내용 형식이 올바르지 않습니다.
-    /// 3008: 이메일 전송에 실패하였습니다.
+    /// - 6001: 이메일 내용 형식이 올바르지 않습니다.
+    /// - 3008: 이메일 전송에 실패하였습니다.
     public var inquiry: Bool {
       get {
         return resultMap["inquiry"]! as! Bool
@@ -4734,13 +4752,14 @@ public final class SignUpMutation: GraphQLMutation {
     }
 
     /// 회원가입을 한다
+    /// 
     /// [error]
-    /// 3010: 회원가입에 실패하였습니다.
-    /// 3012: 올바른 이메일 형식이 아닙니다.
-    /// 3011: 올바른 비밀번호 형식이 아닙니다.
-    /// 3013: 올바른 닉네임 형식이 아닙니다.
-    /// 3009: 이미 등록된 이메일입니다.
-    /// 3014: 이미 등록된 닉네임입니다.
+    /// - 3010: 회원가입에 실패하였습니다.
+    /// - 3012: 올바른 이메일 형식이 아닙니다.
+    /// - 3011: 올바른 비밀번호 형식이 아닙니다.
+    /// - 3013: 올바른 닉네임 형식이 아닙니다.
+    /// - 3009: 이미 등록된 이메일입니다.
+    /// - 3014: 이미 등록된 닉네임입니다.
     public var signUp: Bool {
       get {
         return resultMap["signUp"]! as! Bool
@@ -4795,10 +4814,11 @@ public final class SkipScheduleMutation: GraphQLMutation {
     }
 
     /// 특정 스케줄을 삭제한다
+    /// 
     /// [error]
-    /// 4001: 해당 스케줄을 찾을 수 없습니다.
-    /// 3006: 권한이 없는 유저의 접근입니다.
-    /// 4009: 상태 추가할 날짜를 확인해주세요.
+    /// - 4001: 해당 스케줄을 찾을 수 없습니다.
+    /// - 3006: 권한이 없는 유저의 접근입니다.
+    /// - 4009: 상태 추가할 날짜를 확인해주세요.
     public var skipSchedule: Bool {
       get {
         return resultMap["skipSchedule"]! as! Bool
@@ -4881,8 +4901,9 @@ public final class StickerSummaryQuery: GraphQLQuery {
     }
 
     /// 일정의 스티커 요약 정보를 반환한다
+    /// 
     /// [error]
-    /// 4001: 해당 스케줄을 찾을 수 없습니다.
+    /// - 4001: 해당 스케줄을 찾을 수 없습니다.
     public var scheduleStickerSummary: ScheduleStickerSummary {
       get {
         return ScheduleStickerSummary(unsafeResultMap: resultMap["scheduleStickerSummary"]! as! ResultMap)
@@ -5277,10 +5298,11 @@ public final class UpdateCategoryMutation: GraphQLMutation {
     }
 
     /// 카테고리를 수정한다
+    /// 
     /// [error]
-    /// 4007: 해당 카테고리명은 이미 사용중입니다.
-    /// 4002: 해당 카테고리를 찾을 수 없습니다.
-    /// 3006: 권한이 없는 유저의 접근입니다.
+    /// - 4007: 해당 카테고리명은 이미 사용중입니다.
+    /// - 4002: 해당 카테고리를 찾을 수 없습니다.
+    /// - 3006: 권한이 없는 유저의 접근입니다.
     public var updateCategory: UpdateCategory {
       get {
         return UpdateCategory(unsafeResultMap: resultMap["updateCategory"]! as! ResultMap)
@@ -5374,9 +5396,10 @@ public final class UpdatePasswordMutation: GraphQLMutation {
     }
 
     /// 비밀번호를 수정한다
+    /// 
     /// [error]
-    /// 3011: 올바른 비밀번호 형식이 아닙니다.
-    /// 3015: 비밀번호가 일치하지 않습니다.
+    /// - 3011: 올바른 비밀번호 형식이 아닙니다.
+    /// - 3015: 비밀번호가 일치하지 않습니다.
     public var updatePassword: Bool {
       get {
         return resultMap["updatePassword"]! as! Bool
@@ -5429,11 +5452,12 @@ public final class UpdateScheduleMutation: GraphQLMutation {
     }
 
     /// 스케줄을 수정한다
+    /// 
     /// [error]
-    /// 4003: 시작 일시와 종료 일시를 확인해주세요.
-    /// 4004: 반복 요일을 입력해주세요.
-    /// 4001: 해당 스케줄을 찾을 수 없습니다.
-    /// 4002: 해당 카테고리를 찾을 수 없습니다.
+    /// - 4003: 시작 일시와 종료 일시를 확인해주세요.
+    /// - 4004: 반복 요일을 입력해주세요.
+    /// - 4001: 해당 스케줄을 찾을 수 없습니다.
+    /// - 4002: 해당 카테고리를 찾을 수 없습니다.
     public var updateSchedule: Bool {
       get {
         return resultMap["updateSchedule"]! as! Bool
@@ -5508,12 +5532,13 @@ public final class UpdateUserDetailMutation: GraphQLMutation {
     }
 
     /// 유저 프로필을 수정한다
+    /// 
     /// [error]
-    /// 3016: 한 줄 목표 최대 길이를 초과하였습니다.
-    /// 3018: 닉네임 최대 길이를 초과하였습니다.
-    /// 3017: 닉네임이 최소 길이 미만입니다.
-    /// 3001: 존재하지 않는 유저입니다.
-    /// 3014: 이미 등록된 닉네임입니다.
+    /// - 3016: 한 줄 목표 최대 길이를 초과하였습니다.
+    /// - 3018: 닉네임 최대 길이를 초과하였습니다.
+    /// - 3017: 닉네임이 최소 길이 미만입니다.
+    /// - 3001: 존재하지 않는 유저입니다.
+    /// - 3014: 이미 등록된 닉네임입니다.
     public var updateUserProfile: UpdateUserProfile {
       get {
         return UpdateUserProfile(unsafeResultMap: resultMap["updateUserProfile"]! as! ResultMap)
@@ -5708,8 +5733,9 @@ public final class UserDetailQuery: GraphQLQuery {
 
     /// 조건에 맞는 회원 상세 정보를 가져온다
     /// id 인자를 주어지지 않으면, 현재 로그인 된 회원 상세 정보를 가져온다
+    /// 
     /// [error]
-    /// 3001: 존재하지 않는 유저입니다.
+    /// - 3001: 존재하지 않는 유저입니다.
     public var user: User? {
       get {
         return (resultMap["user"] as? ResultMap).flatMap { User(unsafeResultMap: $0) }
@@ -5898,8 +5924,9 @@ public final class UserSummaryQuery: GraphQLQuery {
 
     /// 조건에 맞는 회원 상세 정보를 가져온다
     /// id 인자를 주어지지 않으면, 현재 로그인 된 회원 상세 정보를 가져온다
+    /// 
     /// [error]
-    /// 3001: 존재하지 않는 유저입니다.
+    /// - 3001: 존재하지 않는 유저입니다.
     public var user: User? {
       get {
         return (resultMap["user"] as? ResultMap).flatMap { User(unsafeResultMap: $0) }
