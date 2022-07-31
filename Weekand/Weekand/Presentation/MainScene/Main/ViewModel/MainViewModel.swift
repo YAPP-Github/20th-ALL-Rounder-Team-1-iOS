@@ -256,7 +256,10 @@ extension MainViewModel {
                 
                 UserDataStorage.shared.setUserID(id: data.userId)
                 
-                self.currentUserId = data.userId
+                if self.currentUserId == nil {
+                    self.currentUserId = data.userId
+                }
+                
                 self.isMyProfileAdded = true
             }
             
