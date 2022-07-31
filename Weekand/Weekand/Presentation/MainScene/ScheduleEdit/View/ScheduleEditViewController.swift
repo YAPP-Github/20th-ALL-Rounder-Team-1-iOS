@@ -29,22 +29,46 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
     }
     let nameStackView = WTextFieldStackView(fieldPlaceholder: "일정명을 입력해주세요.", nameText: "일정")
     let categoryStackView = CategoryStackView()
-    lazy var calendarStackView = DateStackView(dateText: WDateFormatter.dateFormatter.string(from: Date()))
-    lazy var timeStackView = TimeStackView(startTimeText: WDateFormatter.timeFormatter.string(from: defaultStartTime),
-                                           endTimeText: WDateFormatter.timeFormatter.string(from: defaultEndTime))
+    let calendarStackView = DateStackView()
+    let timeStackView = TimeStackView()
     let addInformationContainerView = AddInformationContainerView()
     let repeatStackView = RepeatStackView()
     let memoStackView = MemoStackView(nameText: "메모")
     
     var defaultStartTime: Date {
         let currentTime = Date()
+        let currentCalendar = Calendar.current
+        
+        let components = currentCalendar.dateComponents([.hour, .minute], from: currentTime)
+        if let minutes = components.minute,
+           minutes > 0 {
+            let calculateTime = currentCalendar.date(byAdding: .minute, value: -minutes, to: currentTime) ?? Date()
+            return calculateTime
+        }
         return currentTime
     }
     
     var defaultEndTime: Date {
         let currentTime = Date()
-        let addedTime = Calendar.current.date(byAdding: .hour, value: 1, to: currentTime) ?? currentTime
-        return addedTime
+        let currentCalendar = Calendar.current
+        let addingTime = currentCalendar.date(byAdding: .hour, value: 1, to: currentTime) ?? Date()
+        let components = currentCalendar.dateComponents([.hour, .minute], from: currentTime)
+        
+        guard let minutes = components.minute,
+              let hour = components.hour else {
+            return Date()
+        }
+        if hour == 11,
+           minutes > 0 {
+            let addMinutes = 59 - minutes
+            let calculateTime = currentCalendar.date(byAdding: .minute, value: addMinutes, to: currentTime) ?? Date()
+            return calculateTime
+        } else if minutes > 0 {
+            let addMinutes = 60 - minutes
+            let calculateTime = currentCalendar.date(byAdding: .minute, value: addMinutes, to: currentTime) ?? Date()
+            return calculateTime
+        }
+        return addingTime
     }
     
     var category: Category? {

@@ -15,11 +15,28 @@ enum CategoryOpenType: String {
     var description: String {
         switch self {
         case .allOpen:
-            return "모두 공개"
+            return "전체 공개"
         case .followerOpen:
             return "친구 공개"
         case .closed:
             return "비공개"
+        }
+    }
+}
+
+extension CategoryOpenType {
+    static var openTypeList: [CategoryOpenType] {
+        return [.allOpen, .followerOpen, .closed]
+    }
+    
+    var listIndex: Int {
+        switch self {
+        case .allOpen:
+            return 0
+        case .followerOpen:
+            return 1
+        case .closed:
+            return 2
         }
     }
 }

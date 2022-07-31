@@ -123,10 +123,6 @@ class ProfileCoordinator: Coordinator {
         profileEditViewController.showToast(message: text)
     }
     
-    func logoutFinsh() {
-        self.finishDelegate?.childDidFinish(self)
-    }
-    
     func finish() {
         self.navigationController.dismiss(animated: true)
     }

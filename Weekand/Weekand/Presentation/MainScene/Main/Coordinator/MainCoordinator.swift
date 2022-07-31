@@ -121,8 +121,8 @@ extension MainCoordinator: CoordinatorDidFinishDelegate {
     
     func childDidFinish(_ child: Coordinator) {
         self.childCoordinators = self.childCoordinators.filter({ $0.type != child.type })
-        if UserDefaults.standard.bool(forKey: "autoSign") {
-            NotificationCenter.default.post(name: NSNotification.Name("showWeclomeScene"), object: nil, userInfo: nil)
+        if child.type == .scheduleEdit {
+            navigationController.dismiss(animated: true, completion: nil)
         } else {
             navigationController.popToRootViewController(animated: true)
         }

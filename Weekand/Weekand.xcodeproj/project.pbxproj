@@ -215,6 +215,7 @@
 		F38AE49E28957A7000E5E261 /* AlertPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE49D28957A7000E5E261 /* AlertPopupViewController.swift */; };
 		F38AE4A028957ACA00E5E261 /* AlertPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE49F28957AC900E5E261 /* AlertPopupViewModel.swift */; };
 		F38AE4A228957AED00E5E261 /* AlertPopupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4A128957AED00E5E261 /* AlertPopupCoordinator.swift */; };
+		F38AE4A428959C1D00E5E261 /* OpenTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4A328959C1D00E5E261 /* OpenTypeCollectionViewCell.swift */; };
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
@@ -513,6 +514,7 @@
 		F38AE49D28957A7000E5E261 /* AlertPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPopupViewController.swift; sourceTree = "<group>"; };
 		F38AE49F28957AC900E5E261 /* AlertPopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPopupViewModel.swift; sourceTree = "<group>"; };
 		F38AE4A128957AED00E5E261 /* AlertPopupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPopupCoordinator.swift; sourceTree = "<group>"; };
+		F38AE4A328959C1D00E5E261 /* OpenTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTypeCollectionViewCell.swift; sourceTree = "<group>"; };
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
@@ -1320,6 +1322,7 @@
 				F3F731D828677A2000C8B778 /* ColorsCollectionViewCell.swift */,
 				F3F731E22869918E00C8B778 /* FilterTableViewCell.swift */,
 				F336F3ED289014CB005B57A0 /* DateTimeLabel.swift */,
+				F38AE4A328959C1D00E5E261 /* OpenTypeCollectionViewCell.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -1801,6 +1804,7 @@
 				7DBC4C5B28769C2600F0AC86 /* StickerAddSheet.swift in Sources */,
 				F3B00261287D68BD00D6BB1D /* CategoryUseCase.swift in Sources */,
 				7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */,
+				F38AE4A428959C1D00E5E261 /* OpenTypeCollectionViewCell.swift in Sources */,
 				F354C3DF283CECF5008929FD /* WTextLabel.swift in Sources */,
 				7D0A6A3428813C7100CFE61D /* Status.swift in Sources */,
 				F336F3AE288955A3005B57A0 /* RepeatRadioStackView.swift in Sources */,

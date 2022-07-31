@@ -194,7 +194,7 @@ extension ProfileViewModel {
     private func logout() {
         self.profileUseCase.logout().subscribe(onSuccess: { isSucceed in
             if isSucceed {
-                self.coordinator?.logoutFinsh()
+                NotificationCenter.default.post(name: NSNotification.Name("showWeclomeScene"), object: nil, userInfo: nil)
                 TokenManager.shared.deleteTokens()
                 UserDefaults.standard.set(false, forKey: "autoSign")
             } else {

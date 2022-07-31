@@ -95,6 +95,7 @@ class ColorSheetViewController: BottomSheetViewController, UICollectionViewDeleg
         self.colorsCollectionView.delegate = self
         self.colorsCollectionView.isScrollEnabled = false
         self.colorsCollectionView.allowsMultipleSelection = false
+        self.colorsCollectionView.backgroundColor = .clear
         self.colorsCollectionView.register(ColorsCollectionViewCell.self, forCellWithReuseIdentifier: ColorsCollectionViewCell.cellIdentifier)
     }
     
