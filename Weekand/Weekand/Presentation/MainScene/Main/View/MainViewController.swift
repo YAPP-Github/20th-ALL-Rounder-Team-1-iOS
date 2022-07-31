@@ -277,8 +277,13 @@ extension MainViewController {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
+        let disabledAction = UISwipeActionsConfiguration().then {
+            $0.performsFirstActionWithFullSwipe = false
+        }
+        
         let scheduleId = (tableView.cellForRow(at: indexPath) as? MainTableViewCell)?.dataId
-        guard let id = scheduleId else { return UISwipeActionsConfiguration(actions: []) }
+        guard let id = scheduleId else { return disabledAction }
+        if !(self.viewModel?.isMySchedule ?? true) { return disabledAction }
         
         let update = UIContextualAction(style: .normal, title: "수정") { _, _, completionHandler in
             self.viewModel?.coordinator?.showScheduleModifyScene(scheduleId: id, requestDate: self.currentDate)
