@@ -90,6 +90,12 @@ class ProfileCoordinator: Coordinator {
         alertPopupCoordinator.start()
     }
     
+    func pushFollowViewController(id: String, name: String, type: FollowInformationType) {
+        let followViewController = FollowViewController()
+        followViewController.viewModel = FollowViewModel(coordinator: self, useCase: profileUseCase, id: id, userName: name, type: type)
+        self.navigationController.pushViewController(followViewController, animated: true)
+    }
+    
     
     // MARK: Bottom Sheet
     

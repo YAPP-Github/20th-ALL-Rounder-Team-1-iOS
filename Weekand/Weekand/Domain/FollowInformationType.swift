@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum FollowInformationType {
-    case followee
-    case follower
+enum FollowInformationType: String {
+    case followee = "팔로잉"
+    case follower = "팔로워"
     
     var descriptionSuffix: String {
         switch self {

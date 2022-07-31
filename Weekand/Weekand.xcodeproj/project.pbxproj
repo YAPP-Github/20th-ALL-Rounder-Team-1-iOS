@@ -39,6 +39,7 @@
 		7D9BC0F82896533100AC7F11 /* FollowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9BC0F72896533100AC7F11 /* FollowViewModel.swift */; };
 		7D9BC0FA2896539A00AC7F11 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9BC0F92896539A00AC7F11 /* FollowViewController.swift */; };
 		7D9BC0FC2896543E00AC7F11 /* FollowInformationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9BC0FB2896543E00AC7F11 /* FollowInformationType.swift */; };
+		7D9BC0FE28966C9500AC7F11 /* FollowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9BC0FD28966C9500AC7F11 /* FollowTableViewCell.swift */; };
 		7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */; };
 		7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */; };
 		7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */; };
@@ -317,6 +318,7 @@
 		7D9BC0F72896533100AC7F11 /* FollowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewModel.swift; sourceTree = "<group>"; };
 		7D9BC0F92896539A00AC7F11 /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
 		7D9BC0FB2896543E00AC7F11 /* FollowInformationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowInformationType.swift; sourceTree = "<group>"; };
+		7D9BC0FD28966C9500AC7F11 /* FollowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTableViewCell.swift; sourceTree = "<group>"; };
 		7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCoordinator.swift; sourceTree = "<group>"; };
 		7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewModel.swift; sourceTree = "<group>"; };
@@ -1063,6 +1065,7 @@
 			children = (
 				7DE60AD42892539F00F85A05 /* ProfileEdit */,
 				7DE60AD72892539F00F85A05 /* ProfileDetail */,
+				7D9BC0FD28966C9500AC7F11 /* FollowTableViewCell.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -1790,6 +1793,7 @@
 				F336F3E0288EF19C005B57A0 /* SignInError.swift in Sources */,
 				7DE60AF22892539F00F85A05 /* ProfileDetailHelperView.swift in Sources */,
 				F3C8E0A52872FD2300B0916A /* TimeStackView.swift in Sources */,
+				7D9BC0FE28966C9500AC7F11 /* FollowTableViewCell.swift in Sources */,
 				F3A4D95D2885B28600DDE03B /* SearchUseCase.swift in Sources */,
 				7DC166A92837140000F1A8F1 /* SignUpViewController.swift in Sources */,
 				F3B00267287D68E700D6BB1D /* Category.swift in Sources */,

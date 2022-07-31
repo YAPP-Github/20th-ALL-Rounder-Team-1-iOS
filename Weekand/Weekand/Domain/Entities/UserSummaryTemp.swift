@@ -24,3 +24,20 @@ struct UserSummaryTemp: Hashable {
     let goal: String       // 한줄 목표
     let imagePath: String   // 프로필 사진
 }
+
+extension UserSummaryTemp {
+    
+    init (model: UserFolloweesQuery.Data.Followee.Followee) {
+        self.userSummaryId = model.id
+        self.name = model.nickname
+        self.goal = model.goal ?? ""
+        self.imagePath = model.profileImageUrl
+    }
+    
+    init (model: UserFollowersQuery.Data.Follower.Follower) {
+        self.userSummaryId = model.id
+        self.name = model.nickname
+        self.goal = model.goal ?? ""
+        self.imagePath = model.profileImageUrl
+    }
+}

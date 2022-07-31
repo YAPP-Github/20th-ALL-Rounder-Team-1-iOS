@@ -26,6 +26,7 @@ class ProfileViewModel: ViewModelType {
     var errorMessage = BehaviorRelay<String?>(value: nil)
     
     var userId: String?
+    var userName: String?
     var isMyPage: Bool
     
     init (coordinator: ProfileCoordinator, useCase: ProfileUseCase, userId: String?) {
@@ -107,11 +108,16 @@ extension ProfileViewModel {
 
         // 팔로워 팔로우
         input.didFolloweeTap.when(.recognized).subscribe(onNext: { _ in
-            print("팔로잉")
+            
+            guard let id = self.userId else { return }
+            self.coordinator?.pushFollowViewController(id: id, name: self.userName ?? "회원", type: .followee)
+            
         }).disposed(by: disposeBag)
 
         input.didFollowerTap.when(.recognized).subscribe(onNext: { _ in
-            print("팔로워")
+            guard let id = self.userId else { return }
+            self.coordinator?.pushFollowViewController(id: id, name: self.userName ?? "회원", type: .followee)
+
         }).disposed(by: disposeBag)
 
         // 하단
@@ -158,7 +164,8 @@ extension ProfileViewModel {
         
         self.profileUseCase.profileDetail(id: id)
             .subscribe(onSuccess: { userData in
-            PublishRelay<UserDetail>.just(userData).bind(to: self.userDeatil).disposed(by: self.disposeBag)
+                self.userDeatil.accept(userData)
+                self.userName = userData.name
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
         }, onDisposed: nil)
