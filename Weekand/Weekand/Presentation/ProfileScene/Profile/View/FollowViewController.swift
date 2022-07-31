@@ -117,6 +117,7 @@ extension FollowViewController: UITableViewDelegate {
         
         if let id = (tableView.cellForRow(at: indexPath) as? FollowTableViewCell)?.dataId {
             self.viewModel?.coordinator?.showProfileScene(id: id)
+            tableView.cellForRow(at: indexPath)?.isSelected = false
         }
     }
     
