@@ -62,7 +62,9 @@ class FollowTableViewCell: UITableViewCell {
         setupView()
     }
     
-    private func setupView() { }
+    private func setupView() {
+        self.selectionStyle = .none
+    }
     
     private func configureUI() {
         
@@ -105,4 +107,3 @@ extension FollowTableViewCell {
     }
 
 }
-

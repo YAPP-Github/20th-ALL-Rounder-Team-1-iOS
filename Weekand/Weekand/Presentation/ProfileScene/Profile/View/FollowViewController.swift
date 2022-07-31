@@ -86,9 +86,8 @@ extension FollowViewController {
         tableView = UITableView()
         tableView.register(FollowTableViewCell.self, forCellReuseIdentifier: FollowTableViewCell.cellIdentifier)
         
-        tableView.separatorStyle = .singleLine
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
-         
+        tableView.separatorStyle = .none
+        tableView.delegate = self
             
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
@@ -107,5 +106,14 @@ extension FollowViewController {
         })
         
         viewModel?.configureTableViewSnapshot()
+    }
+}
+
+extension FollowViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let id = (tableView.cellForRow(at: indexPath) as? FollowTableViewCell)?.dataId {
+            self.viewModel?.coordinator?.showProfileScene(id: id)
+        }
     }
 }

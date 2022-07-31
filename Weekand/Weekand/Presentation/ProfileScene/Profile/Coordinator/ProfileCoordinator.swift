@@ -96,6 +96,13 @@ class ProfileCoordinator: Coordinator {
         self.navigationController.pushViewController(followViewController, animated: true)
     }
     
+    func showProfileScene(id: String?) {
+        let profileCoordinator = ProfileCoordinator(navigationController: self.navigationController, userId: id)
+        profileCoordinator.finishDelegate = self
+        childCoordinators.append(profileCoordinator)
+        profileCoordinator.start()
+    }
+
     
     // MARK: Bottom Sheet
     
