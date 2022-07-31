@@ -121,7 +121,7 @@ extension ProfileEditViewModel {
             self.updateUser(updateUser: updatedata, filename: filename)
             
             guard let image = self.updateImage else { return }
-//            ImageUploader().uploadImage(image: image, url: url, filename: filename)
+            ImageUploader().uploadImage(image: image, url: url, filename: filename)
             
         }, onFailure: { error in
             print("\(#function): \(error)")
