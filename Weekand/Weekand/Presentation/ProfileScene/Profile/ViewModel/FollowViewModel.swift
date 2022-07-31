@@ -35,12 +35,8 @@ class FollowViewModel: ViewModelType {
         self.type = type
         
         switch type {
-        case .followee:
-            getFolloweeList(id: id, page: 0, size: 20)
-            break
-        case .follower:
-            getFollowerList(id: id, page: 0, size: 20)
-            break
+        case .followee: getFolloweeList(id: id, page: 0, size: 20)
+        case .follower: getFollowerList(id: id, page: 0, size: 20)
         }
     }
 }
@@ -61,7 +57,7 @@ extension FollowViewModel {
 // MARK: Diffable Data Source
 extension FollowViewModel {
     
-    func configureTableViewSnapshot(animatingDifferences: Bool = true) {
+    func configureTableViewSnapshot(animatingDifferences: Bool = false) {
         
         self.followList.subscribe(onNext: { data in
             

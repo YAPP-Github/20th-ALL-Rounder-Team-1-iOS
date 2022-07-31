@@ -112,6 +112,7 @@ extension FollowViewController {
 extension FollowViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         if let id = (tableView.cellForRow(at: indexPath) as? FollowTableViewCell)?.dataId {
             self.viewModel?.coordinator?.showProfileScene(id: id)
         }

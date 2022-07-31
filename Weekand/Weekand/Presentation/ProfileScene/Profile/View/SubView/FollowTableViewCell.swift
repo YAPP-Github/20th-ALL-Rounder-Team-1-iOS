@@ -96,14 +96,18 @@ extension FollowTableViewCell {
     public func setData(user: UserSummaryTemp) {
         
         self.dataId = user.userSummaryId
-        
-        guard let url = URL(string: user.imagePath),
-              let data = try? Data(contentsOf: url) else {
-            return
-        }
-        profileImageView.image = UIImage(data: data)
         nameLabel.text = user.name
         goalLabel.text = user.goal
+
+        DispatchQueue.global().async {
+            guard let imageURL = URL(string: user.imagePath) else { return }
+            guard let imageData = try? Data(contentsOf: imageURL) else { return }
+            
+            DispatchQueue.main.async {
+                self.profileImageView.image = UIImage(data: imageData)
+            }
+        }
+        
     }
 
 }
