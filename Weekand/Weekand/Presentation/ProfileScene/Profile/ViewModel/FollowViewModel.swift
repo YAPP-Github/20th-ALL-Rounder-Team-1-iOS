@@ -34,14 +34,20 @@ class FollowViewModel: ViewModelType {
         self.userName = userName
         self.type = type
         
-        switch type {
-        case .followee: getFolloweeList(id: id, page: 0, size: 20)
-        case .follower: getFollowerList(id: id, page: 0, size: 20)
-        }
+        getFollowList(page: 0, size: 20)
+        
     }
 }
 
 extension FollowViewModel {
+    
+    func getFollowList(page: Int, size: Int) {
+        
+        switch self.type {
+        case .followee: getFolloweeList(id: id, page: page, size: size)
+        case .follower: getFollowerList(id: id, page: page, size: size)
+        }
+    }
     
     struct Input { }
     
@@ -95,5 +101,18 @@ extension FollowViewModel {
             self.followList.accept([])
         }, onDisposed: nil)
         .disposed(by: disposeBag)
+    }
+    
+    func deleteFollower(userId: String, completion: @escaping () -> Void) {
+        self.profileUseCase.deleteFollower(id: userId).subscribe(onSuccess: { isSucceed in
+                if isSucceed {
+                    completion()
+                } else {
+                    print("\(#function) Error: error")
+                }
+            }, onFailure: { error in
+                print("\(#function) Error: \(error)")
+            }, onDisposed: nil)
+            .disposed(by: disposeBag)
     }
 }
