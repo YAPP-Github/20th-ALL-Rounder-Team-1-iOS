@@ -13,7 +13,7 @@ class ScheduleAddCoordinator: Coordinator, ScheduleEditCoordinatorType {
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
     var scheduleEditViewController: ScheduleEditViewController<ScheduleAddViewModel>
-    var type: CoordinatorType = .scheduleEdit
+    var type: CoordinatorType = .scheduleAdd
     var scheduleEditUseCase: ScheduleEditUseCase
     
     required init(requestDate: Date) {

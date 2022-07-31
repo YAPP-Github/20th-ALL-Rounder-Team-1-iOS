@@ -92,9 +92,9 @@ class MainCoordinator: Coordinator {
     
     func showScheduleDetailScene(scheduleId: String, requestDate: Date) {
         let scheduleDetailCoordinator = ScheduleDetailCoordinator(navigationController: self.navigationController,
-                                                                  scheduleId: scheduleId,
-                                                                  isStatusEditing: false,
-                                                                  requestDate: requestDate)
+            scheduleId: scheduleId,
+            isStatusEditing: true,
+            requestDate: requestDate)
         scheduleDetailCoordinator.finishDelegate = self
         childCoordinators.append(scheduleDetailCoordinator)
         scheduleDetailCoordinator.start()
@@ -119,7 +119,7 @@ extension MainCoordinator: CoordinatorDidFinishDelegate {
     
     func childDidFinish(_ child: Coordinator) {
         self.childCoordinators = self.childCoordinators.filter({ $0.type != child.type })
-        if child.type == .scheduleEdit {
+        if child.type == .scheduleAdd || child.type == .scheduleModify {
             navigationController.dismiss(animated: true, completion: nil)
         } else {
             navigationController.popToRootViewController(animated: true)

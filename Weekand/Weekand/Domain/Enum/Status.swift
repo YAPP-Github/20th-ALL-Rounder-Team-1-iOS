@@ -33,7 +33,7 @@ enum StatusIcon: String {
     case upcoming = "state.upcomming"
     case proceeding = "state.proceeding"
     case completed = "state.completed"
-    case incompleted = "state.start"
+    case incompleted = "state.incomplete"
     case undetermined = "state.hold"
     
     var tintColor: UIColor {

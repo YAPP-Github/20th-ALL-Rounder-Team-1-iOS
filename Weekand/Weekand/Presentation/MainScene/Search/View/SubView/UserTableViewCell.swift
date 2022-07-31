@@ -86,13 +86,20 @@ class UserTableViewCell: UITableViewCell {
     }
     
     public func configure(imageUrl: String, name: String, goal: String) {
-        guard let url = URL(string: imageUrl),
-              let data = try? Data(contentsOf: url) else {
-            return
-        }
-        profileImageView.image = UIImage(data: data)
+
         nameLabel.text = name
         goalLabel.text = goal
+        
+        DispatchQueue.global().async {
+            guard let url = URL(string: imageUrl),
+                  let data = try? Data(contentsOf: url) else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.profileImageView.image = UIImage(data: data)
+            }
+        }
     }
 
 }
