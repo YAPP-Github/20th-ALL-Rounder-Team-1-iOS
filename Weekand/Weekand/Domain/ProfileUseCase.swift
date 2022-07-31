@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import Apollo
 
 final class ProfileUseCase {
     
@@ -98,4 +99,10 @@ final class ProfileUseCase {
             }.asSingle()
     }
     
+    /// 나를 팔로우하는 유저 팔로우 해제
+    func deleteFollower(id: String) -> Single<Bool> {
+        return NetWork.shared.perform(mutation: DeleteFollowerMutation(id: id))
+            .map { $0.deleteFollower }
+            .asSingle()
+    }
 }

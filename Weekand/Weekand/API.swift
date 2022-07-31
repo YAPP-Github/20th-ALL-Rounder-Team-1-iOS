@@ -1328,6 +1328,61 @@ public final class DeleteFolloweeMutation: GraphQLMutation {
   }
 }
 
+public final class DeleteFollowerMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation DeleteFollower($id: ID!) {
+      deleteFollower(input: {targetUserId: $id})
+    }
+    """
+
+  public let operationName: String = "DeleteFollower"
+
+  public var id: GraphQLID
+
+  public init(id: GraphQLID) {
+    self.id = id
+  }
+
+  public var variables: GraphQLMap? {
+    return ["id": id]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("deleteFollower", arguments: ["input": ["targetUserId": GraphQLVariable("id")]], type: .nonNull(.scalar(Bool.self))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(deleteFollower: Bool) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "deleteFollower": deleteFollower])
+    }
+
+    /// 나를 팔로우한 유저를 삭제한다
+    /// [error]
+    /// 3001: 존재하지 않는 유저입니다.
+    /// 5002: 팔로우 관계가 아닙니다.
+    public var deleteFollower: Bool {
+      get {
+        return resultMap["deleteFollower"]! as! Bool
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "deleteFollower")
+      }
+    }
+  }
+}
+
 public final class DeleteScheduleMutation: GraphQLMutation {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =

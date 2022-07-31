@@ -320,6 +320,7 @@
 		7D9BC0F92896539A00AC7F11 /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
 		7D9BC0FB2896543E00AC7F11 /* FollowInformationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowInformationType.swift; sourceTree = "<group>"; };
 		7D9BC0FD28966C9500AC7F11 /* FollowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTableViewCell.swift; sourceTree = "<group>"; };
+		7D9BC0FF28969B1300AC7F11 /* DeleteFollower.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = DeleteFollower.graphql; sourceTree = "<group>"; };
 		7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCoordinator.swift; sourceTree = "<group>"; };
 		7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewModel.swift; sourceTree = "<group>"; };
@@ -1492,6 +1493,7 @@
 				F38AE45D2892CD0D00E5E261 /* DeleteUser.graphql */,
 				F38AE4752893E06E00E5E261 /* CompleteSchedule.graphql */,
 				F38AE4772893E11100E5E261 /* IncompleteSchedule.graphql */,
+				7D9BC0FF28969B1300AC7F11 /* DeleteFollower.graphql */,
 				F38AE49B2894FCAC00E5E261 /* SkipSchedule.graphql */,
 			);
 			path = Query;
