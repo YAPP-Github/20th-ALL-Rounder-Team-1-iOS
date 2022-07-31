@@ -36,6 +36,9 @@
 		7D8129E9288A4331006C0A5D /* UserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129E8288A4331006C0A5D /* UserDetail.swift */; };
 		7D8129ED288A7B5B006C0A5D /* ProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129EC288A7B5B006C0A5D /* ProfileUseCase.swift */; };
 		7D8129FA288BF130006C0A5D /* UserUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129F9288BF130006C0A5D /* UserUpdate.swift */; };
+		7D9BC0F82896533100AC7F11 /* FollowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9BC0F72896533100AC7F11 /* FollowViewModel.swift */; };
+		7D9BC0FA2896539A00AC7F11 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9BC0F92896539A00AC7F11 /* FollowViewController.swift */; };
+		7D9BC0FC2896543E00AC7F11 /* FollowInformationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9BC0FB2896543E00AC7F11 /* FollowInformationType.swift */; };
 		7DA4AB7128586615009E91FB /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */; };
 		7DA4AB7328586641009E91FB /* CategoryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */; };
 		7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */; };
@@ -311,6 +314,9 @@
 		7D8129EC288A7B5B006C0A5D /* ProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUseCase.swift; sourceTree = "<group>"; };
 		7D8129F9288BF130006C0A5D /* UserUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUpdate.swift; sourceTree = "<group>"; };
 		7D8E4E832882A9D70035FB7E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		7D9BC0F72896533100AC7F11 /* FollowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewModel.swift; sourceTree = "<group>"; };
+		7D9BC0F92896539A00AC7F11 /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
+		7D9BC0FB2896543E00AC7F11 /* FollowInformationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowInformationType.swift; sourceTree = "<group>"; };
 		7DA4AB7028586615009E91FB /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		7DA4AB7228586641009E91FB /* CategoryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCoordinator.swift; sourceTree = "<group>"; };
 		7DA4AB7528586F97009E91FB /* CategoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewModel.swift; sourceTree = "<group>"; };
@@ -722,6 +728,7 @@
 				F3B00269287D68F100D6BB1D /* Emoji.swift */,
 				7D8129E028894BB8006C0A5D /* ProfileSetting.swift */,
 				F336F3B9288A9676005B57A0 /* ScheduleWeek.swift */,
+				7D9BC0FB2896543E00AC7F11 /* FollowInformationType.swift */,
 			);
 			name = Enum;
 			sourceTree = "<group>";
@@ -1021,6 +1028,7 @@
 				7DE60AC72892539F00F85A05 /* ContactViewModel.swift */,
 				7DE60AC82892539F00F85A05 /* PasswordChangeViewModel.swift */,
 				F38AE4672892D24800E5E261 /* WarningPopupViewModel.swift */,
+				7D9BC0F72896533100AC7F11 /* FollowViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1044,6 +1052,7 @@
 				7DE60AE02892539F00F85A05 /* ContactViewController.swift */,
 				7DE60ACF2892539F00F85A05 /* ContactCompleteViewController.swift */,
 				F38AE4652892D22500E5E261 /* ResignWarningPopupViewController.swift */,
+				7D9BC0F92896539A00AC7F11 /* FollowViewController.swift */,
 				7DE60AD32892539F00F85A05 /* SubView */,
 			);
 			path = View;
@@ -1802,6 +1811,7 @@
 				F3B00261287D68BD00D6BB1D /* CategoryUseCase.swift in Sources */,
 				7DA4AB7628586F97009E91FB /* CategoryDetailViewModel.swift in Sources */,
 				F354C3DF283CECF5008929FD /* WTextLabel.swift in Sources */,
+				7D9BC0FC2896543E00AC7F11 /* FollowInformationType.swift in Sources */,
 				7D0A6A3428813C7100CFE61D /* Status.swift in Sources */,
 				F336F3AE288955A3005B57A0 /* RepeatRadioStackView.swift in Sources */,
 				7DA4AB7A285871E0009E91FB /* UIButton+setImageInset.swift in Sources */,
@@ -1944,6 +1954,7 @@
 				F3DD0237284A6BEC00AD9240 /* SignUpTermsViewModel.swift in Sources */,
 				F3CC76B22867130100A3FBBE /* ColorSheetViewController.swift in Sources */,
 				F3C8E0A72873028B00B0916A /* WFilledGrayButton.swift in Sources */,
+				7D9BC0F82896533100AC7F11 /* FollowViewModel.swift in Sources */,
 				F3B0026F287D68F100D6BB1D /* EmojiGiver.swift in Sources */,
 				F30EBCE62881993100ECB48D /* SearchHeaderView.swift in Sources */,
 				7DC166C02837234200F1A8F1 /* WButtonTextField.swift in Sources */,
@@ -1961,6 +1972,7 @@
 				F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */,
 				7DBC4C5D28769C3900F0AC86 /* MonthlyCalendarSheet.swift in Sources */,
 				F336F3D3288CF63D005B57A0 /* TokenManager.swift in Sources */,
+				7D9BC0FA2896539A00AC7F11 /* FollowViewController.swift in Sources */,
 				7DE60AEA2892539F00F85A05 /* PasswordChangeViewController.swift in Sources */,
 				F3CC76B42867264200A3FBBE /* WTagToggleButton.swift in Sources */,
 				F3DD0231284A36D300AD9240 /* BaseNavigationController.swift in Sources */,
