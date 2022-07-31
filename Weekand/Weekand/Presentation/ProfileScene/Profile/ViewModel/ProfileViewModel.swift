@@ -116,7 +116,7 @@ extension ProfileViewModel {
 
         input.didFollowerTap.when(.recognized).subscribe(onNext: { _ in
             guard let id = self.userId else { return }
-            self.coordinator?.pushFollowViewController(id: id, name: self.userName ?? "회원", type: .followee)
+            self.coordinator?.pushFollowViewController(id: id, name: self.userName ?? "회원", type: .follower)
 
         }).disposed(by: disposeBag)
 

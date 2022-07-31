@@ -316,7 +316,7 @@ extension MainViewController: UITableViewDelegate {
 
 // MARK: TableViewCell Tap Gesture
 extension MainViewController: MainTableViewCellDelegate {
-    func cellTapped(id: String?) {
+    func cellTapped(id: String?, status: Status?) {
         if let scheduleId = id {
             self.didTapScheduleCell.accept(scheduleId)
         }

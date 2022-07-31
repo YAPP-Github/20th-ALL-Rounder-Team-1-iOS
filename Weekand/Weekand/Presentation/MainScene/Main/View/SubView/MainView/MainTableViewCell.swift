@@ -12,7 +12,7 @@ import RxSwift
 import RxGesture
 
 protocol MainTableViewCellDelegate: AnyObject {
-    func cellTapped(id: String?)
+    func cellTapped(id: String?, status: Status?)
     func emojiViewTapped(id: String?)
     func stickerButtonTapped(id: String?)
 }
@@ -23,6 +23,8 @@ class MainTableViewCell: UITableViewCell {
     static let identifier = "MainTableViewCell"
     
     var dataId: String?
+    var status: Status?
+    
     let disposeBag = DisposeBag()
     var delegate: MainTableViewCellDelegate?
     
@@ -92,7 +94,7 @@ class MainTableViewCell: UITableViewCell {
         })
         .when(.recognized)
         .subscribe(onNext: { _ in
-            self.delegate?.cellTapped(id: self.dataId)
+            self.delegate?.cellTapped(id: self.dataId, status: self.status)
         }).disposed(by: disposeBag)
         
         emojiView.rx.tapGesture(configuration: { recognizer, _ in
@@ -137,6 +139,7 @@ extension MainTableViewCell {
     
     public func setUpCell(_ model: ScheduleMain) {
         self.dataId = model.scheduleId
+        self.status = model.status
         
         self.nameLabel.editValue(color: UIColor(hex: model.color) ?? .gray100, title: model.name)
         
