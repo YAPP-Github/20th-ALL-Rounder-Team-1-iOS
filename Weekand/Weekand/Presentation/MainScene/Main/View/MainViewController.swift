@@ -40,7 +40,7 @@ class MainViewController: UIViewController {
         $0.imageView?.contentMode = .scaleAspectFit
     }
     
-    let didTapScheduleCell = PublishRelay<String>()
+    let didTapScheduleCell = PublishRelay<(String, Status)>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -317,8 +317,9 @@ extension MainViewController: UITableViewDelegate {
 // MARK: TableViewCell Tap Gesture
 extension MainViewController: MainTableViewCellDelegate {
     func cellTapped(id: String?, status: Status?) {
-        if let scheduleId = id {
-            self.didTapScheduleCell.accept(scheduleId)
+        if let scheduleId = id,
+           let scheduleStatus = status {
+            self.didTapScheduleCell.accept((scheduleId, scheduleStatus))
         }
     }
     

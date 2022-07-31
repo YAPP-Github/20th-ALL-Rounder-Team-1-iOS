@@ -213,9 +213,9 @@ class ScheduleDetailViewController: BaseViewController {
                                                                 repeatSelectedValue: schedule.repeatSelectedValue, repeatEndDate: schedule.repeatEnd)
             
             if schedule.status == .completed {
-                self?.selectedComplete.accept(true)
+                self?.scheduleCompleteToolBar.completeCollecitonView.selectItem(at: IndexPath(item: 1, section: 0), animated: false, scrollPosition: .centeredHorizontally)
             } else if schedule.status == .incompleted {
-                self?.selectedIncomplete.accept(true)
+                self?.scheduleCompleteToolBar.completeCollecitonView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
             }
             
             self?.navigationItem.title = schedule.name
