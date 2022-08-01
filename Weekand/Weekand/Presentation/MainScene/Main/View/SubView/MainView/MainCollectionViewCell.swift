@@ -13,7 +13,6 @@ class MainCollectionViewCell: UICollectionViewCell {
     
     var dataId: String?
     static let identifier = "MainCollectionViewCell"
-    var disposeBag = DisposeBag()
     
     lazy var profileImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFill
@@ -37,11 +36,6 @@ class MainCollectionViewCell: UICollectionViewCell {
                 processSelected(isSelected: false)
             }
         }
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        disposeBag = DisposeBag()
     }
     
     override init(frame: CGRect) {

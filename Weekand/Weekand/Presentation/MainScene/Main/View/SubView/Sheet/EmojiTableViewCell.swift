@@ -45,13 +45,7 @@ class EmojiTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
         
-        self.profileImageView.image = UIImage(named: "default.person")
-    }
-    
     private func configureUI() {
         
         [profileImageView, nameLabel, emoji].forEach { stackView.addArrangedSubview($0) }

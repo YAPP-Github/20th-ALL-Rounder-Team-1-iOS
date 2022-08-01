@@ -56,6 +56,8 @@ extension AlarmViewController {
         tableView = UITableView()
         tableView.register(AlarmTableViewCell.self, forCellReuseIdentifier: AlarmTableViewCell.identifier)
         tableView.delegate = self
+        tableView.backgroundView = WEmptyView(type: .alarm)
+        tableView.backgroundView?.isHidden = true
         
         tableView.separatorStyle = .singleLine
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
@@ -73,6 +75,11 @@ extension AlarmViewController {
             cell.setUpCell(description: alarm.message)
             return cell
         })
+        
+        let snapshot = viewModel?.tableViewDataSource.snapshot()
+        if snapshot?.itemIdentifiers.isEmpty ?? true {
+            self.tableView.backgroundView?.isHidden = false
+        }
         
         viewModel?.configureTableViewSnapshot()
     }
