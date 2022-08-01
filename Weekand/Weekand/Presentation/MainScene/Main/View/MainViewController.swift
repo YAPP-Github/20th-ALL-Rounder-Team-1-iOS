@@ -321,9 +321,10 @@ extension MainViewController: UITableViewDelegate {
 
 // MARK: TableViewCell Tap Gesture
 extension MainViewController: MainTableViewCellDelegate {
-    func cellTapped(id: String?, status: Status?) {
+    func cellTapped(id: String?, status: Status?, repeatType: ScheduleRepeatType?) {
         if let scheduleId = id,
-           let scheduleStatus = status {
+           let scheduleStatus = status,
+           let repeatType = repeatType {
             self.didTapScheduleCell.accept((scheduleId, scheduleStatus))
         }
     }

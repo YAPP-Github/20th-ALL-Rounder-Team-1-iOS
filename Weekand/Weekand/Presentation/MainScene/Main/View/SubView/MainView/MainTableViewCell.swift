@@ -12,7 +12,7 @@ import RxSwift
 import RxGesture
 
 protocol MainTableViewCellDelegate: AnyObject {
-    func cellTapped(id: String?, status: Status?)
+    func cellTapped(id: String?, status: Status?, repeatType: ScheduleRepeatType?)
     func emojiViewTapped(id: String?)
     func stickerButtonTapped(id: String?)
 }
@@ -24,6 +24,7 @@ class MainTableViewCell: UITableViewCell {
     
     var dataId: String?
     var status: Status?
+    var repeatType: ScheduleRepeatType?
     
     let disposeBag = DisposeBag()
     var delegate: MainTableViewCellDelegate?
@@ -147,6 +148,7 @@ extension MainTableViewCell {
         self.timeLineLabel.configureValue(status: icon, title: Date.getTimelineString(model.dateStart, model.dateEnd))
         self.emojiView.numberLabel.text = String(model.stickerCount)
         self.emojiView.setEmoji(emojiOrder: model.stickerNameList)
+        self.repeatType = model.repeatType
     }
     
     /// 현재 진행중인 일정이면 "진행중" 아이콘 리턴

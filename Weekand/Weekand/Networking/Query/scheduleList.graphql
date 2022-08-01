@@ -1,5 +1,8 @@
 query ScheduleList($date: Timestamp!, $id: ID) {
       schedules(date: $date, userId: $id) {
+            paginationInfo {
+          hasNext
+        }
         schedules {
           id
         name
@@ -11,6 +14,7 @@ query ScheduleList($date: Timestamp!, $id: ID) {
         dateTimeEnd
         stickerCount
         stickerNames
+        repeatType
         }
   }
 }

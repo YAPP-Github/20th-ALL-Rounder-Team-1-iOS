@@ -3783,6 +3783,10 @@ public final class ScheduleListQuery: GraphQLQuery {
     query ScheduleList($date: Timestamp!, $id: ID) {
       schedules(date: $date, userId: $id) {
         __typename
+        paginationInfo {
+          __typename
+          hasNext
+        }
         schedules {
           __typename
           id
@@ -3796,6 +3800,7 @@ public final class ScheduleListQuery: GraphQLQuery {
           dateTimeEnd
           stickerCount
           stickerNames
+          repeatType
         }
       }
     }
@@ -3851,6 +3856,7 @@ public final class ScheduleListQuery: GraphQLQuery {
       public static var selections: [GraphQLSelection] {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("paginationInfo", type: .nonNull(.object(PaginationInfo.selections))),
           GraphQLField("schedules", type: .nonNull(.list(.nonNull(.object(Schedule.selections))))),
         ]
       }
@@ -3861,8 +3867,8 @@ public final class ScheduleListQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(schedules: [Schedule]) {
-        self.init(unsafeResultMap: ["__typename": "ScheduleList", "schedules": schedules.map { (value: Schedule) -> ResultMap in value.resultMap }])
+      public init(paginationInfo: PaginationInfo, schedules: [Schedule]) {
+        self.init(unsafeResultMap: ["__typename": "ScheduleList", "paginationInfo": paginationInfo.resultMap, "schedules": schedules.map { (value: Schedule) -> ResultMap in value.resultMap }])
       }
 
       public var __typename: String {
@@ -3874,12 +3880,60 @@ public final class ScheduleListQuery: GraphQLQuery {
         }
       }
 
+      public var paginationInfo: PaginationInfo {
+        get {
+          return PaginationInfo(unsafeResultMap: resultMap["paginationInfo"]! as! ResultMap)
+        }
+        set {
+          resultMap.updateValue(newValue.resultMap, forKey: "paginationInfo")
+        }
+      }
+
       public var schedules: [Schedule] {
         get {
           return (resultMap["schedules"] as! [ResultMap]).map { (value: ResultMap) -> Schedule in Schedule(unsafeResultMap: value) }
         }
         set {
           resultMap.updateValue(newValue.map { (value: Schedule) -> ResultMap in value.resultMap }, forKey: "schedules")
+        }
+      }
+
+      public struct PaginationInfo: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["PaginationInfo"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("hasNext", type: .nonNull(.scalar(Bool.self))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(hasNext: Bool) {
+          self.init(unsafeResultMap: ["__typename": "PaginationInfo", "hasNext": hasNext])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var hasNext: Bool {
+          get {
+            return resultMap["hasNext"]! as! Bool
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "hasNext")
+          }
         }
       }
 
@@ -3897,6 +3951,7 @@ public final class ScheduleListQuery: GraphQLQuery {
             GraphQLField("dateTimeEnd", type: .nonNull(.scalar(Timestamp.self))),
             GraphQLField("stickerCount", type: .nonNull(.scalar(Int.self))),
             GraphQLField("stickerNames", type: .nonNull(.list(.nonNull(.scalar(ScheduleStickerName.self))))),
+            GraphQLField("repeatType", type: .nonNull(.scalar(RepeatType.self))),
           ]
         }
 
@@ -3906,8 +3961,8 @@ public final class ScheduleListQuery: GraphQLQuery {
           self.resultMap = unsafeResultMap
         }
 
-        public init(id: GraphQLID, name: String, status: ScheduleStatus, category: Category, dateTimeStart: Timestamp, dateTimeEnd: Timestamp, stickerCount: Int, stickerNames: [ScheduleStickerName]) {
-          self.init(unsafeResultMap: ["__typename": "Schedule", "id": id, "name": name, "status": status, "category": category.resultMap, "dateTimeStart": dateTimeStart, "dateTimeEnd": dateTimeEnd, "stickerCount": stickerCount, "stickerNames": stickerNames])
+        public init(id: GraphQLID, name: String, status: ScheduleStatus, category: Category, dateTimeStart: Timestamp, dateTimeEnd: Timestamp, stickerCount: Int, stickerNames: [ScheduleStickerName], repeatType: RepeatType) {
+          self.init(unsafeResultMap: ["__typename": "Schedule", "id": id, "name": name, "status": status, "category": category.resultMap, "dateTimeStart": dateTimeStart, "dateTimeEnd": dateTimeEnd, "stickerCount": stickerCount, "stickerNames": stickerNames, "repeatType": repeatType])
         }
 
         public var __typename: String {
@@ -3988,6 +4043,15 @@ public final class ScheduleListQuery: GraphQLQuery {
           }
           set {
             resultMap.updateValue(newValue, forKey: "stickerNames")
+          }
+        }
+
+        public var repeatType: RepeatType {
+          get {
+            return resultMap["repeatType"]! as! RepeatType
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "repeatType")
           }
         }
 

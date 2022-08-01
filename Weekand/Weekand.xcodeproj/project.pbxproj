@@ -34,6 +34,7 @@
 		7D8129E9288A4331006C0A5D /* UserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129E8288A4331006C0A5D /* UserDetail.swift */; };
 		7D8129ED288A7B5B006C0A5D /* ProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129EC288A7B5B006C0A5D /* ProfileUseCase.swift */; };
 		7D8129FA288BF130006C0A5D /* UserUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8129F9288BF130006C0A5D /* UserUpdate.swift */; };
+		7D9632462897693F005816F9 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9632452897693F005816F9 /* Key.swift */; };
 		7D9BC0F82896533100AC7F11 /* FollowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9BC0F72896533100AC7F11 /* FollowViewModel.swift */; };
 		7D9BC0FA2896539A00AC7F11 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9BC0F92896539A00AC7F11 /* FollowViewController.swift */; };
 		7D9BC0FC2896543E00AC7F11 /* FollowInformationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9BC0FB2896543E00AC7F11 /* FollowInformationType.swift */; };
@@ -46,7 +47,6 @@
 		7DB1D5BF287C1C4C0032C209 /* EmojiTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB1D5BE287C1C4C0032C209 /* EmojiTabViewController.swift */; };
 		7DB5E13C284B4DA400DBB7EA /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB5E13B284B4DA400DBB7EA /* MainCoordinator.swift */; };
 		7DB5E13E284B4E3C00DBB7EA /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB5E13D284B4E3C00DBB7EA /* MainViewModel.swift */; };
-		7DBC38AE2875A92400EFE704 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC38AD2875A92400EFE704 /* Key.swift */; };
 		7DBC4C59287697F900F0AC86 /* EmojiSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C58287697F900F0AC86 /* EmojiSheetViewController.swift */; };
 		7DBC4C5B28769C2600F0AC86 /* StickerAddSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C5A28769C2600F0AC86 /* StickerAddSheet.swift */; };
 		7DBC4C5D28769C3900F0AC86 /* MonthlyCalendarSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBC4C5C28769C3900F0AC86 /* MonthlyCalendarSheet.swift */; };
@@ -313,6 +313,7 @@
 		7D8129EC288A7B5B006C0A5D /* ProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUseCase.swift; sourceTree = "<group>"; };
 		7D8129F9288BF130006C0A5D /* UserUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUpdate.swift; sourceTree = "<group>"; };
 		7D8E4E832882A9D70035FB7E /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		7D9632452897693F005816F9 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		7D9BC0F72896533100AC7F11 /* FollowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewModel.swift; sourceTree = "<group>"; };
 		7D9BC0F92896539A00AC7F11 /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
 		7D9BC0FB2896543E00AC7F11 /* FollowInformationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowInformationType.swift; sourceTree = "<group>"; };
@@ -326,7 +327,6 @@
 		7DB1D5BE287C1C4C0032C209 /* EmojiTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTabViewController.swift; sourceTree = "<group>"; };
 		7DB5E13B284B4DA400DBB7EA /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		7DB5E13D284B4E3C00DBB7EA /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
-		7DBC38AD2875A92400EFE704 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		7DBC4C58287697F900F0AC86 /* EmojiSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiSheetViewController.swift; sourceTree = "<group>"; };
 		7DBC4C5A28769C2600F0AC86 /* StickerAddSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerAddSheet.swift; sourceTree = "<group>"; };
 		7DBC4C5C28769C3900F0AC86 /* MonthlyCalendarSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyCalendarSheet.swift; sourceTree = "<group>"; };
@@ -970,7 +970,7 @@
 				F32ACC0F28235D530082AF30 /* Info.plist */,
 				F32ACC0A28235D530082AF30 /* Assets.xcassets */,
 				F3786850285D98F500BEEC81 /* Constants.swift */,
-				7DBC38AD2875A92400EFE704 /* Key.swift */,
+				7D9632452897693F005816F9 /* Key.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1905,8 +1905,8 @@
 				7D7178ED283E1ED500D7E5F2 /* WTextButton.swift in Sources */,
 				F323FF1D2879A30100DFD8FD /* SimplePopupCoordinator.swift in Sources */,
 				7DF9688A284DF2EB00CE077E /* MainViewHeader.swift in Sources */,
+				7D9632462897693F005816F9 /* Key.swift in Sources */,
 				7DEA177A2845E7C500F6B990 /* WEmojiView.swift in Sources */,
-				7DBC38AE2875A92400EFE704 /* Key.swift in Sources */,
 				F378685928621C2C00BEEC81 /* CategoryModifyViewModel.swift in Sources */,
 				7DA4AB7828586FA7009E91FB /* CategoryAddViewModel.swift in Sources */,
 				F38AE4722892F78200E5E261 /* CompleteCollectionViewCell.swift in Sources */,

@@ -28,19 +28,12 @@ struct ScheduleMain: Hashable {
     let dateEnd: Date
     let stickerCount: Int
     let stickerNameList: [Emoji]
-    
-    init(scheduleId: String, color: String, status: Status,  name: String, dateStart: Date, dateEnd: Date, stickerCount: Int, stickerNameList: [Emoji]) {
+    let repeatType: ScheduleRepeatType
         
-        self.scheduleId = scheduleId
-        self.color = color
-        self.status = status
-        self.name = name
-        self.dateStart = dateStart
-        self.dateEnd = dateEnd
-        self.stickerCount = stickerCount
-        self.stickerNameList = stickerNameList
-    }
-        
+
+}
+
+extension ScheduleMain {
     init(model: ScheduleListQuery.Data.Schedule.Schedule) {
         
         self.scheduleId = model.id
@@ -51,5 +44,6 @@ struct ScheduleMain: Hashable {
         self.dateEnd = model.dateTimeEnd.toDate()
         self.stickerCount = model.stickerCount
         self.stickerNameList = model.stickerNames.map { Emoji(rawValue: $0.rawValue) ?? .good }
+        self.repeatType = model.repeatType.toEntity()
     }
 }
