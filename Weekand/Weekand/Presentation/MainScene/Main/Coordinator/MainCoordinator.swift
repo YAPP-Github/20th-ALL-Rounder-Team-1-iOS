@@ -78,9 +78,14 @@ class MainCoordinator: Coordinator {
     /// 스티커 추가 Sheet
     func pushStickerAddSheet(id: String, date: Date) {
         let stickerAddViewController = StickerAddSheetViewController()
-        stickerAddViewController.viewModel = StickerAddSheetViewModel(mainUseCase: mainUseCase, id: id, date: date)
+        stickerAddViewController.viewModel = StickerAddSheetViewModel(mainCoordinator: self, mainUseCase: mainUseCase, id: id, date: date)
         stickerAddViewController.modalPresentationStyle = .overFullScreen
         self.navigationController.present(stickerAddViewController, animated: true, completion: nil)
+    }
+    
+    func dismissStickerAddSheet() {
+        self.navigationController.popViewController(animated: true)
+        self.mainViewController.viewModel?.loadData()
     }
     
     func showSearchScene() {
