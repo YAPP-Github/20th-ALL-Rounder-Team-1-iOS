@@ -23,7 +23,7 @@ class AlarmViewModel {
     
     private var alarmList = BehaviorRelay<[Alarm]>(value: [])
     var toggleEmptyView = BehaviorRelay<Bool>(value: false)
-    var alertMessage = BehaviorRelay<String>(value: "")
+    var alertMessage = PublishRelay<String>()
     var page = 0
     var hasNext = false
     

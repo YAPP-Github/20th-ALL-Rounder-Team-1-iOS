@@ -26,7 +26,7 @@ class FollowViewModel {
     var tableViewDataSource: UITableViewDiffableDataSource<FollowSection, UserSummaryTemp>!
     private var followList = BehaviorRelay<[UserSummaryTemp]>(value: [])
     var toggleEmptyView = BehaviorRelay<Bool>(value: false)
-    var alertMessage = BehaviorRelay<String>(value: "")
+    var alertMessage = PublishRelay<String>()
 
     var page = 0
     var hasNext = false
