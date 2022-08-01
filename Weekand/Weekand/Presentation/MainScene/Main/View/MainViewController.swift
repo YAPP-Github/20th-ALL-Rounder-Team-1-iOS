@@ -11,6 +11,7 @@ import Then
 import RxSwift
 import RxGesture
 import RxCocoa
+import SwiftUI
 
 class MainViewController: UIViewController {
         
@@ -282,6 +283,8 @@ extension MainViewController: UITableViewDelegate {
         }
         
         let scheduleId = (tableView.cellForRow(at: indexPath) as? MainTableViewCell)?.dataId
+        let schduleRepeatType = (tableView.cellForRow(at: indexPath) as? MainTableViewCell)?.repeatType
+        guard let repeatType = schduleRepeatType else { return disabledAction }
         guard let id = scheduleId else { return disabledAction }
         if !(self.viewModel?.isMySchedule ?? true) { return disabledAction }
         
@@ -293,23 +296,35 @@ extension MainViewController: UITableViewDelegate {
         
         let delete = UIContextualAction(style: .normal, title: "삭제") { _, _, completionHandler in
             
-            // 일반 일정인 경우
-            self.showActionSheet(titles: "삭제", message: "일정를 삭제하시겠어요?") { _ in
-                self.viewModel?.deleteSchedule(scheduleId: id, completion: {
-                    self.viewModel?.loadData()
-                })
+            if repeatType == .once {
+                // 일반 일정인 경우
+                self.showActionSheet(titles: "삭제", message: "일정를 삭제하시겠어요?") { _ in
+                    self.viewModel?.deleteSchedule(scheduleId: id, completion: {
+                        self.viewModel?.loadData()
+                    })
+                }
+            } else {
+                // 반복 일정인 경우
+                self.showActionSheet(
+                    titles: ("이 일정에만 적용", "이후 모든 일정에도 적용"),
+                    message: "반복된 일정을 삭제하시겠어요?",
+                    deleteHandler: { _ in
+                        self.viewModel?.skipSchedule(scheduleId: id,
+                                                     requestDate: self.currentDate,
+                                                     completion: {
+                            self.viewModel?.loadData()
+                        })
+                    }, deleteAfterHandler: { _ in
+                        self.viewModel?.deleteScheduleFromDate(scheduleId: id,
+                                                               requestDate: self.currentDate,
+                                                               completion: {
+                            self.viewModel?.loadData()
+                        })
+                    })
             }
             
-            // 반복 일정인 경우
-//            self.showActionSheet(
-//                titles: ("이 일정에만 적용", "이후 모든 일정에도 적용"),
-//                message: "반복된 일정을 삭제하시겠어요?",
-//                deleteHandler: { _ in
-//                  // 스킵
-//                }, deleteAfterHandler: { _ in
-//                  // 완전 삭제
-//                })
-//            completionHandler(true)
+            
+            completionHandler(true)
         }
         delete.backgroundColor = .wred
         
@@ -321,10 +336,9 @@ extension MainViewController: UITableViewDelegate {
 
 // MARK: TableViewCell Tap Gesture
 extension MainViewController: MainTableViewCellDelegate {
-    func cellTapped(id: String?, status: Status?, repeatType: ScheduleRepeatType?) {
+    func cellTapped(id: String?, status: Status?) {
         if let scheduleId = id,
-           let scheduleStatus = status,
-           let repeatType = repeatType {
+           let scheduleStatus = status {
             self.didTapScheduleCell.accept((scheduleId, scheduleStatus))
         }
     }

@@ -12,7 +12,7 @@ import RxSwift
 import RxGesture
 
 protocol MainTableViewCellDelegate: AnyObject {
-    func cellTapped(id: String?, status: Status?, repeatType: ScheduleRepeatType?)
+    func cellTapped(id: String?, status: Status?)
     func emojiViewTapped(id: String?)
     func stickerButtonTapped(id: String?)
 }
