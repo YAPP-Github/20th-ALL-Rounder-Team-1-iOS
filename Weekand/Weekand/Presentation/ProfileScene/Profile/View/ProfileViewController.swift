@@ -208,11 +208,19 @@ extension ProfileViewController {
         emailLabel.text = user.email
         
         DispatchQueue.global().async {
-            guard let imageURL = URL(string: user.imagePath) else { return }
-            guard let imageData = try? Data(contentsOf: imageURL) else { return }
-            
-            DispatchQueue.main.async {
-                self.profileImageView.image = UIImage(data: imageData)
+            if let cachedImage = ImageCacheManager.shared.loadCachedData(for: user.imagePath) {
+                DispatchQueue.main.async {
+                    self.profileImageView.image = cachedImage
+                }
+            } else {
+                guard let imageURL = URL(string: user.imagePath) else { return }
+                guard let imageData = try? Data(contentsOf: imageURL) else { return }
+                guard let image = UIImage(data: imageData) else { return }
+                
+                ImageCacheManager.shared.setCacheData(of: image, for: user.imagePath)
+                DispatchQueue.main.async {
+                    self.profileImageView.image = image
+                }
             }
         }
         

@@ -70,11 +70,19 @@ extension EmojiTableViewCell {
         emoji.image = UIImage(named: data.emoji.imageName)
         
         DispatchQueue.global().async {
-            guard let imageURL = URL(string: data.imagePath) else { return }
-            guard let imageData = try? Data(contentsOf: imageURL) else { return }
-            
-            DispatchQueue.main.async {
-                self.profileImageView.image = UIImage(data: imageData)
+            if let cachedImage = ImageCacheManager.shared.loadCachedData(for: data.imagePath) {
+                DispatchQueue.main.async {
+                    self.profileImageView.image = cachedImage
+                }
+            } else {
+                guard let imageURL = URL(string: data.imagePath) else { return }
+                guard let imageData = try? Data(contentsOf: imageURL) else { return }
+                guard let image = UIImage(data: imageData) else { return }
+                
+                ImageCacheManager.shared.setCacheData(of: image, for: data.imagePath)
+                DispatchQueue.main.async {
+                    self.profileImageView.image = image
+                }
             }
         }
     
