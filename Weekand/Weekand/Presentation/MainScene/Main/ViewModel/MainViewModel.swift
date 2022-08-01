@@ -25,7 +25,7 @@ class MainViewModel: ViewModelType {
     
     // Diffable Data Source
     var collectionViewDataSource: UICollectionViewDiffableDataSource<MainSection, FollowingUser>!
-    var tableViewDataSource: UITableViewDiffableDataSource<MainSection, ScheduleMain>!
+    var tableViewDataSource: MainScheduleDataSource!
     
     // View와 바인딩되는 Observables
     public var userSummary = BehaviorRelay<UserSummary>(value: UserSummary.defaultData)

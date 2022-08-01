@@ -113,6 +113,7 @@ extension StickerAddSheetViewController {
         collectionView.isScrollEnabled = false
         collectionView.allowsMultipleSelection = false
         collectionView.allowsSelection = true
+        collectionView.backgroundColor = .clear
         collectionView.register(StickerCollectionViewCell.self, forCellWithReuseIdentifier: StickerCollectionViewCell.identifier)
         
         collectionView.delegate = self

@@ -33,7 +33,7 @@ class EmojiTableViewModel {
 // MARK: Diffable Data Source
 extension EmojiTableViewModel {
     
-    func configureTableViewSnapshot(animatingDifferences: Bool = true) {
+    func configureTableViewSnapshot(animatingDifferences: Bool = false) {
         
         var list = targetEmojiList
         if let emoji = self.targetEmoji {

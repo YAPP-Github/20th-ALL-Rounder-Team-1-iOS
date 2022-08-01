@@ -272,7 +272,7 @@ extension MainViewController {
     
     private func configureTableViewDataSource() {
         
-        viewModel?.tableViewDataSource = UITableViewDiffableDataSource<MainSection, ScheduleMain>(tableView: tableView, cellProvider: { tableView, indexPath, schedule in
+        viewModel?.tableViewDataSource = MainScheduleDataSource(tableView: tableView, cellProvider: { tableView, indexPath, schedule in
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as! MainTableViewCell
             
             cell.switchStickerButtonAppearance(isMine: self.viewModel?.isMySchedule)

@@ -96,6 +96,7 @@
 		7DF9688A284DF2EB00CE077E /* MainViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF96889284DF2EB00CE077E /* MainViewHeader.swift */; };
 		7DF9688C284E019A00CE077E /* MainCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9688B284E019A00CE077E /* MainCalendarView.swift */; };
 		E8BDADFB0F95046E8D0F4BE0 /* Pods_Weekand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */; };
+		F307828428980F9D0080D857 /* MainScheduleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F307828328980F9D0080D857 /* MainScheduleDataSource.swift */; };
 		F30EBCCD288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCCC288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift */; };
 		F30EBCD328807B2600ECB48D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCD228807B2600ECB48D /* API.swift */; };
 		F30EBCD528807C9400ECB48D /* CategoryOpenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCD428807C9400ECB48D /* CategoryOpenType.swift */; };
@@ -377,6 +378,7 @@
 		7DF96889284DF2EB00CE077E /* MainViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewHeader.swift; sourceTree = "<group>"; };
 		7DF9688B284E019A00CE077E /* MainCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCalendarView.swift; sourceTree = "<group>"; };
 		CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weekand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F307828328980F9D0080D857 /* MainScheduleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScheduleDataSource.swift; sourceTree = "<group>"; };
 		F30EBCCC288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleCategoryOpenType+extension.swift"; sourceTree = "<group>"; };
 		F30EBCD0288078DF00ECB48D /* CreateCategory.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CreateCategory.graphql; sourceTree = "<group>"; };
 		F30EBCD228807B2600ECB48D /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -688,6 +690,7 @@
 			children = (
 				7D76AEB3284458C2001C668D /* MainViewController.swift */,
 				7DD71A7F286C8E88002D1DCF /* AlarmViewController.swift */,
+				F307828328980F9D0080D857 /* MainScheduleDataSource.swift */,
 				7DBC4C682876B73000F0AC86 /* Sheet */,
 				7DA4AB742858669E009E91FB /* SubView */,
 			);
@@ -1811,6 +1814,7 @@
 				F336F41F2891B9C6005B57A0 /* ScheduleInformationStackView.swift in Sources */,
 				F3C8E0A12872EFF400B0916A /* CategoryStackView.swift in Sources */,
 				7DBC4C612876AE7800F0AC86 /* StickerAddSheetViewModel.swift in Sources */,
+				F307828428980F9D0080D857 /* MainScheduleDataSource.swift in Sources */,
 				F3B00275287D68FA00D6BB1D /* SignUpModel.swift in Sources */,
 				7DE60AF72892545000F85A05 /* StickerSummary.swift in Sources */,
 				7DBC4C5B28769C2600F0AC86 /* StickerAddSheet.swift in Sources */,
