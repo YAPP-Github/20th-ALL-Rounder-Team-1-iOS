@@ -54,11 +54,13 @@ class SignUpAddInfomationViewController: BaseViewController {
         
         jobStackView.collectionView.dataSource = self
         jobStackView.collectionView.delegate = self
+        jobStackView.collectionView.backgroundColor = .clear
         jobStackView.collectionView.allowsMultipleSelection = true
         jobStackView.collectionView.register(InformationCollectionViewCell.self, forCellWithReuseIdentifier: InformationCollectionViewCell.cellIdentifier)
         
         interestsStackView.collectionView.dataSource = self
         interestsStackView.collectionView.delegate = self
+        interestsStackView.collectionView.backgroundColor = .clear
         interestsStackView.collectionView.allowsMultipleSelection = true
         interestsStackView.collectionView.register(InformationCollectionViewCell.self, forCellWithReuseIdentifier: InformationCollectionViewCell.cellIdentifier)
     }
@@ -181,14 +183,3 @@ extension SignUpAddInfomationViewController: UICollectionViewDelegate {
         }
     }
 }
-
-#if canImport(SwiftUI) && DEBUG
-
-struct AddInformationViewControllerPreview: PreviewProvider {
-    static var previews: some View {
-        Group {
-            SignUpAddInfomationViewController().showPreview(.iPhone8)
-        }
-    }
-}
-#endif
