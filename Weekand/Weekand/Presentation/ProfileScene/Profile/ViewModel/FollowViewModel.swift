@@ -26,6 +26,7 @@ class FollowViewModel {
     var tableViewDataSource: UITableViewDiffableDataSource<FollowSection, UserSummaryTemp>!
     private var followList = BehaviorRelay<[UserSummaryTemp]>(value: [])
     var toggleEmptyView = BehaviorRelay<Bool>(value: false)
+    var alertMessage = BehaviorRelay<String>(value: "")
 
     var page = 0
     var hasNext = false
@@ -91,7 +92,7 @@ extension FollowViewModel {
             
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
-            self.followList.accept([])
+            self.alertMessage.accept("팔로잉 목록을 불러오지 못했습니다.")
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     }
@@ -105,7 +106,7 @@ extension FollowViewModel {
             
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
-            self.followList.accept([])
+            self.alertMessage.accept("팔로우 목록을 불러오지 못했습니다.")
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     }
@@ -119,6 +120,7 @@ extension FollowViewModel {
                 }
             }, onFailure: { error in
                 print("\(#function) Error: \(error)")
+                self.alertMessage.accept("팔로워 삭제 실패.")
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }

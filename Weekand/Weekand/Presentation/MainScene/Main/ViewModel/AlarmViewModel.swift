@@ -23,6 +23,7 @@ class AlarmViewModel {
     
     private var alarmList = BehaviorRelay<[Alarm]>(value: [])
     var toggleEmptyView = BehaviorRelay<Bool>(value: false)
+    var alertMessage = BehaviorRelay<String>(value: "")
     var page = 0
     var hasNext = false
     
@@ -72,6 +73,7 @@ extension AlarmViewModel {
             
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
+            self.alertMessage.accept("알림 목록을 불러오지 못했습니다")
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     }

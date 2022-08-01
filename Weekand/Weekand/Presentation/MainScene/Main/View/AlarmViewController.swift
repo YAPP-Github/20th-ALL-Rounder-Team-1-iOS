@@ -43,6 +43,10 @@ class AlarmViewController: UIViewController {
             .subscribe(onNext: { data in
                 self.toggleEmptyView(isEmpty: data)
             }).disposed(by: disposeBag)
+        
+        self.viewModel?.alertMessage.subscribe(onNext: { message in
+            self.showToast(message: message)
+        }).disposed(by: disposeBag)
     }
 }
 
