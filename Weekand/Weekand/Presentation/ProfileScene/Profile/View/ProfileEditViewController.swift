@@ -71,6 +71,7 @@ class ProfileEditViewController: BaseViewController {
         configureUI()
         bindViewModel()
         
+        self.requestPhotoAuth()
     }
         
     private func setUpView() {
@@ -121,13 +122,16 @@ class ProfileEditViewController: BaseViewController {
         }
         
         profileImageView.rx.tapGesture().when(.recognized).bind { _ in
-            
-            if self.PhotoAuth() {
+                
+
+            if self.checkPhotoAuth() {
                 self.imagePickerController.sourceType = .photoLibrary
                 self.present(self.imagePickerController, animated: true, completion: nil)
             } else {
                 self.AuthSettingOpen()
             }
+            
+                        
         }.disposed(by: disposeBag)
         
     }
@@ -200,51 +204,57 @@ extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigati
         dismiss(animated: true, completion: nil)
     }
     
+    /// 권한 설정을 한적 없는 경우 권한 요청
+    func requestPhotoAuth() {
+        
+        if PHPhotoLibrary.authorizationStatus() == .notDetermined {
+            PHPhotoLibrary.requestAuthorization { (state) in
+                print(state)
+            }
+        }
+    }
     
     /// 앨범 권한 확인
-    func PhotoAuth() -> Bool {
+    func checkPhotoAuth() -> Bool {
             
         let authorizationStatus = PHPhotoLibrary.authorizationStatus()
 
-        var isAuth = false
-
         switch authorizationStatus {
+        // Accepted
         case .authorized: return true
-        case .denied: break
-        case .limited: break
-        case .notDetermined:
-            PHPhotoLibrary.requestAuthorization { (state) in
-                if state == .authorized {
-                    isAuth = true
-                }
-            }
-            return isAuth
-        case .restricted: break
+        case .limited: return true
+            
+        // Denied
+        case .denied: return false
+        case .restricted: return false
+            
+        // Need Request
+        case .notDetermined: return false
         default: break
         }
-    
+        
         return false
     }
     
     /// 권한이 없을 시 재요청
     func AuthSettingOpen() {
-        if let AppName = Bundle.main.infoDictionary!["CFBundleName"] as? String {
-            let message = "프로필을 설정하려면 앨범 권한이 필요해요! \r\n 설정화면에서 허용해주세요"
-            let alert = UIAlertController(title: "설정", message: message, preferredStyle: .alert)
+        
+        let message = "프로필을 설정하려면 앨범 권한이 필요해요! \r\n 설정화면에서 허용해주세요"
+        let alert = UIAlertController(title: "설정", message: message, preferredStyle: .alert)
 
-            let cancel = UIAlertAction(title: "취소", style: .default) { (UIAlertAction) in
-                print("\(String(describing: UIAlertAction.title))")
-            }
-            
-            let confirm = UIAlertAction(title: "설정", style: .default) { (UIAlertAction) in
-                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-            }
-
-            alert.addAction(confirm)
-            alert.addAction(cancel)
-
-            self.present(alert, animated: true, completion: nil)
+        let cancel = UIAlertAction(title: "취소", style: .default) { (UIAlertAction) in
+            print("\(String(describing: UIAlertAction.title))")
         }
+        
+        let confirm = UIAlertAction(title: "설정하기", style: .default) { (UIAlertAction) in
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        }
+
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
 }
