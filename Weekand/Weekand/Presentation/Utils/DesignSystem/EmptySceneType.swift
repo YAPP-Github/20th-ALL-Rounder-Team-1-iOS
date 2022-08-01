@@ -11,7 +11,7 @@ enum EmptySceneType {
     case schedule
     case followerSchedule
     case search
-    case folloewr
+    case follower
     case following
     case alarm
     
@@ -23,7 +23,7 @@ enum EmptySceneType {
             return "scheduleEmoji.empty"
         case .search:
             return "searchEmoji.empty"
-        case .folloewr:
+        case .follower:
             return "followersEmoji.empty"
         case .following:
             return "followingEmoji.empty"
@@ -40,7 +40,7 @@ enum EmptySceneType {
             return "오늘 친구 일정이 없어요"
         case .search:
             return "찾으시는 검색 결과가 없어요"
-        case .folloewr:
+        case .follower:
             return "나를 팔로우하는 친구가\n여기에 표시됩니다"
         case .following:
             return "친구를 팔로우해 보세요"

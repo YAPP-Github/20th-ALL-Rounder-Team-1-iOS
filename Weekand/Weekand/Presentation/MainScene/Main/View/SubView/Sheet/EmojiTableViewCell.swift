@@ -19,6 +19,7 @@ class EmojiTableViewCell: UITableViewCell {
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 12
         $0.layer.borderColor = UIColor.mainColor.cgColor
+        $0.image = UIImage(named: "default.person")
     }
     
     lazy var nameLabel = UILabel().then {
@@ -44,7 +45,7 @@ class EmojiTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
+        
     private func configureUI() {
         
         [profileImageView, nameLabel, emoji].forEach { stackView.addArrangedSubview($0) }

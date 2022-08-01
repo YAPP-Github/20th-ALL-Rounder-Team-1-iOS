@@ -32,6 +32,7 @@ class MainViewModel: ViewModelType {
     public var myUserSummary = BehaviorRelay<UserSummary>(value: UserSummary.defaultData)
     private var userFollowingList = BehaviorRelay<[FollowingUser]>(value: [])
     private var scheduleList = BehaviorRelay<[ScheduleMain]>(value: [])
+    private var toggleEmptyView = BehaviorRelay<(Bool, Bool)>(value: (false, false))
     
     private var isMyProfileAdded: Bool = false  // 내 정보가 팔로잉 CollectionView에 추가되었는지 식별
     
@@ -112,6 +113,7 @@ extension MainViewModel {
         let calendarDate: Observable<Date>
         let scrollWeek: Observable<Bool>
         let foldCollection: Observable<Void>
+        let toggleEmptyView: Observable<(Bool, Bool)>
         
         let userSummary: Observable<UserSummary>
     }
@@ -180,6 +182,7 @@ extension MainViewModel {
             calendarDate: calendarDate.asObservable(),
             scrollWeek: scrollWeek.asObservable(),
             foldCollection: foldCollection.asObservable(),
+            toggleEmptyView: toggleEmptyView.asObservable(),
             userSummary: userSummary.asObservable()
         )
     }
@@ -370,8 +373,9 @@ extension MainViewModel {
         self.mainUseCase.scheduleList(date: date, id: id).subscribe(onSuccess: { data in
             
             self.tableViewHasNext = data.paginationInfo.hasNext
-            
             self.scheduleList.accept(data.schedules.map { ScheduleMain.init(model: $0) })
+            
+            self.toggleEmptyView.accept((self.isMySchedule, data.schedules.isEmpty))
 
         }, onFailure: { error in
             print("\(#function) Error: \(error)")

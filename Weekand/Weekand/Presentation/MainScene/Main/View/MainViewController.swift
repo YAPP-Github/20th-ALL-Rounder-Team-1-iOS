@@ -154,6 +154,11 @@ class MainViewController: UIViewController {
             self.foldCollectionView()
         }).disposed(by: disposeBag)
         
+        output?.toggleEmptyView.observe(on: MainScheduler.instance)
+            .subscribe(onNext: { data in
+                self.toggleEmptyView(isMyPage: data.0, isEmpty: data.1)
+            }).disposed(by: disposeBag)
+        
         output?.userSummary.subscribe(onNext: { data in
             self.headerView.profileView.setUpView(data)
             
@@ -211,6 +216,18 @@ extension MainViewController {
         viewModel?.configureCollectionViewSnapShot()
     }
     
+    private func toggleEmptyView(isMyPage: Bool, isEmpty: Bool) {
+        
+        let emptyView = isMyPage ? WEmptyView(type: .schedule) : WEmptyView(type: .followerSchedule)
+        tableView.backgroundView = emptyView
+        tableView.backgroundView?.isHidden = true
+        
+        if isEmpty {
+            self.tableView.backgroundView?.isHidden = false
+        } else {
+            self.tableView.backgroundView?.isHidden = true
+        }
+    }
 }
 
 // MARK: CollectionViewCell Tap

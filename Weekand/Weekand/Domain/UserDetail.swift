@@ -9,7 +9,7 @@ import Foundation
 
 struct UserDetail {
     
-    static let defaultData = UserDetail(userId: "", email: "", name: "", goal: "", imagePath: "", followee: -1, follower: -1, job: [], interest: [], followed: false)
+    static let defaultData = UserDetail(userId: "", email: "", name: "", goal: "", imagePath: "", followee: 0, follower: 0, job: [], interest: [], followed: false)
         
     let userId: String      // 유저 id
     let email: String       // 유저 이메일

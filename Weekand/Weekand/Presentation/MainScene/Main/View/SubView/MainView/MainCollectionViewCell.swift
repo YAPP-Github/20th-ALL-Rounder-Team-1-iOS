@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 /// 메인화면 가장 위쪽 팔로잉 목록 CollectionView에 쓰이는 Cell
 class MainCollectionViewCell: UICollectionViewCell {
@@ -43,7 +44,6 @@ class MainCollectionViewCell: UICollectionViewCell {
         profileImageView.image = nil
         nameLabel.text = ""
     }
-
     
     override init(frame: CGRect) {
         super.init(frame: frame)

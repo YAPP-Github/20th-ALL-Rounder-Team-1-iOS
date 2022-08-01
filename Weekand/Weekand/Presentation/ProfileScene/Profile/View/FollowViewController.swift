@@ -90,6 +90,10 @@ extension FollowViewController {
         
         tableView.separatorStyle = .none
         tableView.delegate = self
+        
+        let emptyView = viewModel?.type == .followee ? WEmptyView(type: .following) : WEmptyView(type: .follower)
+        tableView.backgroundView = emptyView
+        tableView.backgroundView?.isHidden = false
             
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
@@ -106,6 +110,11 @@ extension FollowViewController {
             
             return cell
         })
+        
+        let snapshot = viewModel?.tableViewDataSource.snapshot()
+        if snapshot?.itemIdentifiers.isEmpty ?? true {
+            self.tableView.backgroundView?.isHidden = false
+        }
         
         viewModel?.configureTableViewSnapshot()
     }
