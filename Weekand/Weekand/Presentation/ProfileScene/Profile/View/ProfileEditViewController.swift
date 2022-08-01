@@ -11,6 +11,7 @@ import Then
 import RxSwift
 import RxRelay
 import RxGesture
+import Photos
 
 class ProfileEditViewController: BaseViewController {
     
@@ -70,6 +71,7 @@ class ProfileEditViewController: BaseViewController {
         configureUI()
         bindViewModel()
         
+        self.requestPhotoAuth()
     }
         
     private func setUpView() {
@@ -120,8 +122,16 @@ class ProfileEditViewController: BaseViewController {
         }
         
         profileImageView.rx.tapGesture().when(.recognized).bind { _ in
-            self.imagePickerController.sourceType = .photoLibrary
-            self.present(self.imagePickerController, animated: true, completion: nil)
+                
+
+            if self.checkPhotoAuth() {
+                self.imagePickerController.sourceType = .photoLibrary
+                self.present(self.imagePickerController, animated: true, completion: nil)
+            } else {
+                self.AuthSettingOpen()
+            }
+            
+                        
         }.disposed(by: disposeBag)
         
     }
@@ -136,13 +146,11 @@ class ProfileEditViewController: BaseViewController {
                 job: self.selectedJobs,
                 interest: self.selectedInterests
             )
-            PublishRelay<UserUpdate>.just(profile).bind(to: self.updatedProfile).disposed(by: self.disposeBag)
+            self.updatedProfile.accept(profile)
             
             guard let image = self.profileImageView.image else { return }
-            PublishRelay<UIImage>.just(image).bind(to: self.updatedImage).disposed(by: self.disposeBag)
-            
-            PublishRelay<Void>.just(()).bind(to: self.endEditing).disposed(by: self.disposeBag)
-            
+            self.updatedImage.accept(image)
+            self.endEditing.accept(())
         }).disposed(by: disposeBag)
         
         let input = ProfileEditViewModel.Input(
@@ -177,13 +185,14 @@ class ProfileEditViewController: BaseViewController {
                 interest: self.selectedInterests
             )
             
-            PublishRelay<UserUpdate>.just(update).bind(to: self.viewModel!.userUpdate).disposed(by: self.disposeBag)
+            self.viewModel?.userUpdate.accept(update)
         }).disposed(by: disposeBag)
     }
 }
 
 // MARK: Photo Picker
 extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
@@ -194,6 +203,60 @@ extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigati
         
         dismiss(animated: true, completion: nil)
     }
+    
+    /// 권한 설정을 한적 없는 경우 권한 요청
+    func requestPhotoAuth() {
+        
+        if PHPhotoLibrary.authorizationStatus() == .notDetermined {
+            PHPhotoLibrary.requestAuthorization { (state) in
+                print(state)
+            }
+        }
+    }
+    
+    /// 앨범 권한 확인
+    func checkPhotoAuth() -> Bool {
+            
+        let authorizationStatus = PHPhotoLibrary.authorizationStatus()
+
+        switch authorizationStatus {
+        // Accepted
+        case .authorized: return true
+        case .limited: return true
+            
+        // Denied
+        case .denied: return false
+        case .restricted: return false
+            
+        // Need Request
+        case .notDetermined: return false
+        default: break
+        }
+        
+        return false
+    }
+    
+    /// 권한이 없을 시 재요청
+    func AuthSettingOpen() {
+        
+        let message = "프로필을 설정하려면 앨범 권한이 필요해요! \r\n 설정화면에서 허용해주세요"
+        let alert = UIAlertController(title: "설정", message: message, preferredStyle: .alert)
+
+        let cancel = UIAlertAction(title: "취소", style: .default) { (UIAlertAction) in
+            print("\(String(describing: UIAlertAction.title))")
+        }
+        
+        let confirm = UIAlertAction(title: "설정하기", style: .default) { (UIAlertAction) in
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        }
+
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
 }
 
 extension ProfileEditViewController {

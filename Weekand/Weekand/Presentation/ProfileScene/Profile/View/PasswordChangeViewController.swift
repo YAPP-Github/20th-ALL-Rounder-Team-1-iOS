@@ -17,9 +17,9 @@ class PasswordChangeViewController: BaseViewController {
     var viewModel: PasswordChangeViewModel?
     private let disposeBag = DisposeBag()
     
-    var currentPassword = BehaviorSubject<String>(value: "")
-    var newPassword = BehaviorSubject<String>(value: "")
-    var checkPassword = BehaviorSubject<String>(value: "")
+    var currentPassword = BehaviorRelay<String>(value: "")
+    var newPassword = BehaviorRelay<String>(value: "")
+    var checkPassword = BehaviorRelay<String>(value: "")
     
     lazy var titleLabel = UILabel().then {
         $0.font = WFont.title()

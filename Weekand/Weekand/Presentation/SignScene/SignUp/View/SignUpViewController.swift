@@ -35,6 +35,8 @@ class SignUpViewController: BaseViewController {
         $0.setNameLabelText(string: "이메일")
         $0.setPlaceholderText(string: "이메일을 입력해주세요")
         $0.setButtonText(string: "인증")
+        $0.buttonTextField.textField.autocapitalizationType = .none
+        $0.buttonTextField.textField.keyboardType = .emailAddress
     }
     
     lazy var authenticationNumberStackView = InputGroupStackView().then {
