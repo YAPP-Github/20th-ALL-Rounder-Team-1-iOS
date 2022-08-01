@@ -16,6 +16,10 @@ class FollowViewController: UIViewController {
     var viewModel: FollowViewModel?
     private let disposeBag = DisposeBag()
     
+    var tableView: UITableView!
+    var requestListCount: Int = 20
+    var refreshListCount: Int = 15
+    
     lazy var nameLabel = UILabel().then {
         $0.font = WFont.head2()
         $0.textColor = .mainColor
@@ -34,8 +38,6 @@ class FollowViewController: UIViewController {
         $0.isLayoutMarginsRelativeArrangement = true
         $0.layoutMargins = UIEdgeInsets(top: 32, left: 24, bottom: 16, right: 24)
     }
-    
-    var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,4 +142,15 @@ extension FollowViewController: UITableViewDelegate {
         delete.backgroundColor = .wred
         return UISwipeActionsConfiguration(actions: [delete])
     }
+    
+    // Pagination
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        guard let currentPage = viewModel?.page else { return }
+        
+        if indexPath.item == refreshListCount * (currentPage + 1) - 1 {
+            self.viewModel?.loadMoreFollowList()
+        }
+    }
+
 }
