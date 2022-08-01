@@ -11,13 +11,9 @@ import RxSwift
 final class MainUseCase {
     
     /// 알람 목록
-    func notification(page: Int, size: Int) -> Single<[Alarm]> {
+    func notification(page: Int, size: Int) -> Single<NotificationQuery.Data.Notification> {
         return NetWork.shared.fetch(query: NotificationQuery(page: page, size: size), cachePolicy: .fetchIgnoringCacheCompletely)
-            .map {
-                $0.notifications.notifications.map {
-                    Alarm(id: $0.id, message: $0.message, type: $0.type.rawValue)
-                }
-            }
+            .map { $0.notifications }
             .asSingle()
     }
     

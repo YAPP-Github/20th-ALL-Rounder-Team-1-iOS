@@ -21,3 +21,12 @@ struct Alarm: Hashable {
     let message: String
     let type: String
 }
+
+extension Alarm {
+    init (model: NotificationQuery.Data.Notification.Notification) {
+        
+        self.id = model.id
+        self.message = model.message
+        self.type = model.type.rawValue
+    }
+}
