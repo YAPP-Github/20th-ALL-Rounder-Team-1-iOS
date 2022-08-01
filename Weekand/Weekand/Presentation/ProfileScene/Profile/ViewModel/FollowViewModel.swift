@@ -13,7 +13,7 @@ enum FollowSection {
     case main
 }
 
-class FollowViewModel: ViewModelType {
+class FollowViewModel {
     
     weak var coordinator: ProfileCoordinator?
     private let profileUseCase: ProfileUseCase
@@ -25,6 +25,7 @@ class FollowViewModel: ViewModelType {
     
     var tableViewDataSource: UITableViewDiffableDataSource<FollowSection, UserSummaryTemp>!
     private var followList = BehaviorRelay<[UserSummaryTemp]>(value: [])
+    var toggleEmptyView = BehaviorRelay<Bool>(value: false)
 
     var page = 0
     var hasNext = false
@@ -51,14 +52,6 @@ extension FollowViewModel {
         }
     }
     
-    struct Input { }
-    
-    struct Output { }
-    
-    func transform(input: Input) -> Output {
-        
-        return Output()
-    }
 }
 
 
@@ -94,6 +87,7 @@ extension FollowViewModel {
             
             self.followList.accept(data.followees.map { UserSummaryTemp(model: $0) })
             self.hasNext = data.paginationInfo?.hasNext ?? false
+            self.toggleEmptyView.accept(data.followees.isEmpty)
             
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
@@ -107,6 +101,7 @@ extension FollowViewModel {
             
             self.followList.accept(data.followers.map { UserSummaryTemp(model: $0) })
             self.hasNext = data.paginationInfo?.hasNext ?? false
+            self.toggleEmptyView.accept(data.followers.isEmpty)
             
         }, onFailure: { error in
             print("\(#function) Error: \(error)")

@@ -72,8 +72,13 @@ class FollowViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        
+        self.viewModel?.toggleEmptyView.observe(on: MainScheduler.instance)
+            .subscribe(onNext: { data in
+                self.toggleEmptyView(isEmpty: data)
+            }).disposed(by: disposeBag)
     }
+    
+    
 }
 
 // MARK: TableView Configuration
@@ -118,6 +123,19 @@ extension FollowViewController {
         
         viewModel?.configureTableViewSnapshot()
     }
+    
+    private func toggleEmptyView(isEmpty: Bool) {
+        
+        tableView.backgroundView = WEmptyView(type: .alarm)
+        tableView.backgroundView?.isHidden = true
+        
+        if isEmpty {
+            self.tableView.backgroundView?.isHidden = false
+        } else {
+            self.tableView.backgroundView?.isHidden = true
+        }
+    }
+
 }
 
 // MARK: TableView Delegate
