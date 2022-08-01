@@ -15,7 +15,7 @@ class ProfileEditViewModel: ViewModelType {
     private let profileUseCase: ProfileUseCase
     private let disposeBag = DisposeBag()
     
-    var alertText = PublishSubject<String>()
+    var alertText = PublishRelay<String>()
     var userDetail = BehaviorRelay<UserDetail>(value: UserDetail.defaultData)
     var userUpdate = PublishRelay<UserUpdate>()
     
@@ -33,7 +33,7 @@ class ProfileEditViewModel: ViewModelType {
             
             guard let name = update.name?.count else { return }
             if name < 2 {
-                PublishRelay<String>.just("닉네임은 최소 2글자 이상이어야 합니다.").bind(to: self.alertText).disposed(by: self.disposeBag)
+                self.alertText.accept("닉네임은 최소 2글자 이상이어야 합니다.")
             }
             
         }).disposed(by: disposeBag)
