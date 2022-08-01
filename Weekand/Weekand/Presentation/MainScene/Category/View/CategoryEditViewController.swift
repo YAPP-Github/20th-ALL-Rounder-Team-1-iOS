@@ -33,11 +33,7 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
     }
     
     var defaultOpenType: CategoryOpenType = .allOpen
-    var selectedColor: Color = Constants.colors[0][0] {
-        didSet {
-            colorObservable.accept(self.selectedColor)
-        }
-    }
+    var selectedColor: Color = Constants.colors[0][0] 
     
     lazy var openTypeObservable = BehaviorRelay<CategoryOpenType>(value: defaultOpenType)
     lazy var colorObservable = BehaviorRelay<Color>(value: selectedColor)
@@ -85,6 +81,7 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
         
         self.colorObservable.bind { color in
             self.colorStackView.colorView.backgroundColor = UIColor(hex: color.hexCode)
+            self.selectedColor = color
         }
         .disposed(by: disposeBag)
         
