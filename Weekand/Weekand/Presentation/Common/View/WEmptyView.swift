@@ -9,12 +9,21 @@ import UIKit
 
 class WEmptyView: UIView {
     
-    let logoView = UIImageView()
+    let logoView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+    }
     
     lazy var namelabel = WMultiLineTextLabel().then {
         $0.textColor = UIColor.gray400
         $0.font = WFont.body1()
         $0.textAlignment = .center
+    }
+    
+    lazy var stack = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = 16
+        $0.distribution = .fill
+        $0.alignment = .center
     }
     
     override init(frame: CGRect) {
@@ -26,21 +35,20 @@ class WEmptyView: UIView {
     }
     
     func setUpView() {
-        self.addSubview(logoView)
-        self.addSubview(namelabel)
-        
-        let screenWidth = UIScreen.main.bounds.width
-        let screenHeight = UIScreen.main.bounds.height
+        [logoView, namelabel].forEach { stack.addArrangedSubview($0) }
         
         logoView.snp.makeConstraints { make in
-            make.top.equalTo(screenHeight/2 - 150)
-            make.leading.equalTo(screenWidth/2 - 35)
+            make.width.equalTo(60)
+        }
+            
+        self.addSubview(stack)
+        stack.setContentHuggingPriority(.required, for: .vertical)
+        stack.snp.makeConstraints { make in
+            make.centerY.equalToSuperview().offset(-60)
+            make.left.right.equalToSuperview()
+            make.height.lessThanOrEqualToSuperview()
         }
         
-        namelabel.snp.makeConstraints { make in
-            make.top.equalTo(logoView.snp.bottom).offset(20)
-            make.centerX.equalTo(logoView.snp.centerX)
-        }
     }
     
     init(type: EmptySceneType) {
