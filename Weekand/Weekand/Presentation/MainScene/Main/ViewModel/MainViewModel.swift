@@ -158,9 +158,14 @@ extension MainViewModel {
         }).disposed(by: disposeBag)
         
         input.didTapScheduleCell.subscribe(onNext: { (scheduleId, schduleStatus) in
-            self.coordinator?.showScheduleDetailScene(scheduleId: scheduleId,
-                                                      schduleStatus: schduleStatus,
-                                                      requestDate: self.currentDate)
+            if self.isMySchedule {
+                self.coordinator?.showScheduleDetailScene(scheduleId: scheduleId,
+                                                          schduleStatus: schduleStatus,
+                                                          requestDate: self.currentDate)
+            } else {
+                self.coordinator?.showFollowerScheduleDetail(scheduleId: scheduleId,
+                                                             requestDate: self.currentDate)
+            }
         }).disposed(by: disposeBag)
         
         return Output(
