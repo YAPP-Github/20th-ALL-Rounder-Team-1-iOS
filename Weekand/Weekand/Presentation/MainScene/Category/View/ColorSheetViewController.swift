@@ -170,15 +170,3 @@ extension ColorSheetViewController {
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
-
-import SwiftUI
-#if canImport(SwiftUI) && DEBUG
-
-struct ColorSheetViewControllerPreview: PreviewProvider {
-    static var previews: some View {
-        Group {
-            ColorSheetViewController().showPreview(.iPhone11Pro)
-        }
-    }
-}
-#endif

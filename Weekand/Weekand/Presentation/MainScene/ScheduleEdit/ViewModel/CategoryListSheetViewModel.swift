@@ -41,10 +41,10 @@ extension CategoryListSheetViewModel {
         input.selectedCategory.subscribe(onNext: { [weak self] category in
             if let coordinator = self?.coordinator as? ScheduleAddCoordinator {
                 coordinator.sendCategoryFromSheet(category: category)
-                coordinator.finish()
+                coordinator.navigationController.dismiss(animated: true)
             } else if let coordinator = self?.coordinator as? ScheduleModifyCoordinator {
                 coordinator.sendCategoryFromSheet(category: category)
-                coordinator.finish()
+                coordinator.navigationController.dismiss(animated: true)
             }
         })
         .disposed(by: disposeBag)
