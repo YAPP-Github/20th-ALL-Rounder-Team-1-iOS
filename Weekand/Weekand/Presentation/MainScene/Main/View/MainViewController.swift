@@ -11,7 +11,6 @@ import Then
 import RxSwift
 import RxGesture
 import RxCocoa
-import SwiftUI
 
 class MainViewController: UIViewController {
         
@@ -227,6 +226,7 @@ extension MainViewController: UICollectionViewDelegate {
 extension MainViewController: MainCalendarDelegate {
     func didSelectCalendar(date: Date) {
         viewModel?.dateChanged(date: date)
+        currentDate = date
     }
 }
 
