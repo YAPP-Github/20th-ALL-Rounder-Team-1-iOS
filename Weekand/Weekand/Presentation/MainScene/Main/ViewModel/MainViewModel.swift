@@ -25,7 +25,7 @@ class MainViewModel: ViewModelType {
     
     // Diffable Data Source
     var collectionViewDataSource: UICollectionViewDiffableDataSource<MainSection, FollowingUser>!
-    var tableViewDataSource: UITableViewDiffableDataSource<MainSection, ScheduleMain>!
+    var tableViewDataSource: MainScheduleDataSource!
     
     // View와 바인딩되는 Observables
     public var userSummary = BehaviorRelay<UserSummary>(value: UserSummary.defaultData)
@@ -294,7 +294,7 @@ extension MainViewModel {
                 } else {
                     snapshot.appendItems(data, toSection: .main)
                 }
-                self.collectionViewDataSource.apply(snapshot)
+                self.collectionViewDataSource.apply(snapshot, animatingDifferences: false, completion: nil)
             }
             
         }).disposed(by: disposeBag)

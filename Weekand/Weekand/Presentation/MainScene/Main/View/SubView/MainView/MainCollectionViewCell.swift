@@ -38,6 +38,13 @@ class MainCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        profileImageView.image = nil
+        nameLabel.text = ""
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
@@ -77,11 +84,19 @@ extension MainCollectionViewCell {
         
         if let imagePath = imagePath {
             DispatchQueue.global().async {
-                guard let imageURL = URL(string: imagePath) else { return }
-                guard let imageData = try? Data(contentsOf: imageURL) else { return }
-                
-                DispatchQueue.main.async {
-                    self.profileImageView.image = UIImage(data: imageData)
+                if let cachedImage = ImageCacheManager.shared.loadCachedData(for: imagePath) {
+                    DispatchQueue.main.async {
+                        self.profileImageView.image = cachedImage
+                    }
+                } else {
+                    guard let imageURL = URL(string: imagePath) else { return }
+                    guard let imageData = try? Data(contentsOf: imageURL) else { return }
+                    guard let image = UIImage(data: imageData) else { return }
+                    
+                    ImageCacheManager.shared.setCacheData(of: image, for: imagePath)
+                    DispatchQueue.main.async {
+                        self.profileImageView.image = image
+                    }
                 }
             }
         }

@@ -16,11 +16,6 @@ class SignUpTermsViewController: UIViewController {
     private let disposeBag = DisposeBag()
     var viewModel: SignUpTermsViewModel?
     
-    lazy var wholeAgreeStackView = UIStackView().then {
-        $0.axis = .horizontal
-        $0.spacing = 10
-    }
-    
     lazy var wholeAgreecheckBoxButton = WCheckBox(isChecked: false)
     
     lazy var wholeAgreeLabel = WTitleLabel().then {
@@ -98,17 +93,22 @@ class SignUpTermsViewController: UIViewController {
     }
     
     private func configureUI() {
-        view.addSubview(wholeAgreeStackView)
-        wholeAgreeStackView.addArrangedSubview(wholeAgreecheckBoxButton)
-        wholeAgreeStackView.addArrangedSubview(wholeAgreeLabel)
-        wholeAgreeStackView.snp.makeConstraints { make in
+        view.addSubview(wholeAgreecheckBoxButton)
+        
+        wholeAgreecheckBoxButton.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(50)
             make.leading.equalToSuperview().offset(30)
         }
         
+        view.addSubview(wholeAgreeLabel)
+        wholeAgreeLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(50)
+            make.leading.equalTo(wholeAgreecheckBoxButton.snp.trailing).offset(10)
+        }
+        
         view.addSubview(wholeAgreeInformLabel)
         wholeAgreeInformLabel.snp.makeConstraints { make in
-            make.top.equalTo(wholeAgreeStackView.snp.bottom).offset(10)
+            make.top.equalTo(wholeAgreeLabel.snp.bottom).offset(10)
             make.leading.equalTo(wholeAgreeLabel.snp.leading)
         }
         
@@ -232,4 +232,3 @@ class SignUpTermsViewController: UIViewController {
         let _ = viewModel.transform(input: input)
     }
 }
-

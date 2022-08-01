@@ -96,6 +96,8 @@
 		7DF9688A284DF2EB00CE077E /* MainViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF96889284DF2EB00CE077E /* MainViewHeader.swift */; };
 		7DF9688C284E019A00CE077E /* MainCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9688B284E019A00CE077E /* MainCalendarView.swift */; };
 		E8BDADFB0F95046E8D0F4BE0 /* Pods_Weekand.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */; };
+		F307828428980F9D0080D857 /* MainScheduleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F307828328980F9D0080D857 /* MainScheduleDataSource.swift */; };
+		F30782862898157E0080D857 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30782852898157E0080D857 /* ImageCacheManager.swift */; };
 		F30EBCCD288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCCC288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift */; };
 		F30EBCD328807B2600ECB48D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCD228807B2600ECB48D /* API.swift */; };
 		F30EBCD528807C9400ECB48D /* CategoryOpenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EBCD428807C9400ECB48D /* CategoryOpenType.swift */; };
@@ -217,6 +219,7 @@
 		F38AE4A028957ACA00E5E261 /* AlertPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE49F28957AC900E5E261 /* AlertPopupViewModel.swift */; };
 		F38AE4A228957AED00E5E261 /* AlertPopupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4A128957AED00E5E261 /* AlertPopupCoordinator.swift */; };
 		F38AE4A428959C1D00E5E261 /* OpenTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4A328959C1D00E5E261 /* OpenTypeCollectionViewCell.swift */; };
+		F38AE4A62897ED5B00E5E261 /* CompleteStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4A52897ED5B00E5E261 /* CompleteStatus.swift */; };
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
@@ -376,6 +379,8 @@
 		7DF96889284DF2EB00CE077E /* MainViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewHeader.swift; sourceTree = "<group>"; };
 		7DF9688B284E019A00CE077E /* MainCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCalendarView.swift; sourceTree = "<group>"; };
 		CE9D2BB6CD51E7E4E27DE406 /* Pods_Weekand.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weekand.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F307828328980F9D0080D857 /* MainScheduleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScheduleDataSource.swift; sourceTree = "<group>"; };
+		F30782852898157E0080D857 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		F30EBCCC288069A800ECB48D /* ScheduleCategoryOpenType+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScheduleCategoryOpenType+extension.swift"; sourceTree = "<group>"; };
 		F30EBCD0288078DF00ECB48D /* CreateCategory.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CreateCategory.graphql; sourceTree = "<group>"; };
 		F30EBCD228807B2600ECB48D /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -521,6 +526,7 @@
 		F38AE49F28957AC900E5E261 /* AlertPopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPopupViewModel.swift; sourceTree = "<group>"; };
 		F38AE4A128957AED00E5E261 /* AlertPopupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPopupCoordinator.swift; sourceTree = "<group>"; };
 		F38AE4A328959C1D00E5E261 /* OpenTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTypeCollectionViewCell.swift; sourceTree = "<group>"; };
+		F38AE4A52897ED5B00E5E261 /* CompleteStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteStatus.swift; sourceTree = "<group>"; };
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
@@ -686,6 +692,7 @@
 			children = (
 				7D76AEB3284458C2001C668D /* MainViewController.swift */,
 				7DD71A7F286C8E88002D1DCF /* AlarmViewController.swift */,
+				F307828328980F9D0080D857 /* MainScheduleDataSource.swift */,
 				7DBC4C682876B73000F0AC86 /* Sheet */,
 				7DA4AB742858669E009E91FB /* SubView */,
 			);
@@ -731,6 +738,7 @@
 				7D8129E028894BB8006C0A5D /* ProfileSetting.swift */,
 				F336F3B9288A9676005B57A0 /* ScheduleWeek.swift */,
 				7D9BC0FB2896543E00AC7F11 /* FollowInformationType.swift */,
+				F38AE4A52897ED5B00E5E261 /* CompleteStatus.swift */,
 			);
 			name = Enum;
 			sourceTree = "<group>";
@@ -1362,6 +1370,7 @@
 			children = (
 				F336F3EB28900EB5005B57A0 /* WDateFormatter.swift */,
 				F336F4092891239A005B57A0 /* WRepeatTextManager.swift */,
+				F30782852898157E0080D857 /* ImageCacheManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1808,6 +1817,7 @@
 				F336F41F2891B9C6005B57A0 /* ScheduleInformationStackView.swift in Sources */,
 				F3C8E0A12872EFF400B0916A /* CategoryStackView.swift in Sources */,
 				7DBC4C612876AE7800F0AC86 /* StickerAddSheetViewModel.swift in Sources */,
+				F307828428980F9D0080D857 /* MainScheduleDataSource.swift in Sources */,
 				F3B00275287D68FA00D6BB1D /* SignUpModel.swift in Sources */,
 				7DE60AF72892545000F85A05 /* StickerSummary.swift in Sources */,
 				7DBC4C5B28769C2600F0AC86 /* StickerAddSheet.swift in Sources */,
@@ -1848,6 +1858,7 @@
 				F323FEF0287636B500DFD8FD /* SortDropDownCell.swift in Sources */,
 				F30EBCD528807C9400ECB48D /* CategoryOpenType.swift in Sources */,
 				7D6E9972283BA18E006F5FC7 /* WBottmButton.swift in Sources */,
+				F30782862898157E0080D857 /* ImageCacheManager.swift in Sources */,
 				F3C8E0B72873598A00B0916A /* MemoStackView.swift in Sources */,
 				F336F41C2891B437005B57A0 /* ScheduleDetailUseCase.swift in Sources */,
 				7D0ED2BE287D064400DE3215 /* EmojiTableViewCell.swift in Sources */,
@@ -2015,6 +2026,7 @@
 				F3DD022728466E3300AD9240 /* SignUpCoordinator.swift in Sources */,
 				7DB5E13E284B4E3C00DBB7EA /* MainViewModel.swift in Sources */,
 				7DD71A89286C9ACC002D1DCF /* AlarmTableViewCell.swift in Sources */,
+				F38AE4A62897ED5B00E5E261 /* CompleteStatus.swift in Sources */,
 				F336F3CB288BCD59005B57A0 /* TokenAddingInterceptor.swift in Sources */,
 				F336F3FA28902D99005B57A0 /* ScheduleRule.swift in Sources */,
 				F30EBCF528851EC400ECB48D /* InformationSheetController.swift in Sources */,
