@@ -99,13 +99,19 @@ class UserTableViewCell: UITableViewCell {
         goalLabel.text = goal
         
         DispatchQueue.global().async {
-            guard let url = URL(string: imageUrl),
-                  let data = try? Data(contentsOf: url) else {
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self.profileImageView.image = UIImage(data: data)
+            if let cachedImage = ImageCacheManager.shared.loadCachedData(for: imageUrl) {
+                DispatchQueue.main.async {
+                    self.profileImageView.image = cachedImage
+                }
+            } else {
+                guard let imageURL = URL(string: imageUrl) else { return }
+                guard let imageData = try? Data(contentsOf: imageURL) else { return }
+                guard let image = UIImage(data: imageData) else { return }
+                
+                ImageCacheManager.shared.setCacheData(of: image, for: imageUrl)
+                DispatchQueue.main.async {
+                    self.profileImageView.image = image
+                }
             }
         }
     }
