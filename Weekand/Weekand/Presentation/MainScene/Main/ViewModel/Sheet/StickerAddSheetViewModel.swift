@@ -14,6 +14,7 @@ enum StickerSection {
 
 class StickerAddSheetViewModel: ViewModelType {
 
+    let coordinator: MainCoordinator
     private let mainUseCase: MainUseCase
     private let disposeBag = DisposeBag()
     
@@ -25,7 +26,8 @@ class StickerAddSheetViewModel: ViewModelType {
     
     var stickerCreated = PublishSubject<Bool>()
     
-    init(mainUseCase: MainUseCase, id: String, date: Date) {
+    init(mainCoordinator: MainCoordinator, mainUseCase: MainUseCase, id: String, date: Date) {
+        self.coordinator = mainCoordinator
         self.mainUseCase = mainUseCase
         self.id = id
         self.date = date
@@ -55,7 +57,10 @@ extension StickerAddSheetViewModel {
     func transform(input: Input) -> Output {
         
         input.stickerSelected.subscribe(onNext: { emoji in
-            self.createSticker(id: self.id, emoij: emoji, date: self.date)
+            self.createSticker(id: self.id, emoij: emoji, date: self.date) {
+                self.coordinator.dismissStickerAddSheet()
+            }
+            
         }).disposed(by: disposeBag)
         
         return Output(stickerCreated: stickerCreated.asObservable())
@@ -64,10 +69,10 @@ extension StickerAddSheetViewModel {
 
 extension StickerAddSheetViewModel {
     
-    func createSticker(id: String, emoij: Emoji, date: Date) {
+    func createSticker(id: String, emoij: Emoji, date: Date, completion: @escaping () -> Void) {
         self.mainUseCase.createSticker(id: id, sticker: emoij, date: date).subscribe(onSuccess: { success in
             PublishSubject<Bool>.just(success).bind(to: self.stickerCreated).disposed(by: self.disposeBag)
-            
+            completion()
 
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
