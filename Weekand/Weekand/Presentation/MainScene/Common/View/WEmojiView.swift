@@ -55,7 +55,6 @@ class WEmojiView: UIView {
             make.height.lessThanOrEqualTo(19)
         }
         
-        
     }
 
     // MARK: Initializer
@@ -76,11 +75,15 @@ extension WEmojiView {
     
     /// Emoji를 배열로 받아 순서대로 표시해준다.
     func setEmoji(emojiOrder: [Emoji]) {
-        
+    
         stackView.spacing = 9.5 - CGFloat((4 - emojiOrder.count) * 15)
 
         let imageViewSet = emojiStack.arrangedSubviews.reversed()
         let emojiSet = emojiOrder.reversed()
+        
+        for view in imageViewSet {
+            (view as? UIImageView)?.image = nil
+        }
         
         for (view, emoji) in zip(imageViewSet, emojiSet) {
             

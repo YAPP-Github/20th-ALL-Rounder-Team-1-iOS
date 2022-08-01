@@ -43,14 +43,10 @@ final class MainUseCase {
     }
     
     /// 일정 리스트
-    func scheduleList(date: Date, id: String?) -> Single<[ScheduleMain]> {
+    func scheduleList(date: Date, id: String?) -> Single<ScheduleListQuery.Data.Schedule> {
         return NetWork.shared
             .fetch(query: ScheduleListQuery(date: date.toTimestamp(), id: id), cachePolicy: .fetchIgnoringCacheCompletely)
-            .map {
-                $0.schedules.schedules.map {
-                    ScheduleMain(model: $0)
-                }
-            }
+            .map { $0.schedules }
             .asSingle()
     }
     

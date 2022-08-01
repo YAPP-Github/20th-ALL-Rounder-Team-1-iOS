@@ -31,6 +31,10 @@ class MainViewModel: ViewModelType {
     
     private var isMyProfileAdded: Bool = false  // 내 정보가 팔로잉 CollectionView에 추가되었는지 식별
     
+    // Pagination Info
+    var collectionViewHasNext: Bool = false
+    var tableViewHasNext: Bool = false
+    
     // Calendar 버튼 관련 Obsrvables
     private let calendarDate = BehaviorRelay<Date>(value: Date())
     private let scrollWeek = PublishRelay<Bool>()
@@ -347,9 +351,11 @@ extension MainViewModel {
     /// 특정 유저의 일정
     private func getScheduleList(date: Date, id: String?) {
         
-        self.mainUseCase.scheduleList(date: date, id: id).subscribe(onSuccess: { scheduleData in
-            PublishRelay<[ScheduleMain]>.just(scheduleData).bind(to: self.scheduleList).disposed(by: self.disposeBag)
-            print("Schedule: \(scheduleData)")
+        self.mainUseCase.scheduleList(date: date, id: id).subscribe(onSuccess: { data in
+            
+            self.tableViewHasNext = data.paginationInfo.hasNext
+            
+            self.scheduleList.accept(data.schedules.map { ScheduleMain.init(model: $0) })
 
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
