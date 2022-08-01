@@ -22,6 +22,7 @@ class AlarmViewModel {
     var tableViewDataSource: UITableViewDiffableDataSource<AlarmSection, Alarm>!
     
     private var alarmList = BehaviorRelay<[Alarm]>(value: [])
+    var toggleEmptyView = BehaviorRelay<Bool>(value: false)
     var page = 0
     var hasNext = false
     
@@ -66,6 +67,8 @@ extension AlarmViewModel {
             
             self.alarmList.accept(data.notifications.map { Alarm(model: $0) })
             self.hasNext = data.paginationInfo.hasNext
+            
+            self.toggleEmptyView.accept(data.notifications.isEmpty)
             
         }, onFailure: { error in
             print("\(#function) Error: \(error)")

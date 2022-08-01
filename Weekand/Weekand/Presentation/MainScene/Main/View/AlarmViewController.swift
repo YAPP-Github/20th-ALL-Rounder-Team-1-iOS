@@ -39,7 +39,10 @@ class AlarmViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        
+        self.viewModel?.toggleEmptyView.observe(on: MainScheduler.instance)
+            .subscribe(onNext: { data in
+                self.toggleEmptyView(isEmpty: data)
+            }).disposed(by: disposeBag)
     }
 }
 
@@ -76,13 +79,21 @@ extension AlarmViewController {
             return cell
         })
         
-        let snapshot = viewModel?.tableViewDataSource.snapshot()
-        if snapshot?.itemIdentifiers.isEmpty ?? true {
-            self.tableView.backgroundView?.isHidden = false
-        }
-        
         viewModel?.configureTableViewSnapshot()
     }
+    
+    private func toggleEmptyView(isEmpty: Bool) {
+        
+        tableView.backgroundView = WEmptyView(type: .alarm)
+        tableView.backgroundView?.isHidden = true
+        
+        if isEmpty {
+            self.tableView.backgroundView?.isHidden = false
+        } else {
+            self.tableView.backgroundView?.isHidden = true
+        }
+    }
+
     
 }
 
