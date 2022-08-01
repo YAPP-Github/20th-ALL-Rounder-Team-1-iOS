@@ -7,10 +7,17 @@
 
 import Foundation
 
-struct Alarm {
+struct Alarm: Hashable {
+    static func == (lhs: Alarm, rhs: Alarm) -> Bool {
+      lhs.uuid == rhs.uuid
+    }
     
+    func hash(into hasher: inout Hasher) {
+      hasher.combine(uuid)
+    }
+
+    let uuid = UUID()
     let id: String
     let message: String
     let type: String
-    
 }

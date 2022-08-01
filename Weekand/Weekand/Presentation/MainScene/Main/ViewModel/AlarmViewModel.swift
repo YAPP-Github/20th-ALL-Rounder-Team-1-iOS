@@ -19,9 +19,9 @@ class AlarmViewModel {
     private let mainUseCase: MainUseCase
     let disposeBag = DisposeBag()
     
-    var tableViewDataSource: UITableViewDiffableDataSource<AlarmSection, String>!
+    var tableViewDataSource: UITableViewDiffableDataSource<AlarmSection, Alarm>!
     
-    private var alarmList = BehaviorRelay<[String]>(value: [])
+    private var alarmList = BehaviorRelay<[Alarm]>(value: [])
     
     init(mainUseCase: MainUseCase) {
         
@@ -38,7 +38,7 @@ extension AlarmViewModel {
         
         self.alarmList.subscribe(onNext: { data in
             
-            var snapshot = NSDiffableDataSourceSnapshot<AlarmSection, String>()
+            var snapshot = NSDiffableDataSourceSnapshot<AlarmSection, Alarm>()
             snapshot.appendSections([.main])
             snapshot.appendItems(data, toSection: .main)
             self.tableViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
@@ -53,8 +53,8 @@ extension AlarmViewModel {
     func getAlarmList(page: Int, size: Int) {
         self.mainUseCase.notification(page: page, size: size).subscribe(onSuccess: { notifications in
             
-            let data = notifications.map { $0.message }
-            BehaviorRelay<[String]>.just(data).bind(to: self.alarmList).disposed(by: self.disposeBag)
+            self.alarmList.accept(notifications)
+            
             
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
