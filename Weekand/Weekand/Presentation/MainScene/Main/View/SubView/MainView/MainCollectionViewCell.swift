@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import RxSwift
 
 /// 메인화면 가장 위쪽 팔로잉 목록 CollectionView에 쓰이는 Cell
 class MainCollectionViewCell: UICollectionViewCell {
     
     var dataId: String?
     static let identifier = "MainCollectionViewCell"
+    var disposeBag = DisposeBag()
     
     lazy var profileImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFill
@@ -37,6 +39,10 @@ class MainCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
