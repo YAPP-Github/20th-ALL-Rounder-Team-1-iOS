@@ -20,6 +20,7 @@ class SignUpCoordinator: Coordinator {
         self.signUpViewController = SignUpViewController()
         self.signUpUseCase = SignUpUseCase()
         self.navigationController = UINavigationController(rootViewController: signUpViewController)
+        self.navigationController.navigationBar.tintColor = .gray400
         self.navigationController.modalPresentationStyle = .overFullScreen
     }
     

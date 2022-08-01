@@ -183,14 +183,3 @@ extension SignUpAddInfomationViewController: UICollectionViewDelegate {
         }
     }
 }
-
-#if canImport(SwiftUI) && DEBUG
-
-struct AddInformationViewControllerPreview: PreviewProvider {
-    static var previews: some View {
-        Group {
-            SignUpAddInfomationViewController().showPreview(.iPhone8)
-        }
-    }
-}
-#endif
