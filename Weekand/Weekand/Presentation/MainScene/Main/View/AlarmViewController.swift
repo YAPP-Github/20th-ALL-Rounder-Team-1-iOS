@@ -14,7 +14,6 @@ class AlarmViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     var tableView: UITableView!
-    var requestListCount: Int = 20
     var refreshListCount: Int = 15
     
     override func viewDidLoad() {

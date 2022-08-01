@@ -18,11 +18,10 @@ final class MainUseCase {
     }
     
     /// 내가 팔로우하는 유저 목록
-    func followees(page: Int, size: Int) -> Single<[FollowingUser]> {
+    func followees(page: Int, size: Int) -> Single<FolloweesQuery.Data.Followee> {
         return NetWork.shared.fetch(query: FolloweesQuery(page: page, size: size), cachePolicy: .fetchIgnoringCacheCompletely)
-            .map {
-                $0.followees.followees.map { FollowingUser(model: $0) }
-            }.asSingle()
+            .map { $0.followees }
+            .asSingle()
     }
     
     /// 메인에 표시되는 유저 정보

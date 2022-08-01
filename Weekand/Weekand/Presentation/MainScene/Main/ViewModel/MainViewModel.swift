@@ -19,6 +19,10 @@ class MainViewModel: ViewModelType {
     private let mainUseCase: MainUseCase
     private let disposeBag = DisposeBag()
     
+    // pagination info
+    var page = 0
+    var hasNext = false
+    
     // Diffable Data Source
     var collectionViewDataSource: UICollectionViewDiffableDataSource<MainSection, FollowingUser>!
     var tableViewDataSource: UITableViewDiffableDataSource<MainSection, ScheduleMain>!
@@ -61,7 +65,7 @@ class MainViewModel: ViewModelType {
         self.resetCollectionViewSnapshot()
         
         self.getMyUserSummary()
-        self.getFollowingUser()
+        self.getFollowingUser(page: page, size: 20)
         self.getUserSummary(id: currentUserId)
         self.getScheduleList(date: currentDate, id: currentUserId)
     }
@@ -293,6 +297,7 @@ extension MainViewModel {
         }).disposed(by: disposeBag)
     }
     
+    
     func configureTableViewSnapshot(animatingDifferences: Bool = false) {
         
         self.scheduleList.subscribe(onNext: { data in
@@ -311,13 +316,24 @@ extension MainViewModel {
 extension MainViewModel {
     
     /// 팔로우하는 사람 목록
-    private func getFollowingUser() {
-        self.mainUseCase.followees(page: 0, size: 20).subscribe(onSuccess: { following in
-            PublishRelay<[FollowingUser]>.just(following).bind(to: self.userFollowingList).disposed(by: self.disposeBag)
+    private func getFollowingUser(page: Int, size: Int) {
+        self.mainUseCase.followees(page: page, size: size).subscribe(onSuccess: { following in
+            
+            self.userFollowingList.accept(following.followees.map { FollowingUser(model: $0) })
+            self.hasNext = following.paginationInfo?.hasNext ?? false
+            
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
         }, onDisposed: nil)
         .disposed(by: disposeBag)
+    }
+    
+    func loadMoreFollowingUser() {
+        print("Try load more | Current: \(page) | hasNest: \(hasNext)")
+        if hasNext {
+            self.page += 1
+            self.getFollowingUser(page: page, size: 20)
+        }
     }
     
     /// 팔로잉 리스트에 본인 프로필을 올리기 위한 작업
