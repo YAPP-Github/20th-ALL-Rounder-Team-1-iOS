@@ -217,6 +217,7 @@
 		F38AE4A028957ACA00E5E261 /* AlertPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE49F28957AC900E5E261 /* AlertPopupViewModel.swift */; };
 		F38AE4A228957AED00E5E261 /* AlertPopupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4A128957AED00E5E261 /* AlertPopupCoordinator.swift */; };
 		F38AE4A428959C1D00E5E261 /* OpenTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4A328959C1D00E5E261 /* OpenTypeCollectionViewCell.swift */; };
+		F38AE4A62897ED5B00E5E261 /* CompleteStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AE4A52897ED5B00E5E261 /* CompleteStatus.swift */; };
 		F391B42D2837D4D1004E7B06 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B42C2837D4D0004E7B06 /* Preview.swift */; };
 		F391B431283BE78C004E7B06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B430283BE78B004E7B06 /* BaseViewController.swift */; };
 		F391B434283C11A1004E7B06 /* WTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F391B433283C119F004E7B06 /* WTitleLabel.swift */; };
@@ -521,6 +522,7 @@
 		F38AE49F28957AC900E5E261 /* AlertPopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPopupViewModel.swift; sourceTree = "<group>"; };
 		F38AE4A128957AED00E5E261 /* AlertPopupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPopupCoordinator.swift; sourceTree = "<group>"; };
 		F38AE4A328959C1D00E5E261 /* OpenTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTypeCollectionViewCell.swift; sourceTree = "<group>"; };
+		F38AE4A52897ED5B00E5E261 /* CompleteStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteStatus.swift; sourceTree = "<group>"; };
 		F391B42C2837D4D0004E7B06 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		F391B430283BE78B004E7B06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F391B433283C119F004E7B06 /* WTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTitleLabel.swift; sourceTree = "<group>"; };
@@ -731,6 +733,7 @@
 				7D8129E028894BB8006C0A5D /* ProfileSetting.swift */,
 				F336F3B9288A9676005B57A0 /* ScheduleWeek.swift */,
 				7D9BC0FB2896543E00AC7F11 /* FollowInformationType.swift */,
+				F38AE4A52897ED5B00E5E261 /* CompleteStatus.swift */,
 			);
 			name = Enum;
 			sourceTree = "<group>";
@@ -2015,6 +2018,7 @@
 				F3DD022728466E3300AD9240 /* SignUpCoordinator.swift in Sources */,
 				7DB5E13E284B4E3C00DBB7EA /* MainViewModel.swift in Sources */,
 				7DD71A89286C9ACC002D1DCF /* AlarmTableViewCell.swift in Sources */,
+				F38AE4A62897ED5B00E5E261 /* CompleteStatus.swift in Sources */,
 				F336F3CB288BCD59005B57A0 /* TokenAddingInterceptor.swift in Sources */,
 				F336F3FA28902D99005B57A0 /* ScheduleRule.swift in Sources */,
 				F30EBCF528851EC400ECB48D /* InformationSheetController.swift in Sources */,

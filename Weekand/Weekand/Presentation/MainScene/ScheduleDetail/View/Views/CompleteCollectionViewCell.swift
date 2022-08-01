@@ -51,16 +51,6 @@ class CompleteCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(completeStatus: CompleteStatus) {
-        switch completeStatus {
-        case .complete:
-            label.text = "완료"
-        case .incomplete:
-            label.text = "미완료"
-        }
+        self.label.text = completeStatus.description
     }
-    
-}
-
-enum CompleteStatus {
-    case complete, incomplete
 }

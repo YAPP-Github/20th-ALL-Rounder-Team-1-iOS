@@ -48,9 +48,9 @@ class ScheduleCompleteToolBar: UIToolbar {
         
         let layout = UICollectionViewCompositionalLayout { (_: Int,
             _ : NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
-            
+            let screenWidth = UIScreen.main.bounds.width
             let collectionLayoutSize = NSCollectionLayoutSize(
-                                widthDimension: .absolute(150),
+                widthDimension: .absolute(screenWidth * 0.4),
                                 heightDimension: .absolute(50))
             let item = NSCollectionLayoutItem(layoutSize: collectionLayoutSize)
             item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(5), top: nil, trailing: .fixed(5), bottom: nil)
@@ -66,6 +66,7 @@ class ScheduleCompleteToolBar: UIToolbar {
         completeCollecitonView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         completeCollecitonView.isScrollEnabled = false
         completeCollecitonView.allowsMultipleSelection = false
+        completeCollecitonView.backgroundColor = .clear
         completeCollecitonView.register(CompleteCollectionViewCell.self, forCellWithReuseIdentifier: CompleteCollectionViewCell.cellIdentifier)
     }
     
@@ -88,11 +89,13 @@ class ScheduleCompleteToolBar: UIToolbar {
     }
     
     func configureUI() {
+        let screenWidth = UIScreen.main.bounds.width
+        let sideSpacing = screenWidth * 0.064
         self.addSubview(completeCollecitonView)
         
         completeCollecitonView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
-            make.trailing.leading.equalToSuperview().inset(24)
+            make.trailing.leading.equalToSuperview().inset(sideSpacing)
             make.height.equalTo(60)
         }
     }
