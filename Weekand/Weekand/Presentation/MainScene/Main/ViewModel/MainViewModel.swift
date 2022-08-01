@@ -291,7 +291,7 @@ extension MainViewModel {
                 } else {
                     snapshot.appendItems(data, toSection: .main)
                 }
-                self.collectionViewDataSource.apply(snapshot)
+                self.collectionViewDataSource.apply(snapshot, animatingDifferences: false, completion: nil)
             }
             
         }).disposed(by: disposeBag)

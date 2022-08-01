@@ -36,6 +36,13 @@ class MainCollectionViewCell: UICollectionViewCell {
             }
         }
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        profileImageView.image = nil
+        nameLabel.text = ""
+    }
 
     
     override init(frame: CGRect) {
