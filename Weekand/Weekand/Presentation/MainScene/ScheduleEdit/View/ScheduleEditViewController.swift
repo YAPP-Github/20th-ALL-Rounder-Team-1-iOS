@@ -58,7 +58,7 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
               let hour = components.hour else {
             return Date()
         }
-        if hour == 11,
+        if hour == 23,
            minutes > 0 {
             let addMinutes = 59 - minutes
             let calculateTime = currentCalendar.date(byAdding: .minute, value: addMinutes, to: currentTime) ?? Date()
