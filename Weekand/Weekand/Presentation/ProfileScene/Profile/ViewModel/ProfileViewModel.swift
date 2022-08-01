@@ -168,6 +168,7 @@ extension ProfileViewModel {
                 self.userName = userData.name
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
+            self.errorMessage.accept("\(error)")
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     }
@@ -179,7 +180,8 @@ extension ProfileViewModel {
             BehaviorRelay<ProfileButtonType>.just(.following).bind(to: self.buttonState).disposed(by: self.disposeBag)
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
-            BehaviorRelay<String?>.just("\(error)").bind(to: self.errorMessage).disposed(by: self.disposeBag)
+            self.errorMessage.accept("\(error)")
+            
         }, onDisposed: nil)
         .disposed(by: disposeBag)
 
@@ -192,7 +194,7 @@ extension ProfileViewModel {
 
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
-            BehaviorRelay<String?>.just("\(error)").bind(to: self.errorMessage).disposed(by: self.disposeBag)
+            self.errorMessage.accept("\(error)")
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     
