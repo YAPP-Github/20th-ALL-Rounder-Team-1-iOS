@@ -84,19 +84,17 @@ final class ProfileUseCase {
     }
     
     /// 특정 유저의 팔로잉 목록
-    func userFollowees(id: String, page: Int, size: Int) -> Single<[UserSummaryTemp]> {
+    func userFollowees(id: String, page: Int, size: Int) -> Single<UserFolloweesQuery.Data.Followee> {
         return NetWork.shared.fetch(query: UserFolloweesQuery(id: id, page: page, size: size), cachePolicy: .fetchIgnoringCacheCompletely)
-            .map {
-                $0.followees.followees.map { UserSummaryTemp(model: $0) }
-            }.asSingle()
+            .map { $0.followees }
+            .asSingle()
     }
     
     /// 특정 유저의 팔로워 목록
-    func userFollowers(id: String, page: Int, size: Int) -> Single<[UserSummaryTemp]> {
+    func userFollowers(id: String, page: Int, size: Int) -> Single<UserFollowersQuery.Data.Follower> {
         return NetWork.shared.fetch(query: UserFollowersQuery(id: id, page: page, size: size), cachePolicy: .fetchIgnoringCacheCompletely)
-            .map {
-                $0.followers.followers.map { UserSummaryTemp(model: $0) }
-            }.asSingle()
+            .map { $0.followers }
+            .asSingle()
     }
     
     /// 나를 팔로우하는 유저 팔로우 해제

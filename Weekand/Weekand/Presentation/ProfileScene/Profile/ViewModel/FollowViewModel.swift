@@ -26,6 +26,8 @@ class FollowViewModel: ViewModelType {
     var tableViewDataSource: UITableViewDiffableDataSource<FollowSection, UserSummaryTemp>!
     private var followList = BehaviorRelay<[UserSummaryTemp]>(value: [])
 
+    var page = 0
+    var hasNext = false
     
     init (coordinator: ProfileCoordinator, useCase: ProfileUseCase, id: String, userName: String, type: FollowInformationType) {
         self.coordinator = coordinator
@@ -65,12 +67,20 @@ extension FollowViewModel {
     
     func configureTableViewSnapshot(animatingDifferences: Bool = false) {
         
+        var snapshot = NSDiffableDataSourceSnapshot<FollowSection, UserSummaryTemp>()
+        snapshot.appendSections([.main])
+        self.tableViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+        
         self.followList.subscribe(onNext: { data in
+            var snapshot = self.tableViewDataSource.snapshot()
+            if let last = snapshot.itemIdentifiers.last {
+                snapshot.insertItems(data, afterItem: last)
+            } else {
+                snapshot.appendItems(data, toSection: .main)
+            }
             
-            var snapshot = NSDiffableDataSourceSnapshot<FollowSection, UserSummaryTemp>()
-            snapshot.appendSections([.main])
-            snapshot.appendItems(data, toSection: .main)
             self.tableViewDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+            
         }).disposed(by: self.disposeBag)
     }
 
@@ -82,7 +92,8 @@ extension FollowViewModel {
     func getFolloweeList(id: String, page: Int, size: Int) {
         self.profileUseCase.userFollowees(id: id, page: page, size: size).subscribe(onSuccess: { data in
             
-            self.followList.accept(data)
+            self.followList.accept(data.followees.map { UserSummaryTemp(model: $0) })
+            self.hasNext = data.paginationInfo?.hasNext ?? false
             
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
@@ -94,7 +105,8 @@ extension FollowViewModel {
     func getFollowerList(id: String, page: Int, size: Int) {
         self.profileUseCase.userFollowers(id: id, page: page, size: size).subscribe(onSuccess: { data in
             
-            self.followList.accept(data)
+            self.followList.accept(data.followers.map { UserSummaryTemp(model: $0) })
+            self.hasNext = data.paginationInfo?.hasNext ?? false
             
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
@@ -115,4 +127,13 @@ extension FollowViewModel {
             }, onDisposed: nil)
             .disposed(by: disposeBag)
     }
+    
+    func loadMoreFollowList() {
+        print("Try load more | Current: \(page) | hasNest: \(hasNext)")
+        if hasNext {
+            self.page += 1
+            self.getFollowList(page: page, size: 20)
+        }
+    }
+
 }

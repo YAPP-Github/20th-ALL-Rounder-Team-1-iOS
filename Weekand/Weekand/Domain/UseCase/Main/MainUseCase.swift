@@ -11,22 +11,17 @@ import RxSwift
 final class MainUseCase {
     
     /// 알람 목록
-    func notification(page: Int, size: Int) -> Single<[Alarm]> {
+    func notification(page: Int, size: Int) -> Single<NotificationQuery.Data.Notification> {
         return NetWork.shared.fetch(query: NotificationQuery(page: page, size: size), cachePolicy: .fetchIgnoringCacheCompletely)
-            .map {
-                $0.notifications.notifications.map {
-                    Alarm(id: $0.id, message: $0.message, type: $0.type.rawValue)
-                }
-            }
+            .map { $0.notifications }
             .asSingle()
     }
     
     /// 내가 팔로우하는 유저 목록
-    func followees(page: Int, size: Int) -> Single<[FollowingUser]> {
+    func followees(page: Int, size: Int) -> Single<FolloweesQuery.Data.Followee> {
         return NetWork.shared.fetch(query: FolloweesQuery(page: page, size: size), cachePolicy: .fetchIgnoringCacheCompletely)
-            .map {
-                $0.followees.followees.map { FollowingUser(model: $0) }
-            }.asSingle()
+            .map { $0.followees }
+            .asSingle()
     }
     
     /// 메인에 표시되는 유저 정보

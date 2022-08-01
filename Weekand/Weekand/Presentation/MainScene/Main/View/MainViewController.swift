@@ -17,6 +17,7 @@ class MainViewController: UIViewController {
     var viewModel: MainViewModel?
     let disposeBag = DisposeBag()
     
+    var collectionRefreshListCount: Int = 10
     var currentDate: Date = Date() {
         didSet {
             headerView.calendarView.selectDate(date: currentDate)
@@ -214,11 +215,23 @@ extension MainViewController {
 
 // MARK: CollectionViewCell Tap
 extension MainViewController: UICollectionViewDelegate {
+    
+    // selection
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! MainCollectionViewCell
         viewModel?.userChanged(id: cell.dataId)
         
         self.headerView.calendarView.editButton.isHidden = !(UserDataStorage.shared.userID == viewModel?.currentUserId)
+    }
+    
+    // pagination
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        guard let currentPage = viewModel?.page else { return }
+        
+        if indexPath.item == collectionRefreshListCount * (currentPage + 1) - 1 {
+            self.viewModel?.loadMoreFollowingUser()
+        }
     }
 }
 

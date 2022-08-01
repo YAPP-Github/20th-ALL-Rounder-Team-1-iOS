@@ -14,6 +14,7 @@ class AlarmViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     var tableView: UITableView!
+    var refreshListCount: Int = 15
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,10 +55,10 @@ extension AlarmViewController {
         
         tableView = UITableView()
         tableView.register(AlarmTableViewCell.self, forCellReuseIdentifier: AlarmTableViewCell.identifier)
+        tableView.delegate = self
         
         tableView.separatorStyle = .singleLine
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
-         
             
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
@@ -76,4 +77,15 @@ extension AlarmViewController {
         viewModel?.configureTableViewSnapshot()
     }
     
+}
+
+extension AlarmViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        guard let currentPage = viewModel?.page else { return }
+        
+        if indexPath.item == refreshListCount * (currentPage + 1) - 1 {
+            self.viewModel?.loadMoreAlarmList()
+        }
+    }
 }
