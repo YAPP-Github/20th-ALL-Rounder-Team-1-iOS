@@ -54,8 +54,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
-        // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        TokenManager.shared.reissue { result in
+            switch result {
+            case .success: break
+            case .failure(let error):
+                scene.inputViewController?.showAlert(titles: "알림", message: "네트워크 오류가 발생하였습니다.", deleteHandler: { _ in
+                    print(error)
+                })
+            }
+        }
     }
 
     func sceneWillResignActive(_ scene: UIScene) {

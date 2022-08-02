@@ -21,6 +21,19 @@ extension UIViewController {
         self.present(alert, animated: true)
     }
     
+    func showAlert(
+        titles: String,
+        message: String,
+        deleteHandler: @escaping (UIAlertAction) -> Void
+    ) {
+        let deleteAction = UIAlertAction(title: titles, style: .destructive, handler: deleteHandler)
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true)
+    }
+    
     func showActionSheet(
         titles: (String, String),
         message: String,
