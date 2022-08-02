@@ -84,7 +84,7 @@ class MainCoordinator: Coordinator {
     }
     
     func dismissStickerAddSheet() {
-        self.navigationController.popViewController(animated: true)
+        self.navigationController.dismiss(animated: true)
         self.mainViewController.viewModel?.loadData()
     }
     
