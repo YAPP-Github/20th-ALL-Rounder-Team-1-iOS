@@ -215,11 +215,11 @@ extension UserSearchViewController {
                      jobs: [String],
                      interests: [String]
     ) {
-        self.page = 0
-        self.list = []
         guard searchQuery != "" || jobs != [] || interests != [] else {
             return
         }
+        self.page = 0
+        self.list = []
         self.viewModel?.searchUsers(searchQuery: searchQuery,
                                     jobs: jobs,
                                     interests: interests,
