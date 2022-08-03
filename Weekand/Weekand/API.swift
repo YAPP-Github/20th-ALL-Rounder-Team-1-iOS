@@ -2703,6 +2703,147 @@ public final class LogoutMutation: GraphQLMutation {
   }
 }
 
+public final class MyStickerAddedQuery: GraphQLQuery {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    query MyStickerAdded($id: ID!, $date: Timestamp!) {
+      scheduleStickerSummary(scheduleId: $id, selectedDate: $date) {
+        __typename
+        myScheduleSticker {
+          __typename
+          stickerName
+        }
+      }
+    }
+    """
+
+  public let operationName: String = "MyStickerAdded"
+
+  public var id: GraphQLID
+  public var date: Timestamp
+
+  public init(id: GraphQLID, date: Timestamp) {
+    self.id = id
+    self.date = date
+  }
+
+  public var variables: GraphQLMap? {
+    return ["id": id, "date": date]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Query"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("scheduleStickerSummary", arguments: ["scheduleId": GraphQLVariable("id"), "selectedDate": GraphQLVariable("date")], type: .nonNull(.object(ScheduleStickerSummary.selections))),
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(scheduleStickerSummary: ScheduleStickerSummary) {
+      self.init(unsafeResultMap: ["__typename": "Query", "scheduleStickerSummary": scheduleStickerSummary.resultMap])
+    }
+
+    /// 일정의 스티커 요약 정보를 반환한다
+    /// 
+    /// [error]
+    /// - 4001: 해당 스케줄을 찾을 수 없습니다.
+    public var scheduleStickerSummary: ScheduleStickerSummary {
+      get {
+        return ScheduleStickerSummary(unsafeResultMap: resultMap["scheduleStickerSummary"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "scheduleStickerSummary")
+      }
+    }
+
+    public struct ScheduleStickerSummary: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["ScheduleStickerSummary"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("myScheduleSticker", type: .object(MyScheduleSticker.selections)),
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(myScheduleSticker: MyScheduleSticker? = nil) {
+        self.init(unsafeResultMap: ["__typename": "ScheduleStickerSummary", "myScheduleSticker": myScheduleSticker.flatMap { (value: MyScheduleSticker) -> ResultMap in value.resultMap }])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var myScheduleSticker: MyScheduleSticker? {
+        get {
+          return (resultMap["myScheduleSticker"] as? ResultMap).flatMap { MyScheduleSticker(unsafeResultMap: $0) }
+        }
+        set {
+          resultMap.updateValue(newValue?.resultMap, forKey: "myScheduleSticker")
+        }
+      }
+
+      public struct MyScheduleSticker: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["ScheduleStickerUser"]
+
+        public static var selections: [GraphQLSelection] {
+          return [
+            GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+            GraphQLField("stickerName", type: .nonNull(.scalar(ScheduleStickerName.self))),
+          ]
+        }
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(stickerName: ScheduleStickerName) {
+          self.init(unsafeResultMap: ["__typename": "ScheduleStickerUser", "stickerName": stickerName])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var stickerName: ScheduleStickerName {
+          get {
+            return resultMap["stickerName"]! as! ScheduleStickerName
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "stickerName")
+          }
+        }
+      }
+    }
+  }
+}
+
 public final class NotificationQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
