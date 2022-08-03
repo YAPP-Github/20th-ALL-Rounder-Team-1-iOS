@@ -210,6 +210,10 @@ extension MainViewController {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
             cell.setUpCell(list)
             
+            if list.userId == self.viewModel?.currentUserId {
+                self.collectionView.selectItem(at: IndexPath(item: indexPath.item, section: 0), animated: false, scrollPosition: .init())
+            }
+
             return cell
         })
         
