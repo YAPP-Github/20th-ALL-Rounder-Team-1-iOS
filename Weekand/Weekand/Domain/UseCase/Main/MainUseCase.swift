@@ -65,6 +65,20 @@ final class MainUseCase {
             .asSingle()
     }
     
+    /// 내가 추가한 스티커 조회
+    func myStickerAdded(id: String, data: Date) -> Single<Emoji?> {
+        
+        return NetWork.shared.fetch(query: MyStickerAddedQuery(id: id, date: data.toTimestamp()), cachePolicy: .fetchIgnoringCacheCompletely)
+            .map {
+                if let emojiName = $0.scheduleStickerSummary.myScheduleSticker?.stickerName.rawValue {
+                    return Emoji(rawValue: emojiName) ?? nil
+                } else {
+                    return nil
+                }
+            }
+            .asSingle()
+    }
+    
     /// 일정 완전 삭제
     func deleteSchedule(scheduleId: String) -> Single<Bool> {
         NetWork.shared.perform(mutation: DeleteScheduleMutation(scheduleId: scheduleId))

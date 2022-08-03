@@ -1,0 +1,7 @@
+query MyStickerAdded($id: ID!, $date: Timestamp!) {
+  scheduleStickerSummary(scheduleId: $id, selectedDate: $date) {
+        myScheduleSticker {
+      stickerName
+    }
+  }
+}

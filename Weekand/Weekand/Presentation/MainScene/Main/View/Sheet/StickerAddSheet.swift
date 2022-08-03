@@ -14,7 +14,6 @@ class StickerAddSheetViewController: BottomSheetViewController {
     var viewModel: StickerAddSheetViewModel?
     let disposeBag = DisposeBag()
     
-    var existingEmoji: Emoji?
     var selectedEmoji = PublishSubject<Emoji>()
     
     // MARK: UI Properties
@@ -30,23 +29,15 @@ class StickerAddSheetViewController: BottomSheetViewController {
             return 450
         }
     }
-    
-    init() {
-        super.init(nibName: nil, bundle: nil)
         
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpView()
-        configureUI()
-        bindViewModel()
+        self.viewModel?.getExistingEmoji {
+            self.setUpView()
+            self.configureUI()
+            self.bindViewModel()
+        }
     }
     
     private func setUpView() {
@@ -126,10 +117,13 @@ extension StickerAddSheetViewController {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StickerCollectionViewCell.identifier, for: indexPath) as! StickerCollectionViewCell
             
             cell.setUpCell(emoji: emoji)
-            if self.existingEmoji == emoji {
-                self.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
-            }
+
             
+            if let existingEmoji = self.viewModel?.existingEmoji {
+                if existingEmoji == emoji {
+                    self.collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+                }
+            }
             
             return cell
         })
