@@ -123,7 +123,7 @@ extension MainViewModel {
         
         // Navigation Items
         input.didFoldBarButton.subscribe(onNext: { _ in
-            PublishRelay<Void>.just(Void()).bind(to: self.foldCollection).disposed(by: self.disposeBag)
+            self.foldCollection.accept(())
         }).disposed(by: disposeBag)
         
         input.didAlarmBarButton.subscribe(onNext: { [weak self] _ in
@@ -150,17 +150,15 @@ extension MainViewModel {
         }).disposed(by: disposeBag)
         
         input.didTapTodayButton.subscribe(onNext: { _ in
-            BehaviorRelay<Date>.just(Date()).bind(to: self.calendarDate).disposed(by: self.disposeBag)
+            self.calendarDate.accept(Date())
         }).disposed(by: disposeBag)
         
         input.didTapNextWeekButton.subscribe(onNext: { _ in
-            PublishRelay<Bool>.just(true).bind(to: self.scrollWeek).disposed(by: self.disposeBag)
-
+            self.scrollWeek.accept(true)
         }).disposed(by: disposeBag)
         
         input.didTapPrevWeekButton.subscribe(onNext: { _ in
-            PublishRelay<Bool>.just(false).bind(to: self.scrollWeek).disposed(by: self.disposeBag)
-
+            self.scrollWeek.accept(false)
         }).disposed(by: disposeBag)
         
         input.didTapFloatingButton.subscribe(onNext: { _ in
