@@ -125,7 +125,6 @@
 		F323FF32287AB2C500DFD8FD /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323FF31287AB2C500DFD8FD /* BasePaddingLabel.swift */; };
 		F32ACC0228235D500082AF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0128235D500082AF30 /* AppDelegate.swift */; };
 		F32ACC0428235D500082AF30 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0328235D500082AF30 /* SceneDelegate.swift */; };
-		F32ACC0628235D500082AF30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ACC0528235D500082AF30 /* ViewController.swift */; };
 		F32ACC0B28235D530082AF30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F32ACC0A28235D530082AF30 /* Assets.xcassets */; };
 		F32ACC0E28235D530082AF30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F32ACC0C28235D530082AF30 /* LaunchScreen.storyboard */; };
 		F32F72502853AEE00056B189 /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32F724F2853AEE00056B189 /* CategoryDetailViewController.swift */; };
@@ -418,7 +417,6 @@
 		F32ACBFE28235D500082AF30 /* Weekand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weekand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32ACC0128235D500082AF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F32ACC0328235D500082AF30 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F32ACC0528235D500082AF30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F32ACC0A28235D530082AF30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F32ACC0D28235D530082AF30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F32ACC0F28235D530082AF30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -645,7 +643,6 @@
 		7D3B1F5828363D8A0037504A /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				F32ACC0528235D500082AF30 /* ViewController.swift */,
 				7DC166B6283714EE00F1A8F1 /* Common */,
 				7DC166A72837139300F1A8F1 /* SignScene */,
 				7D76AEAF28445878001C668D /* MainScene */,
@@ -1851,7 +1848,6 @@
 				F30EBCE828819C3E00ECB48D /* UserTableViewCell.swift in Sources */,
 				F3C8E0BB28736F2A00B0916A /* ScheduleAddCoordinator.swift in Sources */,
 				F3DD0229284670E900AD9240 /* AppCoordinator.swift in Sources */,
-				F32ACC0628235D500082AF30 /* ViewController.swift in Sources */,
 				F3B00263287D68C600D6BB1D /* SignInUseCase.swift in Sources */,
 				F336F4182891B399005B57A0 /* ScheduleDetailViewModel.swift in Sources */,
 				F30EBCEE2881A4D900ECB48D /* UserSummaryTemp.swift in Sources */,
