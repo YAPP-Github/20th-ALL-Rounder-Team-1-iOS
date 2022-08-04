@@ -21,7 +21,7 @@ class ProfileViewModel: ViewModelType {
     private let profileUseCase: ProfileUseCase
     private let disposeBag = DisposeBag()
     
-    var userDeatil = BehaviorRelay<UserDetail>(value: UserDetail.defaultData)
+    var userDeatil = PublishRelay<UserDetail>()
     var buttonState = BehaviorRelay<ProfileButtonType>(value: ProfileButtonType.edit)
     var errorMessage = BehaviorRelay<String?>(value: nil)
     
@@ -169,6 +169,7 @@ extension ProfileViewModel {
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
             self.errorMessage.accept("\(error)")
+            self.userDeatil.accept(UserDetail.defaultData)
         }, onDisposed: nil)
         .disposed(by: disposeBag)
     }
@@ -177,7 +178,7 @@ extension ProfileViewModel {
     private func followUser(id: String) {
         
         self.profileUseCase.createFollowee(id: id).subscribe(onSuccess: { _ in
-            BehaviorRelay<ProfileButtonType>.just(.following).bind(to: self.buttonState).disposed(by: self.disposeBag)
+            self.buttonState.accept(.following)
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
             self.errorMessage.accept("\(error)")
@@ -190,7 +191,7 @@ extension ProfileViewModel {
     private func unfollowUser(id: String) {
         
         self.profileUseCase.deleteFollowee(id: id).subscribe(onSuccess: { _ in
-            BehaviorRelay<ProfileButtonType>.just(.follow).bind(to: self.buttonState).disposed(by: self.disposeBag)
+            self.buttonState.accept(.follow)
 
         }, onFailure: { error in
             print("\(#function) Error: \(error)")
