@@ -19,7 +19,6 @@ class SearchHeaderView: UITableViewHeaderFooterView {
     }
     
     lazy var sortButton = WSortButton().then {
-        $0.setTitle("최신순")
         $0.backgroundColor = .white
     }
     

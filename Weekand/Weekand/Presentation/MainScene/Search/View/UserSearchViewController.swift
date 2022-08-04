@@ -32,7 +32,7 @@ class UserSearchViewController: UIViewController {
     var page: Int = 0
     let userCellDidSelected = PublishRelay<String>()
     
-    var selectedSort: UserSort = .dateCreatedDESC {
+    var selectedSort: UserSort = .followerCountDESC {
         didSet {
             self.setUserList(searchQuery: self.searchText, jobs: self.selectedJobs, interests: self.selectedInterests)
         }
@@ -156,6 +156,7 @@ class UserSearchViewController: UIViewController {
         headerView.dropDown.customCellConfiguration = { (_: Index, _: String, cell: DropDownCell) -> Void in
             guard let _ = cell as? SortDropDownCell else { return }
         }
+        headerView.sortButton.setTitle(self.selectedSort.description)
     }
 
 }
