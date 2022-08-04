@@ -32,25 +32,30 @@ class CategoryModifyCoordinator: Coordinator, CategoryEditCoordinatorType {
                                                                               category: self.selectedCategory)
     }
     
-    func pushColorBottonSheet() {
+    /// 색상 선택 sheet
+    func presentColorBottonSheet() {
         let colorSheetViewController = ColorSheetViewController()
         colorSheetViewController.viewModel = ColorSheetViewModel(coordinator: self)
         colorSheetViewController.selectedColor = categoryModifyViewController.selectedColor
         self.navigationController.present(colorSheetViewController, animated: true, completion: nil)
     }
     
+    /// 선택된 색상 data를 controller에 전달
     func sendColorFromSheet(color: Color) {
         categoryModifyViewController.selectedColor = color
     }
     
+    /// Toast message
     func showToastMessage(text: String) {
         categoryModifyViewController.showToast(message: text)
     }
     
+    /// dismiss
     func dismiss() {
         self.navigationController.dismiss(animated: true)
     }
     
+    /// 완료 후 dismiss
     func endAndDismiss(categoryName: String) {
         self.navigationController.dismiss(animated: true)
     }

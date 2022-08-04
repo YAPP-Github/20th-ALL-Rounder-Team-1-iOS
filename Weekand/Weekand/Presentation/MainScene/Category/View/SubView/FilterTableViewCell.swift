@@ -41,7 +41,6 @@ class FilterTableViewCell: UITableViewCell {
             make.edges.equalToSuperview()
             make.height.equalTo(54)
         }
-        
         cellStack.addArrangedSubview(filterNameLabel)
     }
     

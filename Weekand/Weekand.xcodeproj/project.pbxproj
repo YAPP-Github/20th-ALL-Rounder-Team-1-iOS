@@ -951,6 +951,7 @@
 		7DC166B6283714EE00F1A8F1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F349C6D2289B9AB9005C02FD /* Module */,
 				F3DD022C2846814400AD9240 /* ViewModel */,
 				F3DD0216284660D200AD9240 /* Coordinator */,
 				F391B432283BF0EC004E7B06 /* ViewController */,
@@ -984,27 +985,12 @@
 		7DC166B928371AF100F1A8F1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7DC166BD28371C4E00F1A8F1 /* WDefaultButton.swift */,
-				7D6E9971283BA18E006F5FC7 /* WBottmButton.swift */,
-				7D3B1F53283630A50037504A /* WTextField.swift */,
-				7DC166BF2837234200F1A8F1 /* WButtonTextField.swift */,
-				7D7178EA283E1C9D00D7E5F2 /* WCheckBox.swift */,
-				7D7178EC283E1ED500D7E5F2 /* WTextButton.swift */,
-				F391B433283C119F004E7B06 /* WTitleLabel.swift */,
-				F354C3DE283CECF5008929FD /* WTextLabel.swift */,
-				7DEA177B2846006A00F6B990 /* WSquareImageView.swift */,
-				F33C6EAB28533D0A005B493A /* WSortButton.swift */,
-				F32F725B28549B650056B189 /* WTextFieldStackView.swift */,
-				F3CC76B32867264200A3FBBE /* WTagToggleButton.swift */,
-				F3F731D228672AF500C8B778 /* WTypeToggleButton.swift */,
-				F3C8E0A22872F29000B0916A /* WArrowButton.swift */,
-				F3C8E0A62873028B00B0916A /* WFilledGrayButton.swift */,
-				F3C8E0B42873578300B0916A /* WTextView.swift */,
-				F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */,
-				F323FF0B2877E87900DFD8FD /* WToastLabel.swift */,
-				F30EBCEF28828C3C00ECB48D /* WFilterButtton.swift */,
-				F336F3DB288E7A15005B57A0 /* WEmptyView.swift */,
-				F336F3DD288E842E005B57A0 /* WMultiLineTextLabel.swift */,
+				F349C6D1289B9A56005C02FD /* CustomView */,
+				F349C6CE289B9A0D005C02FD /* Label */,
+				F349C6CC289B99AC005C02FD /* Button */,
+				F349C6D0289B9A4C005C02FD /* TextView */,
+				F349C6CF289B9A35005C02FD /* ImageView */,
+				F349C6CD289B99FD005C02FD /* TextField */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1395,6 +1381,98 @@
 			path = Query;
 			sourceTree = "<group>";
 		};
+		F349C6CC289B99AC005C02FD /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				F3C8E0A22872F29000B0916A /* WArrowButton.swift */,
+				7DC166BD28371C4E00F1A8F1 /* WDefaultButton.swift */,
+				7D6E9971283BA18E006F5FC7 /* WBottmButton.swift */,
+				F33C6EAB28533D0A005B493A /* WSortButton.swift */,
+				F3CC76B32867264200A3FBBE /* WTagToggleButton.swift */,
+				F3F731D228672AF500C8B778 /* WTypeToggleButton.swift */,
+				F3C8E0A62873028B00B0916A /* WFilledGrayButton.swift */,
+				F30EBCEF28828C3C00ECB48D /* WFilterButtton.swift */,
+				7D7178EC283E1ED500D7E5F2 /* WTextButton.swift */,
+				7D7178EA283E1C9D00D7E5F2 /* WCheckBox.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		F349C6CD289B99FD005C02FD /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				7DC166BF2837234200F1A8F1 /* WButtonTextField.swift */,
+				7D3B1F53283630A50037504A /* WTextField.swift */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
+		F349C6CE289B9A0D005C02FD /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				F391B433283C119F004E7B06 /* WTitleLabel.swift */,
+				F354C3DE283CECF5008929FD /* WTextLabel.swift */,
+				F336F3DD288E842E005B57A0 /* WMultiLineTextLabel.swift */,
+				F323FF0B2877E87900DFD8FD /* WToastLabel.swift */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
+		F349C6CF289B9A35005C02FD /* ImageView */ = {
+			isa = PBXGroup;
+			children = (
+				7DEA177B2846006A00F6B990 /* WSquareImageView.swift */,
+			);
+			path = ImageView;
+			sourceTree = "<group>";
+		};
+		F349C6D0289B9A4C005C02FD /* TextView */ = {
+			isa = PBXGroup;
+			children = (
+				F3C8E0B42873578300B0916A /* WTextView.swift */,
+			);
+			path = TextView;
+			sourceTree = "<group>";
+		};
+		F349C6D1289B9A56005C02FD /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				F32F725B28549B650056B189 /* WTextFieldStackView.swift */,
+				F323FEE82875FC3D00DFD8FD /* WCalendarView.swift */,
+				F336F3DB288E7A15005B57A0 /* WEmptyView.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		F349C6D2289B9AB9005C02FD /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				F349C6D4289B9AEF005C02FD /* AlertPopup */,
+				F349C6D3289B9AD2005C02FD /* SimplePopup */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		F349C6D3289B9AD2005C02FD /* SimplePopup */ = {
+			isa = PBXGroup;
+			children = (
+				F323FF1A2879A05300DFD8FD /* SimplePopupViewModel.swift */,
+				F323FF1C2879A30000DFD8FD /* SimplePopupCoordinator.swift */,
+				F323FF1828799B6D00DFD8FD /* SimplePopupViewController.swift */,
+			);
+			path = SimplePopup;
+			sourceTree = "<group>";
+		};
+		F349C6D4289B9AEF005C02FD /* AlertPopup */ = {
+			isa = PBXGroup;
+			children = (
+				F38AE49F28957AC900E5E261 /* AlertPopupViewModel.swift */,
+				F38AE4A128957AED00E5E261 /* AlertPopupCoordinator.swift */,
+				F38AE49D28957A7000E5E261 /* AlertPopupViewController.swift */,
+			);
+			path = AlertPopup;
+			sourceTree = "<group>";
+		};
 		F354C3E6283D3EC8008929FD /* SubView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1452,12 +1530,10 @@
 		F391B432283BF0EC004E7B06 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				F323FF1828799B6D00DFD8FD /* SimplePopupViewController.swift */,
 				F391B430283BE78B004E7B06 /* BaseViewController.swift */,
 				F3DD0230284A36D300AD9240 /* BaseNavigationController.swift */,
 				F3CC76AD2866CD1200A3FBBE /* BottomSheetViewController.swift */,
 				F323FF162879390200DFD8FD /* PopupViewController.swift */,
-				F38AE49D28957A7000E5E261 /* AlertPopupViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1587,12 +1663,10 @@
 		F3DD0216284660D200AD9240 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				F323FF1C2879A30000DFD8FD /* SimplePopupCoordinator.swift */,
 				F3DD02192846629100AD9240 /* Coordinator.swift */,
 				F3DD0228284670E900AD9240 /* AppCoordinator.swift */,
 				F3DD0232284A534C00AD9240 /* CoordinatorType.swift */,
 				F37868542861F10D00BEEC81 /* CoordinatorDidFinishDelegate.swift */,
-				F38AE4A128957AED00E5E261 /* AlertPopupCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -1626,8 +1700,6 @@
 			isa = PBXGroup;
 			children = (
 				F3DD022D2846815300AD9240 /* ViewModelType.swift */,
-				F323FF1A2879A05300DFD8FD /* SimplePopupViewModel.swift */,
-				F38AE49F28957AC900E5E261 /* AlertPopupViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

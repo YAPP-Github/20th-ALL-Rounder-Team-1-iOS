@@ -55,9 +55,10 @@ extension CategoryListViewModel {
     }
 }
 
-// Network
-
+// MARK: Network
 extension CategoryListViewModel {
+    
+    /// 카테고리 리스트
     func searchCategories(sort: ScheduleSort, page: Int, size: Int) {
         self.categoryUseCase.ScheduleCategories(sort: sort, page: page, size: size)
             .subscribe(onSuccess: { data in
@@ -72,12 +73,14 @@ extension CategoryListViewModel {
             .disposed(by: disposeBag)
     }
     
+    /// 카테고리 리스트 pagination
     func loadMoreCategoryList(selectedSort: ScheduleSort, page: Int, size: Int) {
         if hasNext {
             self.searchCategories(sort: selectedSort, page: page, size: size)
         }
     }
     
+    /// 카테고리 삭제
     func deleteCategory(id: String, completion: @escaping () -> Void) {
         self.categoryUseCase.deleteCategory(id: id)
             .subscribe(onSuccess: { isSucceed in

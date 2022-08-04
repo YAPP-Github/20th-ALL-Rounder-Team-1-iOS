@@ -37,7 +37,7 @@ class CategoryAddViewModel: CategoryEditViewModelType {
         }).disposed(by: disposeBag)
         
         input.colorButtonDidTapEvent.subscribe(onNext: {
-            self.coordinator?.pushColorBottonSheet()
+            self.coordinator?.presentColorBottonSheet()
         }).disposed(by: disposeBag)
         
         let categoryInput = Observable.combineLatest(input.categoryNameTextFieldDidEditEvent, input.selectedColor, input.selectedOpenType)
@@ -53,7 +53,10 @@ class CategoryAddViewModel: CategoryEditViewModelType {
 
 }
 
+// MARK: Network
 extension CategoryAddViewModel {
+    
+    /// 일정 추가
     func createCategory(name: String, color: String, openType: CategoryOpenType) {
         self.categoryUseCase.createCategory(name: name, color: color, openType: openType)
             .subscribe(onSuccess: { isSucceed in

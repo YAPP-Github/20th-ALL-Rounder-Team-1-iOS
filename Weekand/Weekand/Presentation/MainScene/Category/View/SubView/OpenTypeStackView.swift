@@ -42,18 +42,25 @@ class OpenTypeStackView: UIStackView {
     }
     
     private func setupCollectionView() {
-        let layout = UICollectionViewCompositionalLayout { (_: Int,
-            _ : NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
+        let layout = UICollectionViewCompositionalLayout { (_: Int, _ : NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
             
             let collectionLayoutSize = NSCollectionLayoutSize(widthDimension: .estimated(90),
                                                               heightDimension: .absolute(40))
             let item = NSCollectionLayoutItem(layoutSize: collectionLayoutSize)
-            item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: nil, top: nil, trailing: .fixed(10), bottom: nil)
+            item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: nil,
+                                                             top: nil,
+                                                             trailing: .fixed(10),
+                                                             bottom: nil)
             
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.1)), subitems: [item])
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1.0),
+                                                                             heightDimension: .fractionalWidth(0.1)),
+                                                           subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
             section.orthogonalScrollingBehavior = .none
-            section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+            section.contentInsets = .init(top: 0,
+                                          leading: 0,
+                                          bottom: 0,
+                                          trailing: 0)
 
             return section
         }

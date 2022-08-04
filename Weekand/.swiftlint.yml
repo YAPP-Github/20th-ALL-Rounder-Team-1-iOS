@@ -15,6 +15,7 @@ disabled_rules:
 - function_body_length
 - file_length
 - function_parameter_count
+- redundant_discardable_let
 
 excluded:
 - Pods

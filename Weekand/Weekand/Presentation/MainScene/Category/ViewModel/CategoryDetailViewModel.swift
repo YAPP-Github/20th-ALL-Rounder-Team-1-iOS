@@ -27,7 +27,8 @@ class CategoryDetailViewModel {
 
 }
 
-// MARK: Bind UI
+// MARK: - Bind UI
+
 extension CategoryDetailViewModel {
     
     struct Input {
@@ -68,7 +69,10 @@ extension CategoryDetailViewModel {
     }
 }
 
+// MARK: Network
 extension CategoryDetailViewModel {
+    
+    /// 일정 삭제
     func deleteSchedule(schedule: ScheduleSummary, completion: @escaping () -> Void) {
         self.categoryUseCase.deleteSchedule(scheduleId: schedule.scheduleId)
             .subscribe(onSuccess: { isSucceed in
@@ -83,6 +87,7 @@ extension CategoryDetailViewModel {
             .disposed(by: disposeBag)
     }
     
+    /// 일정 검색
     func searchSchedules(sort: ScheduleSort, page: Int, size: Int, searchQuery: String, categoryId: String) {
         
         self.categoryUseCase.searchSchedules(sort: sort, page: page, size: size, searchQuery: searchQuery, categoryId: categoryId)
@@ -98,6 +103,7 @@ extension CategoryDetailViewModel {
             .disposed(by: disposeBag)
     }
     
+    /// 일정 검색 pagination
     func loadMoreScheduelList(sort: ScheduleSort, page: Int, size: Int, searchQuery: String, categoryId: String) {
         if hasNext {
             self.searchSchedules(sort: sort, page: page, size: size, searchQuery: searchQuery, categoryId: categoryId)

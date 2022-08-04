@@ -31,7 +31,7 @@ class CategoryListViewController: UIViewController {
     var page: Int = 0
     var selectedSort: ScheduleSort = .dateCreatedDESC {
         didSet {
-            self.setCategoryList(sort: selectedSort)
+            self.setCategoryList()
         }
     }
     
@@ -51,13 +51,17 @@ class CategoryListViewController: UIViewController {
         super.viewWillAppear(animated)
         
         configureSnapshot(list: list)
-        setCategoryList(sort: selectedSort)
+        setCategoryList()
     }
-
     
     private func setupView() {
         view.backgroundColor = .white
         
+        setupTableView()
+        setupDropdown()
+    }
+    
+    private func setupTableView() {
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.bounces = false
@@ -67,12 +71,13 @@ class CategoryListViewController: UIViewController {
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
         }
-        
+    }
+    
+    private func setupDropdown() {
         headerView.dropDown.cellNib = UINib(nibName: "SortDropDownCell", bundle: nil)
         headerView.dropDown.dataSource = ScheduleSort.allCases.map { $0.description }
         headerView.dropDown.customCellConfiguration = { (_: Index, _: String, cell: DropDownCell) -> Void in
             guard cell is SortDropDownCell else { return }
-            
         }
     }
     
@@ -116,7 +121,8 @@ class CategoryListViewController: UIViewController {
     }
 }
 
-// MARK: TableView
+// MARK: - TableView
+
 extension CategoryListViewController {
     
     private func configureDataSource() {
@@ -195,11 +201,13 @@ extension CategoryListViewController {
     }
 }
 
+// MARK: - Network
+
 extension CategoryListViewController {
-    func setCategoryList(sort: ScheduleSort = .dateCreatedDESC) {
+    func setCategoryList() {
         self.page = 0
         self.list = []
-        self.viewModel?.searchCategories(sort: sort, page: page, size: categoryCount)
+        self.viewModel?.searchCategories(sort: self.selectedSort, page: page, size: categoryCount)
         self.tableView.scrollToTop()
     }
     
