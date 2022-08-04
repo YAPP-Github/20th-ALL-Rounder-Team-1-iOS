@@ -21,7 +21,6 @@ class NetworkInterceptorProvider: InterceptorProvider {
       
       func interceptors<Operation: GraphQLOperation>(for operation: Operation) -> [ApolloInterceptor] {
         return [
-          MaxRetryInterceptor(),
           CacheReadInterceptor(store: self.store),
           TokenAddingInterceptor(),
           RequestLoggingInterceptor(),
