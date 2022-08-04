@@ -72,8 +72,7 @@ class ScheduleAddViewModel: ScheduleEditViewModelType {
              input.selectedMemo)
         
         input.confirmButtonDidTapEvent.withLatestFrom(combinedInputs)
-            .subscribe(onNext: { [weak self] dates, nameText, category,
-                                             repeatType, repeatSelectValue, repeatEnd, memo in
+            .subscribe(onNext: { [weak self] dates, nameText, category, repeatType, repeatSelectValue, repeatEnd, memo in
                 guard let category = category else {
                     return
                 }
@@ -184,7 +183,10 @@ class ScheduleAddViewModel: ScheduleEditViewModelType {
     }
 }
 
+// MARK: Network
 extension ScheduleAddViewModel {
+    
+    /// 카테고리 기본값 
     func searchCategories() {
         self.scheduleEditUseCase.ScheduleCategories(sort: .dateCreatedDESC, page: 0, size: 1)
             .subscribe(onSuccess: { data in
@@ -203,6 +205,7 @@ extension ScheduleAddViewModel {
             .disposed(by: disposeBag)
     }
     
+    /// 일정 생성
     private func createSchedule(_ scheduleInputModel: ScheduleInputModel) {
         self.scheduleEditUseCase.createSchedule(input: scheduleInputModel)
             .subscribe(onSuccess: { isSucceed in

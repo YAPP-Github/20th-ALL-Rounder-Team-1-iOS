@@ -188,7 +188,10 @@ class ScheduleModifyViewModel: ScheduleEditViewModelType {
     }
 }
 
+// MARK: Network
 extension ScheduleModifyViewModel {
+    
+    /// 상세 일정 
     func getSchedule() {
         self.scheduleEditUseCase.schduleRule(scheduleId: self.scheduleId)
             .subscribe(onSuccess: { schedule in
@@ -201,6 +204,7 @@ extension ScheduleModifyViewModel {
             .disposed(by: disposeBag)
     }
     
+    /// 일정 수정
     func updateSchedule(input: ScheduleUpdateModel) {
         self.scheduleEditUseCase.updateSchedule(input: input)
             .subscribe(onSuccess: { isSucceed in

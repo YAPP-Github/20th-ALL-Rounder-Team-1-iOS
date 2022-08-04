@@ -53,7 +53,10 @@ extension CategoryListSheetViewModel {
     }
 }
 
+// MARK: Network
 extension CategoryListSheetViewModel {
+    
+    /// 카테고리 리스트 
     func searchCategories(sort: ScheduleSort, page: Int, size: Int) {
         
         self.scheduleEditUseCase.ScheduleCategories(sort: sort, page: page, size: size)
@@ -74,6 +77,7 @@ extension CategoryListSheetViewModel {
             .disposed(by: disposeBag)
     }
     
+    /// 카테고리 리스트 pagination
     func loadMoreCategoryList(selectedSort: ScheduleSort, page: Int, size: Int) {
         if hasNext {
             self.searchCategories(sort: selectedSort, page: page, size: size)
