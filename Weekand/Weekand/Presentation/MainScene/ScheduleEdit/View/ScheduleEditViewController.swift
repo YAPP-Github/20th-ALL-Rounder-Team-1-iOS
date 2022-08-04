@@ -217,6 +217,7 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
             requestDate: requestDate
         )
         
+        /// 일정 추가 화면 내 ViewModel transform
         if let viewModel = viewModel as? ScheduleAddViewModel {
             let output = viewModel.transform(input: editInput)
             
@@ -244,14 +245,7 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
                 }
             }).disposed(by: disposeBag)
             
-            output.validNameInput.drive(onNext: { isValid in
-                if isValid {
-                    self.confirmButton.enable(string: "완료")
-                } else {
-                    self.confirmButton.disable(string: "완료")
-                }
-            }).disposed(by: disposeBag)
-            
+            /// 일정 수정 화면 내 ViewModel transform
         } else if let viewModel = viewModel as? ScheduleModifyViewModel {
             let output = viewModel.transform(input: modifyInput)
             
@@ -261,14 +255,6 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
                     self?.category = category
             })
             .disposed(by: self.disposeBag)
-            
-            output.validNameInput.drive(onNext: { isValid in
-                if isValid {
-                    self.confirmButton.enable(string: "완료")
-                } else {
-                    self.confirmButton.disable(string: "완료")
-                }
-            }).disposed(by: disposeBag)
             
             output.validNameInput.drive(onNext: { isValid in
                 if isValid {
@@ -303,6 +289,7 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
         }
     }
     
+    /// 일자와 시간을 선택하는 View를 Single Select 되도록 bind
     func bindDateTimeSelectView() {
         selectedStartTime.accept(defaultStartTime)
         selectedEndTime.accept(defaultEndTime)
@@ -362,6 +349,7 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
         }).disposed(by: disposeBag)
     }
     
+    /// Edit Views와 observer bind
     func bindEditView() {
         selectedScheduleName
             .bind(to: nameStackView.textField.rx.text.orEmpty)
@@ -417,6 +405,7 @@ class ScheduleEditViewController<T: ScheduleEditViewModelType>: BaseViewControll
             .disposed(by: disposeBag)
     }
     
+    /// Repeat observer와 views bind
     func bindRepeatView() {
         Observable.combineLatest(selectedRepeatType, selectedRepeatEnd)
             .filter({ repeatType, _ in

@@ -73,6 +73,12 @@ extension UserSearchViewModel {
         return Output(searchWithQueryInformation: searchWithQueryInformation)
     }
     
+}
+
+// MARK: Network
+extension UserSearchViewModel {
+    
+    /// 유저 검색
     func searchUsers(searchQuery: String,
                      jobs: [String],
                      interests: [String],
@@ -101,6 +107,7 @@ extension UserSearchViewModel {
             .disposed(by: disposeBag)
     }
     
+    /// 유저 검색 pagination
     func loadMoreUserList(searchQuery: String,
                           jobs: [String],
                           interests: [String],

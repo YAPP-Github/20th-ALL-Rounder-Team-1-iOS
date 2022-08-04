@@ -35,6 +35,7 @@ class ScheduleModifyCoordinator: ScheduleEditCoordinatorType {
         self.scheduleEditViewController.viewModel = scheduleModifyViewModel
     }
     
+    /// 반복 선택 sheet
     func presentRepeatSheet() {
         let repeatSheetViewController = RepeatSheetViewController()
         
@@ -57,6 +58,7 @@ class ScheduleModifyCoordinator: ScheduleEditCoordinatorType {
         self.navigationController.present(repeatSheetViewController, animated: true, completion: nil)
     }
     
+    /// 선택된 카테고리 data를 controller에 전달
     func presentCategorySheet() {
         let categoryListSheetViewController = CategoryListSheetViewController()
         let categoryListSheetViewModel = CategoryListSheetViewModel(coordinator: self, scheduleEditUseCase: scheduleEditUseCase)
@@ -65,21 +67,25 @@ class ScheduleModifyCoordinator: ScheduleEditCoordinatorType {
         self.navigationController.present(categoryListSheetViewController, animated: true, completion: nil)
     }
     
+    /// 선택된 카테고리 data를 controller에 전달
     func sendCategoryFromSheet(category: Category) {
         scheduleEditViewController.category = category
     }
     
+    /// 선택된 반복 data를 controller에 전달
     func sendRepeatTypeFromSheet(repeatType: ScheduleRepeatType, repeatEndDate: Date?) {
         scheduleEditViewController.repeatType = repeatType
         scheduleEditViewController.repeatEnd = repeatEndDate
     }
     
+    /// 선택된 반복 data를 controller에 전달
     func sendWeekRepeatTypeFromSheet(repeatType: ScheduleRepeatType, repeatEndDate: Date?, repeatSelectedValue: [ScheduleWeek]) {
         scheduleEditViewController.repeatType = repeatType
         scheduleEditViewController.repeatSelectedValue = repeatSelectedValue
         scheduleEditViewController.repeatEnd = repeatEndDate
     }
     
+    /// 경고 Popup
     func presentAlertPopupViewController(titleText: String,
                                          informText: String,
                                          confirmButtonText: String,
@@ -95,6 +101,7 @@ class ScheduleModifyCoordinator: ScheduleEditCoordinatorType {
         alertPopupCoordinator.start()
     }
     
+    /// Toast message
     func showToastMessage(text: String) {
         scheduleEditViewController.showToast(message: text)
     }

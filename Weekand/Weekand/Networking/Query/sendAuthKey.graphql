@@ -1,3 +1,0 @@
-query sendAuthKey($email: String!) {
-    sendAuthKey(email: $email)
-}

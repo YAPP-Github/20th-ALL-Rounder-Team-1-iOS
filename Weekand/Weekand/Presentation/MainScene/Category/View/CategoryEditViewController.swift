@@ -146,5 +146,4 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
             self.openTypeObservable.accept(.closed)
         }
     }
-
 }

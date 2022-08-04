@@ -139,7 +139,42 @@ class ScheduleDetailViewController: BaseViewController {
     }
     
     private func bindViewModel() {
+        bindDetailView()
+    
+        let input = ScheduleDetailViewModel.Input(
+            selectedComplete: selectedComplete,
+            selectedInComplete: selectedIncomplete,
+            scheduleId: scheduleId,
+            requestDate: requestDate
+        )
+
+        let _ = viewModel?.transform(input: input)
         
+        self.viewModel?.schedule.subscribe(onNext: { [weak self] schedule in
+            let repeatText = WRepeatTextManager.combineTimeDate(repeatType: schedule.repeatType,
+                                                                repeatSelectedValue: schedule.repeatSelectedValue, repeatEndDate: schedule.repeatEnd)
+            
+            if schedule.status == .completed {
+                self?.scheduleCompleteToolBar.completeCollecitonView.selectItem(at: IndexPath(item: 1, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+            } else if schedule.status == .incompleted {
+                self?.scheduleCompleteToolBar.completeCollecitonView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+            }
+            
+            self?.navigationItem.title = schedule.name
+            self?.scheduleId.accept(schedule.scheduleId)
+            self?.name.accept(schedule.name)
+            self?.category.accept(schedule.category)
+            self?.date.accept(WDateFormatter.dateFormatter.string(from: schedule.dateStart))
+            self?.time.accept(WDateFormatter.combineTimeDate(startTime: schedule.dateStart,
+                                                             endTime: schedule.dateEnd))
+            self?.repeatText.accept(repeatText)
+            self?.skip.accept(schedule.dateSkip)
+            self?.memo.accept(schedule.memo)
+        })
+        .disposed(by: disposeBag)
+    }
+    
+    private func bindDetailView() {
         self.name.bind(to: nameLabel.rx.text)
             .disposed(by: disposeBag)
         
@@ -198,40 +233,10 @@ class ScheduleDetailViewController: BaseViewController {
             }
         }
         .disposed(by: disposeBag)
-        
-        let input = ScheduleDetailViewModel.Input(
-            selectedComplete: selectedComplete,
-            selectedInComplete: selectedIncomplete,
-            scheduleId: scheduleId,
-            requestDate: requestDate
-        )
-
-        let _ = viewModel?.transform(input: input)
-        
-        self.viewModel?.schedule.subscribe(onNext: { [weak self] schedule in
-            let repeatText = WRepeatTextManager.combineTimeDate(repeatType: schedule.repeatType,
-                                                                repeatSelectedValue: schedule.repeatSelectedValue, repeatEndDate: schedule.repeatEnd)
-            
-            if schedule.status == .completed {
-                self?.scheduleCompleteToolBar.completeCollecitonView.selectItem(at: IndexPath(item: 1, section: 0), animated: false, scrollPosition: .centeredHorizontally)
-            } else if schedule.status == .incompleted {
-                self?.scheduleCompleteToolBar.completeCollecitonView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
-            }
-            
-            self?.navigationItem.title = schedule.name
-            self?.scheduleId.accept(schedule.scheduleId)
-            self?.name.accept(schedule.name)
-            self?.category.accept(schedule.category)
-            self?.date.accept(WDateFormatter.dateFormatter.string(from: schedule.dateStart))
-            self?.time.accept(WDateFormatter.combineTimeDate(startTime: schedule.dateStart,
-                                                             endTime: schedule.dateEnd))
-            self?.repeatText.accept(repeatText)
-            self?.skip.accept(schedule.dateSkip)
-            self?.memo.accept(schedule.memo)
-        })
-        .disposed(by: disposeBag)
     }
 }
+
+// MARK: - CollectionView
 
 extension ScheduleDetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

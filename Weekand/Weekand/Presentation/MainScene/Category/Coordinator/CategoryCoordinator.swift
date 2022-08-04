@@ -28,6 +28,7 @@ class CategoryCoordinator: Coordinator {
         self.navigationController.pushViewController(categoryListViewController, animated: true)
     }
     
+    /// 카테고리 상세 화면
     func pushCategoryDetailViewController(category: Category) {
         let categoryDetailViewController = CategoryDetailViewController()
         categoryDetailViewController.selectedCategory = category
@@ -35,6 +36,7 @@ class CategoryCoordinator: Coordinator {
         self.navigationController.pushViewController(categoryDetailViewController, animated: true)
     }
     
+    /// 카테고리 추가 화면
     func showCategoryAddScene() {
         let categoryAddCoordinator = CategoryAddCoordinator(categoryUseCase: categoryUseCase)
         categoryAddCoordinator.finishDelegate = self
@@ -43,6 +45,7 @@ class CategoryCoordinator: Coordinator {
         categoryAddCoordinator.start()
     }
     
+    /// 카테고리 수정 화면
     func showCategoryModifyScene(category: Category) {
         let categoryModifyCoordinator = CategoryModifyCoordinator(categoryUseCase: categoryUseCase, selectedCategory: category)
         categoryModifyCoordinator.finishDelegate = self
@@ -51,6 +54,7 @@ class CategoryCoordinator: Coordinator {
         categoryModifyCoordinator.start()
     }
     
+    /// 일정 추가 화면
     func showScheduleAddScene(category: Category) {
         let scheduleAddCoordinator = ScheduleAddCoordinator(requestDate: Date())
         scheduleAddCoordinator.finishDelegate = self
@@ -60,6 +64,7 @@ class CategoryCoordinator: Coordinator {
         scheduleAddCoordinator.sendCategoryFromCategoryScene(category: category)
     }
     
+    /// 일정 수정 화면
     func showScheduleModifyScene(schedule: ScheduleSummary) {
         let scheduleModifyCoordinator = ScheduleModifyCoordinator(scheduleId: schedule.scheduleId, requestDate: schedule.dateStart)
         scheduleModifyCoordinator.finishDelegate = self
@@ -68,6 +73,7 @@ class CategoryCoordinator: Coordinator {
         scheduleModifyCoordinator.start()
     }
     
+    /// 일정 상세 화면
     func showScheduleDetailScene(schedule: ScheduleSummary) {
         let scheduleDetailCoordinator = ScheduleDetailCoordinator(
             navigationController: self.navigationController,
@@ -79,6 +85,7 @@ class CategoryCoordinator: Coordinator {
         scheduleDetailCoordinator.start()
     }
     
+    /// Toast message
     func showToastMessage(text: String) {
         categoryListViewController.showToast(message: text)
     }

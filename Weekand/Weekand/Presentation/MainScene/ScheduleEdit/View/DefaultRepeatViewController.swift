@@ -17,7 +17,7 @@ class DefaultRepeatViewController: UIViewController {
       case main
     }
     
-    let list = ["안함", "종료날짜 선택"]
+    let radioTableViewlist = ["안함", "종료날짜 선택"]
     
     lazy var repeatRadioStackView = RepeatRadioStackView()
     
@@ -59,13 +59,22 @@ class DefaultRepeatViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        defaultSelectedRepeatTableView()
+    }
+    
+    private func setUpView() {
+        setupRepeatTableView()
+    }
+    
+    private func defaultSelectedRepeatTableView() {
         repeatRadioStackView.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
         repeatRadioStackView.calendarContainerView.isHidden = true
     }
-
-    private func setUpView() {
+    
+    private func setupRepeatTableView() {
         repeatRadioStackView.tableView.delegate = self
         repeatRadioStackView.tableView.register(RepeatTableViewCell.self, forCellReuseIdentifier: RepeatTableViewCell.cellIdentifier)
+        repeatRadioStackView.calendarContainerView.isHidden = true
     }
     
     private func configureUI() {
@@ -105,6 +114,8 @@ class DefaultRepeatViewController: UIViewController {
     }
 }
 
+// MARK: - TableView
+
 extension DefaultRepeatViewController {
     private func configureDataSource() {
         
@@ -122,7 +133,7 @@ extension DefaultRepeatViewController {
     func configureSnapshot(animatingDifferences: Bool = false) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(list, toSection: .main)
+        snapshot.appendItems(radioTableViewlist, toSection: .main)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }

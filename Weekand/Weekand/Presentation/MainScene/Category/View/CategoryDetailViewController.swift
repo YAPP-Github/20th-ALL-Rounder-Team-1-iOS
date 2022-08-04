@@ -74,6 +74,11 @@ class CategoryDetailViewController: UIViewController {
     private func setupView() {
         view.backgroundColor = .white
         
+        setupTableView()
+        setupDropdown()
+    }
+    
+    private func setupTableView() {
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.bounces = false
@@ -85,12 +90,15 @@ class CategoryDetailViewController: UIViewController {
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
         }
-        
+    }
+    
+    private func setupDropdown() {
         headerView.dropDown.cellNib = UINib(nibName: "SortDropDownCell", bundle: nil)
         headerView.dropDown.dataSource = ScheduleSort.allCases.map { $0.description }
         headerView.dropDown.customCellConfiguration = { (_: Index, _: String, cell: DropDownCell) -> Void in
             guard cell is SortDropDownCell else { return }
         }
+        headerView.sortButton.setTitle(selectedSort.description)
     }
     
     private func configureUI() {
@@ -151,7 +159,8 @@ class CategoryDetailViewController: UIViewController {
 
 }
 
-// MARK: TableView
+// MARK: - TableView
+
 extension CategoryDetailViewController {
     
     private func configureDataSource() {
@@ -197,8 +206,6 @@ extension CategoryDetailViewController {
 
 extension CategoryDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        headerView.sortButton.setTitle(selectedSort.description)
-
         return headerView
     }
     
@@ -243,6 +250,8 @@ extension CategoryDetailViewController {
     }
 }
 
+// MARK: - Network
+
 extension CategoryDetailViewController {
     func setScheduleList() {
         self.page = 0
@@ -256,7 +265,7 @@ extension CategoryDetailViewController {
     }
 }
 
-// keyboard
+// MARK: - Keyboard
 
 extension CategoryDetailViewController {
     private func setupEndEditing() {

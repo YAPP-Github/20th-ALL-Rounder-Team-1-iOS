@@ -28,25 +28,30 @@ class CategoryAddCoordinator: Coordinator, CategoryEditCoordinatorType {
         self.categoryAddViewController.viewModel = CategoryAddViewModel(coordinator: self, categoryUseCase: categoryUseCase)
     }
     
-    func pushColorBottonSheet() {
+    /// 색상 선택 sheet
+    func presentColorBottonSheet() {
         let colorSheetViewController = ColorSheetViewController()
         colorSheetViewController.viewModel = ColorSheetViewModel(coordinator: self)
         colorSheetViewController.selectedColor = categoryAddViewController.selectedColor
         self.navigationController.present(colorSheetViewController, animated: true, completion: nil)
     }
     
+    /// 선택된 색상 data를 controller에 전달
     func sendColorFromSheet(color: Color) {
         categoryAddViewController.selectedColor = color
     }
     
+    /// Toast message
     func showToastMessage(text: String) {
         categoryAddViewController.showToast(message: text)
     }
     
+    /// dismiss
     func dismiss() {
         self.navigationController.dismiss(animated: true)
     }
     
+    /// 완료 후 dismiss
     func endAndDismiss() {
         self.finishDelegate?.childDidFinish(self)
     }

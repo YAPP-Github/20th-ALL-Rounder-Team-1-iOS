@@ -32,7 +32,7 @@ class UserSearchViewController: UIViewController {
     var page: Int = 0
     let userCellDidSelected = PublishRelay<String>()
     
-    var selectedSort: UserSort = .dateCreatedDESC {
+    var selectedSort: UserSort = .followerCountDESC {
         didSet {
             self.setUserList(searchQuery: self.searchText, jobs: self.selectedJobs, interests: self.selectedInterests)
         }
@@ -156,11 +156,12 @@ class UserSearchViewController: UIViewController {
         headerView.dropDown.customCellConfiguration = { (_: Index, _: String, cell: DropDownCell) -> Void in
             guard let _ = cell as? SortDropDownCell else { return }
         }
+        headerView.sortButton.setTitle(self.selectedSort.description)
     }
 
 }
 
-// MARK: TableView
+// MARK: - TableView
 
 extension UserSearchViewController {
     
@@ -208,7 +209,7 @@ extension UserSearchViewController: UITableViewDelegate {
     }
 }
 
-// MARK: Network
+// MARK: - Network
 
 extension UserSearchViewController {
     func setUserList(searchQuery: String,
@@ -242,7 +243,7 @@ extension UserSearchViewController {
     }
 }
 
-// MARK: Keyboard tap action
+// MARK: - Keyboard tap action
 
 extension UserSearchViewController {
     private func setupEndEditing() {

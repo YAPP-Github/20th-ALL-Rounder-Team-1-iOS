@@ -56,13 +56,11 @@ class RepeatTabViewController: TabmanViewController {
         
         bar.indicator.weight = .custom(value: 2)
         bar.indicator.tintColor = .mainColor
-        bar.layout.transitionStyle = .snap // Customize
+        bar.layout.transitionStyle = .snap 
         addBar(bar, dataSource: self, at: .top)
     }
     
-    private func configureUI() {
-        
-    }
+    private func configureUI() { }
 }
 
 extension RepeatTabViewController: PageboyViewControllerDataSource, TMBarDataSource {

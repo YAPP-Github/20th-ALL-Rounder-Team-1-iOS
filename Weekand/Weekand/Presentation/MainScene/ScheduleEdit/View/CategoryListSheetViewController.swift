@@ -111,7 +111,8 @@ class CategoryListSheetViewController: BottomSheetViewController {
 
 }
 
-// MARK: TableView
+// MARK: - TableView
+
 extension CategoryListSheetViewController {
     
     private func configureDataSource() {
@@ -147,6 +148,8 @@ extension CategoryListSheetViewController: UITableViewDelegate {
         self.selectedCategory.accept(category)
     }
 }
+
+// MARK: - Network
 
 extension CategoryListSheetViewController {
     func setCategoryList(sort: ScheduleSort = .dateCreatedDESC) {

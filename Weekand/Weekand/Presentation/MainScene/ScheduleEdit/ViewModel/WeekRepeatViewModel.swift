@@ -59,6 +59,7 @@ extension WeekRepeatViewModel {
                         coordinator.sendWeekRepeatTypeFromSheet(repeatType: .weekly, repeatEndDate: repeatEndDate, repeatSelectedValue: weeks)
                     }
                     self?.coordinator?.navigationController.dismiss(animated: true)
+                    
                 } else if let coordinator = self?.coordinator as? ScheduleModifyCoordinator {
                     if weeks.count == 7 {
                         coordinator.sendRepeatTypeFromSheet(repeatType: .daily, repeatEndDate: repeatEndDate)

@@ -71,23 +71,28 @@ class ColorSheetViewController: BottomSheetViewController, UICollectionViewDeleg
     }
     
     private func setupView() {
-        let layout = UICollectionViewCompositionalLayout { (_: Int,
-            _ : NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
+        let layout = UICollectionViewCompositionalLayout { (_: Int, _ : NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
             let screenWidth = UIScreen.main.bounds.width
             let itemSize = screenWidth * 0.096
             let edgeSpacing = screenWidth * 0.013
             let sectionInset = screenWidth * 0.021
-            let collectionLayoutSize = NSCollectionLayoutSize(
-                                widthDimension: .absolute(itemSize),
-                                heightDimension: .absolute(itemSize))
+            let collectionLayoutSize = NSCollectionLayoutSize(widthDimension: .absolute(itemSize),
+                                                              heightDimension: .absolute(itemSize))
             let item = NSCollectionLayoutItem(layoutSize: collectionLayoutSize)
-            item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(edgeSpacing), top: nil, trailing: .fixed(edgeSpacing), bottom: nil)
+            item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(edgeSpacing),
+                                                             top: nil,
+                                                             trailing: .fixed(edgeSpacing),
+                                                             bottom: nil)
             
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.1)), subitems: [item])
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1.0),
+                                                                             heightDimension: .fractionalWidth(0.1)),
+                                                           subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
             section.orthogonalScrollingBehavior = .none
-            section.contentInsets = .init(top: sectionInset, leading: 0, bottom: sectionInset, trailing: 0)
-
+            section.contentInsets = .init(top: sectionInset,
+                                          leading: 0,
+                                          bottom: sectionInset,
+                                          trailing: 0)
             return section
         }
         
@@ -138,12 +143,13 @@ class ColorSheetViewController: BottomSheetViewController, UICollectionViewDeleg
                 self.dismiss(animated: true, completion: nil)
             }).disposed(by: disposeBag)
         
-        self.viewModel?.transform(input: input)
+        let _ = viewModel?.transform(input: input)
     }
 
 }
 
-// MARK: CollectionView
+// MARK: - CollectionView
+
 extension ColorSheetViewController {
     
     private func configureDataSource() {

@@ -53,7 +53,10 @@ class ScheduleDetailViewModel: ViewModelType {
     }
 }
 
+// MARK: Network
 extension ScheduleDetailViewModel {
+    
+    /// 일정 상세
     func schedule(scheduleId: String, requestDate: Date) {
         self.scheduleDetailUseCase.schedule(scheduleId: scheduleId, requestDate: requestDate)
             .subscribe(onSuccess: { schedule in
@@ -65,6 +68,7 @@ extension ScheduleDetailViewModel {
             .disposed(by: disposeBag)
     }
     
+    /// 일정 완료
     func completeSchedule(scheduleId: String, requestDate: Date) {
         self.scheduleDetailUseCase.completeSchedule(scheduleId: scheduleId, requestDate: requestDate)
             .subscribe(onSuccess: { isSucceed in
@@ -77,6 +81,7 @@ extension ScheduleDetailViewModel {
             .disposed(by: disposeBag)
     }
     
+    /// 일정 미완료
     func incompleteSchedule(scheduleId: String, requestDate: Date) {
         self.scheduleDetailUseCase.incompleteSchedule(scheduleId: scheduleId, requestDate: requestDate)
             .subscribe(onSuccess: { isSucceed in
