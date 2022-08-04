@@ -275,7 +275,7 @@
 
 /* Begin PBXFileReference section */
 		2F9EA8129964B7F5609AAF6E /* Pods-Weekand.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weekand.debug.xcconfig"; path = "Target Support Files/Pods-Weekand/Pods-Weekand.debug.xcconfig"; sourceTree = "<group>"; };
-		7D0A6A312881330E00CFE61D /* scheduleList.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = scheduleList.graphql; sourceTree = "<group>"; };
+		7D0A6A312881330E00CFE61D /* ScheduleList.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = ScheduleList.graphql; sourceTree = "<group>"; };
 		7D0A6A3328813C7100CFE61D /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Status.swift; path = Enum/Status.swift; sourceTree = "<group>"; };
 		7D0A6A352881521400CFE61D /* MainUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainUseCase.swift; path = UseCase/Main/MainUseCase.swift; sourceTree = "<group>"; };
 		7D0A6A392881588000CFE61D /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
@@ -407,11 +407,11 @@
 		F323FF1828799B6D00DFD8FD /* SimplePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePopupViewController.swift; sourceTree = "<group>"; };
 		F323FF1A2879A05300DFD8FD /* SimplePopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePopupViewModel.swift; sourceTree = "<group>"; };
 		F323FF1C2879A30000DFD8FD /* SimplePopupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePopupCoordinator.swift; sourceTree = "<group>"; };
-		F323FF1E2879AD5600DFD8FD /* sendAuthKey.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = sendAuthKey.graphql; sourceTree = "<group>"; };
-		F323FF202879AF3000DFD8FD /* vaildAuthKey.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = vaildAuthKey.graphql; sourceTree = "<group>"; };
+		F323FF1E2879AD5600DFD8FD /* SendAuthKey.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SendAuthKey.graphql; sourceTree = "<group>"; };
+		F323FF202879AF3000DFD8FD /* VaildAuthKey.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = VaildAuthKey.graphql; sourceTree = "<group>"; };
 		F323FF262879D18E00DFD8FD /* SignUpError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpError.swift; sourceTree = "<group>"; };
 		F323FF2A287A036E00DFD8FD /* checkDuplicateNickname.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = checkDuplicateNickname.graphql; sourceTree = "<group>"; };
-		F323FF2F287A276100DFD8FD /* issueTempPassword.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = issueTempPassword.graphql; sourceTree = "<group>"; };
+		F323FF2F287A276100DFD8FD /* IssueTempPassword.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = IssueTempPassword.graphql; sourceTree = "<group>"; };
 		F323FF31287AB2C500DFD8FD /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
 		F323FF37287B13F900DFD8FD /* SignUp.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = SignUp.graphql; sourceTree = "<group>"; };
 		F32ACBFE28235D500082AF30 /* Weekand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weekand.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -428,7 +428,7 @@
 		F32F725D2854ADFA0056B189 /* OpenTypeStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTypeStackView.swift; sourceTree = "<group>"; };
 		F32F725F2854BB730056B189 /* ColorStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStackView.swift; sourceTree = "<group>"; };
 		F32F72632854EC890056B189 /* InformationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCollectionViewCell.swift; sourceTree = "<group>"; };
-		F336F35F28867ECF005B57A0 /* deleteCategory.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = deleteCategory.graphql; sourceTree = "<group>"; };
+		F336F35F28867ECF005B57A0 /* DeleteCategory.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = DeleteCategory.graphql; sourceTree = "<group>"; };
 		F336F3622886C4A9005B57A0 /* CategoryError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryError.swift; sourceTree = "<group>"; };
 		F336F3662886ECEE005B57A0 /* RepeatTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatTabViewController.swift; sourceTree = "<group>"; };
 		F336F3682886EDD4005B57A0 /* DefaultRepeatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRepeatViewController.swift; sourceTree = "<group>"; };
@@ -1343,6 +1343,58 @@
 			path = SubView;
 			sourceTree = "<group>";
 		};
+		F349C6CA289B9714005C02FD /* Mutation */ = {
+			isa = PBXGroup;
+			children = (
+				F336F35F28867ECF005B57A0 /* DeleteCategory.graphql */,
+				F30EBCDC28817CFD00ECB48D /* UpdateCategory.graphql */,
+				F30EBCD0288078DF00ECB48D /* CreateCategory.graphql */,
+				F323FF37287B13F900DFD8FD /* SignUp.graphql */,
+				F323FF2F287A276100DFD8FD /* IssueTempPassword.graphql */,
+				7D67F4B82893701300A1D7CD /* UpdatePassword.graphql */,
+				7D67F4BE2893A28700A1D7CD /* CreateImageUrl.graphql */,
+				F336F3C1288AFD67005B57A0 /* CreateSchedule.graphql */,
+				7D67F4C02893A2A600A1D7CD /* UpdateUserDetail.graphql */,
+				F336F40528910E03005B57A0 /* UpdateSchedule.graphql */,
+				F336F40F2891AA97005B57A0 /* DeleteScheduleFromDate.graphql */,
+				F336F4202892422D005B57A0 /* DeleteSchedule.graphql */,
+				7D67F4AC28927A3A00A1D7CD /* DeleteFollowee.graphql */,
+				7D67F4AE28927A4F00A1D7CD /* CreateFollowee.graphql */,
+				7D67F4BC28937A3C00A1D7CD /* SendContact.graphql */,
+				7D67F4B22892CA3F00A1D7CD /* CreateSticker.graphql */,
+				F38AE45B2892B65E00E5E261 /* Logout.graphql */,
+				F38AE45D2892CD0D00E5E261 /* DeleteUser.graphql */,
+				F38AE4752893E06E00E5E261 /* CompleteSchedule.graphql */,
+				F38AE4772893E11100E5E261 /* IncompleteSchedule.graphql */,
+				7D9BC0FF28969B1300AC7F11 /* DeleteFollower.graphql */,
+				F38AE49B2894FCAC00E5E261 /* SkipSchedule.graphql */,
+			);
+			path = Mutation;
+			sourceTree = "<group>";
+		};
+		F349C6CB289B9727005C02FD /* Query */ = {
+			isa = PBXGroup;
+			children = (
+				F336F3C3288B11CC005B57A0 /* SearchSchedules.graphql */,
+				7D67F4B428935E2800A1D7CD /* Notification.graphql */,
+				F323FF0F2877F3B500DFD8FD /* Login.graphql */,
+				F323FF1E2879AD5600DFD8FD /* SendAuthKey.graphql */,
+				F323FF202879AF3000DFD8FD /* VaildAuthKey.graphql */,
+				F323FF2A287A036E00DFD8FD /* checkDuplicateNickname.graphql */,
+				7D0A6A312881330E00CFE61D /* ScheduleList.graphql */,
+				F3B00276287D700D00D6BB1D /* ScheduleCategories.graphql */,
+				F3A4D95A2885A94500DDE03B /* SearchUsers.graphql */,
+				7D0A6A3B2881C4C100CFE61D /* UserSummary.graphql */,
+				7D0A6A3F2881C61F00CFE61D /* Followers.graphql */,
+				7D67F4AA289263F500A1D7CD /* Followees.graphql */,
+				7D963248289A7815005816F9 /* MyStickerAdded.graphql */,
+				F336F3CC288BDB44005B57A0 /* Reissue.graphql */,
+				F336F3F728902A92005B57A0 /* ScehduleRule.graphql */,
+				F38AE45528926C1200E5E261 /* Schedule.graphql */,
+			);
+			path = Query;
+			sourceTree = "<group>";
+		};
 		F354C3E6283D3EC8008929FD /* SubView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1453,55 +1505,19 @@
 				F38AE48728940F6E00E5E261 /* Apollo */,
 				7DE60AF82892560C00F85A05 /* schema.json */,
 				F336F3612886C49A005B57A0 /* Error */,
-				F3C8E08A286F4D8F00B0916A /* Query */,
+				F3C8E08A286F4D8F00B0916A /* Queries */,
 				7D67F4C42893BF9100A1D7CD /* ImageUploader.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		F3C8E08A286F4D8F00B0916A /* Query */ = {
+		F3C8E08A286F4D8F00B0916A /* Queries */ = {
 			isa = PBXGroup;
 			children = (
-				F336F3C3288B11CC005B57A0 /* SearchSchedules.graphql */,
-				7D67F4B82893701300A1D7CD /* UpdatePassword.graphql */,
-				7D67F4B428935E2800A1D7CD /* Notification.graphql */,
-				F323FF0F2877F3B500DFD8FD /* Login.graphql */,
-				F323FF1E2879AD5600DFD8FD /* sendAuthKey.graphql */,
-				F323FF202879AF3000DFD8FD /* vaildAuthKey.graphql */,
-				7D67F4BE2893A28700A1D7CD /* CreateImageUrl.graphql */,
-				7D67F4C02893A2A600A1D7CD /* UpdateUserDetail.graphql */,
-				F323FF2A287A036E00DFD8FD /* checkDuplicateNickname.graphql */,
-				7D0A6A312881330E00CFE61D /* scheduleList.graphql */,
-				F323FF2F287A276100DFD8FD /* issueTempPassword.graphql */,
-				F323FF37287B13F900DFD8FD /* SignUp.graphql */,
-				F3B00276287D700D00D6BB1D /* ScheduleCategories.graphql */,
-				F30EBCD0288078DF00ECB48D /* CreateCategory.graphql */,
-				F30EBCDC28817CFD00ECB48D /* UpdateCategory.graphql */,
-				F3A4D95A2885A94500DDE03B /* SearchUsers.graphql */,
-				7D0A6A3B2881C4C100CFE61D /* UserSummary.graphql */,
-				7D0A6A3F2881C61F00CFE61D /* Followers.graphql */,
-				7D67F4AA289263F500A1D7CD /* Followees.graphql */,
-				F336F35F28867ECF005B57A0 /* deleteCategory.graphql */,
-				F336F3C1288AFD67005B57A0 /* CreateSchedule.graphql */,
-				7D963248289A7815005816F9 /* MyStickerAdded.graphql */,
-				F336F3CC288BDB44005B57A0 /* Reissue.graphql */,
-				F336F3F728902A92005B57A0 /* ScehduleRule.graphql */,
-				F336F40528910E03005B57A0 /* UpdateSchedule.graphql */,
-				F336F40F2891AA97005B57A0 /* DeleteScheduleFromDate.graphql */,
-				F336F4202892422D005B57A0 /* DeleteSchedule.graphql */,
-				F38AE45528926C1200E5E261 /* Schedule.graphql */,
-				7D67F4AC28927A3A00A1D7CD /* DeleteFollowee.graphql */,
-				7D67F4AE28927A4F00A1D7CD /* CreateFollowee.graphql */,
-				7D67F4BC28937A3C00A1D7CD /* SendContact.graphql */,
-				7D67F4B22892CA3F00A1D7CD /* CreateSticker.graphql */,
-				F38AE45B2892B65E00E5E261 /* Logout.graphql */,
-				F38AE45D2892CD0D00E5E261 /* DeleteUser.graphql */,
-				F38AE4752893E06E00E5E261 /* CompleteSchedule.graphql */,
-				F38AE4772893E11100E5E261 /* IncompleteSchedule.graphql */,
-				7D9BC0FF28969B1300AC7F11 /* DeleteFollower.graphql */,
-				F38AE49B2894FCAC00E5E261 /* SkipSchedule.graphql */,
+				F349C6CB289B9727005C02FD /* Query */,
+				F349C6CA289B9714005C02FD /* Mutation */,
 			);
-			path = Query;
+			path = Queries;
 			sourceTree = "<group>";
 		};
 		F3C8E0972872E10F00B0916A /* ScheduleEdit */ = {
@@ -1754,7 +1770,8 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Networking/Query/*.graphql",
+				"$(SRCROOT)/Networking/Queries/Query/*.graphql",
+				"$(SRCROOT)/Networking/Queries/Mutation/*.graphql",
 			);
 			name = Apollo;
 			outputFileListPaths = (
