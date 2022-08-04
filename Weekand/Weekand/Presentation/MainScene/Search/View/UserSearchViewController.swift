@@ -161,7 +161,7 @@ class UserSearchViewController: UIViewController {
 
 }
 
-// MARK: TableView
+// MARK: - TableView
 
 extension UserSearchViewController {
     
@@ -209,7 +209,7 @@ extension UserSearchViewController: UITableViewDelegate {
     }
 }
 
-// MARK: Network
+// MARK: - Network
 
 extension UserSearchViewController {
     func setUserList(searchQuery: String,
@@ -243,7 +243,7 @@ extension UserSearchViewController {
     }
 }
 
-// MARK: Keyboard tap action
+// MARK: - Keyboard tap action
 
 extension UserSearchViewController {
     private func setupEndEditing() {

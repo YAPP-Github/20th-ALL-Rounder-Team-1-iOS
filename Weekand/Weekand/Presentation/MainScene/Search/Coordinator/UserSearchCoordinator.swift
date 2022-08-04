@@ -27,6 +27,7 @@ class UserSearchCoordinator: Coordinator {
         self.navigationController.pushViewController(userSearchViewController, animated: true)
     }
     
+    /// 직업 filter sheet
     func presentJobInformationSheet() {
         let jobInformationSheetController = InformationSheetController(informationType: .job)
         jobInformationSheetController.viewModel = InformationSheetViewModel(coordinator: self, informationType: .job)
@@ -35,6 +36,7 @@ class UserSearchCoordinator: Coordinator {
         self.navigationController.present(jobInformationSheetController, animated: true, completion: nil)
     }
     
+    /// 관심사 filter sheet
     func presentInterestsInformationSheet() {
         let interestsInformationSheetController = InformationSheetController(informationType: .interests)
         interestsInformationSheetController.viewModel = InformationSheetViewModel(coordinator: self, informationType: .interests)
@@ -43,6 +45,7 @@ class UserSearchCoordinator: Coordinator {
         self.navigationController.present(interestsInformationSheetController, animated: true, completion: nil)
     }
     
+    /// 유저 프로필 화면
     func showProfileScene(id: String?) {
         let profileCoordinator = ProfileCoordinator(navigationController: self.navigationController, userId: id)
         profileCoordinator.finishDelegate = self
@@ -50,14 +53,17 @@ class UserSearchCoordinator: Coordinator {
         profileCoordinator.start()
     }
     
+    /// 선택된 직업 data를 controller에 전달
     func setJobInformations(_ selectedJobs: [String]) {
         userSearchViewController.selectedJobs = selectedJobs
     }
     
+    /// 선택된 관심사 data를 controller에 전달
     func setInterestsInformations(_ selectedInterests: [String]) {
         userSearchViewController.selectedInterests = selectedInterests
     }
     
+    /// Toast message
     func showToastMessage(text: String) {
         userSearchViewController.showToast(message: text)
     }
