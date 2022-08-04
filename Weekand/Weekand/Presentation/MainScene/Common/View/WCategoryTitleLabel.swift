@@ -24,10 +24,10 @@ class WCategoryTitleLabel: WIconLabel {
         self.label.font = WFont.body1()
         self.label.textColor = .gray900
         
-        self.stack.spacing = 7
+        self.stack.spacing = 0
         
         icon.snp.makeConstraints { make in
-            make.height.equalTo(10)
+            make.height.equalTo(24)
             make.width.equalTo(icon.snp.height)
         }
 
@@ -47,7 +47,13 @@ class WCategoryTitleLabel: WIconLabel {
 extension WCategoryTitleLabel {
     
     public func editValue(color: UIColor, title: String) {
-        self.icon.backgroundColor = color
+        
+        if let categoryBox = UIImage(named: "box.filled")?.withTintColor(color) {
+            self.icon.image = categoryBox
+        } else {
+            self.icon.backgroundColor = color
+        }
+
         self.label.text = title
     }
 }

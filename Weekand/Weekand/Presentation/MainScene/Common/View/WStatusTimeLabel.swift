@@ -23,6 +23,11 @@ class WStatusTimeLabel: WIconLabel {
         
         self.label.font = WFont.body2()
         self.label.textColor = .gray400
+        self.stack.spacing = 0
+        
+        self.icon.snp.makeConstraints { make in
+            make.height.equalTo(24)
+        }
     }
     
     init(status: StatusIcon, title: String) {

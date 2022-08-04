@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "state.incomplete.png",
+      "filename" : "work_uncompleted.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "state.incomplete2x.png",
+      "filename" : "work_uncompleted@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "state.incomplete3x.png",
+      "filename" : "work_uncompleted@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

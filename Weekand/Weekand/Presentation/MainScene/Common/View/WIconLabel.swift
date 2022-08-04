@@ -14,7 +14,7 @@ class WIconLabel: UIView {
     
     lazy var icon = UIImageView().then {
         $0.setContentHuggingPriority(.required, for: .vertical)
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
     }
     lazy var label = UILabel().then {
         $0.textAlignment = .left
@@ -26,14 +26,14 @@ class WIconLabel: UIView {
         $0.addArrangedSubview(label)
 
         icon.snp.makeConstraints { make in
-            make.height.lessThanOrEqualTo(label.snp.height)
             make.width.equalTo(icon.snp.height)
+            make.centerY.equalToSuperview()
         }
         
         $0.axis = .horizontal
         $0.distribution = .fill
         $0.alignment = .center
-        $0.spacing = 5
+        $0.spacing = 10
     }
     
     override init(frame: CGRect) {
