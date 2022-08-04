@@ -10,7 +10,7 @@ import UIKit
 
 /// 일정 상태 정보
 enum Status: String {
-    case upcoming = "UNCOMPLETED"
+    case upcoming = "NOT_YET"
     case completed = "COMPLETED"
     case incompleted = "INCOMPLETED"
     case undetermined = "UNDETERMINED"

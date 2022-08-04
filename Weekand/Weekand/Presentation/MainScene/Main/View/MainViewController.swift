@@ -30,9 +30,16 @@ class MainViewController: UIViewController {
     var headerView = MainViewHeader()
     var tableView: UITableView!
     
-    lazy var foldButton = UIBarButtonItem(image: UIImage(named: "emptyImage")!, style: .plain, target: self, action: nil)
+    lazy var foldButton = UIBarButtonItem(image: UIImage(named: "emptyImage")!, style: .plain, target: self, action: nil).then {
+        let foldButtonImage = UIImage(named: "chevron.up") ?? UIImage(systemName: "chevron.up")
+        $0.setBackgroundImage(foldButtonImage?.withTintColor(.gray900), for: .normal, barMetrics: .default)
+    }
     lazy var searchButton = UIBarButtonItem(image: UIImage(named: "search") ?? UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: nil)
     lazy var alarmButton = UIBarButtonItem(image: UIImage(named: "alarm") ?? UIImage(systemName: "bell"), style: .plain, target: self, action: nil)
+    let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil).then {
+        $0.width = 4
+    }
+
 
     lazy var floatingButton = UIButton().then {
         $0.backgroundColor = .mainColor
@@ -67,10 +74,9 @@ class MainViewController: UIViewController {
     private func configureUI() {
         
         // Navigation Bar
-        let foldButtonImage = UIImage(named: "chevron.up") ?? UIImage(systemName: "chevron.up")
-        foldButton.setBackgroundImage(foldButtonImage?.withTintColor(.gray900), for: .normal, barMetrics: .default)
-        navigationItem.leftBarButtonItem = foldButton
-        navigationItem.rightBarButtonItems = [alarmButton, searchButton]
+        
+        navigationItem.setLeftBarButtonItems([spacer, foldButton], animated: false)
+        navigationItem.rightBarButtonItems = [spacer, alarmButton, searchButton]
         
         // Content View
         [ collectionView, headerView, tableView ].forEach { self.view.addSubview($0) }
@@ -409,7 +415,7 @@ extension MainViewController {
         }
         
         if let safeImage = buttonImage {
-            navigationItem.leftBarButtonItem?.setBackgroundImage(safeImage.withTintColor(.gray900), for: .normal, barMetrics: .default)
+            foldButton.setBackgroundImage(safeImage.withTintColor(.gray900), for: .normal, barMetrics: .default)
         }
         
         UIView.animate(withDuration: 0.25) {
