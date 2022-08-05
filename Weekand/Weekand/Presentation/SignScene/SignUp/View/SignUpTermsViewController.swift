@@ -169,37 +169,46 @@ class SignUpTermsViewController: UIViewController {
             return
         }
         
-        self.termsAgreeCheckBoxButton.rx.tap.subscribe(onNext: {
-            self.termsAgreeCheckBoxButton.isChecked = !self.termsAgreeCheckBoxButton.isChecked
-            self.termsAgree.accept(self.termsAgreeCheckBoxButton.isChecked)
+        self.termsAgreeCheckBoxButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let isChecked = self?.termsAgreeCheckBoxButton.isChecked else {
+                return
+            }
+            self?.termsAgreeCheckBoxButton.isChecked = !isChecked
+            self?.termsAgree.accept(!isChecked)
         }).disposed(by: disposeBag)
         
-        self.privacyAgreeCheckBoxButton.rx.tap.subscribe(onNext: {
-            self.privacyAgreeCheckBoxButton.isChecked = !self.privacyAgreeCheckBoxButton.isChecked
-            self.privacyAgree.accept(self.privacyAgreeCheckBoxButton.isChecked)
+        self.privacyAgreeCheckBoxButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let isChecked = self?.privacyAgreeCheckBoxButton.isChecked else {
+                return
+            }
+            self?.privacyAgreeCheckBoxButton.isChecked = !isChecked
+            self?.privacyAgree.accept(!isChecked)
         }).disposed(by: disposeBag)
         
-        self.wholeAgreecheckBoxButton.rx.tap.subscribe(onNext: {
-            self.wholeAgreecheckBoxButton.isChecked = !self.wholeAgreecheckBoxButton.isChecked
-            self.termsAgreeCheckBoxButton.isChecked = self.wholeAgreecheckBoxButton.isChecked
-            self.privacyAgreeCheckBoxButton.isChecked = self.wholeAgreecheckBoxButton.isChecked
-            self.wholeAgree.accept(self.wholeAgreecheckBoxButton.isChecked)
+        self.wholeAgreecheckBoxButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let isChecked = self?.wholeAgreecheckBoxButton.isChecked else {
+                return
+            }
+            self?.wholeAgreecheckBoxButton.isChecked = !isChecked
+            self?.termsAgreeCheckBoxButton.isChecked = !isChecked
+            self?.privacyAgreeCheckBoxButton.isChecked = !isChecked
+            self?.wholeAgree.accept(!isChecked)
         }).disposed(by: disposeBag)
         
-        Observable.combineLatest(termsAgree, privacyAgree).subscribe(onNext: { terms, privacy in
+        Observable.combineLatest(termsAgree, privacyAgree).subscribe(onNext: { [weak self] terms, privacy in
             if terms == false {
-                self.wholeAgreecheckBoxButton.isChecked = false
-                self.wholeAgree.accept(false)
+                self?.wholeAgreecheckBoxButton.isChecked = false
+                self?.wholeAgree.accept(false)
             }
             
             if privacy == false {
-                self.wholeAgreecheckBoxButton.isChecked = false
-                self.wholeAgree.accept(false)
+                self?.wholeAgreecheckBoxButton.isChecked = false
+                self?.wholeAgree.accept(false)
             }
             
             if terms && privacy {
-                self.wholeAgreecheckBoxButton.isChecked = true
-                self.wholeAgree.accept(true)
+                self?.wholeAgreecheckBoxButton.isChecked = true
+                self?.wholeAgree.accept(true)
             }
         })
         .disposed(by: disposeBag)
@@ -216,11 +225,11 @@ class SignUpTermsViewController: UIViewController {
             }
         }).disposed(by: disposeBag)
         
-        wholeAgree.subscribe(onNext: { isChecked in
+        wholeAgree.subscribe(onNext: { [weak self] isChecked in
             if isChecked {
-                self.confirmButton.enable(string: "로그인 하러가기")
+                self?.confirmButton.enable(string: "로그인 하러가기")
             } else {
-                self.confirmButton.disable(string: "로그인 하러가기")
+                self?.confirmButton.disable(string: "로그인 하러가기")
             }
         })
         .disposed(by: disposeBag)

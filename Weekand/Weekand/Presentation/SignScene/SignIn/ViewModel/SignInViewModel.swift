@@ -61,8 +61,8 @@ class SignInViewModel: ViewModelType {
                     self?.login(email: email, password: password)
                 }).disposed(by: disposeBag)
     
-        input.passwordFindButtonDidTapEvent.subscribe(onNext: {
-            self.coordinator?.presentPasswordFindScene()
+        input.passwordFindButtonDidTapEvent.subscribe(onNext: { [weak self] _ in
+            self?.coordinator?.presentPasswordFindScene()
         }).disposed(by: disposeBag)
     
         return Output(
@@ -80,14 +80,14 @@ extension SignInViewModel {
         let emailText = email.trimmingCharacters(in: [" "])
         let passwordText = password.trimmingCharacters(in: [" "])
         
-        self.signInUseCase.login(email: emailText, password: passwordText).subscribe(onSuccess: { tokenData in
+        self.signInUseCase.login(email: emailText, password: passwordText).subscribe(onSuccess: { [weak self] tokenData in
             TokenManager.shared.createTokens(accessToken: tokenData.accessToken, refreshToken: tokenData.refreshToken)
-            self.coordinator?.showMainScene()
-        }, onFailure: { error in
+            self?.coordinator?.showMainScene()
+        }, onFailure: { [weak self] error in
             if error.localizedDescription == SignInError.notMatchIdPassword.serverDescription {
-                self.coordinator?.showToastMessage(text: "이메일·비밀번호가 일치하지 않습니다.")
+                self?.coordinator?.showToastMessage(text: "이메일·비밀번호가 일치하지 않습니다.")
             } else {
-                self.coordinator?.showToastMessage(text: "네트워크 요청에 실패하였습니다")
+                self?.coordinator?.showToastMessage(text: "네트워크 요청에 실패하였습니다")
             }
         }, onDisposed: nil)
         .disposed(by: disposeBag)

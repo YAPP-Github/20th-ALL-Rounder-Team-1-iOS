@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class PasswordFindCoordinator: Coordinator {
-    
     weak var finishDelegate: CoordinatorDidFinishDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
@@ -33,9 +32,10 @@ class PasswordFindCoordinator: Coordinator {
                                         titleText: titleText,
                                         informText: informText,
                                         dismissParentCoordinator: dismissParentCoordinator)
+        authPopupCoordinator.finishDelegate = self
+        authPopupCoordinator.delegate = self
         childCoordinators.append(authPopupCoordinator)
         navigationController.present(authPopupCoordinator.navigationController, animated: true, completion: nil)
-        authPopupCoordinator.finishDelegate = self
         authPopupCoordinator.start()
     }
     
@@ -43,14 +43,20 @@ class PasswordFindCoordinator: Coordinator {
         passwordFindViewController.showToast(message: text)
     }
     
-    func finish() {
+    func dismiss() {
         self.finishDelegate?.childDidFinish(self)
+        navigationController.dismiss(animated: true, completion: nil)
     }
 }
 
 extension PasswordFindCoordinator: CoordinatorDidFinishDelegate {
     func childDidFinish(_ child: Coordinator) {
         self.childCoordinators = self.childCoordinators.filter({ $0.type != child.type })
-        navigationController.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension PasswordFindCoordinator: SimplePopupCoordinatorDelegate {
+    func dismissParent() {
+        self.dismiss()
     }
 }

@@ -8,17 +8,17 @@
 import Foundation
 import UIKit
 
-class AppCoordinator: Coordinator {
+class AppCoordinator: NSObject, Coordinator {
     var childCoordinators: [Coordinator] = []
     var navigationController: UINavigationController
     var type: CoordinatorType = .app
     
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.setNotificationCenter()
     }
 
     func start() {
+        navigationController.delegate = self
         if UserDefaults.standard.bool(forKey: "autoSign") {
             showMainScene()
         } else {
@@ -40,15 +40,44 @@ class AppCoordinator: Coordinator {
 }
 
 extension AppCoordinator {
-    func setNotificationCenter() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(showWelcomSceneFromLogout(_:)),
-                                               name: NSNotification.Name("showWeclomeScene"),
-                                               object: nil)
+//    func setNotificationCenter() {
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(showWelcomSceneFromLogout(_:)),
+//                                               name: NSNotification.Name("showWeclomeScene"),
+//                                               object: nil)
+//    }
+//
+//    @objc func showWelcomSceneFromLogout(_ notification: Notification) {
+//        self.navigationController.setViewControllers([], animated: false)
+//        self.showWelcomeScene()
+//    }
+    
+}
+
+extension AppCoordinator: UINavigationControllerDelegate {
+    
+    func childDidFinish(_ child: Coordinator) {
+        self.childCoordinators = self.childCoordinators.filter({ $0.type != child.type })
     }
     
-    @objc func showWelcomSceneFromLogout(_ notification: Notification) {
-        self.navigationController.setViewControllers([], animated: false)
-        self.showWelcomeScene()
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        
+        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
+            return
+        }
+        
+        if navigationController.viewControllers.contains(fromViewController) {
+            return
+        }
+        
+        if let profileViewController = fromViewController as? ProfileViewController,
+           let profileCoordinator = profileViewController.viewModel?.coordinator as? ProfileCoordinator {
+            childDidFinish(profileCoordinator)
+        }
+        
+        if let signInViewController = fromViewController as? SignInViewController,
+           let signInCoordinator = signInViewController.viewModel?.coordinator as? SignInCoordinator {
+            childDidFinish(signInCoordinator)
+        }
     }
 }

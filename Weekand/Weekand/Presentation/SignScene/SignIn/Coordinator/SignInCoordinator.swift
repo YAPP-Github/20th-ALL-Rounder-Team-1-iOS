@@ -9,8 +9,6 @@ import Foundation
 import UIKit
 
 class SignInCoordinator: Coordinator {
-    
-    weak var finishDelegate: CoordinatorDidFinishDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
     var signInViewController: SignInViewController
@@ -28,21 +26,16 @@ class SignInCoordinator: Coordinator {
         self.navigationController.pushViewController(signInViewController, animated: true)
     }
     
-    func finish() {
-        self.finishDelegate?.childDidFinish(self)
-    }
-    
     func showMainScene() {
         let mainCoordinator = MainCoordinator(navigationController: self.navigationController)
-        mainCoordinator.finishDelegate = self
         childCoordinators.append(mainCoordinator)
         mainCoordinator.start()
     }
     
     func presentPasswordFindScene() {
         let passwordFindCoordinator = PasswordFindCoordinator(signInUseCase: signInUseCase)
-        passwordFindCoordinator.finishDelegate = self
         childCoordinators.append(passwordFindCoordinator)
+        passwordFindCoordinator.finishDelegate = self
         navigationController.present(passwordFindCoordinator.navigationController, animated: true, completion: nil)
         passwordFindCoordinator.start()
     }
@@ -53,9 +46,7 @@ class SignInCoordinator: Coordinator {
 }
 
 extension SignInCoordinator: CoordinatorDidFinishDelegate {
-    
     func childDidFinish(_ child: Coordinator) {
         self.childCoordinators = self.childCoordinators.filter({ $0.type != child.type })
-        navigationController.dismiss(animated: true, completion: nil)
     }
 }

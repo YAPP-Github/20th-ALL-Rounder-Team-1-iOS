@@ -95,7 +95,7 @@ class SignUpViewModel: ViewModelType {
                 if isValid {
                     self?.checkDuplicateNickname(nickname)
                 } else {
-                    self?.coordinator?.showToastMessage()
+                    self?.coordinator?.showToastMessage(text: "닉네임은 2글자 이상 12글자 이하만 가능합니다.")
                 }
                 
         }).disposed(by: disposeBag)
@@ -107,7 +107,7 @@ class SignUpViewModel: ViewModelType {
         }).disposed(by: disposeBag)
         
         input.closeButtonDidTapEvent.subscribe(onNext: {
-            self.coordinator?.finish()
+            self.coordinator?.dismiss()
         }).disposed(by: disposeBag)
         
         return Output(

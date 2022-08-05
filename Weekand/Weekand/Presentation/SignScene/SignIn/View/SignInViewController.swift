@@ -117,9 +117,12 @@ class SignInViewController: BaseViewController {
             isSelectAutoSign: isCheckedAutoSign
         )
         
-        autoSignCheckBox.rx.tap.subscribe(onNext: {
-            self.autoSignCheckBox.isChecked = !self.autoSignCheckBox.isChecked
-            self.isCheckedAutoSign.accept(self.autoSignCheckBox.isChecked)
+        autoSignCheckBox.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let isChecked = self?.autoSignCheckBox.isChecked else {
+                return
+            }
+            self?.autoSignCheckBox.isChecked = !isChecked
+            self?.isCheckedAutoSign.accept(isChecked)
         }).disposed(by: disposeBag)
         
         let output = viewModel.transform(input: input)
@@ -133,17 +136,3 @@ class SignInViewController: BaseViewController {
         }).disposed(by: disposeBag)
     }
 }
-
-
-import SwiftUI
-#if canImport(SwiftUI) && DEBUG
-
-struct SignInViewControllerPreview: PreviewProvider {
-    static var previews: some View {
-        Group {
-            SignInViewController().showPreview(.iPhone8)
-            SignInViewController().showPreview(.iPhone12Mini)
-        }
-    }
-}
-#endif

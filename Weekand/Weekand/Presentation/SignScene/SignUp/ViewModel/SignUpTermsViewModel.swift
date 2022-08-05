@@ -32,7 +32,6 @@ class SignUpTermsViewModel: ViewModelType {
 
         input.nextButtonDidTapEvent.subscribe(onNext: {
             self.signUpModel.signUpAgreed = true
-            
             self.SignUp(self.signUpModel)
         })
         .disposed(by: disposeBag)
@@ -44,17 +43,17 @@ class SignUpTermsViewModel: ViewModelType {
 extension SignUpTermsViewModel {
     private func SignUp(_ signUpModel: SignUpModel) {
         self.signUpUseCase.SignUp(signUpModel: signUpModel)
-            .subscribe(onSuccess: { isSucceed in
+            .subscribe(onSuccess: { [weak self] isSucceed in
                 if isSucceed {
-                    self.coordinator?.finish()
+                    self?.coordinator?.dismiss()
                 } else {
-                    self.coordinator?.presentPopViewController(
+                    self?.coordinator?.presentPopViewController(
                                         titleText: "오류",
                                         informText: "회원가입에 실패하였습니다.",
                                         dismissParentCoordinator: false)
                 }
-            }, onFailure: { _ in
-                self.coordinator?.presentPopViewController(
+            }, onFailure: { [weak self] _ in
+                self?.coordinator?.presentPopViewController(
                                     titleText: "오류",
                                     informText: "회원가입에 실패하였습니다.",
                                     dismissParentCoordinator: false)

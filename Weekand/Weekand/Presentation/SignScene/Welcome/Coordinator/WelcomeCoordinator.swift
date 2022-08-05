@@ -25,7 +25,6 @@ class WelcomeCoordinator: NSObject, Coordinator {
     
     func showSignInScene() {
         let signInCoordinator = SignInCoordinator(navigationController: self.navigationController)
-        signInCoordinator.finishDelegate = self
         childCoordinators.append(signInCoordinator)
         signInCoordinator.start()
     }

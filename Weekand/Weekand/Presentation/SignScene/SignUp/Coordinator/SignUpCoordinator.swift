@@ -55,14 +55,16 @@ class SignUpCoordinator: Coordinator {
         childCoordinators.append(authPopupCoordinator)
         navigationController.present(authPopupCoordinator.navigationController, animated: true, completion: nil)
         authPopupCoordinator.finishDelegate = self
+        authPopupCoordinator.delegate = self
         authPopupCoordinator.start()
     }
     
-    func showToastMessage() {
-        signUpViewController.showToast(message: "닉네임은 2글자 이상 12글자 이하만 가능합니다.")
+    func showToastMessage(text: String) {
+        signUpViewController.showToast(message: text)
     }
     
-    func finish() {
+    func dismiss() {
+        self.navigationController.dismiss(animated: true)
         self.finishDelegate?.childDidFinish(self)
     }
 }
@@ -70,6 +72,11 @@ class SignUpCoordinator: Coordinator {
 extension SignUpCoordinator: CoordinatorDidFinishDelegate {
     func childDidFinish(_ child: Coordinator) {
         self.childCoordinators = self.childCoordinators.filter({ $0.type != child.type })
-        navigationController.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension SignUpCoordinator: SimplePopupCoordinatorDelegate {
+    func dismissParent() {
+        self.dismiss()
     }
 }

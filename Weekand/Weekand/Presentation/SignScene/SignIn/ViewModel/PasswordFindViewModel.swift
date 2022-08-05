@@ -44,7 +44,7 @@ class PasswordFindViewModel: ViewModelType {
             }).disposed(by: disposeBag)
         
         input.closeButtonDidTapEvent.subscribe(onNext: {
-            self.coordinator?.finish()
+            self.coordinator?.dismiss()
         }).disposed(by: disposeBag)
         
         return Output()
@@ -77,10 +77,14 @@ extension PasswordFindViewModel {
     func issueTempPassword(email: String) {
         self.signInUseCase.issueTempPassword(email: email)
             .subscribe(onSuccess: { isSucceed in
-                self.coordinator?.presentPopViewController(
-                                    titleText: "안내",
-                                    informText: "임시비밀번호가 발급되었습니다.",
-                                    dismissParentCoordinator: true)
+                if isSucceed {
+                    self.coordinator?.presentPopViewController(
+                                        titleText: "안내",
+                                        informText: "임시비밀번호가 발급되었습니다.",
+                                        dismissParentCoordinator: true)
+                } else {
+                    self.coordinator?.showToastMessage(text: "네트워크 요청에 실패하였습니다")
+                }
         }, onFailure: { error in
             if error.localizedDescription == SignInError.notFoundUser.serverDescription {
                 self.coordinator?.showToastMessage(text: "가입되지 않은 이메일입니다")

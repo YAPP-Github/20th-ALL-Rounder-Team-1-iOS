@@ -10,6 +10,7 @@ import UIKit
 class SimplePopupCoordinator: Coordinator {
     var navigationController: UINavigationController
     weak var finishDelegate: CoordinatorDidFinishDelegate?
+    weak var delegate: SimplePopupCoordinatorDelegate?
     var childCoordinators: [Coordinator] = []
     var simplePopupViewController: SimplePopupViewController
     var dismissParentCoordinator: Bool
@@ -31,8 +32,13 @@ class SimplePopupCoordinator: Coordinator {
     
     func dismiss() {
         self.navigationController.dismiss(animated: true)
+        self.finishDelegate?.childDidFinish(self)
         if self.dismissParentCoordinator {
-            self.finishDelegate?.childDidFinish(self)
+            self.delegate?.dismissParent()
         }
     }
+}
+
+protocol SimplePopupCoordinatorDelegate: AnyObject {
+    func dismissParent()
 }
