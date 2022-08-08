@@ -146,7 +146,9 @@ extension MainTableViewCell {
         
         let icon = getStatusIcon(status: model.status, dateStart: model.dateStart, dateEnd: model.dateEnd)
         self.timeLineLabel.configureValue(status: icon, title: Date.getTimelineString(model.dateStart, model.dateEnd))
-        self.emojiView.numberLabel.text = String(model.stickerCount)
+        
+        
+        self.emojiView.numberLabel.text = model.stickerCount == 0 ? "" : String(model.stickerCount)
         self.emojiView.setEmoji(emojiOrder: model.stickerNameList)
         self.repeatType = model.repeatType
     }
