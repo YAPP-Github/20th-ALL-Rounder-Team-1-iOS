@@ -18,6 +18,7 @@ disabled_rules:
 
 excluded:
 - Pods
+- Weekand/API.swift
 - Weekand/AppDelegate.swift
 - Weekand/SceneDelegate.swift
 

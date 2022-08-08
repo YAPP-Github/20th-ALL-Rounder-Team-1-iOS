@@ -95,7 +95,6 @@ class ProfileViewController: UIViewController {
             viewModel?.loadData()
         }
         
-        
     }
     
     private func setUpView() {
