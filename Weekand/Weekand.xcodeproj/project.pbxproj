@@ -623,6 +623,107 @@
 			path = EmojiSheet;
 			sourceTree = "<group>";
 		};
+		7D1DEA4828A38C24006CE059 /* ProfileEdit */ = {
+			isa = PBXGroup;
+			children = (
+				7D1DEA4928A38C2F006CE059 /* ViewModel */,
+				7D1DEA4A28A38C45006CE059 /* View */,
+			);
+			path = ProfileEdit;
+			sourceTree = "<group>";
+		};
+		7D1DEA4928A38C2F006CE059 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7DE60ACA2892539F00F85A05 /* ProfileEditViewModel.swift */,
+				7DE60AC92892539F00F85A05 /* SelectionSheetViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7D1DEA4A28A38C45006CE059 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7DE60AD02892539F00F85A05 /* ProfileEditViewController.swift */,
+				7DE60AD12892539F00F85A05 /* SelectionSheetViewController.swift */,
+				7D1DEA4B28A38C84006CE059 /* SubView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7D1DEA4B28A38C84006CE059 /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				7DE60AD52892539F00F85A05 /* ProfileEditFieldView.swift */,
+				7DE60AD62892539F00F85A05 /* ProfileEditSelectionView.swift */,
+			);
+			path = SubView;
+			sourceTree = "<group>";
+		};
+		7D1DEA4C28A38CB1006CE059 /* Follow */ = {
+			isa = PBXGroup;
+			children = (
+				7D1DEA4D28A38CBF006CE059 /* ViewModel */,
+				7D1DEA4E28A38CC4006CE059 /* View */,
+			);
+			path = Follow;
+			sourceTree = "<group>";
+		};
+		7D1DEA4D28A38CBF006CE059 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7D9BC0F72896533100AC7F11 /* FollowViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7D1DEA4E28A38CC4006CE059 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D9BC0F92896539A00AC7F11 /* FollowViewController.swift */,
+				7D1DEA4F28A38CDF006CE059 /* SubView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7D1DEA4F28A38CDF006CE059 /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				7D9BC0FD28966C9500AC7F11 /* FollowTableViewCell.swift */,
+			);
+			path = SubView;
+			sourceTree = "<group>";
+		};
+		7D1DEA5028A38CEE006CE059 /* AccountSetting */ = {
+			isa = PBXGroup;
+			children = (
+				7D1DEA5228A38CFC006CE059 /* ViewModel */,
+				7D1DEA5128A38CF7006CE059 /* View */,
+			);
+			path = AccountSetting;
+			sourceTree = "<group>";
+		};
+		7D1DEA5128A38CF7006CE059 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7DE60AD22892539F00F85A05 /* PasswordChangeViewController.swift */,
+				7DE60AE02892539F00F85A05 /* ContactViewController.swift */,
+				7DE60ACF2892539F00F85A05 /* ContactCompleteViewController.swift */,
+				F38AE4652892D22500E5E261 /* ResignWarningPopupViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7D1DEA5228A38CFC006CE059 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7DE60AC72892539F00F85A05 /* ContactViewModel.swift */,
+				7DE60AC82892539F00F85A05 /* PasswordChangeViewModel.swift */,
+				F38AE4672892D24800E5E261 /* WarningPopupViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		7D3B1F5528363CFB0037504A /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -1013,6 +1114,9 @@
 			isa = PBXGroup;
 			children = (
 				7DE60AC52892539F00F85A05 /* Profile */,
+				7D1DEA4828A38C24006CE059 /* ProfileEdit */,
+				7D1DEA4C28A38CB1006CE059 /* Follow */,
+				7D1DEA5028A38CEE006CE059 /* AccountSetting */,
 			);
 			path = ProfileScene;
 			sourceTree = "<group>";
@@ -1031,12 +1135,6 @@
 			isa = PBXGroup;
 			children = (
 				7DE60ACB2892539F00F85A05 /* ProfileViewModel.swift */,
-				7DE60ACA2892539F00F85A05 /* ProfileEditViewModel.swift */,
-				7DE60AC92892539F00F85A05 /* SelectionSheetViewModel.swift */,
-				7DE60AC72892539F00F85A05 /* ContactViewModel.swift */,
-				7DE60AC82892539F00F85A05 /* PasswordChangeViewModel.swift */,
-				F38AE4672892D24800E5E261 /* WarningPopupViewModel.swift */,
-				7D9BC0F72896533100AC7F11 /* FollowViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1054,38 +1152,12 @@
 			isa = PBXGroup;
 			children = (
 				7DE60ADF2892539F00F85A05 /* ProfileViewController.swift */,
-				7DE60AD02892539F00F85A05 /* ProfileEditViewController.swift */,
-				7DE60AD12892539F00F85A05 /* SelectionSheetViewController.swift */,
-				7DE60AD22892539F00F85A05 /* PasswordChangeViewController.swift */,
-				7DE60AE02892539F00F85A05 /* ContactViewController.swift */,
-				7DE60ACF2892539F00F85A05 /* ContactCompleteViewController.swift */,
-				F38AE4652892D22500E5E261 /* ResignWarningPopupViewController.swift */,
-				7D9BC0F92896539A00AC7F11 /* FollowViewController.swift */,
 				7DE60AD32892539F00F85A05 /* SubView */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
 		7DE60AD32892539F00F85A05 /* SubView */ = {
-			isa = PBXGroup;
-			children = (
-				7DE60AD42892539F00F85A05 /* ProfileEdit */,
-				7DE60AD72892539F00F85A05 /* ProfileDetail */,
-				7D9BC0FD28966C9500AC7F11 /* FollowTableViewCell.swift */,
-			);
-			path = SubView;
-			sourceTree = "<group>";
-		};
-		7DE60AD42892539F00F85A05 /* ProfileEdit */ = {
-			isa = PBXGroup;
-			children = (
-				7DE60AD52892539F00F85A05 /* ProfileEditFieldView.swift */,
-				7DE60AD62892539F00F85A05 /* ProfileEditSelectionView.swift */,
-			);
-			path = ProfileEdit;
-			sourceTree = "<group>";
-		};
-		7DE60AD72892539F00F85A05 /* ProfileDetail */ = {
 			isa = PBXGroup;
 			children = (
 				7DE60AD82892539F00F85A05 /* ProfileDetailCollectionCell.swift */,
@@ -1096,7 +1168,7 @@
 				7DE60ADD2892539F00F85A05 /* ProfileDetailHelperView.swift */,
 				7DE60ADE2892539F00F85A05 /* ProfileDetailView.swift */,
 			);
-			path = ProfileDetail;
+			path = SubView;
 			sourceTree = "<group>";
 		};
 		7DF8B7AA28361FB500B224CA /* Supporting Files */ = {
