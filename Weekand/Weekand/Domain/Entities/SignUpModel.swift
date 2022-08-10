@@ -8,10 +8,10 @@
 import Foundation
 
 struct SignUpModel {
-    var email: String? = nil
-    var password: String? = nil
-    var nickname: String? = nil
-    var jobs: [String]? = nil
-    var interests: [String]? = nil
-    var signUpAgreed: Bool? = nil
+    var email: String?
+    var password: String?
+    var nickname: String?
+    var jobs: [String]?
+    var interests: [String]?
+    var signUpAgreed: Bool?
 }

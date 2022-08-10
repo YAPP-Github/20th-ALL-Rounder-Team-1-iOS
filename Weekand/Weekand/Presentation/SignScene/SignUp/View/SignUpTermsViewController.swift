@@ -229,6 +229,6 @@ class SignUpTermsViewController: UIViewController {
             nextButtonDidTapEvent: confirmButton.rx.tap.asObservable()
         )
 
-        let _ = viewModel.transform(input: input)
+        viewModel.transform(input: input)
     }
 }

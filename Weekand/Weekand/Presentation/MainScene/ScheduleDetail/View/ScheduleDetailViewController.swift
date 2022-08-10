@@ -206,7 +206,7 @@ class ScheduleDetailViewController: BaseViewController {
             requestDate: requestDate
         )
 
-        let _ = viewModel?.transform(input: input)
+        viewModel?.transform(input: input)
         
         self.viewModel?.schedule.subscribe(onNext: { [weak self] schedule in
             let repeatText = WRepeatTextManager.combineTimeDate(repeatType: schedule.repeatType,

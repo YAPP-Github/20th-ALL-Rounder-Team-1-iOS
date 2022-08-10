@@ -24,6 +24,7 @@ class SimplePopupViewModel: ViewModelType {
     
     struct Output { }
     
+    @discardableResult
     func transform(input: Input) -> Output {
         
         input.confirmButtonDidTapEvent.subscribe(onNext: {

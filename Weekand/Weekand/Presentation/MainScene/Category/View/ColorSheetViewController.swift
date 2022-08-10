@@ -71,8 +71,7 @@ class ColorSheetViewController: BottomSheetViewController, UICollectionViewDeleg
     }
     
     private func setupView() {
-        let layout = UICollectionViewCompositionalLayout { (_: Int,
-            _ : NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
+        let layout = UICollectionViewCompositionalLayout { (_: Int, _ : NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
             let screenWidth = UIScreen.main.bounds.width
             let itemSize = screenWidth * 0.096
             let edgeSpacing = screenWidth * 0.013

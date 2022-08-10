@@ -65,6 +65,6 @@ class SimplePopupViewController: PopupViewController {
             confirmButtonDidTapEvent: self.confirmButton.rx.tap.asObservable()
         )
         
-        let _ = viewModel?.transform(input: input)
+        viewModel?.transform(input: input)
     }
 }

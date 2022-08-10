@@ -75,8 +75,7 @@ class WeekRepeatViewController: UIViewController {
     }
 
     private func setUpView() {
-        let layout = UICollectionViewCompositionalLayout { (_: Int,
-            _ : NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
+        let layout = UICollectionViewCompositionalLayout { (_: Int, _ : NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
             let screenWidth = UIScreen.main.bounds.width
             let itemSize = screenWidth * 0.096
             let edgeSpacing = screenWidth * 0.013
@@ -147,7 +146,7 @@ class WeekRepeatViewController: UIViewController {
             .bind(to: selectedRepeatEndDate)
             .disposed(by: disposeBag)
         
-        let _ = viewModel?.transform(input: input)
+        viewModel?.transform(input: input)
     }
 }
 

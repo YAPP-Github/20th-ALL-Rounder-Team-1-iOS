@@ -68,6 +68,6 @@ class ResignWarningPopupViewController: PopupViewController {
             cancelButtonDidTapEvent: self.cancelButton.rx.tap.asObservable()
         )
         
-        let _ = viewModel?.transform(input: input)
+        viewModel?.transform(input: input)
     }
 }

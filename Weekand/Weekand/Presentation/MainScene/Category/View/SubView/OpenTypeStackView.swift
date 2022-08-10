@@ -42,8 +42,7 @@ class OpenTypeStackView: UIStackView {
     }
     
     private func setupCollectionView() {
-        let layout = UICollectionViewCompositionalLayout { (_: Int,
-            _ : NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
+        let layout = UICollectionViewCompositionalLayout { (_: Int, _ : NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
             
             let collectionLayoutSize = NSCollectionLayoutSize(widthDimension: .estimated(90),
                                                               heightDimension: .absolute(40))

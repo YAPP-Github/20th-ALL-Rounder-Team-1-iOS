@@ -29,6 +29,7 @@ class PasswordFindViewModel: ViewModelType {
     
     struct Output { }
     
+    @discardableResult
     func transform(input: Input) -> Output {
         
         input.confirmButtonDidTapEvent

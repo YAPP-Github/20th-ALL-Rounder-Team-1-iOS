@@ -29,6 +29,7 @@ extension NSMutableAttributedString {
         return self
     }
     
+    @discardableResult
     func normal(_ value: String, font: UIFont, fontColor: UIColor) -> NSMutableAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .font: font,

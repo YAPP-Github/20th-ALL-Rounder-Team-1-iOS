@@ -99,7 +99,7 @@ class CategoryListSheetViewController: BottomSheetViewController {
             selectedCategory: selectedCategory
         )
         
-        let _ = viewModel?.transform(input: input)
+        viewModel?.transform(input: input)
         
         self.viewModel?.categoryList
             .observe(on: MainScheduler.asyncInstance)

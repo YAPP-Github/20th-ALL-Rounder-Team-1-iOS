@@ -72,8 +72,7 @@ class ScheduleAddViewModel: ScheduleEditViewModelType {
              input.selectedMemo)
         
         input.confirmButtonDidTapEvent.withLatestFrom(combinedInputs)
-            .subscribe(onNext: { [weak self] dates, nameText, category,
-                                             repeatType, repeatSelectValue, repeatEnd, memo in
+            .subscribe(onNext: { [weak self] dates, nameText, category, repeatType, repeatSelectValue, repeatEnd, memo in
                 guard let category = category else {
                     return
                 }
@@ -146,7 +145,7 @@ class ScheduleAddViewModel: ScheduleEditViewModelType {
             })
         }).disposed(by: disposeBag)
         
-        var previousTag: DateTime? = nil
+        var previousTag: DateTime?
         
         Observable.of(
             input.dateButtonDidTapEvent.map { _ in DateTime.date },

@@ -133,7 +133,6 @@ extension StickerAddSheetViewController {
     
 }
 
-// TODO: 작동 안함 -> 수정 필요
 extension StickerAddSheetViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

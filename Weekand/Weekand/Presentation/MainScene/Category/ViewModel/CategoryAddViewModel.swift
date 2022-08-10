@@ -31,6 +31,7 @@ class CategoryAddViewModel: CategoryEditViewModelType {
     
     struct Output { }
     
+    @discardableResult
     func transform(input: Input) -> Output {
         input.closeButtonDidTapEvent.subscribe(onNext: {
             self.coordinator?.dismiss()

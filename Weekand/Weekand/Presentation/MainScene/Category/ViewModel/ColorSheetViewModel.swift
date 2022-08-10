@@ -26,6 +26,7 @@ class ColorSheetViewModel: ViewModelType {
     
     struct Output { }
     
+    @discardableResult
     func transform(input: Input) -> Output {
         
         input.didTapConfirmButton

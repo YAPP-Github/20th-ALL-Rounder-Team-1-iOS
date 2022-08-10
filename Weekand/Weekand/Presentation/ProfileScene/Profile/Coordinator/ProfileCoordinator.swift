@@ -76,10 +76,10 @@ class ProfileCoordinator: Coordinator {
     }
     
     func presentAlertPopupViewController(titleText: String,
-                                               informText: String,
-                                               confirmButtonText: String,
-                                               cancelButtonText: String,
-                                               completionHandler: @escaping () -> Void) {
+                                         informText: String,
+                                         confirmButtonText: String,
+                                         cancelButtonText: String,
+                                         completionHandler: @escaping () -> Void) {
         let alertPopupCoordinator = AlertPopupCoordinator(titleText: titleText,
                                                             informText: informText,
                                                             confirmButtonText: confirmButtonText,

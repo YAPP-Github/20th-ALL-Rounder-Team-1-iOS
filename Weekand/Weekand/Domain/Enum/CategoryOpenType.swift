@@ -8,9 +8,9 @@
 import Foundation
 
 enum CategoryOpenType: String {
-    case allOpen = "allOpen"
-    case followerOpen = "followerOpen"
-    case closed = "closed"
+    case allOpen
+    case followerOpen
+    case closed
     
     var description: String {
         switch self {

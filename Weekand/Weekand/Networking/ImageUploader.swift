@@ -26,7 +26,7 @@ final class ImageUploader {
                 print("\(#function): success")
                 
             } else {
-                print("\(#function): \(error)")
+                print("\(#function): \(String(describing: error))")
             }
         }
         

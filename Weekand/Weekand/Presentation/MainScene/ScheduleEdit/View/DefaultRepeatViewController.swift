@@ -100,7 +100,7 @@ class DefaultRepeatViewController: UIViewController {
             .bind(to: selectedRepeatEndDate)
             .disposed(by: disposeBag)
         
-        let _ = viewModel?.transform(input: input)
+        viewModel?.transform(input: input)
         
     }
 }

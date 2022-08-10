@@ -46,8 +46,7 @@ class ScheduleCompleteToolBar: UIToolbar {
         self.clipsToBounds = true
         self.layer.borderWidth = 0
         
-        let layout = UICollectionViewCompositionalLayout { (_: Int,
-            _ : NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
+        let layout = UICollectionViewCompositionalLayout { (_: Int, _ : NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
             let screenWidth = UIScreen.main.bounds.width
             let collectionLayoutSize = NSCollectionLayoutSize(
                 widthDimension: .absolute(screenWidth * 0.4),

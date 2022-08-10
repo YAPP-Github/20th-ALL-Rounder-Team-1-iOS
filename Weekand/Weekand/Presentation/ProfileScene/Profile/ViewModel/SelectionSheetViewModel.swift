@@ -33,6 +33,7 @@ class SelectionSheetViewModel: ViewModelType {
     
     struct Output { }
     
+    @discardableResult
     func transform(input: Input) -> Output {
         
         input.didTapConfirmButton.withLatestFrom(input.selectedInformations).subscribe(onNext: { informations in
