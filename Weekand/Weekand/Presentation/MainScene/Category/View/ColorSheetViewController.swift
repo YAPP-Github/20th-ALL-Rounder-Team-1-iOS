@@ -143,7 +143,7 @@ class ColorSheetViewController: BottomSheetViewController, UICollectionViewDeleg
                 self.dismiss(animated: true, completion: nil)
             }).disposed(by: disposeBag)
         
-        let _ = viewModel?.transform(input: input)
+        viewModel?.transform(input: input)
     }
 
 }
