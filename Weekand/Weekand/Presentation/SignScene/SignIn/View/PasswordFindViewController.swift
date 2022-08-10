@@ -88,7 +88,7 @@ class PasswordFindViewController: UIViewController {
             closeButtonDidTapEvent: closeButton.rx.tap.asObservable()
         )
         
-        let _ = viewModel?.transform(input: input)
+        viewModel?.transform(input: input)
     }
 
 }

@@ -117,7 +117,7 @@ class CategoryListViewController: UIViewController {
             self.headerView.dropDown.show()
         }).disposed(by: disposeBag)
         
-        let _ = viewModel?.transform(input: input)
+        viewModel?.transform(input: input)
     }
 }
 

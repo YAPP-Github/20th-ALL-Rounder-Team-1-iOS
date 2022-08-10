@@ -38,4 +38,3 @@ class RxFSCalendarDelegateProxy: DelegateProxy<FSCalendar, FSCalendarDelegate>, 
         object.delegate = delegate
     }
 }
-

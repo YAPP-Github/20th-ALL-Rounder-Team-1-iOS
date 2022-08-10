@@ -213,7 +213,7 @@ extension MainViewController {
         
         viewModel?.collectionViewDataSource = UICollectionViewDiffableDataSource<MainSection, FollowingUser>(collectionView: collectionView, cellProvider: { collectionView, indexPath, list in
             
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as! MainCollectionViewCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as? MainCollectionViewCell else { return UICollectionViewCell() }
             cell.setUpCell(list)
             
             if list.userId == self.viewModel?.currentUserId {
@@ -245,7 +245,7 @@ extension MainViewController: UICollectionViewDelegate {
     
     // selection
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! MainCollectionViewCell
+        guard let cell = collectionView.cellForItem(at: indexPath) as? MainCollectionViewCell else { return }
         viewModel?.userChanged(id: cell.dataId)
         
         self.headerView.calendarView.editButton.isHidden = !(UserDataStorage.shared.userID == viewModel?.currentUserId)
@@ -300,7 +300,7 @@ extension MainViewController {
     private func configureTableViewDataSource() {
         
         viewModel?.tableViewDataSource = MainScheduleDataSource(tableView: tableView, cellProvider: { tableView, indexPath, schedule in
-            let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as! MainTableViewCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier, for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
             
             cell.switchStickerButtonAppearance(isMine: self.viewModel?.isMySchedule)
             cell.setUpCell(schedule)

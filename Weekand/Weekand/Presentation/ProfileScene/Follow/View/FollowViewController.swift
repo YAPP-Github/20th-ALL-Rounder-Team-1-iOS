@@ -113,7 +113,7 @@ extension FollowViewController {
     private func configureTableViewDataSource() {
         
         viewModel?.tableViewDataSource = UITableViewDiffableDataSource<FollowSection, UserSummaryTemp>(tableView: tableView, cellProvider: { tableView, indexPath, list in
-            let cell = tableView.dequeueReusableCell(withIdentifier: FollowTableViewCell.cellIdentifier, for: indexPath) as! FollowTableViewCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: FollowTableViewCell.cellIdentifier, for: indexPath) as? FollowTableViewCell else { return UITableViewCell() }
             
             cell.setData(user: list)
             

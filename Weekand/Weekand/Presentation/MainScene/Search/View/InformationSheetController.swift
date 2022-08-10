@@ -129,11 +129,9 @@ class InformationSheetController: BottomSheetViewController {
             didTapConfirmButton: confirmButton.rx.tap.asObservable()
         )
         
-        let _ = viewModel?.transform(input: input)
+        viewModel?.transform(input: input)
     }
 }
-
-// MARK: - CollectionView
 
 extension InformationSheetController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {

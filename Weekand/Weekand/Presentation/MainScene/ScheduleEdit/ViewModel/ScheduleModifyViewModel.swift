@@ -150,7 +150,7 @@ class ScheduleModifyViewModel: ScheduleEditViewModelType {
             })
         }).disposed(by: disposeBag)
         
-        var previousTag: DateTime? = nil
+        var previousTag: DateTime?
         
         Observable.of(
             input.dateButtonDidTapEvent.map { _ in DateTime.date },

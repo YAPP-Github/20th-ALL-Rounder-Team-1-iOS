@@ -28,6 +28,7 @@ class SignUpTermsViewModel: ViewModelType {
     
     struct Output { }
     
+    @discardableResult
     func transform(input: Input) -> Output {
 
         input.nextButtonDidTapEvent.subscribe(onNext: {

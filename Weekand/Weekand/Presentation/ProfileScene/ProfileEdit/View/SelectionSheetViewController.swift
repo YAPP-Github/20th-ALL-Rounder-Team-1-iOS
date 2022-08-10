@@ -128,7 +128,7 @@ class SelectionSheetViewController: BottomSheetViewController {
             didTapConfirmButton: confirmButton.rx.tap.asObservable()
         )
         
-        let output = viewModel?.transform(input: input)
+        viewModel?.transform(input: input)
     }
 }
 

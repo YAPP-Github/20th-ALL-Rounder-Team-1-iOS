@@ -73,7 +73,7 @@ extension EmojiTableViewController {
     private func configureTableViewDataSource() {
         
         viewModel?.tableViewDataSource = UITableViewDiffableDataSource<EmojiSection, EmojiGiver>(tableView: tableView, cellProvider: { tableView, indexPath, list in
-            let cell = tableView.dequeueReusableCell(withIdentifier: EmojiTableViewCell.identifier, for: indexPath) as! EmojiTableViewCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: EmojiTableViewCell.identifier, for: indexPath) as? EmojiTableViewCell else { return UITableViewCell() }
             
             cell.setUpCell(list)
             

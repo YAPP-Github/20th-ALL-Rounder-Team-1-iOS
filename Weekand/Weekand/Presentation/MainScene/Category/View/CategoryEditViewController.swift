@@ -107,7 +107,7 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
         )
         
         if let viewModel = viewModel as? CategoryAddViewModel {
-            let _ = viewModel.transform(input: addInput)
+            viewModel.transform(input: addInput)
             
         } else if let viewModel = viewModel as? CategoryModifyViewModel {
             
@@ -119,7 +119,7 @@ class CategoryEditViewController<T: CategoryEditViewModelType>: BaseViewControll
             }
             .disposed(by: disposeBag)
             
-            let _ = viewModel.transform(input: modifyInput)
+            viewModel.transform(input: modifyInput)
         }
         
         categoryTextFieldStackView.textField.rx.text.orEmpty

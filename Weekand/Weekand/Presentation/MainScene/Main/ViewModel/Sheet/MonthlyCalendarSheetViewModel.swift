@@ -27,7 +27,7 @@ class MonthlyCalendarSheetViewModel {
     
     func transform(input: Input) -> Output {
         
-        input.didTapConfirmButton.subscribe (onNext: { _ in
+        input.didTapConfirmButton.subscribe(onNext: { _ in
             
             print("pass")
             self.coordinator?.sendDateFromMonthlyCalender(date: self.selectedDate)

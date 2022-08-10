@@ -114,7 +114,7 @@ extension StickerAddSheetViewController {
         
         viewModel?.collectionViewDataSource = UICollectionViewDiffableDataSource<StickerSection, Emoji>(collectionView: collectionView, cellProvider: { collectionView, indexPath, emoji in
             
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StickerCollectionViewCell.identifier, for: indexPath) as! StickerCollectionViewCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StickerCollectionViewCell.identifier, for: indexPath) as? StickerCollectionViewCell else { return UICollectionViewCell() }
             
             cell.setUpCell(emoji: emoji)
 
@@ -133,7 +133,6 @@ extension StickerAddSheetViewController {
     
 }
 
-// TODO: 작동 안함 -> 수정 필요
 extension StickerAddSheetViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

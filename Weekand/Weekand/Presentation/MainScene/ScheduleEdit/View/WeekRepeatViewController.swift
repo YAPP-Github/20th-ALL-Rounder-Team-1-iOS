@@ -75,11 +75,6 @@ class WeekRepeatViewController: UIViewController {
     }
 
     private func setUpView() {
-        setupWeekCollectionView()
-        setupRepeatTableView()
-    }
-    
-    private func setupWeekCollectionView() {
         let layout = UICollectionViewCompositionalLayout { (_: Int, _ : NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection in
             let screenWidth = UIScreen.main.bounds.width
             let itemSize = screenWidth * 0.096
@@ -89,20 +84,12 @@ class WeekRepeatViewController: UIViewController {
                                 widthDimension: .absolute(itemSize),
                                 heightDimension: .absolute(itemSize))
             let item = NSCollectionLayoutItem(layoutSize: collectionLayoutSize)
-            item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(edgeSpacing),
-                                                             top: nil,
-                                                             trailing: .fixed(edgeSpacing),
-                                                             bottom: nil)
+            item.edgeSpacing = NSCollectionLayoutEdgeSpacing(leading: .fixed(edgeSpacing), top: nil, trailing: .fixed(edgeSpacing), bottom: nil)
             
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1.0),
-                                                                             heightDimension: .fractionalWidth(0.1)),
-                                                           subitems: [item])
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.1)), subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
             section.orthogonalScrollingBehavior = .none
-            section.contentInsets = .init(top: sectionInset,
-                                          leading: 0,
-                                          bottom: sectionInset,
-                                          trailing: 0)
+            section.contentInsets = .init(top: sectionInset, leading: 0, bottom: sectionInset, trailing: 0)
 
             return section
         }
@@ -113,9 +100,7 @@ class WeekRepeatViewController: UIViewController {
         weekCollecitonView.isScrollEnabled = false
         weekCollecitonView.allowsMultipleSelection = true
         weekCollecitonView.register(WeekCollectionViewCell.self, forCellWithReuseIdentifier: WeekCollectionViewCell.cellIdentifier)
-    }
-    
-    private func setupRepeatTableView() {
+        
         repeatRadioStackView.tableView.delegate = self
         repeatRadioStackView.tableView.register(RepeatTableViewCell.self, forCellReuseIdentifier: RepeatTableViewCell.cellIdentifier)
     }
@@ -161,11 +146,9 @@ class WeekRepeatViewController: UIViewController {
             .bind(to: selectedRepeatEndDate)
             .disposed(by: disposeBag)
         
-        let _ = viewModel?.transform(input: input)
+        viewModel?.transform(input: input)
     }
 }
-
-// MARK: - TableView
 
 extension WeekRepeatViewController {
     private func configureDataSource() {
@@ -224,8 +207,6 @@ extension WeekRepeatViewController: UITableViewDelegate {
         }
     }
 }
-
-// MARK: - CollectionView
 
 extension WeekRepeatViewController: UICollectionViewDelegate {
     

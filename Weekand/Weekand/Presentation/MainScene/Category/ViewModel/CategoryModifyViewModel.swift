@@ -36,6 +36,7 @@ class CategoryModifyViewModel: CategoryEditViewModelType {
     
     struct Output { }
     
+    @discardableResult
     func transform(input: Input) -> Output {
         
         selectedCategory.accept(category)

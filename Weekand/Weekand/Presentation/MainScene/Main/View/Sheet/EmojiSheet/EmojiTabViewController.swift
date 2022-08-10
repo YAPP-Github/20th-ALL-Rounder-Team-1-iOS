@@ -96,14 +96,11 @@ extension EmojiTabViewController: PageboyViewControllerDataSource, TMBarDataSour
         if index == 0 {
             title = "총\(totalCount)개"
         } else {
-            
             let emojiCount = emojiCount[emojis[index]!] ?? 0
-            title = (emojiCount > 0) ? "\(emojis[index]!.emojiName) \(emojiCount)" : ""
+            title = "\(emojis[index]!.emojiName) \(emojiCount)"
         }
         
-        
-        
-        var barItem = TMBarItem(title: title)
+        let barItem = TMBarItem(title: title)
         
         return barItem
     }

@@ -31,6 +31,7 @@ class ScheduleDetailViewModel: ViewModelType {
     
     struct Output { }
     
+    @discardableResult
     func transform(input: Input) -> Output {
         
         Observable.combineLatest(input.selectedComplete, input.scheduleId)

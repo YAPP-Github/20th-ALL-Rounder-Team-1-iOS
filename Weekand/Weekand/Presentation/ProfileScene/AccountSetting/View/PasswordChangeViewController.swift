@@ -154,7 +154,7 @@ extension PasswordChangeViewController {
         
         var isFieldsFilled = true
         [currentPasswordField, newPasswordField, checkPasswordField].forEach {
-            if ($0.textField.text ?? "").isEmpty  { isFieldsFilled = false }
+            if ($0.textField.text ?? "").isEmpty { isFieldsFilled = false }
         }
         
         if isFieldsFilled && isIdentical {

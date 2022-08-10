@@ -84,15 +84,7 @@ class ProfileEditViewController: BaseViewController {
     }
     
     private func configureUI() {
-        
-        // TODO: Gradient 효과와 함께 추가
-//        profileImageView.addSubview(profileImageEditLabel)
-//        profileImageEditLabel.snp.makeConstraints { make in
-//            make.top.equalToSuperview().offset(52)
-//            make.left.right.equalToSuperview()
-//            make.bottom.equalToSuperview()
-//        }
-        
+                
         profileImageContainerView.addSubview(profileImageView)
         profileImageView.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -193,7 +185,7 @@ class ProfileEditViewController: BaseViewController {
 // MARK: Photo Picker
 extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             profileImageView.image = image
