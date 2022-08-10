@@ -78,7 +78,7 @@ extension AlarmViewController {
     private func configureTableViewDataSource() {
         
         viewModel?.tableViewDataSource = UITableViewDiffableDataSource<AlarmSection, Alarm>(tableView: tableView, cellProvider: { tableView, indexPath, alarm in
-            let cell = tableView.dequeueReusableCell(withIdentifier: AlarmTableViewCell.identifier, for: indexPath) as! AlarmTableViewCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: AlarmTableViewCell.identifier, for: indexPath) as? AlarmTableViewCell else { return UITableViewCell() }
             cell.setUpCell(description: alarm.message)
             return cell
         })

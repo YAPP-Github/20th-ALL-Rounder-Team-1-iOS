@@ -73,7 +73,7 @@ extension ProfileDetailCollectionStackView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileDetailCollectionCell.cellIdentifier, for: indexPath) as! ProfileDetailCollectionCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileDetailCollectionCell.cellIdentifier, for: indexPath) as? ProfileDetailCollectionCell else { return UICollectionViewCell() }
         
         
         if cellContent.isEmpty {
