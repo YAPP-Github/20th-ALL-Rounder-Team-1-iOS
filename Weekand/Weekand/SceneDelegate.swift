@@ -10,40 +10,13 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var coordinator: Coordinator?
+
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: windowScene) // SceneDelegate의 프로퍼티에 설정해줌
-        let navigationController = BaseNavigationController()
-        
-        setNavigationAppearance()
-
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
-        window?.overrideUserInterfaceStyle = .light
-    
-        self.coordinator = AppCoordinator(navigationController: navigationController)
-        self.coordinator?.start()
-    }
-    
-    func setNavigationAppearance() {
-        let backButtonAppearance = UIBarButtonItemAppearance(style: .plain)
-        backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
-        
-        let backButtonImage = UIImage(named: "back")
-        
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor.clear
-        appearance.shadowColor = UIColor.clear
-        appearance.backgroundEffect = UIBlurEffect(style: .light)
-        appearance.backButtonAppearance = backButtonAppearance
-        appearance.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
-        
-        UINavigationBar.appearance().standardAppearance = appearance
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
+        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
+        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        guard let _ = (scene as? UIWindowScene) else { return }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -54,15 +27,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
-//        TokenManager.shared.reissue { result in
-//            switch result {
-//            case .success: break
-//            case .failure(let error):
-//                scene.inputViewController?.showAlert(titles: "알림", message: "네트워크 오류가 발생하였습니다.", deleteHandler: { _ in
-//                    print(error)
-//                })
-//            }
-//        }
+        // Called when the scene has moved from an inactive state to an active state.
+        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
@@ -80,5 +46,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
+
 
 }

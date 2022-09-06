@@ -1,3 +1,0 @@
-mutation UpdateSchedule($input: UpdateScheduleInput!) {
-  updateSchedule(input: $input)
-}

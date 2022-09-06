@@ -1,6 +1,0 @@
-mutation CompleteSchedule($scheduleId: ID!, $date: Timestamp!) {
-  completeSchedule(input: {
-    scheduleId: $scheduleId,
-    date: $date
-  })
-}

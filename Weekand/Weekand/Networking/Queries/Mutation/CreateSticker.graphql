@@ -1,7 +1,0 @@
-mutation CreateSticker($id: ID!, $sticker: ScheduleStickerName!, $date: Timestamp!) {
-  createScheduleSticker(input: {
-    scheduleId: $id,
-    scheduleStickerName: $sticker,
-    scheduleDate: $date
-  })
-}

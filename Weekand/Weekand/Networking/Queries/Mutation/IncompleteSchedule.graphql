@@ -1,6 +1,0 @@
-mutation IncompleteSchedule($scheduleId: ID!, $date: Timestamp!) {
-  incompleteSchedule(input: {
-    scheduleId: $scheduleId,
-    date: $date
-  })
-}
