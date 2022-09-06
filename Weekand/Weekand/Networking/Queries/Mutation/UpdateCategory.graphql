@@ -1,5 +1,0 @@
-mutation UpdateCategory($categoryId: ID!, $scheduleCategoryInput: ScheduleCategoryInput!) {
-    updateCategory(categoryId: $categoryId, scheduleCategoryInput: $scheduleCategoryInput) {
-        name
-  }
-}

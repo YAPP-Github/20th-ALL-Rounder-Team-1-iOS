@@ -1,7 +1,0 @@
-mutation CreateCategory($name: String!, $color: String!, $openType: ScheduleCategoryOpenType!) {
-  createCategory(scheduleCategoryInput: {
-        name: $name,
-        color: $color,
-        openType: $openType
-  })
-}

@@ -1,3 +1,0 @@
-mutation SendContact($message: String!) {
-  inquiry(contents: $message)
-}

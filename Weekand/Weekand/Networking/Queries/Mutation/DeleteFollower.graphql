@@ -1,3 +1,0 @@
-mutation DeleteFollower($id: ID!) {
-  deleteFollower(input: { targetUserId: $id })
-}

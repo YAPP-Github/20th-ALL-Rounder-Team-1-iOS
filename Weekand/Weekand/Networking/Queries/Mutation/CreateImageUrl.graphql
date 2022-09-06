@@ -1,6 +1,0 @@
-mutation createImageUrl($type: UserProfileImageExtensionType!) {
-  createUserProfileImageS3PresignedUrl(input: { extension: $type }) {
-    url
-    filename
-  }
-}
