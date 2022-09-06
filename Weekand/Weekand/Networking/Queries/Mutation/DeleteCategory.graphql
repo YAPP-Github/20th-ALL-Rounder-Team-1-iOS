@@ -1,0 +1,5 @@
+mutation DeleteCategory($categoryId: ID!) {
+  deleteCategory(input: {
+    scheduleCategoryId: $categoryId
+  })
+}

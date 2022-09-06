@@ -10,16 +10,22 @@ target 'Weekand' do
   # Rx
   pod 'RxSwift'
   pod 'RxCocoa'
-  pod 'RxDataSources'
+  pod 'RxGesture'
+  pod 'AlignedCollectionViewFlowLayout'
 
   # UIKit
   pod 'SnapKit'
   pod 'Then'
-
-  # Custom UI
-  pod 'Charts'
   
   # Cooperation
   pod 'SwiftLint'
+
+  # Apollo
+  pod 'Apollo'
+
+  # Custom VUI
+  pod 'DropDown', '2.3.13'
+  pod 'FSCalendar'
+  pod 'Tabman'
 
 end

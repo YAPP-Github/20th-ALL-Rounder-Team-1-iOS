@@ -1,0 +1,6 @@
+mutation DeleteScheduleFromDate($scheduleId: ID!, $date: Timestamp!) {
+  deleteScheduleFromDate(input: {
+    scheduleId: $scheduleId
+    date: $date
+  })
+}

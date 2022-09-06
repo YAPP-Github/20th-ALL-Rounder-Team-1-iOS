@@ -1,0 +1,6 @@
+mutation SkipSchedule($scheduleId: ID!, $date: Timestamp!) {
+  skipSchedule(input: {
+    scheduleId: $scheduleId
+    date: $date
+  })
+}

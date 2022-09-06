@@ -1,58 +1,70 @@
 PODS:
-  - Charts (4.0.2):
-    - Charts/Core (= 4.0.2)
-  - Charts/Core (4.0.2):
-    - SwiftAlgorithms (~> 1.0)
-  - Differentiator (5.0.0)
+  - AlignedCollectionViewFlowLayout (1.1.2)
+  - Apollo (0.51.2):
+    - Apollo/Core (= 0.51.2)
+  - Apollo/Core (0.51.2)
+  - DropDown (2.3.13)
+  - FSCalendar (2.8.4)
+  - Pageboy (3.6.2)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
-  - RxDataSources (5.0.0):
-    - Differentiator (~> 5.0)
+  - RxGesture (4.0.4):
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
   - RxRelay (6.5.0):
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
   - SnapKit (5.6.0)
-  - SwiftAlgorithms (1.0.0)
   - SwiftLint (0.47.1)
+  - Tabman (2.12.0):
+    - Pageboy (~> 3.6.0)
   - Then (3.0.0)
 
 DEPENDENCIES:
-  - Charts
+  - AlignedCollectionViewFlowLayout
+  - Apollo
+  - DropDown (= 2.3.13)
+  - FSCalendar
   - RxCocoa
-  - RxDataSources
+  - RxGesture
   - RxSwift
   - SnapKit
   - SwiftLint
+  - Tabman
   - Then
 
 SPEC REPOS:
   trunk:
-    - Charts
-    - Differentiator
+    - AlignedCollectionViewFlowLayout
+    - Apollo
+    - DropDown
+    - FSCalendar
+    - Pageboy
     - RxCocoa
-    - RxDataSources
+    - RxGesture
     - RxRelay
     - RxSwift
     - SnapKit
-    - SwiftAlgorithms
     - SwiftLint
+    - Tabman
     - Then
 
 SPEC CHECKSUMS:
-  Charts: cfa4e911e6dc289582c2fe011a0e87c03d96727f
-  Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
+  AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
+  Apollo: e5bc805c3f3556c18edc4eae4e2ea4723cea2318
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
+  Pageboy: cf121b9dd48c63f3f281b2a9ec93d02e0f23879b
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
-  RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
+  RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
-  SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   SwiftLint: f80f1be7fa96d30e0aa68e58d45d4ea1ccaac519
+  Tabman: 447a50447ed2869c39ab3b1a779327e43e067c4e
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: c4bff5d3fa4bf28a65d23def980dbf0eeb31a5dd
+PODFILE CHECKSUM: 9d03d69e1f2fecac7cad87fd12e85dbc8327c0b3
 
 COCOAPODS: 1.11.3

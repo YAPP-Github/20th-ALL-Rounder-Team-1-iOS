@@ -139,3 +139,6 @@ iOSInjectionProject/
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,swift,xcode,cocoapods
+Weekand/Weekand/API.swift
+Weekand/Weekand/Networking/schema.json
+Weekand/Weekand/Resources/key.swift

@@ -1,0 +1,3 @@
+mutation CreateSchedule($input: ScheduleInput!) {
+    createSchedule(input: $input)
+}
