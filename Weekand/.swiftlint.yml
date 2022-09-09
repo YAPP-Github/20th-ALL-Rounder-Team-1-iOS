@@ -1,0 +1,27 @@
+identifier_name:
+    min_length:
+        warning: 0
+    max_length:
+        warning: 40
+        error: 50
+
+disabled_rules:
+- trailing_whitespace
+- line_length
+- vertical_whitespace
+- unused_optional_binding
+- identifier_name
+- function_body_length
+- file_length
+- function_parameter_count
+- unused_closure_parameter
+- implicit_getter
+
+excluded:
+- Pods
+- Weekand/API.swift
+- Weekand/AppDelegate.swift
+- Weekand/SceneDelegate.swift
+
+included:
+- Weekand

@@ -1,0 +1,18 @@
+query ScehduleRule($scheduleId: ID!) {
+  scheduleRule(scheduleId: $scheduleId) {
+    id
+    name
+    category {
+      id
+      name
+      color
+      openType
+    }
+    dateTimeStart
+    dateTimeEnd
+    repeatType
+    repeatSelectedValue
+    repeatEnd
+    memo
+  }
+}

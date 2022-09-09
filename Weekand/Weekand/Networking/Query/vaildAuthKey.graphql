@@ -1,0 +1,6 @@
+query vaildAuthKey($authKey: String!, $email: String!) {
+    validAuthKey(validAuthKeyInput: {
+        authKey: $authKey,
+        email: $email
+    })
+}
